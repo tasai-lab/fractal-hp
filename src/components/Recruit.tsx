@@ -57,6 +57,19 @@ export default function Recruit() {
               </div>
             </div>
 
+            {/* スタッフ集合写真 */}
+            <div className="rounded-xl md:rounded-2xl overflow-hidden shadow-sm mb-8 md:mb-12">
+              <div className="relative w-full">
+                <Image
+                  src="/images/recruit/recruit-team.png"
+                  alt="フラクタル訪問看護 船橋 スタッフ"
+                  width={1200}
+                  height={800}
+                  className="w-full h-auto"
+                />
+              </div>
+            </div>
+
             {/* HP限定入社祝い金バナー */}
             <div className="bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 rounded-xl md:rounded-2xl p-4 md:p-8 shadow-lg relative overflow-hidden mb-8 md:mb-12">
               <div className="absolute top-0 right-0 w-20 md:w-32 h-20 md:h-32 bg-yellow-200 rounded-full -translate-y-1/2 translate-x-1/2 opacity-50"></div>
@@ -99,19 +112,6 @@ export default function Recruit() {
                 </div>
 
                 <p className="text-xs md:text-sm text-primary/80 mt-3 md:mt-4 text-center">全ての職種に適用されます</p>
-              </div>
-            </div>
-
-            {/* スタッフ集合写真 */}
-            <div className="rounded-xl md:rounded-2xl overflow-hidden shadow-sm mb-8">
-              <div className="relative w-full">
-                <Image
-                  src="/images/recruit/recruit-team.png"
-                  alt="フラクタル訪問看護 船橋 スタッフ"
-                  width={1200}
-                  height={800}
-                  className="w-full h-auto"
-                />
               </div>
             </div>
 
