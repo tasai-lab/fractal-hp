@@ -497,8 +497,8 @@ export default function AboutFractalPage() {
 
             {/* 矢印 → */}
             <div className="flex items-center">
-              <div className="w-8 h-[3px] bg-amber-400"></div>
-              <div className="w-0 h-0 border-t-[7px] border-t-transparent border-b-[7px] border-b-transparent border-l-[10px] border-l-amber-400"></div>
+              <div className="w-6 h-[3px] bg-amber-400"></div>
+              <div className="w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[9px] border-l-amber-400"></div>
             </div>
 
             {/* データ（Data）囲み: Plan + Act + Evaluation */}
