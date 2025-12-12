@@ -495,8 +495,8 @@ export default function AboutFractalPage() {
               </div>
             </div>
 
-            {/* 矢印 → （ラベル分の高さを考慮してマージン追加） */}
-            <div className="flex items-center mt-[30px]">
+            {/* 矢印 → （ラベル + 囲みの高さの半分を考慮） */}
+            <div className="flex items-center mt-[68px]">
               <div className="w-6 h-[3px] bg-amber-400"></div>
               <div className="w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[9px] border-l-amber-400"></div>
             </div>
