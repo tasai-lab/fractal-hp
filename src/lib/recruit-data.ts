@@ -6,7 +6,7 @@ export const signOnBonus = {
     { months: 6, amount: 100000, label: "6ヶ月経過" },
     { months: 12, amount: 150000, label: "1年経過" },
   ],
-  note: "HP限定特典",
+  note: "HP・電話申し込み限定",
 };
 
 // 療法士の業務内容
