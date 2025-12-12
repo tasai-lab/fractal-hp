@@ -4,7 +4,7 @@ export const signOnBonus = {
   milestones: [
     { months: 3, amount: 50000, label: "3ヶ月経過" },
     { months: 6, amount: 100000, label: "6ヶ月経過" },
-    { months: 12, amount: 150000, label: "1年勤続" },
+    { months: 12, amount: 150000, label: "1年経過" },
   ],
   note: "HP限定特典",
 };

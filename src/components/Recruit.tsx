@@ -1,5 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 import BackgroundTriangles from "./BackgroundTriangles";
+import { signOnBonus } from "@/lib/recruit-data";
 
 export default function Recruit() {
   return (
@@ -55,38 +57,60 @@ export default function Recruit() {
               </div>
             </div>
 
-            {/* スタッフ集合写真プレースホルダー */}
-            <div className="rounded-2xl overflow-hidden shadow-sm mb-8">
-              <div className="bg-white aspect-video flex items-center justify-center">
-                <div className="text-center">
-                  <svg
-                    width="120"
-                    height="120"
-                    viewBox="0 0 100 100"
-                    className="mx-auto mb-4"
-                  >
-                    <polygon
-                      points="50,10 90,80 10,80"
-                      fill="var(--color-primary)"
-                    />
-                    <polygon
-                      points="50,10 70,45 30,45"
-                      fill="var(--color-accent-blue)"
-                    />
-                    <polygon
-                      points="30,45 50,80 10,80"
-                      fill="var(--color-accent-mint)"
-                    />
-                    <polygon
-                      points="70,45 90,80 50,80"
-                      fill="var(--color-accent-pink)"
-                    />
-                  </svg>
-                  <p className="text-2xl font-bold text-primary">
-                    フラクタル訪問看護 船橋
-                  </p>
-                  <p className="text-muted mt-2">スタッフ集合写真</p>
+            {/* HP限定入社祝い金バナー */}
+            <div className="bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 rounded-xl md:rounded-2xl p-4 md:p-8 shadow-lg relative overflow-hidden mb-8 md:mb-12">
+              <div className="absolute top-0 right-0 w-20 md:w-32 h-20 md:h-32 bg-yellow-200 rounded-full -translate-y-1/2 translate-x-1/2 opacity-50"></div>
+              <div className="absolute bottom-0 left-0 w-16 md:w-24 h-16 md:h-24 bg-yellow-200 rounded-full translate-y-1/2 -translate-x-1/2 opacity-50"></div>
+
+              <div className="relative z-10">
+                <div className="inline-block bg-red-500 text-white text-xs md:text-sm font-bold px-2 md:px-3 py-1 rounded-full mb-3 md:mb-4">
+                  {signOnBonus.note}
                 </div>
+                <h4 className="text-xl md:text-3xl font-bold text-primary mb-4 md:mb-6">
+                  入社祝い金 最大{(signOnBonus.total / 10000).toLocaleString()}万円
+                </h4>
+
+                {/* 祝い金マイルストーン（矢印付き） */}
+                <div className="flex items-center justify-center gap-1 md:gap-2">
+                  {signOnBonus.milestones.map((milestone, index) => (
+                    <div key={index} className="flex items-center">
+                      <div
+                        className="bg-white/90 rounded-lg md:rounded-xl text-center shadow-sm"
+                        style={{
+                          padding: index === 0 ? '8px 12px' : index === 1 ? '10px 14px' : '12px 16px',
+                        }}
+                      >
+                        <p className={`text-muted mb-0.5 ${index === 0 ? 'text-[9px] md:text-xs' : index === 1 ? 'text-[10px] md:text-sm' : 'text-xs md:text-base'}`}>
+                          {milestone.label}
+                        </p>
+                        <p className={`font-bold text-primary ${index === 0 ? 'text-sm md:text-lg' : index === 1 ? 'text-base md:text-xl' : 'text-lg md:text-2xl'}`}>
+                          {(milestone.amount / 10000).toLocaleString()}万円
+                        </p>
+                      </div>
+                      {index < signOnBonus.milestones.length - 1 && (
+                        <div className="text-primary mx-1 md:mx-2">
+                          <svg className="w-4 h-4 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+                          </svg>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                <p className="text-xs md:text-sm text-primary/80 mt-3 md:mt-4 text-center">全ての職種に適用されます</p>
+              </div>
+            </div>
+
+            {/* スタッフ集合写真 */}
+            <div className="rounded-xl md:rounded-2xl overflow-hidden shadow-sm mb-8">
+              <div className="relative w-full aspect-[4/3] md:aspect-video">
+                <Image
+                  src="/images/recruit/recruit-team.png"
+                  alt="フラクタル訪問看護 船橋 スタッフ"
+                  fill
+                  className="object-cover"
+                />
               </div>
             </div>
 
