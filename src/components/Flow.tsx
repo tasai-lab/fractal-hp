@@ -23,7 +23,7 @@ export default function Flow() {
                     <div className="flex items-start gap-4 md:gap-6">
                       {/* ステップ番号バッジ */}
                       <div className="flex-shrink-0">
-                        <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white text-primary border-2 border-primary flex items-center justify-center text-xl md:text-2xl font-bold shadow-md ring-4 ring-[var(--color-accent-pink-light)]">
+                        <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white text-primary flex items-center justify-center text-xl md:text-2xl font-bold shadow-md ring-4 ring-[var(--color-accent-pink-light)]">
                           {step.step}
                         </div>
                       </div>
