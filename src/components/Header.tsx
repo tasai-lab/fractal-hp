@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { navLinks } from "@/lib/data";
 import { Menu, X, Instagram } from "lucide-react";
+import Image from "next/image";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,12 +21,18 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* ロゴ */}
-          <div className="flex items-center space-x-3">
-            <FractalLogo />
+          <a href="#" className="flex items-center space-x-3">
+            <Image
+              src="/images/logos/hokan-logo.png"
+              alt="フラクタル訪問看護 船橋"
+              width={40}
+              height={40}
+              className="w-10 h-10"
+            />
             <div className="text-lg font-bold text-[var(--color-primary)]">
               フラクタル訪問看護 船橋
             </div>
-          </div>
+          </a>
 
           {/* デスクトップナビゲーション */}
           <nav className="hidden lg:flex items-center space-x-6">
@@ -84,57 +91,5 @@ export default function Header() {
         )}
       </div>
     </header>
-  );
-}
-
-// シェルピンスキーの三角形風のフラクタルロゴ
-function FractalLogo() {
-  return (
-    <svg
-      width="40"
-      height="40"
-      viewBox="0 0 100 100"
-      className="text-[var(--color-primary)]"
-    >
-      {/* 外側の大きな三角形 */}
-      <polygon
-        points="50,10 10,90 90,90"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-      />
-
-      {/* 中央の三角形（反転） */}
-      <polygon
-        points="50,50 30,90 70,90"
-        fill="var(--color-accent-blue)"
-        stroke="currentColor"
-        strokeWidth="1"
-      />
-
-      {/* 左上の三角形 */}
-      <polygon
-        points="30,50 10,90 50,90"
-        fill="var(--color-accent-pink)"
-        stroke="currentColor"
-        strokeWidth="1"
-      />
-
-      {/* 右上の三角形 */}
-      <polygon
-        points="70,50 50,90 90,90"
-        fill="var(--color-accent-yellow)"
-        stroke="currentColor"
-        strokeWidth="1"
-      />
-
-      {/* 上部の小さな三角形 */}
-      <polygon
-        points="50,10 30,50 70,50"
-        fill="var(--color-accent-mint)"
-        stroke="currentColor"
-        strokeWidth="1"
-      />
-    </svg>
   );
 }

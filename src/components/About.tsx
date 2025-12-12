@@ -1,7 +1,14 @@
+import { philosophyItems } from "@/lib/data";
+import Image from "next/image";
+import BackgroundTriangles from "./BackgroundTriangles";
+
 export default function About() {
   return (
-    <section id="about" className="section-wrapper bg-white">
-      <div className="section-inner">
+    <section id="about" className="section-wrapper bg-white relative overflow-hidden">
+      {/* 背景装飾 */}
+      <BackgroundTriangles pattern="about" />
+
+      <div className="section-inner relative z-10">
         {/* セクションタイトル（縦書き） */}
         <div className="section-title-area">
           <h2 className="section-title">フラクタルとは</h2>
@@ -9,120 +16,88 @@ export default function About() {
         </div>
 
         {/* コンテンツエリア */}
-        <div className="section-content space-y-8">
-          {/* フラクタルロゴ */}
-          <div className="flex justify-center">
-            <FractalTriangleDecoration size={150} />
-          </div>
+        <div className="section-content space-y-12">
+          {/* フラクタルとは セクション - 丸みを帯びた四角形で囲む */}
+          <div className="section-card section-card-about space-y-8">
+            {/* フラクタルロゴ */}
+            <div className="flex justify-center">
+              <Image
+                src="/images/logos/hokan-logo-animated.gif"
+                alt="フラクタルロゴ"
+                width={150}
+                height={150}
+                className="w-[150px] h-[150px]"
+                unoptimized
+              />
+            </div>
 
-          {/* メインコピー */}
-          <div className="text-center">
-            <h3 className="text-2xl md:text-3xl font-bold text-[var(--color-primary)] leading-relaxed">
-              一部分が全体と同じ形になる構造です。
-            </h3>
-          </div>
+            {/* メインコピー */}
+            <div className="text-center">
+              <h3 className="text-2xl md:text-3xl font-bold text-primary leading-relaxed">
+                一部分が全体と同じ形になる構造です。
+              </h3>
+            </div>
 
-          {/* 理念の説明 */}
-          <div className="space-y-6 text-[var(--color-foreground)]">
-            <p className="text-base md:text-lg leading-relaxed">
-              フラクタルは、部分と全体が自己相似性を持つ幾何学的な構造を指します。
-              自然界にも多く見られるこの美しい形は、私たちの看護理念を象徴しています。
-            </p>
+            {/* 理念の説明 */}
+            <div className="space-y-6 text-foreground">
+              <p className="text-base md:text-lg leading-relaxed">
+                だからこそ、私たちフラクタルは関わる全ての人たちが思い描く人生を送るために、最後の最後まで頼られる一部分であり続けます。
+              </p>
 
-            <p className="text-base md:text-lg leading-relaxed">
-              一人ひとりの利用者様に寄り添いながら、その方らしい生活を支えること。
-              小さなケアの積み重ねが、大きな安心と信頼につながっていく。
-              フラクタルのように、私たち一人ひとりのケアが組織全体の質を形作り、
-              それぞれの家庭に最適な看護サービスを提供していきます。
-            </p>
-          </div>
+              <p className="text-base md:text-lg leading-relaxed">
+                私たちが行う一つひとつのケアは、いわば利用者さまの生活の『一部』であり、その積み重ねが利用者さまやご家族の人生という『全体』をカタチ作ります。
+              </p>
 
-          {/* 愛・信頼・希望 */}
-          <div className="grid md:grid-cols-3 gap-4">
-            <div className="bg-[var(--color-accent-pink-light)] rounded-2xl p-6 text-center">
-              <div className="text-3xl font-bold text-[var(--color-primary)] mb-2">愛</div>
-              <p className="text-sm text-[var(--color-primary-light)]">
-                温かい心で接する
+              <p className="text-base md:text-lg leading-relaxed">
+                病気や障がいといった一面だけを捉えるのではなく、利用者さまの価値観、生活歴、社会的背景まで含めた『その人全体』を捉え、チームとして多角的な視点から利用者さまの最適解を一緒に模索します。
               </p>
             </div>
-            <div className="bg-[var(--color-accent-mint-light)] rounded-2xl p-6 text-center">
-              <div className="text-3xl font-bold text-[var(--color-primary)] mb-2">信頼</div>
-              <p className="text-sm text-[var(--color-primary-light)]">
-                確かな技術と知識
-              </p>
-            </div>
-            <div className="bg-[var(--color-accent-yellow)] rounded-2xl p-6 text-center">
-              <div className="text-3xl font-bold text-[var(--color-primary)] mb-2">希望</div>
-              <p className="text-sm text-[var(--color-primary-light)]">
-                明日への活力を
+
+            {/* 最後のメッセージ */}
+            <div className="text-center">
+              <p className="text-lg md:text-xl font-bold text-primary leading-relaxed">
+                完璧はない、だから最適化する。<br />
+                それが私たちがフラクタルであるということです。
               </p>
             </div>
           </div>
 
-          {/* 最後のメッセージ */}
-          <div className="text-center mt-8">
-            <p className="text-lg md:text-xl font-bold text-[var(--color-primary)] leading-relaxed">
-              完璧はない、だから最適化する。<br />
-              それが私たちフラクタルであるということです。
+          {/* 私たちのカタチ セクション - 丸みを帯びた四角形で囲む */}
+          <div id="philosophy" className="section-card space-y-8">
+            {/* タイトル */}
+            <h3 className="text-3xl font-bold text-center text-primary">私たちのカタチ</h3>
+
+            {/* サブタイトル */}
+            <p className="text-xl text-center text-muted">
+              シンプルで独創的、それがフラクタル。
             </p>
+
+            {/* 理念項目リスト */}
+            <div className="space-y-6">
+              {philosophyItems.map((item) => (
+                <div
+                  key={item.number}
+                  className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <div className="flex gap-4">
+                    <div className="flex-shrink-0">
+                      <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
+                        {item.number}
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-xl font-bold mb-2 text-primary">{item.title}</h4>
+                      <p className="text-foreground leading-relaxed text-sm">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
     </section>
-  );
-}
-
-// 装飾用のフラクタル三角形コンポーネント
-function FractalTriangleDecoration({ size = 100 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 100 100">
-      {/* 外側の大きな三角形の枠線 */}
-      <polygon
-        points="50,5 5,95 95,95"
-        fill="none"
-        stroke="var(--color-primary)"
-        strokeWidth="1.5"
-      />
-
-      {/* 中央の三角形 */}
-      <polygon
-        points="50,50 27.5,95 72.5,95"
-        fill="var(--color-accent-blue)"
-        stroke="var(--color-primary)"
-        strokeWidth="0.5"
-      />
-
-      {/* 左下の三角形 */}
-      <polygon
-        points="27.5,50 5,95 50,95"
-        fill="var(--color-accent-pink)"
-        stroke="var(--color-primary)"
-        strokeWidth="0.5"
-      />
-
-      {/* 右下の三角形 */}
-      <polygon
-        points="72.5,50 50,95 95,95"
-        fill="var(--color-accent-yellow)"
-        stroke="var(--color-primary)"
-        strokeWidth="0.5"
-      />
-
-      {/* 上部の三角形 */}
-      <polygon
-        points="50,5 27.5,50 72.5,50"
-        fill="var(--color-accent-mint)"
-        stroke="var(--color-primary)"
-        strokeWidth="0.5"
-      />
-
-      {/* 最上部の小さな三角形 */}
-      <polygon
-        points="50,5 38.75,27.5 61.25,27.5"
-        fill="var(--color-accent-blue-light)"
-        stroke="var(--color-primary)"
-        strokeWidth="0.3"
-      />
-    </svg>
   );
 }

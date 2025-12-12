@@ -1,4 +1,5 @@
 import { features } from "@/lib/data";
+import BackgroundTriangles from "./BackgroundTriangles";
 
 // アイコンコンポーネント
 function FeatureIcon({ icon }: { icon: string }) {
@@ -232,47 +233,50 @@ function FeatureIcon({ icon }: { icon: string }) {
 
 export default function Features() {
   return (
-    <section id="features" className="section-wrapper bg-white">
-      <div className="section-inner">
+    <section id="features" className="section-wrapper bg-white relative overflow-hidden">
+      <BackgroundTriangles pattern="features" />
+      <div className="section-inner relative z-10">
         {/* セクションタイトル（縦書き） */}
         <div className="section-title-area">
           <h2 className="section-title">フラクタルの特徴</h2>
           <div className="section-title-line" />
         </div>
 
-        {/* 特徴カードグリッド */}
+        {/* 特徴カードグリッド - 丸みを帯びた四角形で囲む */}
         <div className="section-content">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {features.map((feature, index) => (
-              <div
-                key={index}
-                className="card hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-              >
-                <div className="flex flex-col items-center text-center">
-                  {/* アイコン */}
-                  <div className="mb-4">
-                    <FeatureIcon icon={feature.icon} />
-                  </div>
+          <div className="section-card">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {features.map((feature, index) => (
+                <div
+                  key={index}
+                  className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                >
+                  <div className="flex flex-col items-center text-center">
+                    {/* アイコン */}
+                    <div className="mb-4">
+                      <FeatureIcon icon={feature.icon} />
+                    </div>
 
-                  {/* タイトル */}
-                  <h3 className="text-xl font-bold mb-3 text-[var(--color-primary)]">
-                    {feature.title}
-                  </h3>
+                    {/* タイトル */}
+                    <h3 className="text-xl font-bold mb-3 text-[var(--color-primary)]">
+                      {feature.title}
+                    </h3>
 
-                  {/* 説明 */}
-                  <p className="text-base mb-3 whitespace-pre-line leading-relaxed text-[var(--color-foreground)]">
-                    {feature.description}
-                  </p>
-
-                  {/* 注釈 */}
-                  {feature.note && (
-                    <p className="text-sm text-[var(--color-muted)] whitespace-pre-line leading-relaxed">
-                      {feature.note}
+                    {/* 説明 */}
+                    <p className="text-base mb-3 whitespace-pre-line leading-relaxed text-[var(--color-foreground)]">
+                      {feature.description}
                     </p>
-                  )}
+
+                    {/* 注釈 */}
+                    {feature.note && (
+                      <p className="text-sm text-[var(--color-muted)] whitespace-pre-line leading-relaxed">
+                        {feature.note}
+                      </p>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>

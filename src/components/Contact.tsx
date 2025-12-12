@@ -2,6 +2,7 @@
 
 import { contactTypes } from "@/lib/data";
 import { FormEvent, useState } from "react";
+import BackgroundTriangles from "./BackgroundTriangles";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -89,17 +90,18 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="py-20 relative overflow-hidden"
-      style={{ background: "var(--color-accent-pink-light)" }}
+      className="section-wrapper bg-white relative overflow-hidden"
     >
-      <div className="section-container">
-        {/* セクションタイトル - 中央配置 */}
-        <h2 className="text-3xl font-bold text-center mb-12" style={{ color: "var(--color-primary)" }}>
-          お問い合わせ
-        </h2>
+      <BackgroundTriangles pattern="contact" />
+      <div className="max-w-[1200px] mx-auto px-6 relative z-10">
+        {/* 丸みを帯びた四角形で囲む */}
+        <div className="section-card section-card-mint max-w-3xl mx-auto">
+          {/* セクションタイトル */}
+          <h2 className="text-3xl font-bold text-center mb-12 text-primary">
+            お問い合わせ
+          </h2>
 
-        {/* フォーム */}
-        <div className="max-w-3xl mx-auto">
+          {/* フォーム */}
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* 氏名 */}
             <div>

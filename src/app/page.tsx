@@ -1,7 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
-import Philosophy from "@/components/Philosophy";
 import Features from "@/components/Features";
 import Office from "@/components/Office";
 import ServiceArea from "@/components/ServiceArea";
@@ -19,7 +18,6 @@ export default function Home() {
       <main>
         <Hero />
         <About />
-        <Philosophy />
         <Features />
         <Office />
         <ServiceArea />

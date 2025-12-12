@@ -1,36 +1,37 @@
 import { officeInfo } from "@/lib/data";
+import BackgroundTriangles from "./BackgroundTriangles";
 
 export default function Office() {
   return (
-    <section id="office" className="section-wrapper">
-      <div className="section-inner">
+    <section id="office" className="section-wrapper bg-white relative overflow-hidden">
+      <BackgroundTriangles pattern="office" />
+      <div className="section-inner relative z-10">
         <div className="section-title-area">
           <h2 className="section-title">事業所情報</h2>
           <div className="section-title-line" />
         </div>
 
         <div className="section-content">
-          {/* フラクタルロゴ（SVG三角形）- 中央配置 */}
-          <div className="flex justify-center mb-8">
-            <svg
-              width="80"
-              height="80"
-              viewBox="0 0 100 100"
-              className="flex-shrink-0"
-            >
-              <polygon
-                points="50,10 90,80 10,80"
-                fill="var(--color-primary)"
-              />
-              <polygon
-                points="50,10 70,45 30,45"
-                fill="var(--color-accent-blue)"
-              />
-            </svg>
-          </div>
-
-          {/* 事業所情報カード */}
-          <div className="card card-blue">
+          {/* 事業所情報カード - 丸みを帯びた四角形で囲む */}
+          <div className="section-card section-card-blue">
+            {/* フラクタルロゴ（SVG三角形）- 中央配置 */}
+            <div className="flex justify-center mb-8">
+              <svg
+                width="80"
+                height="80"
+                viewBox="0 0 100 100"
+                className="flex-shrink-0"
+              >
+                <polygon
+                  points="50,10 90,80 10,80"
+                  fill="var(--color-primary)"
+                />
+                <polygon
+                  points="50,10 70,45 30,45"
+                  fill="var(--color-accent-blue)"
+                />
+              </svg>
+            </div>
             <div className="grid md:grid-cols-2 gap-8">
               {/* 左側：テキスト情報 */}
               <div className="space-y-6">

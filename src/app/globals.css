@@ -122,6 +122,29 @@ body {
   background: var(--color-accent-mint-light);
 }
 
+/* Section Card - 元のサイトと同じ丸みを帯びた四角形 */
+.section-card {
+  background: var(--color-accent-yellow);
+  border-radius: 2rem;
+  padding: 3rem;
+}
+
+.section-card-blue {
+  background: var(--color-accent-blue-light);
+}
+
+.section-card-about {
+  background: #badcff;
+}
+
+.section-card-pink {
+  background: var(--color-accent-pink-light);
+}
+
+.section-card-mint {
+  background: var(--color-accent-mint-light);
+}
+
 /* Button Styles */
 .btn-primary {
   background: var(--color-primary);
