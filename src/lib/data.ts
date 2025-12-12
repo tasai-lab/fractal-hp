@@ -37,7 +37,7 @@ export const navLinks = [
   { href: "#features", label: "特徴" },
   { href: "#office", label: "事業所" },
   { href: "#staff", label: "スタッフ紹介" },
-  { href: "#recruit", label: "求人" },
+  { href: "/recruit", label: "採用情報" },
   { href: "/flyers", label: "チラシ" },
   { href: "#company", label: "会社情報" },
 ];
