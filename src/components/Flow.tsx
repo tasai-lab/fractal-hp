@@ -19,7 +19,7 @@ export default function Flow() {
               {flowSteps.map((step, index) => (
                 <div key={step.step} className="flex flex-col items-center">
                   {/* ステップカード - 白背景 */}
-                  <div className="bg-white rounded-xl p-4 md:p-6 shadow-sm w-full hover-lift border-l-4 border-[var(--color-primary)]">
+                  <div className="bg-white rounded-xl p-4 md:p-6 shadow-sm w-full hover-lift border-l-4 border-[var(--color-accent-pink)]">
                     <div className="flex items-start gap-4 md:gap-6">
                       {/* ステップ番号バッジ */}
                       <div className="flex-shrink-0">
