@@ -1,4 +1,4 @@
-import { companyInfo, officeInfo } from "@/lib/data";
+import { companyInfo } from "@/lib/data";
 import BackgroundTriangles from "./BackgroundTriangles";
 
 export default function Company() {
@@ -61,7 +61,7 @@ export default function Company() {
           {/* Google Maps - 下部に配置 */}
           <div className="h-[250px] md:h-[400px] rounded-xl overflow-hidden shadow-sm">
             <iframe
-              src={officeInfo.googleMapsUrl}
+              src={companyInfo.googleMapsUrl}
               width="100%"
               height="100%"
               style={{ border: 0 }}

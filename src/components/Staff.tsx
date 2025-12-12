@@ -25,7 +25,7 @@ export default function Staff() {
             {/* サブタイトル */}
             <div className="mb-8 md:mb-12">
               <p className="text-xl md:text-2xl font-bold text-center text-primary">
-                個性豊かなスタッフが、あなたをサポートします
+                フラクタルの仲間たち
               </p>
             </div>
 

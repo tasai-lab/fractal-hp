@@ -20,43 +20,72 @@ export default function Office() {
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
               {/* 左側：テキスト情報 */}
-              <div className="space-y-6">
-                <div className="space-y-4 text-foreground">
-                  <div className="flex gap-2">
-                    <span className="font-medium min-w-[7rem]">事業所番号:</span>
-                    <span>{officeInfo.businessNumber}</span>
+              <div className="space-y-8">
+                <div className="space-y-6 text-foreground">
+                  {/* 事業所番号 */}
+                  <div>
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-1 h-6 bg-primary rounded-full"></div>
+                      <span className="font-bold text-lg">事業所番号</span>
+                    </div>
+                    <p className="pl-3 text-2xl md:text-3xl font-bold text-primary tracking-wider">
+                      {officeInfo.businessNumber}
+                    </p>
                   </div>
 
+                  {/* 営業時間 */}
                   <div>
-                    <span className="font-medium">〈 営業時間 〉</span>
-                    <p className="mt-1">{officeInfo.hours}</p>
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-1 h-6 bg-primary rounded-full"></div>
+                      <span className="font-bold text-lg">営業時間</span>
+                    </div>
+                    <p className="pl-3 text-lg">{officeInfo.hours}</p>
                   </div>
 
+                  {/* 所在地 */}
                   <div>
-                    <span className="font-medium">〈 所在地 〉</span>
-                    <p className="mt-1">{officeInfo.address.full}</p>
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-1 h-6 bg-primary rounded-full"></div>
+                      <span className="font-bold text-lg">所在地</span>
+                    </div>
+                    <p className="pl-3 leading-relaxed">
+                      〒{officeInfo.address.postalCode}
+                      <br />
+                      {officeInfo.address.prefecture}
+                      {officeInfo.address.city}
+                      {officeInfo.address.street} {officeInfo.address.building}
+                    </p>
                   </div>
 
+                  {/* お問い合わせ先 */}
                   <div>
-                    <span className="font-medium">〈 お問い合わせ先 〉</span>
-                    <div className="mt-1 space-y-1">
-                      <p>
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-1 h-6 bg-primary rounded-full"></div>
+                      <span className="font-bold text-lg">お問い合わせ先</span>
+                    </div>
+                    <div className="pl-3 mt-2 space-y-3">
+                      <div className="flex items-center gap-3">
+                        <span className="font-bold text-muted bg-white px-2 py-1 rounded text-sm min-w-[3.5rem] text-center">TEL</span>
                         <a
                           href={`tel:${officeInfo.phone.replace(/-/g, "")}`}
-                          className="hover:underline"
+                          className="hover:underline font-bold text-xl md:text-2xl text-primary"
                         >
                           {officeInfo.phone}
                         </a>
-                      </p>
-                      <p>{officeInfo.fax}</p>
-                      <p>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="font-bold text-muted bg-white px-2 py-1 rounded text-sm min-w-[3.5rem] text-center">FAX</span>
+                        <span className="text-lg">{officeInfo.fax}</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <span className="font-bold text-muted bg-white px-2 py-1 rounded text-sm min-w-[3.5rem] text-center mt-1">Email</span>
                         <a
                           href={`mailto:${officeInfo.email}`}
-                          className="hover:underline break-all"
+                          className="hover:underline break-all text-base md:text-lg mt-0.5"
                         >
                           {officeInfo.email}
                         </a>
-                      </p>
+                      </div>
                     </div>
                   </div>
                 </div>

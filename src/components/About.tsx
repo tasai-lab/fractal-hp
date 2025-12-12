@@ -17,17 +17,16 @@ export default function About() {
 
         {/* コンテンツエリア */}
         <div className="section-content space-y-12">
-          {/* フラクタルとは セクション - 丸みを帯びた四角形で囲む */}
-          <div className="section-card section-card-about space-y-6 md:space-y-8">
-            {/* フラクタルロゴ */}
+          {/* フラクタルとは セクション */}
+          <div className="space-y-6 md:space-y-8">
+            {/* 訪問看護ロゴ */}
             <div className="flex justify-center">
               <Image
-                src="/images/logos/hokan-logo-animated.gif"
-                alt="フラクタルロゴ"
+                src="/images/logos/hokan-logo-static.png"
+                alt="フラクタル訪問看護ロゴ"
                 width={150}
                 height={150}
                 className="w-[100px] h-[100px] md:w-[150px] md:h-[150px]"
-                unoptimized
               />
             </div>
 
@@ -39,7 +38,7 @@ export default function About() {
             </div>
 
             {/* 理念の説明 */}
-            <div className="space-y-4 md:space-y-6 text-foreground">
+            <div className="space-y-4 md:space-y-6 text-foreground max-w-2xl mx-auto">
               <p className="text-sm md:text-base lg:text-lg leading-relaxed">
                 「フラクタル」とは、一部分が全体と同じ形になる構造のこと。
                 私たちは、日々の訪問看護という「一部」の積み重ねが、利用者さまやご家族の人生という「全体」を豊かにすると信じています。
@@ -51,8 +50,8 @@ export default function About() {
               </p>
 
               <p className="text-sm md:text-base lg:text-lg leading-relaxed">
-                関わるすべての人たちが、自分らしく思い描く人生を送れるように。
-                私たちは、最後の最後まで頼れる存在であり続けます。
+                関わるすべての人たちが、自分らしく思い描く人生を送るために。
+                私たちは、最期のときまで頼れる存在であり続けます。
               </p>
             </div>
 
@@ -66,13 +65,32 @@ export default function About() {
           </div>
 
           {/* 私たちのカタチ セクション - 丸みを帯びた四角形で囲む */}
-          <div id="philosophy" className="section-card space-y-6 md:space-y-8">
+          <div id="philosophy" className="section-card section-card-about space-y-6 md:space-y-8">
             {/* タイトル */}
             <h3 className="text-2xl md:text-3xl font-bold text-center text-primary">私たちのカタチ</h3>
 
+            {/* ロゴ（法人ロゴと多様性ロゴを横並び） */}
+            <div className="flex justify-center items-center gap-8 md:gap-12">
+              <Image
+                src="/images/logos/corporate-logo.png"
+                alt="株式会社フラクタルロゴ"
+                width={150}
+                height={150}
+                className="w-[100px] h-[100px] md:w-[150px] md:h-[150px]"
+              />
+              <Image
+                src="/images/logos/hokan-logo-diversity.gif"
+                alt="フラクタル多様性ロゴ"
+                width={150}
+                height={150}
+                className="w-[100px] h-[100px] md:w-[150px] md:h-[150px]"
+                unoptimized
+              />
+            </div>
+
             {/* サブタイトル */}
             <p className="text-base md:text-xl text-center text-muted">
-              想いをカタチにする、4つのこだわり
+              私たちをカタチ作る、4つの要素
             </p>
 
             {/* 理念項目リスト */}

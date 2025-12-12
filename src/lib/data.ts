@@ -13,9 +13,9 @@ export const officeInfo = {
   phone: "047-770-1228",
   fax: "047-413-0502",
   email: "hokan-f@fractal-group.co.jp",
-  hours: "9:00 〜 19:00",
+  hours: "9:00 〜 19:00（土日祝・年末年始も毎日営業）",
   googleMapsUrl:
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3238.8!2d140.0547!3d35.7089!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z44OV44Op44Kv44K/44Or6Kiq5ZWP55yL6K2377ya6Ii56Kq",
+    "https://www.google.com/maps?q=%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%E3%83%95%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%AB+%E3%83%95%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%AB%E8%A8%AA%E5%95%8F%E7%9C%8B%E8%AD%B7+%E8%88%B9%E6%A9%8B&output=embed",
 };
 
 // 会社情報
@@ -27,6 +27,8 @@ export const companyInfo = {
   address: {
     full: "〒274-0072 千葉県船橋市三山6丁目22-2 パレドール小川201",
   },
+  googleMapsUrl:
+    "https://www.google.com/maps?q=%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%E3%83%95%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%AB+%E8%88%B9%E6%A9%8B&output=embed",
 };
 
 // ナビゲーションリンク
@@ -36,6 +38,7 @@ export const navLinks = [
   { href: "#office", label: "事業所" },
   { href: "#staff", label: "スタッフ紹介" },
   { href: "#recruit", label: "求人" },
+  { href: "/flyers", label: "チラシ" },
   { href: "#company", label: "会社情報" },
 ];
 

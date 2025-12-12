@@ -4,6 +4,7 @@ import { useState } from "react";
 import { navLinks } from "@/lib/data";
 import { Menu, X, Instagram } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -40,15 +41,25 @@ export default function Header() {
 
           {/* デスクトップナビゲーション */}
           <nav className="hidden lg:flex items-center space-x-6">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-sm text-[var(--color-primary)] hover:text-[var(--color-accent-blue)] transition-colors duration-200"
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) =>
+              link.href.startsWith("#") ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm text-[var(--color-primary)] hover:text-[var(--color-accent-blue)] transition-colors duration-200"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm text-[var(--color-primary)] hover:text-[var(--color-accent-blue)] transition-colors duration-200"
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
             <a
               href="#"
               aria-label="Instagram"
@@ -72,16 +83,27 @@ export default function Header() {
         {isMenuOpen && (
           <div className="lg:hidden py-4 border-t border-[var(--color-border)]">
             <nav className="flex flex-col space-y-3">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={closeMenu}
-                  className="text-base text-[var(--color-primary)] hover:text-[var(--color-accent-blue)] transition-colors duration-200 py-2"
-                >
-                  {link.label}
-                </a>
-              ))}
+              {navLinks.map((link) =>
+                link.href.startsWith("#") ? (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={closeMenu}
+                    className="text-base text-[var(--color-primary)] hover:text-[var(--color-accent-blue)] transition-colors duration-200 py-2"
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={closeMenu}
+                    className="text-base text-[var(--color-primary)] hover:text-[var(--color-accent-blue)] transition-colors duration-200 py-2"
+                  >
+                    {link.label}
+                  </Link>
+                )
+              )}
               <a
                 href="#"
                 onClick={closeMenu}
