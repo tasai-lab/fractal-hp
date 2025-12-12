@@ -93,16 +93,16 @@ export default function Contact() {
       className="section-wrapper bg-white relative overflow-hidden"
     >
       <BackgroundTriangles pattern="contact" />
-      <div className="max-w-[1200px] mx-auto px-6 relative z-10">
+      <div className="max-w-[1200px] mx-auto px-4 md:px-6 relative z-10">
         {/* 丸みを帯びた四角形で囲む */}
         <div className="section-card section-card-mint max-w-3xl mx-auto">
           {/* セクションタイトル */}
-          <h2 className="text-3xl font-bold text-center mb-12 text-primary">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12 text-primary">
             お問い合わせ
           </h2>
 
           {/* フォーム */}
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
             {/* 氏名 */}
             <div>
               <label htmlFor="name" className="block font-medium mb-2">
@@ -208,10 +208,10 @@ export default function Contact() {
             </div>
 
             {/* 送信ボタン */}
-            <div className="text-center pt-4">
+            <div className="text-center pt-2 md:pt-4">
               <button
                 type="submit"
-                className="btn-primary px-12 py-4 text-lg hover:opacity-90 transition-opacity"
+                className="btn-primary px-8 md:px-12 py-3 md:py-4 text-base md:text-lg hover:opacity-90 transition-opacity"
               >
                 送信する
               </button>

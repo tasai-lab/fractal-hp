@@ -13,12 +13,9 @@ export const officeInfo = {
   phone: "047-770-1228",
   fax: "047-413-0502",
   email: "hokan-f@fractal-group.co.jp",
-  hours: {
-    nursing: "9:00〜19:00",
-    rehabilitation: "9:00〜18:00（平日のみ）",
-  },
+  hours: "9:00 〜 19:00",
   googleMapsUrl:
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3238.8!2d140.0547!3d35.7089!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z44OV44Op44Kv44K_44Or6Kiq5ZWP55yL6K2377ya6Ii56Kq",
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3238.8!2d140.0547!3d35.7089!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z44OV44Op44Kv44K/44Or6Kiq5ZWP55yL6K2377ya6Ii56Kq",
 };
 
 // 会社情報
@@ -26,14 +23,15 @@ export const companyInfo = {
   name: "株式会社フラクタル",
   representative: "浅井 拓哉",
   phone: "050-3529-1176",
-  hours: "9:00〜18:00",
-  address: officeInfo.address,
+  hours: "9:00 〜 18:00",
+  address: {
+    full: "〒274-0072 千葉県船橋市三山6丁目22-2 パレドール小川201",
+  },
 };
 
 // ナビゲーションリンク
 export const navLinks = [
   { href: "#about", label: "フラクタルとは" },
-  { href: "#philosophy", label: "フラクタルのカタチ" },
   { href: "#features", label: "特徴" },
   { href: "#office", label: "事業所" },
   { href: "#staff", label: "スタッフ紹介" },
@@ -53,7 +51,7 @@ export const features = [
     icon: "calendar",
     title: "365日",
     description: "土日祝も依頼OK",
-    note: "看護師は365日通常訪問いたします。\n（リハビリは平日のみ通常訪問となります。）",
+    note: "看護師は365日通常訪問いたします！\n（リハビリは平日のみ通常訪問となります。）",
   },
   {
     icon: "phone",
@@ -96,12 +94,16 @@ export const features = [
 // 訪問エリア
 export const serviceAreas = {
   priority: {
-    label: "重点訪問エリア",
+    label: "訪問可能エリア",
     note: "事業所から20〜30分（現在訪問中）",
     cities: [
       {
         name: "船橋市",
         areas: ["三山", "習志野", "薬園台", "田喜野井", "前原東", "習志野台"],
+      },
+      {
+        name: "八千代市",
+        areas: ["八千代台", "八千代台東", "八千代台南", "八千代台北", "高津", "高津東", "大和田", "大和田新田", "村上", "米本"],
       },
       {
         name: "習志野市",
@@ -112,11 +114,6 @@ export const serviceAreas = {
         areas: ["幕張本郷", "幕張町", "長作町"],
       },
     ],
-  },
-  available: {
-    label: "訪問可能エリア",
-    note: "現在訪問中",
-    description: "このエリアも積極的に訪問させていただきますので、ぜひご相談ください！",
   },
 };
 
@@ -158,15 +155,17 @@ export const staffMembers = [
     hobbies: "筋トレ・散歩、読書",
     introduction:
       "千葉市の訪問看護ステーションで管理者・訪問業務は6年目となります。美味しいもの探しも趣味で、最近はタコス作りにハマっています！ハローワールド！ハロータコチューズデイ！",
+    image: "/images/staff/furuya.png",
   },
   {
-    name: "高山 里美",
+    name: "髙山 里美",
     nameReading: "たかやま さとみ",
     role: "看護師",
     birthplace: "南房総市",
     hobbies: "LIVE遠征",
     introduction:
       "前職は手術室に勤務していたこともあり刺激的なことが大好き！好きな手術はTKA(人工膝関節置換術)です。",
+    image: "/images/staff/takayama.png",
   },
   {
     name: "浅井 拓哉",
@@ -176,6 +175,7 @@ export const staffMembers = [
     hobbies: "美味しいご飯を作る、食べる。",
     introduction:
       "新しいもの好きでアプリとかスマホとか割となんでも詳しいです！これまで何十回と自己紹介をしてきましたが、毎回言うことがなくて何を言っていいかわからないです。",
+    image: "/images/staff/asai.png",
   },
   {
     name: "祝迫 萌々",
@@ -185,6 +185,7 @@ export const staffMembers = [
     hobbies: "映画・アニメ鑑賞、猫を眺める",
     introduction:
       "フラクタルのなんでも屋です。直近まで人事労務のアドバイザーとして勤務しておりました。労務関係のご相談があればお気軽に聞いてください。",
+    image: "/images/staff/iwaizako.png",
   },
 ];
 

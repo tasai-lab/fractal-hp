@@ -29,9 +29,13 @@ export default function Header() {
               height={40}
               className="w-10 h-10"
             />
-            <div className="text-lg font-bold text-[var(--color-primary)]">
-              フラクタル訪問看護 船橋
-            </div>
+            <Image
+              src="/images/logos/hokan-title.png"
+              alt="フラクタル訪問看護 船橋"
+              width={200}
+              height={40}
+              className="h-8 w-auto"
+            />
           </a>
 
           {/* デスクトップナビゲーション */}

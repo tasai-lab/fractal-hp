@@ -17,37 +17,35 @@ export default function Recruit() {
           {/* 丸みを帯びた四角形で囲む */}
           <div className="section-card">
             {/* メインコピー */}
-            <div className="text-center mb-16">
-              <h3 className="text-3xl md:text-4xl font-bold mb-4 text-primary">
-                最適化された環境で
-                <br />
-                一緒に働きませんか？
+            <div className="text-center mb-8 md:mb-16">
+              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 text-primary">
+                最適化された環境で一緒に働きませんか？
               </h3>
-              <p className="text-lg text-muted border-b-2 border-primary inline-block pb-1">
+              <p className="text-sm md:text-lg text-muted border-b-2 border-primary inline-block pb-1">
                 当社はなによりも業務の最適化を重視して仕組み化しています。
               </p>
             </div>
 
             {/* Q&A セクション */}
-            <div className="bg-white rounded-2xl shadow-sm p-8 md:p-12 mb-12">
-              <div className="mb-8">
-                <div className="flex items-start gap-4 mb-6">
-                  <div className="flex-shrink-0 w-12 h-12 bg-accent-blue rounded-full flex items-center justify-center">
-                    <span className="text-white font-bold text-xl">Q</span>
+            <div className="bg-white rounded-xl md:rounded-2xl shadow-sm p-4 md:p-8 lg:p-12 mb-8 md:mb-12">
+              <div className="mb-6 md:mb-8">
+                <div className="flex items-start gap-3 md:gap-4 mb-4 md:mb-6">
+                  <div className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 bg-accent-blue rounded-full flex items-center justify-center">
+                    <span className="text-white font-bold text-lg md:text-xl">Q</span>
                   </div>
-                  <div className="pt-2">
-                    <h4 className="text-xl font-bold text-primary">
+                  <div className="pt-1 md:pt-2">
+                    <h4 className="text-lg md:text-xl font-bold text-primary">
                       なぜ業務の最適化を重視しているのか？
                     </h4>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-accent-pink rounded-full flex items-center justify-center">
-                    <span className="text-white font-bold text-xl">A</span>
+                <div className="flex items-start gap-3 md:gap-4">
+                  <div className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 bg-accent-pink rounded-full flex items-center justify-center">
+                    <span className="text-white font-bold text-lg md:text-xl">A</span>
                   </div>
-                  <div className="pt-2">
-                    <p className="text-lg leading-relaxed">
+                  <div className="pt-1 md:pt-2">
+                    <p className="text-sm md:text-lg leading-relaxed">
                       スタッフの負担を減らすことができるため、それが利用者さまへの訪問の質を最大限まで上げることに繋がるからです。
                     </p>
                   </div>

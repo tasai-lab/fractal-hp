@@ -2,13 +2,13 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative h-[80vh] min-h-[600px] flex items-center justify-center overflow-hidden"
+      className="relative h-[70vh] min-h-[500px] md:h-[80vh] md:min-h-[600px] flex items-center justify-center overflow-hidden"
     >
       {/* 背景グラデーション */}
       <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-accent-blue-light)] via-[var(--color-accent-pink-light)] to-[var(--color-accent-yellow)] opacity-60"></div>
 
       {/* 装飾的なパターン */}
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 opacity-10 hidden md:block">
         <div className="absolute top-20 left-10 w-32 h-32 border-2 border-[var(--color-primary)] rotate-45"></div>
         <div className="absolute bottom-20 right-20 w-24 h-24 border-2 border-[var(--color-primary)] rotate-12"></div>
         <div className="absolute top-1/2 left-1/4 w-16 h-16 border-2 border-[var(--color-primary)] -rotate-45"></div>
@@ -19,11 +19,11 @@ export default function Hero() {
         {/* メインキャッチコピー（縦書き） */}
         <div className="flex justify-center mb-8">
           <h1
-            className="text-6xl md:text-7xl lg:text-8xl font-bold text-[var(--color-primary)]"
+            className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-[var(--color-primary)]"
             style={{
               writingMode: "vertical-rl",
               textOrientation: "upright",
-              letterSpacing: "0.3em",
+              letterSpacing: "0.2em",
             }}
           >
             私たちがフラクタル

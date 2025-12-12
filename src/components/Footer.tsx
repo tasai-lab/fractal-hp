@@ -1,43 +1,39 @@
 import { officeInfo, navLinks } from "@/lib/data";
+import Image from "next/image";
 
 export default function Footer() {
   return (
     <footer
-      className="py-12 text-white"
+      className="py-8 md:py-12 text-white"
       style={{ background: "#1a1a1a" }}
     >
       <div className="section-container">
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
-          {/* ロゴセクション */}
-          <div>
-            <div className="flex items-center gap-4 mb-4">
-              {/* フラクタル三角形ロゴ */}
-              <svg
-                width="60"
-                height="60"
-                viewBox="0 0 100 100"
-                className="flex-shrink-0"
-              >
-                <polygon
-                  points="50,10 90,80 10,80"
-                  fill="white"
-                />
-                <polygon
-                  points="50,10 70,45 30,45"
-                  fill="var(--color-accent-blue)"
-                />
-              </svg>
-              <div>
-                <div className="text-xl font-bold">フラクタル</div>
-                <div className="text-sm opacity-90">訪問看護 船橋</div>
-              </div>
-            </div>
-          </div>
+        {/* ロゴとタイトル（上部中央） */}
+        <div className="flex items-center justify-center gap-3 md:gap-4 mb-6 md:mb-8">
+          {/* ロゴ画像（白色） */}
+          <Image
+            src="/images/logos/hokan-logo.png"
+            alt="フラクタルロゴ"
+            width={60}
+            height={60}
+            className="w-[40px] h-[40px] md:w-[60px] md:h-[60px] brightness-0 invert"
+          />
+          {/* タイトル画像（白色） */}
+          <Image
+            src="/images/logos/hokan-title.png"
+            alt="フラクタル訪問看護 船橋"
+            width={200}
+            height={50}
+            className="h-8 md:h-12 w-auto brightness-0 invert"
+          />
+        </div>
 
+        {/* 事業所情報とナビゲーション */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-6 md:mb-8">
           {/* 事業所情報 */}
           <div>
-            <h3 className="font-bold mb-4 text-lg">事業所情報</h3>
-            <div className="space-y-2 text-sm opacity-90">
+            <h3 className="font-bold mb-3 md:mb-4 text-base md:text-lg">事業所情報</h3>
+            <div className="space-y-2 text-xs md:text-sm opacity-90">
               <p>{officeInfo.address.full}</p>
               <p>
                 電話:{" "}
@@ -48,7 +44,7 @@ export default function Footer() {
                   {officeInfo.phone}
                 </a>
               </p>
-              <p>営業時間: {officeInfo.hours.nursing}</p>
+              <p>営業時間: {officeInfo.hours}</p>
               <p>
                 メール:{" "}
                 <a
@@ -63,8 +59,8 @@ export default function Footer() {
 
           {/* ナビゲーションリンク */}
           <div>
-            <h3 className="font-bold mb-4 text-lg">サイトマップ</h3>
-            <nav className="grid grid-cols-2 gap-2 text-sm">
+            <h3 className="font-bold mb-3 md:mb-4 text-base md:text-lg">サイトマップ</h3>
+            <nav className="grid grid-cols-2 gap-2 text-xs md:text-sm">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
@@ -79,7 +75,7 @@ export default function Footer() {
         </div>
 
         {/* コピーライト */}
-        <div className="border-t border-gray-700 pt-6 text-center text-sm opacity-75">
+        <div className="border-t border-gray-700 pt-4 md:pt-6 text-center text-xs md:text-sm opacity-75">
           <p>&copy; 2024 株式会社フラクタル All Rights Reserved.</p>
         </div>
       </div>

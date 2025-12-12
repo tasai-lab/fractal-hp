@@ -57,39 +57,78 @@ body {
 /* Section Base Styles - 参考HPに統一 */
 .section-wrapper {
   position: relative;
-  padding: 5rem 0;
+  padding: 3rem 0;
   overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .section-wrapper {
+    padding: 5rem 0;
+  }
 }
 
 .section-inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 1rem;
   display: flex;
-  gap: 3rem;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-inner {
+    flex-direction: row;
+    padding: 0 1.5rem;
+    gap: 3rem;
+  }
 }
 
 .section-title-area {
   flex-shrink: 0;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.75rem;
 }
 
+@media (min-width: 768px) {
+  .section-title-area {
+    align-items: flex-start;
+  }
+}
+
 .section-title {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: bold;
-  writing-mode: vertical-rl;
-  text-orientation: upright;
-  letter-spacing: 0.3em;
+  writing-mode: horizontal-tb;
+  text-orientation: mixed;
+  letter-spacing: 0.1em;
   color: var(--color-primary);
 }
 
+@media (min-width: 768px) {
+  .section-title {
+    font-size: 1.25rem;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    letter-spacing: 0.3em;
+  }
+}
+
 .section-title-line {
-  width: 2px;
+  height: 2px;
+  width: 100%;
   background: var(--color-primary);
-  height: 100%;
-  min-height: 200px;
+  flex: 1;
+}
+
+@media (min-width: 768px) {
+  .section-title-line {
+    width: 2px;
+    height: 100%;
+    min-height: 200px;
+    flex: none;
+  }
 }
 
 .section-content {
@@ -100,7 +139,13 @@ body {
 .section-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .section-container {
+    padding: 0 1.5rem;
+  }
 }
 
 /* Card Styles */
@@ -125,8 +170,15 @@ body {
 /* Section Card - 元のサイトと同じ丸みを帯びた四角形 */
 .section-card {
   background: var(--color-accent-yellow);
-  border-radius: 2rem;
-  padding: 3rem;
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-card {
+    border-radius: 2rem;
+    padding: 3rem;
+  }
 }
 
 .section-card-blue {

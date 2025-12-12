@@ -3,7 +3,6 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Features from "@/components/Features";
 import Office from "@/components/Office";
-import ServiceArea from "@/components/ServiceArea";
 import Flow from "@/components/Flow";
 import Staff from "@/components/Staff";
 import Recruit from "@/components/Recruit";
@@ -20,7 +19,6 @@ export default function Home() {
         <About />
         <Features />
         <Office />
-        <ServiceArea />
         <Flow />
         <Staff />
         <Recruit />
