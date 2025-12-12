@@ -67,6 +67,16 @@ const aboutData = {
     ],
     description:
       "継続的な改善と目標達成のための当社独自のフレームワーク。\nデータに基づいた意思決定と、実行・評価による学びを重視し、成長し続けます。",
+    detailedExplanation: [
+      {
+        title: "「データ」と「情報」の違い",
+        content: "「データ」は未加工の事実や数値の羅列であり、それ自体は意味を持ちません。一方「情報」は、データを分析・解釈し、文脈や意味が付加され、意思決定や行動に役立つ形に変換されたものです。",
+      },
+      {
+        title: "DAPAEサイクルの流れ",
+        content: "まず収集したデータを分析して意味のある情報に変換します。その情報をもとに的確な戦略・計画を策定し、計画を実行に移します。実行段階では現場の判断で適切に軌道修正しながら継続。そして成功か失敗かという評価を行い、その結果が新たなデータとなります。このデータを再び分析して情報にするという循環を繰り返すことで、組織は継続的に成長し続けます。",
+      },
+    ],
   },
   logo: {
     meanings: [
@@ -538,6 +548,20 @@ export default function AboutFractalPage() {
           <div className="text-center mt-6">
             <p className="text-xs md:text-sm text-emerald-300 font-bold tracking-widest">GROWTH CYCLE</p>
             <p className="text-white/60 text-[10px] md:text-xs mt-1">データに基づいた継続的な改善</p>
+          </div>
+
+          {/* 詳しい説明 */}
+          <div className="max-w-3xl mx-auto mt-8 md:mt-12 space-y-6">
+            {aboutData.dapae.detailedExplanation.map((item, index) => (
+              <div key={index} className="bg-white/10 backdrop-blur-md rounded-xl p-4 md:p-6 border border-white/20">
+                <h4 className="text-sm md:text-lg font-bold text-emerald-300 mb-2 md:mb-3">
+                  {item.title}
+                </h4>
+                <p className="text-white/80 text-xs md:text-sm leading-relaxed">
+                  {item.content}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </Section>
