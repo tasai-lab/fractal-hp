@@ -388,18 +388,13 @@ export default function AboutFractalPage() {
       </Section>
 
       {/* DAPAE */}
-      <Section className="bg-linear-to-br from-slate-900 via-emerald-900 to-slate-900 text-white relative overflow-hidden">
-        {/* 背景装飾 */}
-        <div className="absolute inset-0 opacity-20 overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(16,185,129,0.2),transparent_70%)]"></div>
-        </div>
-
+      <Section className="bg-slate-800 text-white relative overflow-hidden">
         <div className="text-center mb-6 md:mb-12 relative z-10">
-          <span className="inline-block px-3 py-1 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full text-xs md:text-sm font-medium mb-3 md:mb-4">
+          <span className="inline-block px-3 py-1 bg-teal-500 text-white rounded-full text-xs md:text-sm font-medium mb-3 md:mb-4">
             FRAMEWORK
           </span>
           <h3 className="text-2xl md:text-5xl font-bold mb-3 md:mb-4 tracking-tight">
-            DAPAE<span className="text-emerald-400">.</span>
+            DAPAE<span className="text-teal-400">.</span>
           </h3>
           <p className="text-white/80 max-w-2xl mx-auto text-xs md:text-base leading-relaxed px-4 whitespace-pre-line">
             {aboutData.dapae.description}
@@ -546,15 +541,15 @@ export default function AboutFractalPage() {
 
           {/* GROWTH CYCLE テキスト */}
           <div className="text-center mt-6">
-            <p className="text-xs md:text-sm text-emerald-300 font-bold tracking-widest">GROWTH CYCLE</p>
+            <p className="text-xs md:text-sm text-teal-400 font-bold tracking-widest">GROWTH CYCLE</p>
             <p className="text-white/60 text-[10px] md:text-xs mt-1">データに基づいた継続的な改善</p>
           </div>
 
           {/* 詳しい説明 */}
-          <div className="max-w-3xl mx-auto mt-8 md:mt-12 space-y-6">
+          <div className="max-w-3xl mx-auto mt-8 md:mt-12 space-y-4 md:space-y-6">
             {aboutData.dapae.detailedExplanation.map((item, index) => (
-              <div key={index} className="bg-white/10 backdrop-blur-md rounded-xl p-4 md:p-6 border border-white/20">
-                <h4 className="text-sm md:text-lg font-bold text-emerald-300 mb-2 md:mb-3">
+              <div key={index} className="bg-slate-700 rounded-xl p-4 md:p-6 border border-slate-600">
+                <h4 className="text-sm md:text-lg font-bold text-teal-400 mb-2 md:mb-3">
                   {item.title}
                 </h4>
                 <p className="text-white/80 text-xs md:text-sm leading-relaxed">
