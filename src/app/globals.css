@@ -40,7 +40,7 @@
   --color-accent-mint-light: var(--color-accent-mint-light);
   --color-muted: var(--color-muted);
   --color-border: var(--color-border);
-  --font-sans: "Noto Sans JP", sans-serif;
+  --font-sans: var(--font-mplus1), "M PLUS 1", sans-serif;
 }
 
 html {
@@ -50,7 +50,7 @@ html {
 body {
   background: var(--color-background);
   color: var(--color-foreground);
-  font-family: "Noto Sans JP", sans-serif;
+  font-family: var(--font-mplus1), "M PLUS 1", sans-serif;
   line-height: 1.8;
 }
 

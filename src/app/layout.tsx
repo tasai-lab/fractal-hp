@@ -1,11 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Noto_Sans_JP } from "next/font/google";
+import { M_PLUS_1 } from "next/font/google";
 import "./globals.css";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import StructuredData from "@/components/StructuredData";
 
-const notoSansJP = Noto_Sans_JP({
-  variable: "--font-noto-sans-jp",
+const mplus1 = M_PLUS_1({
+  variable: "--font-mplus1",
   subsets: ["latin"],
   weight: ["400", "500", "700"],
 });
@@ -164,7 +164,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
       </head>
-      <body className={`${notoSansJP.variable} antialiased`}>{children}</body>
+      <body className={`${mplus1.variable} antialiased`}>{children}</body>
     </html>
   );
 }

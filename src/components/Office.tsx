@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { officeInfo, serviceAreas } from "@/lib/data";
 import BackgroundTriangles from "./BackgroundTriangles";
 
@@ -110,41 +111,42 @@ export default function Office() {
           {/* 訪問エリアカード */}
           <div id="service-area" className="section-card section-card-mint">
             {/* タイトル */}
-            <h3 className="text-xl md:text-2xl font-bold text-center text-primary mb-6 md:mb-8">訪問エリア</h3>
+            <h3 className="text-xl md:text-2xl font-bold text-center text-primary mb-2">現在の訪問エリア</h3>
 
             <div className="space-y-6 md:space-y-8">
               {/* 地図（上部） */}
-              <div className="bg-white rounded-xl p-4 md:p-6 h-[200px] md:h-[300px] flex items-center justify-center shadow-sm">
-                <div className="text-center">
-                  <div className="text-xl font-bold text-muted mb-4">
-                    訪問エリア地図
-                  </div>
-                  <div className="space-y-2 text-muted">
-                    <p>船橋市 / 習志野市 / 八千代市</p>
-                    <p>千葉市花見川区</p>
-                    <p className="text-sm mt-3">及び周辺エリア</p>
-                  </div>
-                </div>
+              <div className="relative w-full aspect-[16/9] md:aspect-[2/1]">
+                <Image
+                  src="/images/service-area/area-map.png"
+                  alt="フラクタル訪問看護 船橋 訪問エリアマップ - 船橋市・習志野市・八千代市・千葉市花見川区"
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, 800px"
+                />
               </div>
 
-              {/* エリア詳細（下部 2×2） */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
-                {serviceAreas.priority.cities.map((city, index) => (
-                  <div key={index} className="bg-white rounded-lg p-3 md:p-4 shadow-sm flex flex-col">
-                    <h5 className="font-bold text-sm md:text-base mb-2 text-primary">
-                      {city.name}
-                    </h5>
-                    <ul className={`text-xs md:text-sm flex-1 ${city.areas.length > 6 ? "grid grid-cols-2 gap-x-2 gap-y-1" : "space-y-1"}`}>
-                      {city.areas.map((area, areaIndex) => (
-                        <li key={areaIndex} className="flex items-start gap-1 md:gap-2">
-                          <span className="text-accent-pink mt-0.5">▸</span>
-                          <span>{area}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <p className="text-muted text-right text-xs md:text-sm mt-2">上記以外の地域も承ります。</p>
-                  </div>
-                ))}
+              {/* 訪問可能エリア */}
+              <div>
+                <h4 className="text-lg md:text-xl font-bold text-center text-primary mb-4 md:mb-6">訪問可能エリア</h4>
+                {/* エリア詳細（2×2） */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
+                  {serviceAreas.priority.cities.map((city, index) => (
+                    <div key={index} className="bg-white rounded-lg p-3 md:p-4 shadow-sm flex flex-col">
+                      <h5 className="font-bold text-sm md:text-base mb-2 text-primary">
+                        {city.name}
+                      </h5>
+                      <ul className={`text-xs md:text-sm flex-1 ${city.areas.length > 6 ? "grid grid-cols-2 gap-x-2 gap-y-1" : "space-y-1"}`}>
+                        {city.areas.map((area, areaIndex) => (
+                          <li key={areaIndex} className="flex items-start gap-1 md:gap-2">
+                            <span className="text-accent-pink mt-0.5">▸</span>
+                            <span>{area}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <p className="text-muted text-right text-xs md:text-sm mt-2">上記以外の地域も承ります。</p>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               {/* 注記 */}
