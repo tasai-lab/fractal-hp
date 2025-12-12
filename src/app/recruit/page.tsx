@@ -52,21 +52,33 @@ export default function RecruitPage() {
               <div className="inline-block bg-red-500 text-white text-xs md:text-sm font-bold px-2 md:px-3 py-1 rounded-full mb-3 md:mb-4">
                 {signOnBonus.note}
               </div>
-              <h2 className="text-xl md:text-3xl font-bold text-primary mb-3 md:mb-4">
+              <h2 className="text-xl md:text-3xl font-bold text-primary mb-4 md:mb-6">
                 入社祝い金 最大{(signOnBonus.total / 10000).toLocaleString()}万円
               </h2>
-              <div className="grid grid-cols-3 gap-2 md:gap-4 mb-3 md:mb-4">
+              {/* 祝い金マイルストーン（矢印付き・下揃え） */}
+              <div className="flex items-end justify-center gap-1 md:gap-2 mb-3 md:mb-4">
                 {signOnBonus.milestones.map((milestone, index) => (
-                  <div
-                    key={index}
-                    className="bg-white/80 rounded-lg md:rounded-xl p-2 md:p-4 text-center"
-                  >
-                    <p className="text-[10px] md:text-sm text-muted mb-0.5 md:mb-1">
-                      {milestone.label}
-                    </p>
-                    <p className="text-base md:text-2xl font-bold text-primary">
-                      {(milestone.amount / 10000).toLocaleString()}万円
-                    </p>
+                  <div key={index} className="flex items-end">
+                    <div
+                      className="bg-white/90 rounded-lg md:rounded-xl text-center shadow-sm"
+                      style={{
+                        padding: index === 0 ? '8px 12px' : index === 1 ? '10px 14px' : '12px 16px',
+                      }}
+                    >
+                      <p className={`text-muted mb-0.5 ${index === 0 ? 'text-[9px] md:text-xs' : index === 1 ? 'text-[10px] md:text-sm' : 'text-xs md:text-base'}`}>
+                        {milestone.label}
+                      </p>
+                      <p className={`font-bold text-primary ${index === 0 ? 'text-sm md:text-lg' : index === 1 ? 'text-base md:text-xl' : 'text-lg md:text-2xl'}`}>
+                        {(milestone.amount / 10000).toLocaleString()}万円
+                      </p>
+                    </div>
+                    {index < signOnBonus.milestones.length - 1 && (
+                      <div className="text-primary mx-1 md:mx-2 mb-2 md:mb-3">
+                        <svg className="w-4 h-4 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+                        </svg>
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>

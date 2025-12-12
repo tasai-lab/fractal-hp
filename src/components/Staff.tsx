@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { staffMembers } from "@/lib/data";
 import BackgroundTriangles from "./BackgroundTriangles";
 import Image from "next/image";
@@ -9,7 +12,29 @@ const bgColors = [
   "bg-accent-mint-light",
 ];
 
+interface StaffMember {
+  name: string;
+  nameReading: string;
+  role: string;
+  image: string;
+  birthplace: string;
+  hobbies: string;
+  introduction: string;
+}
+
 export default function Staff() {
+  const [selectedStaff, setSelectedStaff] = useState<{ staff: StaffMember; index: number } | null>(null);
+
+  const openModal = (staff: StaffMember, index: number) => {
+    setSelectedStaff({ staff, index });
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeModal = () => {
+    setSelectedStaff(null);
+    document.body.style.overflow = "";
+  };
+
   return (
     <section id="staff" className="section-wrapper bg-white relative overflow-hidden">
       <BackgroundTriangles pattern="staff" />
@@ -34,7 +59,12 @@ export default function Staff() {
               {staffMembers.map((staff, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-xl md:rounded-2xl shadow-sm p-3 md:p-8 hover-lift group"
+                  className="bg-white rounded-xl md:rounded-2xl shadow-sm p-3 md:p-8 hover-lift group cursor-pointer md:cursor-default"
+                  onClick={() => {
+                    if (window.innerWidth < 768) {
+                      openModal(staff, index);
+                    }
+                  }}
                 >
                   {/* プロフィール画像 */}
                   <div className="flex justify-center mb-2 md:mb-6">
@@ -73,12 +103,84 @@ export default function Staff() {
                       {staff.introduction}
                     </p>
                   </div>
+
+                  {/* モバイルでタップ促進 */}
+                  <div className="md:hidden mt-2 text-center">
+                    <span className="text-[9px] text-accent-blue">タップで詳細を見る</span>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
         </div>
       </div>
+
+      {/* モーダル */}
+      {selectedStaff && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50"
+          onClick={closeModal}
+        >
+          <div
+            className="bg-white rounded-2xl shadow-xl max-w-sm w-full max-h-[85vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* モーダルヘッダー */}
+            <div className={`${bgColors[selectedStaff.index % bgColors.length]} p-6 rounded-t-2xl relative`}>
+              <button
+                onClick={closeModal}
+                className="absolute top-3 right-3 w-8 h-8 bg-white/80 rounded-full flex items-center justify-center shadow-sm"
+              >
+                <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+
+              {/* プロフィール画像 */}
+              <div className="flex justify-center">
+                <div className="relative w-28 h-28 rounded-full overflow-hidden ring-4 ring-white shadow-lg">
+                  <Image
+                    src={selectedStaff.staff.image}
+                    alt={selectedStaff.staff.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* モーダルコンテンツ */}
+            <div className="p-5">
+              {/* 基本情報 */}
+              <div className="text-center mb-4">
+                <div className="text-xs text-muted mb-1">{selectedStaff.staff.role}</div>
+                <h3 className="text-xl font-bold mb-1">{selectedStaff.staff.name}</h3>
+                <p className="text-sm text-muted">{selectedStaff.staff.nameReading}</p>
+              </div>
+
+              {/* 詳細情報 */}
+              <div className="space-y-3 mb-4 text-sm">
+                <div className="flex gap-2 bg-gray-50 rounded-lg p-3">
+                  <span className="font-medium text-muted min-w-[60px]">出身地:</span>
+                  <span>{selectedStaff.staff.birthplace}</span>
+                </div>
+                <div className="flex gap-2 bg-gray-50 rounded-lg p-3">
+                  <span className="font-medium text-muted min-w-[60px]">趣味:</span>
+                  <span>{selectedStaff.staff.hobbies}</span>
+                </div>
+              </div>
+
+              {/* 自己紹介 */}
+              <div className="border-t border-border pt-4">
+                <h4 className="text-sm font-bold text-primary mb-2">自己紹介</h4>
+                <p className="text-sm leading-relaxed text-foreground">
+                  {selectedStaff.staff.introduction}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
