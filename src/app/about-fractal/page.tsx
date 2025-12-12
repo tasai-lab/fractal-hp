@@ -385,8 +385,11 @@ export default function AboutFractalPage() {
           <span className="inline-block px-3 py-1 bg-teal-500 text-white rounded-full text-xs md:text-sm font-medium mb-3 md:mb-4">
             FRAMEWORK
           </span>
-          <h3 className="text-2xl md:text-5xl font-bold mb-3 md:mb-4 tracking-tight">
-            DAPAE<span className="text-teal-400">.</span>
+          <h3 className="text-2xl md:text-5xl font-bold mb-3 md:mb-4 tracking-tight flex items-center justify-center gap-2">
+            DAPAE
+            <svg className="w-4 h-4 md:w-6 md:h-6 text-yellow-400" viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="12,2 22,22 2,22" />
+            </svg>
           </h3>
           <p className="text-white/80 max-w-2xl mx-auto text-xs md:text-base leading-relaxed px-4 whitespace-pre-line">
             {aboutData.dapae.description}
