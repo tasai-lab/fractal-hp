@@ -470,7 +470,7 @@ export default function AboutFractalPage() {
           </div>
 
           {/* デスクトップ表示: 横並び（2グループ） */}
-          <div className="hidden md:flex items-center justify-center gap-4">
+          <div className="hidden md:flex items-start justify-center gap-4">
             {/* 情報（Information）囲み: Data + Analysis */}
             <div className="flex flex-col items-center">
               <p className="text-white/90 text-sm font-bold mb-2">
@@ -495,8 +495,8 @@ export default function AboutFractalPage() {
               </div>
             </div>
 
-            {/* 矢印 → */}
-            <div className="flex items-center">
+            {/* 矢印 → （ラベル分の高さを考慮してマージン追加） */}
+            <div className="flex items-center mt-[30px]">
               <div className="w-6 h-[3px] bg-amber-400"></div>
               <div className="w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[9px] border-l-amber-400"></div>
             </div>
