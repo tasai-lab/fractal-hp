@@ -210,8 +210,8 @@ export default function BackgroundTriangles({ pattern = "features" }: { pattern?
           scale={shape.scale}
           style={{
             top: shape.top,
-            left: shape.left,
-            right: shape.right,
+            ...("left" in shape && { left: shape.left }),
+            ...("right" in shape && { right: shape.right }),
           } as React.CSSProperties}
         />
       ))}
@@ -225,8 +225,8 @@ export default function BackgroundTriangles({ pattern = "features" }: { pattern?
           rotation={triangle.rotation}
           style={{
             top: triangle.top,
-            left: triangle.left,
-            right: triangle.right,
+            ...("left" in triangle && { left: triangle.left }),
+            ...("right" in triangle && { right: triangle.right }),
           } as React.CSSProperties}
         />
       ))}
