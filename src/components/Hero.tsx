@@ -19,15 +19,16 @@ export default function Hero() {
       <div className="absolute inset-0 bg-white/40"></div>
 
       {/* コンテンツ */}
-      <div className="relative z-10 text-center px-4 py-8 animate-fade-in-up flex flex-col items-center justify-center h-full">
+      <div className="relative z-10 text-center px-4 py-8 flex flex-col items-center justify-center h-full" style={{ perspective: "1000px" }}>
         {/* メインキャッチコピー（縦書き） */}
-        <div className="flex justify-center">
+        <div className="flex justify-center animate-emerge-from-back">
           <h1
-            className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-[var(--color-primary)] drop-shadow-sm"
+            className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-[var(--color-primary)] drop-shadow-lg"
             style={{
               writingMode: "vertical-rl",
               textOrientation: "upright",
               letterSpacing: "0.15em",
+              textShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
             }}
           >
             私たちがフラクタル

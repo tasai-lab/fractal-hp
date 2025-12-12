@@ -250,6 +250,27 @@ body {
   animation: fadeInUp 0.8s ease-out forwards;
 }
 
+@keyframes emergeFromBack {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) translateZ(-100px);
+    filter: blur(10px);
+  }
+  50% {
+    opacity: 0.7;
+    filter: blur(3px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateZ(0);
+    filter: blur(0);
+  }
+}
+
+.animate-emerge-from-back {
+  animation: emergeFromBack 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 /* Hover Effects */
 .hover-lift {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
