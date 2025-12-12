@@ -100,7 +100,7 @@ function Section({
   id?: string;
 }) {
   return (
-    <section id={id} className={`py-16 md:py-24 ${className}`}>
+    <section id={id} className={`py-12 md:py-24 ${className}`}>
       <div className="max-w-5xl mx-auto px-4">{children}</div>
     </section>
   );
@@ -113,44 +113,39 @@ export default function AboutFractalPage() {
     <div className="min-h-screen bg-[#f8faf9]">
       {/* ヘッダー */}
       <header className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-40">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-4 py-3 md:py-4 flex items-center justify-between">
           <Link
             href="/"
-            className="text-primary font-bold text-lg hover:opacity-80 transition-opacity"
+            className="text-primary font-bold text-sm md:text-lg hover:opacity-80 transition-opacity"
           >
-            ← トップに戻る
+            ← 戻る
           </Link>
-          <h1 className="text-xl md:text-2xl font-bold text-primary">
+          <h1 className="text-lg md:text-2xl font-bold text-primary">
             フラクタルを知る
           </h1>
         </div>
       </header>
 
       {/* ヒーローセクション */}
-      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-linear-to-br from-emerald-50 via-white to-cyan-50">
+      <section className="relative min-h-[60vh] md:min-h-[80vh] flex items-center justify-center overflow-hidden bg-linear-to-br from-emerald-50 via-white to-cyan-50">
         {/* 装飾的な三角形 - アニメーション追加 */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-20 left-10 w-32 h-32 opacity-10 animate-[spin_20s_linear_infinite]">
+          <div className="absolute top-20 left-10 w-20 md:w-32 h-20 md:h-32 opacity-10 animate-[spin_20s_linear_infinite]">
             <svg viewBox="0 0 100 100" className="w-full h-full fill-emerald-500">
               <polygon points="50,0 100,100 0,100" />
             </svg>
           </div>
-          <div className="absolute bottom-20 right-20 w-48 h-48 opacity-10 animate-[spin_30s_linear_infinite_reverse]">
+          <div className="absolute bottom-20 right-10 md:right-20 w-32 md:w-48 h-32 md:h-48 opacity-10 animate-[spin_30s_linear_infinite_reverse]">
             <svg viewBox="0 0 100 100" className="w-full h-full fill-teal-500">
-              <polygon points="50,0 100,100 0,100" />
-            </svg>
-          </div>
-          <div className="absolute top-1/2 left-1/4 w-24 h-24 opacity-5 animate-pulse">
-            <svg viewBox="0 0 100 100" className="w-full h-full fill-cyan-500">
               <polygon points="50,0 100,100 0,100" />
             </svg>
           </div>
         </div>
 
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto py-8">
           {/* ロゴ */}
-          <div className="mb-10 flex justify-center">
-            <div className="relative w-32 h-32 md:w-48 md:h-48 drop-shadow-2xl">
+          <div className="mb-6 md:mb-10 flex justify-center">
+            <div className="relative w-24 h-24 md:w-48 md:h-48 drop-shadow-2xl">
               <Image
                 src="/images/logos/corporate-logo.png"
                 alt="株式会社フラクタル"
@@ -160,24 +155,24 @@ export default function AboutFractalPage() {
             </div>
           </div>
 
-          <h2 className="text-4xl md:text-7xl font-bold text-primary mb-6 tracking-tight">
+          <h2 className="text-2xl md:text-7xl font-bold text-primary mb-4 md:mb-6 tracking-tight">
             株式会社フラクタル
           </h2>
 
-          <p className="text-xl md:text-3xl text-primary/80 mb-10 font-medium">
+          <p className="text-base md:text-3xl text-primary/80 mb-6 md:mb-10 font-medium">
             シンプルで独創的な社会を実現する
           </p>
 
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4">
             <a
               href="#philosophy"
-              className="px-8 py-4 bg-emerald-600 text-white rounded-full font-bold hover:bg-emerald-700 transition-all hover:scale-105 shadow-lg hover:shadow-emerald-500/30"
+              className="px-6 py-3 md:px-8 md:py-4 bg-emerald-600 text-white rounded-full font-bold text-sm md:text-base hover:bg-emerald-700 transition-all shadow-lg"
             >
               理念を知る
             </a>
             <a
               href="#guidelines"
-              className="px-8 py-4 bg-white text-emerald-800 border-2 border-emerald-100 rounded-full font-bold hover:border-emerald-600 hover:text-emerald-600 transition-all hover:scale-105 shadow-lg"
+              className="px-6 py-3 md:px-8 md:py-4 bg-white text-emerald-800 border-2 border-emerald-100 rounded-full font-bold text-sm md:text-base hover:border-emerald-600 hover:text-emerald-600 transition-all shadow-lg"
             >
               行動指針を見る
             </a>
@@ -185,9 +180,9 @@ export default function AboutFractalPage() {
         </div>
 
         {/* スクロールインジケーター */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <div className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
           <svg
-            className="w-6 h-6 text-primary/50"
+            className="w-5 h-5 md:w-6 md:h-6 text-primary/50"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -205,30 +200,30 @@ export default function AboutFractalPage() {
       {/* 基本理念 */}
       <Section id="philosophy" className="bg-white relative overflow-hidden">
         {/* 背景装飾 */}
-        <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-50 rounded-full blur-3xl -z-10"></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-teal-50 rounded-full blur-3xl -z-10"></div>
+        <div className="absolute top-0 right-0 w-40 md:w-64 h-40 md:h-64 bg-emerald-50 rounded-full blur-3xl -z-10"></div>
+        <div className="absolute bottom-0 left-0 w-40 md:w-64 h-40 md:h-64 bg-teal-50 rounded-full blur-3xl -z-10"></div>
 
-        <div className="text-center mb-16">
-          <span className="inline-block px-4 py-1 bg-emerald-100 text-emerald-800 rounded-full text-sm font-bold tracking-wider mb-4">
+        <div className="text-center mb-8 md:mb-16">
+          <span className="inline-block px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-xs md:text-sm font-bold tracking-wider mb-3 md:mb-4">
             PHILOSOPHY
           </span>
-          <h3 className="text-3xl md:text-5xl font-bold text-primary">
+          <h3 className="text-xl md:text-5xl font-bold text-primary leading-tight">
             {aboutData.philosophy.title}
           </h3>
         </div>
 
         <div className="relative max-w-4xl mx-auto">
-          <div className="absolute inset-0 bg-linear-to-r from-emerald-400 to-teal-400 rounded-4xl transform rotate-2 blur-sm opacity-70"></div>
-          <div className="relative bg-white rounded-4xl p-10 md:p-16 shadow-2xl border border-emerald-100">
-            <div className="absolute top-0 left-0 w-full h-2 bg-linear-to-r from-emerald-400 to-teal-400"></div>
-            <p className="text-3xl md:text-6xl font-bold text-center bg-linear-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-8 leading-tight">
+          <div className="absolute inset-0 bg-linear-to-r from-emerald-400 to-teal-400 rounded-2xl md:rounded-4xl transform rotate-1 md:rotate-2 blur-sm opacity-70"></div>
+          <div className="relative bg-white rounded-2xl md:rounded-4xl p-6 md:p-16 shadow-2xl border border-emerald-100">
+            <div className="absolute top-0 left-0 w-full h-1 md:h-2 bg-linear-to-r from-emerald-400 to-teal-400 rounded-t-2xl md:rounded-t-4xl"></div>
+            <p className="text-xl md:text-6xl font-bold text-center bg-linear-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-4 md:mb-8 leading-tight">
               {aboutData.philosophy.main}
             </p>
-            <p className="text-center text-slate-600 max-w-2xl mx-auto text-lg md:text-xl leading-relaxed font-medium">
+            <p className="text-center text-slate-600 max-w-2xl mx-auto text-sm md:text-xl leading-relaxed font-medium">
               {aboutData.philosophy.description}
             </p>
-            <div className="mt-8 flex justify-center">
-              <div className="w-16 h-1 bg-emerald-200 rounded-full"></div>
+            <div className="mt-4 md:mt-8 flex justify-center">
+              <div className="w-12 md:w-16 h-1 bg-emerald-200 rounded-full"></div>
             </div>
           </div>
         </div>
@@ -236,25 +231,25 @@ export default function AboutFractalPage() {
 
       {/* 事業内容 */}
       <Section className="bg-linear-to-b from-white to-emerald-50">
-        <div className="text-center mb-12">
-          <span className="inline-block px-4 py-1 bg-teal-100 text-teal-700 rounded-full text-sm font-medium mb-4">
+        <div className="text-center mb-8 md:mb-12">
+          <span className="inline-block px-3 py-1 bg-teal-100 text-teal-700 rounded-full text-xs md:text-sm font-medium mb-3 md:mb-4">
             BUSINESS
           </span>
-          <h3 className="text-3xl md:text-4xl font-bold text-primary">
+          <h3 className="text-2xl md:text-4xl font-bold text-primary">
             {aboutData.business.title}
           </h3>
-          <p className="text-primary/70 mt-4">{aboutData.business.description}</p>
+          <p className="text-primary/70 mt-3 text-sm md:text-base">{aboutData.business.description}</p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid gap-4 md:grid-cols-2 md:gap-8">
           {aboutData.business.items.map((item, index) => (
             <div
               key={index}
-              className="group relative bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+              className="group relative bg-white rounded-2xl md:rounded-3xl p-5 md:p-8 shadow-lg"
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-br from-emerald-100 to-transparent rounded-bl-full opacity-50"></div>
-              <h4 className="text-2xl font-bold text-primary mb-4">{item.name}</h4>
-              <p className="text-primary/70 leading-relaxed">{item.description}</p>
+              <div className="absolute top-0 right-0 w-20 md:w-32 h-20 md:h-32 bg-linear-to-br from-emerald-100 to-transparent rounded-bl-full opacity-50"></div>
+              <h4 className="text-lg md:text-2xl font-bold text-primary mb-2 md:mb-4">{item.name}</h4>
+              <p className="text-primary/70 leading-relaxed text-sm md:text-base">{item.description}</p>
             </div>
           ))}
         </div>
@@ -269,21 +264,21 @@ export default function AboutFractalPage() {
         </div>
 
         <div className="relative z-10">
-          <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1 bg-emerald-900/50 border border-emerald-500/30 text-emerald-300 rounded-full text-sm font-medium mb-4 backdrop-blur-sm">
+          <div className="text-center mb-8 md:mb-16">
+            <span className="inline-block px-3 py-1 bg-emerald-900/50 border border-emerald-500/30 text-emerald-300 rounded-full text-xs md:text-sm font-medium mb-3 md:mb-4 backdrop-blur-sm">
               VISION {aboutData.vision.period}
             </span>
-            <h3 className="text-3xl md:text-5xl font-bold bg-linear-to-r from-white via-emerald-100 to-emerald-200 bg-clip-text text-transparent">
+            <h3 className="text-2xl md:text-5xl font-bold bg-linear-to-r from-white via-emerald-100 to-emerald-200 bg-clip-text text-transparent">
               {aboutData.vision.title}
             </h3>
           </div>
 
           {/* 戦略の柱 */}
-          <div className="flex flex-wrap justify-center gap-4 mb-16">
+          <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-16">
             {aboutData.vision.pillars.map((pillar, index) => (
               <span
                 key={index}
-                className="px-6 py-3 bg-white/5 border border-white/10 rounded-full text-white font-medium backdrop-blur-md hover:bg-white/10 transition-colors"
+                className="px-3 py-2 md:px-6 md:py-3 bg-white/5 border border-white/10 rounded-full text-white text-xs md:text-base font-medium backdrop-blur-md"
               >
                 {pillar}
               </span>
@@ -291,18 +286,18 @@ export default function AboutFractalPage() {
           </div>
 
           {/* 目標 */}
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid gap-4 md:grid-cols-2 md:gap-8">
             {aboutData.vision.goals.map((goal, index) => (
               <div
                 key={index}
-                className="group relative bg-white/5 border border-white/10 backdrop-blur-md rounded-3xl p-8 hover:bg-white/10 transition-all duration-300"
+                className="group relative bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl md:rounded-3xl p-5 md:p-8"
               >
-                <h4 className="text-xl font-bold text-emerald-300 mb-4 flex items-center gap-2">
-                  <span className="w-2 h-8 bg-emerald-500 rounded-full"></span>
+                <h4 className="text-base md:text-xl font-bold text-emerald-300 mb-2 md:mb-4 flex items-center gap-2">
+                  <span className="w-1.5 md:w-2 h-6 md:h-8 bg-emerald-500 rounded-full"></span>
                   {goal.name}
                 </h4>
-                <p className="text-3xl font-bold mb-4 tracking-tight">{goal.target}</p>
-                <p className="text-slate-300 leading-relaxed">{goal.detail}</p>
+                <p className="text-xl md:text-3xl font-bold mb-2 md:mb-4 tracking-tight">{goal.target}</p>
+                <p className="text-slate-300 leading-relaxed text-sm md:text-base">{goal.detail}</p>
               </div>
             ))}
           </div>
@@ -311,26 +306,26 @@ export default function AboutFractalPage() {
 
       {/* 7つの行動指針 */}
       <Section id="guidelines" className="bg-slate-50">
-        <div className="text-center mb-16">
-          <span className="inline-block px-4 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm font-bold tracking-wider mb-4">
+        <div className="text-center mb-8 md:mb-16">
+          <span className="inline-block px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-xs md:text-sm font-bold tracking-wider mb-3 md:mb-4">
             GUIDELINES
           </span>
-          <h3 className="text-3xl md:text-5xl font-bold text-primary">
+          <h3 className="text-2xl md:text-5xl font-bold text-primary">
             7つの行動指針
           </h3>
-          <p className="text-slate-500 mt-4 text-lg">フラクタルで働くということ</p>
+          <p className="text-slate-500 mt-2 md:mt-4 text-sm md:text-lg">フラクタルで働くということ</p>
         </div>
 
         {/* インタラクティブな行動指針 */}
         <div className="max-w-5xl mx-auto">
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
+          <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-6 md:mb-12">
             {aboutData.guidelines.map((item, index) => (
               <button
                 key={index}
                 onClick={() => setActiveGuideline(index)}
-                className={`w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center transition-all duration-300 font-bold text-lg md:text-xl ${
+                className={`w-10 h-10 md:w-16 md:h-16 rounded-full flex items-center justify-center transition-all duration-300 font-bold text-base md:text-xl ${
                   activeGuideline === index
-                    ? "bg-emerald-500 text-white scale-110 shadow-lg shadow-emerald-500/30 ring-4 ring-emerald-100"
+                    ? "bg-emerald-500 text-white scale-110 shadow-lg shadow-emerald-500/30 ring-2 md:ring-4 ring-emerald-100"
                     : "bg-white text-slate-400 hover:bg-emerald-50 hover:text-emerald-500 border border-slate-200"
                 }`}
               >
@@ -340,35 +335,35 @@ export default function AboutFractalPage() {
           </div>
 
           <div className="relative">
-            <div className="absolute inset-0 bg-linear-to-r from-emerald-500 to-teal-500 rounded-3xl transform rotate-1 opacity-10 blur-xl"></div>
-            <div className="relative bg-white rounded-3xl p-8 md:p-16 text-center shadow-xl border border-slate-100">
-              <div className="mb-8">
-                <span className="inline-block px-6 py-2 bg-emerald-50 text-emerald-600 rounded-full text-sm font-bold mb-4">
+            <div className="absolute inset-0 bg-linear-to-r from-emerald-500 to-teal-500 rounded-2xl md:rounded-3xl transform rotate-1 opacity-10 blur-xl"></div>
+            <div className="relative bg-white rounded-2xl md:rounded-3xl p-6 md:p-16 text-center shadow-xl border border-slate-100">
+              <div className="mb-4 md:mb-8">
+                <span className="inline-block px-4 py-1 md:px-6 md:py-2 bg-emerald-50 text-emerald-600 rounded-full text-xs md:text-sm font-bold mb-3 md:mb-4">
                   GUIDELINE {aboutData.guidelines[activeGuideline].num}
                 </span>
-                <h4 className="text-2xl md:text-4xl font-bold text-primary leading-tight">
+                <h4 className="text-lg md:text-4xl font-bold text-primary leading-tight">
                   {aboutData.guidelines[activeGuideline].text}
                 </h4>
               </div>
-              <div className="w-16 h-1 bg-emerald-100 mx-auto rounded-full"></div>
+              <div className="w-12 md:w-16 h-1 bg-emerald-100 mx-auto rounded-full"></div>
             </div>
           </div>
         </div>
 
-        {/* 全リスト（モバイル用など一覧性が必要な場合） */}
-        <div className="mt-16 grid md:grid-cols-2 gap-6 opacity-60 hover:opacity-100 transition-opacity duration-500">
+        {/* 全リスト - モバイルではスクロール可能なリスト */}
+        <div className="mt-8 md:mt-16 grid md:grid-cols-2 gap-3 md:gap-6">
           {aboutData.guidelines.map((item, index) => (
             <div
               key={index}
-              className={`flex items-center gap-4 p-4 rounded-xl transition-all duration-300 ${
+              className={`flex items-center gap-3 md:gap-4 p-3 md:p-4 rounded-xl transition-all duration-300 cursor-pointer ${
                 activeGuideline === index
                   ? "bg-white shadow-md border-l-4 border-emerald-500"
-                  : "bg-transparent border border-transparent hover:bg-white hover:border-slate-200"
+                  : "bg-white/50 border border-transparent hover:bg-white hover:border-slate-200"
               }`}
               onClick={() => setActiveGuideline(index)}
             >
               <span
-                className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${
+                className={`shrink-0 w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center font-bold text-xs md:text-sm ${
                   activeGuideline === index
                     ? "bg-emerald-500 text-white"
                     : "bg-slate-200 text-slate-500"
@@ -376,101 +371,192 @@ export default function AboutFractalPage() {
               >
                 {item.num}
               </span>
-              <p className={`font-medium ${activeGuideline === index ? "text-primary" : "text-slate-500"}`}>{item.text}</p>
+              <p className={`font-medium text-sm md:text-base ${activeGuideline === index ? "text-primary" : "text-slate-500"}`}>{item.text}</p>
             </div>
           ))}
         </div>
       </Section>
 
       {/* DAPAE */}
-      <Section className="bg-linear-to-br from-slate-900 via-emerald-900 to-slate-900 text-white relative">
+      <Section className="bg-linear-to-br from-slate-900 via-emerald-900 to-slate-900 text-white relative overflow-hidden">
         {/* 背景装飾 */}
         <div className="absolute inset-0 opacity-20 overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(16,185,129,0.2),transparent_70%)] animate-pulse"></div>
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(16,185,129,0.2),transparent_70%)]"></div>
         </div>
 
-        <div className="text-center mb-16 relative z-10">
-          <span className="inline-block px-4 py-1 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full text-sm font-medium mb-4">
+        <div className="text-center mb-6 md:mb-12 relative z-10">
+          <span className="inline-block px-3 py-1 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full text-xs md:text-sm font-medium mb-3 md:mb-4">
             FRAMEWORK
           </span>
-          <h3 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
+          <h3 className="text-2xl md:text-5xl font-bold mb-3 md:mb-4 tracking-tight">
             DAPAE<span className="text-emerald-400">.</span>
           </h3>
-          <p className="text-white/80 max-w-2xl mx-auto text-lg leading-relaxed">
+          <p className="text-white/80 max-w-2xl mx-auto text-xs md:text-base leading-relaxed px-4">
             {aboutData.dapae.description}
           </p>
         </div>
 
-          {/* DAPAEサイクル - 独創的な円環デザイン */}
-          <div className="relative max-w-4xl mx-auto h-100 md:h-150 flex items-center justify-center dapae-circle-container">
-            {/* 中心テキスト */}
-            <div className="absolute z-20 text-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-              <p className="text-sm md:text-base text-emerald-300 font-bold tracking-widest mb-2">GROWTH CYCLE</p>
-              <div className="text-3xl md:text-5xl font-bold text-white">成長の<br />サイクル</div>
-            </div>
+        {/* DAPAEフローチャート */}
+        <div className="max-w-5xl mx-auto px-4 relative z-10">
+          {/* モバイル: 完全縦並び / デスクトップ: 横並び（2グループ） */}
 
-            {/* 循環ライン */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="w-55 h-55 md:w-110 md:h-110 rounded-full border-2 border-emerald-500/30 animate-[spin_60s_linear_infinite]"></div>
-              <div className="absolute w-50 h-50 md:w-105 md:h-105 rounded-full border border-emerald-400/20 animate-[spin_40s_linear_infinite_reverse]"></div>
-            </div>
-
-            {/* ステップアイテム */}
-            {aboutData.dapae.steps.map((step, index) => {
-              const total = aboutData.dapae.steps.length;
-              const angle = (index * 360) / total - 90; // -90で上から開始
-              
-              return (
-                <div
-                  key={index}
-                  className="dapae-item flex flex-col items-center justify-center group"
-                  style={{ "--angle": `${angle}deg` } as React.CSSProperties}
-                >
-                  <div 
-                    className={`relative z-10 w-24 h-24 md:w-32 md:h-32 rounded-full ${step.color} flex flex-col items-center justify-center shadow-lg shadow-emerald-900/50 transition-all duration-300 hover:scale-110 hover:shadow-emerald-500/50 cursor-pointer border-4 border-slate-900`}
-                  >
-                    <p className="text-xs md:text-sm font-bold text-white/90">{step.ja}</p>
-                    <p className="text-lg md:text-2xl font-bold text-white">{step.name}</p>
-                    
-                    {/* 番号 */}
-                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-white text-slate-900 rounded-full flex items-center justify-center font-bold border-2 border-slate-900">
-                      {index + 1}
-                    </div>
-                  </div>
+          {/* モバイル表示: 縦並び（2グループ囲み） */}
+          <div className="md:hidden flex flex-col items-center gap-4">
+            {/* 情報（Information）囲み */}
+            <div className="flex flex-col items-center w-full">
+              <p className="text-white/90 text-xs font-bold mb-2">
+                情報 <span className="text-white/50">-Information-</span>
+              </p>
+              <div className="border-2 border-dashed border-amber-400/60 rounded-xl p-4 flex flex-col items-center gap-2 w-full max-w-[200px]">
+                {/* Data */}
+                <div className="bg-emerald-500 text-white px-6 py-2 rounded-lg border-2 border-white/20 shadow-lg w-full text-center">
+                  <p className="text-[10px] text-white/80">データ</p>
+                  <p className="text-sm font-bold">Data</p>
                 </div>
-              );
-            })}
-            
-            {/* 矢印（CSSで制御） */}
-            {aboutData.dapae.steps.map((_, index) => {
-              const total = aboutData.dapae.steps.length;
-              const angle = (index * 360) / total - 90;
-              return (
-                <div 
-                  key={`arrow-${index}`}
-                  className="dapae-arrow"
-                  style={{ "--angle": `${angle}deg` } as React.CSSProperties}
-                ></div>
-              );
-            })}
+                {/* 下矢印 */}
+                <div className="flex flex-col items-center">
+                  <div className="w-[2px] h-2 bg-amber-400"></div>
+                  <div className="w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-t-[5px] border-t-amber-400"></div>
+                </div>
+                {/* Analysis */}
+                <div className="bg-teal-500 text-white px-6 py-2 rounded-lg border-2 border-white/20 shadow-lg w-full text-center">
+                  <p className="text-[10px] text-white/80">分析</p>
+                  <p className="text-sm font-bold">Analysis</p>
+                </div>
+              </div>
+            </div>
+
+            {/* 下矢印（グループ間） */}
+            <div className="flex flex-col items-center">
+              <div className="w-[2px] h-4 bg-amber-400"></div>
+              <div className="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[6px] border-t-amber-400"></div>
+            </div>
+
+            {/* データ（Data）囲み */}
+            <div className="flex flex-col items-center w-full">
+              <p className="text-white/90 text-xs font-bold mb-2">
+                データ <span className="text-white/50">-Data-</span>
+              </p>
+              <div className="border-2 border-dashed border-amber-400/60 rounded-xl p-4 flex flex-col items-center gap-2 w-full max-w-[200px]">
+                {/* Plan */}
+                <div className="bg-cyan-500 text-white px-6 py-2 rounded-lg border-2 border-white/20 shadow-lg w-full text-center">
+                  <p className="text-[10px] text-white/80">計画</p>
+                  <p className="text-sm font-bold">Plan</p>
+                </div>
+                {/* 下矢印 */}
+                <div className="flex flex-col items-center">
+                  <div className="w-[2px] h-2 bg-amber-400"></div>
+                  <div className="w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-t-[5px] border-t-amber-400"></div>
+                </div>
+                {/* Act */}
+                <div className="bg-sky-500 text-white px-6 py-2 rounded-lg border-2 border-white/20 shadow-lg w-full text-center">
+                  <p className="text-[10px] text-white/80">実行</p>
+                  <p className="text-sm font-bold">Act</p>
+                </div>
+                {/* 下矢印 */}
+                <div className="flex flex-col items-center">
+                  <div className="w-[2px] h-2 bg-amber-400"></div>
+                  <div className="w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-t-[5px] border-t-amber-400"></div>
+                </div>
+                {/* Evaluation */}
+                <div className="bg-blue-500 text-white px-6 py-2 rounded-lg border-2 border-white/20 shadow-lg w-full text-center">
+                  <p className="text-[10px] text-white/80">評価</p>
+                  <p className="text-sm font-bold">Evaluation</p>
+                </div>
+              </div>
+            </div>
           </div>
+
+          {/* デスクトップ表示: 横並び（2グループ） */}
+          <div className="hidden md:flex items-center justify-center gap-4">
+            {/* 情報（Information）囲み: Data + Analysis */}
+            <div className="flex flex-col items-center">
+              <p className="text-white/90 text-sm font-bold mb-2">
+                情報 <span className="text-white/50">-Information-</span>
+              </p>
+              <div className="border-2 border-dashed border-amber-400/60 rounded-xl p-4 flex items-center gap-3">
+                {/* Data */}
+                <div className="bg-emerald-500 text-white px-8 py-3 rounded-lg border-2 border-white/20 shadow-lg">
+                  <p className="text-[11px] text-white/80 text-center">データ</p>
+                  <p className="text-base font-bold text-center">Data</p>
+                </div>
+                {/* 矢印 → */}
+                <div className="flex items-center">
+                  <div className="w-6 h-[3px] bg-amber-400"></div>
+                  <div className="w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[9px] border-l-amber-400"></div>
+                </div>
+                {/* Analysis */}
+                <div className="bg-teal-500 text-white px-8 py-3 rounded-lg border-2 border-white/20 shadow-lg">
+                  <p className="text-[11px] text-white/80 text-center">分析</p>
+                  <p className="text-base font-bold text-center">Analysis</p>
+                </div>
+              </div>
+            </div>
+
+            {/* 矢印 → */}
+            <div className="flex items-center">
+              <div className="w-8 h-[3px] bg-amber-400"></div>
+              <div className="w-0 h-0 border-t-[7px] border-t-transparent border-b-[7px] border-b-transparent border-l-[10px] border-l-amber-400"></div>
+            </div>
+
+            {/* データ（Data）囲み: Plan + Act + Evaluation */}
+            <div className="flex flex-col items-center">
+              <p className="text-white/90 text-sm font-bold mb-2">
+                データ <span className="text-white/50">-Data-</span>
+              </p>
+              <div className="border-2 border-dashed border-amber-400/60 rounded-xl p-4 flex items-center gap-3">
+                {/* Plan */}
+                <div className="bg-cyan-500 text-white px-8 py-3 rounded-lg border-2 border-white/20 shadow-lg">
+                  <p className="text-[11px] text-white/80 text-center">計画</p>
+                  <p className="text-base font-bold text-center">Plan</p>
+                </div>
+                {/* 矢印 → */}
+                <div className="flex items-center">
+                  <div className="w-6 h-[3px] bg-amber-400"></div>
+                  <div className="w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[9px] border-l-amber-400"></div>
+                </div>
+                {/* Act */}
+                <div className="bg-sky-500 text-white px-8 py-3 rounded-lg border-2 border-white/20 shadow-lg">
+                  <p className="text-[11px] text-white/80 text-center">実行</p>
+                  <p className="text-base font-bold text-center">Act</p>
+                </div>
+                {/* 矢印 → */}
+                <div className="flex items-center">
+                  <div className="w-6 h-[3px] bg-amber-400"></div>
+                  <div className="w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[9px] border-l-amber-400"></div>
+                </div>
+                {/* Evaluation */}
+                <div className="bg-blue-500 text-white px-8 py-3 rounded-lg border-2 border-white/20 shadow-lg">
+                  <p className="text-[11px] text-white/80 text-center">評価</p>
+                  <p className="text-base font-bold text-center">Evaluation</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* GROWTH CYCLE テキスト */}
+          <div className="text-center mt-6">
+            <p className="text-xs md:text-sm text-emerald-300 font-bold tracking-widest">GROWTH CYCLE</p>
+            <p className="text-white/60 text-[10px] md:text-xs mt-1">データに基づいた継続的な改善</p>
+          </div>
+        </div>
       </Section>
 
       {/* ロゴの意味 */}
       <Section className="bg-white">
-        <div className="text-center mb-12">
-          <span className="inline-block px-4 py-1 bg-amber-100 text-amber-700 rounded-full text-sm font-medium mb-4">
+        <div className="text-center mb-8 md:mb-12">
+          <span className="inline-block px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-xs md:text-sm font-medium mb-3 md:mb-4">
             IDENTITY
           </span>
-          <h3 className="text-3xl md:text-4xl font-bold text-primary">
+          <h3 className="text-2xl md:text-4xl font-bold text-primary">
             ロゴに込めた想い
           </h3>
         </div>
 
-        <div className="flex flex-col md:flex-row items-center gap-12">
+        <div className="flex flex-col md:flex-row items-center gap-6 md:gap-12">
           {/* ロゴ */}
           <div className="shrink-0">
-            <div className="relative w-48 h-48 md:w-64 md:h-64">
+            <div className="relative w-32 h-32 md:w-64 md:h-64">
               <Image
                 src="/images/logos/corporate-logo.png"
                 alt="株式会社フラクタル ロゴ"
@@ -481,16 +567,16 @@ export default function AboutFractalPage() {
           </div>
 
           {/* 意味 */}
-          <div className="flex-1 space-y-6">
+          <div className="flex-1 space-y-3 md:space-y-6 w-full">
             {aboutData.logo.meanings.map((meaning, index) => (
               <div
                 key={index}
-                className="flex items-start gap-4 p-4 bg-linear-to-r from-amber-50 to-transparent rounded-xl"
+                className="flex items-start gap-3 md:gap-4 p-3 md:p-4 bg-linear-to-r from-amber-50 to-transparent rounded-xl"
               >
-                <span className="text-3xl">{meaning.icon}</span>
+                <span className="text-2xl md:text-3xl">{meaning.icon}</span>
                 <div>
-                  <h4 className="font-bold text-primary text-lg">{meaning.name}</h4>
-                  <p className="text-primary/70">{meaning.description}</p>
+                  <h4 className="font-bold text-primary text-base md:text-lg">{meaning.name}</h4>
+                  <p className="text-primary/70 text-sm md:text-base">{meaning.description}</p>
                 </div>
               </div>
             ))}
@@ -500,22 +586,22 @@ export default function AboutFractalPage() {
 
       {/* 会社案内資料 */}
       <Section className="bg-slate-50">
-        <div className="text-center mb-12">
-          <span className="inline-block px-4 py-1 bg-slate-200 text-slate-700 rounded-full text-sm font-medium mb-4">
+        <div className="text-center mb-6 md:mb-12">
+          <span className="inline-block px-3 py-1 bg-slate-200 text-slate-700 rounded-full text-xs md:text-sm font-medium mb-3 md:mb-4">
             MATERIALS
           </span>
-          <h3 className="text-3xl md:text-4xl font-bold text-primary">
+          <h3 className="text-2xl md:text-4xl font-bold text-primary">
             資料で見るフラクタル
           </h3>
-          <p className="text-primary/70 mt-4">
+          <p className="text-primary/70 mt-2 md:mt-4 text-sm md:text-base">
             企業理念や事業内容をまとめた資料をご覧いただけます。
           </p>
         </div>
 
-        <div className="flex overflow-x-auto space-x-6 pb-8 px-4 snap-x snap-mandatory scrollbar-hide">
+        <div className="flex overflow-x-auto space-x-4 md:space-x-6 pb-6 md:pb-8 px-2 md:px-4 snap-x snap-mandatory scrollbar-hide -mx-4">
           {[13, 14, 16, 17, 18, 19, 21].map((num) => (
-            <div key={num} className="shrink-0 w-[85vw] md:w-150 snap-center">
-              <div className="relative aspect-video shadow-xl rounded-xl overflow-hidden border border-slate-200 bg-white group hover:scale-[1.02] transition-transform duration-300">
+            <div key={num} className="shrink-0 w-[75vw] md:w-150 snap-center first:ml-4 last:mr-4">
+              <div className="relative aspect-video shadow-xl rounded-lg md:rounded-xl overflow-hidden border border-slate-200 bg-white">
                 <Image
                   src={`/images/philosophy/${num}.png`}
                   alt={`フラクタル資料 ${num}`}
@@ -526,7 +612,7 @@ export default function AboutFractalPage() {
             </div>
           ))}
         </div>
-        <p className="text-center text-sm text-muted mt-4 md:hidden">
+        <p className="text-center text-xs text-muted mt-2 md:hidden">
           ← スクロールしてご覧ください →
         </p>
       </Section>
@@ -534,28 +620,31 @@ export default function AboutFractalPage() {
       {/* CTA */}
       <Section className="bg-linear-to-r from-emerald-500 to-teal-500 text-white">
         <div className="text-center">
-          <h3 className="text-3xl md:text-4xl font-bold mb-6">
+          <h3 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6">
             一緒に働きませんか？
           </h3>
-          <p className="text-white/90 mb-8 max-w-2xl mx-auto">
+          <p className="text-white/90 mb-6 md:mb-8 max-w-2xl mx-auto text-sm md:text-base">
             フラクタルでは、私たちの理念に共感し、共に成長していける仲間を募集しています。
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4">
             <Link
               href="/recruit"
-              className="px-8 py-4 bg-white text-emerald-600 rounded-full font-bold text-lg hover:bg-gray-100 transition-colors"
+              className="px-6 py-3 md:px-8 md:py-4 bg-white text-emerald-600 rounded-full font-bold text-sm md:text-lg hover:bg-gray-100 transition-colors"
             >
               採用情報を見る
             </Link>
             <Link
               href="/#contact"
-              className="px-8 py-4 bg-emerald-600 text-white rounded-full font-bold text-lg hover:bg-emerald-700 transition-colors"
+              className="px-6 py-3 md:px-8 md:py-4 bg-emerald-600 text-white rounded-full font-bold text-sm md:text-lg hover:bg-emerald-700 transition-colors"
             >
               お問い合わせ
             </Link>
           </div>
         </div>
       </Section>
+
+      {/* モバイル下部メニュー分の余白 */}
+      <div className="h-20 lg:hidden"></div>
     </div>
   );
 }

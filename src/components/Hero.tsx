@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -22,7 +21,7 @@ export default function Hero() {
       {/* コンテンツ */}
       <div className="relative z-10 text-center px-4 py-8 animate-fade-in-up flex flex-col items-center justify-center h-full">
         {/* メインキャッチコピー（縦書き） */}
-        <div className="flex justify-center mb-8">
+        <div className="flex justify-center">
           <h1
             className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-[var(--color-primary)] drop-shadow-sm"
             style={{
@@ -34,14 +33,6 @@ export default function Hero() {
             私たちがフラクタル
           </h1>
         </div>
-
-        {/* フラクタルを知るボタン */}
-        <Link
-          href="/about-fractal"
-          className="inline-block bg-[var(--color-primary)] text-white px-8 py-3 rounded-full font-bold text-lg hover:opacity-90 transition-opacity shadow-lg"
-        >
-          フラクタルを知る
-        </Link>
       </div>
     </section>
   );

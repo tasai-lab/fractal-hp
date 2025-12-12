@@ -1,3 +1,4 @@
+import Link from "next/link";
 import BackgroundTriangles from "./BackgroundTriangles";
 
 export default function Recruit() {
@@ -55,7 +56,7 @@ export default function Recruit() {
             </div>
 
             {/* スタッフ集合写真プレースホルダー */}
-            <div className="rounded-2xl overflow-hidden shadow-sm">
+            <div className="rounded-2xl overflow-hidden shadow-sm mb-8">
               <div className="bg-white aspect-video flex items-center justify-center">
                 <div className="text-center">
                   <svg
@@ -87,6 +88,16 @@ export default function Recruit() {
                   <p className="text-muted mt-2">スタッフ集合写真</p>
                 </div>
               </div>
+            </div>
+
+            {/* 採用情報ボタン */}
+            <div className="text-center">
+              <Link
+                href="/recruit"
+                className="inline-block bg-primary text-white px-8 py-4 rounded-full font-bold text-lg hover:opacity-90 transition-opacity shadow-lg"
+              >
+                採用情報を見る
+              </Link>
             </div>
           </div>
         </div>
