@@ -470,24 +470,12 @@ export default function AboutFractalPage() {
           </div>
 
           {/* デスクトップ表示: 横並び（2グループ） */}
-          <div className="hidden md:block">
-            {/* ラベル行 */}
-            <div className="flex justify-center gap-4 mb-2">
-              <div className="flex-shrink-0" style={{ width: '280px' }}>
-                <p className="text-white/90 text-sm font-bold text-center">
-                  情報 <span className="text-white/50">-Information-</span>
-                </p>
-              </div>
-              <div className="w-[39px]"></div>
-              <div className="flex-shrink-0" style={{ width: '420px' }}>
-                <p className="text-white/90 text-sm font-bold text-center">
-                  データ <span className="text-white/50">-Data-</span>
-                </p>
-              </div>
-            </div>
-            {/* 囲みと矢印の行 */}
-            <div className="flex items-center justify-center gap-4">
-              {/* 情報（Information）囲み: Data + Analysis */}
+          <div className="hidden md:flex items-end justify-center gap-4">
+            {/* 情報（Information）囲み: Data + Analysis */}
+            <div className="flex flex-col items-center">
+              <p className="text-white/90 text-sm font-bold mb-2">
+                情報 <span className="text-white/50">-Information-</span>
+              </p>
               <div className="border-2 border-dashed border-amber-400/60 rounded-xl p-4 flex items-center gap-3">
                 {/* Data */}
                 <div className="bg-emerald-500 text-white px-8 py-3 rounded-lg border-2 border-white/20 shadow-lg">
@@ -505,14 +493,19 @@ export default function AboutFractalPage() {
                   <p className="text-base font-bold text-center">Analysis</p>
                 </div>
               </div>
+            </div>
 
-              {/* 矢印 → */}
-              <div className="flex items-center">
-                <div className="w-6 h-[3px] bg-amber-400"></div>
-                <div className="w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[9px] border-l-amber-400"></div>
-              </div>
+            {/* 矢印 → （囲いの中央に揃える） */}
+            <div className="flex items-center mb-[50px]">
+              <div className="w-6 h-[3px] bg-amber-400"></div>
+              <div className="w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[9px] border-l-amber-400"></div>
+            </div>
 
-              {/* データ（Data）囲み: Plan + Act + Evaluation */}
+            {/* データ（Data）囲み: Plan + Act + Evaluation */}
+            <div className="flex flex-col items-center">
+              <p className="text-white/90 text-sm font-bold mb-2">
+                データ <span className="text-white/50">-Data-</span>
+              </p>
               <div className="border-2 border-dashed border-amber-400/60 rounded-xl p-4 flex items-center gap-3">
                 {/* Plan */}
                 <div className="bg-cyan-500 text-white px-8 py-3 rounded-lg border-2 border-white/20 shadow-lg">

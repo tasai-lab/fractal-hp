@@ -125,6 +125,7 @@ npm run start
 
 - [開発ガイド](docs/DEVELOPMENT.md)
 - [デプロイ手順](docs/DEPLOYMENT.md)
+- [ドメイン移行手順](docs/DOMAIN-MIGRATION.md)
 - [SEO設定](docs/SEO-SETUP.md)
 - [コンポーネント仕様](docs/COMPONENTS.md)
 
