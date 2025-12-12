@@ -285,6 +285,49 @@ body {
   transform: rotateY(180deg);
 }
 
+/* DAPAE Circle Layout */
+.dapae-circle-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.dapae-item {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  --angle: 0deg;
+  --radius: 110px;
+  --md-radius: 220px;
+  transform: translate(-50%, -50%) rotate(var(--angle)) translate(var(--radius)) rotate(calc(var(--angle) * -1));
+  transition: all 0.5s ease-out;
+}
+
+@media (min-width: 768px) {
+  .dapae-item {
+    transform: translate(-50%, -50%) rotate(var(--angle)) translate(var(--md-radius)) rotate(calc(var(--angle) * -1));
+  }
+}
+
+.dapae-arrow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #10b981, transparent);
+  transform-origin: left center;
+  transform: translate(-50%, -50%) rotate(calc(var(--angle) + 36deg)) translate(var(--radius)) rotate(90deg);
+  z-index: 0;
+  opacity: 0.5;
+}
+
+@media (min-width: 768px) {
+  .dapae-arrow {
+    transform: translate(-50%, -50%) rotate(calc(var(--angle) + 36deg)) translate(var(--md-radius)) rotate(90deg);
+  }
+}
+
 /* 印刷用スタイル */
 @media print {
   /* 背景色・画像を印刷 */
