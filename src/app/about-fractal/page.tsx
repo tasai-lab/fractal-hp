@@ -381,13 +381,13 @@ export default function AboutFractalPage() {
 
       {/* DAPAE */}
       <Section className="bg-slate-800 text-white relative overflow-hidden">
-        <div className="text-center mb-6 md:mb-12 relative z-10">
+        <div className="text-center mb-8 md:mb-16 relative z-10">
           <span className="inline-block px-3 py-1 bg-teal-500 text-white rounded-full text-xs md:text-sm font-medium mb-3 md:mb-4">
             FRAMEWORK
           </span>
-          <h3 className="text-2xl md:text-5xl font-bold mb-3 md:mb-4 tracking-tight flex items-center justify-center gap-2">
-            DAPAE
-            <svg className="w-4 h-4 md:w-6 md:h-6 text-yellow-400" viewBox="0 0 24 24" fill="currentColor">
+          <h3 className="text-2xl md:text-5xl font-bold mb-3 md:mb-4 tracking-tight flex items-end justify-center gap-1">
+            <span>DAPAE</span>
+            <svg className="w-3 h-3 md:w-4 md:h-4 text-yellow-400 mb-1 md:mb-2" viewBox="0 0 24 24" fill="currentColor">
               <polygon points="12,2 22,22 2,22" />
             </svg>
           </h3>
@@ -535,19 +535,19 @@ export default function AboutFractalPage() {
           </div>
 
           {/* GROWTH CYCLE テキスト */}
-          <div className="text-center mt-6">
+          <div className="text-center mt-8 md:mt-12">
             <p className="text-xs md:text-sm text-teal-400 font-bold tracking-widest">GROWTH CYCLE</p>
             <p className="text-white/60 text-[10px] md:text-xs mt-1">データに基づいた継続的な改善</p>
           </div>
 
           {/* 詳しい説明 */}
-          <div className="max-w-3xl mx-auto mt-8 md:mt-12 space-y-4 md:space-y-6">
+          <div className="max-w-3xl mx-auto mt-10 md:mt-16 space-y-5 md:space-y-8">
             {aboutData.dapae.detailedExplanation.map((item, index) => (
-              <div key={index} className="bg-slate-700 rounded-xl p-4 md:p-6 border border-slate-600">
-                <h4 className="text-sm md:text-lg font-bold text-teal-400 mb-2 md:mb-3">
+              <div key={index} className="bg-slate-700 rounded-xl p-5 md:p-8 border border-slate-600">
+                <h4 className="text-sm md:text-lg font-bold text-teal-400 mb-3 md:mb-4">
                   {item.title}
                 </h4>
-                <p className="text-white/80 text-xs md:text-sm leading-relaxed">
+                <p className="text-white/80 text-sm md:text-base leading-relaxed">
                   {item.content}
                 </p>
               </div>
