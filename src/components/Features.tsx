@@ -116,7 +116,7 @@ function FeatureIcon({ icon }: { icon: string }) {
       );
 
     case "mind":
-      // 精神科 - 脳アイコン
+      // 精神科 - 双葉（癒やし・成長）アイコン
       return (
         <svg
           className={iconSize}
@@ -126,19 +126,13 @@ function FeatureIcon({ icon }: { icon: string }) {
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"
+            d="M12 22v-8"
             strokeWidth={strokeWidth}
             strokeLinecap="round"
             strokeLinejoin="round"
           />
           <path
-            d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"
-            strokeWidth={strokeWidth}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M12 5v13"
+            d="M12 14a7 7 0 0 0-7-7c0 8 7 8 7 8s7 0 7-8a7 7 0 0 0-7 7z"
             strokeWidth={strokeWidth}
             strokeLinecap="round"
             strokeLinejoin="round"
