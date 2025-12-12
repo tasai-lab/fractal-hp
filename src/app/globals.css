@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+:root {
+  /* Brand Colors */
+  --color-primary: #1a1a1a;
+  --color-primary-light: #333333;
+
+  /* Accent Colors */
+  --color-accent-blue: #7EC8E3;
+  --color-accent-blue-light: #B8E2F2;
+  --color-accent-pink: #FFB6C1;
+  --color-accent-pink-light: #FFD9DE;
+  --color-accent-yellow: #FFF8DC;
+  --color-accent-yellow-dark: #F5E6B8;
+  --color-accent-mint: #98D8C8;
+  --color-accent-mint-light: #C8EDE5;
+
+  /* Base Colors */
+  --color-background: #ffffff;
+  --color-foreground: #1a1a1a;
+  --color-muted: #6b7280;
+  --color-border: #e5e7eb;
+
+  /* Spacing */
+  --section-padding: 5rem;
+}
+
+@theme inline {
+  --color-background: var(--color-background);
+  --color-foreground: var(--color-foreground);
+  --color-primary: var(--color-primary);
+  --color-primary-light: var(--color-primary-light);
+  --color-accent-blue: var(--color-accent-blue);
+  --color-accent-blue-light: var(--color-accent-blue-light);
+  --color-accent-pink: var(--color-accent-pink);
+  --color-accent-pink-light: var(--color-accent-pink-light);
+  --color-accent-yellow: var(--color-accent-yellow);
+  --color-accent-yellow-dark: var(--color-accent-yellow-dark);
+  --color-accent-mint: var(--color-accent-mint);
+  --color-accent-mint-light: var(--color-accent-mint-light);
+  --color-muted: var(--color-muted);
+  --color-border: var(--color-border);
+  --font-sans: "Noto Sans JP", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: "Noto Sans JP", sans-serif;
+  line-height: 1.8;
+}
+
+/* Section Base Styles - 参考HPに統一 */
+.section-wrapper {
+  position: relative;
+  padding: 5rem 0;
+  overflow: hidden;
+}
+
+.section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  gap: 3rem;
+}
+
+.section-title-area {
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  letter-spacing: 0.3em;
+  color: var(--color-primary);
+}
+
+.section-title-line {
+  width: 2px;
+  background: var(--color-primary);
+  height: 100%;
+  min-height: 200px;
+}
+
+.section-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Card Styles */
+.card {
+  background: var(--color-accent-yellow);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+}
+
+.card-blue {
+  background: var(--color-accent-blue-light);
+}
+
+.card-pink {
+  background: var(--color-accent-pink-light);
+}
+
+.card-mint {
+  background: var(--color-accent-mint-light);
+}
+
+/* Button Styles */
+.btn-primary {
+  background: var(--color-primary);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+/* Decorative Triangle */
+.fractal-triangle {
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 86px solid var(--color-primary);
+}
