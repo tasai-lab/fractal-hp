@@ -70,10 +70,10 @@ export default function Recruit() {
                   入社祝い金 最大{(signOnBonus.total / 10000).toLocaleString()}万円
                 </h4>
 
-                {/* 祝い金マイルストーン（矢印付き） */}
-                <div className="flex items-center justify-center gap-1 md:gap-2">
+                {/* 祝い金マイルストーン（矢印付き・下揃え） */}
+                <div className="flex items-end justify-center gap-1 md:gap-2">
                   {signOnBonus.milestones.map((milestone, index) => (
-                    <div key={index} className="flex items-center">
+                    <div key={index} className="flex items-end">
                       <div
                         className="bg-white/90 rounded-lg md:rounded-xl text-center shadow-sm"
                         style={{
@@ -88,7 +88,7 @@ export default function Recruit() {
                         </p>
                       </div>
                       {index < signOnBonus.milestones.length - 1 && (
-                        <div className="text-primary mx-1 md:mx-2">
+                        <div className="text-primary mx-1 md:mx-2 mb-2 md:mb-3">
                           <svg className="w-4 h-4 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
                           </svg>
@@ -104,12 +104,13 @@ export default function Recruit() {
 
             {/* スタッフ集合写真 */}
             <div className="rounded-xl md:rounded-2xl overflow-hidden shadow-sm mb-8">
-              <div className="relative w-full aspect-[4/3] md:aspect-video">
+              <div className="relative w-full">
                 <Image
                   src="/images/recruit/recruit-team.png"
                   alt="フラクタル訪問看護 船橋 スタッフ"
-                  fill
-                  className="object-cover"
+                  width={1200}
+                  height={800}
+                  className="w-full h-auto"
                 />
               </div>
             </div>
