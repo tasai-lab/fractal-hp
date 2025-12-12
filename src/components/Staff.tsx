@@ -30,15 +30,15 @@ export default function Staff() {
             </div>
 
             {/* スタッフカードグリッド */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-8">
+            <div className="grid grid-cols-2 gap-3 md:gap-8">
               {staffMembers.map((staff, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-xl md:rounded-2xl shadow-sm p-4 md:p-8 hover-lift group"
+                  className="bg-white rounded-xl md:rounded-2xl shadow-sm p-3 md:p-8 hover-lift group"
                 >
                   {/* プロフィール画像 */}
-                  <div className="flex justify-center mb-4 md:mb-6">
-                    <div className={`relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden ${bgColors[index % bgColors.length]} ring-4 ring-white shadow-md group-hover:scale-105 transition-transform duration-300`}>
+                  <div className="flex justify-center mb-2 md:mb-6">
+                    <div className={`relative w-16 h-16 md:w-32 md:h-32 rounded-full overflow-hidden ${bgColors[index % bgColors.length]} ring-2 md:ring-4 ring-white shadow-md group-hover:scale-105 transition-transform duration-300`}>
                       <Image
                         src={staff.image}
                         alt={staff.name}
@@ -49,14 +49,14 @@ export default function Staff() {
                   </div>
 
                   {/* スタッフ情報 */}
-                  <div className="text-center mb-3 md:mb-4">
-                    <div className="text-xs md:text-sm text-muted mb-1 md:mb-2">{staff.role}</div>
-                    <h3 className="text-xl md:text-2xl font-bold mb-1">{staff.name}</h3>
-                    <p className="text-xs md:text-sm text-muted mb-3 md:mb-4">{staff.nameReading}</p>
+                  <div className="text-center mb-2 md:mb-4">
+                    <div className="text-[10px] md:text-sm text-muted mb-0.5 md:mb-2">{staff.role}</div>
+                    <h3 className="text-sm md:text-2xl font-bold mb-0.5 md:mb-1">{staff.name}</h3>
+                    <p className="text-[10px] md:text-sm text-muted mb-2 md:mb-4">{staff.nameReading}</p>
                   </div>
 
-                  {/* 詳細情報 */}
-                  <div className="space-y-1 md:space-y-2 mb-3 md:mb-4 text-xs md:text-sm">
+                  {/* 詳細情報 - モバイルでは非表示 */}
+                  <div className="hidden md:block space-y-2 mb-4 text-sm">
                     <div className="flex justify-center gap-2">
                       <span className="font-medium text-muted">出身地:</span>
                       <span>{staff.birthplace}</span>
@@ -68,8 +68,8 @@ export default function Staff() {
                   </div>
 
                   {/* 自己紹介 */}
-                  <div className="pt-3 md:pt-4 border-t border-border">
-                    <p className="text-xs md:text-sm leading-relaxed text-foreground">
+                  <div className="pt-2 md:pt-4 border-t border-border">
+                    <p className="text-[10px] md:text-sm leading-relaxed text-foreground line-clamp-3 md:line-clamp-none">
                       {staff.introduction}
                     </p>
                   </div>

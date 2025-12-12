@@ -118,14 +118,14 @@ export default function About() {
             </div>
 
             {/* フラクタルを知るボタン */}
-            <div className="flex justify-center mt-8 md:mt-12">
+            <div className="flex justify-center mt-6 md:mt-12">
               <a
                 href="/about-fractal"
-                className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 bg-primary rounded-full hover:bg-gray-800 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary shadow-lg hover:shadow-xl"
+                className="group relative inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 font-bold text-white transition-all duration-200 bg-primary rounded-full hover:bg-gray-800 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary shadow-lg hover:shadow-xl"
               >
-                <span className="mr-2 text-lg">フラクタルを知る</span>
+                <span className="mr-2 text-sm md:text-lg">フラクタルを知る</span>
                 <svg
-                  className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1"
+                  className="w-4 h-4 md:w-5 md:h-5 transition-transform duration-200 group-hover:translate-x-1"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"

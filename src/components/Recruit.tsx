@@ -94,7 +94,7 @@ export default function Recruit() {
             <div className="text-center">
               <Link
                 href="/recruit"
-                className="inline-block bg-primary text-white px-8 py-4 rounded-full font-bold text-lg hover:opacity-90 transition-opacity shadow-lg"
+                className="inline-block bg-primary text-white px-6 py-3 md:px-8 md:py-4 rounded-full font-bold text-sm md:text-lg hover:opacity-90 transition-opacity shadow-lg"
               >
                 採用情報を見る
               </Link>

@@ -4,7 +4,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative h-[70vh] min-h-[500px] md:h-[80vh] md:min-h-[600px] flex items-center justify-center overflow-hidden"
+      className="relative h-[60vh] min-h-[400px] md:h-[80vh] md:min-h-[600px] flex items-center justify-center overflow-hidden"
     >
       {/* 背景画像 */}
       <Image
