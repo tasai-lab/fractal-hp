@@ -19,10 +19,10 @@ export default function Recruit() {
             {/* メインコピー */}
             <div className="text-center mb-8 md:mb-16">
               <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 text-primary">
-                最適化された環境で一緒に働きませんか？
+                「働きやすさ」が、「良い看護」をつくる。
               </h3>
               <p className="text-sm md:text-lg text-muted border-b-2 border-primary inline-block pb-1">
-                当社はなによりも業務の最適化を重視して仕組み化しています。
+                私たちは、業務の効率化とスタッフの働きやすさを何よりも大切にしています。
               </p>
             </div>
 
@@ -35,7 +35,7 @@ export default function Recruit() {
                   </div>
                   <div className="pt-1 md:pt-2">
                     <h4 className="text-lg md:text-xl font-bold text-primary">
-                      なぜ業務の最適化を重視しているのか？
+                      なぜ「業務の最適化」にこだわるのですか？
                     </h4>
                   </div>
                 </div>
@@ -46,7 +46,8 @@ export default function Recruit() {
                   </div>
                   <div className="pt-1 md:pt-2">
                     <p className="text-sm md:text-lg leading-relaxed">
-                      スタッフの負担を減らすことができるため、それが利用者さまへの訪問の質を最大限まで上げることに繋がるからです。
+                      スタッフが心身ともに余裕を持って働ける環境こそが、利用者さまへの質の高いケアにつながると信じているからです。
+                      無駄な業務を減らし、本来向き合うべき「看護」に集中できる環境を整えています。
                     </p>
                   </div>
                 </div>

@@ -34,30 +34,33 @@ export default function About() {
             {/* メインコピー */}
             <div className="text-center">
               <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-primary leading-relaxed">
-                一部分が全体と同じ形になる構造です。
+                あなたの人生の、大切な「一部」になりたい。
               </h3>
             </div>
 
             {/* 理念の説明 */}
             <div className="space-y-4 md:space-y-6 text-foreground">
               <p className="text-sm md:text-base lg:text-lg leading-relaxed">
-                私たちフラクタルは関わる全ての人たちが思い描く人生を送るために、最後の最後まで頼られる一部分であり続けます。
+                「フラクタル」とは、一部分が全体と同じ形になる構造のこと。
+                私たちは、日々の訪問看護という「一部」の積み重ねが、利用者さまやご家族の人生という「全体」を豊かにすると信じています。
               </p>
 
               <p className="text-sm md:text-base lg:text-lg leading-relaxed">
-                私たちが行う一つひとつのケアは、いわば利用者さまの生活の『一部』であり、その積み重ねが利用者さまやご家族の人生という『全体』をカタチ作ります。
+                病気や障がいだけでなく、その人らしさ、価値観、これまでの人生。
+                すべてを含めた「その人全体」に寄り添い、最適なケアを一緒に考えていきます。
               </p>
 
               <p className="text-sm md:text-base lg:text-lg leading-relaxed">
-                病気や障がいといった一面だけを捉えるのではなく、利用者さまの価値観、生活歴、社会的背景まで含めた『その人全体』を捉え、チームとして多角的な視点から利用者さまの最適解を一緒に模索します。
+                関わるすべての人たちが、自分らしく思い描く人生を送れるように。
+                私たちは、最後の最後まで頼れる存在であり続けます。
               </p>
             </div>
 
             {/* 最後のメッセージ */}
             <div className="text-center">
               <p className="text-base md:text-lg lg:text-xl font-bold text-primary leading-relaxed">
-                完璧はない、だから最適化する。<br />
-                それが私たちがフラクタルであるということです。
+                完璧な正解よりも、あなたにとっての最適解を。<br />
+                それが、私たちフラクタルの約束です。
               </p>
             </div>
           </div>
@@ -69,7 +72,7 @@ export default function About() {
 
             {/* サブタイトル */}
             <p className="text-base md:text-xl text-center text-muted">
-              シンプルで独創的<span className="text-primary">、</span>それがフラクタル<span className="text-primary">。</span>
+              想いをカタチにする、4つのこだわり
             </p>
 
             {/* 理念項目リスト */}

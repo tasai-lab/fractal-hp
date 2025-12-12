@@ -73,6 +73,7 @@ function FeatureIcon({ icon }: { icon: string }) {
       );
 
     case "phone":
+      // 24時間対応 - ヘッドセット/コールセンターアイコン
       return (
         <svg
           className={iconSize}
@@ -82,7 +83,13 @@ function FeatureIcon({ icon }: { icon: string }) {
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+            d="M3 18v-6a9 9 0 0 1 18 0v6"
+            strokeWidth={strokeWidth}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"
             strokeWidth={strokeWidth}
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -109,6 +116,7 @@ function FeatureIcon({ icon }: { icon: string }) {
       );
 
     case "mind":
+      // 精神科 - 脳アイコン
       return (
         <svg
           className={iconSize}
@@ -118,23 +126,28 @@ function FeatureIcon({ icon }: { icon: string }) {
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+            d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"
             strokeWidth={strokeWidth}
             strokeLinecap="round"
             strokeLinejoin="round"
           />
-          <circle
-            cx="12"
-            cy="12"
-            r="3"
+          <path
+            d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"
             strokeWidth={strokeWidth}
-            fill={iconColor}
-            opacity="0.3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M12 5v13"
+            strokeWidth={strokeWidth}
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </svg>
       );
 
     case "box":
+      // 無料レンタル - ギフト/プレゼントアイコン
       return (
         <svg
           className={iconSize}
@@ -143,25 +156,29 @@ function FeatureIcon({ icon }: { icon: string }) {
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
+          <rect
+            x="3"
+            y="8"
+            width="18"
+            height="14"
+            rx="2"
+            strokeWidth={strokeWidth}
+          />
           <path
-            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
+            d="M12 8v14"
+            strokeWidth={strokeWidth}
+            strokeLinecap="round"
+          />
+          <path
+            d="M3 12h18"
+            strokeWidth={strokeWidth}
+            strokeLinecap="round"
+          />
+          <path
+            d="M12 8c-2-2-5-2.5-5 0s3 2 5 2 5 .5 5-2-3-2-5 0"
             strokeWidth={strokeWidth}
             strokeLinecap="round"
             strokeLinejoin="round"
-          />
-          <polyline
-            points="3.27 6.96 12 12.01 20.73 6.96"
-            strokeWidth={strokeWidth}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <line
-            x1="12"
-            y1="22.08"
-            x2="12"
-            y2="12"
-            strokeWidth={strokeWidth}
-            strokeLinecap="round"
           />
         </svg>
       );
@@ -185,6 +202,7 @@ function FeatureIcon({ icon }: { icon: string }) {
       );
 
     case "handshake":
+      // 医療連携 - 病院/クリニックアイコン
       return (
         <svg
           className={iconSize}
@@ -194,24 +212,28 @@ function FeatureIcon({ icon }: { icon: string }) {
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M9 12l2 2 4-4"
+            d="M3 21h18"
             strokeWidth={strokeWidth}
             strokeLinecap="round"
             strokeLinejoin="round"
           />
           <path
-            d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"
+            d="M5 21V7l7-4 7 4v14"
             strokeWidth={strokeWidth}
             strokeLinecap="round"
             strokeLinejoin="round"
           />
-          <circle
-            cx="12"
-            cy="12"
-            r="3"
+          <path
+            d="M9 21v-6h6v6"
             strokeWidth={strokeWidth}
-            opacity="0.2"
-            fill={iconColor}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M12 7v4M10 9h4"
+            strokeWidth={strokeWidth}
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </svg>
       );
@@ -249,11 +271,11 @@ export default function Features() {
               {features.map((feature, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                  className="bg-white rounded-2xl p-6 shadow-sm hover-lift border border-transparent hover:border-[var(--color-accent-yellow)]"
                 >
                   <div className="flex flex-col items-center text-center">
                     {/* アイコン */}
-                    <div className="mb-4">
+                    <div className="mb-4 p-4 bg-[var(--color-accent-yellow-dark)]/20 rounded-full">
                       <FeatureIcon icon={feature.icon} />
                     </div>
 

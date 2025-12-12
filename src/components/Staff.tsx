@@ -25,7 +25,7 @@ export default function Staff() {
             {/* サブタイトル */}
             <div className="mb-8 md:mb-12">
               <p className="text-xl md:text-2xl font-bold text-center text-primary">
-                フラクタルのメンバーです！
+                個性豊かなスタッフが、あなたをサポートします
               </p>
             </div>
 
@@ -34,11 +34,11 @@ export default function Staff() {
               {staffMembers.map((staff, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-xl md:rounded-2xl shadow-sm p-4 md:p-8 hover:shadow-lg transition-shadow"
+                  className="bg-white rounded-xl md:rounded-2xl shadow-sm p-4 md:p-8 hover-lift group"
                 >
                   {/* プロフィール画像 */}
                   <div className="flex justify-center mb-4 md:mb-6">
-                    <div className={`relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden ${bgColors[index % bgColors.length]}`}>
+                    <div className={`relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden ${bgColors[index % bgColors.length]} ring-4 ring-white shadow-md group-hover:scale-105 transition-transform duration-300`}>
                       <Image
                         src={staff.image}
                         alt={staff.name}
