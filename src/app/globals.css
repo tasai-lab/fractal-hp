@@ -284,3 +284,57 @@ body {
 .rotate-y-180 {
   transform: rotateY(180deg);
 }
+
+/* 印刷用スタイル */
+@media print {
+  /* 背景色・画像を印刷 */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* 固定ヘッダーを通常表示に */
+  header {
+    position: relative !important;
+  }
+
+  /* Heroセクションの高さを調整 */
+  #hero {
+    height: auto !important;
+    min-height: auto !important;
+    page-break-after: always;
+  }
+
+  /* 各セクションの改ページ制御 */
+  .section-wrapper {
+    page-break-inside: avoid;
+  }
+
+  /* 3D変換を無効化 */
+  .perspective-1000,
+  .transform-style-3d,
+  .backface-hidden,
+  .rotate-y-180 {
+    transform: none !important;
+    perspective: none !important;
+    backface-visibility: visible !important;
+  }
+
+  /* アニメーションを無効化 */
+  .animate-float,
+  .animate-float-delayed,
+  .animate-fade-in-up,
+  .animate-bounce {
+    animation: none !important;
+  }
+
+  /* 隠れた裏面を非表示 */
+  .backface-hidden.rotate-y-180 {
+    display: none !important;
+  }
+
+  /* リンクURLを表示しない */
+  a[href]:after {
+    content: none !important;
+  }
+}
