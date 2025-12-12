@@ -374,7 +374,7 @@ export default function RecruitPage() {
             <div className="space-y-4 md:space-y-6">
               {currentJob.details.selectionProcess.map((step, index) => (
                 <div key={index} className="relative pl-8 md:pl-10">
-                  <div className={`absolute left-0 top-0 w-6 h-6 md:w-8 md:h-8 text-white rounded-full flex items-center justify-center font-bold text-xs md:text-base ${activeTab === "nurse" ? "bg-accent-blue" : "bg-accent-mint"}`}>
+                  <div className="absolute left-0 top-0 w-6 h-6 md:w-8 md:h-8 bg-white text-primary border-2 border-primary rounded-full flex items-center justify-center font-bold text-xs md:text-base">
                     {index + 1}
                   </div>
                   <h4 className="font-bold text-primary text-sm md:text-base mb-0.5 md:mb-1">{step.step}</h4>
