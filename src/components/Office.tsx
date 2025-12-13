@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { officeInfo, serviceAreas } from "@/lib/data";
 import BackgroundTriangles from "./BackgroundTriangles";
 
@@ -154,6 +156,17 @@ export default function Office() {
                 <p className="font-medium text-foreground text-sm md:text-base">
                   駐車場代・交通費は訪問可能エリア内であればいただきません。
                 </p>
+              </div>
+
+              {/* チラシへの誘導ボタン */}
+              <div className="text-center mt-4">
+                <Link
+                  href="/flyers"
+                  className="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-bold hover:bg-primary-light transition-colors shadow-md group text-sm md:text-base"
+                >
+                  <span>訪問エリアを見る</span>
+                  <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
+                </Link>
               </div>
             </div>
           </div>
