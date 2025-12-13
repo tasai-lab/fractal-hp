@@ -86,18 +86,28 @@ export default function Header() {
       </header>
 
       {/* デスクトップ用サイトマップボタン */}
-      <button
-        onClick={toggleMenu}
-        className="hidden lg:flex fixed bottom-8 right-8 z-50 flex-col items-center justify-center w-16 h-16 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group"
-        aria-label="サイトマップ"
+      <div 
+        className="hidden lg:block fixed bottom-8 right-8 z-50 transition-transform duration-300 hover:-translate-y-1"
+        style={{ filter: "drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15))" }}
       >
-        {isMenuOpen ? (
-          <X className="w-6 h-6 text-[var(--color-primary)] group-hover:text-[var(--color-accent-blue)] transition-colors" />
-        ) : (
-          <Menu className="w-6 h-6 text-[var(--color-primary)] group-hover:text-[var(--color-accent-blue)] transition-colors" />
-        )}
-        <span className="text-[10px] font-medium text-[var(--color-primary)] mt-1 group-hover:text-[var(--color-accent-blue)] transition-colors">メニュー</span>
-      </button>
+        <button
+          onClick={toggleMenu}
+          className="flex flex-col items-center justify-end w-24 h-[83px] bg-white group"
+          style={{
+            clipPath: "polygon(50% 0%, 100% 100%, 0% 100%)",
+          }}
+          aria-label="サイトマップ"
+        >
+          <div className="flex flex-col items-center justify-center mb-2">
+            {isMenuOpen ? (
+              <X className="w-5 h-5 text-[var(--color-primary)] group-hover:text-[var(--color-accent-blue)] transition-colors" />
+            ) : (
+              <Menu className="w-5 h-5 text-[var(--color-primary)] group-hover:text-[var(--color-accent-blue)] transition-colors" />
+            )}
+            <span className="text-[10px] font-medium text-[var(--color-primary)] group-hover:text-[var(--color-accent-blue)] transition-colors transform scale-90">サイトマップ</span>
+          </div>
+        </button>
+      </div>
 
       {/* モバイル下部メニュー */}
       <nav className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50 safe-area-pb">
