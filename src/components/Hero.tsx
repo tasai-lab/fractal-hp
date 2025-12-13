@@ -4,7 +4,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative h-[60vh] min-h-[400px] md:h-[80vh] md:min-h-[600px] flex items-center justify-center overflow-hidden"
+      className="relative min-h-[60vh] md:min-h-[80vh] flex items-center justify-center overflow-hidden"
     >
       {/* 背景画像 */}
       <Image
@@ -17,6 +17,9 @@ export default function Hero() {
 
       {/* オーバーレイ */}
       <div className="absolute inset-0 bg-white/40"></div>
+
+      {/* 下部のぼかし（背景色へのグラデーション） */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 md:h-40 bg-gradient-to-t from-white via-white/50 to-transparent pointer-events-none"></div>
 
       {/* コンテンツ */}
       <div className="relative z-10 text-center px-4 py-8 flex flex-col items-center justify-center h-full" style={{ perspective: "1000px" }}>

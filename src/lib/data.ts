@@ -61,7 +61,7 @@ export const otherMenuCategories = {
       { href: "/#staff", label: "スタッフ紹介" },
       { href: "/#recruit", label: "フラクタルで働く？" },
       { href: "/#contact", label: "お問い合わせ" },
-      { href: "/#company", label: "会社概要" },
+      { href: "/#company", label: "会社情報" },
     ],
   },
   pages: {
