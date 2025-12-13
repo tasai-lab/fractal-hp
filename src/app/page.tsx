@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main>
+      <main className="pt-14 lg:pt-20">
         <Hero />
         <About />
         <Features />
