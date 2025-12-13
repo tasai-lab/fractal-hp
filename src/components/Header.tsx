@@ -85,6 +85,20 @@ export default function Header() {
         </div>
       </header>
 
+      {/* デスクトップ用サイトマップボタン */}
+      <button
+        onClick={toggleMenu}
+        className="hidden lg:flex fixed bottom-8 right-8 z-50 flex-col items-center justify-center w-16 h-16 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group"
+        aria-label="サイトマップ"
+      >
+        {isMenuOpen ? (
+          <X className="w-6 h-6 text-[var(--color-primary)] group-hover:text-[var(--color-accent-blue)] transition-colors" />
+        ) : (
+          <Menu className="w-6 h-6 text-[var(--color-primary)] group-hover:text-[var(--color-accent-blue)] transition-colors" />
+        )}
+        <span className="text-[10px] font-medium text-[var(--color-primary)] mt-1 group-hover:text-[var(--color-accent-blue)] transition-colors">メニュー</span>
+      </button>
+
       {/* モバイル下部メニュー */}
       <nav className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50 safe-area-pb">
         <div className="flex items-center justify-around h-16">
@@ -122,24 +136,24 @@ export default function Header() {
 
       {/* モバイル展開メニュー */}
       {isMenuOpen && (
-        <div className="lg:hidden fixed inset-0 bg-black/50 z-40" onClick={closeMenu}>
+        <div className="fixed inset-0 bg-black/50 z-40 flex items-end lg:items-center justify-center" onClick={closeMenu}>
           <div
-            className="absolute bottom-16 left-0 right-0 bg-white rounded-t-2xl shadow-lg p-4 safe-area-pb max-h-[80vh] overflow-y-auto"
+            className="bg-white shadow-lg p-4 safe-area-pb max-h-[80vh] overflow-y-auto w-full lg:w-auto lg:max-w-4xl lg:rounded-2xl rounded-t-2xl lg:p-8"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="space-y-6 pb-10">
+            <div className="space-y-6 pb-10 lg:pb-0 lg:grid lg:grid-cols-3 lg:gap-8 lg:space-y-0">
               {/* ホーム（ページ内リンク） */}
               <section>
                 <h3 className="text-xs font-bold text-gray-500 mb-2 px-1">{otherMenuCategories.home.title}</h3>
-                <div className="grid grid-cols-3 gap-3">
+                <div className="grid grid-cols-1 gap-2">
                   {otherMenuCategories.home.items.map((item) => (
                     <a
                       key={item.href}
                       href={item.href}
                       onClick={closeMenu}
-                      className="flex flex-col items-center justify-center p-3 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors text-center"
+                      className="flex items-center justify-start p-3 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors text-left"
                     >
-                      <span className="text-xs font-medium text-[var(--color-primary)]">{item.label}</span>
+                      <span className="text-sm font-medium text-[var(--color-primary)]">{item.label}</span>
                     </a>
                   ))}
                 </div>
@@ -148,15 +162,15 @@ export default function Header() {
               {/* その他のページ */}
               <section>
                 <h3 className="text-xs font-bold text-gray-500 mb-2 px-1">{otherMenuCategories.pages.title}</h3>
-                <div className="grid grid-cols-3 gap-3">
+                <div className="grid grid-cols-1 gap-2">
                   {otherMenuCategories.pages.items.map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}
                       onClick={closeMenu}
-                      className="flex flex-col items-center justify-center p-3 rounded-lg bg-emerald-50 hover:bg-emerald-100 transition-colors text-center"
+                      className="flex items-center justify-start p-3 rounded-lg bg-emerald-50 hover:bg-emerald-100 transition-colors text-left"
                     >
-                      <span className="text-xs font-medium text-[var(--color-primary)]">{item.label}</span>
+                      <span className="text-sm font-medium text-[var(--color-primary)]">{item.label}</span>
                     </Link>
                   ))}
                 </div>
@@ -165,7 +179,7 @@ export default function Header() {
               {/* 外部サービス */}
               <section>
                 <h3 className="text-xs font-bold text-gray-500 mb-2 px-1">{otherMenuCategories.external.title}</h3>
-                <div className="grid grid-cols-3 gap-3">
+                <div className="grid grid-cols-1 gap-2">
                   {otherMenuCategories.external.items.map((item) => {
                     const Icon = item.icon ? iconMap[item.icon] : null;
                     return (
@@ -175,10 +189,10 @@ export default function Header() {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={closeMenu}
-                        className="flex flex-col items-center justify-center p-3 rounded-lg bg-pink-50 hover:bg-pink-100 transition-colors text-center"
+                        className="flex items-center justify-start p-3 rounded-lg bg-pink-50 hover:bg-pink-100 transition-colors text-left"
                       >
-                        {Icon && <Icon className="w-5 h-5 mb-1 text-[var(--color-primary)]" />}
-                        <span className="text-xs font-medium text-[var(--color-primary)]">{item.label}</span>
+                        {Icon && <Icon className="w-5 h-5 mr-3 text-[var(--color-primary)]" />}
+                        <span className="text-sm font-medium text-[var(--color-primary)]">{item.label}</span>
                       </a>
                     );
                   })}
