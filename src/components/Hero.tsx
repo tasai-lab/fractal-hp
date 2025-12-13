@@ -18,6 +18,9 @@ export default function Hero() {
       {/* オーバーレイ */}
       <div className="absolute inset-0 bg-white/40"></div>
 
+      {/* 下部のぼかし（背景色へのグラデーション） */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 md:h-40 bg-gradient-to-t from-white via-white/50 to-transparent pointer-events-none"></div>
+
       {/* コンテンツ */}
       <div className="relative z-10 text-center px-4 py-8 flex flex-col items-center justify-center h-full" style={{ perspective: "1000px" }}>
         {/* メインキャッチコピー（縦書き） */}
