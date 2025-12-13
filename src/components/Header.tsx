@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import { navLinks, mobileMenuItems, otherMenuCategories } from "@/lib/data";
-import { Instagram, Home, Building2, Phone, Users, Menu, X, FileText } from "lucide-react";
+import { Instagram, Home, Building2, Phone, Users, Menu, X, FileText, LucideIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-const iconMap: { [key: string]: any } = {
+const iconMap: { [key: string]: LucideIcon } = {
   Home,
   Building2,
   Users,
@@ -151,7 +151,7 @@ export default function Header() {
             className="bg-white shadow-lg p-4 safe-area-pb max-h-[80vh] overflow-y-auto w-full lg:w-auto lg:max-w-4xl lg:rounded-2xl rounded-t-2xl lg:p-8"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="space-y-6 pb-10 lg:pb-0 lg:grid lg:grid-cols-3 lg:gap-8 lg:space-y-0">
+            <div className="space-y-6 pb-24 lg:pb-0 lg:grid lg:grid-cols-3 lg:gap-8 lg:space-y-0">
               {/* ホーム（ページ内リンク） */}
               <section>
                 <h3 className="text-xs font-bold text-gray-500 mb-2 px-1">{otherMenuCategories.home.title}</h3>
