@@ -1,7 +1,4 @@
 {
-  "functions": {
-    "source": "functions"
-  },
   "hosting": {
     "public": "out",
     "ignore": [
@@ -12,8 +9,10 @@
     "rewrites": [
       {
         "source": "/api/contact",
-        "function": "contact",
-        "region": "asia-northeast1"
+        "run": {
+          "serviceId": "contact",
+          "region": "asia-northeast1"
+        }
       },
       {
         "source": "**",
