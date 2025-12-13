@@ -1,4 +1,7 @@
 {
+  "functions": {
+    "source": "functions"
+  },
   "hosting": {
     "public": "out",
     "ignore": [
@@ -7,6 +10,11 @@
       "**/node_modules/**"
     ],
     "rewrites": [
+      {
+        "source": "/api/contact",
+        "function": "contact",
+        "region": "asia-northeast1"
+      },
       {
         "source": "**",
         "destination": "/index.html"
