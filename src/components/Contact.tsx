@@ -20,6 +20,8 @@ export default function Contact() {
     privacyAgreed: "",
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const validateForm = () => {
     const newErrors = {
       name: "",
@@ -53,9 +55,11 @@ export default function Contact() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!validateForm()) {
+    if (!validateForm() || isSubmitting) {
       return;
     }
+
+    setIsSubmitting(true);
 
     try {
       const response = await fetch("/api/contact", {
@@ -84,6 +88,7 @@ export default function Contact() {
     } catch (error) {
       console.error("Error submitting form:", error);
       alert("送信に失敗しました。もう一度お試しください。");
+      setIsSubmitting(false);
     }
   };
 
@@ -211,9 +216,10 @@ export default function Contact() {
             <div className="text-center pt-2 md:pt-4">
               <button
                 type="submit"
-                className="btn-primary px-8 md:px-12 py-3 md:py-4 text-base md:text-lg hover:opacity-90 transition-opacity"
+                disabled={isSubmitting}
+                className="btn-primary px-8 md:px-12 py-3 md:py-4 text-base md:text-lg hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                送信する
+                {isSubmitting ? "送信中..." : "送信する"}
               </button>
             </div>
           </form>
