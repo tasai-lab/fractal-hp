@@ -33,14 +33,57 @@ export const companyInfo = {
 
 // ナビゲーションリンク
 export const navLinks = [
-  { href: "#about", label: "フラクタルとは" },
-  { href: "#features", label: "特徴" },
-  { href: "#office", label: "事業所" },
+  { href: "/about-fractal", label: "フラクタルを知る" },
   { href: "#staff", label: "スタッフ紹介" },
   { href: "/recruit", label: "採用情報" },
   { href: "/flyers", label: "チラシ" },
   { href: "#company", label: "会社情報" },
 ];
+
+// モバイルメニュー項目
+export const mobileMenuItems = [
+  { href: "/", label: "ホーム", icon: "Home" },
+  { href: "/about-fractal", label: "フラクタルを知る", icon: "Building2" },
+  { href: "/recruit", label: "採用情報", icon: "Users" },
+  { href: "#contact", label: "お問い合わせ", icon: "Phone" },
+];
+
+// その他メニューのカテゴリ分け
+export const otherMenuCategories = {
+  home: {
+    title: "ホーム（ページ内リンク）",
+    items: [
+      { href: "/#hero", label: "トップ" },
+      { href: "/#about", label: "フラクタルとは" },
+      { href: "/#features", label: "特徴" },
+      { href: "/#office", label: "事業所案内" },
+      { href: "/#flow", label: "ご利用の流れ" },
+      { href: "/#staff", label: "スタッフ紹介" },
+      { href: "/#recruit", label: "採用情報" },
+      { href: "/#contact", label: "お問い合わせ" },
+      { href: "/#company", label: "会社概要" },
+    ],
+  },
+  pages: {
+    title: "その他のページ",
+    items: [
+      { href: "/about-fractal", label: "フラクタルを知る" },
+      { href: "/recruit", label: "採用情報詳細" },
+      { href: "/flyers", label: "チラシ" },
+    ],
+  },
+  external: {
+    title: "公式メディア",
+    items: [
+      {
+        href: "https://www.instagram.com/fractal.hokan/",
+        label: "Instagram",
+        icon: "Instagram",
+      },
+      { href: "https://note.com/fractal_hokan", label: "Note", icon: "FileText" },
+    ],
+  },
+};
 
 // フラクタルの特徴
 export const features = [
@@ -177,7 +220,7 @@ export const staffMembers = [
     birthplace: "館山市",
     hobbies: "美味しいご飯を作る、食べる。",
     introduction:
-      "新しいもの好きでアプリとかスマホとか割となんでも詳しいです！これまで何十回と自己紹介をしてきましたが、毎回言うことがなくて何を言っていいかわからないです。",
+      "新しいものが好きで、常に何かを考えています。不便が嫌いで、何事も工夫してブラッシュアップしていくのが好きです。終わりなき道をひたすら歩いています。",
     image: "/images/staff/asai.png",
   },
   {
