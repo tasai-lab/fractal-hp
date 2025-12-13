@@ -1,4 +1,5 @@
 import Script from "next/script";
+import { jobPositions, visitAreas } from "@/lib/recruit-data";
 
 // 訪問看護ステーションの構造化データ
 const localBusinessData = {
@@ -207,18 +208,19 @@ export default function StructuredData() {
 
 // 求人ページ用構造化データコンポーネント
 export function JobPostingStructuredData() {
+  const nurse = jobPositions.find((j) => j.id === "nurse");
+  const therapist = jobPositions.find((j) => j.id === "therapist");
+
   const nurseJob = generateJobPostingData({
-    title: "訪問看護師（正社員）",
-    description:
-      "船橋市・八千代市・習志野市エリアでの訪問看護業務。24時間オンコール体制あり。終末期ケア、精神科訪問看護にも対応。入社祝い金最大30万円。",
+    title: nurse?.title || "訪問看護師（正社員）",
+    description: `${nurse?.description || ""} ${visitAreas.join("、")}エリアでの訪問看護業務。${nurse?.details.salary.amount}。${nurse?.details.benefits.join("、")}。`,
     employmentType: "FULL_TIME",
     baseSalary: { min: 4500000, max: 6000000 },
   });
 
   const therapistJob = generateJobPostingData({
-    title: "訪問リハビリスタッフ（理学療法士/作業療法士/言語聴覚士）",
-    description:
-      "船橋市・八千代市・習志野市エリアでの訪問リハビリテーション業務。入社祝い金最大30万円。",
+    title: therapist?.title || "訪問リハビリスタッフ（理学療法士/作業療法士/言語聴覚士）",
+    description: `${therapist?.description || ""} ${visitAreas.join("、")}エリアでの訪問リハビリテーション業務。${therapist?.details.salary.amount}。${therapist?.details.benefits.join("、")}。`,
     employmentType: "FULL_TIME",
     baseSalary: { min: 4000000, max: 5500000 },
   });

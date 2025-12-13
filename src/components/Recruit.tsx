@@ -12,7 +12,7 @@ export default function Recruit() {
       <BackgroundTriangles pattern="recruit" />
       <div className="section-inner relative z-10">
         <div className="section-title-area">
-          <h2 className="section-title">リクルート</h2>
+          <h2 className="section-title">フラクタルで働く？</h2>
           <div className="section-title-line" />
         </div>
 

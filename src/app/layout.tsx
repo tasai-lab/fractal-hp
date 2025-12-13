@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { M_PLUS_1 } from "next/font/google";
 import "./globals.css";
-import GoogleAnalytics from "@/components/GoogleAnalytics";
+import GoogleAnalytics, { GoogleTagManagerNoscript } from "@/components/GoogleAnalytics";
 import StructuredData from "@/components/StructuredData";
 
 const mplus1 = M_PLUS_1({
@@ -18,29 +18,51 @@ export const metadata: Metadata = {
     template: "%s | フラクタル訪問看護 船橋",
   },
   description:
-    "船橋市・八千代市・習志野市・千葉市花見川区を中心に365日対応の訪問看護サービスを提供。24時間オンコール対応、終末期ケア、精神科訪問看護、訪問リハビリに対応。看護師・理学療法士・作業療法士・言語聴覚士求人募集中。入社祝い金最大30万円。",
+    "船橋市・八千代市・習志野市・千葉市花見川区を中心に365日対応の訪問看護サービスを提供。24時間オンコール対応、終末期ケア、精神科訪問看護、訪問リハビリに対応。看護師・理学療法士・作業療法士・言語聴覚士求人募集中。入社祝い金最大30万円。高収入・年間休日139日以上。",
 
   // キーワード（SEO対策）
   keywords: [
     // メインキーワード
     "訪問看護",
     "船橋市 訪問看護",
+    "船橋 訪問看護",
     "八千代市 訪問看護",
+    "八千代 訪問看護",
     "習志野市 訪問看護",
+    "習志野 訪問看護",
     "千葉市花見川区 訪問看護",
+    "千葉花見川 訪問看護",
     // 求人関連キーワード
     "船橋市 訪問看護 求人",
+    "船橋 訪問看護 求人",
     "船橋 看護 求人",
     "訪問看護師 求人 船橋",
+    "八千代市 訪問看護 求人",
+    "八千代 訪問看護 求人",
     "八千代市 看護師 求人",
+    "八千代 看護師 求人",
+    "習志野市 訪問看護 求人",
+    "習志野 訪問看護 求人",
+    "習志野市 看護師 求人",
+    "習志野 看護師 求人",
     "訪問看護 正社員 千葉",
+    "訪問看護師 募集",
+    "理学療法士 求人 船橋",
+    "PT 求人 船橋",
+    "作業療法士 求人 船橋",
+    "OT 求人 船橋",
+    "言語聴覚士 求人 船橋",
+    "ST 求人 船橋",
     // サービス関連
     "訪問看護ステーション 船橋",
     "在宅医療 船橋市",
+    "在宅医療 船橋",
     "終末期ケア 船橋",
     "精神科訪問看護 船橋",
     "訪問リハビリ 船橋市",
+    "訪問リハビリ 船橋",
     // ブランド
+    "フラクタル",
     "フラクタル訪問看護",
     "フラクタル訪問看護ステーション",
   ],
@@ -164,7 +186,10 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
       </head>
-      <body className={`${mplus1.variable} antialiased`}>{children}</body>
+      <body className={`${mplus1.variable} antialiased`}>
+        <GoogleTagManagerNoscript />
+        {children}
+      </body>
     </html>
   );
 }

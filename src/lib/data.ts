@@ -35,7 +35,7 @@ export const companyInfo = {
 export const navLinks = [
   { href: "/about-fractal", label: "フラクタルを知る" },
   { href: "#staff", label: "スタッフ紹介" },
-  { href: "/recruit", label: "採用情報詳細" },
+  { href: "/recruit", label: "採用情報" },
   { href: "/flyers", label: "チラシ" },
   { href: "#company", label: "会社情報" },
 ];
@@ -44,7 +44,7 @@ export const navLinks = [
 export const mobileMenuItems = [
   { href: "/", label: "ホーム", icon: "Home" },
   { href: "/about-fractal", label: "フラクタルを知る", icon: "Building2" },
-  { href: "/recruit", label: "採用情報詳細", icon: "Users" },
+  { href: "/recruit", label: "採用情報", icon: "Users" },
   { href: "#contact", label: "お問い合わせ", icon: "Phone" },
 ];
 
@@ -59,7 +59,7 @@ export const otherMenuCategories = {
       { href: "/#office", label: "事業所案内" },
       { href: "/#flow", label: "ご利用の流れ" },
       { href: "/#staff", label: "スタッフ紹介" },
-      { href: "/#recruit", label: "採用情報" },
+      { href: "/#recruit", label: "フラクタルで働く？" },
       { href: "/#contact", label: "お問い合わせ" },
       { href: "/#company", label: "会社概要" },
     ],
@@ -68,7 +68,7 @@ export const otherMenuCategories = {
     title: "その他のページ",
     items: [
       { href: "/about-fractal", label: "フラクタルを知る" },
-      { href: "/recruit", label: "採用情報詳細" },
+      { href: "/recruit", label: "採用情報" },
       { href: "/flyers", label: "チラシ" },
     ],
   },
