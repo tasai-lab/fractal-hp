@@ -24,7 +24,7 @@ export default function Recruit() {
               <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 text-primary">
                 「働きやすさ」が、「良い看護」をつくる。
               </h3>
-              <p className="text-sm md:text-lg text-muted border-b-2 border-primary inline-block pb-1">
+              <p className="text-base md:text-lg text-muted border-b-2 border-primary inline-block pb-1">
                 私たちは、業務の効率化とスタッフの働きやすさを何よりも大切にしています。
               </p>
             </div>
@@ -48,7 +48,7 @@ export default function Recruit() {
                     <span className="text-white font-bold text-lg md:text-xl">A</span>
                   </div>
                   <div className="pt-1 md:pt-2">
-                    <p className="text-sm md:text-lg leading-relaxed">
+                    <p className="text-base md:text-lg leading-relaxed">
                       スタッフが心身ともに余裕を持って働ける環境こそが、利用者さまへの質の高いケアにつながると信じているからです。
                       無駄な業務を減らし、本来向き合うべき「看護」に集中できる環境を整えています。
                     </p>
@@ -76,7 +76,7 @@ export default function Recruit() {
               <div className="absolute bottom-0 left-0 w-16 md:w-24 h-16 md:h-24 bg-yellow-200 rounded-full translate-y-1/2 -translate-x-1/2 opacity-50"></div>
 
               <div className="relative z-10">
-                <div className="inline-block bg-red-500 text-white text-xs md:text-sm font-bold px-2 md:px-3 py-1 rounded-full mb-3 md:mb-4">
+                <div className="inline-block bg-red-500 text-white text-base md:text-lg font-bold px-2 md:px-3 py-1 rounded-full mb-3 md:mb-4">
                   {signOnBonus.note}
                 </div>
                 <h4 className="text-xl md:text-3xl font-bold text-primary mb-4 md:mb-6">
@@ -93,10 +93,10 @@ export default function Recruit() {
                           padding: index === 0 ? '8px 12px' : index === 1 ? '10px 14px' : '12px 16px',
                         }}
                       >
-                        <p className={`text-muted mb-0.5 ${index === 0 ? 'text-[9px] md:text-xs' : index === 1 ? 'text-[10px] md:text-sm' : 'text-xs md:text-base'}`}>
+                        <p className={`text-muted mb-0.5 ${index === 0 ? 'text-sm md:text-base' : index === 1 ? 'text-base md:text-lg' : 'text-lg md:text-xl'}`}>
                           {milestone.label}
                         </p>
-                        <p className={`font-bold text-primary ${index === 0 ? 'text-sm md:text-lg' : index === 1 ? 'text-base md:text-xl' : 'text-lg md:text-2xl'}`}>
+                        <p className={`font-bold text-primary ${index === 0 ? 'text-base md:text-xl' : index === 1 ? 'text-lg md:text-2xl' : 'text-xl md:text-3xl'}`}>
                           {(milestone.amount / 10000).toLocaleString()}万円
                         </p>
                       </div>
@@ -111,7 +111,7 @@ export default function Recruit() {
                   ))}
                 </div>
 
-                <p className="text-xs md:text-sm text-primary/80 mt-3 md:mt-4 text-center">全ての職種に適用されます</p>
+                <p className="text-base md:text-lg text-primary/80 mt-3 md:mt-4 text-center">全ての職種に適用されます</p>
               </div>
             </div>
 
@@ -119,7 +119,7 @@ export default function Recruit() {
             <div className="text-center">
               <Link
                 href="/recruit"
-                className="inline-block bg-primary text-white px-6 py-3 md:px-8 md:py-4 rounded-full font-bold text-sm md:text-lg hover:opacity-90 transition-opacity shadow-lg"
+                className="inline-block bg-primary text-white px-6 py-3 md:px-8 md:py-4 rounded-full font-bold text-base md:text-lg hover:opacity-90 transition-opacity shadow-lg"
               >
                 採用情報を見る
               </Link>

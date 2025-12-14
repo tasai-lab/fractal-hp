@@ -5,17 +5,18 @@ export default function Company() {
   return (
     <section id="company" className="section-wrapper bg-white relative overflow-hidden">
       <BackgroundTriangles pattern="company" />
-      <div className="max-w-[1200px] mx-auto px-4 md:px-6 relative z-10">
-        {/* 丸みを帯びた四角形で囲む */}
-        <div className="section-card section-card-blue">
-          {/* セクションタイトル */}
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12 text-primary">
-            会社情報
-          </h2>
+      <div className="section-inner relative z-10">
+        <div className="section-title-area">
+          <h2 className="section-title">会社情報</h2>
+          <div className="section-title-line" />
+        </div>
 
-          {/* 会社情報テーブル - 白背景のカード */}
-          <div className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 mb-6 md:mb-8 shadow-sm">
-            <table className="w-full text-sm md:text-base">
+        <div className="section-content">
+          {/* 丸みを帯びた四角形で囲む */}
+          <div className="section-card section-card-blue">
+            {/* 会社情報テーブル - 白背景のカード */}
+            <div className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 mb-6 md:mb-8 shadow-sm">
+              <table className="w-full text-base md:text-lg">
               <tbody className="space-y-4">
                 <tr className="border-b border-gray-300">
                   <th className="text-left font-medium py-3 md:py-4 pr-4 md:pr-6 align-top whitespace-nowrap">
@@ -73,6 +74,7 @@ export default function Company() {
           </div>
         </div>
       </div>
+    </div>
     </section>
   );
 }

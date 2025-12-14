@@ -33,7 +33,7 @@ export default function Flow() {
                         <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3">
                           {step.title}
                         </h3>
-                        <p className="text-foreground leading-relaxed text-sm md:text-base">
+                        <p className="text-foreground leading-relaxed text-base md:text-lg">
                           {step.description}
                         </p>
                       </div>
@@ -66,12 +66,12 @@ export default function Flow() {
 
             {/* お問い合わせ案内 */}
             <div className="mt-8 md:mt-12 text-center space-y-4 md:space-y-6">
-              <p className="text-foreground text-sm md:text-base">
+              <p className="text-foreground text-base md:text-lg">
                 サービス利用についてご不明な点がございましたら、お気軽にお問い合わせください。
               </p>
               <a
                 href="#contact"
-                className="btn-primary inline-block text-sm md:text-base px-6 md:px-8 py-3 md:py-4"
+                className="btn-primary inline-block text-base md:text-lg px-6 md:px-8 py-3 md:py-4"
               >
                 お問い合わせフォームはこちら
               </a>

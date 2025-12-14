@@ -57,7 +57,7 @@ export default function Header() {
                   <a
                     key={link.href}
                     href={link.href}
-                    className="text-sm text-[var(--color-primary)] hover:text-[var(--color-accent-blue)] transition-colors duration-200"
+                    className="text-base text-[var(--color-primary)] hover:text-[var(--color-accent-blue)] transition-colors duration-200"
                   >
                     {link.label}
                   </a>
@@ -65,7 +65,7 @@ export default function Header() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="text-sm text-[var(--color-primary)] hover:text-[var(--color-accent-blue)] transition-colors duration-200"
+                    className="text-base text-[var(--color-primary)] hover:text-[var(--color-accent-blue)] transition-colors duration-200"
                   >
                     {link.label}
                   </Link>

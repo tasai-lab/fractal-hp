@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import Contact from "@/components/Contact";
 import {
   signOnBonus,
   jobPositions,
@@ -34,7 +35,7 @@ export default function RecruitPage() {
         <div className="max-w-6xl mx-auto px-3 md:px-4 py-3 md:py-4 flex items-center justify-between">
           <Link
             href="/"
-            className="text-primary font-bold text-sm md:text-lg hover:opacity-80 transition-opacity"
+            className="text-primary font-bold text-base md:text-lg hover:opacity-80 transition-opacity"
           >
             ← 戻る
           </Link>
@@ -51,7 +52,7 @@ export default function RecruitPage() {
             <div className="absolute bottom-0 left-0 w-16 md:w-24 h-16 md:h-24 bg-yellow-200 rounded-full translate-y-1/2 -translate-x-1/2 opacity-50"></div>
 
             <div className="relative z-10">
-              <div className="inline-block bg-red-500 text-white text-xs md:text-sm font-bold px-2 md:px-3 py-1 rounded-full mb-3 md:mb-4">
+              <div className="inline-block bg-red-500 text-white text-base md:text-lg font-bold px-2 md:px-3 py-1 rounded-full mb-3 md:mb-4">
                 {signOnBonus.note}
               </div>
               <h2 className="text-xl md:text-3xl font-bold text-primary mb-4 md:mb-6">
@@ -67,10 +68,10 @@ export default function RecruitPage() {
                         padding: index === 0 ? '8px 12px' : index === 1 ? '10px 14px' : '12px 16px',
                       }}
                     >
-                      <p className={`text-muted mb-0.5 ${index === 0 ? 'text-[9px] md:text-xs' : index === 1 ? 'text-[10px] md:text-sm' : 'text-xs md:text-base'}`}>
+                      <p className={`text-muted mb-0.5 ${index === 0 ? 'text-sm md:text-base' : index === 1 ? 'text-base md:text-lg' : 'text-lg md:text-xl'}`}>
                         {milestone.label}
                       </p>
-                      <p className={`font-bold text-primary ${index === 0 ? 'text-sm md:text-lg' : index === 1 ? 'text-base md:text-xl' : 'text-lg md:text-2xl'}`}>
+                      <p className={`font-bold text-primary ${index === 0 ? 'text-base md:text-xl' : index === 1 ? 'text-lg md:text-2xl' : 'text-xl md:text-3xl'}`}>
                         {(milestone.amount / 10000).toLocaleString()}万円
                       </p>
                     </div>
@@ -84,7 +85,7 @@ export default function RecruitPage() {
                   </div>
                 ))}
               </div>
-              <p className="text-xs md:text-sm text-primary/80">全ての職種に適用されます</p>
+              <p className="text-base md:text-lg text-primary/80">全ての職種に適用されます</p>
             </div>
           </div>
         </section>
@@ -95,7 +96,7 @@ export default function RecruitPage() {
             <h2 className="text-lg md:text-2xl font-bold text-primary mb-3 md:mb-4 pb-2 border-b-2 border-accent-mint">
               {companyPhilosophy.title}
             </h2>
-            <div className="text-sm md:text-base text-primary/80 whitespace-pre-line leading-relaxed">
+            <div className="text-base md:text-lg text-primary/80 whitespace-pre-line leading-relaxed">
               {companyPhilosophy.content}
             </div>
           </div>
@@ -111,7 +112,7 @@ export default function RecruitPage() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex-1 py-2 md:py-3 px-3 md:px-4 rounded-md md:rounded-lg font-bold text-sm md:text-base transition-all ${
+                className={`flex-1 py-2 md:py-3 px-3 md:px-4 rounded-md md:rounded-lg font-bold text-base md:text-lg transition-all ${
                   activeTab === tab.id
                     ? "bg-white text-primary shadow-md"
                     : "text-muted hover:text-primary"
@@ -130,7 +131,7 @@ export default function RecruitPage() {
                 {currentJob.highlights.map((highlight, index) => (
                   <span
                     key={index}
-                    className="bg-white/90 text-primary text-[10px] md:text-sm font-medium px-2 md:px-3 py-0.5 md:py-1 rounded-full"
+                    className="bg-white/90 text-primary text-sm md:text-base font-medium px-2 md:px-3 py-0.5 md:py-1 rounded-full"
                   >
                     {highlight}
                   </span>
@@ -139,7 +140,7 @@ export default function RecruitPage() {
               <h3 className="text-xl md:text-3xl font-bold text-white mb-1 md:mb-2">
                 {currentJob.title}募集
               </h3>
-              <p className="text-white/90 text-xs md:text-base">
+              <p className="text-white/90 text-base md:text-lg">
                 {currentJob.subtitle}
               </p>
             </div>
@@ -151,13 +152,13 @@ export default function RecruitPage() {
                 <h4 className="text-base md:text-lg font-bold text-primary mb-2 md:mb-3 pb-2 border-b border-gray-200">
                   仕事内容
                 </h4>
-                <p className="text-sm md:text-base text-primary/80 mb-3 md:mb-4">{currentJob.description}</p>
-                <h5 className="font-bold text-primary text-sm md:text-base mb-2">具体的な業務内容</h5>
+                <p className="text-base md:text-lg text-primary/80 mb-3 md:mb-4">{currentJob.description}</p>
+                <h5 className="font-bold text-primary text-base md:text-lg mb-2">具体的な業務内容</h5>
                 <ul className="space-y-1.5 md:space-y-2">
                   {(activeTab === "nurse" ? jobDuties : therapistDuties).map((duty, index) => (
                     <li
                       key={index}
-                      className="flex items-start gap-2 text-sm md:text-base text-primary/80"
+                      className="flex items-start gap-2 text-base md:text-lg text-primary/80"
                     >
                       <span className={`mt-0.5 md:mt-1 ${activeTab === "nurse" ? "text-accent-blue" : "text-accent-mint"}`}>●</span>
                       {duty}
@@ -175,7 +176,7 @@ export default function RecruitPage() {
                   {visitAreas.map((area, index) => (
                     <span
                       key={index}
-                      className="bg-accent-mint-light text-primary px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-base"
+                      className="bg-accent-mint-light text-primary px-3 md:px-4 py-1.5 md:py-2 rounded-full text-base md:text-lg"
                     >
                       {area}
                     </span>
@@ -190,11 +191,11 @@ export default function RecruitPage() {
                     オンコールについて
                   </h4>
                   <div className="bg-accent-yellow/50 rounded-lg md:rounded-xl p-3 md:p-4">
-                    <p className="text-primary font-medium text-sm md:text-base mb-1 md:mb-2">
+                    <p className="text-primary font-medium text-base md:text-lg mb-1 md:mb-2">
                       月{onCallInfo.frequency.replace("月", "").replace("程度", "")}
                       程度
                     </p>
-                    <p className="text-primary/80 text-xs md:text-base">
+                    <p className="text-primary/80 text-base md:text-lg">
                       {onCallInfo.note}
                     </p>
                   </div>
@@ -207,18 +208,18 @@ export default function RecruitPage() {
                   給与
                 </h4>
                 <div className="bg-accent-pink-light/50 rounded-lg md:rounded-xl p-3 md:p-4">
-                  <p className="text-xs md:text-sm text-muted mb-1">
+                  <p className="text-base md:text-lg text-muted mb-1">
                     【{currentJob.details.salary.type}】
                   </p>
                   <p className="text-xl md:text-3xl font-bold text-primary mb-3 md:mb-4">
                     {currentJob.details.salary.amount}
                   </p>
-                  <h5 className="font-bold text-primary text-sm md:text-base mb-2">内訳</h5>
+                  <h5 className="font-bold text-primary text-base md:text-lg mb-2">内訳</h5>
                   <ul className="space-y-1.5 md:space-y-2 mb-3 md:mb-4">
                     {currentJob.details.salary.breakdown.map((item, index) => (
                       <li
                         key={index}
-                        className="flex flex-col md:flex-row md:justify-between text-xs md:text-base"
+                        className="flex flex-col md:flex-row md:justify-between text-base md:text-lg"
                       >
                         <span className="text-primary/80">{item.label}</span>
                         <span className="font-medium text-primary">
@@ -228,7 +229,7 @@ export default function RecruitPage() {
                     ))}
                   </ul>
                   {currentJob.details.salary.note && (
-                    <p className="text-[10px] md:text-sm text-primary/70 bg-white/50 rounded-lg p-2 md:p-3">
+                    <p className="text-sm md:text-base text-primary/70 bg-white/50 rounded-lg p-2 md:p-3">
                       {currentJob.details.salary.note}
                     </p>
                   )}
@@ -237,14 +238,14 @@ export default function RecruitPage() {
                 {/* モデル年収（療法士のみ） */}
                 {activeTab === "therapist" && (
                   <div className="mt-3 md:mt-4">
-                    <h5 className="font-bold text-primary text-sm md:text-base mb-2 md:mb-3">モデル年収</h5>
+                    <h5 className="font-bold text-primary text-base md:text-lg mb-2 md:mb-3">モデル年収</h5>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                       {therapistModelIncome.map((model, index) => (
                         <div key={index} className="bg-accent-blue-light/30 rounded-lg md:rounded-xl p-3 md:p-4">
-                          <p className="text-xs md:text-sm text-muted mb-1">{model.label}</p>
-                          <p className="text-primary/80 text-xs md:text-sm mb-1.5 md:mb-2">{model.calculation}</p>
+                          <p className="text-base md:text-lg text-muted mb-1">{model.label}</p>
+                          <p className="text-primary/80 text-base md:text-lg mb-1.5 md:mb-2">{model.calculation}</p>
                           <p className="text-lg md:text-xl font-bold text-primary">{model.monthly}</p>
-                          <p className="text-xs md:text-sm text-accent-blue font-medium">{model.annual}</p>
+                          <p className="text-base md:text-lg text-accent-blue font-medium">{model.annual}</p>
                         </div>
                       ))}
                     </div>
@@ -259,17 +260,17 @@ export default function RecruitPage() {
                 </h4>
                 <div className="grid grid-cols-2 gap-2 md:gap-4 mb-3 md:mb-4">
                   <div className="bg-gray-50 rounded-lg md:rounded-xl p-3 md:p-4">
-                    <h5 className="font-bold text-primary text-sm md:text-base mb-1 md:mb-2">勤務時間</h5>
-                    <p className="text-xs md:text-base text-primary/80">{currentJob.details.workHours}</p>
-                    <p className="text-[10px] md:text-sm text-muted mt-1 md:mt-2">残業ほぼなし</p>
+                    <h5 className="font-bold text-primary text-base md:text-lg mb-1 md:mb-2">勤務時間</h5>
+                    <p className="text-base md:text-lg text-primary/80">{currentJob.details.workHours}</p>
+                    <p className="text-sm md:text-base text-muted mt-1 md:mt-2">残業ほぼなし</p>
                   </div>
                   <div className="bg-gray-50 rounded-lg md:rounded-xl p-3 md:p-4">
-                    <h5 className="font-bold text-primary text-sm md:text-base mb-1 md:mb-2">年間休日</h5>
+                    <h5 className="font-bold text-primary text-base md:text-lg mb-1 md:mb-2">年間休日</h5>
                     <p className={`text-xl md:text-2xl font-bold mb-1 md:mb-2 ${activeTab === "nurse" ? "text-accent-blue" : "text-accent-mint"}`}>
                       {currentJob.details.holidays.annual}
                     </p>
                     {currentJob.details.holidays.monthly && (
-                      <p className="text-[10px] md:text-sm text-primary/80">
+                      <p className="text-xs md:text-sm text-primary/80">
                         月の公休：{currentJob.details.holidays.monthly}日
                       </p>
                     )}
@@ -279,7 +280,7 @@ export default function RecruitPage() {
                   {currentJob.details.holidays.notes.map((note, index) => (
                     <li
                       key={index}
-                      className="flex items-start gap-1.5 md:gap-2 text-primary/80 text-xs md:text-base"
+                      className="flex items-start gap-1.5 md:gap-2 text-primary/80 text-sm md:text-base"
                     >
                       <span className="text-accent-pink mt-0.5 md:mt-1">★</span>
                       {note}
@@ -290,7 +291,7 @@ export default function RecruitPage() {
                 {/* シフト例（看護師のみ） */}
                 {activeTab === "nurse" && (
                   <div className="mt-4 md:mt-6">
-                    <h5 className="font-bold text-primary text-sm md:text-base mb-3 md:mb-4">実際のシフト例</h5>
+                    <h5 className="font-bold text-primary text-base md:text-lg mb-3 md:mb-4">実際のシフト例</h5>
                     <div className="relative w-full aspect-[1456/856] rounded-lg md:rounded-xl overflow-hidden">
                       <Image
                         src="/images/recruit/shift-example.png"
@@ -314,10 +315,10 @@ export default function RecruitPage() {
                       key={index}
                       className={`rounded-lg md:rounded-xl p-3 md:p-4 ${activeTab === "nurse" ? "bg-accent-blue-light/30" : "bg-accent-mint-light/30"}`}
                     >
-                      <h5 className="font-bold text-primary text-sm md:text-base mb-1 md:mb-2">
+                      <h5 className="font-bold text-primary text-base md:text-lg mb-1 md:mb-2">
                         {feature.title}
                       </h5>
-                      <p className="text-primary/80 text-xs md:text-base leading-relaxed">
+                      <p className="text-primary/80 text-sm md:text-base leading-relaxed">
                         {feature.description}
                       </p>
                     </div>
@@ -334,7 +335,7 @@ export default function RecruitPage() {
                   {currentJob.details.benefits.map((benefit, index) => (
                     <li
                       key={index}
-                      className="flex items-start gap-1.5 md:gap-2 text-primary/80 text-xs md:text-base"
+                      className="flex items-start gap-1.5 md:gap-2 text-primary/80 text-sm md:text-base"
                     >
                       <span className="text-accent-mint">✓</span>
                       {benefit}
@@ -352,7 +353,7 @@ export default function RecruitPage() {
                   {currentJob.details.requirements.map((req, index) => (
                     <li
                       key={index}
-                      className="flex items-start gap-1.5 md:gap-2 text-sm md:text-base text-primary/80"
+                      className="flex items-start gap-1.5 md:gap-2 text-base md:text-lg text-primary/80"
                     >
                       <span className={`mt-0.5 md:mt-0 ${activeTab === "nurse" ? "text-accent-blue" : "text-accent-mint"}`}>●</span>
                       {req}
@@ -370,17 +371,17 @@ export default function RecruitPage() {
             <h2 className="text-lg md:text-2xl font-bold text-primary mb-3 md:mb-4 pb-2 border-b-2 border-accent-blue">
               選考プロセス
             </h2>
-            <p className="text-sm md:text-base text-primary/80 mb-4 md:mb-6">
+            <p className="text-base md:text-lg text-primary/80 mb-4 md:mb-6">
               {applicationMessage.timeline}
             </p>
             <div className="space-y-4 md:space-y-6">
-              {currentJob.details.selectionProcess.map((step, index) => (
+              {currentJob.selectionProcess.map((step, index) => (
                 <div key={index} className="relative pl-8 md:pl-10">
-                  <div className={`absolute left-0 top-0 w-6 h-6 md:w-8 md:h-8 text-white rounded-full flex items-center justify-center font-bold text-xs md:text-base ${activeTab === "nurse" ? "bg-accent-blue" : "bg-accent-mint"}`}>
+                  <div className={`absolute left-0 top-0 w-6 h-6 md:w-8 md:h-8 text-white rounded-full flex items-center justify-center font-bold text-sm md:text-base ${activeTab === "nurse" ? "bg-accent-blue" : "bg-accent-mint"}`}>
                     {index + 1}
                   </div>
-                  <h4 className="font-bold text-primary text-sm md:text-base mb-0.5 md:mb-1">{step.step}</h4>
-                  <p className="text-primary/80 text-xs md:text-base">
+                  <h4 className="font-bold text-primary text-base md:text-lg mb-0.5 md:mb-1">{step.step}</h4>
+                  <p className="text-primary/80 text-sm md:text-base">
                     {step.description}
                   </p>
                 </div>
@@ -390,20 +391,20 @@ export default function RecruitPage() {
         </section>
 
         {/* 応募メッセージ */}
-        <section className="mb-6 md:mb-12 pb-20 lg:pb-0">
-          <div className="bg-white rounded-xl md:rounded-2xl p-4 md:p-8 shadow-md text-center">
-            <p className="text-sm md:text-base text-primary/80 leading-relaxed mb-4 md:mb-6">
-              {applicationMessage.main}
-            </p>
-            <p className="text-primary/80 text-xs md:text-sm mb-4 md:mb-6">
-              {applicationMessage.visit}
-            </p>
-            <Link
-              href="/#contact"
-              className="inline-block bg-primary text-white px-6 py-3 md:px-8 md:py-4 rounded-full font-bold text-sm md:text-lg hover:opacity-90 transition-opacity"
-            >
-              応募・お問い合わせはこちら
-            </Link>
+        <section className="mb-6 md:mb-12">
+          <div className="bg-white rounded-xl md:rounded-2xl p-4 md:p-8 shadow-md">
+            <h2 className="text-lg md:text-2xl font-bold text-primary mb-3 md:mb-4 pb-2 border-b-2 border-accent-mint">
+              お問い合わせ
+            </h2>
+            <div className="text-center mb-8 md:mb-12">
+              <p className="text-base md:text-lg text-primary/80 leading-relaxed mb-4 md:mb-6">
+                {applicationMessage.main}
+              </p>
+              <p className="text-primary/80 text-sm md:text-base">
+                {applicationMessage.visit}
+              </p>
+            </div>
+            <Contact initialContactType="求人・採用について" embedded={true} hideTitle={true} />
           </div>
         </section>
       </main>

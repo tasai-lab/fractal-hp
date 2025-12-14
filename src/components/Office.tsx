@@ -134,10 +134,10 @@ export default function Office() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
                   {serviceAreas.priority.cities.map((city, index) => (
                     <div key={index} className="bg-white rounded-lg p-3 md:p-4 shadow-sm flex flex-col">
-                      <h5 className="font-bold text-sm md:text-base mb-2 text-primary">
+                      <h5 className="font-bold text-base md:text-lg mb-2 text-primary">
                         {city.name}
                       </h5>
-                      <ul className={`text-xs md:text-sm flex-1 ${city.areas.length > 6 ? "grid grid-cols-2 gap-x-2 gap-y-1" : "space-y-1"}`}>
+                      <ul className={`text-sm md:text-base flex-1 ${city.areas.length > 6 ? "grid grid-cols-2 gap-x-2 gap-y-1" : "space-y-1"}`}>
                         {city.areas.map((area, areaIndex) => (
                           <li key={areaIndex} className="flex items-start gap-1 md:gap-2">
                             <span className="text-accent-pink mt-0.5">▸</span>
@@ -145,7 +145,7 @@ export default function Office() {
                           </li>
                         ))}
                       </ul>
-                      <p className="text-muted text-right text-xs md:text-sm mt-2">上記以外の地域も承ります。</p>
+                      <p className="text-muted text-right text-sm md:text-base mt-2">上記以外の地域も承ります。</p>
                     </div>
                   ))}
                 </div>

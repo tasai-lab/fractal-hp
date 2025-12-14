@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { staffMembers } from "@/lib/data";
 import BackgroundTriangles from "./BackgroundTriangles";
 import Image from "next/image";
@@ -25,14 +25,23 @@ interface StaffMember {
 export default function Staff() {
   const [selectedStaff, setSelectedStaff] = useState<{ staff: StaffMember; index: number } | null>(null);
 
+  useEffect(() => {
+    if (selectedStaff) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [selectedStaff]);
+
   const openModal = (staff: StaffMember, index: number) => {
     setSelectedStaff({ staff, index });
-    document.body.style.overflow = "hidden";
   };
 
   const closeModal = () => {
     setSelectedStaff(null);
-    document.body.style.overflow = "";
   };
 
   return (
@@ -80,13 +89,13 @@ export default function Staff() {
 
                   {/* スタッフ情報 */}
                   <div className="text-center mb-2 md:mb-4">
-                    <div className="text-[10px] md:text-sm text-muted mb-0.5 md:mb-2">{staff.role}</div>
-                    <h3 className="text-sm md:text-2xl font-bold mb-0.5 md:mb-1">{staff.name}</h3>
-                    <p className="text-[10px] md:text-sm text-muted mb-2 md:mb-4">{staff.nameReading}</p>
+                    <div className="text-xs md:text-base text-muted mb-0.5 md:mb-2">{staff.role}</div>
+                    <h3 className="text-lg md:text-2xl font-bold mb-0.5 md:mb-1">{staff.name}</h3>
+                    <p className="text-xs md:text-base text-muted mb-2 md:mb-4">{staff.nameReading}</p>
                   </div>
 
                   {/* 詳細情報 - モバイルでは非表示 */}
-                  <div className="hidden md:block space-y-2 mb-4 text-sm">
+                  <div className="hidden md:block space-y-2 mb-4 text-base">
                     <div className="flex justify-center gap-2">
                       <span className="font-medium text-muted">出身地:</span>
                       <span>{staff.birthplace}</span>
@@ -99,14 +108,16 @@ export default function Staff() {
 
                   {/* 自己紹介 */}
                   <div className="pt-2 md:pt-4 border-t border-border">
-                    <p className="text-[10px] md:text-sm leading-relaxed text-foreground line-clamp-3 md:line-clamp-none">
+                    <p className="text-xs md:text-base leading-relaxed text-foreground line-clamp-3 md:line-clamp-none">
                       {staff.introduction}
                     </p>
                   </div>
 
                   {/* モバイルでタップ促進 */}
                   <div className="md:hidden mt-2 text-center">
-                    <span className="text-[9px] text-accent-blue">タップで詳細を見る</span>
+                    <span className="inline-block bg-blue-50 text-blue-900 text-sm font-bold px-4 py-1.5 rounded-full">
+                      タップで詳細を見る
+                    </span>
                   </div>
                 </div>
               ))}
@@ -153,13 +164,13 @@ export default function Staff() {
             <div className="p-5">
               {/* 基本情報 */}
               <div className="text-center mb-4">
-                <div className="text-xs text-muted mb-1">{selectedStaff.staff.role}</div>
+                <div className="text-sm text-muted mb-1">{selectedStaff.staff.role}</div>
                 <h3 className="text-xl font-bold mb-1">{selectedStaff.staff.name}</h3>
-                <p className="text-sm text-muted">{selectedStaff.staff.nameReading}</p>
+                <p className="text-base text-muted">{selectedStaff.staff.nameReading}</p>
               </div>
 
               {/* 詳細情報 */}
-              <div className="space-y-3 mb-4 text-sm">
+              <div className="space-y-3 mb-4 text-base">
                 <div className="flex gap-2 bg-gray-50 rounded-lg p-3">
                   <span className="font-medium text-muted min-w-[60px]">出身地:</span>
                   <span>{selectedStaff.staff.birthplace}</span>
@@ -172,8 +183,8 @@ export default function Staff() {
 
               {/* 自己紹介 */}
               <div className="border-t border-border pt-4">
-                <h4 className="text-sm font-bold text-primary mb-2">自己紹介</h4>
-                <p className="text-sm leading-relaxed text-foreground">
+                <h4 className="text-base font-bold text-primary mb-2">自己紹介</h4>
+                <p className="text-base leading-relaxed text-foreground">
                   {selectedStaff.staff.introduction}
                 </p>
               </div>

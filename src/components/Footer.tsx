@@ -32,8 +32,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-6 md:mb-8">
           {/* 事業所情報 */}
           <div>
-            <h3 className="font-bold mb-3 md:mb-4 text-base md:text-lg">事業所情報</h3>
-            <div className="space-y-2 text-xs md:text-sm opacity-90">
+            <h3 className="font-bold mb-3 md:mb-4 text-lg md:text-xl">事業所情報</h3>
+            <div className="space-y-2 text-sm md:text-base opacity-90">
               <p>{officeInfo.address.full}</p>
               <p>
                 電話:{" "}
@@ -59,8 +59,8 @@ export default function Footer() {
 
           {/* ナビゲーションリンク */}
           <div>
-            <h3 className="font-bold mb-3 md:mb-4 text-base md:text-lg">サイトマップ</h3>
-            <nav className="grid grid-cols-2 gap-2 text-xs md:text-sm">
+            <h3 className="font-bold mb-3 md:mb-4 text-lg md:text-xl">サイトマップ</h3>
+            <nav className="grid grid-cols-2 gap-2 text-sm md:text-base">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
@@ -75,7 +75,7 @@ export default function Footer() {
         </div>
 
         {/* コピーライト */}
-        <div className="border-t border-gray-700 pt-4 md:pt-6 text-center text-xs md:text-sm opacity-75">
+        <div className="border-t border-gray-700 pt-4 md:pt-6 text-center text-sm md:text-base opacity-75">
           <p>&copy; 2024 株式会社フラクタル All Rights Reserved.</p>
         </div>
 

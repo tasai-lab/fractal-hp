@@ -39,17 +39,17 @@ export default function About() {
 
             {/* 理念の説明 */}
             <div className="space-y-4 md:space-y-6 text-foreground max-w-2xl mx-auto">
-              <p className="text-sm md:text-base lg:text-lg leading-relaxed">
+              <p className="text-base md:text-lg lg:text-xl leading-relaxed">
                 「フラクタル」とは、一部分が全体と同じ形になる構造のこと。
                 私たちは、日々の訪問看護という「一部」の積み重ねが、利用者さまやご家族の人生という「全体」を豊かにすると信じています。
               </p>
 
-              <p className="text-sm md:text-base lg:text-lg leading-relaxed">
+              <p className="text-base md:text-lg lg:text-xl leading-relaxed">
                 病気や障がいだけでなく、その人らしさ、価値観、これまでの人生。
                 すべてを含めた「その人全体」に寄り添い、最適なケアを一緒に考えていきます。
               </p>
 
-              <p className="text-sm md:text-base lg:text-lg leading-relaxed">
+              <p className="text-base md:text-lg lg:text-xl leading-relaxed">
                 関わるすべての人たちが、自分らしく思い描く人生を送るために。
                 私たちは、最期のときまで頼れる存在であり続けます。
               </p>
@@ -102,13 +102,13 @@ export default function About() {
                 >
                   <div className="flex gap-3 md:gap-4">
                     <div className="flex-shrink-0">
-                      <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold text-sm md:text-base">
+                      <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold text-base md:text-lg">
                         {item.number}
                       </div>
                     </div>
                     <div className="flex-1">
                       <h4 className="text-lg md:text-xl font-bold mb-1 md:mb-2 text-primary">{item.title}</h4>
-                      <p className="text-foreground leading-relaxed text-xs md:text-sm">
+                      <p className="text-foreground leading-relaxed text-sm md:text-base">
                         {item.description}
                       </p>
                     </div>
@@ -123,7 +123,7 @@ export default function About() {
                 href="/about-fractal"
                 className="group relative inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 font-bold text-white transition-all duration-200 bg-primary rounded-full hover:bg-gray-800 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary shadow-lg hover:shadow-xl"
               >
-                <span className="mr-2 text-sm md:text-lg">フラクタルを知る</span>
+                <span className="mr-2 text-base md:text-lg">フラクタルを知る</span>
                 <svg
                   className="w-4 h-4 md:w-5 md:h-5 transition-transform duration-200 group-hover:translate-x-1"
                   fill="none"

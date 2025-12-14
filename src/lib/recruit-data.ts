@@ -116,8 +116,8 @@ export interface JobPosition {
     };
     benefits: string[];
     requirements: string[];
-    selectionProcess: { step: string; description: string }[];
   };
+  selectionProcess: { step: string; description: string }[];
   features: {
     title: string;
     description: string;
@@ -178,25 +178,25 @@ export const jobPositions: JobPosition[] = [
         "ブランク可",
         "年齢・学歴不問",
       ],
-      selectionProcess: [
-        {
-          step: "STEP 1：ご応募",
-          description: "応募フォームよりお気軽にご応募ください。内容を確認後、担当者より今後の流れについてご連絡いたします。",
-        },
-        {
-          step: "STEP 2：面接・適性検査（Webにて実施）",
-          description: "ご都合の良い日時に、Webでの面接および適性検査を実施します。これまでのご経験や、今後どのように働いていきたいかなど、リラックスした雰囲気でお話しできればと考えております。適性検査は合否判断ではなく、あなたにとって働きやすい環境を一緒に考えるために実施します。",
-        },
-        {
-          step: "STEP 3：内定",
-          description: "面接後、1週間以内に結果をご連絡いたします。",
-        },
-        {
-          step: "STEP 4：入社手続き",
-          description: "ご入社の意思を確認後、必要な手続きを進めてまいります。",
-        },
-      ],
     },
+    selectionProcess: [
+      {
+        step: "STEP 1：ご応募",
+        description: "応募フォームよりお気軽にご応募ください。内容を確認後、担当者より今後の流れについてご連絡いたします。",
+      },
+      {
+        step: "STEP 2：面接・適性検査（Webにて実施）",
+        description: "ご都合の良い日時に、Webでの面接および適性検査を実施します。これまでのご経験や、今後どのように働いていきたいかなど、リラックスした雰囲気でお話しできればと考えております。適性検査は合否判断ではなく、あなたにとって働きやすい環境を一緒に考えるために実施します。",
+      },
+      {
+        step: "STEP 3：内定",
+        description: "面接後、1週間以内に結果をご連絡いたします。",
+      },
+      {
+        step: "STEP 4：入社手続き",
+        description: "ご入社の意思を確認後、必要な手続きを進めてまいります。",
+      },
+    ],
     features: [
       {
         title: "プライベートを最優先できる、圧倒的な休日数と柔軟なシフト体制",
@@ -271,25 +271,25 @@ export const jobPositions: JobPosition[] = [
         "訪問リハビリ未経験可",
         "年齢・学歴不問",
       ],
-      selectionProcess: [
-        {
-          step: "STEP 1：ご応募",
-          description: "応募フォームよりお気軽にご応募ください。内容を確認後、担当者より面接日程の調整などのご連絡をいたします。",
-        },
-        {
-          step: "STEP 2：面接・適性検査（Webにて実施）",
-          description: "ご都合の良い日時に、Webでの面接および適性検査を実施します。これまでのご経験や、今後どのように働いていきたいかなど、リラックスした雰囲気でお話しできればと考えております。",
-        },
-        {
-          step: "STEP 3：内定",
-          description: "採用決定のご連絡をいたします。",
-        },
-        {
-          step: "STEP 4：入社手続き",
-          description: "入職手続きを進めていただきます。在職中で今すぐ転職が難しい方も調整のご相談が可能です。",
-        },
-      ],
     },
+    selectionProcess: [
+      {
+        step: "STEP 1：ご応募",
+        description: "応募フォームよりお気軽にご応募ください。内容を確認後、担当者より面接日程の調整などのご連絡をいたします。",
+      },
+      {
+        step: "STEP 2：面接・適性検査（Webにて実施）",
+        description: "ご都合の良い日時に、Webでの面接および適性検査を実施します。これまでのご経験や、今後どのように働いていきたいかなど、リラックスした雰囲気でお話しできればと考えております。",
+      },
+      {
+        step: "STEP 3：内定",
+        description: "採用決定のご連絡をいたします。",
+      },
+      {
+        step: "STEP 4：入社手続き",
+        description: "入職手続きを進めていただきます。在職中で今すぐ転職が難しい方も調整のご相談が可能です。",
+      },
+    ],
     features: [
       {
         title: "IT/AI活用で業務を効率化",
