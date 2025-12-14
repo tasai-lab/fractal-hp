@@ -59,7 +59,7 @@ export default function About() {
             <div className="text-center">
               <p className="text-base md:text-lg lg:text-xl font-bold text-primary leading-relaxed">
                 完璧な正解よりも、あなたにとっての最適解を。<br />
-                それが、私たちフラクタルの約束です。
+                それが、私たちフラクタルです。
               </p>
             </div>
           </div>

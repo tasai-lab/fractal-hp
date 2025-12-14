@@ -16,13 +16,15 @@ import {
 } from "@/lib/recruit-data";
 
 // タブの定義
-const tabs = [
-  { id: "nurse", label: "看護師" },
-  { id: "therapist", label: "理学/作業/言語" },
-];
+const tabs = jobPositions
+  .filter((job) => !job.hidden)
+  .map((job) => ({
+    id: job.id,
+    label: job.id === "nurse" ? "看護師" : "理学/作業/言語",
+  }));
 
 export default function RecruitPage() {
-  const [activeTab, setActiveTab] = useState("nurse");
+  const [activeTab, setActiveTab] = useState(tabs[0]?.id || "nurse");
   const currentJob = jobPositions.find((job) => job.id === activeTab) || jobPositions[0];
 
   return (
