@@ -432,7 +432,7 @@ export default function AboutFractalPage() {
               </svg>
             </h3>
           </div>
-          <p className="text-white/80 max-w-2xl mx-auto text-xs md:text-base leading-relaxed px-4 whitespace-pre-line">
+          <p className="text-white/80 max-w-2xl mx-auto text-sm md:text-lg leading-relaxed px-4 whitespace-pre-line">
             {aboutData.dapae.description}
           </p>
         </div>
@@ -445,13 +445,13 @@ export default function AboutFractalPage() {
           <div className="md:hidden flex flex-col items-center gap-4">
             {/* 情報（Information）囲み */}
             <div className="flex flex-col items-center w-full">
-              <p className="text-white/90 text-xs font-bold mb-2">
+              <p className="text-white/90 text-sm font-bold mb-2">
                 情報 <span className="text-white/50">-Information-</span>
               </p>
               <div className="border-2 border-dashed border-amber-400/60 rounded-xl p-4 flex flex-col items-center gap-2 w-full max-w-[200px]">
                 {/* Data */}
                 <div className="bg-emerald-500 text-white px-6 py-2 rounded-lg border-2 border-white/20 shadow-lg w-full text-center">
-                  <p className="text-[10px] text-white/80">データ</p>
+                  <p className="text-xs text-white/80">データ</p>
                   <p className="text-sm font-bold">Data</p>
                 </div>
                 {/* 下矢印 */}
@@ -461,7 +461,7 @@ export default function AboutFractalPage() {
                 </div>
                 {/* Analysis */}
                 <div className="bg-teal-500 text-white px-6 py-2 rounded-lg border-2 border-white/20 shadow-lg w-full text-center">
-                  <p className="text-[10px] text-white/80">分析</p>
+                  <p className="text-xs text-white/80">分析</p>
                   <p className="text-sm font-bold">Analysis</p>
                 </div>
               </div>
@@ -481,7 +481,7 @@ export default function AboutFractalPage() {
               <div className="border-2 border-dashed border-amber-400/60 rounded-xl p-4 flex flex-col items-center gap-2 w-full max-w-[200px]">
                 {/* Plan */}
                 <div className="bg-cyan-500 text-white px-6 py-2 rounded-lg border-2 border-white/20 shadow-lg w-full text-center">
-                  <p className="text-[10px] text-white/80">計画</p>
+                  <p className="text-xs text-white/80">計画</p>
                   <p className="text-sm font-bold">Plan</p>
                 </div>
                 {/* 下矢印 */}
@@ -491,7 +491,7 @@ export default function AboutFractalPage() {
                 </div>
                 {/* Act */}
                 <div className="bg-sky-500 text-white px-6 py-2 rounded-lg border-2 border-white/20 shadow-lg w-full text-center">
-                  <p className="text-[10px] text-white/80">実行</p>
+                  <p className="text-xs text-white/80">実行</p>
                   <p className="text-sm font-bold">Act</p>
                 </div>
                 {/* 下矢印 */}
@@ -501,7 +501,7 @@ export default function AboutFractalPage() {
                 </div>
                 {/* Evaluation */}
                 <div className="bg-blue-500 text-white px-6 py-2 rounded-lg border-2 border-white/20 shadow-lg w-full text-center">
-                  <p className="text-[10px] text-white/80">評価</p>
+                  <p className="text-xs text-white/80">評価</p>
                   <p className="text-sm font-bold">Evaluation</p>
                 </div>
               </div>
@@ -518,7 +518,7 @@ export default function AboutFractalPage() {
               <div className="border-2 border-dashed border-amber-400/60 rounded-xl p-4 flex items-center gap-3">
                 {/* Data */}
                 <div className="bg-emerald-500 text-white px-8 py-3 rounded-lg border-2 border-white/20 shadow-lg">
-                  <p className="text-[11px] text-white/80 text-center">データ</p>
+                  <p className="text-xs text-white/80 text-center">データ</p>
                   <p className="text-base font-bold text-center">Data</p>
                 </div>
                 {/* 矢印 → */}
@@ -528,7 +528,7 @@ export default function AboutFractalPage() {
                 </div>
                 {/* Analysis */}
                 <div className="bg-teal-500 text-white px-8 py-3 rounded-lg border-2 border-white/20 shadow-lg">
-                  <p className="text-[11px] text-white/80 text-center">分析</p>
+                  <p className="text-xs text-white/80 text-center">分析</p>
                   <p className="text-base font-bold text-center">Analysis</p>
                 </div>
               </div>
@@ -548,7 +548,7 @@ export default function AboutFractalPage() {
               <div className="border-2 border-dashed border-amber-400/60 rounded-xl p-4 flex items-center gap-3">
                 {/* Plan */}
                 <div className="bg-cyan-500 text-white px-8 py-3 rounded-lg border-2 border-white/20 shadow-lg">
-                  <p className="text-[11px] text-white/80 text-center">計画</p>
+                  <p className="text-xs text-white/80 text-center">計画</p>
                   <p className="text-base font-bold text-center">Plan</p>
                 </div>
                 {/* 矢印 → */}
@@ -558,7 +558,7 @@ export default function AboutFractalPage() {
                 </div>
                 {/* Act */}
                 <div className="bg-sky-500 text-white px-8 py-3 rounded-lg border-2 border-white/20 shadow-lg">
-                  <p className="text-[11px] text-white/80 text-center">実行</p>
+                  <p className="text-xs text-white/80 text-center">実行</p>
                   <p className="text-base font-bold text-center">Act</p>
                 </div>
                 {/* 矢印 → */}
@@ -568,7 +568,7 @@ export default function AboutFractalPage() {
                 </div>
                 {/* Evaluation */}
                 <div className="bg-blue-500 text-white px-8 py-3 rounded-lg border-2 border-white/20 shadow-lg">
-                  <p className="text-[11px] text-white/80 text-center">評価</p>
+                  <p className="text-xs text-white/80 text-center">評価</p>
                   <p className="text-base font-bold text-center">Evaluation</p>
                 </div>
               </div>

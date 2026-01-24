@@ -111,7 +111,12 @@ export default function Recruit() {
                   ))}
                 </div>
 
-                <p className="text-base md:text-lg text-primary/80 mt-3 md:mt-4 text-center">全ての職種に適用されます</p>
+                <p className="text-base md:text-lg text-primary/80 mt-3 md:mt-4 text-center mb-3">全ての職種に適用されます</p>
+                <div className="bg-white/90 rounded-lg p-3 md:p-4 border-l-4 border-red-500">
+                  <p className="text-sm md:text-base text-primary/90 font-medium">
+                    ※ 入社祝い金は、本HPからの応募に限り適用されます。他の求人媒体から応募された場合、または本HPでの応募前に他の求人媒体から応募されている場合は対象外となりますのでご注意ください。
+                  </p>
+                </div>
               </div>
             </div>
 
