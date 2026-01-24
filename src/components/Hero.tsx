@@ -21,12 +21,13 @@ export default function Hero() {
       {/* 下部のぼかし（背景色へのグラデーション） */}
       <div className="absolute bottom-0 left-0 right-0 h-24 md:h-40 bg-gradient-to-t from-white via-white/50 to-transparent pointer-events-none"></div>
 
+      {/* SEO用H1（上部に配置） */}
+      <h1 className="absolute top-20 md:top-24 left-0 right-0 z-10 text-center text-sm md:text-base text-[var(--color-primary)]/80 font-medium tracking-wide">
+        船橋市・八千代市・習志野市の訪問看護
+      </h1>
+
       {/* コンテンツ */}
       <div className="relative z-10 text-center px-4 py-8 flex flex-col items-center justify-center h-full" style={{ perspective: "1000px" }}>
-        {/* SEO用H1（視覚的には控えめ） */}
-        <h1 className="text-sm md:text-base text-[var(--color-primary)]/80 mb-4 font-medium tracking-wide">
-          船橋市・八千代市・習志野市の訪問看護
-        </h1>
         {/* メインキャッチコピー（縦書き） */}
         <div className="flex justify-center animate-emerge-from-back">
           <h2
