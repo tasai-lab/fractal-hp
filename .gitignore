@@ -47,3 +47,6 @@ next-env.d.ts
 
 # assets source folder
 /素材/
+
+# worktrees
+.worktrees/
