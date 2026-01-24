@@ -23,9 +23,13 @@ export default function Hero() {
 
       {/* コンテンツ */}
       <div className="relative z-10 text-center px-4 py-8 flex flex-col items-center justify-center h-full" style={{ perspective: "1000px" }}>
+        {/* SEO用H1（視覚的には控えめ） */}
+        <h1 className="text-sm md:text-base text-[var(--color-primary)]/80 mb-4 font-medium tracking-wide">
+          船橋市・八千代市・習志野市の訪問看護
+        </h1>
         {/* メインキャッチコピー（縦書き） */}
         <div className="flex justify-center animate-emerge-from-back">
-          <h1
+          <h2
             className="font-bold text-[var(--color-primary)] drop-shadow-lg"
             style={{
               fontSize: 'var(--font-size-fluid-4xl)',
@@ -36,7 +40,7 @@ export default function Hero() {
             }}
           >
             私たちがフラクタル
-          </h1>
+          </h2>
         </div>
       </div>
     </section>
