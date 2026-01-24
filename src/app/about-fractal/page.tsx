@@ -137,16 +137,21 @@ export default function AboutFractalPage() {
       </header>
 
       {/* ヒーローセクション */}
-      <section className="relative min-h-[60vh] md:min-h-[80vh] flex items-center justify-center overflow-hidden bg-linear-to-br from-emerald-50 via-white to-cyan-50">
-        {/* 装飾的な三角形 - アニメーション追加 */}
+      <section className="relative min-h-[60vh] md:min-h-[80vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[var(--color-logo-light-green)]/10 via-white to-[var(--color-logo-yellow)]/10">
+        {/* 装飾的な三角形 - ロゴ3色 */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-20 left-10 w-20 md:w-32 h-20 md:h-32 opacity-10 animate-[spin_20s_linear_infinite]">
-            <svg viewBox="0 0 100 100" className="w-full h-full fill-emerald-500">
+            <svg viewBox="0 0 100 100" className="w-full h-full fill-[var(--color-logo-yellow)]">
               <polygon points="50,0 100,100 0,100" />
             </svg>
           </div>
           <div className="absolute bottom-20 right-10 md:right-20 w-32 md:w-48 h-32 md:h-48 opacity-10 animate-[spin_30s_linear_infinite_reverse]">
-            <svg viewBox="0 0 100 100" className="w-full h-full fill-teal-500">
+            <svg viewBox="0 0 100 100" className="w-full h-full fill-[var(--color-logo-light-green)]">
+              <polygon points="50,0 100,100 0,100" />
+            </svg>
+          </div>
+          <div className="absolute top-1/2 left-1/4 w-16 md:w-24 h-16 md:h-24 opacity-10 animate-[spin_25s_linear_infinite]">
+            <svg viewBox="0 0 100 100" className="w-full h-full fill-[var(--color-logo-dark-green)]">
               <polygon points="50,0 100,100 0,100" />
             </svg>
           </div>
@@ -209,12 +214,12 @@ export default function AboutFractalPage() {
 
       {/* 基本理念 */}
       <Section id="philosophy" className="bg-white relative overflow-hidden">
-        {/* 背景装飾 */}
-        <div className="absolute top-0 right-0 w-40 md:w-64 h-40 md:h-64 bg-emerald-50 rounded-full blur-3xl -z-10"></div>
-        <div className="absolute bottom-0 left-0 w-40 md:w-64 h-40 md:h-64 bg-teal-50 rounded-full blur-3xl -z-10"></div>
+        {/* 背景装飾 - ライトグリーン */}
+        <div className="absolute top-0 right-0 w-40 md:w-64 h-40 md:h-64 bg-[var(--color-logo-light-green)]/20 rounded-full blur-3xl -z-10"></div>
+        <div className="absolute bottom-0 left-0 w-40 md:w-64 h-40 md:h-64 bg-[var(--color-logo-light-green)]/30 rounded-full blur-3xl -z-10"></div>
 
         <div className="text-center mb-8 md:mb-16">
-          <span className="inline-block px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-xs md:text-sm font-bold tracking-wider mb-3 md:mb-4">
+          <span className="inline-block px-3 py-1 bg-[var(--color-logo-light-green)]/20 text-[var(--color-logo-dark-green)] rounded-full text-xs md:text-sm font-bold tracking-wider mb-3 md:mb-4">
             PHILOSOPHY
           </span>
           <h3 className="text-xl md:text-5xl font-bold text-primary leading-tight">
@@ -223,17 +228,17 @@ export default function AboutFractalPage() {
         </div>
 
         <div className="relative max-w-4xl mx-auto">
-          <div className="absolute inset-0 bg-linear-to-r from-emerald-400 to-teal-400 rounded-2xl md:rounded-4xl transform rotate-1 md:rotate-2 blur-sm opacity-70"></div>
-          <div className="relative bg-white rounded-2xl md:rounded-4xl p-6 md:p-16 shadow-2xl border border-emerald-100">
-            <div className="absolute top-0 left-0 w-full h-1 md:h-2 bg-linear-to-r from-emerald-400 to-teal-400 rounded-t-2xl md:rounded-t-4xl"></div>
-            <p className="text-xl md:text-6xl font-bold text-center bg-linear-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-4 md:mb-8 leading-tight">
+          <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-logo-light-green)] to-emerald-400 rounded-2xl md:rounded-4xl transform rotate-1 md:rotate-2 blur-sm opacity-70"></div>
+          <div className="relative bg-white rounded-2xl md:rounded-4xl p-6 md:p-16 shadow-2xl border border-[var(--color-logo-light-green)]/30">
+            <div className="absolute top-0 left-0 w-full h-1 md:h-2 bg-gradient-to-r from-[var(--color-logo-light-green)] to-emerald-400 rounded-t-2xl md:rounded-t-4xl"></div>
+            <p className="text-xl md:text-6xl font-bold text-center bg-gradient-to-r from-emerald-600 to-[var(--color-logo-dark-green)] bg-clip-text text-transparent mb-4 md:mb-8 leading-tight">
               {aboutData.philosophy.main}
             </p>
             <p className="text-center text-slate-600 max-w-2xl mx-auto text-sm md:text-xl leading-relaxed font-medium">
               {aboutData.philosophy.description}
             </p>
             <div className="mt-4 md:mt-8 flex justify-center">
-              <div className="w-12 md:w-16 h-1 bg-emerald-200 rounded-full"></div>
+              <div className="w-12 md:w-16 h-1 bg-[var(--color-logo-light-green)]/50 rounded-full"></div>
             </div>
           </div>
         </div>
@@ -255,9 +260,9 @@ export default function AboutFractalPage() {
           {aboutData.business.items.map((item, index) => (
             <div
               key={index}
-              className="group relative bg-white rounded-2xl md:rounded-3xl p-5 md:p-8 shadow-lg"
+              className="group relative bg-white rounded-2xl md:rounded-3xl p-5 md:p-8 shadow-lg border-l-4 border-[var(--color-logo-yellow)] hover:border-[var(--color-logo-light-green)] transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
             >
-              <div className="absolute top-0 right-0 w-20 md:w-32 h-20 md:h-32 bg-linear-to-br from-emerald-100 to-transparent rounded-bl-full opacity-50"></div>
+              <div className="absolute top-0 right-0 w-20 md:w-32 h-20 md:h-32 bg-gradient-to-br from-[var(--color-logo-yellow)]/20 to-transparent rounded-bl-full opacity-50"></div>
               <h4 className="text-lg md:text-2xl font-bold text-primary mb-2 md:mb-4">{item.name}</h4>
               <p className="text-primary/70 leading-relaxed text-sm md:text-base">{item.description}</p>
             </div>
@@ -380,7 +385,7 @@ export default function AboutFractalPage() {
       </Section>
 
       {/* DAPAE */}
-      <Section className="bg-slate-800 text-white relative overflow-hidden">
+      <Section className="bg-[var(--color-logo-dark-green)] text-white relative overflow-hidden">
         <div className="text-center mb-8 md:mb-16 relative z-10">
           <span className="inline-block px-3 py-1 bg-teal-500 text-white rounded-full text-xs md:text-sm font-medium mb-3 md:mb-4">
             FRAMEWORK
@@ -559,9 +564,13 @@ export default function AboutFractalPage() {
       </Section>
 
       {/* ロゴの意味 */}
-      <Section className="bg-white">
+      <Section className="bg-white relative overflow-hidden">
+        {/* 背景装飾 - イエロー */}
+        <div className="absolute top-0 left-0 w-64 h-64 bg-[var(--color-logo-yellow)]/10 rounded-full blur-3xl -z-10"></div>
+        <div className="absolute bottom-0 right-0 w-64 h-64 bg-[var(--color-logo-yellow)]/10 rounded-full blur-3xl -z-10"></div>
+
         <div className="text-center mb-8 md:mb-12">
-          <span className="inline-block px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-xs md:text-sm font-medium mb-3 md:mb-4">
+          <span className="inline-block px-3 py-1 bg-[var(--color-logo-yellow)]/30 text-[var(--color-logo-dark-green)] rounded-full text-xs md:text-sm font-medium mb-3 md:mb-4">
             IDENTITY
           </span>
           <h3 className="text-2xl md:text-4xl font-bold text-primary">
@@ -587,7 +596,7 @@ export default function AboutFractalPage() {
             {aboutData.logo.meanings.map((meaning, index) => (
               <div
                 key={index}
-                className="flex items-start gap-3 md:gap-4 p-3 md:p-4 bg-linear-to-r from-amber-50 to-transparent rounded-xl"
+                className="flex items-start gap-3 md:gap-4 p-3 md:p-4 bg-gradient-to-r from-[var(--color-logo-yellow)]/20 to-transparent rounded-xl border-l-2 border-[var(--color-logo-yellow)] hover:border-[var(--color-logo-light-green)] transition-all duration-300"
               >
                 <span className="text-2xl md:text-3xl">{meaning.icon}</span>
                 <div>
@@ -634,7 +643,7 @@ export default function AboutFractalPage() {
       </Section>
 
       {/* CTA */}
-      <Section className="bg-linear-to-r from-emerald-500 to-teal-500 text-white">
+      <Section className="bg-gradient-to-r from-[var(--color-logo-dark-green)] to-emerald-600 text-white">
         <div className="text-center">
           <h3 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6">
             一緒に働きませんか？
@@ -645,13 +654,13 @@ export default function AboutFractalPage() {
           <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4">
             <Link
               href="/recruit"
-              className="px-6 py-3 md:px-8 md:py-4 bg-white text-emerald-600 rounded-full font-bold text-sm md:text-lg hover:bg-gray-100 transition-colors"
+              className="px-6 py-3 md:px-8 md:py-4 bg-white text-[var(--color-logo-dark-green)] rounded-full font-bold text-sm md:text-lg hover:bg-gray-100 transition-all hover:shadow-lg"
             >
               採用情報を見る
             </Link>
             <Link
               href="/#contact"
-              className="px-6 py-3 md:px-8 md:py-4 bg-emerald-600 text-white rounded-full font-bold text-sm md:text-lg hover:bg-emerald-700 transition-colors"
+              className="px-6 py-3 md:px-8 md:py-4 bg-[var(--color-logo-dark-green)] text-white border-2 border-white/30 rounded-full font-bold text-sm md:text-lg hover:bg-[var(--color-logo-dark-green)]/90 transition-all hover:shadow-lg"
             >
               お問い合わせ
             </Link>
