@@ -69,7 +69,7 @@ export default function RecruitPage() {
           >
             ← 戻る
           </Link>
-          <h1 className="text-lg md:text-2xl font-bold text-primary">採用情報</h1>
+          <h1 className="text-lg md:text-2xl font-bold text-primary">船橋・八千代・習志野の訪問看護師求人</h1>
         </div>
       </header>
 
@@ -81,6 +81,12 @@ export default function RecruitPage() {
           paddingBottom: 'var(--spacing-fluid-2xl)'
         }}
       >
+        {/* SEO用リード文 */}
+        <p className="text-base md:text-lg text-primary/80 mb-6 md:mb-8 text-center leading-relaxed">
+          船橋市、八千代市、習志野市、千葉市花見川区で<strong>訪問看護師・理学療法士・作業療法士・言語聴覚士</strong>を募集しています。
+          入社祝い金最大30万円、年間休日139日以上。未経験・ブランクのある方も歓迎です。
+        </p>
+
         {/* HP限定入社祝い金バナー */}
         <section className="mb-6 md:mb-12">
           <div className="bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 rounded-xl md:rounded-2xl p-4 md:p-8 shadow-lg relative overflow-hidden">
@@ -163,7 +169,7 @@ export default function RecruitPage() {
               marginBottom: 'var(--spacing-fluid-lg)'
             }}
           >
-            募集職種
+            船橋エリアの訪問看護師・セラピスト募集
           </h2>
 
           {/* タブナビゲーション */}
@@ -219,7 +225,9 @@ export default function RecruitPage() {
               >
                 <div className="flex items-center gap-2 mb-3">
                   <span className="text-2xl">💼</span>
-                  <h4 className="text-lg md:text-xl font-bold text-primary">仕事内容</h4>
+                  <h4 className="text-lg md:text-xl font-bold text-primary">
+                    {activeTab === "nurse" ? "訪問看護師の仕事内容" : "訪問リハビリスタッフの仕事内容"}
+                  </h4>
                 </div>
                 <p className="text-base md:text-lg text-primary/80 mb-3 md:mb-4">{currentJob.description}</p>
                 <h5 className="font-bold text-primary text-base md:text-lg mb-2">具体的な業務内容</h5>
@@ -245,7 +253,7 @@ export default function RecruitPage() {
               >
                 <div className="flex items-center gap-2 mb-3">
                   <span className="text-2xl">📍</span>
-                  <h4 className="text-lg md:text-xl font-bold text-primary">訪問エリア</h4>
+                  <h4 className="text-lg md:text-xl font-bold text-primary">訪問エリア：船橋市・八千代市・習志野市・花見川区</h4>
                 </div>
                 <div className="flex flex-wrap gap-1.5 md:gap-2">
                   {visitAreas.map((area, index) => (

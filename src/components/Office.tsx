@@ -10,7 +10,7 @@ export default function Office() {
       <BackgroundTriangles pattern="office" />
       <div className="section-inner relative z-10">
         <div className="section-title-area">
-          <h2 className="section-title">事業所情報</h2>
+          <h2 className="section-title">船橋市の訪問看護ステーション</h2>
           <div className="section-title-line" />
         </div>
 
@@ -113,7 +113,7 @@ export default function Office() {
           {/* 訪問エリアカード */}
           <div id="service-area" className="section-card section-card-mint">
             {/* タイトル */}
-            <h3 className="text-xl md:text-2xl font-bold text-center text-primary mb-2">現在の訪問エリア</h3>
+            <h3 className="text-xl md:text-2xl font-bold text-center text-primary mb-2">船橋市・八千代市・習志野市の訪問エリア</h3>
 
             <div className="space-y-6 md:space-y-8">
               {/* 地図（上部） */}

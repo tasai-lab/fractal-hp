@@ -1,5 +1,6 @@
 import Script from "next/script";
 import { jobPositions, visitAreas } from "@/lib/recruit-data";
+import { serviceFAQs, recruitFAQs, type FAQItem } from "@/lib/faq-data";
 
 // 訪問看護ステーションの構造化データ
 const localBusinessData = {
@@ -118,6 +119,22 @@ const websiteData = {
   },
 };
 
+// FAQスキーマ生成関数
+export function generateFAQData(faqs: FAQItem[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+}
+
 // パンくずリスト生成関数
 export function generateBreadcrumbData(
   items: Array<{ name: string; url: string }>
@@ -184,8 +201,10 @@ export function generateJobPostingData(job: {
   };
 }
 
-// メインの構造化データコンポーネント
+// メインの構造化データコンポーネント（トップページ用）
 export default function StructuredData() {
+  const serviceFAQData = generateFAQData(serviceFAQs);
+
   return (
     <>
       <Script
@@ -202,7 +221,33 @@ export default function StructuredData() {
           __html: JSON.stringify(websiteData),
         }}
       />
+      <Script
+        id="structured-data-service-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(serviceFAQData),
+        }}
+      />
     </>
+  );
+}
+
+// パンくずリストコンポーネント
+export function BreadcrumbStructuredData({
+  items,
+}: {
+  items: Array<{ name: string; url: string }>;
+}) {
+  const breadcrumbData = generateBreadcrumbData(items);
+
+  return (
+    <Script
+      id="structured-data-breadcrumb"
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(breadcrumbData),
+      }}
+    />
   );
 }
 
@@ -225,6 +270,13 @@ export function JobPostingStructuredData() {
     baseSalary: { min: 4000000, max: 5500000 },
   });
 
+  const recruitFAQData = generateFAQData(recruitFAQs);
+
+  const breadcrumbData = generateBreadcrumbData([
+    { name: "ホーム", url: "https://fractal-hokan.com" },
+    { name: "採用情報", url: "https://fractal-hokan.com/recruit" },
+  ]);
+
   return (
     <>
       <Script
@@ -241,6 +293,56 @@ export function JobPostingStructuredData() {
           __html: JSON.stringify(therapistJob),
         }}
       />
+      <Script
+        id="structured-data-recruit-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(recruitFAQData),
+        }}
+      />
+      <Script
+        id="structured-data-recruit-breadcrumb"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbData),
+        }}
+      />
     </>
+  );
+}
+
+// フラクタルを知るページ用構造化データコンポーネント
+export function AboutFractalStructuredData() {
+  const breadcrumbData = generateBreadcrumbData([
+    { name: "ホーム", url: "https://fractal-hokan.com" },
+    { name: "フラクタルを知る", url: "https://fractal-hokan.com/about-fractal" },
+  ]);
+
+  return (
+    <Script
+      id="structured-data-about-breadcrumb"
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(breadcrumbData),
+      }}
+    />
+  );
+}
+
+// チラシページ用構造化データコンポーネント
+export function FlyersStructuredData() {
+  const breadcrumbData = generateBreadcrumbData([
+    { name: "ホーム", url: "https://fractal-hokan.com" },
+    { name: "チラシ", url: "https://fractal-hokan.com/flyers" },
+  ]);
+
+  return (
+    <Script
+      id="structured-data-flyers-breadcrumb"
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(breadcrumbData),
+      }}
+    />
   );
 }

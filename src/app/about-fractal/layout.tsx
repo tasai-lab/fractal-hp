@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AboutFractalStructuredData } from "@/components/StructuredData";
 
 export const metadata: Metadata = {
   title: "フラクタルを知る | 企業理念・ビジョン・行動指針",
@@ -27,5 +28,10 @@ export default function AboutFractalLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <>
+      <AboutFractalStructuredData />
+      {children}
+    </>
+  );
 }

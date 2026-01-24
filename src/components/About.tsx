@@ -44,12 +44,12 @@ export default function About() {
             <div className="space-y-4 md:space-y-6 text-foreground max-w-2xl mx-auto">
               <p className="text-base md:text-lg lg:text-xl leading-relaxed">
                 「フラクタル」とは、一部分が全体と同じ形になる構造のこと。
-                私たちは、日々の訪問看護という「一部」の積み重ねが、利用者さまやご家族の人生という「全体」を豊かにすると信じています。
+                私たちは船橋市・八千代市・習志野市・花見川区を中心に、日々の訪問看護という「一部」の積み重ねが、利用者さまやご家族の人生という「全体」を豊かにすると信じています。
               </p>
 
               <p className="text-base md:text-lg lg:text-xl leading-relaxed">
                 病気や障がいだけでなく、その人らしさ、価値観、これまでの人生。
-                すべてを含めた「その人全体」に寄り添い、最適なケアを一緒に考えていきます。
+                すべてを含めた「その人全体」に寄り添い、地域の皆さまに最適なケアを一緒に考えていきます。
               </p>
 
               <p className="text-base md:text-lg lg:text-xl leading-relaxed">
