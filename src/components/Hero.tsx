@@ -22,7 +22,7 @@ export default function Hero() {
       <div className="absolute bottom-0 left-0 right-0 h-24 md:h-40 bg-gradient-to-t from-white via-white/50 to-transparent pointer-events-none"></div>
 
       {/* SEO用H1（上部に配置） */}
-      <h1 className="absolute top-20 md:top-24 left-0 right-0 z-10 text-center text-sm md:text-base text-[var(--color-primary)]/80 font-medium tracking-wide">
+      <h1 className="absolute top-4 md:top-6 left-0 right-0 z-10 text-center text-sm md:text-base text-[var(--color-primary)]/80 font-medium tracking-wide">
         船橋市・八千代市・習志野市の訪問看護
       </h1>
 
