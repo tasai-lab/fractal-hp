@@ -144,22 +144,17 @@ export default function AboutFractalPage() {
       </header>
 
       {/* ヒーローセクション */}
-      <section className="relative min-h-[60vh] md:min-h-[80vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[var(--color-logo-light-green)]/10 via-white to-[var(--color-logo-yellow)]/10">
-        {/* 装飾的な三角形 - ロゴ3色 */}
+      <section className="relative min-h-[60vh] md:min-h-[80vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-[var(--color-logo-light-green)]/5 to-white">
+        {/* 装飾的な三角形 - シンプルなフラクタルパターン */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-20 left-10 w-20 md:w-32 h-20 md:h-32 opacity-10 animate-[spin_20s_linear_infinite]">
-            <svg viewBox="0 0 100 100" className="w-full h-full fill-[var(--color-logo-yellow)]">
-              <polygon points="50,0 100,100 0,100" />
-            </svg>
-          </div>
-          <div className="absolute bottom-20 right-10 md:right-20 w-32 md:w-48 h-32 md:h-48 opacity-10 animate-[spin_30s_linear_infinite_reverse]">
+          <div className="absolute bottom-0 right-0 w-64 md:w-96 h-64 md:h-96 opacity-5">
             <svg viewBox="0 0 100 100" className="w-full h-full fill-[var(--color-logo-light-green)]">
-              <polygon points="50,0 100,100 0,100" />
+              <polygon points="50,0 100,86.6 0,86.6" />
             </svg>
           </div>
-          <div className="absolute top-1/2 left-1/4 w-16 md:w-24 h-16 md:h-24 opacity-10 animate-[spin_25s_linear_infinite]">
+          <div className="absolute top-0 left-0 w-48 md:w-72 h-48 md:h-72 opacity-5">
             <svg viewBox="0 0 100 100" className="w-full h-full fill-[var(--color-logo-dark-green)]">
-              <polygon points="50,0 100,100 0,100" />
+              <polygon points="50,0 100,86.6 0,86.6" />
             </svg>
           </div>
         </div>
@@ -178,20 +173,22 @@ export default function AboutFractalPage() {
           </div>
 
           <h2
-            className="font-bold text-primary tracking-tight"
+            className="font-bold text-primary tracking-wide"
             style={{
-              fontSize: 'var(--font-size-fluid-4xl)',
-              marginBottom: 'var(--spacing-fluid-md)'
+              fontSize: 'var(--font-size-fluid-3xl)',
+              marginBottom: 'var(--spacing-fluid-lg)',
+              letterSpacing: '0.05em'
             }}
           >
             株式会社フラクタル
           </h2>
 
           <p
-            className="text-primary/80 font-medium"
+            className="text-primary/70 font-normal"
             style={{
-              fontSize: 'var(--font-size-fluid-2xl)',
-              marginBottom: 'var(--spacing-fluid-xl)'
+              fontSize: 'var(--font-size-fluid-xl)',
+              marginBottom: 'var(--spacing-fluid-2xl)',
+              letterSpacing: '0.03em'
             }}
           >
             シンプルで独創的な社会を実現する
