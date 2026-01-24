@@ -78,14 +78,23 @@ export default function FlyersPage() {
           >
             ← トップに戻る
           </Link>
-          <h1 className="text-xl md:text-2xl font-bold text-primary">
+          <h1
+            className="font-bold text-primary"
+            style={{ fontSize: 'var(--font-size-fluid-xl)' }}
+          >
             ふらくたるのバックナンバー
           </h1>
         </div>
       </header>
 
       {/* メインコンテンツ */}
-      <main className="max-w-6xl mx-auto px-4 py-8 md:py-12">
+      <main
+        className="max-w-6xl mx-auto px-4"
+        style={{
+          paddingTop: 'var(--spacing-fluid-xl)',
+          paddingBottom: 'var(--spacing-fluid-2xl)'
+        }}
+      >
         {/* フィルター */}
         <div className="mb-8 flex flex-wrap gap-2 justify-center">
           <button
@@ -123,7 +132,13 @@ export default function FlyersPage() {
             {sortedYears.map((year) => (
               <div key={year}>
                 {/* 年のタイトル */}
-                <h2 className="text-2xl font-bold text-primary mb-6 pb-2 border-b-2 border-primary">
+                <h2
+                  className="font-bold text-primary pb-2 border-b-2 border-primary"
+                  style={{
+                    fontSize: 'var(--font-size-fluid-xl)',
+                    marginBottom: 'var(--spacing-fluid-lg)'
+                  }}
+                >
                   {year}
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">

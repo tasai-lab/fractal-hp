@@ -74,7 +74,13 @@ export default function RecruitPage() {
       </header>
 
       {/* メインコンテンツ */}
-      <main className="max-w-4xl mx-auto px-3 md:px-4 py-6 md:py-12">
+      <main
+        className="max-w-4xl mx-auto px-3 md:px-4"
+        style={{
+          paddingTop: 'var(--spacing-fluid-lg)',
+          paddingBottom: 'var(--spacing-fluid-2xl)'
+        }}
+      >
         {/* HP限定入社祝い金バナー */}
         <section className="mb-6 md:mb-12">
           <div className="bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 rounded-xl md:rounded-2xl p-4 md:p-8 shadow-lg relative overflow-hidden">
@@ -85,7 +91,13 @@ export default function RecruitPage() {
               <div className="inline-block bg-red-500 text-white text-base md:text-lg font-bold px-2 md:px-3 py-1 rounded-full mb-3 md:mb-4">
                 {signOnBonus.note}
               </div>
-              <h2 className="text-xl md:text-3xl font-bold text-primary mb-4 md:mb-6">
+              <h2
+                className="font-bold text-primary"
+                style={{
+                  fontSize: 'var(--font-size-fluid-2xl)',
+                  marginBottom: 'var(--spacing-fluid-md)'
+                }}
+              >
                 入社祝い金 最大<CountUp end={30} suffix="万円" />
               </h2>
               {/* 祝い金マイルストーン（矢印付き・下揃え） */}
@@ -122,7 +134,13 @@ export default function RecruitPage() {
         {/* フラクタルの考え方（共通） */}
         <section className="mb-6 md:mb-12">
           <div className="bg-white rounded-xl md:rounded-2xl p-4 md:p-8 shadow-md">
-            <h2 className="text-lg md:text-2xl font-bold text-primary mb-3 md:mb-4 pb-2 border-b-2 border-emerald-500">
+            <h2
+              className="font-bold text-primary pb-2 border-b-2 border-emerald-500"
+              style={{
+                fontSize: 'var(--font-size-fluid-xl)',
+                marginBottom: 'var(--spacing-fluid-md)'
+              }}
+            >
               {companyPhilosophy.title}
             </h2>
             <div className="text-base md:text-lg text-primary/80 whitespace-pre-line leading-relaxed">
@@ -133,7 +151,15 @@ export default function RecruitPage() {
 
         {/* 募集職種タブ */}
         <section className="mb-6 md:mb-12">
-          <h2 className="text-lg md:text-2xl font-bold text-primary mb-4 md:mb-6">募集職種</h2>
+          <h2
+            className="font-bold text-primary"
+            style={{
+              fontSize: 'var(--font-size-fluid-xl)',
+              marginBottom: 'var(--spacing-fluid-lg)'
+            }}
+          >
+            募集職種
+          </h2>
 
           {/* タブナビゲーション */}
           <div className="flex mb-4 md:mb-6 bg-gray-100 rounded-lg md:rounded-xl p-1">
@@ -166,7 +192,10 @@ export default function RecruitPage() {
                   </span>
                 ))}
               </div>
-              <h3 className="text-xl md:text-3xl font-bold text-white mb-1 md:mb-2">
+              <h3
+                className="font-bold text-white mb-1 md:mb-2"
+                style={{ fontSize: 'var(--font-size-fluid-2xl)' }}
+              >
                 {currentJob.title}募集
               </h3>
               <p className="text-white/90 text-base md:text-lg">
@@ -445,7 +474,13 @@ export default function RecruitPage() {
         {/* 選考プロセス（共通） */}
         <section className="mb-6 md:mb-12">
           <div className="bg-white rounded-xl md:rounded-2xl p-4 md:p-8 shadow-md">
-            <h2 className="text-lg md:text-2xl font-bold text-primary mb-3 md:mb-4 pb-2 border-b-2 border-emerald-500">
+            <h2
+              className="font-bold text-primary pb-2 border-b-2 border-emerald-500"
+              style={{
+                fontSize: 'var(--font-size-fluid-xl)',
+                marginBottom: 'var(--spacing-fluid-md)'
+              }}
+            >
               選考プロセス
             </h2>
             <p className="text-base md:text-lg text-primary/80 mb-4 md:mb-6">
@@ -470,7 +505,13 @@ export default function RecruitPage() {
         {/* 応募メッセージ */}
         <section className="mb-6 md:mb-12">
           <div className="bg-white rounded-xl md:rounded-2xl p-4 md:p-8 shadow-md">
-            <h2 className="text-lg md:text-2xl font-bold text-primary mb-3 md:mb-4 pb-2 border-b-2 border-emerald-500">
+            <h2
+              className="font-bold text-primary pb-2 border-b-2 border-emerald-500"
+              style={{
+                fontSize: 'var(--font-size-fluid-xl)',
+                marginBottom: 'var(--spacing-fluid-md)'
+              }}
+            >
               お問い合わせ
             </h2>
             <div className="text-center mb-8 md:mb-12">

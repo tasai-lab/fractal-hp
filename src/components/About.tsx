@@ -32,7 +32,10 @@ export default function About() {
 
             {/* メインコピー */}
             <div className="text-center">
-              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-primary leading-relaxed">
+              <h3
+                className="font-bold text-primary leading-relaxed"
+                style={{ fontSize: 'var(--font-size-fluid-2xl)' }}
+              >
                 あなたの人生の、大切な「一部」になりたい。
               </h3>
             </div>
@@ -67,7 +70,12 @@ export default function About() {
           {/* 私たちのカタチ セクション - 丸みを帯びた四角形で囲む */}
           <div id="philosophy" className="section-card section-card-about space-y-6 md:space-y-8">
             {/* タイトル */}
-            <h3 className="text-2xl md:text-3xl font-bold text-center text-primary">私たちのカタチ</h3>
+            <h3
+              className="font-bold text-center text-primary"
+              style={{ fontSize: 'var(--font-size-fluid-2xl)' }}
+            >
+              私たちのカタチ
+            </h3>
 
             {/* ロゴ（法人ロゴと多様性ロゴを横並び） */}
             <div className="flex justify-center items-center gap-8 md:gap-12">

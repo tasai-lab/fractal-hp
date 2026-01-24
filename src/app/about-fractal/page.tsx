@@ -110,7 +110,14 @@ function Section({
   id?: string;
 }) {
   return (
-    <section id={id} className={`py-12 md:py-24 ${className}`}>
+    <section
+      id={id}
+      className={className}
+      style={{
+        paddingTop: 'var(--spacing-fluid-2xl)',
+        paddingBottom: 'var(--spacing-fluid-2xl)'
+      }}
+    >
       <div className="max-w-5xl mx-auto px-4">{children}</div>
     </section>
   );
@@ -170,11 +177,23 @@ export default function AboutFractalPage() {
             </div>
           </div>
 
-          <h2 className="text-2xl md:text-7xl font-bold text-primary mb-4 md:mb-6 tracking-tight">
+          <h2
+            className="font-bold text-primary tracking-tight"
+            style={{
+              fontSize: 'var(--font-size-fluid-4xl)',
+              marginBottom: 'var(--spacing-fluid-md)'
+            }}
+          >
             株式会社フラクタル
           </h2>
 
-          <p className="text-base md:text-3xl text-primary/80 mb-6 md:mb-10 font-medium">
+          <p
+            className="text-primary/80 font-medium"
+            style={{
+              fontSize: 'var(--font-size-fluid-2xl)',
+              marginBottom: 'var(--spacing-fluid-xl)'
+            }}
+          >
             シンプルで独創的な社会を実現する
           </p>
 
@@ -222,7 +241,10 @@ export default function AboutFractalPage() {
           <span className="inline-block px-3 py-1 bg-[var(--color-logo-light-green)]/20 text-[var(--color-logo-dark-green)] rounded-full text-xs md:text-sm font-bold tracking-wider mb-3 md:mb-4">
             PHILOSOPHY
           </span>
-          <h3 className="text-xl md:text-5xl font-bold text-primary leading-tight">
+          <h3
+            className="font-bold text-primary leading-tight"
+            style={{ fontSize: 'var(--font-size-fluid-3xl)' }}
+          >
             {aboutData.philosophy.title}
           </h3>
         </div>
@@ -250,7 +272,10 @@ export default function AboutFractalPage() {
           <span className="inline-block px-3 py-1 bg-teal-100 text-teal-700 rounded-full text-xs md:text-sm font-medium mb-3 md:mb-4">
             BUSINESS
           </span>
-          <h3 className="text-2xl md:text-4xl font-bold text-primary">
+          <h3
+            className="font-bold text-primary"
+            style={{ fontSize: 'var(--font-size-fluid-2xl)' }}
+          >
             {aboutData.business.title}
           </h3>
           <p className="text-primary/70 mt-3 text-sm md:text-base">{aboutData.business.description}</p>
@@ -276,7 +301,10 @@ export default function AboutFractalPage() {
           <span className="inline-block px-3 py-1 bg-cyan-500 text-white rounded-full text-xs md:text-sm font-medium mb-3 md:mb-4">
             VISION {aboutData.vision.period}
           </span>
-          <h3 className="text-2xl md:text-5xl font-bold text-white">
+          <h3
+            className="font-bold text-white"
+            style={{ fontSize: 'var(--font-size-fluid-3xl)' }}
+          >
             {aboutData.vision.title}
           </h3>
         </div>
@@ -317,7 +345,10 @@ export default function AboutFractalPage() {
           <span className="inline-block px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-xs md:text-sm font-bold tracking-wider mb-3 md:mb-4">
             GUIDELINES
           </span>
-          <h3 className="text-2xl md:text-5xl font-bold text-primary">
+          <h3
+            className="font-bold text-primary"
+            style={{ fontSize: 'var(--font-size-fluid-3xl)' }}
+          >
             7つの行動指針
           </h3>
           <p className="text-slate-500 mt-2 md:mt-4 text-sm md:text-lg">フラクタルで働くということ</p>
@@ -391,7 +422,13 @@ export default function AboutFractalPage() {
             FRAMEWORK
           </span>
           <div className="flex justify-center">
-            <h3 className="text-2xl md:text-5xl font-bold mb-3 md:mb-4 tracking-tight inline-flex items-baseline">
+            <h3
+              className="font-bold tracking-tight inline-flex items-baseline"
+              style={{
+                fontSize: 'var(--font-size-fluid-3xl)',
+                marginBottom: 'var(--spacing-fluid-md)'
+              }}
+            >
               <span>DAPAE</span>
               <svg className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 text-yellow-400 ml-0.5" viewBox="0 0 24 24" fill="currentColor">
                 <polygon points="12,2 22,22 2,22" />
@@ -573,7 +610,10 @@ export default function AboutFractalPage() {
           <span className="inline-block px-3 py-1 bg-[var(--color-logo-yellow)]/30 text-[var(--color-logo-dark-green)] rounded-full text-xs md:text-sm font-medium mb-3 md:mb-4">
             IDENTITY
           </span>
-          <h3 className="text-2xl md:text-4xl font-bold text-primary">
+          <h3
+            className="font-bold text-primary"
+            style={{ fontSize: 'var(--font-size-fluid-2xl)' }}
+          >
             ロゴに込めた想い
           </h3>
         </div>
@@ -615,7 +655,10 @@ export default function AboutFractalPage() {
           <span className="inline-block px-3 py-1 bg-slate-200 text-slate-700 rounded-full text-xs md:text-sm font-medium mb-3 md:mb-4">
             MATERIALS
           </span>
-          <h3 className="text-2xl md:text-4xl font-bold text-primary">
+          <h3
+            className="font-bold text-primary"
+            style={{ fontSize: 'var(--font-size-fluid-2xl)' }}
+          >
             資料で見るフラクタル
           </h3>
           <p className="text-primary/70 mt-2 md:mt-4 text-sm md:text-base">
@@ -645,7 +688,13 @@ export default function AboutFractalPage() {
       {/* CTA */}
       <Section className="bg-gradient-to-r from-[var(--color-logo-dark-green)] to-emerald-600 text-white">
         <div className="text-center">
-          <h3 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6">
+          <h3
+            className="font-bold"
+            style={{
+              fontSize: 'var(--font-size-fluid-2xl)',
+              marginBottom: 'var(--spacing-fluid-md)'
+            }}
+          >
             一緒に働きませんか？
           </h3>
           <p className="text-white/90 mb-6 md:mb-8 max-w-2xl mx-auto text-sm md:text-base">

@@ -26,8 +26,9 @@ export default function Hero() {
         {/* メインキャッチコピー（縦書き） */}
         <div className="flex justify-center animate-emerge-from-back">
           <h1
-            className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-[var(--color-primary)] drop-shadow-lg"
+            className="font-bold text-[var(--color-primary)] drop-shadow-lg"
             style={{
+              fontSize: 'var(--font-size-fluid-4xl)',
               writingMode: "vertical-rl",
               textOrientation: "upright",
               letterSpacing: "0.15em",
