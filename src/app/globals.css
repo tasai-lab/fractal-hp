@@ -15,6 +15,11 @@
   --color-accent-mint: #98D8C8;
   --color-accent-mint-light: #C8EDE5;
 
+  /* Logo Colors (新規追加) */
+  --color-logo-light-green: #7FC5A0;
+  --color-logo-dark-green: #0D5643;
+  --color-logo-yellow: #F4E951;
+
   /* Base Colors */
   --color-background: #ffffff;
   --color-foreground: #1a1a1a;
@@ -23,6 +28,24 @@
 
   /* Spacing */
   --section-padding: 5rem;
+
+  /* Fluid Spacing (新規追加) */
+  --spacing-fluid-xs: clamp(0.5rem, 1vw, 0.75rem);
+  --spacing-fluid-sm: clamp(0.75rem, 1.5vw, 1rem);
+  --spacing-fluid-md: clamp(1rem, 2vw, 1.5rem);
+  --spacing-fluid-lg: clamp(1.5rem, 3vw, 2rem);
+  --spacing-fluid-xl: clamp(2rem, 4vw, 3rem);
+  --spacing-fluid-2xl: clamp(3rem, 5vw, 4rem);
+
+  /* Fluid Font Sizes (新規追加) */
+  --font-size-fluid-xs: clamp(0.75rem, 1.5vw, 0.875rem);
+  --font-size-fluid-sm: clamp(0.875rem, 1.8vw, 1rem);
+  --font-size-fluid-base: clamp(1rem, 2vw, 1.125rem);
+  --font-size-fluid-lg: clamp(1.125rem, 2.5vw, 1.5rem);
+  --font-size-fluid-xl: clamp(1.25rem, 3vw, 1.875rem);
+  --font-size-fluid-2xl: clamp(1.5rem, 3.5vw, 2.25rem);
+  --font-size-fluid-3xl: clamp(1.875rem, 4vw, 3rem);
+  --font-size-fluid-4xl: clamp(2.25rem, 5vw, 3.75rem);
 }
 
 @theme inline {
@@ -38,6 +61,9 @@
   --color-accent-yellow-dark: var(--color-accent-yellow-dark);
   --color-accent-mint: var(--color-accent-mint);
   --color-accent-mint-light: var(--color-accent-mint-light);
+  --color-logo-light-green: var(--color-logo-light-green);
+  --color-logo-dark-green: var(--color-logo-dark-green);
+  --color-logo-yellow: var(--color-logo-yellow);
   --color-muted: var(--color-muted);
   --color-border: var(--color-border);
   --font-sans: var(--font-mplus1), "M PLUS 1", sans-serif;
@@ -247,7 +273,20 @@ body {
 }
 
 .animate-fade-in-up {
-  animation: fadeInUp 0.8s ease-out forwards;
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
 }
 
 @keyframes emergeFromBack {
