@@ -20,9 +20,11 @@
 | Recruit | Recruit.tsx | セクション | リクルート |
 | Contact | Contact.tsx | セクション | お問い合わせ |
 | Company | Company.tsx | セクション | 会社情報 |
+| FAQ | FAQ.tsx | セクション | よくある質問 |
 | Footer | Footer.tsx | レイアウト | グローバルフッター |
 | BackgroundTriangles | BackgroundTriangles.tsx | 装飾 | 背景三角形 |
 | GoogleAnalytics | GoogleAnalytics.tsx | ユーティリティ | GA4トラッキング |
+| CountUp | CountUp.tsx | ユーティリティ | 数値カウントアップ |
 | StructuredData | StructuredData.tsx | SEO | 構造化データ |
 
 ---
@@ -220,6 +222,23 @@
 
 ---
 
+### FAQ
+
+「よくある質問」セクション。アコーディオン形式でFAQを表示。
+
+**ファイル**: `src/components/FAQ.tsx`
+
+**種別**: クライアントコンポーネント (`"use client"`)
+
+**機能**:
+- アコーディオン形式のQ&A
+- クリックで開閉
+- スムーズなアニメーション
+
+**データソース**: `src/lib/faq-data.ts` → `serviceFAQs`
+
+---
+
 ## 装飾コンポーネント
 
 ### BackgroundTriangles
@@ -244,6 +263,7 @@
 - `recruit` - リクルート
 - `contact` - お問い合わせ
 - `company` - 会社情報
+- `faq` - よくある質問
 
 **使用例**:
 ```tsx
@@ -273,6 +293,30 @@ Google Analytics 4のトラッキングコード。
 
 ---
 
+### CountUp
+
+数値のカウントアップアニメーション。
+
+**ファイル**: `src/components/CountUp.tsx`
+
+**種別**: クライアントコンポーネント (`"use client"`)
+
+**Props**:
+
+| Prop | 型 | デフォルト | 説明 |
+|------|---|----------|------|
+| end | number | 必須 | 最終値 |
+| duration | number | 2000 | アニメーション時間（ms） |
+| prefix | string | "" | 接頭辞 |
+| suffix | string | "" | 接尾辞 |
+
+**使用例**:
+```tsx
+<CountUp end={30} suffix="万円" />
+```
+
+---
+
 ### StructuredData
 
 SEO用の構造化データ（JSON-LD）。
@@ -280,14 +324,20 @@ SEO用の構造化データ（JSON-LD）。
 **ファイル**: `src/components/StructuredData.tsx`
 
 **エクスポート**:
-- `default` - メイン構造化データ（LocalBusiness, WebSite）
-- `JobPostingStructuredData` - 求人構造化データ
+- `default` - メイン構造化データ（LocalBusiness, WebSite, FAQ）
+- `JobPostingStructuredData` - 求人構造化データ（JobPosting, FAQ, Breadcrumb）
+- `AboutFractalStructuredData` - 会社紹介ページ用（Breadcrumb）
+- `FlyersStructuredData` - チラシページ用（Breadcrumb）
+- `BreadcrumbStructuredData` - パンくずリスト汎用コンポーネント
 - `generateBreadcrumbData` - パンくずリスト生成関数
+- `generateFAQData` - FAQスキーマ生成関数
 - `generateJobPostingData` - 求人データ生成関数
 
 **使用箇所**:
 - `src/app/layout.tsx` - メイン構造化データ
 - `src/app/recruit/layout.tsx` - 求人構造化データ
+- `src/app/about-fractal/layout.tsx` - 会社紹介構造化データ
+- `src/app/flyers/layout.tsx` - チラシ構造化データ
 
 ---
 
