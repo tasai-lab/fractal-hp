@@ -69,7 +69,7 @@ export default function RecruitPage() {
           >
             ← 戻る
           </Link>
-          <h1 className="text-lg md:text-2xl font-bold text-primary">船橋・八千代・習志野の訪問看護師求人</h1>
+          <h1 className="text-lg md:text-2xl font-bold text-primary">船橋・八千代・習志野の看護師求人</h1>
         </div>
       </header>
 
@@ -83,8 +83,8 @@ export default function RecruitPage() {
       >
         {/* SEO用リード文 */}
         <p className="text-base md:text-lg text-primary/80 mb-6 md:mb-8 text-center leading-relaxed">
-          船橋市、八千代市、習志野市、千葉市花見川区で<strong>訪問看護師・理学療法士・作業療法士・言語聴覚士</strong>を募集しています。
-          入社祝い金最大30万円、年間休日139日以上。未経験・ブランクのある方も歓迎です。
+          船橋市、八千代市、習志野市、千葉市花見川区で<strong>看護師・理学療法士・作業療法士・言語聴覚士</strong>を募集しています。
+          入社祝い金最大30万円、年間休日120日以上（看護師139日以上）。未経験・ブランクのある方も歓迎です。
         </p>
 
         {/* HP限定入社祝い金バナー */}
@@ -169,7 +169,7 @@ export default function RecruitPage() {
               marginBottom: 'var(--spacing-fluid-lg)'
             }}
           >
-            船橋エリアの訪問看護師・セラピスト募集
+            船橋エリアの看護師・セラピスト募集
           </h2>
 
           {/* タブナビゲーション */}
@@ -226,7 +226,7 @@ export default function RecruitPage() {
                 <div className="flex items-center gap-2 mb-3">
                   <span className="text-2xl">💼</span>
                   <h4 className="text-lg md:text-xl font-bold text-primary">
-                    {activeTab === "nurse" ? "訪問看護師の仕事内容" : "訪問リハビリスタッフの仕事内容"}
+                    {activeTab === "nurse" ? "看護師の仕事内容" : "訪問リハビリスタッフの仕事内容"}
                   </h4>
                 </div>
                 <p className="text-base md:text-lg text-primary/80 mb-3 md:mb-4">{currentJob.description}</p>
