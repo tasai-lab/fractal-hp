@@ -16,6 +16,7 @@ import {
   therapistDuties,
   therapistModelIncome,
 } from "@/lib/recruit-data";
+import { recruitFAQs } from "@/lib/faq-data";
 
 // タブの定義
 const tabs = jobPositions
@@ -28,6 +29,11 @@ const tabs = jobPositions
 export default function RecruitPage() {
   const [activeTab, setActiveTab] = useState(tabs[0]?.id || "nurse");
   const currentJob = jobPositions.find((job) => job.id === activeTab) || jobPositions[0];
+  const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
+
+  const toggleFAQ = (index: number) => {
+    setOpenFAQIndex(openFAQIndex === index ? null : index);
+  };
 
   // スクロールアニメーション用（配列ベースで最適化）
   const CARD_COUNT = 8;
@@ -509,6 +515,68 @@ export default function RecruitPage() {
                   <p className="text-primary/80 text-sm md:text-base">
                     {step.description}
                   </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* よくある質問 */}
+        <section className="mb-6 md:mb-12">
+          <div className="bg-white rounded-xl md:rounded-2xl p-4 md:p-8 shadow-md">
+            <h2
+              className="font-bold text-primary pb-2 border-b-2 border-emerald-500"
+              style={{
+                fontSize: 'var(--font-size-fluid-xl)',
+                marginBottom: 'var(--spacing-fluid-md)'
+              }}
+            >
+              よくある質問
+            </h2>
+            <div className="space-y-3 md:space-y-4">
+              {recruitFAQs.map((faq, index) => (
+                <div
+                  key={index}
+                  className="border border-gray-200 rounded-lg md:rounded-xl overflow-hidden"
+                >
+                  <button
+                    onClick={() => toggleFAQ(index)}
+                    className="w-full px-4 md:px-6 py-3 md:py-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors flex items-center justify-between gap-3"
+                  >
+                    <span className="font-medium text-primary text-base md:text-lg">
+                      {faq.question}
+                    </span>
+                    <span
+                      className={`text-emerald-600 transition-transform duration-300 flex-shrink-0 ${
+                        openFAQIndex === index ? "rotate-180" : ""
+                      }`}
+                    >
+                      <svg
+                        className="w-5 h-5 md:w-6 md:h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ${
+                      openFAQIndex === index ? "max-h-96" : "max-h-0"
+                    }`}
+                  >
+                    <div className="px-4 md:px-6 py-3 md:py-4 bg-white">
+                      <p className="text-primary/80 text-sm md:text-base leading-relaxed">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>

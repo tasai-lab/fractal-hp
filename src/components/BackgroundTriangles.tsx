@@ -187,6 +187,17 @@ const decorationPatterns = {
       { size: 60, color: colors.yellow, opacity: 0.5, rotation: 40, top: "60%", left: "5%" },
     ],
   },
+  // よくあるご質問
+  faq: {
+    largeShapes: [
+      { color: colors.lightYellow, opacity: 0.6, rotation: -15, top: "5%", left: "-18%", scale: 1.4 },
+    ],
+    smallTriangles: [
+      { size: 80, color: colors.mint, opacity: 0.4, rotation: 20, top: "10%", right: "5%" },
+      { size: 70, color: colors.pink, opacity: 0.5, rotation: -30, top: "50%", right: "3%" },
+      { size: 60, color: colors.blue, opacity: 0.4, rotation: 35, top: "80%", right: "8%" },
+    ],
+  },
 };
 
 type PatternKey = keyof typeof decorationPatterns;

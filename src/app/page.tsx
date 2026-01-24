@@ -7,6 +7,7 @@ import Flow from "@/components/Flow";
 import Staff from "@/components/Staff";
 import Recruit from "@/components/Recruit";
 import Contact from "@/components/Contact";
+import FAQ from "@/components/FAQ";
 import Company from "@/components/Company";
 import Footer from "@/components/Footer";
 
@@ -23,6 +24,7 @@ export default function Home() {
         <Staff />
         <Recruit />
         <Contact />
+        <FAQ />
         <Company />
       </main>
       <Footer />
