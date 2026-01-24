@@ -98,13 +98,24 @@ NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 1. [Google リッチリザルトテスト](https://search.google.com/test/rich-results) にアクセス
 2. `https://fractal-hokan.com` を入力してテスト
 3. 以下の構造化データが検出されることを確認:
-   - LocalBusiness
+   - LocalBusiness / MedicalBusiness
    - WebSite
+   - FAQPage（よくある質問）
 
 ### 4.4 求人構造化データの確認
 
 1. `https://fractal-hokan.com/recruit` でテスト
-2. JobPosting が検出されることを確認
+2. 以下が検出されることを確認:
+   - JobPosting（2件）
+   - FAQPage（求職者向けFAQ）
+   - BreadcrumbList（パンくずリスト）
+
+### 4.5 パンくずリストの確認
+
+各ページでBreadcrumbListが検出されることを確認:
+- `/recruit` - ホーム > 採用情報
+- `/about-fractal` - ホーム > フラクタルを知る
+- `/flyers` - ホーム > チラシ
 
 ---
 
@@ -187,5 +198,8 @@ SNSシェア時に表示される画像を設定するには:
 | `src/components/GoogleAnalytics.tsx` | GA4コンポーネント |
 | `src/components/StructuredData.tsx` | 構造化データ |
 | `src/app/recruit/layout.tsx` | 採用ページメタデータ |
+| `src/lib/faq-data.ts` | FAQデータ |
+| `src/app/about-fractal/layout.tsx` | 会社紹介ページメタデータ |
+| `src/app/flyers/layout.tsx` | チラシページメタデータ |
 | `.env.local` | 環境変数（Git管理外） |
 | `.env.example` | 環境変数テンプレート |
