@@ -10,9 +10,9 @@ export interface Flyer {
   type: "newspaper" | "area";
   title: string;
   date: string; // YYYY年MM月
+  orientation: "portrait" | "landscape"; // 縦向き or 横向き
   frontImage: string;
   backImage: string;
-  orientation?: "portrait" | "landscape"; // 縦向き or 横向き（デフォルト: portrait）
 }
 
 // チラシ一覧（新しい順）
@@ -37,6 +37,7 @@ export const flyers: Flyer[] = [
     date: "2025年11月",
     frontImage: "/images/flyers/202511_newspaper_front.png",
     backImage: "/images/flyers/202511_newspaper_back.png",
+    orientation: "portrait",
   },
   {
     id: "202511-area",
@@ -45,6 +46,7 @@ export const flyers: Flyer[] = [
     date: "2025年11月",
     frontImage: "/images/flyers/202511_area_front.png",
     backImage: "/images/flyers/202511_area_back.png",
+    orientation: "portrait",
   },
   {
     id: "202510-newspaper",
@@ -53,6 +55,7 @@ export const flyers: Flyer[] = [
     date: "2025年10月",
     frontImage: "/images/flyers/202510_newspaper_front.png",
     backImage: "/images/flyers/202510_newspaper_back.png",
+    orientation: "portrait",
   },
   {
     id: "202510-area",
@@ -61,6 +64,7 @@ export const flyers: Flyer[] = [
     date: "2025年10月",
     frontImage: "/images/flyers/202510_area_front.png",
     backImage: "/images/flyers/202510_area_back.png",
+    orientation: "portrait",
   },
   {
     id: "202508-area",
@@ -69,6 +73,7 @@ export const flyers: Flyer[] = [
     date: "2025年8月",
     frontImage: "/images/flyers/202508_area_front.png",
     backImage: "/images/flyers/202508_area_back.png",
+    orientation: "portrait",
   },
   {
     id: "202507-area2",
@@ -77,6 +82,7 @@ export const flyers: Flyer[] = [
     date: "2025年7月",
     frontImage: "/images/flyers/202507_area2_front.png",
     backImage: "/images/flyers/202507_area2_back.png",
+    orientation: "portrait",
   },
   {
     id: "202507-area1",
@@ -85,6 +91,7 @@ export const flyers: Flyer[] = [
     date: "2025年7月",
     frontImage: "/images/flyers/202507_area1_front.png",
     backImage: "/images/flyers/202507_area1_back.png",
+    orientation: "portrait",
   },
   {
     id: "202506-area",
@@ -93,6 +100,7 @@ export const flyers: Flyer[] = [
     date: "2025年6月",
     frontImage: "/images/flyers/202506_area_front.png",
     backImage: "/images/flyers/202506_area_back.png",
+    orientation: "portrait",
   },
   {
     id: "202505-area",
@@ -101,5 +109,6 @@ export const flyers: Flyer[] = [
     date: "2025年5月",
     frontImage: "/images/flyers/202505_area_front.png",
     backImage: "/images/flyers/202505_area_back.png",
+    orientation: "portrait",
   },
 ];
