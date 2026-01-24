@@ -169,7 +169,7 @@ export default function RecruitPage() {
               marginBottom: 'var(--spacing-fluid-lg)'
             }}
           >
-            船橋エリアの看護師・セラピスト募集
+            船橋事業所の看護師・セラピスト募集
           </h2>
 
           {/* タブナビゲーション */}
