@@ -119,7 +119,8 @@ npm run start
 8. **Staff** - スタッフ紹介
 9. **Recruit** - リクルート
 10. **Contact** - お問い合わせ
-11. **Company** - 会社情報
+11. **FAQ** - よくある質問
+12. **Company** - 会社情報
 
 ## ドキュメント
 
@@ -128,6 +129,7 @@ npm run start
 - [ドメイン移行手順](docs/DOMAIN-MIGRATION.md)
 - [SEO設定](docs/SEO-SETUP.md)
 - [コンポーネント仕様](docs/COMPONENTS.md)
+- [データ仕様](docs/DATA-SPEC.md)
 
 ## SEO対策
 
@@ -136,6 +138,8 @@ npm run start
 - 構造化データ（JSON-LD）
   - LocalBusiness / MedicalBusiness
   - JobPosting（求人情報）
+  - FAQPage（よくある質問）
+  - BreadcrumbList（パンくずリスト）
 - サイトマップ自動生成
 - robots.txt 自動生成
 
