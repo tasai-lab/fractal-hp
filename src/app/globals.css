@@ -80,6 +80,16 @@ body {
   line-height: 1.8;
 }
 
+/* Scrollbar hide utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 /* Section Base Styles - 参考HPに統一 */
 .section-wrapper {
   position: relative;
