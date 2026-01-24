@@ -1,11 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Contact from "@/components/Contact";
 import { CountUp } from "@/components/CountUp";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import {
   signOnBonus,
   jobPositions,
@@ -30,15 +29,34 @@ export default function RecruitPage() {
   const [activeTab, setActiveTab] = useState(tabs[0]?.id || "nurse");
   const currentJob = jobPositions.find((job) => job.id === activeTab) || jobPositions[0];
 
-  // スクロールアニメーション用フック
-  const { ref: cardRef1, isVisible: isCard1Visible } = useScrollAnimation(0.1);
-  const { ref: cardRef2, isVisible: isCard2Visible } = useScrollAnimation(0.1);
-  const { ref: cardRef3, isVisible: isCard3Visible } = useScrollAnimation(0.1);
-  const { ref: cardRef4, isVisible: isCard4Visible } = useScrollAnimation(0.1);
-  const { ref: cardRef5, isVisible: isCard5Visible } = useScrollAnimation(0.1);
-  const { ref: cardRef6, isVisible: isCard6Visible } = useScrollAnimation(0.1);
-  const { ref: cardRef7, isVisible: isCard7Visible } = useScrollAnimation(0.1);
-  const { ref: cardRef8, isVisible: isCard8Visible } = useScrollAnimation(0.1);
+  // スクロールアニメーション用（配列ベースで最適化）
+  const CARD_COUNT = 8;
+  const cardRefs = useRef<(HTMLDivElement | null)[]>(Array(CARD_COUNT).fill(null));
+  const [cardVisibility, setCardVisibility] = useState<boolean[]>(Array(CARD_COUNT).fill(false));
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const index = cardRefs.current.findIndex(ref => ref === entry.target);
+          if (index !== -1 && entry.isIntersecting) {
+            setCardVisibility(prev => {
+              const newState = [...prev];
+              newState[index] = true;
+              return newState;
+            });
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    cardRefs.current.forEach(ref => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-teal-50">
@@ -75,10 +93,9 @@ export default function RecruitPage() {
                 {signOnBonus.milestones.map((milestone, index) => (
                   <div key={index} className="flex items-end">
                     <div
-                      className="bg-white/90 rounded-lg md:rounded-xl text-center shadow-sm"
-                      style={{
-                        padding: index === 0 ? '8px 12px' : index === 1 ? '10px 14px' : '12px 16px',
-                      }}
+                      className={`bg-white/90 rounded-lg md:rounded-xl text-center shadow-sm ${
+                        index === 0 ? 'px-3 py-2' : index === 1 ? 'px-3.5 py-2.5' : 'px-4 py-3'
+                      }`}
                     >
                       <p className={`text-muted mb-0.5 ${index === 0 ? 'text-sm md:text-base' : index === 1 ? 'text-base md:text-lg' : 'text-lg md:text-xl'}`}>
                         {milestone.label}
@@ -161,9 +178,9 @@ export default function RecruitPage() {
             <div className="p-4 md:p-8 space-y-5 md:space-y-6">
               {/* 仕事内容 */}
               <div
-                ref={cardRef1 as React.RefObject<HTMLDivElement>}
+                ref={el => { cardRefs.current[0] = el; }}
                 className={`bg-white rounded-xl p-4 md:p-6 shadow-md border-l-4 border-emerald-500 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ${
-                  isCard1Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                  cardVisibility[0] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 }`}
               >
                 <div className="flex items-center gap-2 mb-3">
@@ -187,9 +204,9 @@ export default function RecruitPage() {
 
               {/* 訪問エリア */}
               <div
-                ref={cardRef2 as React.RefObject<HTMLDivElement>}
+                ref={el => { cardRefs.current[1] = el; }}
                 className={`bg-white rounded-xl p-4 md:p-6 shadow-md border-l-4 border-teal-500 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ${
-                  isCard2Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                  cardVisibility[1] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 }`}
               >
                 <div className="flex items-center gap-2 mb-3">
@@ -211,9 +228,9 @@ export default function RecruitPage() {
               {/* オンコール（看護師のみ） */}
               {activeTab === "nurse" && (
                 <div
-                  ref={cardRef3 as React.RefObject<HTMLDivElement>}
+                  ref={el => { cardRefs.current[2] = el; }}
                   className={`bg-white rounded-xl p-4 md:p-6 shadow-md border-l-4 border-yellow-500 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ${
-                    isCard3Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                    cardVisibility[2] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                   }`}
                 >
                   <div className="flex items-center gap-2 mb-3">
@@ -234,9 +251,9 @@ export default function RecruitPage() {
 
               {/* 給与 */}
               <div
-                ref={cardRef4 as React.RefObject<HTMLDivElement>}
+                ref={el => { cardRefs.current[3] = el; }}
                 className={`bg-white rounded-xl p-4 md:p-6 shadow-md border-l-4 border-emerald-500 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ${
-                  isCard4Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                  cardVisibility[3] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 }`}
               >
                 <div className="flex items-center gap-2 mb-3">
@@ -291,9 +308,9 @@ export default function RecruitPage() {
 
               {/* 勤務時間・休日 */}
               <div
-                ref={cardRef5 as React.RefObject<HTMLDivElement>}
+                ref={el => { cardRefs.current[4] = el; }}
                 className={`bg-white rounded-xl p-4 md:p-6 shadow-md border-l-4 border-teal-500 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ${
-                  isCard5Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                  cardVisibility[4] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 }`}
               >
                 <div className="flex items-center gap-2 mb-3">
@@ -348,9 +365,9 @@ export default function RecruitPage() {
 
               {/* 特徴 */}
               <div
-                ref={cardRef6 as React.RefObject<HTMLDivElement>}
+                ref={el => { cardRefs.current[5] = el; }}
                 className={`bg-white rounded-xl p-4 md:p-6 shadow-md border-l-4 border-emerald-500 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ${
-                  isCard6Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                  cardVisibility[5] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 }`}
               >
                 <div className="flex items-center gap-2 mb-3">
@@ -376,9 +393,9 @@ export default function RecruitPage() {
 
               {/* 待遇・福利厚生 */}
               <div
-                ref={cardRef7 as React.RefObject<HTMLDivElement>}
+                ref={el => { cardRefs.current[6] = el; }}
                 className={`bg-white rounded-xl p-4 md:p-6 shadow-md border-l-4 border-teal-500 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ${
-                  isCard7Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                  cardVisibility[6] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 }`}
               >
                 <div className="flex items-center gap-2 mb-3">
@@ -400,9 +417,9 @@ export default function RecruitPage() {
 
               {/* 応募要件 */}
               <div
-                ref={cardRef8 as React.RefObject<HTMLDivElement>}
+                ref={el => { cardRefs.current[7] = el; }}
                 className={`bg-white rounded-xl p-4 md:p-6 shadow-md border-l-4 border-emerald-500 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ${
-                  isCard8Visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                  cardVisibility[7] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 }`}
               >
                 <div className="flex items-center gap-2 mb-3">
