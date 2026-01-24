@@ -52,45 +52,45 @@ const aboutData = {
   guidelines: [
     {
       num: 1,
-      shortTitle: "感情は大切に、ただし判断はロジカルに",
-      subtitle: "感情と論理の両立：気持ちを大切にしながら、判断は冷静なデータや根拠で行う。",
-      description: "自分や相手がどう感じているかという「気持ち」は無視せず、大切に扱う。ただし、仕事の決断を下すときは感情に流されず、事実やデータに基づいた「理屈（ロジカル）」で冷静に判断する。"
+      shortTitle: "感情は大切に、判断はロジカルに",
+      subtitle: "気持ちを尊重しつつ、決断は事実とデータで",
+      description: "相手の気持ちや自分の感情を大切にしながらも、仕事の判断は感情に流されず、事実やデータに基づいて冷静に行う。"
     },
     {
       num: 2,
-      shortTitle: "全員がチームであり、リーダーである",
-      subtitle: "全員がリーダー：全員が責任感を持ち、チーム一丸となって成果を追求する。",
-      description: "「誰かがやってくれる」という他人任せの姿勢は捨てる。全員が責任者（リーダー）という意識を持ち、積極的に情報を共有しながら、チームとして最高の成果を追求する。"
+      shortTitle: "全員がチーム、全員がリーダー",
+      subtitle: "他人任せにせず、自分から動く",
+      description: "「誰かがやるだろう」ではなく、全員が当事者意識を持つ。情報を積極的に共有し、チームとして最高の成果を目指す。"
     },
     {
       num: 3,
-      shortTitle: "自己を理解して、他者を理解する",
-      subtitle: "相互理解：己を知り他者を認めることで、お互いの弱みを補い合う。",
-      description: "まずは自分の強みと弱みを正しく知る。それが相手を理解することにつながり、お互いの苦手を補い合うことで、一人では出せない大きな力を発揮できるようになる。"
+      shortTitle: "まず自分を知り、相手を理解する",
+      subtitle: "強みと弱みを認め、補い合う",
+      description: "自分の得意・不得意を正しく把握することが、相手を理解する第一歩。お互いの弱みを補い合うことで、一人では出せない力を発揮できる。"
     },
     {
       num: 4,
-      shortTitle: "好奇心を知識に、知識を力にする",
-      subtitle: "好奇心と知識：学びを武器に変え、多角的な視点で新しい価値を生み出す。",
-      description: "「なぜ？」という好奇心を大切にし、学び続ける。知識が増えれば、物事を多角的に見られるようになる。「当たり前」を疑う姿勢が、新しい価値を生み出す武器になる。"
+      shortTitle: "好奇心を知識に、知識を力に",
+      subtitle: "「なぜ？」から始まる成長",
+      description: "「なぜ？」という好奇心を持ち続け、学び続ける。知識が増えれば視野が広がり、「当たり前」を疑う力が新しい価値を生み出す。"
     },
     {
       num: 5,
-      shortTitle: "日々の不便から新たな発見をする",
-      subtitle: "不便の解消：日常の「使いにくさ」を放置せず、改善のヒントにする。",
-      description: "毎日のちょっとした「不便さ」を「仕方ない」と放置しない。その違和感を見逃さずに改善案を出すことが、組織を成長させる大きなヒントになる。"
+      shortTitle: "不便は改善のヒント",
+      subtitle: "違和感を見逃さない",
+      description: "日々の「使いにくさ」や「面倒くささ」を放置しない。その違和感こそが、組織を成長させる改善の種になる。"
     },
     {
       num: 6,
-      shortTitle: "誰か・なにかにとって最善の行動をする",
-      subtitle: "他者への貢献：相手の利益を優先して動くことが、結果的に自らの成長を促す。",
-      description: "自分の利益だけを考えず、「相手や社会にとって何が良いか」を基準に動く。他人に貢献することが信頼を生み、結果として自分や会社の成長として返ってくる。"
+      shortTitle: "相手にとっての最善を考える",
+      subtitle: "貢献が信頼を生む",
+      description: "自分の利益だけでなく、相手や社会にとって何が良いかを基準に動く。貢献が信頼を生み、結果として自分の成長にもつながる。"
     },
     {
       num: 7,
-      shortTitle: "完璧なんてない、だからこそ最適化する",
-      subtitle: "常に最適化：完璧はない。IT等を活用し、常に仕組みをアップデートし続ける。",
-      description: "この世に「完璧」なものなど存在しない。だからこそ現状に満足せず、ITなどを活用して、その時々の「ベストな状態」へと常に仕組みをアップデートし続ける。"
+      shortTitle: "完璧より最適化",
+      subtitle: "常にアップデートし続ける",
+      description: "完璧なものは存在しない。だからこそ現状に満足せず、ITなどを活用して、その時々のベストな状態へと仕組みを更新し続ける。"
     },
   ],
   dapae: {
@@ -170,27 +170,31 @@ const aboutData = {
     coreIdea: {
       title: "核心となる考え方：「データ」を「情報」へ",
       description: "このサイクルの肝は、「未加工の数値（データ）」に文脈や意味を与えて「行動の指針（情報）」へ昇華させることにある。",
-      example: "例えば、単に「売上100万円」というデータがあっても、それが「目標の半分なのか、過去最高なのか」という分析がなければ、次の計画は立てられない。分析を経て「新規顧客は増えたがリピートが減っている」という情報になって初めて、正しい成長のサイクルが回り出す。",
+      example: "例えば、「書類作業に2.5時間かかっている」というデータだけでは、何をすべきか分からない。分析を経て「訪問記録が最も時間を取っている」「手書きからPC入力への二度手間が原因」という情報になって初めて、「タブレットで現場入力」という具体的な改善策が見えてくる。",
     },
   },
   logo: {
+    title: "フラクタルのかたち",
+    subtitle: "シンプルで独創的、それがフラクタル",
+    introduction: "シンプルな三角形の組み合わせが、複雑で美しい形を生み出す。私たちのロゴは、社名の由来である「フラクタル構造」そのものを表現しています。",
     meanings: [
       {
         name: "フラクタル構造",
-        description: "シンプルさと独創性、無限の可能性",
+        description: "同じパターンがスケールを変えて繰り返される「フラクタル」。シンプルなルールから無限の複雑さが生まれるこの数学的構造は、私たちの事業哲学を象徴しています。小さな改善の積み重ねが、やがて大きな価値へと成長していく。再現性のあるサービスを追求する姿勢がここに表れています。",
         icon: "△",
       },
       {
         name: "三つ葉のクローバー",
-        description: "愛・信頼・希望",
+        description: "ロゴの中心を見ると、濃い緑色の「三つ葉のクローバー」が浮かび上がります。これは「愛・信頼・希望」という3つの価値を表しています。利用者様への愛情、地域社会との信頼関係、そしてより良い未来への希望。この3つを大切に、すべての活動に取り組んでいます。",
         icon: "🍀",
       },
       {
-        name: "再現性と最適化",
-        description: "効率性とチームワーク",
+        name: "常に最適化",
+        description: "三角形の配置には、あえて「完璧な対称」を避けています。完璧を追い求めるのではなく、状況に応じた最適解を見つけ続ける。DAPAEサイクルで常に改善を繰り返し、その時々のベストを追求する私たちの姿勢がここに込められています。",
         icon: "⚡",
       },
     ],
+    conclusion: "シンプルなルールから独創的な価値を生み出す。このロゴは、私たちフラクタルの理念そのものです。",
   },
 };
 
@@ -1205,29 +1209,10 @@ export default function AboutFractalPage() {
                     {/* 説明 */}
                     <p
                       className="text-white/80 leading-relaxed"
-                      style={{ fontSize: 'var(--font-size-fluid-sm)', marginBottom: 'var(--spacing-fluid-sm)' }}
+                      style={{ fontSize: 'var(--font-size-fluid-sm)' }}
                     >
                       {step.description}
                     </p>
-
-                    {/* 具体例 */}
-                    <div
-                      className="bg-white/5 rounded-lg border-l-2 border-teal-400"
-                      style={{ padding: 'var(--spacing-fluid-sm)' }}
-                    >
-                      <p
-                        className="text-teal-200 font-bold"
-                        style={{ fontSize: 'var(--font-size-fluid-sm)', marginBottom: 'var(--spacing-fluid-xs)' }}
-                      >
-                        具体例：
-                      </p>
-                      <p
-                        className="text-white/70 leading-relaxed"
-                        style={{ fontSize: 'var(--font-size-fluid-sm)' }}
-                      >
-                        {step.example}
-                      </p>
-                    </div>
                   </div>
                 </div>
 
@@ -1328,6 +1313,7 @@ export default function AboutFractalPage() {
         <div className="absolute top-0 left-0 w-64 h-64 bg-[var(--color-logo-yellow)]/10 rounded-full blur-3xl -z-10"></div>
         <div className="absolute bottom-0 right-0 w-64 h-64 bg-[var(--color-logo-yellow)]/10 rounded-full blur-3xl -z-10"></div>
 
+        {/* タイトル */}
         <div
           className="text-center"
           style={{ marginBottom: 'var(--spacing-fluid-xl)' }}
@@ -1342,17 +1328,23 @@ export default function AboutFractalPage() {
             className="font-bold text-primary"
             style={{ fontSize: 'var(--font-size-fluid-2xl)' }}
           >
-            ロゴに込めた想い
+            {aboutData.logo.title}
           </h3>
+          <p
+            className="text-[var(--color-logo-dark-green)] font-medium"
+            style={{ fontSize: 'var(--font-size-fluid-lg)', marginTop: 'var(--spacing-fluid-xs)' }}
+          >
+            {aboutData.logo.subtitle}
+          </p>
         </div>
 
+        {/* ロゴと導入文 */}
         <div
           className="flex flex-col md:flex-row items-center"
-          style={{ gap: 'var(--spacing-fluid-lg)' }}
+          style={{ gap: 'var(--spacing-fluid-lg)', marginBottom: 'var(--spacing-fluid-xl)' }}
         >
-          {/* ロゴ */}
           <div className="shrink-0">
-            <div className="relative w-32 h-32 md:w-64 md:h-64">
+            <div className="relative w-40 h-40 md:w-56 md:h-56">
               <Image
                 src="/images/logos/corporate-logo.png"
                 alt="株式会社フラクタル ロゴ"
@@ -1361,33 +1353,57 @@ export default function AboutFractalPage() {
               />
             </div>
           </div>
-
-          {/* 意味 */}
-          <div className="flex-1 w-full" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-fluid-sm)' }}>
-            {aboutData.logo.meanings.map((meaning, index) => (
-              <div
-                key={index}
-                className="flex items-start bg-gradient-to-r from-[var(--color-logo-yellow)]/20 to-transparent rounded-xl border-l-2 border-[var(--color-logo-yellow)] hover:border-[var(--color-logo-light-green)] transition-all duration-300"
-                style={{ padding: 'var(--spacing-fluid-sm)', gap: 'var(--spacing-fluid-sm)' }}
-              >
-                <span style={{ fontSize: 'var(--font-size-fluid-2xl)' }}>{meaning.icon}</span>
-                <div>
-                  <h4
-                    className="font-bold text-primary"
-                    style={{ fontSize: 'var(--font-size-fluid-base)' }}
-                  >
-                    {meaning.name}
-                  </h4>
-                  <p
-                    className="text-primary/70"
-                    style={{ fontSize: 'var(--font-size-fluid-sm)' }}
-                  >
-                    {meaning.description}
-                  </p>
-                </div>
-              </div>
-            ))}
+          <div className="flex-1">
+            <p
+              className="text-primary/80 leading-relaxed"
+              style={{ fontSize: 'var(--font-size-fluid-base)' }}
+            >
+              {aboutData.logo.introduction}
+            </p>
           </div>
+        </div>
+
+        {/* 4つの意味 */}
+        <div
+          className="grid md:grid-cols-2"
+          style={{ gap: 'var(--spacing-fluid-md)' }}
+        >
+          {aboutData.logo.meanings.map((meaning, index) => (
+            <div
+              key={index}
+              className="bg-gradient-to-br from-[var(--color-logo-yellow)]/10 to-white rounded-2xl border border-[var(--color-logo-yellow)]/30 hover:border-[var(--color-logo-light-green)] hover:shadow-lg transition-all duration-300"
+              style={{ padding: 'var(--spacing-fluid-md)' }}
+            >
+              <div className="flex items-center gap-3 mb-3">
+                <span className="text-3xl md:text-4xl">{meaning.icon}</span>
+                <h4
+                  className="font-bold text-[var(--color-logo-dark-green)]"
+                  style={{ fontSize: 'var(--font-size-fluid-base)' }}
+                >
+                  {meaning.name}
+                </h4>
+              </div>
+              <p
+                className="text-primary/70 leading-relaxed"
+                style={{ fontSize: 'var(--font-size-fluid-sm)' }}
+              >
+                {meaning.description}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* 結論 */}
+        <div
+          className="text-center bg-gradient-to-r from-[var(--color-logo-light-green)]/20 via-[var(--color-logo-yellow)]/20 to-[var(--color-logo-light-green)]/20 rounded-2xl"
+          style={{ marginTop: 'var(--spacing-fluid-xl)', padding: 'var(--spacing-fluid-lg)' }}
+        >
+          <p
+            className="text-[var(--color-logo-dark-green)] font-medium leading-relaxed"
+            style={{ fontSize: 'var(--font-size-fluid-base)' }}
+          >
+            {aboutData.logo.conclusion}
+          </p>
         </div>
       </Section>
 
