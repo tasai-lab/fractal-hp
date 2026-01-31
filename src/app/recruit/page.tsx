@@ -294,13 +294,13 @@ export default function RecruitPage() {
               互いに支え合いながら、成長を喜べるチームです。
             </p>
           </FadeIn>
-          <FadeIn className="relative aspect-[16/9] rounded-3xl overflow-hidden shadow-lg bg-white mt-6">
+          <FadeIn className="relative aspect-[3/2] rounded-3xl overflow-hidden shadow-lg bg-white mt-6">
             <Image
-              src="/images/recruit/photos/team.jpg"
-              alt="チームの雰囲気"
+              src="/images/recruit/labels/team-title.png"
+              alt="一緒に働く仲間"
               fill
-              sizes="(max-width: 1024px) 100vw, 80vw"
-              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 70vw"
+              className="object-contain bg-white"
             />
           </FadeIn>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
@@ -380,13 +380,13 @@ export default function RecruitPage() {
               看護師・理学療法士・作業療法士・言語聴覚士を募集中です。
             </p>
           </FadeIn>
-          <FadeIn className="relative aspect-[16/9] rounded-3xl overflow-hidden shadow-lg bg-white">
+          <FadeIn className="relative aspect-square max-w-[360px] rounded-3xl overflow-hidden shadow-lg bg-white">
             <Image
-              src="/images/recruit/photos/positions.jpg"
-              alt="現場の様子"
+              src="/images/recruit/labels/positions-title.png"
+              alt="募集職種"
               fill
-              sizes="(max-width: 1024px) 100vw, 80vw"
-              className="object-cover"
+              sizes="(max-width: 1024px) 70vw, 360px"
+              className="object-contain bg-white"
             />
           </FadeIn>
 
@@ -640,8 +640,8 @@ export default function RecruitPage() {
             </FadeIn>
             <FadeIn className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg bg-white">
               <Image
-                src="/images/recruit/photos/cta.jpg"
-                alt="フラクタルで働く"
+                src="/images/recruit/labels/contact-photo.jpg"
+                alt="募集お問い合わせ"
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover"
