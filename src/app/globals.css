@@ -26,6 +26,14 @@
   --color-muted: #6b7280;
   --color-border: #e5e7eb;
 
+  /* Editorial Palette */
+  --color-paper: #f7f2ea;
+  --color-sand: #efe7dd;
+  --color-ink: #2b2b2b;
+  --color-ink-soft: #4a4a4a;
+  --color-olive: #2f5b4a;
+  --color-terracotta: #c78a67;
+
   /* Spacing */
   --section-padding: 5rem;
 
@@ -67,6 +75,7 @@
   --color-muted: var(--color-muted);
   --color-border: var(--color-border);
   --font-sans: var(--font-mplus1), "M PLUS 1", sans-serif;
+  --font-mincho: var(--font-mincho);
 }
 
 html {
@@ -78,6 +87,19 @@ body {
   color: var(--color-foreground);
   font-family: var(--font-mplus1), "M PLUS 1", sans-serif;
   line-height: 1.8;
+}
+
+.body-editorial {
+  background: linear-gradient(180deg, var(--color-paper), #ffffff);
+  color: var(--color-ink);
+}
+
+.heading-mincho {
+  font-family: var(--font-mincho), serif;
+}
+
+.text-ink-soft {
+  color: var(--color-ink-soft);
 }
 
 /* Scrollbar hide utility */

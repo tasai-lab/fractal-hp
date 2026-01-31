@@ -1,11 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { M_PLUS_1 } from "next/font/google";
+import { M_PLUS_1, Zen_Old_Mincho } from "next/font/google";
 import "./globals.css";
 import GoogleAnalytics, { GoogleTagManagerNoscript } from "@/components/GoogleAnalytics";
 import StructuredData from "@/components/StructuredData";
 
 const mplus1 = M_PLUS_1({
   variable: "--font-mplus1",
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+});
+
+const zenOldMincho = Zen_Old_Mincho({
+  variable: "--font-mincho",
   subsets: ["latin"],
   weight: ["400", "500", "700"],
 });
@@ -186,7 +192,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
       </head>
-      <body className={`${mplus1.variable} antialiased`}>
+      <body className={`${mplus1.variable} ${zenOldMincho.variable} antialiased`}>
         <GoogleTagManagerNoscript />
         {children}
       </body>
