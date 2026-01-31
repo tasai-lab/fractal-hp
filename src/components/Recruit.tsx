@@ -71,9 +71,9 @@ export default function Recruit() {
             </div>
 
             {/* HP限定入社祝い金バナー */}
-            <div className="bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 rounded-xl md:rounded-2xl p-4 md:p-8 shadow-lg relative overflow-hidden mb-8 md:mb-12">
-              <div className="absolute top-0 right-0 w-20 md:w-32 h-20 md:h-32 bg-yellow-200 rounded-full -translate-y-1/2 translate-x-1/2 opacity-50"></div>
-              <div className="absolute bottom-0 left-0 w-16 md:w-24 h-16 md:h-24 bg-yellow-200 rounded-full translate-y-1/2 -translate-x-1/2 opacity-50"></div>
+            <div className="bg-gradient-to-r from-[var(--color-logo-yellow)] via-[var(--color-logo-yellow)]/80 to-[var(--color-logo-yellow)] rounded-xl md:rounded-2xl p-4 md:p-8 shadow-lg relative overflow-hidden mb-8 md:mb-12">
+              <div className="absolute top-0 right-0 w-20 md:w-32 h-20 md:h-32 bg-[var(--color-logo-yellow)]/50 rounded-full -translate-y-1/2 translate-x-1/2 opacity-50"></div>
+              <div className="absolute bottom-0 left-0 w-16 md:w-24 h-16 md:h-24 bg-[var(--color-logo-yellow)]/50 rounded-full translate-y-1/2 -translate-x-1/2 opacity-50"></div>
 
               <div className="relative z-10">
                 <div className="inline-block bg-red-500 text-white text-base md:text-lg font-bold px-2 md:px-3 py-1 rounded-full mb-3 md:mb-4">
