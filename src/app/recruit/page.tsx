@@ -16,6 +16,7 @@ import {
 } from "@/lib/recruit-data";
 import { recruitFAQs } from "@/lib/faq-data";
 import { staffMembers } from "@/lib/data";
+import { recruitAreas } from "@/lib/recruit-areas";
 
 const tabs = jobPositions
   .filter((job) => !job.hidden)
@@ -121,7 +122,7 @@ export default function RecruitPage() {
             </h2>
             <p className="text-ink-soft text-base md:text-lg leading-relaxed">
               船橋市、八千代市、習志野市、千葉市花見川区で看護師・理学療法士・作業療法士・言語聴覚士を募集しています。
-              入社祝い金最大30万円、年間休日139日以上（PT・OT・STは120日以上）。未経験・ブランクのある方も歓迎です。
+              入社祝い金最大30万円、年休139日以上（PT・OT・STは120日以上）。未経験・ブランクのある方も歓迎です。
             </p>
             <div className="flex flex-wrap gap-3 pt-2">
               <button
@@ -143,10 +144,7 @@ export default function RecruitPage() {
                 祝金 最大30万円
               </span>
               <span className="px-3 py-1 rounded-full bg-[var(--color-olive)] text-white text-xs font-semibold">
-                年休139日以上
-              </span>
-              <span className="px-3 py-1 rounded-full bg-[var(--color-paper)] text-[var(--color-olive)] text-xs font-semibold">
-                PT・OT・STは120日以上
+                年休139日以上（PT・OT・STは120日以上）
               </span>
             </div>
           </FadeIn>
@@ -174,7 +172,7 @@ export default function RecruitPage() {
               <div className="min-w-[200px] md:min-w-0 snap-center bg-[var(--color-olive)] text-white rounded-2xl p-4 shadow-sm">
                 <p className="text-xs">年間休日</p>
                 <p className="heading-mincho text-lg mt-1">139日以上</p>
-                <p className="text-xs mt-1">看護師</p>
+                <p className="text-xs mt-1">年休139日以上（PT・OT・STは120日以上）</p>
               </div>
               <div className="min-w-[200px] md:min-w-0 snap-center bg-white rounded-2xl border border-[var(--color-sand)] p-4 shadow-sm">
                 <p className="text-xs text-ink-soft">年間休日</p>
@@ -357,6 +355,23 @@ export default function RecruitPage() {
                 </span>
               ))}
             </div>
+            <div className="grid md:grid-cols-2 gap-3 mt-4">
+              {recruitAreas.map((area) => (
+                <Link
+                  key={area.slug}
+                  href={`/recruit/areas/${area.slug}`}
+                  className="group bg-white/80 rounded-2xl border border-white px-4 py-3 text-sm text-ink-soft hover:shadow-md transition"
+                >
+                  <p className="text-[var(--color-olive)] font-semibold">
+                    {area.name}の訪問看護求人
+                  </p>
+                  <p className="text-xs text-ink-soft mt-1">{area.shortCopy}</p>
+                  <p className="text-xs text-[var(--color-olive)] mt-2">
+                    詳しく見る →
+                  </p>
+                </Link>
+              ))}
+            </div>
           </FadeIn>
         </section>
 
@@ -381,6 +396,20 @@ export default function RecruitPage() {
             <p className="text-ink-soft mt-2">
               看護師・理学療法士・作業療法士・言語聴覚士を募集中です。
             </p>
+            <div className="flex flex-wrap gap-3 mt-4">
+              <Link
+                href="/recruit/nurse"
+                className="px-4 py-2 rounded-full bg-[var(--color-olive)] text-white text-sm font-semibold hover:opacity-90 transition"
+              >
+                看護師の詳細を見る
+              </Link>
+              <Link
+                href="/recruit/therapist"
+                className="px-4 py-2 rounded-full border border-[var(--color-olive)] text-[var(--color-olive)] text-sm font-semibold hover:bg-[var(--color-olive)]/10 transition"
+              >
+                PT・OT・STの詳細を見る
+              </Link>
+            </div>
           </FadeIn>
           <FadeIn className="relative aspect-[3/2] rounded-3xl overflow-hidden shadow-lg bg-[var(--color-paper)]">
             <Image
