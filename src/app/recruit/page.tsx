@@ -33,6 +33,18 @@ const teamMembers = [
   { name: "祝迫", image: "/images/staff/iwaizako.png" },
 ];
 
+const featureIcons = [
+  "/images/recruit/icons/1.png",
+  "/images/recruit/icons/2.png",
+  "/images/recruit/icons/3.png",
+];
+
+const listIcons = [
+  "/images/recruit/icons/4.png",
+  "/images/recruit/icons/5.png",
+  "/images/recruit/icons/6.png",
+];
+
 const FadeIn = ({
   children,
   className = "",
@@ -143,8 +155,8 @@ export default function RecruitPage() {
           </FadeIn>
           <FadeIn className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg">
             <Image
-              src="/images/recruit/recruit-team.png"
-              alt="フラクタルのチーム"
+              src="/images/recruit/photos/hero.jpg"
+              alt="フラクタル訪問看護の現場"
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 45vw"
@@ -155,26 +167,35 @@ export default function RecruitPage() {
 
         <section className="bg-[var(--color-paper)] rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
           <FadeIn>
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <div className="grid md:grid-cols-[1.1fr,0.9fr] gap-8 items-center">
               <div>
                 <p className="text-xs tracking-[0.3em] text-ink-soft">SIGN-ON BONUS</p>
                 <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
                   入社祝い金 最大<CountUp end={30} suffix="万円" />
                 </h3>
                 <p className="text-ink-soft mt-2">全ての職種に適用されます</p>
+                <div className="grid grid-cols-3 gap-3 mt-5">
+                  {signOnBonus.milestones.map((milestone) => (
+                    <div
+                      key={milestone.label}
+                      className="bg-white/90 rounded-2xl p-3 text-center border border-white"
+                    >
+                      <p className="text-xs text-ink-soft">{milestone.label}</p>
+                      <p className="heading-mincho text-lg text-[var(--color-olive)]">
+                        {(milestone.amount / 10000).toLocaleString()}万円
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <div className="grid grid-cols-3 gap-3">
-                {signOnBonus.milestones.map((milestone) => (
-                  <div
-                    key={milestone.label}
-                    className="bg-white/90 rounded-2xl p-3 text-center border border-white"
-                  >
-                    <p className="text-xs text-ink-soft">{milestone.label}</p>
-                    <p className="heading-mincho text-lg text-[var(--color-olive)]">
-                      {(milestone.amount / 10000).toLocaleString()}万円
-                    </p>
-                  </div>
-                ))}
+              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg">
+                <Image
+                  src="/images/recruit/photos/bonus.jpg"
+                  alt="現場の様子"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  className="object-cover"
+                />
               </div>
             </div>
             <p className="text-ink-soft text-sm mt-4">
@@ -194,9 +215,17 @@ export default function RecruitPage() {
               現場の声を拾い、仕組みとITで負担を減らす。だから「訪問看護は大変」というイメージが変わります。
             </p>
             <ul className="space-y-2 text-ink-soft">
-              {currentJob.features.slice(0, 3).map((feature) => (
-                <li key={feature.title} className="flex items-start gap-2">
-                  <span className="text-[var(--color-olive)]">●</span>
+              {currentJob.features.slice(0, 3).map((feature, index) => (
+                <li key={feature.title} className="flex items-start gap-3">
+                  <div className="relative w-8 h-8 rounded-full bg-white shadow-sm border border-white">
+                    <Image
+                      src={featureIcons[index % featureIcons.length]}
+                      alt=""
+                      fill
+                      sizes="32px"
+                      className="object-contain p-1"
+                    />
+                  </div>
                   <span>
                     <span className="font-semibold text-[var(--color-olive)]">
                       {feature.title}
@@ -208,15 +237,29 @@ export default function RecruitPage() {
               ))}
             </ul>
           </FadeIn>
-          <FadeIn className="relative aspect-[16/9] rounded-3xl overflow-hidden shadow-lg bg-white">
-            <Image
-              src="/images/recruit/shift-example.png"
-              alt="実際のシフト例"
-              fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-contain"
-            />
-          </FadeIn>
+          <div className="space-y-4">
+            <FadeIn className="relative aspect-[16/9] rounded-3xl overflow-hidden shadow-lg bg-white">
+              <Image
+                src="/images/recruit/photos/work.jpg"
+                alt="働く環境の様子"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </FadeIn>
+            <FadeIn className="bg-white/80 rounded-2xl p-4 border border-white shadow-sm">
+              <p className="text-xs tracking-[0.3em] text-ink-soft">SHIFT EXAMPLE</p>
+              <div className="relative aspect-[16/9] rounded-xl overflow-hidden mt-3">
+                <Image
+                  src="/images/recruit/shift-example.png"
+                  alt="実際のシフト例"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-contain bg-white"
+                />
+              </div>
+            </FadeIn>
+          </div>
         </section>
 
         <section className="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
@@ -228,6 +271,15 @@ export default function RecruitPage() {
             <p className="text-ink-soft mt-2">
               互いに支え合いながら、成長を喜べるチームです。
             </p>
+          </FadeIn>
+          <FadeIn className="relative aspect-[16/9] rounded-3xl overflow-hidden shadow-lg bg-white mt-6">
+            <Image
+              src="/images/recruit/photos/team.jpg"
+              alt="チームの雰囲気"
+              fill
+              sizes="(max-width: 1024px) 100vw, 80vw"
+              className="object-cover"
+            />
           </FadeIn>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
             {teamMembers.map((member) => (
@@ -305,6 +357,15 @@ export default function RecruitPage() {
             <p className="text-ink-soft mt-2">
               看護師・理学療法士・作業療法士・言語聴覚士を募集中です。
             </p>
+          </FadeIn>
+          <FadeIn className="relative aspect-[16/9] rounded-3xl overflow-hidden shadow-lg bg-white">
+            <Image
+              src="/images/recruit/photos/positions.jpg"
+              alt="現場の様子"
+              fill
+              sizes="(max-width: 1024px) 100vw, 80vw"
+              className="object-cover"
+            />
           </FadeIn>
 
           <div className="flex bg-white/80 rounded-full p-1 border border-white shadow-sm">
@@ -444,9 +505,17 @@ export default function RecruitPage() {
 
                 <InfoCard title="待遇・福利厚生">
                   <ul className="grid gap-2 text-ink-soft text-sm md:text-base">
-                    {currentJob.details.benefits.map((benefit) => (
-                      <li key={benefit} className="flex items-start gap-2">
-                        <span className="text-[var(--color-olive)]">✓</span>
+                    {currentJob.details.benefits.map((benefit, index) => (
+                      <li key={benefit} className="flex items-start gap-3">
+                        <div className="relative w-6 h-6 rounded-full bg-[var(--color-paper)] border border-white shadow-sm">
+                          <Image
+                            src={listIcons[index % listIcons.length]}
+                            alt=""
+                            fill
+                            sizes="24px"
+                            className="object-contain p-1"
+                          />
+                        </div>
                         <span>{benefit}</span>
                       </li>
                     ))}
@@ -455,9 +524,17 @@ export default function RecruitPage() {
 
                 <InfoCard title="応募要件">
                   <ul className="grid gap-2 text-ink-soft text-sm md:text-base">
-                    {currentJob.details.requirements.map((req) => (
-                      <li key={req} className="flex items-start gap-2">
-                        <span className="text-[var(--color-olive)]">●</span>
+                    {currentJob.details.requirements.map((req, index) => (
+                      <li key={req} className="flex items-start gap-3">
+                        <div className="relative w-6 h-6 rounded-full bg-[var(--color-paper)] border border-white shadow-sm">
+                          <Image
+                            src={listIcons[(index + 2) % listIcons.length]}
+                            alt=""
+                            fill
+                            sizes="24px"
+                            className="object-contain p-1"
+                          />
+                        </div>
                         <span>{req}</span>
                       </li>
                     ))}
@@ -541,19 +618,30 @@ export default function RecruitPage() {
         </section>
 
         <section id="entry" className="bg-[var(--color-paper)] rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
-          <FadeIn>
-            <p className="text-xs tracking-[0.3em] text-ink-soft">CONTACT</p>
-            <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
-              お問い合わせ
-            </h3>
-            <div className="text-ink-soft mt-4">
-              <p className="leading-relaxed">{applicationMessage.main}</p>
-              <p className="text-sm mt-2">{applicationMessage.visit}</p>
-            </div>
-            <div className="mt-6">
-              <Contact initialContactType="求人・採用について" embedded={true} hideTitle={true} />
-            </div>
-          </FadeIn>
+          <div className="grid lg:grid-cols-[1.1fr,0.9fr] gap-8 items-start">
+            <FadeIn>
+              <p className="text-xs tracking-[0.3em] text-ink-soft">CONTACT</p>
+              <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
+                お問い合わせ
+              </h3>
+              <div className="text-ink-soft mt-4">
+                <p className="leading-relaxed">{applicationMessage.main}</p>
+                <p className="text-sm mt-2">{applicationMessage.visit}</p>
+              </div>
+              <div className="mt-6">
+                <Contact initialContactType="求人・採用について" embedded={true} hideTitle={true} />
+              </div>
+            </FadeIn>
+            <FadeIn className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg bg-white">
+              <Image
+                src="/images/recruit/photos/cta.jpg"
+                alt="フラクタルで働く"
+                fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="object-cover"
+              />
+            </FadeIn>
+          </div>
         </section>
       </main>
     </div>
