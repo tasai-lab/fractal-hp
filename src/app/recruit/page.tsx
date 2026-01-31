@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { BadgeCheck, CheckCircle2 } from "lucide-react";
@@ -17,8 +17,10 @@ import {
   applicationMessage,
   therapistDuties,
   therapistModelIncome,
+  type JobPosition,
 } from "@/lib/recruit-data";
 import { recruitFAQs } from "@/lib/faq-data";
+import { staffMembers } from "@/lib/data";
 
 const tabs = jobPositions
   .filter((job) => !job.hidden)
@@ -27,12 +29,22 @@ const tabs = jobPositions
     label: job.id === "nurse" ? "看護師" : "理学/作業/言語",
   }));
 
-const teamMembers = [
-  { name: "古谷", role: "管理者", image: "/images/staff/furuya.png" },
-  { name: "浅井", role: "看護師", image: "/images/staff/asai.png" },
-  { name: "髙山", role: "看護師", image: "/images/staff/takayama.png" },
-  { name: "祝迫", role: "営業兼事務職", image: "/images/staff/iwaizako.png" },
-];
+const roleOverrides: Record<string, string> = {
+  "古谷 一真": "管理者",
+  "浅井 拓哉": "看護師",
+  "髙山 里美": "看護師",
+  "祝迫 萌々": "営業兼事務職",
+};
+
+const teamOrder = ["古谷 一真", "浅井 拓哉", "髙山 里美", "祝迫 萌々"];
+
+const teamProfiles = teamOrder
+  .map((name) => staffMembers.find((staff) => staff.name === name))
+  .filter((staff): staff is NonNullable<typeof staffMembers>[number] => Boolean(staff))
+  .map((staff) => ({
+    ...staff,
+    role: roleOverrides[staff.name] ?? staff.role,
+  }));
 
 const featureIcons = [
   "/images/recruit/icons/1.png",
@@ -81,14 +93,182 @@ const InfoCard = ({
   </div>
 );
 
+const JobDetails = ({ job }: { job: JobPosition }) => {
+  const isNurse = job.id === "nurse";
+  const duties = isNurse ? jobDuties : therapistDuties;
+
+  return (
+    <div className="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
+      <div className="flex flex-wrap gap-2">
+        {job.highlights.map((highlight) => (
+          <span
+            key={highlight}
+            className="px-3 py-1 rounded-full bg-[var(--color-paper)] text-xs text-[var(--color-olive)]"
+          >
+            {highlight}
+          </span>
+        ))}
+        {isNurse && (
+          <span className="px-3 py-1 rounded-full bg-[var(--color-olive)] text-xs text-white font-semibold">
+            年休139日以上
+          </span>
+        )}
+      </div>
+      <h4 className="heading-mincho text-2xl text-[var(--color-olive)] mt-4">
+        {job.title}募集
+      </h4>
+      <p className="text-ink-soft mt-2">{job.subtitle}</p>
+
+      <div className="grid lg:grid-cols-2 gap-6 mt-8">
+        <div className="space-y-6">
+          <InfoCard title={isNurse ? "看護師の仕事内容" : "訪問リハビリスタッフの仕事内容"}>
+            <p className="text-ink-soft mb-3">{job.description}</p>
+            <ul className="space-y-2 text-ink-soft text-sm md:text-base">
+              {duties.map((duty) => (
+                <li key={duty} className="flex items-start gap-2">
+                  <span className="text-[var(--color-olive)]">●</span>
+                  <span>{duty}</span>
+                </li>
+              ))}
+            </ul>
+          </InfoCard>
+
+          <InfoCard title="訪問エリア">
+            <div className="flex flex-wrap gap-2">
+              {visitAreas.map((area) => (
+                <span
+                  key={area}
+                  className="px-3 py-1 rounded-full bg-[var(--color-paper)] text-sm text-[var(--color-olive)]"
+                >
+                  {area}
+                </span>
+              ))}
+            </div>
+          </InfoCard>
+
+          {isNurse && (
+            <InfoCard title="オンコールについて">
+              <p className="text-ink-soft">
+                月{onCallInfo.frequency.replace("月", "").replace("程度", "")}程度
+              </p>
+              <p className="text-ink-soft text-sm mt-2">{onCallInfo.note}</p>
+            </InfoCard>
+          )}
+        </div>
+
+        <div className="space-y-6">
+          <InfoCard title="給与">
+            <p className="text-xs text-ink-soft">【{job.details.salary.type}】</p>
+            <p className="heading-mincho text-xl md:text-2xl text-[var(--color-olive)] mt-1">
+              {job.details.salary.amount}
+            </p>
+            <ul className="space-y-2 text-ink-soft text-sm md:text-base mt-4">
+              {job.details.salary.breakdown.map((item) => (
+                <li key={item.label} className="flex flex-col md:flex-row md:justify-between">
+                  <span>{item.label}</span>
+                  <span className="font-medium text-[var(--color-olive)]">
+                    {item.value}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            {job.details.salary.note && (
+              <p className="text-xs text-ink-soft mt-3">{job.details.salary.note}</p>
+            )}
+          </InfoCard>
+
+          {!isNurse && (
+            <InfoCard title="モデル年収">
+              <div className="grid gap-3">
+                {therapistModelIncome.map((model) => (
+                  <div key={model.label} className="bg-[var(--color-paper)] rounded-xl p-3">
+                    <p className="text-xs text-ink-soft">{model.label}</p>
+                    <p className="text-ink-soft text-sm mt-1">{model.calculation}</p>
+                    <p className="heading-mincho text-[var(--color-olive)] mt-2">
+                      {model.monthly}
+                    </p>
+                    <p className="text-sm text-[var(--color-olive)]">{model.annual}</p>
+                  </div>
+                ))}
+              </div>
+            </InfoCard>
+          )}
+
+          <InfoCard title="勤務時間・休日">
+            <p className="text-ink-soft">{job.details.workHours}</p>
+            <div className="mt-3">
+              <p className="text-xs text-ink-soft">年間休日</p>
+              <p className="heading-mincho text-xl text-[var(--color-olive)]">
+                {job.details.holidays.annual}
+              </p>
+              {isNurse && (
+                <p className="text-xs font-semibold text-[var(--color-olive)]">
+                  看護師は139日以上
+                </p>
+              )}
+              {job.details.holidays.monthly && (
+                <p className="text-xs text-ink-soft">
+                  月の公休：{job.details.holidays.monthly}日
+                </p>
+              )}
+            </div>
+            <ul className="space-y-2 text-ink-soft text-sm mt-3">
+              {job.details.holidays.notes.map((note) => (
+                <li key={note} className="flex items-start gap-2">
+                  <span className="text-[var(--color-olive)]">★</span>
+                  <span>{note}</span>
+                </li>
+              ))}
+            </ul>
+          </InfoCard>
+
+          <InfoCard title="待遇・福利厚生">
+            <ul className="grid gap-2 text-ink-soft text-sm md:text-base">
+              {job.details.benefits.map((benefit) => (
+                <li key={benefit} className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-[var(--color-olive)] mt-0.5" />
+                  <span>{benefit}</span>
+                </li>
+              ))}
+            </ul>
+          </InfoCard>
+
+          <InfoCard title="応募要件">
+            <ul className="grid gap-2 text-ink-soft text-sm md:text-base">
+              {job.details.requirements.map((req) => (
+                <li key={req} className="flex items-start gap-3">
+                  <BadgeCheck className="w-5 h-5 text-[var(--color-olive)] mt-0.5" />
+                  <span>{req}</span>
+                </li>
+              ))}
+            </ul>
+          </InfoCard>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function RecruitPage() {
   const [activeTab, setActiveTab] = useState(tabs[0]?.id || "nurse");
   const currentJob = jobPositions.find((job) => job.id === activeTab) || jobPositions[0];
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
+  const [selectedTeam, setSelectedTeam] = useState<(typeof teamProfiles)[number] | null>(null);
 
   const toggleFAQ = (index: number) => {
     setOpenFAQIndex(openFAQIndex === index ? null : index);
   };
+
+  useEffect(() => {
+    if (selectedTeam) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [selectedTeam]);
 
   return (
     <div className="min-h-screen body-editorial">
@@ -106,8 +286,8 @@ export default function RecruitPage() {
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-4 md:px-6 py-10 md:py-16 space-y-16 md:space-y-24">
-        <section className="grid lg:grid-cols-[1.1fr,0.9fr] gap-10 items-center">
+      <main className="max-w-6xl mx-auto px-4 md:px-6 pt-10 md:pt-16 pb-28 md:pb-16 flex flex-col gap-16 md:gap-24">
+        <section className="order-1 grid lg:grid-cols-[1.1fr,0.9fr] gap-10 items-center">
           <FadeIn className="space-y-4">
             <p className="text-xs tracking-[0.3em] text-ink-soft">RECRUIT</p>
             <h2 className="heading-mincho text-3xl md:text-5xl text-[var(--color-olive)]">
@@ -139,41 +319,6 @@ export default function RecruitPage() {
                 看護師 年休139日以上
               </span>
             </div>
-            <div className="grid sm:grid-cols-3 gap-3 pt-4">
-              <div className="bg-white/80 rounded-2xl p-4 border border-white shadow-sm">
-                <p className="text-xs text-ink-soft">入社祝い金</p>
-                <p className="heading-mincho text-lg text-[var(--color-olive)]">最大30万円</p>
-              </div>
-              <div className="bg-white/80 rounded-2xl p-4 border border-white shadow-sm">
-                <p className="text-xs text-ink-soft">年間休日</p>
-                <p className="heading-mincho text-lg text-[var(--color-olive)]">
-                  120日以上
-                </p>
-                <p className="text-xs font-semibold text-[var(--color-olive)]">
-                  看護師は139日以上
-                </p>
-              </div>
-              <div className="bg-white/80 rounded-2xl p-4 border border-white shadow-sm">
-                <p className="text-xs text-ink-soft">働き方</p>
-                <p className="heading-mincho text-lg text-[var(--color-olive)]">未経験歓迎</p>
-              </div>
-            </div>
-            <div className="md:hidden -mx-4 pt-4">
-              <div className="flex gap-3 overflow-x-auto px-4 pb-2">
-                <div className="min-w-[180px] bg-white rounded-2xl border border-[var(--color-sand)] p-3 shadow-sm">
-                  <p className="text-xs text-ink-soft">入社祝い金</p>
-                  <p className="heading-mincho text-lg text-[var(--color-olive)]">最大30万円</p>
-                </div>
-                <div className="min-w-[180px] bg-[var(--color-olive)] text-white rounded-2xl p-3 shadow-sm">
-                  <p className="text-xs">看護師限定</p>
-                  <p className="heading-mincho text-lg">年休139日以上</p>
-                </div>
-                <div className="min-w-[180px] bg-white rounded-2xl border border-[var(--color-sand)] p-3 shadow-sm">
-                  <p className="text-xs text-ink-soft">年間休日</p>
-                  <p className="heading-mincho text-lg text-[var(--color-olive)]">120日以上</p>
-                </div>
-              </div>
-            </div>
           </FadeIn>
           <FadeIn className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg">
             <Image
@@ -187,7 +332,30 @@ export default function RecruitPage() {
           </FadeIn>
         </section>
 
-        <section className="bg-[var(--color-paper)] rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
+        <section className="order-2 bg-white/80 rounded-3xl p-4 md:p-6 shadow-sm border border-white/80">
+          <FadeIn>
+            <p className="text-xs tracking-[0.3em] text-ink-soft">KEY BENEFITS</p>
+            <div className="mt-4 flex md:grid md:grid-cols-3 gap-3 overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-2">
+              <div className="min-w-[200px] md:min-w-0 snap-center bg-white rounded-2xl border border-[var(--color-sand)] p-4 shadow-sm">
+                <p className="text-xs text-ink-soft">祝金30万円支給</p>
+                <p className="heading-mincho text-lg text-[var(--color-olive)] mt-1">最大30万円</p>
+                <p className="text-xs text-ink-soft mt-1">全職種対象</p>
+              </div>
+              <div className="min-w-[200px] md:min-w-0 snap-center bg-[var(--color-olive)] text-white rounded-2xl p-4 shadow-sm">
+                <p className="text-xs">年間休日139日以上</p>
+                <p className="heading-mincho text-lg mt-1">看護師</p>
+                <p className="text-xs mt-1">正社員の場合</p>
+              </div>
+              <div className="min-w-[200px] md:min-w-0 snap-center bg-white rounded-2xl border border-[var(--color-sand)] p-4 shadow-sm">
+                <p className="text-xs text-ink-soft">年間休日</p>
+                <p className="heading-mincho text-lg text-[var(--color-olive)] mt-1">120日以上</p>
+                <p className="text-xs text-ink-soft mt-1">全職種</p>
+              </div>
+            </div>
+          </FadeIn>
+        </section>
+
+        <section className="order-3 bg-[var(--color-paper)] rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
           <FadeIn>
             <div className="grid md:grid-cols-[1.1fr,0.9fr] gap-8 items-center">
               <div>
@@ -227,7 +395,7 @@ export default function RecruitPage() {
           </FadeIn>
         </section>
 
-        <section className="grid lg:grid-cols-[0.9fr,1.1fr] gap-10 items-center">
+        <section className="order-4 grid lg:grid-cols-[0.9fr,1.1fr] gap-10 items-center">
           <FadeIn className="space-y-4">
             <p className="text-xs tracking-[0.3em] text-ink-soft">WORK STYLE</p>
             <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)]">
@@ -284,7 +452,7 @@ export default function RecruitPage() {
           </div>
         </section>
 
-        <section className="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
+        <section className="order-6 bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
           <FadeIn>
             <p className="text-xs tracking-[0.3em] text-ink-soft">TEAM</p>
             <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
@@ -303,31 +471,35 @@ export default function RecruitPage() {
               className="object-contain bg-white"
             />
           </FadeIn>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
-            {teamMembers.map((member) => (
-              <FadeIn
-                key={member.name}
-                className="bg-[var(--color-paper)] rounded-2xl p-4 text-center border border-white"
-              >
-                <div className="relative aspect-square rounded-2xl overflow-hidden mb-3">
-                  <Image
-                    src={member.image}
-                    alt={`${member.name}の写真`}
-                    fill
-                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 20vw"
-                    className="object-cover"
-                  />
-                </div>
-                <p className="heading-mincho text-lg text-[var(--color-olive)]">
-                  {member.name}
-                </p>
-                <p className="text-xs text-ink-soft">{member.role}</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+            {teamProfiles.map((member) => (
+              <FadeIn key={member.name} className="transition-transform duration-300">
+                <button
+                  type="button"
+                  onClick={() => setSelectedTeam(member)}
+                  className="w-full bg-[var(--color-paper)] rounded-2xl p-3 md:p-5 text-center border border-white transition-all duration-300 hover:shadow-md active:scale-[0.98]"
+                >
+                  <div className="relative w-20 h-20 md:w-32 md:h-32 lg:w-36 lg:h-36 mx-auto rounded-2xl overflow-hidden mb-2 md:mb-3">
+                    <Image
+                      src={member.image}
+                      alt={`${member.name}の写真`}
+                      fill
+                      sizes="(max-width: 640px) 80px, (max-width: 1024px) 128px, 144px"
+                      className="object-cover"
+                    />
+                  </div>
+                  <p className="heading-mincho text-base md:text-lg text-[var(--color-olive)]">
+                    {member.name}
+                  </p>
+                  <p className="text-[11px] md:text-sm text-ink-soft">{member.role}</p>
+                  <p className="text-[10px] text-ink-soft/70 mt-1">タップで自己紹介</p>
+                </button>
               </FadeIn>
             ))}
           </div>
         </section>
 
-        <section className="grid lg:grid-cols-[1.1fr,0.9fr] gap-10 items-center">
+        <section className="order-8 grid lg:grid-cols-[1.1fr,0.9fr] gap-10 items-center">
           <FadeIn className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg bg-white">
             <Image
               src="/images/service-area/area-map.png"
@@ -358,7 +530,7 @@ export default function RecruitPage() {
           </FadeIn>
         </section>
 
-        <section className="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
+        <section className="order-9 bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
           <FadeIn>
             <p className="text-xs tracking-[0.3em] text-ink-soft">PHILOSOPHY</p>
             <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
@@ -370,7 +542,7 @@ export default function RecruitPage() {
           </FadeIn>
         </section>
 
-        <section id="positions" className="space-y-6">
+        <section id="positions" className="order-5 space-y-6">
           <FadeIn>
             <p className="text-xs tracking-[0.3em] text-ink-soft">POSITIONS</p>
             <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
@@ -380,178 +552,61 @@ export default function RecruitPage() {
               看護師・理学療法士・作業療法士・言語聴覚士を募集中です。
             </p>
           </FadeIn>
-          <FadeIn className="relative aspect-[3/2] rounded-3xl overflow-hidden shadow-lg bg-[var(--color-sand)]">
+          <FadeIn className="relative aspect-[3/2] rounded-3xl overflow-hidden shadow-lg bg-[var(--color-paper)]">
             <Image
               src="/images/recruit/labels/positions-title.png"
               alt="募集職種"
               fill
               sizes="(max-width: 1024px) 100vw, 80vw"
-              className="object-contain bg-[var(--color-sand)]"
+              className="object-contain bg-[var(--color-paper)]"
             />
           </FadeIn>
 
-          <div className="flex bg-white/80 rounded-full p-1 border border-white shadow-sm">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`flex-1 py-2 md:py-3 rounded-full text-sm md:text-base font-semibold transition-all ${
-                  activeTab === tab.id
-                    ? "bg-[var(--color-olive)] text-white"
-                    : "text-[var(--color-olive)] hover:bg-[var(--color-paper)]"
-                }`}
+          <div className="md:hidden space-y-4">
+            {jobPositions.filter((job) => !job.hidden).map((job) => (
+              <details
+                key={job.id}
+                className="bg-white rounded-2xl border border-white shadow-sm overflow-hidden"
               >
-                {tab.label}
-              </button>
+                <summary className="list-none cursor-pointer px-4 py-4">
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <p className="text-xs tracking-[0.2em] text-ink-soft">
+                        {job.title}
+                      </p>
+                      <p className="text-sm text-ink-soft mt-2">{job.subtitle}</p>
+                    </div>
+                    <span className="text-[var(--color-olive)] text-xl">＋</span>
+                  </div>
+                </summary>
+                <div className="px-4 pb-5">
+                  <JobDetails job={job} />
+                </div>
+              </details>
             ))}
           </div>
 
-          <div className="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
-            <div className="flex flex-wrap gap-2">
-              {currentJob.highlights.map((highlight) => (
-                <span
-                  key={highlight}
-                  className="px-3 py-1 rounded-full bg-[var(--color-paper)] text-xs text-[var(--color-olive)]"
+          <div className="hidden md:block space-y-6">
+            <div className="flex bg-white/80 rounded-full p-1 border border-white shadow-sm">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`flex-1 py-2 md:py-3 rounded-full text-sm md:text-base font-semibold transition-all ${
+                    activeTab === tab.id
+                      ? "bg-[var(--color-olive)] text-white"
+                      : "text-[var(--color-olive)] hover:bg-[var(--color-paper)]"
+                  }`}
                 >
-                  {highlight}
-                </span>
+                  {tab.label}
+                </button>
               ))}
             </div>
-            <h4 className="heading-mincho text-2xl text-[var(--color-olive)] mt-4">
-              {currentJob.title}募集
-            </h4>
-            <p className="text-ink-soft mt-2">{currentJob.subtitle}</p>
-
-            <div className="grid lg:grid-cols-2 gap-6 mt-8">
-              <div className="space-y-6">
-                <InfoCard title={activeTab === "nurse" ? "看護師の仕事内容" : "訪問リハビリスタッフの仕事内容"}>
-                  <p className="text-ink-soft mb-3">{currentJob.description}</p>
-                  <ul className="space-y-2 text-ink-soft text-sm md:text-base">
-                    {(activeTab === "nurse" ? jobDuties : therapistDuties).map((duty) => (
-                      <li key={duty} className="flex items-start gap-2">
-                        <span className="text-[var(--color-olive)]">●</span>
-                        <span>{duty}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </InfoCard>
-
-                <InfoCard title="訪問エリア">
-                  <div className="flex flex-wrap gap-2">
-                    {visitAreas.map((area) => (
-                      <span
-                        key={area}
-                        className="px-3 py-1 rounded-full bg-[var(--color-paper)] text-sm text-[var(--color-olive)]"
-                      >
-                        {area}
-                      </span>
-                    ))}
-                  </div>
-                </InfoCard>
-
-                {activeTab === "nurse" && (
-                  <InfoCard title="オンコールについて">
-                    <p className="text-ink-soft">
-                      月{onCallInfo.frequency.replace("月", "").replace("程度", "")}程度
-                    </p>
-                    <p className="text-ink-soft text-sm mt-2">{onCallInfo.note}</p>
-                  </InfoCard>
-                )}
-              </div>
-
-              <div className="space-y-6">
-                <InfoCard title="給与">
-                  <p className="text-xs text-ink-soft">【{currentJob.details.salary.type}】</p>
-                  <p className="heading-mincho text-xl md:text-2xl text-[var(--color-olive)] mt-1">
-                    {currentJob.details.salary.amount}
-                  </p>
-                  <ul className="space-y-2 text-ink-soft text-sm md:text-base mt-4">
-                    {currentJob.details.salary.breakdown.map((item) => (
-                      <li key={item.label} className="flex flex-col md:flex-row md:justify-between">
-                        <span>{item.label}</span>
-                        <span className="font-medium text-[var(--color-olive)]">
-                          {item.value}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                  {currentJob.details.salary.note && (
-                    <p className="text-xs text-ink-soft mt-3">
-                      {currentJob.details.salary.note}
-                    </p>
-                  )}
-                </InfoCard>
-
-                {activeTab === "therapist" && (
-                  <InfoCard title="モデル年収">
-                    <div className="grid gap-3">
-                      {therapistModelIncome.map((model) => (
-                        <div
-                          key={model.label}
-                          className="bg-[var(--color-paper)] rounded-xl p-3"
-                        >
-                          <p className="text-xs text-ink-soft">{model.label}</p>
-                          <p className="text-ink-soft text-sm mt-1">{model.calculation}</p>
-                          <p className="heading-mincho text-[var(--color-olive)] mt-2">
-                            {model.monthly}
-                          </p>
-                          <p className="text-sm text-[var(--color-olive)]">{model.annual}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </InfoCard>
-                )}
-
-                <InfoCard title="勤務時間・休日">
-                  <p className="text-ink-soft">{currentJob.details.workHours}</p>
-                  <div className="mt-3">
-                    <p className="text-xs text-ink-soft">年間休日</p>
-                    <p className="heading-mincho text-xl text-[var(--color-olive)]">
-                      {currentJob.details.holidays.annual}
-                    </p>
-                    {currentJob.details.holidays.monthly && (
-                      <p className="text-xs text-ink-soft">
-                        月の公休：{currentJob.details.holidays.monthly}日
-                      </p>
-                    )}
-                  </div>
-                  <ul className="space-y-2 text-ink-soft text-sm mt-3">
-                    {currentJob.details.holidays.notes.map((note) => (
-                      <li key={note} className="flex items-start gap-2">
-                        <span className="text-[var(--color-olive)]">★</span>
-                        <span>{note}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </InfoCard>
-
-                <InfoCard title="待遇・福利厚生">
-                  <ul className="grid gap-2 text-ink-soft text-sm md:text-base">
-                    {currentJob.details.benefits.map((benefit) => (
-                      <li key={benefit} className="flex items-start gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-[var(--color-olive)] mt-0.5" />
-                        <span>{benefit}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </InfoCard>
-
-                <InfoCard title="応募要件">
-                  <ul className="grid gap-2 text-ink-soft text-sm md:text-base">
-                    {currentJob.details.requirements.map((req) => (
-                      <li key={req} className="flex items-start gap-3">
-                        <BadgeCheck className="w-5 h-5 text-[var(--color-olive)] mt-0.5" />
-                        <span>{req}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </InfoCard>
-              </div>
-            </div>
+            <JobDetails job={currentJob} />
           </div>
         </section>
 
-        <section id="process" className="bg-[var(--color-paper)] rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
+        <section id="process" className="order-7 bg-[var(--color-paper)] rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
           <FadeIn>
             <p className="text-xs tracking-[0.3em] text-ink-soft">PROCESS</p>
             <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
@@ -577,7 +632,7 @@ export default function RecruitPage() {
           </FadeIn>
         </section>
 
-        <section id="faq" className="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
+        <section id="faq" className="order-10 bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
           <FadeIn>
             <p className="text-xs tracking-[0.3em] text-ink-soft">FAQ</p>
             <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
@@ -623,7 +678,7 @@ export default function RecruitPage() {
           </FadeIn>
         </section>
 
-        <section id="entry" className="bg-[var(--color-paper)] rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
+        <section id="entry" className="order-11 bg-[var(--color-paper)] rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
           <div className="grid lg:grid-cols-[1.1fr,0.9fr] gap-8 items-start">
             <FadeIn>
               <p className="text-xs tracking-[0.3em] text-ink-soft">CONTACT</p>
@@ -650,6 +705,73 @@ export default function RecruitPage() {
           </div>
         </section>
       </main>
+
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-50">
+        <div className="mx-4 mb-4 rounded-full bg-[var(--color-olive)] shadow-lg">
+          <Link
+            href="#entry"
+            className="block text-center text-white font-semibold py-3"
+          >
+            応募する
+          </Link>
+        </div>
+      </div>
+
+      {selectedTeam && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40"
+          onClick={() => setSelectedTeam(null)}
+        >
+          <div
+            className="w-full max-w-md bg-[var(--color-paper)] rounded-3xl shadow-xl border border-white"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="relative rounded-t-3xl bg-white/80 px-6 py-8 text-center">
+              <button
+                type="button"
+                onClick={() => setSelectedTeam(null)}
+                className="absolute top-3 right-3 w-9 h-9 rounded-full bg-white shadow-sm flex items-center justify-center"
+                aria-label="閉じる"
+              >
+                <span className="text-lg text-ink-soft">×</span>
+              </button>
+              <div className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-2xl overflow-hidden mx-auto mb-4">
+                <Image
+                  src={selectedTeam.image}
+                  alt={`${selectedTeam.name}の写真`}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <p className="text-xs tracking-[0.2em] text-ink-soft">STAFF</p>
+              <h3 className="heading-mincho text-2xl text-[var(--color-olive)] mt-2">
+                {selectedTeam.name}
+              </h3>
+              <p className="text-sm text-ink-soft mt-1">{selectedTeam.nameReading}</p>
+              <p className="text-sm text-[var(--color-olive)] mt-2">{selectedTeam.role}</p>
+            </div>
+
+            <div className="px-6 pb-6">
+              <div className="grid gap-3 mt-4">
+                <div className="bg-white rounded-2xl border border-white p-3 text-sm text-ink-soft">
+                  <span className="font-semibold text-[var(--color-olive)]">出身地：</span>
+                  {selectedTeam.birthplace}
+                </div>
+                <div className="bg-white rounded-2xl border border-white p-3 text-sm text-ink-soft">
+                  <span className="font-semibold text-[var(--color-olive)]">趣味：</span>
+                  {selectedTeam.hobbies}
+                </div>
+              </div>
+              <div className="mt-4 bg-white rounded-2xl border border-white p-4">
+                <p className="text-sm font-semibold text-[var(--color-olive)] mb-2">自己紹介</p>
+                <p className="text-sm text-ink-soft leading-relaxed">
+                  {selectedTeam.introduction}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
