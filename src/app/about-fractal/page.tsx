@@ -363,7 +363,7 @@ export default function AboutFractalPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f8faf9]">
+    <div className="min-h-screen body-editorial">
       {/* ヘッダー */}
       <header className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-40">
         <div className="max-w-6xl mx-auto px-4 py-3 md:py-4 flex items-center justify-between">
@@ -373,7 +373,7 @@ export default function AboutFractalPage() {
           >
             ← 戻る
           </Link>
-          <h1 className="text-lg md:text-2xl font-bold text-primary">
+          <h1 className="text-lg md:text-2xl font-bold text-primary heading-gothic">
             フラクタルを知る
           </h1>
         </div>
@@ -485,7 +485,7 @@ export default function AboutFractalPage() {
               </p>
 
               <h2
-                className="font-bold text-white tracking-wide"
+                className="font-bold text-white tracking-wide heading-gothic"
                 style={{
                   fontSize: 'var(--font-size-fluid-4xl)',
                   marginBottom: 'var(--spacing-fluid-md)',
@@ -621,7 +621,7 @@ export default function AboutFractalPage() {
             INNOVATION
           </span>
           <h3
-            className="font-bold text-primary"
+            className="font-bold text-primary heading-gothic"
             style={{ fontSize: 'var(--font-size-fluid-3xl)', marginBottom: 'var(--spacing-fluid-sm)' }}
           >
             DAPAE - フラクタルの成長サイクル
@@ -842,7 +842,7 @@ export default function AboutFractalPage() {
             BUSINESS
           </span>
           <h3
-            className="font-bold text-primary"
+            className="font-bold text-primary heading-gothic"
             style={{ fontSize: 'var(--font-size-fluid-2xl)' }}
           >
             {aboutData.business.title}
@@ -869,7 +869,7 @@ export default function AboutFractalPage() {
             >
               <div className="absolute top-0 right-0 w-20 md:w-32 h-20 md:h-32 bg-gradient-to-br from-[var(--color-logo-yellow)]/20 to-transparent rounded-bl-full opacity-50"></div>
               <h4
-                className="font-bold text-primary"
+                className="font-bold text-primary heading-gothic"
                 style={{ fontSize: 'var(--font-size-fluid-xl)', marginBottom: 'var(--spacing-fluid-sm)' }}
               >
                 {item.name}
@@ -1003,7 +1003,7 @@ export default function AboutFractalPage() {
             GUIDELINES
           </span>
           <h3
-            className="font-bold text-primary"
+            className="font-bold text-primary heading-gothic"
             style={{ fontSize: 'var(--font-size-fluid-2xl)' }}
           >
             7つの行動指針
@@ -1129,7 +1129,7 @@ export default function AboutFractalPage() {
             IDENTITY & MATERIALS
           </span>
           <h3
-            className="font-bold text-primary"
+            className="font-bold text-primary heading-gothic"
             style={{ fontSize: 'var(--font-size-fluid-2xl)' }}
           >
             フラクタルのかたち

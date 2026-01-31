@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { M_PLUS_1, Zen_Old_Mincho } from "next/font/google";
+import { M_PLUS_1, Zen_Old_Mincho, Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 import GoogleAnalytics, { GoogleTagManagerNoscript } from "@/components/GoogleAnalytics";
 import StructuredData from "@/components/StructuredData";
@@ -14,6 +14,12 @@ const zenOldMincho = Zen_Old_Mincho({
   variable: "--font-mincho",
   subsets: ["latin"],
   weight: ["400", "500", "700"],
+});
+
+const notoSansJP = Noto_Sans_JP({
+  variable: "--font-noto",
+  subsets: ["latin"],
+  weight: ["400", "500", "700", "900"],
 });
 
 // SEO最適化されたメタデータ
@@ -192,7 +198,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
       </head>
-      <body className={`${mplus1.variable} ${zenOldMincho.variable} antialiased`}>
+      <body className={`${mplus1.variable} ${zenOldMincho.variable} ${notoSansJP.variable} antialiased`}>
         <GoogleTagManagerNoscript />
         {children}
       </body>

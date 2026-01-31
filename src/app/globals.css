@@ -98,6 +98,12 @@ body {
   font-family: var(--font-mincho), serif;
 }
 
+.heading-gothic {
+  font-family: var(--font-noto), "Noto Sans JP", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
 .text-ink-soft {
   color: var(--color-ink-soft);
 }
