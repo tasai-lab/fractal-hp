@@ -280,6 +280,8 @@ export default function AboutFractalPage() {
               src="/images/about/cover.png"
               alt="フラクタルの理念"
               fill
+              priority
+              sizes="(max-width: 768px) 100vw, 45vw"
               className="object-cover"
             />
           </FadeIn>
@@ -305,6 +307,7 @@ export default function AboutFractalPage() {
               src="/images/about/philosophy.png"
               alt="フラクタルの基本理念"
               fill
+              sizes="(max-width: 768px) 100vw, 45vw"
               className="object-cover"
             />
           </div>
@@ -318,6 +321,7 @@ export default function AboutFractalPage() {
               src="/images/about/business.png"
               alt="事業内容"
               fill
+              sizes="(max-width: 768px) 100vw, 45vw"
               className="object-cover"
             />
           </FadeIn>
@@ -393,6 +397,7 @@ export default function AboutFractalPage() {
               src="/images/about/vision.png"
               alt="成長戦略とビジョン"
               fill
+              sizes="(max-width: 768px) 100vw, 45vw"
               className="object-cover"
             />
           </div>
@@ -412,6 +417,7 @@ export default function AboutFractalPage() {
                 src="/images/about/guidelines.png"
                 alt="フラクタルの行動指針"
                 fill
+                sizes="(max-width: 768px) 100vw, 45vw"
                 className="object-cover"
               />
             </div>
@@ -470,6 +476,7 @@ export default function AboutFractalPage() {
                 src="/images/about/dapae.png"
                 alt="DAPAEフレームワーク"
                 fill
+                sizes="(max-width: 768px) 100vw, 40vw"
                 className="object-cover"
               />
             </FadeIn>
@@ -478,6 +485,7 @@ export default function AboutFractalPage() {
                 src="/images/about/dapae-detail.png"
                 alt="DAPAEの詳細"
                 fill
+                sizes="(max-width: 768px) 100vw, 40vw"
                 className="object-cover"
               />
             </FadeIn>
@@ -500,6 +508,7 @@ export default function AboutFractalPage() {
               src="/images/about/logo-meaning.png"
               alt="フラクタルのロゴ"
               fill
+              sizes="(max-width: 768px) 100vw, 45vw"
               className="object-cover"
             />
           </FadeIn>
@@ -541,6 +550,7 @@ export default function AboutFractalPage() {
               src="/images/about/ending.png"
               alt="フラクタルのこれから"
               fill
+              sizes="(max-width: 768px) 100vw, 45vw"
               className="object-cover"
             />
           </FadeIn>

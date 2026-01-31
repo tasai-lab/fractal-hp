@@ -146,6 +146,8 @@ export default function RecruitPage() {
               src="/images/recruit/recruit-team.png"
               alt="フラクタルのチーム"
               fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 45vw"
               className="object-cover"
             />
           </FadeIn>
@@ -211,6 +213,7 @@ export default function RecruitPage() {
               src="/images/recruit/shift-example.png"
               alt="実際のシフト例"
               fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-contain"
             />
           </FadeIn>
@@ -237,6 +240,7 @@ export default function RecruitPage() {
                     src={member.image}
                     alt={`${member.name}の写真`}
                     fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 20vw"
                     className="object-cover"
                   />
                 </div>
@@ -255,6 +259,7 @@ export default function RecruitPage() {
               src="/images/service-area/area-map.png"
               alt="訪問エリアマップ"
               fill
+              sizes="(max-width: 1024px) 100vw, 45vw"
               className="object-contain"
             />
           </FadeIn>
