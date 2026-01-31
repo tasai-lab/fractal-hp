@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { JobPostingStructuredData } from "@/components/StructuredData";
+import { RecruitStructuredData } from "@/components/StructuredData";
 
 export const metadata: Metadata = {
   title: "採用情報・求人募集 | 訪問看護師・理学療法士・作業療法士",
@@ -69,7 +69,7 @@ export default function RecruitLayout({
 }) {
   return (
     <>
-      <JobPostingStructuredData />
+      <RecruitStructuredData />
       {children}
     </>
   );

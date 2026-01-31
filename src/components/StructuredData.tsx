@@ -157,7 +157,36 @@ export function generateJobPostingData(job: {
   description: string;
   employmentType: string;
   baseSalary: { min: number; max: number };
+  benefits: string[];
+  skills: string;
+  locations: string[];
 }) {
+  const baseAddress = {
+    "@type": "PostalAddress",
+    streetAddress: "三山6丁目22-2 パレドール小川201",
+    addressLocality: "船橋市",
+    addressRegion: "千葉県",
+    postalCode: "274-0072",
+    addressCountry: "JP",
+  };
+
+  const jobLocations = job.locations.length
+    ? job.locations.map((area) => ({
+        "@type": "Place",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: area,
+          addressRegion: "千葉県",
+          addressCountry: "JP",
+        },
+      }))
+    : [
+        {
+          "@type": "Place",
+          address: baseAddress,
+        },
+      ];
+
   return {
     "@context": "https://schema.org",
     "@type": "JobPosting",
@@ -174,17 +203,7 @@ export function generateJobPostingData(job: {
       sameAs: "https://fractal-hokan.com",
       logo: "https://fractal-hokan.com/images/logos/corporate-logo.png",
     },
-    jobLocation: {
-      "@type": "Place",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "三山6丁目22-2 パレドール小川201",
-        addressLocality: "船橋市",
-        addressRegion: "千葉県",
-        postalCode: "274-0072",
-        addressCountry: "JP",
-      },
-    },
+    jobLocation: jobLocations,
     baseSalary: {
       "@type": "MonetaryAmount",
       currency: "JPY",
@@ -195,8 +214,8 @@ export function generateJobPostingData(job: {
         unitText: "YEAR",
       },
     },
-    jobBenefits: "入社祝い金最大30万円、交通費支給、社会保険完備",
-    skills: "看護師免許",
+    jobBenefits: job.benefits.join("、"),
+    skills: job.skills,
     industry: "医療・福祉",
   };
 }
@@ -252,24 +271,7 @@ export function BreadcrumbStructuredData({
 }
 
 // 求人ページ用構造化データコンポーネント
-export function JobPostingStructuredData() {
-  const nurse = jobPositions.find((j) => j.id === "nurse");
-  const therapist = jobPositions.find((j) => j.id === "therapist");
-
-  const nurseJob = generateJobPostingData({
-    title: nurse?.title || "訪問看護師（正社員）",
-    description: `${nurse?.description || ""} ${visitAreas.join("、")}エリアでの訪問看護業務。${nurse?.details.salary.amount}。${nurse?.details.benefits.join("、")}。`,
-    employmentType: "FULL_TIME",
-    baseSalary: { min: 4500000, max: 6000000 },
-  });
-
-  const therapistJob = generateJobPostingData({
-    title: therapist?.title || "訪問リハビリスタッフ（理学療法士/作業療法士/言語聴覚士）",
-    description: `${therapist?.description || ""} ${visitAreas.join("、")}エリアでの訪問リハビリテーション業務。${therapist?.details.salary.amount}。${therapist?.details.benefits.join("、")}。`,
-    employmentType: "FULL_TIME",
-    baseSalary: { min: 4000000, max: 5500000 },
-  });
-
+export function RecruitStructuredData() {
   const recruitFAQData = generateFAQData(recruitFAQs);
 
   const breadcrumbData = generateBreadcrumbData([
@@ -279,20 +281,6 @@ export function JobPostingStructuredData() {
 
   return (
     <>
-      <Script
-        id="structured-data-nurse-job"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(nurseJob),
-        }}
-      />
-      <Script
-        id="structured-data-therapist-job"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(therapistJob),
-        }}
-      />
       <Script
         id="structured-data-recruit-faq"
         type="application/ld+json"
@@ -308,6 +296,44 @@ export function JobPostingStructuredData() {
         }}
       />
     </>
+  );
+}
+
+// 求人詳細ページ用構造化データコンポーネント
+export function JobPostingStructuredData({ jobId }: { jobId: string }) {
+  const job = jobPositions.find((item) => item.id === jobId);
+
+  if (!job) {
+    return null;
+  }
+
+  const isNurse = job.id === "nurse";
+  const holidayLabel = isNurse ? "年間休日139日以上" : "年間休日120日以上";
+  const skills = isNurse
+    ? "看護師免許"
+    : "理学療法士免許、作業療法士免許、言語聴覚士免許";
+  const baseSalary = isNurse
+    ? { min: 4500000, max: 6000000 }
+    : { min: 4000000, max: 5500000 };
+
+  const jobPosting = generateJobPostingData({
+    title: `${job.title}（正社員）`,
+    description: `${job.description} ${visitAreas.join("、")}エリアでの訪問業務。${job.details.salary.amount}。${holidayLabel}。`,
+    employmentType: "FULL_TIME",
+    baseSalary,
+    benefits: ["入社祝い金最大30万円", holidayLabel, ...job.details.benefits],
+    skills,
+    locations: visitAreas,
+  });
+
+  return (
+    <Script
+      id={`structured-data-${job.id}-job`}
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(jobPosting),
+      }}
+    />
   );
 }
 
