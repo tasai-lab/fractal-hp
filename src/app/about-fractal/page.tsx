@@ -474,6 +474,16 @@ export default function AboutFractalPage() {
                 </div>
               </div>
 
+              <p
+                className="text-[var(--color-logo-yellow)] font-bold tracking-widest uppercase"
+                style={{
+                  fontSize: 'var(--font-size-fluid-sm)',
+                  marginBottom: 'var(--spacing-fluid-sm)',
+                }}
+              >
+                Corporate Philosophy
+              </p>
+
               <h2
                 className="font-bold text-white tracking-wide"
                 style={{
@@ -482,7 +492,7 @@ export default function AboutFractalPage() {
                   lineHeight: '1.2'
                 }}
               >
-                データで看護を<br />進化させる
+                シンプルで独創的な社会を実現する
               </h2>
 
               <p
@@ -493,8 +503,7 @@ export default function AboutFractalPage() {
                   lineHeight: '1.6'
                 }}
               >
-                ITと数字の力で、現場の負担を減らし、<br className="hidden md:block" />
-                質の高いケアを届ける訪問看護へ。
+                シンプルな仕組みがもたらす圧倒的な独自性と業務効率が成長へと繋がる。
               </p>
 
               <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-3 md:gap-4">
@@ -514,59 +523,59 @@ export default function AboutFractalPage() {
             </div>
 
             {/* 右側: DAPAE 5ステップ簡略図 */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl md:rounded-3xl p-4 sm:p-5 md:p-6 border border-white/20">
-              <p className="text-center text-white/90 font-bold mb-4" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>
+            <div className="bg-[var(--color-logo-dark-green)]/40 backdrop-blur-md rounded-2xl md:rounded-3xl p-4 sm:p-5 md:p-6 border border-white/30 shadow-2xl">
+              <p className="text-center text-white font-bold mb-4" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>
                 DAPAEフレームワーク
               </p>
 
               <div className="flex flex-col gap-2">
                 {/* Data */}
-                <div className="flex items-center gap-3 bg-[var(--color-logo-dark-green)]/90 rounded-lg px-4 py-2">
-                  <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-sm">D</span>
+                <div className="flex items-center gap-3 bg-white/95 rounded-lg px-4 py-2.5 shadow-sm">
+                  <span className="w-9 h-9 rounded-full bg-[var(--color-logo-dark-green)] flex items-center justify-center text-white font-bold text-sm shadow">D</span>
                   <div className="flex-1">
-                    <p className="text-white font-bold text-sm">Data</p>
-                    <p className="text-white/70 text-xs">事実を数字で記録</p>
+                    <p className="text-[var(--color-logo-dark-green)] font-bold text-sm">Data</p>
+                    <p className="text-slate-600 text-xs">事実を数字で記録</p>
                   </div>
                 </div>
 
                 {/* Analysis */}
-                <div className="flex items-center gap-3 bg-[var(--color-logo-dark-green)]/80 rounded-lg px-4 py-2">
-                  <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-sm">A</span>
+                <div className="flex items-center gap-3 bg-white/90 rounded-lg px-4 py-2.5 shadow-sm">
+                  <span className="w-9 h-9 rounded-full bg-[var(--color-logo-dark-green)]/80 flex items-center justify-center text-white font-bold text-sm shadow">A</span>
                   <div className="flex-1">
-                    <p className="text-white font-bold text-sm">Analysis</p>
-                    <p className="text-white/70 text-xs">課題とヒントを抽出</p>
+                    <p className="text-[var(--color-logo-dark-green)] font-bold text-sm">Analysis</p>
+                    <p className="text-slate-600 text-xs">課題とヒントを抽出</p>
                   </div>
                 </div>
 
-                {/* Plan */}
-                <div className="flex items-center gap-3 bg-[var(--color-logo-light-green)]/80 rounded-lg px-4 py-2">
-                  <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-sm">P</span>
+                {/* Plan - アクセント */}
+                <div className="flex items-center gap-3 bg-[var(--color-logo-yellow)] rounded-lg px-4 py-3 shadow-md ring-2 ring-white/50">
+                  <span className="w-9 h-9 rounded-full bg-[var(--color-logo-dark-green)] flex items-center justify-center text-white font-bold text-sm shadow">P</span>
                   <div className="flex-1">
-                    <p className="text-white font-bold text-sm">Plan</p>
-                    <p className="text-white/70 text-xs">負担を減らす具体策</p>
+                    <p className="text-[var(--color-logo-dark-green)] font-bold text-sm">Plan</p>
+                    <p className="text-[var(--color-logo-dark-green)]/70 text-xs">負担を減らす具体策</p>
                   </div>
                 </div>
 
                 {/* Act */}
-                <div className="flex items-center gap-3 bg-[var(--color-logo-light-green)]/70 rounded-lg px-4 py-2">
-                  <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-sm">A</span>
+                <div className="flex items-center gap-3 bg-white/90 rounded-lg px-4 py-2.5 shadow-sm">
+                  <span className="w-9 h-9 rounded-full bg-[var(--color-logo-light-green)] flex items-center justify-center text-white font-bold text-sm shadow">A</span>
                   <div className="flex-1">
-                    <p className="text-white font-bold text-sm">Act</p>
-                    <p className="text-white/70 text-xs">柔軟に実行</p>
+                    <p className="text-[var(--color-logo-dark-green)] font-bold text-sm">Act</p>
+                    <p className="text-slate-600 text-xs">柔軟に実行</p>
                   </div>
                 </div>
 
                 {/* Evaluation */}
-                <div className="flex items-center gap-3 bg-[var(--color-logo-light-green)]/60 rounded-lg px-4 py-2">
-                  <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-sm">E</span>
+                <div className="flex items-center gap-3 bg-white/95 rounded-lg px-4 py-2.5 shadow-sm">
+                  <span className="w-9 h-9 rounded-full bg-[var(--color-logo-light-green)]/80 flex items-center justify-center text-white font-bold text-sm shadow">E</span>
                   <div className="flex-1">
-                    <p className="text-white font-bold text-sm">Evaluation</p>
-                    <p className="text-white/70 text-xs">成果を確認し次へ</p>
+                    <p className="text-[var(--color-logo-dark-green)] font-bold text-sm">Evaluation</p>
+                    <p className="text-slate-600 text-xs">成果を確認し次へ</p>
                   </div>
                 </div>
               </div>
 
-              <p className="text-center text-[var(--color-logo-yellow)] font-bold mt-4" style={{ fontSize: 'var(--font-size-fluid-xs)' }}>
+              <p className="text-center text-white font-bold mt-4" style={{ fontSize: 'var(--font-size-fluid-xs)' }}>
                 仕組みが、質の高いサービスを生みだす。
               </p>
             </div>
@@ -615,92 +624,120 @@ export default function AboutFractalPage() {
             className="font-bold text-primary"
             style={{ fontSize: 'var(--font-size-fluid-3xl)', marginBottom: 'var(--spacing-fluid-sm)' }}
           >
-            DAPAE - 数字とITで、ケアを前へ。
+            DAPAE - フラクタルの成長サイクル
           </h3>
           <p
             className="text-primary/70 max-w-3xl mx-auto leading-relaxed"
             style={{ fontSize: 'var(--font-size-fluid-base)' }}
           >
-            「大変そう」で終わらせない。現場の事実を数字で捉え、やさしさを軸に最善の一手へ。
+            「大変」で終わらない、「なぜこうなっている、ではどうする」という考え方
           </p>
         </div>
 
-        {/* DAPAE 5ステップ図解 */}
-        <div ref={dapaeRef} className="max-w-4xl mx-auto" style={{ marginBottom: 'var(--spacing-fluid-xl)' }}>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-2 sm:gap-3 md:gap-4">
+        {/* DAPAE 5ステップ - レスポンシブ対応 */}
+        <div ref={dapaeRef} className="max-w-5xl mx-auto" style={{ marginBottom: 'var(--spacing-fluid-xl)' }}>
+          <div className="flex flex-col md:flex-row md:items-stretch md:justify-center gap-3 md:gap-2 lg:gap-4">
             {/* Data */}
             <div
-              className={`bg-[var(--color-logo-dark-green)] rounded-xl p-4 text-white text-center ${prefersReducedMotion ? "" : "transition-all duration-500"} ${
+              className={`flex-1 bg-[var(--color-logo-dark-green)] rounded-2xl p-5 md:p-4 lg:p-5 text-white text-center shadow-lg ${prefersReducedMotion ? "" : "transition-all duration-500"} ${
                 prefersReducedMotion || visibleDapaeSteps.includes(0)
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-4"
               }`}
             >
-              <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-white/20 flex items-center justify-center">
-                <span className="font-bold text-lg">D</span>
+              <div className="w-12 h-12 md:w-10 md:h-10 lg:w-12 lg:h-12 mx-auto mb-3 rounded-full bg-[var(--color-logo-yellow)] flex items-center justify-center">
+                <span className="font-bold text-xl md:text-lg lg:text-xl text-[var(--color-logo-dark-green)]">D</span>
               </div>
-              <p className="font-bold text-sm mb-1">Data</p>
-              <p className="text-white/80 text-xs leading-tight">訪問時のバイタルや生活状況、書類作業2.5時間などを客観的に記録</p>
+              <p className="font-bold text-base md:text-sm lg:text-base mb-1">Data</p>
+              <p className="text-white/90 text-sm md:text-xs lg:text-sm leading-relaxed">現場の事実を数字で記録</p>
+            </div>
+
+            {/* 矢印 */}
+            <div className="flex items-center justify-center py-1 md:py-0 md:px-1" aria-hidden="true">
+              <svg className="w-6 h-6 md:w-4 md:h-4 text-[var(--color-logo-dark-green)]/40 rotate-90 md:rotate-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
             </div>
 
             {/* Analysis */}
             <div
-              className={`bg-[var(--color-logo-dark-green)]/85 rounded-xl p-4 text-white text-center ${prefersReducedMotion ? "" : "transition-all duration-500"} ${
+              className={`flex-1 bg-[var(--color-logo-dark-green)]/85 rounded-2xl p-5 md:p-4 lg:p-5 text-white text-center shadow-lg ${prefersReducedMotion ? "" : "transition-all duration-500"} ${
                 prefersReducedMotion || visibleDapaeSteps.includes(1)
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-4"
               }`}
             >
-              <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-white/20 flex items-center justify-center">
-                <span className="font-bold text-lg">A</span>
+              <div className="w-12 h-12 md:w-10 md:h-10 lg:w-12 lg:h-12 mx-auto mb-3 rounded-full bg-[var(--color-logo-yellow)] flex items-center justify-center">
+                <span className="font-bold text-xl md:text-lg lg:text-xl text-[var(--color-logo-dark-green)]">A</span>
               </div>
-              <p className="font-bold text-sm mb-1">Analysis</p>
-              <p className="text-white/80 text-xs leading-tight">数字と変化から課題と支援のヒントを抽出</p>
+              <p className="font-bold text-base md:text-sm lg:text-base mb-1">Analysis</p>
+              <p className="text-white/90 text-sm md:text-xs lg:text-sm leading-relaxed">課題と改善のヒントを抽出</p>
             </div>
 
-            {/* Plan */}
+            {/* 矢印 */}
+            <div className="flex items-center justify-center py-1 md:py-0 md:px-1" aria-hidden="true">
+              <svg className="w-6 h-6 md:w-4 md:h-4 text-[var(--color-logo-yellow)]/60 rotate-90 md:rotate-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+            </div>
+
+            {/* Plan - 中央アクセント */}
             <div
-              className={`bg-[var(--color-logo-light-green)] rounded-xl p-4 text-white text-center ${prefersReducedMotion ? "" : "transition-all duration-500"} ${
+              className={`flex-1 bg-[var(--color-logo-yellow)] rounded-2xl p-5 md:p-4 lg:p-5 text-[var(--color-logo-dark-green)] text-center shadow-lg ring-2 ring-[var(--color-logo-dark-green)]/20 ${prefersReducedMotion ? "" : "transition-all duration-500"} ${
                 prefersReducedMotion || visibleDapaeSteps.includes(2)
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-4"
               }`}
             >
-              <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-white/20 flex items-center justify-center">
-                <span className="font-bold text-lg">P</span>
+              <div className="w-12 h-12 md:w-10 md:h-10 lg:w-12 lg:h-12 mx-auto mb-3 rounded-full bg-[var(--color-logo-dark-green)] flex items-center justify-center shadow">
+                <span className="font-bold text-xl md:text-lg lg:text-xl text-white">P</span>
               </div>
-              <p className="font-bold text-sm mb-1">Plan</p>
-              <p className="text-white/80 text-xs leading-tight">タブレット導入やテンプレート統一など、負担を減らす具体策を設計</p>
+              <p className="font-bold text-base md:text-sm lg:text-base mb-1">Plan</p>
+              <p className="text-[var(--color-logo-dark-green)]/80 text-sm md:text-xs lg:text-sm leading-relaxed">負担を減らす具体策を設計</p>
+            </div>
+
+            {/* 矢印 */}
+            <div className="flex items-center justify-center py-1 md:py-0 md:px-1" aria-hidden="true">
+              <svg className="w-6 h-6 md:w-4 md:h-4 text-[var(--color-logo-light-green)]/60 rotate-90 md:rotate-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
             </div>
 
             {/* Act */}
             <div
-              className={`bg-[var(--color-logo-light-green)]/85 rounded-xl p-4 text-white text-center ${prefersReducedMotion ? "" : "transition-all duration-500"} ${
+              className={`flex-1 bg-[var(--color-logo-light-green)] rounded-2xl p-5 md:p-4 lg:p-5 text-white text-center shadow-lg ${prefersReducedMotion ? "" : "transition-all duration-500"} ${
                 prefersReducedMotion || visibleDapaeSteps.includes(3)
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-4"
               }`}
             >
-              <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-white/20 flex items-center justify-center">
-                <span className="font-bold text-lg">A</span>
+              <div className="w-12 h-12 md:w-10 md:h-10 lg:w-12 lg:h-12 mx-auto mb-3 rounded-full bg-[var(--color-logo-yellow)] flex items-center justify-center">
+                <span className="font-bold text-xl md:text-lg lg:text-xl text-[var(--color-logo-dark-green)]">A</span>
               </div>
-              <p className="font-bold text-sm mb-1">Act</p>
-              <p className="text-white/80 text-xs leading-tight">利用者と家族の想いに寄り添い、状況に応じて柔軟に実行</p>
+              <p className="font-bold text-base md:text-sm lg:text-base mb-1">Act</p>
+              <p className="text-white/90 text-sm md:text-xs lg:text-sm leading-relaxed">状況に応じて柔軟に実行</p>
+            </div>
+
+            {/* 矢印 */}
+            <div className="flex items-center justify-center py-1 md:py-0 md:px-1" aria-hidden="true">
+              <svg className="w-6 h-6 md:w-4 md:h-4 text-[var(--color-logo-dark-green)]/40 rotate-90 md:rotate-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
             </div>
 
             {/* Evaluation */}
             <div
-              className={`bg-[var(--color-logo-light-green)]/70 rounded-xl p-4 text-white text-center ${prefersReducedMotion ? "" : "transition-all duration-500"} ${
+              className={`flex-1 bg-[var(--color-logo-light-green)]/85 rounded-2xl p-5 md:p-4 lg:p-5 text-white text-center shadow-lg ${prefersReducedMotion ? "" : "transition-all duration-500"} ${
                 prefersReducedMotion || visibleDapaeSteps.includes(4)
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-4"
               }`}
             >
-              <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-white/20 flex items-center justify-center">
-                <span className="font-bold text-lg">E</span>
+              <div className="w-12 h-12 md:w-10 md:h-10 lg:w-12 lg:h-12 mx-auto mb-3 rounded-full bg-[var(--color-logo-yellow)] flex items-center justify-center">
+                <span className="font-bold text-xl md:text-lg lg:text-xl text-[var(--color-logo-dark-green)]">E</span>
               </div>
-              <p className="font-bold text-sm mb-1">Evaluation</p>
-              <p className="text-white/80 text-xs leading-tight">52%削減など成果を確認し、学びを次へ</p>
+              <p className="font-bold text-base md:text-sm lg:text-base mb-1">Evaluation</p>
+              <p className="text-white/90 text-sm md:text-xs lg:text-sm leading-relaxed">成果を確認し学びを次へ</p>
             </div>
           </div>
         </div>
@@ -717,9 +754,9 @@ export default function AboutFractalPage() {
           {/* 数値カード - ホバー/フォーカス/タップで詳細表示 */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4" style={{ marginBottom: 'var(--spacing-fluid-lg)' }}>
             {[
-              { value: "52%", label: "書類作業時間削減", detail: "タブレット導入と記録テンプレートの統一で、手書き→PC入力の二度手間を解消" },
-              { value: "2.5h", label: "→ 1.2h に短縮", detail: "1日あたり1.3時間の削減で、利用者様との対話時間が増加" },
-              { value: "3ヶ月", label: "で効果を実証", detail: "DAPAEサイクルを回し、短期間で改善効果を検証・実証" }
+              { value: "52%", label: "書類作業時間削減", detail: "音声入力と手入力の組み合わせで、記録作成の手間を大幅に削減。重要な情報の抜け漏れもなくなりました。" },
+              { value: "2.5h", label: "→ 1.2h に短縮", detail: "残業時間が減少し、利用者様との対話やケアに集中できる時間が増加しました。" },
+              { value: "3ヶ月", label: "で効果を実証", detail: "DAPAEサイクルで課題を可視化し、短期間で改善効果を実証。継続的な改善につなげています。" }
             ].map((card, index) => {
               const isActive = activeItCard === index;
               return (
@@ -762,13 +799,13 @@ export default function AboutFractalPage() {
               <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 border-l-4 border-red-400">
                 <p className="text-red-500 font-bold mb-2" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>Before</p>
                 <p className="text-primary/70" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>
-                  手書き → PC入力 → 印刷という二度手間で、1日の書類作業に平均2.5時間。スタッフから「書類が多すぎる」という声が上がっていました。
+                  記録項目が多く何を書くべきか分かりにくい。手入力に時間がかかり残業が発生、重要な情報の抜け漏れも散見されていた。
                 </p>
               </div>
               <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 border-l-4 border-[var(--color-logo-light-green)]">
                 <p className="text-[var(--color-logo-dark-green)] font-bold mb-2" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>After</p>
                 <p className="text-primary/70" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>
-                  タブレット直接入力 → 自動連携で二度手間を解消。書類作業時間は1.2時間に。空いた時間で利用者様とのコミュニケーションが充実しました。
+                  音声入力を導入し、重要項目は手入力で補完する運用へ。記録作成が効率化され、要点を押さえた質の高い記録を短時間で作成できるように。
                 </p>
               </div>
             </div>

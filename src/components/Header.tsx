@@ -85,29 +85,20 @@ export default function Header() {
         </div>
       </header>
 
-      {/* デスクトップ用サイトマップボタン */}
-      <div 
-        className="hidden lg:block fixed bottom-8 right-8 z-50 transition-transform duration-300 hover:-translate-y-1"
-        style={{ filter: "drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15))" }}
+      {/* デスクトップ用サイトマップボタン（ジョニー） */}
+      <button
+        onClick={toggleMenu}
+        className="hidden lg:flex fixed bottom-8 right-8 z-50 w-20 h-20 bg-white rounded-full items-center justify-center transition-transform duration-300 hover:-translate-y-2 hover:scale-105 shadow-lg"
+        aria-label="サイトマップ"
       >
-        <button
-          onClick={toggleMenu}
-          className="flex flex-col items-center justify-end w-24 h-[83px] bg-white group"
-          style={{
-            clipPath: "polygon(50% 0%, 100% 100%, 0% 100%)",
-          }}
-          aria-label="サイトマップ"
-        >
-          <div className="flex flex-col items-center justify-center mb-2">
-            {isMenuOpen ? (
-              <X className="w-5 h-5 text-[var(--color-primary)] group-hover:text-[var(--color-accent-blue)] transition-colors" />
-            ) : (
-              <Menu className="w-5 h-5 text-[var(--color-primary)] group-hover:text-[var(--color-accent-blue)] transition-colors" />
-            )}
-            <span className="text-[10px] font-medium text-[var(--color-primary)] group-hover:text-[var(--color-accent-blue)] transition-colors transform scale-90">サイトマップ</span>
-          </div>
-        </button>
-      </div>
+        <Image
+          src="/images/johnny.png"
+          alt="サイトマップを開く"
+          width={56}
+          height={56}
+          className="w-14 h-14"
+        />
+      </button>
 
       {/* モバイル下部メニュー */}
       <nav className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50 safe-area-pb">
@@ -129,17 +120,20 @@ export default function Header() {
               </Component>
             );
           })}
-          {/* その他メニューボタン */}
+          {/* その他メニューボタン（ジョニー） */}
           <button
             onClick={toggleMenu}
-            className="flex flex-col items-center justify-center flex-1 py-2 text-[var(--color-primary)] hover:text-[var(--color-accent-blue)] transition-colors"
+            className="flex items-center justify-center flex-1 py-1 transition-transform hover:scale-105"
           >
-            {isMenuOpen ? (
-              <X className="w-5 h-5 mb-1" />
-            ) : (
-              <Menu className="w-5 h-5 mb-1" />
-            )}
-            <span className="text-[10px] font-medium">サイトマップ</span>
+            <div className="w-11 h-11 bg-white rounded-full flex items-center justify-center shadow-md">
+              <Image
+                src="/images/johnny.png"
+                alt="サイトマップ"
+                width={32}
+                height={32}
+                className="w-8 h-8"
+              />
+            </div>
           </button>
         </div>
       </nav>
