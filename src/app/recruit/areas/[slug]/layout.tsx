@@ -5,9 +5,10 @@ import { recruitAreas } from "@/lib/recruit-areas";
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }> | { slug: string };
 }): Promise<Metadata> {
-  const area = recruitAreas.find((item) => item.slug === params.slug);
+  const resolvedParams = await Promise.resolve(params);
+  const area = recruitAreas.find((item) => item.slug === resolvedParams.slug);
 
   if (!area) {
     return {
@@ -41,14 +42,15 @@ export async function generateMetadata({
   };
 }
 
-export default function RecruitAreaLayout({
+export default async function RecruitAreaLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const area = recruitAreas.find((item) => item.slug === params.slug);
+  const resolvedParams = await params;
+  const area = recruitAreas.find((item) => item.slug === resolvedParams.slug);
 
   return (
     <>

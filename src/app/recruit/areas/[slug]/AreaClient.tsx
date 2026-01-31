@@ -1,12 +1,33 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Contact from "@/components/Contact";
-import FadeIn from "@/components/Motion";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { visitAreas } from "@/lib/recruit-data";
 import type { RecruitArea } from "@/lib/recruit-areas";
+
+const FadeIn = ({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) => {
+  const { ref, isVisible } = useScrollAnimation(0.15);
+
+  return (
+    <div
+      ref={ref as React.RefObject<HTMLDivElement>}
+      className={`transition-all duration-700 ease-out ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+      } ${className}`}
+    >
+      {children}
+    </div>
+  );
+};
 
 export default function AreaClient({ area }: { area: RecruitArea }) {
   const [isContactOpen, setIsContactOpen] = useState(false);
