@@ -159,13 +159,17 @@ export default function AreaClient({ area }: { area: RecruitArea }) {
               1日の流れ
             </h3>
             <div className="space-y-4 mt-6">
-              {area.dayFlow.map((flow) => (
-                <div
-                  key={flow.title}
-                  className="bg-white/80 rounded-2xl border border-white px-4 py-3"
-                >
-                  <p className="font-semibold text-[var(--color-olive)]">{flow.title}</p>
-                  <p className="text-sm text-ink-soft mt-1">{flow.detail}</p>
+              {area.dayFlow.map((flow, index) => (
+                <div key={flow.title} className="relative pl-10">
+                  <div className="absolute left-1 top-4 w-2 h-2 rounded-full bg-[var(--color-olive)]"></div>
+                  {index < area.dayFlow.length - 1 && (
+                    <div className="absolute left-[5px] top-6 h-full w-px bg-[var(--color-olive)]/30"></div>
+                  )}
+                  <div className="bg-white/80 rounded-2xl border border-white px-4 py-3">
+                    <p className="text-xs tracking-[0.2em] text-ink-soft">{flow.time}</p>
+                    <p className="font-semibold text-[var(--color-olive)] mt-1">{flow.title}</p>
+                    <p className="text-sm text-ink-soft mt-1">{flow.detail}</p>
+                  </div>
                 </div>
               ))}
             </div>
