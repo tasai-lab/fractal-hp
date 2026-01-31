@@ -373,8 +373,19 @@ export function FlyersStructuredData() {
   );
 }
 
-// 募集開始日（固定値を使用してビルド日問題を回避）
+// 募集開始日・有効期限（固定値を使用してビルド日問題を回避）
 const JOB_POSTED_DATE = "2024-01-15";
+const JOB_VALID_THROUGH = "2025-12-31";
+
+// 事業所住所（全エリアで共通）
+const OFFICE_ADDRESS = {
+  "@type": "PostalAddress" as const,
+  streetAddress: "三山6丁目22-2 パレドール小川201",
+  addressLocality: "船橋市",
+  addressRegion: "千葉県",
+  postalCode: "274-0072",
+  addressCountry: "JP",
+};
 
 // エリア別求人構造化データコンポーネント
 export function AreaJobPostingStructuredData({
@@ -384,16 +395,13 @@ export function AreaJobPostingStructuredData({
   areaName: string;
   areaSlug: string;
 }) {
-  const validThrough = new Date();
-  validThrough.setDate(validThrough.getDate() + 90);
-
   const nurseJobPosting = {
     "@context": "https://schema.org",
     "@type": "JobPosting",
     title: `訪問看護師（${areaName}エリア）`,
     description: `${areaName}エリアでの訪問看護業務。年間休日139日以上、入社祝い金最大30万円。直行直帰OK、AI活用で記録業務を効率化。`,
     datePosted: JOB_POSTED_DATE,
-    validThrough: validThrough.toISOString().split("T")[0],
+    validThrough: JOB_VALID_THROUGH,
     employmentType: "FULL_TIME",
     hiringOrganization: {
       "@type": "Organization",
@@ -403,14 +411,7 @@ export function AreaJobPostingStructuredData({
     },
     jobLocation: {
       "@type": "Place",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "三山6丁目22-2 パレドール小川201",
-        addressLocality: areaName,
-        addressRegion: "千葉県",
-        postalCode: "274-0072",
-        addressCountry: "JP",
-      },
+      address: OFFICE_ADDRESS,
     },
     baseSalary: {
       "@type": "MonetaryAmount",
@@ -438,7 +439,7 @@ export function AreaJobPostingStructuredData({
     title: `理学療法士・作業療法士・言語聴覚士（${areaName}エリア）`,
     description: `${areaName}エリアでの訪問リハビリテーション業務。年間休日120日以上、入社祝い金最大30万円。直行直帰OK。`,
     datePosted: JOB_POSTED_DATE,
-    validThrough: validThrough.toISOString().split("T")[0],
+    validThrough: JOB_VALID_THROUGH,
     employmentType: "FULL_TIME",
     hiringOrganization: {
       "@type": "Organization",
@@ -448,14 +449,7 @@ export function AreaJobPostingStructuredData({
     },
     jobLocation: {
       "@type": "Place",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "三山6丁目22-2 パレドール小川201",
-        addressLocality: areaName,
-        addressRegion: "千葉県",
-        postalCode: "274-0072",
-        addressCountry: "JP",
-      },
+      address: OFFICE_ADDRESS,
     },
     baseSalary: {
       "@type": "MonetaryAmount",
