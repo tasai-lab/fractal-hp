@@ -1,568 +1,523 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Contact from "@/components/Contact";
 import { CountUp } from "@/components/CountUp";
+import { JobDetails } from "@/components/recruit/JobDetails";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import {
   signOnBonus,
   jobPositions,
-  jobDuties,
   visitAreas,
-  onCallInfo,
   companyPhilosophy,
   applicationMessage,
-  therapistDuties,
-  therapistModelIncome,
 } from "@/lib/recruit-data";
 import { recruitFAQs } from "@/lib/faq-data";
+import { staffMembers } from "@/lib/data";
+import { recruitAreas } from "@/lib/recruit-areas";
 
-// タブの定義
-const tabs = jobPositions
-  .filter((job) => !job.hidden)
-  .map((job) => ({
-    id: job.id,
-    label: job.id === "nurse" ? "看護師" : "理学/作業/言語",
+const roleOverrides: Record<string, string> = {
+  "古谷 一真": "管理者",
+  "浅井 拓哉": "看護師",
+  "髙山 里美": "看護師",
+  "祝迫 萌々": "営業兼事務職",
+};
+
+const teamOrder = ["古谷 一真", "浅井 拓哉", "髙山 里美", "祝迫 萌々"];
+
+const teamProfiles = teamOrder
+  .map((name) => staffMembers.find((staff) => staff.name === name))
+  .filter((staff): staff is NonNullable<typeof staffMembers>[number] => Boolean(staff))
+  .map((staff) => ({
+    ...staff,
+    role: roleOverrides[staff.name] ?? staff.role,
   }));
 
+const visibleJobs = jobPositions.filter((job) =>
+  ["nurse", "therapist"].includes(job.id)
+);
+
+const featureIcons = [
+  "/images/recruit/icons/1.png",
+  "/images/recruit/icons/2.png",
+  "/images/recruit/icons/3.png",
+];
+
+
+const FadeIn = ({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) => {
+  const { ref, isVisible } = useScrollAnimation(0.15);
+
+  return (
+    <div
+      ref={ref as React.RefObject<HTMLDivElement>}
+      className={`transition-all duration-700 ease-out ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+      } ${className}`}
+    >
+      {children}
+    </div>
+  );
+};
+
 export default function RecruitPage() {
-  const [activeTab, setActiveTab] = useState(tabs[0]?.id || "nurse");
-  const currentJob = jobPositions.find((job) => job.id === activeTab) || jobPositions[0];
+  const currentJob = jobPositions.find((job) => job.id === "nurse") || jobPositions[0];
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
+  const [selectedTeam, setSelectedTeam] = useState<(typeof teamProfiles)[number] | null>(null);
+  const [isContactOpen, setIsContactOpen] = useState(false);
 
   const toggleFAQ = (index: number) => {
     setOpenFAQIndex(openFAQIndex === index ? null : index);
   };
 
-  // スクロールアニメーション用（配列ベースで最適化）
-  const CARD_COUNT = 8;
-  const cardRefs = useRef<(HTMLDivElement | null)[]>(Array(CARD_COUNT).fill(null));
-  const [cardVisibility, setCardVisibility] = useState<boolean[]>(Array(CARD_COUNT).fill(false));
-
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const index = cardRefs.current.findIndex(ref => ref === entry.target);
-          if (index !== -1 && entry.isIntersecting) {
-            setCardVisibility(prev => {
-              const newState = [...prev];
-              newState[index] = true;
-              return newState;
-            });
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
+    if (selectedTeam || isContactOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [selectedTeam, isContactOpen]);
 
-    cardRefs.current.forEach(ref => {
-      if (ref) observer.observe(ref);
-    });
-
-    return () => observer.disconnect();
-  }, []);
+  const openContact = () => {
+    setSelectedTeam(null);
+    setIsContactOpen(true);
+  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-teal-50">
-      {/* ヘッダー */}
-      <header className="bg-white shadow-sm sticky top-0 z-40">
-        <div className="max-w-6xl mx-auto px-3 md:px-4 py-3 md:py-4 flex items-center justify-between">
+    <div className="min-h-screen body-editorial">
+      <header className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-40">
+        <div className="max-w-6xl mx-auto px-4 py-3 md:py-4 flex items-center justify-between">
           <Link
             href="/"
-            className="text-primary font-bold text-base md:text-lg hover:opacity-80 transition-opacity"
+            className="text-primary font-bold text-sm md:text-lg hover:opacity-80 transition-opacity"
           >
             ← 戻る
           </Link>
-          <h1 className="text-lg md:text-2xl font-bold text-primary">船橋・八千代・習志野の看護師求人</h1>
+          <h1 className="text-lg md:text-2xl font-bold text-primary heading-mincho">
+            採用情報
+          </h1>
         </div>
       </header>
 
-      {/* メインコンテンツ */}
-      <main
-        className="max-w-4xl mx-auto px-3 md:px-4"
-        style={{
-          paddingTop: 'var(--spacing-fluid-lg)',
-          paddingBottom: 'var(--spacing-fluid-2xl)'
-        }}
-      >
-        {/* SEO用リード文 */}
-        <p className="text-base md:text-lg text-primary/80 mb-6 md:mb-8 text-center leading-relaxed">
-          船橋市、八千代市、習志野市、千葉市花見川区で<strong>看護師・理学療法士・作業療法士・言語聴覚士</strong>を募集しています。
-          入社祝い金最大30万円、年間休日120日以上（看護師139日以上）。未経験・ブランクのある方も歓迎です。
-        </p>
-
-        {/* HP限定入社祝い金バナー */}
-        <section className="mb-6 md:mb-12">
-          <div className="bg-gradient-to-r from-[var(--color-logo-yellow)] via-[var(--color-logo-yellow)]/80 to-[var(--color-logo-yellow)] rounded-xl md:rounded-2xl p-4 md:p-8 shadow-lg relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-20 md:w-32 h-20 md:h-32 bg-[var(--color-logo-yellow)]/50 rounded-full -translate-y-1/2 translate-x-1/2 opacity-50"></div>
-            <div className="absolute bottom-0 left-0 w-16 md:w-24 h-16 md:h-24 bg-[var(--color-logo-yellow)]/50 rounded-full translate-y-1/2 -translate-x-1/2 opacity-50"></div>
-
-            <div className="relative z-10">
-              <div className="inline-block bg-red-500 text-white text-base md:text-lg font-bold px-2 md:px-3 py-1 rounded-full mb-3 md:mb-4">
-                {signOnBonus.note}
-              </div>
-              <h2
-                className="font-bold text-primary"
-                style={{
-                  fontSize: 'var(--font-size-fluid-2xl)',
-                  marginBottom: 'var(--spacing-fluid-md)'
-                }}
+      <main className="max-w-6xl mx-auto px-4 md:px-6 pt-10 md:pt-16 pb-32 md:pb-24 flex flex-col gap-16 md:gap-24">
+        <section className="order-1 grid lg:grid-cols-[1.1fr,0.9fr] gap-10 items-center">
+          <FadeIn className="space-y-4">
+            <p className="text-xs tracking-[0.3em] text-ink-soft">RECRUIT</p>
+            <h2 className="heading-mincho text-3xl md:text-5xl text-[var(--color-olive)]">
+              フラクタルだから、できる。
+            </h2>
+            <p className="text-ink-soft text-base md:text-lg leading-relaxed">
+              船橋市、八千代市、習志野市、千葉市花見川区で看護師・理学療法士・作業療法士・言語聴覚士を募集しています。
+              入社祝い金最大30万円、年休139日以上（PT・OT・STは120日以上）。未経験・ブランクのある方も歓迎です。
+            </p>
+            <div className="flex flex-wrap gap-3 pt-2">
+              <button
+                type="button"
+                onClick={openContact}
+                className="px-5 py-2.5 md:px-6 md:py-3 rounded-full bg-[var(--color-olive)] text-white text-sm md:text-base font-semibold hover:opacity-90 transition"
               >
-                入社祝い金 最大<CountUp end={30} suffix="万円" />
-              </h2>
-              {/* 祝い金マイルストーン（矢印付き・下揃え） */}
-              <div className="flex items-end justify-center gap-1 md:gap-2 mb-3 md:mb-4">
-                {signOnBonus.milestones.map((milestone, index) => (
-                  <div key={index} className="flex items-end">
+                応募する
+              </button>
+              <Link
+                href="#positions"
+                className="px-5 py-2.5 md:px-6 md:py-3 rounded-full border border-[var(--color-olive)] text-[var(--color-olive)] text-sm md:text-base font-semibold hover:bg-[var(--color-olive)]/10 transition"
+              >
+                募集職種を見る
+              </Link>
+            </div>
+            <div className="flex flex-wrap gap-2 pt-3">
+              <span className="px-3 py-1 rounded-full bg-white/90 text-[var(--color-olive)] text-xs font-semibold">
+                祝金 最大30万円
+              </span>
+              <span className="px-3 py-1 rounded-full bg-[var(--color-olive)] text-white text-xs font-semibold">
+                年休139日以上（PT・OT・STは120日以上）
+              </span>
+            </div>
+          </FadeIn>
+          <FadeIn className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg">
+            <Image
+              src="/images/recruit/photos/hero.jpg"
+              alt="フラクタル訪問看護の現場"
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 45vw"
+              className="object-cover"
+            />
+          </FadeIn>
+        </section>
+
+        <section className="order-2 bg-white/80 rounded-3xl p-4 md:p-6 shadow-sm border border-white/80">
+          <FadeIn>
+            <p className="text-xs tracking-[0.3em] text-ink-soft">KEY BENEFITS</p>
+            <div className="mt-4 flex md:grid md:grid-cols-3 gap-3 overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-2">
+              <div className="min-w-[200px] md:min-w-0 snap-center bg-white rounded-2xl border border-[var(--color-sand)] p-4 shadow-sm">
+                <p className="text-xs text-ink-soft">祝金30万円支給</p>
+                <p className="heading-mincho text-lg text-[var(--color-olive)] mt-1">最大30万円</p>
+                <p className="text-xs text-ink-soft mt-1">全職種対象</p>
+              </div>
+              <div className="min-w-[200px] md:min-w-0 snap-center bg-[var(--color-olive)] text-white rounded-2xl p-4 shadow-sm">
+                <p className="text-xs">年間休日</p>
+                <p className="heading-mincho text-lg mt-1">139日以上</p>
+                <p className="text-xs mt-1">年休139日以上（PT・OT・STは120日以上）</p>
+              </div>
+              <div className="min-w-[200px] md:min-w-0 snap-center bg-white rounded-2xl border border-[var(--color-sand)] p-4 shadow-sm">
+                <p className="text-xs text-ink-soft">年間休日</p>
+                <p className="heading-mincho text-lg text-[var(--color-olive)] mt-1">120日以上</p>
+                <p className="text-xs text-ink-soft mt-1">PT・OT・ST</p>
+              </div>
+            </div>
+          </FadeIn>
+        </section>
+
+        <section className="order-3 bg-[var(--color-paper)] rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
+          <FadeIn>
+            <div className="grid md:grid-cols-[1.1fr,0.9fr] gap-8 items-center">
+              <div>
+                <p className="text-xs tracking-[0.3em] text-ink-soft">SIGN-ON BONUS</p>
+                <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
+                  入社祝い金 最大<CountUp end={30} suffix="万円" />
+                </h3>
+                <p className="text-ink-soft mt-2">全ての職種に適用されます</p>
+                <div className="grid grid-cols-3 gap-3 mt-5">
+                  {signOnBonus.milestones.map((milestone) => (
                     <div
-                      className={`bg-white/90 rounded-lg md:rounded-xl text-center shadow-sm ${
-                        index === 0 ? 'px-3 py-2' : index === 1 ? 'px-3.5 py-2.5' : 'px-4 py-3'
-                      }`}
+                      key={milestone.label}
+                      className="bg-white/90 rounded-2xl p-3 text-center border border-white"
                     >
-                      <p className={`text-muted mb-0.5 ${index === 0 ? 'text-sm md:text-base' : index === 1 ? 'text-base md:text-lg' : 'text-lg md:text-xl'}`}>
-                        {milestone.label}
-                      </p>
-                      <p className={`font-bold text-primary ${index === 0 ? 'text-base md:text-xl' : index === 1 ? 'text-lg md:text-2xl' : 'text-xl md:text-3xl'}`}>
+                      <p className="text-xs text-ink-soft">{milestone.label}</p>
+                      <p className="heading-mincho text-lg text-[var(--color-olive)]">
                         {(milestone.amount / 10000).toLocaleString()}万円
                       </p>
                     </div>
-                    {index < signOnBonus.milestones.length - 1 && (
-                      <div className="text-primary mx-1 md:mx-2 mb-2 md:mb-3">
-                        <svg className="w-4 h-4 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
-                        </svg>
-                      </div>
-                    )}
+                  ))}
+                </div>
+              </div>
+              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg">
+                <Image
+                  src="/images/recruit/photos/bonus.jpg"
+                  alt="現場の様子"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  className="object-cover"
+                />
+              </div>
+            </div>
+            <p className="text-ink-soft text-sm mt-4">
+              ※ 入社祝い金は、本HPからの応募に限り適用されます。
+              他の求人媒体から応募された場合、または本HPでの応募前に他の求人媒体から応募されている場合は対象外となります。
+            </p>
+          </FadeIn>
+        </section>
+
+        <section className="order-4 grid lg:grid-cols-[0.9fr,1.1fr] gap-10 items-center">
+          <FadeIn className="space-y-4">
+            <p className="text-xs tracking-[0.3em] text-ink-soft">WORK STYLE</p>
+            <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)]">
+              働きやすさの工夫
+            </h3>
+            <p className="text-ink-soft">
+              現場の声を拾い、仕組みとITで負担を減らす。だから「訪問看護は大変」というイメージが変わります。
+            </p>
+            <ul className="space-y-2 text-ink-soft">
+              {currentJob.features.slice(0, 3).map((feature, index) => (
+                <li key={feature.title} className="flex items-start gap-3">
+                  <div className="relative w-8 h-8 rounded-full bg-white shadow-sm border border-white">
+                    <Image
+                      src={featureIcons[index % featureIcons.length]}
+                      alt=""
+                      fill
+                      sizes="32px"
+                      className="object-contain p-1"
+                    />
                   </div>
-                ))}
+                  <span>
+                    <span className="font-semibold text-[var(--color-olive)]">
+                      {feature.title}
+                    </span>
+                    <br />
+                    {feature.description}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </FadeIn>
+          <div className="space-y-4">
+            <FadeIn className="relative aspect-[16/9] rounded-3xl overflow-hidden shadow-lg bg-white">
+              <Image
+                src="/images/recruit/photos/work.jpg"
+                alt="働く環境の様子"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </FadeIn>
+            <FadeIn className="bg-white/80 rounded-2xl p-4 border border-white shadow-sm">
+              <p className="text-xs tracking-[0.3em] text-ink-soft">SHIFT EXAMPLE</p>
+              <div className="relative aspect-[16/9] rounded-xl overflow-hidden mt-3">
+                <Image
+                  src="/images/recruit/shift-example.png"
+                  alt="実際のシフト例"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-contain bg-white"
+                />
               </div>
-              <p className="text-base md:text-lg text-primary/80 mb-3">全ての職種に適用されます</p>
-              <div className="bg-white/90 rounded-lg p-3 md:p-4 border-l-4 border-red-500">
-                <p className="text-sm md:text-base text-primary/90 font-medium">
-                  ※ 入社祝い金は、本HPからの応募に限り適用されます。他の求人媒体から応募された場合、または本HPでの応募前に他の求人媒体から応募されている場合は対象外となりますのでご注意ください。
+            </FadeIn>
+          </div>
+        </section>
+
+        <section className="order-5 bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
+          <FadeIn>
+            <p className="text-xs tracking-[0.3em] text-ink-soft">ONE DAY</p>
+            <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
+              1日の流れ
+            </h3>
+            <p className="text-ink-soft mt-2">
+              フラクタルの1日は、ファンタスティック・ジョニー（愛称：ジョニ）が案内。
+              音声入力AIで記録までスムーズです。
+            </p>
+            <div className="grid lg:grid-cols-[0.9fr,1.1fr] gap-6 mt-6 items-center">
+              <div className="bg-[var(--color-paper)] rounded-3xl p-5 border border-white shadow-sm">
+                <div className="flex items-center gap-4">
+                  <div className="relative w-16 h-16 rounded-2xl overflow-hidden bg-white">
+                    <Image
+                      src="/images/recruit/johnny.png"
+                      alt="ファンタスティック・ジョニー"
+                      fill
+                      sizes="64px"
+                      className="object-contain"
+                    />
+                  </div>
+                  <div>
+                    <p className="text-xs tracking-[0.3em] text-ink-soft">FRACTAL FAIRY</p>
+                    <p className="heading-mincho text-lg text-[var(--color-olive)]">
+                      ファンタスティック・ジョニー
+                    </p>
+                    <p className="text-xs text-ink-soft mt-1">愛称：ジョニ</p>
+                  </div>
+                </div>
+                <p className="text-sm text-ink-soft mt-3">
+                  物知りで親切、何でも教えてくれるフラクタルの妖精です。
                 </p>
+                <Link
+                  href="/recruit/day-flow"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-olive)] mt-4"
+                >
+                  1日の流れを詳しく見る →
+                </Link>
+              </div>
+              <div className="grid gap-3">
+                <div className="bg-white/80 rounded-2xl border border-white px-4 py-3 text-sm text-ink-soft">
+                  営業時間は9:00〜19:00、1日6〜7件の訪問が目安です。
+                </div>
+                <div className="bg-white/80 rounded-2xl border border-white px-4 py-3 text-sm text-ink-soft">
+                  記録は移動中の音声入力 → AIが文章化。帰ってまとめて記録しません。
+                </div>
+                <div className="bg-white/80 rounded-2xl border border-white px-4 py-3 text-sm text-ink-soft">
+                  朝礼なし・直行直帰OK。申し送りを確認すれば翌日もスムーズです。
+                </div>
               </div>
             </div>
-          </div>
+          </FadeIn>
         </section>
 
-        {/* フラクタルの考え方（共通） */}
-        <section className="mb-6 md:mb-12">
-          <div className="bg-white rounded-xl md:rounded-2xl p-4 md:p-8 shadow-md">
-            <h2
-              className="font-bold text-primary pb-2 border-b-2 border-emerald-500"
-              style={{
-                fontSize: 'var(--font-size-fluid-xl)',
-                marginBottom: 'var(--spacing-fluid-md)'
-              }}
-            >
-              {companyPhilosophy.title}
-            </h2>
-            <div className="text-base md:text-lg text-primary/80 whitespace-pre-line leading-relaxed">
-              {companyPhilosophy.content}
-            </div>
-          </div>
-        </section>
-
-        {/* 募集職種タブ */}
-        <section className="mb-6 md:mb-12">
-          <h2
-            className="font-bold text-primary"
-            style={{
-              fontSize: 'var(--font-size-fluid-xl)',
-              marginBottom: 'var(--spacing-fluid-lg)'
-            }}
-          >
-            船橋事業所の看護師・セラピスト募集
-          </h2>
-
-          {/* タブナビゲーション */}
-          <div className="flex mb-4 md:mb-6 bg-gray-100 rounded-lg md:rounded-xl p-1">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`flex-1 py-2 md:py-3 px-3 md:px-4 rounded-md md:rounded-lg font-bold text-base md:text-lg transition-all ${
-                  activeTab === tab.id
-                    ? "bg-white text-primary shadow-md"
-                    : "text-muted hover:text-primary"
-                }`}
-              >
-                {tab.label}
-              </button>
+        <section className="order-7 bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
+          <FadeIn>
+            <p className="text-xs tracking-[0.3em] text-ink-soft">TEAM</p>
+            <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
+              一緒に働く仲間
+            </h3>
+            <p className="text-ink-soft mt-2">
+              互いに支え合いながら、成長を喜べるチームです。
+            </p>
+          </FadeIn>
+          <FadeIn className="relative aspect-[3/2] rounded-3xl overflow-hidden shadow-lg bg-white mt-6">
+            <Image
+              src="/images/recruit/labels/team-title.jpg"
+              alt="一緒に働く仲間"
+              fill
+              sizes="(max-width: 1024px) 100vw, 80vw"
+              className="object-contain bg-white"
+            />
+          </FadeIn>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+            {teamProfiles.map((member) => (
+              <FadeIn key={member.name} className="transition-transform duration-300">
+                <button
+                  type="button"
+                  onClick={() => setSelectedTeam(member)}
+                  className="w-full bg-[var(--color-paper)] rounded-2xl p-3 md:p-5 text-center border border-white transition-all duration-300 hover:shadow-md active:scale-[0.98]"
+                >
+                  <div className="relative w-20 h-20 md:w-32 md:h-32 lg:w-36 lg:h-36 mx-auto rounded-2xl overflow-hidden mb-2 md:mb-3">
+                    <Image
+                      src={member.image}
+                      alt={`${member.name}の写真`}
+                      fill
+                      sizes="(max-width: 640px) 80px, (max-width: 1024px) 128px, 144px"
+                      className="object-cover"
+                    />
+                  </div>
+                  <p className="heading-mincho text-base md:text-lg text-[var(--color-olive)]">
+                    {member.name}
+                  </p>
+                  <p className="text-[11px] md:text-sm text-ink-soft">{member.role}</p>
+                  <p className="text-[10px] text-ink-soft/70 mt-1">タップで自己紹介</p>
+                </button>
+              </FadeIn>
             ))}
           </div>
+        </section>
 
-          {/* 職種詳細 */}
-          <div className="bg-white rounded-xl md:rounded-2xl shadow-md overflow-hidden">
-            {/* ヘッダー */}
-            <div className={`p-4 md:p-8 ${activeTab === "nurse" ? "bg-emerald-600" : "bg-teal-500"}`}>
-              <div className="flex flex-wrap gap-1.5 md:gap-2 mb-3 md:mb-4">
-                {currentJob.highlights.map((highlight, index) => (
-                  <span
-                    key={index}
-                    className="bg-white/90 text-primary text-sm md:text-base font-medium px-2 md:px-3 py-0.5 md:py-1 rounded-full"
-                  >
-                    {highlight}
-                  </span>
-                ))}
-              </div>
-              <h3
-                className="font-bold text-white mb-1 md:mb-2"
-                style={{ fontSize: 'var(--font-size-fluid-2xl)' }}
-              >
-                {currentJob.title}募集
-              </h3>
-              <p className="text-white/90 text-base md:text-lg">
-                {currentJob.subtitle}
-              </p>
-            </div>
-
-            {/* コンテンツ */}
-            <div className="p-4 md:p-8 space-y-5 md:space-y-6">
-              {/* 仕事内容 */}
-              <div
-                ref={el => { cardRefs.current[0] = el; }}
-                className={`bg-white rounded-xl p-4 md:p-6 shadow-md border-l-4 border-emerald-500 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ${
-                  cardVisibility[0] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                }`}
-              >
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-2xl">💼</span>
-                  <h4 className="text-lg md:text-xl font-bold text-primary">
-                    {activeTab === "nurse" ? "看護師の仕事内容" : "訪問リハビリスタッフの仕事内容"}
-                  </h4>
-                </div>
-                <p className="text-base md:text-lg text-primary/80 mb-3 md:mb-4">{currentJob.description}</p>
-                <h5 className="font-bold text-primary text-base md:text-lg mb-2">具体的な業務内容</h5>
-                <ul className="space-y-1.5 md:space-y-2">
-                  {(activeTab === "nurse" ? jobDuties : therapistDuties).map((duty, index) => (
-                    <li
-                      key={index}
-                      className="flex items-start gap-2 text-base md:text-lg text-primary/80"
-                    >
-                      <span className={`mt-0.5 md:mt-1 ${activeTab === "nurse" ? "text-emerald-600" : "text-teal-500"}`}>●</span>
-                      {duty}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* 訪問エリア */}
-              <div
-                ref={el => { cardRefs.current[1] = el; }}
-                className={`bg-white rounded-xl p-4 md:p-6 shadow-md border-l-4 border-teal-500 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ${
-                  cardVisibility[1] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                }`}
-              >
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-2xl">📍</span>
-                  <h4 className="text-lg md:text-xl font-bold text-primary">訪問エリア：船橋市・八千代市・習志野市・花見川区</h4>
-                </div>
-                <div className="flex flex-wrap gap-1.5 md:gap-2">
-                  {visitAreas.map((area, index) => (
-                    <span
-                      key={index}
-                      className="bg-teal-100 text-primary px-3 md:px-4 py-1.5 md:py-2 rounded-full text-base md:text-lg"
-                    >
-                      {area}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* オンコール（看護師のみ） */}
-              {activeTab === "nurse" && (
-                <div
-                  ref={el => { cardRefs.current[2] = el; }}
-                  className={`bg-white rounded-xl p-4 md:p-6 shadow-md border-l-4 border-[var(--color-logo-yellow)] hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ${
-                    cardVisibility[2] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                  }`}
+        <section className="order-9 grid lg:grid-cols-[1.1fr,0.9fr] gap-10 items-center">
+          <FadeIn className="space-y-4">
+            <p className="text-xs tracking-[0.3em] text-ink-soft">SERVICE AREA</p>
+            <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)]">
+              訪問エリア
+            </h3>
+            <p className="text-ink-soft">
+              船橋市・八千代市・習志野市・千葉市花見川区を中心に訪問しています。
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {visitAreas.map((area) => (
+                <span
+                  key={area}
+                  className="px-3 py-1 rounded-full bg-[var(--color-paper)] text-sm text-[var(--color-olive)]"
                 >
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-2xl">📞</span>
-                    <h4 className="text-lg md:text-xl font-bold text-primary">オンコールについて</h4>
-                  </div>
-                  <div className="bg-yellow-50 rounded-lg md:rounded-xl p-3 md:p-4">
-                    <p className="text-primary font-medium text-base md:text-lg mb-1 md:mb-2">
-                      月{onCallInfo.frequency.replace("月", "").replace("程度", "")}
-                      程度
-                    </p>
-                    <p className="text-primary/80 text-base md:text-lg">
-                      {onCallInfo.note}
-                    </p>
-                  </div>
-                </div>
-              )}
-
-              {/* 給与 */}
-              <div
-                ref={el => { cardRefs.current[3] = el; }}
-                className={`bg-white rounded-xl p-4 md:p-6 shadow-md border-l-4 border-emerald-500 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ${
-                  cardVisibility[3] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                }`}
-              >
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-2xl">💰</span>
-                  <h4 className="text-lg md:text-xl font-bold text-primary">給与</h4>
-                </div>
-                <div className="bg-emerald-50 rounded-lg md:rounded-xl p-3 md:p-4">
-                  <p className="text-base md:text-lg text-muted mb-1">
-                    【{currentJob.details.salary.type}】
-                  </p>
-                  <p className="text-xl md:text-3xl font-bold text-primary mb-3 md:mb-4">
-                    {currentJob.details.salary.amount}
-                  </p>
-                  <h5 className="font-bold text-primary text-base md:text-lg mb-2">内訳</h5>
-                  <ul className="space-y-1.5 md:space-y-2 mb-3 md:mb-4">
-                    {currentJob.details.salary.breakdown.map((item, index) => (
-                      <li
-                        key={index}
-                        className="flex flex-col md:flex-row md:justify-between text-base md:text-lg"
-                      >
-                        <span className="text-primary/80">{item.label}</span>
-                        <span className="font-medium text-primary">
-                          {item.value}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                  {currentJob.details.salary.note && (
-                    <p className="text-sm md:text-base text-primary/70 bg-white/50 rounded-lg p-2 md:p-3">
-                      {currentJob.details.salary.note}
-                    </p>
-                  )}
-                </div>
-
-                {/* モデル年収（療法士のみ） */}
-                {activeTab === "therapist" && (
-                  <div className="mt-3 md:mt-4">
-                    <h5 className="font-bold text-primary text-base md:text-lg mb-2 md:mb-3">モデル年収</h5>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-                      {therapistModelIncome.map((model, index) => (
-                        <div key={index} className="bg-emerald-50 rounded-lg md:rounded-xl p-3 md:p-4">
-                          <p className="text-base md:text-lg text-muted mb-1">{model.label}</p>
-                          <p className="text-primary/80 text-base md:text-lg mb-1.5 md:mb-2">{model.calculation}</p>
-                          <p className="text-lg md:text-xl font-bold text-primary">{model.monthly}</p>
-                          <p className="text-base md:text-lg text-emerald-600 font-medium">{model.annual}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* 勤務時間・休日 */}
-              <div
-                ref={el => { cardRefs.current[4] = el; }}
-                className={`bg-white rounded-xl p-4 md:p-6 shadow-md border-l-4 border-teal-500 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ${
-                  cardVisibility[4] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                }`}
-              >
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-2xl">🕐</span>
-                  <h4 className="text-lg md:text-xl font-bold text-primary">勤務時間・休日</h4>
-                </div>
-                <div className="grid grid-cols-2 gap-2 md:gap-4 mb-3 md:mb-4">
-                  <div className="bg-gray-50 rounded-lg md:rounded-xl p-3 md:p-4">
-                    <h5 className="font-bold text-primary text-base md:text-lg mb-1 md:mb-2">勤務時間</h5>
-                    <p className="text-base md:text-lg text-primary/80">{currentJob.details.workHours}</p>
-                    <p className="text-sm md:text-base text-muted mt-1 md:mt-2">残業ほぼなし</p>
-                  </div>
-                  <div className="bg-gray-50 rounded-lg md:rounded-xl p-3 md:p-4">
-                    <h5 className="font-bold text-primary text-base md:text-lg mb-1 md:mb-2">年間休日</h5>
-                    <p className={`text-xl md:text-2xl font-bold mb-1 md:mb-2 ${activeTab === "nurse" ? "text-emerald-600" : "text-teal-500"}`}>
-                      {currentJob.details.holidays.annual}
-                    </p>
-                    {currentJob.details.holidays.monthly && (
-                      <p className="text-xs md:text-sm text-primary/80">
-                        月の公休：{currentJob.details.holidays.monthly}日
-                      </p>
-                    )}
-                  </div>
-                </div>
-                <ul className="space-y-1.5 md:space-y-2">
-                  {currentJob.details.holidays.notes.map((note, index) => (
-                    <li
-                      key={index}
-                      className="flex items-start gap-1.5 md:gap-2 text-primary/80 text-sm md:text-base"
-                    >
-                      <span className="text-accent-pink mt-0.5 md:mt-1">★</span>
-                      {note}
-                    </li>
-                  ))}
-                </ul>
-
-                {/* シフト例（看護師のみ） */}
-                {activeTab === "nurse" && (
-                  <div className="mt-4 md:mt-6">
-                    <h5 className="font-bold text-primary text-base md:text-lg mb-3 md:mb-4">実際のシフト例</h5>
-                    <div className="relative w-full aspect-[1456/856] rounded-lg md:rounded-xl overflow-hidden">
-                      <Image
-                        src="/images/recruit/shift-example.png"
-                        alt="実際のシフト例 - 8月"
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* 特徴 */}
-              <div
-                ref={el => { cardRefs.current[5] = el; }}
-                className={`bg-white rounded-xl p-4 md:p-6 shadow-md border-l-4 border-emerald-500 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ${
-                  cardVisibility[5] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                }`}
-              >
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-2xl">⭐</span>
-                  <h4 className="text-lg md:text-xl font-bold text-primary">{activeTab === "nurse" ? "フラクタルの特徴" : "働きやすさのポイント"}</h4>
-                </div>
-                <div className="space-y-3 md:space-y-4">
-                  {currentJob.features.map((feature, index) => (
-                    <div
-                      key={index}
-                      className={`rounded-lg md:rounded-xl p-3 md:p-4 ${activeTab === "nurse" ? "bg-emerald-50" : "bg-teal-50"}`}
-                    >
-                      <h5 className="font-bold text-primary text-base md:text-lg mb-1 md:mb-2">
-                        {feature.title}
-                      </h5>
-                      <p className="text-primary/80 text-sm md:text-base leading-relaxed">
-                        {feature.description}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* 待遇・福利厚生 */}
-              <div
-                ref={el => { cardRefs.current[6] = el; }}
-                className={`bg-white rounded-xl p-4 md:p-6 shadow-md border-l-4 border-teal-500 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ${
-                  cardVisibility[6] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                }`}
-              >
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-2xl">🎁</span>
-                  <h4 className="text-lg md:text-xl font-bold text-primary">待遇・福利厚生</h4>
-                </div>
-                <ul className="grid grid-cols-1 md:grid-cols-2 gap-1.5 md:gap-2">
-                  {currentJob.details.benefits.map((benefit, index) => (
-                    <li
-                      key={index}
-                      className="flex items-start gap-1.5 md:gap-2 text-primary/80 text-sm md:text-base"
-                    >
-                      <span className="text-teal-500">✓</span>
-                      {benefit}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* 応募要件 */}
-              <div
-                ref={el => { cardRefs.current[7] = el; }}
-                className={`bg-white rounded-xl p-4 md:p-6 shadow-md border-l-4 border-emerald-500 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ${
-                  cardVisibility[7] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                }`}
-              >
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-2xl">✅</span>
-                  <h4 className="text-lg md:text-xl font-bold text-primary">応募要件</h4>
-                </div>
-                <ul className="space-y-1.5 md:space-y-2">
-                  {currentJob.details.requirements.map((req, index) => (
-                    <li
-                      key={index}
-                      className="flex items-start gap-1.5 md:gap-2 text-base md:text-lg text-primary/80"
-                    >
-                      <span className={`mt-0.5 md:mt-0 ${activeTab === "nurse" ? "text-emerald-600" : "text-teal-500"}`}>●</span>
-                      {req}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                  {area}
+                </span>
+              ))}
             </div>
+            <div className="grid md:grid-cols-2 gap-3 mt-4">
+              {recruitAreas.map((area) => (
+                <Link
+                  key={area.slug}
+                  href={`/recruit/areas/${area.slug}`}
+                  className="group bg-white/80 rounded-2xl border border-white px-4 py-3 text-sm text-ink-soft hover:shadow-md transition"
+                >
+                  <p className="text-[var(--color-olive)] font-semibold">
+                    {area.name}の訪問看護求人
+                  </p>
+                  <p className="text-xs text-ink-soft mt-1">{area.shortCopy}</p>
+                  <p className="text-xs text-[var(--color-olive)] mt-2">
+                    詳しく見る →
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </FadeIn>
+          <FadeIn className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg bg-white">
+            <Image
+              src="/images/service-area/area-map.png"
+              alt="訪問エリアマップ"
+              fill
+              sizes="(max-width: 1024px) 100vw, 45vw"
+              className="object-contain"
+            />
+          </FadeIn>
+        </section>
+
+        <section className="order-10 bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
+          <FadeIn>
+            <p className="text-xs tracking-[0.3em] text-ink-soft">PHILOSOPHY</p>
+            <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
+              {companyPhilosophy.title}
+            </h3>
+            <p className="text-ink-soft mt-4 whitespace-pre-line">
+              {companyPhilosophy.content}
+            </p>
+          </FadeIn>
+        </section>
+
+                <section id="positions" className="order-6 space-y-6">
+          <FadeIn>
+            <p className="text-xs tracking-[0.3em] text-ink-soft">POSITIONS</p>
+            <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
+              募集職種
+            </h3>
+            <p className="text-ink-soft mt-2">
+              看護師・理学療法士・作業療法士・言語聴覚士を同じボリュームで掲載しています。
+            </p>
+          </FadeIn>
+          <FadeIn className="relative aspect-[3/2] rounded-3xl overflow-hidden shadow-lg bg-[var(--color-paper)]">
+            <Image
+              src="/images/recruit/labels/positions-title.png"
+              alt="募集職種"
+              fill
+              sizes="(max-width: 1024px) 100vw, 80vw"
+              className="object-contain bg-[var(--color-paper)]"
+            />
+          </FadeIn>
+          <div className="space-y-8">
+            {visibleJobs.map((job) => (
+              <FadeIn key={job.id}>
+                <JobDetails job={job} />
+              </FadeIn>
+            ))}
           </div>
         </section>
 
-        {/* 選考プロセス（共通） */}
-        <section className="mb-6 md:mb-12">
-          <div className="bg-white rounded-xl md:rounded-2xl p-4 md:p-8 shadow-md">
-            <h2
-              className="font-bold text-primary pb-2 border-b-2 border-emerald-500"
-              style={{
-                fontSize: 'var(--font-size-fluid-xl)',
-                marginBottom: 'var(--spacing-fluid-md)'
-              }}
-            >
+<section id="process" className="order-8 bg-[var(--color-paper)] rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
+          <FadeIn>
+            <p className="text-xs tracking-[0.3em] text-ink-soft">PROCESS</p>
+            <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
               選考プロセス
-            </h2>
-            <p className="text-base md:text-lg text-primary/80 mb-4 md:mb-6">
-              {applicationMessage.timeline}
-            </p>
-            <div className="space-y-4 md:space-y-6">
+            </h3>
+            <p className="text-ink-soft mt-2">{applicationMessage.timeline}</p>
+            <div className="space-y-6 mt-6">
               {currentJob.selectionProcess.map((step, index) => (
-                <div key={index} className="relative pl-8 md:pl-10">
-                  <div className={`absolute left-0 top-0 w-6 h-6 md:w-8 md:h-8 text-white rounded-full flex items-center justify-center font-bold text-sm md:text-base ${activeTab === "nurse" ? "bg-emerald-600" : "bg-teal-500"}`}>
-                    {index + 1}
-                  </div>
-                  <h4 className="font-bold text-primary text-base md:text-lg mb-0.5 md:mb-1">{step.step}</h4>
-                  <p className="text-primary/80 text-sm md:text-base">
+                <div key={step.step} className="relative pl-8">
+                  <div className="absolute left-0 top-1 w-3 h-3 rounded-full bg-[var(--color-olive)]"></div>
+                  {index < currentJob.selectionProcess.length - 1 && (
+                    <div className="absolute left-[5px] top-5 bottom-0 w-px bg-[var(--color-sand)]"></div>
+                  )}
+                  <h4 className="heading-mincho text-lg text-[var(--color-olive)]">
+                    {step.step}
+                  </h4>
+                  <p className="text-ink-soft text-sm md:text-base mt-1">
                     {step.description}
                   </p>
                 </div>
               ))}
             </div>
-          </div>
+          </FadeIn>
         </section>
 
-        {/* よくある質問 */}
-        <section className="mb-6 md:mb-12">
-          <div className="bg-white rounded-xl md:rounded-2xl p-4 md:p-8 shadow-md">
-            <h2
-              className="font-bold text-primary pb-2 border-b-2 border-emerald-500"
-              style={{
-                fontSize: 'var(--font-size-fluid-xl)',
-                marginBottom: 'var(--spacing-fluid-md)'
-              }}
-            >
+        <section id="faq" className="order-11 bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
+          <FadeIn>
+            <p className="text-xs tracking-[0.3em] text-ink-soft">FAQ</p>
+            <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
               よくある質問
-            </h2>
-            <div className="space-y-3 md:space-y-4">
+            </h3>
+            <div className="space-y-3 mt-6">
               {recruitFAQs.map((faq, index) => (
                 <div
-                  key={index}
-                  className="border border-gray-200 rounded-lg md:rounded-xl overflow-hidden"
+                  key={faq.question}
+                  className="border border-[var(--color-sand)] rounded-2xl overflow-hidden"
                 >
                   <button
                     onClick={() => toggleFAQ(index)}
-                    className="w-full px-4 md:px-6 py-3 md:py-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors flex items-center justify-between gap-3"
+                    className="w-full px-4 md:px-6 py-4 text-left bg-white/70 hover:bg-white transition-colors flex items-center justify-between gap-3"
                   >
-                    <span className="font-medium text-primary text-base md:text-lg">
+                    <span className="font-medium text-[var(--color-olive)]">
                       {faq.question}
                     </span>
                     <span
-                      className={`text-emerald-600 transition-transform duration-300 flex-shrink-0 ${
+                      className={`text-[var(--color-olive)] transition-transform duration-300 flex-shrink-0 ${
                         openFAQIndex === index ? "rotate-180" : ""
                       }`}
                     >
-                      <svg
-                        className="w-5 h-5 md:w-6 md:h-6"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M19 9l-7 7-7-7"
-                        />
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
                     </span>
                   </button>
@@ -571,8 +526,8 @@ export default function RecruitPage() {
                       openFAQIndex === index ? "max-h-96" : "max-h-0"
                     }`}
                   >
-                    <div className="px-4 md:px-6 py-3 md:py-4 bg-white">
-                      <p className="text-primary/80 text-sm md:text-base leading-relaxed">
+                    <div className="px-4 md:px-6 py-4 bg-white">
+                      <p className="text-ink-soft text-sm md:text-base leading-relaxed">
                         {faq.answer}
                       </p>
                     </div>
@@ -580,33 +535,125 @@ export default function RecruitPage() {
                 </div>
               ))}
             </div>
-          </div>
+          </FadeIn>
         </section>
 
-        {/* 応募メッセージ */}
-        <section className="mb-6 md:mb-12">
-          <div className="bg-white rounded-xl md:rounded-2xl p-4 md:p-8 shadow-md">
-            <h2
-              className="font-bold text-primary pb-2 border-b-2 border-emerald-500"
-              style={{
-                fontSize: 'var(--font-size-fluid-xl)',
-                marginBottom: 'var(--spacing-fluid-md)'
-              }}
-            >
-              お問い合わせ
-            </h2>
-            <div className="text-center mb-8 md:mb-12">
-              <p className="text-base md:text-lg text-primary/80 leading-relaxed mb-4 md:mb-6">
-                {applicationMessage.main}
-              </p>
-              <p className="text-primary/80 text-sm md:text-base">
-                {applicationMessage.visit}
-              </p>
-            </div>
-            <Contact initialContactType="求人・採用について" embedded={true} hideTitle={true} />
-          </div>
-        </section>
       </main>
+
+      <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/80 backdrop-blur border-t border-white/80">
+        <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-center md:justify-end">
+          <button
+            type="button"
+            onClick={openContact}
+            className="w-full md:w-auto px-6 py-3 rounded-full bg-[var(--color-olive)] text-white font-semibold shadow-lg"
+          >
+            応募する
+          </button>
+        </div>
+      </div>
+
+      {isContactOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40"
+          onClick={() => setIsContactOpen(false)}
+        >
+          <div
+            className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-[var(--color-paper)] rounded-3xl shadow-xl border border-white"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="relative px-6 py-8 md:px-8 md:py-10">
+              <button
+                type="button"
+                onClick={() => setIsContactOpen(false)}
+                className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white shadow-sm flex items-center justify-center"
+                aria-label="閉じる"
+              >
+                <span className="text-lg text-ink-soft">×</span>
+              </button>
+              <div className="space-y-6">
+                <div>
+                  <p className="text-xs tracking-[0.3em] text-ink-soft">CONTACT</p>
+                  <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
+                    お問い合わせ
+                  </h3>
+                </div>
+                <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg bg-white">
+                  <Image
+                    src="/images/recruit/labels/contact-photo.jpg"
+                    alt="募集お問い合わせ"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="text-ink-soft">
+                  <p className="leading-relaxed">{applicationMessage.main}</p>
+                  <p className="text-sm mt-2">{applicationMessage.visit}</p>
+                </div>
+                <div className="bg-white/80 rounded-2xl border border-white p-4">
+                  <Contact initialContactType="求人・採用について" embedded={true} hideTitle={true} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {selectedTeam && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40"
+          onClick={() => setSelectedTeam(null)}
+        >
+          <div
+            className="w-full max-w-md bg-[var(--color-paper)] rounded-3xl shadow-xl border border-white"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="relative rounded-t-3xl bg-white/80 px-6 py-8 text-center">
+              <button
+                type="button"
+                onClick={() => setSelectedTeam(null)}
+                className="absolute top-3 right-3 w-9 h-9 rounded-full bg-white shadow-sm flex items-center justify-center"
+                aria-label="閉じる"
+              >
+                <span className="text-lg text-ink-soft">×</span>
+              </button>
+              <div className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-2xl overflow-hidden mx-auto mb-4">
+                <Image
+                  src={selectedTeam.image}
+                  alt={`${selectedTeam.name}の写真`}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <p className="text-xs tracking-[0.2em] text-ink-soft">STAFF</p>
+              <h3 className="heading-mincho text-2xl text-[var(--color-olive)] mt-2">
+                {selectedTeam.name}
+              </h3>
+              <p className="text-sm text-ink-soft mt-1">{selectedTeam.nameReading}</p>
+              <p className="text-sm text-[var(--color-olive)] mt-2">{selectedTeam.role}</p>
+            </div>
+
+            <div className="px-6 pb-6">
+              <div className="grid gap-3 mt-4">
+                <div className="bg-white rounded-2xl border border-white p-3 text-sm text-ink-soft">
+                  <span className="font-semibold text-[var(--color-olive)]">出身地：</span>
+                  {selectedTeam.birthplace}
+                </div>
+                <div className="bg-white rounded-2xl border border-white p-3 text-sm text-ink-soft">
+                  <span className="font-semibold text-[var(--color-olive)]">趣味：</span>
+                  {selectedTeam.hobbies}
+                </div>
+              </div>
+              <div className="mt-4 bg-white rounded-2xl border border-white p-4">
+                <p className="text-sm font-semibold text-[var(--color-olive)] mb-2">自己紹介</p>
+                <p className="text-sm text-ink-soft leading-relaxed">
+                  {selectedTeam.introduction}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
