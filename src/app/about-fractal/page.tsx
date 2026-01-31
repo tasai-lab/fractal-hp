@@ -308,8 +308,8 @@ export default function AboutFractalPage() {
               onClick={() => scrollToSection(section.id)}
               className={`shrink-0 px-4 py-2 rounded-full text-xs font-medium transition-all ${
                 activeSection === section.id
-                  ? "bg-emerald-500 text-white"
-                  : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                  ? "bg-[var(--color-logo-light-green)] text-white"
+                  : "bg-slate-100 text-slate-600 hover:bg-[var(--color-logo-light-green)]/20"
               }`}
             >
               {section.label}
@@ -331,10 +331,10 @@ export default function AboutFractalPage() {
                   onClick={() => scrollToSection(section.id)}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
                     isActive
-                      ? "w-4 h-4 bg-emerald-500 animate-pulse shadow-lg shadow-emerald-500/50"
+                      ? "w-4 h-4 bg-[var(--color-logo-light-green)] animate-pulse shadow-lg shadow-[var(--color-logo-light-green)]/50"
                       : isPassed
-                      ? "w-2.5 h-2.5 bg-emerald-300"
-                      : "w-2 h-2 bg-slate-300 hover:bg-slate-400"
+                      ? "w-2.5 h-2.5 bg-[var(--color-logo-light-green)]/60"
+                      : "w-2 h-2 bg-slate-300 hover:bg-[var(--color-logo-light-green)]/40"
                   }`}
                   aria-label={`${section.label}へ移動`}
                 />
@@ -441,7 +441,7 @@ export default function AboutFractalPage() {
 
               <div className="flex flex-col gap-2">
                 {/* Data */}
-                <div className="flex items-center gap-3 bg-emerald-500/80 rounded-lg px-4 py-2">
+                <div className="flex items-center gap-3 bg-[var(--color-logo-dark-green)]/90 rounded-lg px-4 py-2">
                   <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-sm">D</span>
                   <div className="flex-1">
                     <p className="text-white font-bold text-sm">Data</p>
@@ -450,7 +450,7 @@ export default function AboutFractalPage() {
                 </div>
 
                 {/* Analysis */}
-                <div className="flex items-center gap-3 bg-teal-500/80 rounded-lg px-4 py-2">
+                <div className="flex items-center gap-3 bg-[var(--color-logo-dark-green)]/80 rounded-lg px-4 py-2">
                   <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-sm">A</span>
                   <div className="flex-1">
                     <p className="text-white font-bold text-sm">Analysis</p>
@@ -459,7 +459,7 @@ export default function AboutFractalPage() {
                 </div>
 
                 {/* Plan */}
-                <div className="flex items-center gap-3 bg-cyan-500/80 rounded-lg px-4 py-2">
+                <div className="flex items-center gap-3 bg-[var(--color-logo-light-green)]/80 rounded-lg px-4 py-2">
                   <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-sm">P</span>
                   <div className="flex-1">
                     <p className="text-white font-bold text-sm">Plan</p>
@@ -468,7 +468,7 @@ export default function AboutFractalPage() {
                 </div>
 
                 {/* Act */}
-                <div className="flex items-center gap-3 bg-sky-500/80 rounded-lg px-4 py-2">
+                <div className="flex items-center gap-3 bg-[var(--color-logo-light-green)]/70 rounded-lg px-4 py-2">
                   <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-sm">A</span>
                   <div className="flex-1">
                     <p className="text-white font-bold text-sm">Act</p>
@@ -477,7 +477,7 @@ export default function AboutFractalPage() {
                 </div>
 
                 {/* Evaluation */}
-                <div className="flex items-center gap-3 bg-blue-500/80 rounded-lg px-4 py-2">
+                <div className="flex items-center gap-3 bg-[var(--color-logo-light-green)]/60 rounded-lg px-4 py-2">
                   <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-sm">E</span>
                   <div className="flex-1">
                     <p className="text-white font-bold text-sm">Evaluation</p>
@@ -549,7 +549,7 @@ export default function AboutFractalPage() {
         <div className="max-w-4xl mx-auto" style={{ marginBottom: 'var(--spacing-fluid-xl)' }}>
           <div className="grid md:grid-cols-5 gap-3 md:gap-4">
             {/* Data */}
-            <div className="bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl p-4 text-white text-center">
+            <div className="bg-[var(--color-logo-dark-green)] rounded-xl p-4 text-white text-center">
               <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-white/20 flex items-center justify-center">
                 <span className="font-bold text-lg">D</span>
               </div>
@@ -558,7 +558,7 @@ export default function AboutFractalPage() {
             </div>
 
             {/* Analysis */}
-            <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-xl p-4 text-white text-center">
+            <div className="bg-[var(--color-logo-dark-green)]/85 rounded-xl p-4 text-white text-center">
               <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-white/20 flex items-center justify-center">
                 <span className="font-bold text-lg">A</span>
               </div>
@@ -567,7 +567,7 @@ export default function AboutFractalPage() {
             </div>
 
             {/* Plan */}
-            <div className="bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl p-4 text-white text-center">
+            <div className="bg-[var(--color-logo-light-green)] rounded-xl p-4 text-white text-center">
               <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-white/20 flex items-center justify-center">
                 <span className="font-bold text-lg">P</span>
               </div>
@@ -576,7 +576,7 @@ export default function AboutFractalPage() {
             </div>
 
             {/* Act */}
-            <div className="bg-gradient-to-br from-sky-500 to-sky-600 rounded-xl p-4 text-white text-center">
+            <div className="bg-[var(--color-logo-light-green)]/85 rounded-xl p-4 text-white text-center">
               <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-white/20 flex items-center justify-center">
                 <span className="font-bold text-lg">A</span>
               </div>
@@ -585,7 +585,7 @@ export default function AboutFractalPage() {
             </div>
 
             {/* Evaluation */}
-            <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-4 text-white text-center">
+            <div className="bg-[var(--color-logo-light-green)]/70 rounded-xl p-4 text-white text-center">
               <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-white/20 flex items-center justify-center">
                 <span className="font-bold text-lg">E</span>
               </div>
@@ -629,8 +629,8 @@ export default function AboutFractalPage() {
                   手書き → PC入力 → 印刷という二度手間で、1日の書類作業に平均2.5時間。スタッフから「書類が多すぎる」という声が上がっていました。
                 </p>
               </div>
-              <div className="bg-white rounded-xl p-5 border-l-4 border-emerald-500">
-                <p className="text-emerald-600 font-bold mb-2" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>After</p>
+              <div className="bg-white rounded-xl p-5 border-l-4 border-[var(--color-logo-light-green)]">
+                <p className="text-[var(--color-logo-dark-green)] font-bold mb-2" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>After</p>
                 <p className="text-primary/70" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>
                   タブレット直接入力 → 自動連携で二度手間を解消。書類作業時間は1.2時間に。空いた時間で利用者様とのコミュニケーションが充実しました。
                 </p>
@@ -653,7 +653,7 @@ export default function AboutFractalPage() {
       {/* 事業内容 */}
       <Section
         id="business"
-        className="bg-gradient-to-b from-white to-emerald-50"
+        className="bg-gradient-to-b from-white to-[var(--color-logo-light-green)]/10"
         ref={(el) => {
           if (el) sectionRefs.current.business = el;
         }}
@@ -663,7 +663,7 @@ export default function AboutFractalPage() {
           style={{ marginBottom: 'var(--spacing-fluid-xl)' }}
         >
           <span
-            className="inline-block px-3 py-1 bg-teal-100 text-teal-700 rounded-full font-medium"
+            className="inline-block px-3 py-1 bg-[var(--color-logo-light-green)]/20 text-[var(--color-logo-dark-green)] rounded-full font-medium"
             style={{ fontSize: 'var(--font-size-fluid-xs)', marginBottom: 'var(--spacing-fluid-sm)' }}
           >
             BUSINESS
@@ -747,7 +747,7 @@ export default function AboutFractalPage() {
         >
           <div className="text-center" style={{ marginBottom: 'var(--spacing-fluid-md)' }}>
             <span
-              className="inline-block px-3 py-1 bg-cyan-500 text-white rounded-full font-medium"
+              className="inline-block px-3 py-1 bg-[var(--color-logo-light-green)] text-white rounded-full font-medium"
               style={{ fontSize: 'var(--font-size-fluid-xs)', marginBottom: 'var(--spacing-fluid-sm)' }}
             >
               {aboutData.vision.period}
@@ -785,10 +785,10 @@ export default function AboutFractalPage() {
                 style={{ padding: 'var(--spacing-fluid-sm)' }}
               >
                 <h5
-                  className="font-bold text-cyan-400 flex items-center"
+                  className="font-bold text-[var(--color-logo-light-green)] flex items-center"
                   style={{ fontSize: 'var(--font-size-fluid-sm)', marginBottom: 'var(--spacing-fluid-xs)', gap: '0.5rem' }}
                 >
-                  <span className="w-1 h-5 bg-cyan-500 rounded-full"></span>
+                  <span className="w-1 h-5 bg-[var(--color-logo-light-green)] rounded-full"></span>
                   {goal.name}
                 </h5>
                 <p
@@ -822,7 +822,7 @@ export default function AboutFractalPage() {
           style={{ marginBottom: 'var(--spacing-fluid-xl)' }}
         >
           <span
-            className="inline-block px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full font-bold tracking-wider"
+            className="inline-block px-3 py-1 bg-[var(--color-logo-light-green)]/20 text-[var(--color-logo-dark-green)] rounded-full font-bold tracking-wider"
             style={{ fontSize: 'var(--font-size-fluid-xs)', marginBottom: 'var(--spacing-fluid-sm)' }}
           >
             GUIDELINES
@@ -848,8 +848,8 @@ export default function AboutFractalPage() {
                 <button
                   type="button"
                   key={index}
-                  className={`group bg-white rounded-xl shadow-sm border border-slate-100 hover:shadow-md hover:border-emerald-200 transition-all duration-300 cursor-pointer text-left ${
-                    activeGuideline === index ? "ring-2 ring-emerald-500 border-emerald-300" : ""
+                  className={`group bg-white rounded-xl shadow-sm border border-slate-100 hover:shadow-md hover:border-[var(--color-logo-light-green)]/50 transition-all duration-300 cursor-pointer text-left ${
+                    activeGuideline === index ? "ring-2 ring-[var(--color-logo-light-green)] border-[var(--color-logo-light-green)]/50" : ""
                   }`}
                   style={{ padding: 'var(--spacing-fluid-sm)' }}
                   onClick={() => handleGuidelineChange(index)}
@@ -859,15 +859,15 @@ export default function AboutFractalPage() {
                   <div className="flex items-center gap-2 mb-2">
                     <div className={`w-9 h-9 rounded-lg flex items-center justify-center transition-colors ${
                       activeGuideline === index
-                        ? "bg-emerald-500 text-white"
-                        : "bg-emerald-50 text-emerald-600 group-hover:bg-emerald-100"
+                        ? "bg-[var(--color-logo-light-green)] text-white"
+                        : "bg-[var(--color-logo-light-green)]/10 text-[var(--color-logo-dark-green)] group-hover:bg-[var(--color-logo-light-green)]/20"
                     }`}>
                       {getIcon(item.icon)}
                     </div>
                     <span
                       className={`text-xs font-bold px-2 py-0.5 rounded-full ${
                         activeGuideline === index
-                          ? "bg-emerald-100 text-emerald-700"
+                          ? "bg-[var(--color-logo-light-green)]/20 text-[var(--color-logo-dark-green)]"
                           : "bg-slate-100 text-slate-500"
                       }`}
                     >
@@ -878,7 +878,7 @@ export default function AboutFractalPage() {
                   {/* タイトル */}
                   <h4
                     className={`font-bold leading-tight ${
-                      activeGuideline === index ? "text-emerald-700" : "text-primary"
+                      activeGuideline === index ? "text-[var(--color-logo-dark-green)]" : "text-primary"
                     }`}
                     style={{ fontSize: 'var(--font-size-fluid-sm)' }}
                   >
@@ -902,9 +902,9 @@ export default function AboutFractalPage() {
           <div
             className={`mt-6 transition-all duration-300 ${isChanging ? 'opacity-0' : 'opacity-100'}`}
           >
-            <div className="bg-white rounded-xl shadow-md border border-emerald-100 p-5">
+            <div className="bg-white rounded-xl shadow-md border border-[var(--color-logo-light-green)]/30 p-5">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-emerald-500 text-white flex items-center justify-center shrink-0">
+                <div className="w-12 h-12 rounded-xl bg-[var(--color-logo-dark-green)] text-white flex items-center justify-center shrink-0">
                   <span className="font-bold text-lg">{aboutData.guidelines[activeGuideline].num}</span>
                 </div>
                 <div className="flex-1">
@@ -915,7 +915,7 @@ export default function AboutFractalPage() {
                     {aboutData.guidelines[activeGuideline].shortTitle}
                   </h4>
                   <p
-                    className="text-emerald-600 font-medium mb-3"
+                    className="text-[var(--color-logo-light-green)] font-medium mb-3"
                     style={{ fontSize: 'var(--font-size-fluid-sm)' }}
                   >
                     {aboutData.guidelines[activeGuideline].subtitle}
@@ -1040,7 +1040,7 @@ export default function AboutFractalPage() {
       </Section>
 
       {/* CTA */}
-      <Section className="bg-gradient-to-r from-[var(--color-logo-dark-green)] to-emerald-600 text-white">
+      <Section className="bg-[var(--color-logo-dark-green)] text-white">
         <div className="text-center">
           <h3
             className="font-bold"
