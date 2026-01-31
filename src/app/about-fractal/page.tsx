@@ -54,43 +54,50 @@ const aboutData = {
       num: 1,
       shortTitle: "感情は大切に、判断はロジカルに",
       subtitle: "気持ちを尊重しつつ、決断は事実とデータで",
-      description: "相手の気持ちや自分の感情を大切にしながらも、仕事の判断は感情に流されず、事実やデータに基づいて冷静に行う。"
+      description: "相手の気持ちや自分の感情を大切にしながらも、仕事の判断は感情に流されず、事実やデータに基づいて冷静に行う。",
+      icon: "heart-data",
     },
     {
       num: 2,
       shortTitle: "全員がチーム、全員がリーダー",
       subtitle: "他人任せにせず、自分から動く",
-      description: "「誰かがやるだろう」ではなく、全員が当事者意識を持つ。情報を積極的に共有し、チームとして最高の成果を目指す。"
+      description: "「誰かがやるだろう」ではなく、全員が当事者意識を持つ。情報を積極的に共有し、チームとして最高の成果を目指す。",
+      icon: "team",
     },
     {
       num: 3,
       shortTitle: "まず自分を知り、相手を理解する",
       subtitle: "強みと弱みを認め、補い合う",
-      description: "自分の得意・不得意を正しく把握することが、相手を理解する第一歩。お互いの弱みを補い合うことで、一人では出せない力を発揮できる。"
+      description: "自分の得意・不得意を正しく把握することが、相手を理解する第一歩。お互いの弱みを補い合うことで、一人では出せない力を発揮できる。",
+      icon: "mirror",
     },
     {
       num: 4,
       shortTitle: "好奇心を知識に、知識を力に",
       subtitle: "「なぜ？」から始まる成長",
-      description: "「なぜ？」という好奇心を持ち続け、学び続ける。知識が増えれば視野が広がり、「当たり前」を疑う力が新しい価値を生み出す。"
+      description: "「なぜ？」という好奇心を持ち続け、学び続ける。知識が増えれば視野が広がり、「当たり前」を疑う力が新しい価値を生み出す。",
+      icon: "lightbulb",
     },
     {
       num: 5,
       shortTitle: "不便は改善のヒント",
       subtitle: "違和感を見逃さない",
-      description: "日々の「使いにくさ」や「面倒くささ」を放置しない。その違和感こそが、組織を成長させる改善の種になる。"
+      description: "日々の「使いにくさ」や「面倒くささ」を放置しない。その違和感こそが、組織を成長させる改善の種になる。",
+      icon: "tool",
     },
     {
       num: 6,
       shortTitle: "相手にとっての最善を考える",
       subtitle: "貢献が信頼を生む",
-      description: "自分の利益だけでなく、相手や社会にとって何が良いかを基準に動く。貢献が信頼を生み、結果として自分の成長にもつながる。"
+      description: "自分の利益だけでなく、相手や社会にとって何が良いかを基準に動く。貢献が信頼を生み、結果として自分の成長にもつながる。",
+      icon: "handshake",
     },
     {
       num: 7,
       shortTitle: "完璧より最適化",
       subtitle: "常にアップデートし続ける",
-      description: "完璧なものは存在しない。だからこそ現状に満足せず、ITなどを活用して、その時々のベストな状態へと仕組みを更新し続ける。"
+      description: "完璧なものは存在しない。だからこそ現状に満足せず、ITなどを活用して、その時々のベストな状態へと仕組みを更新し続ける。",
+      icon: "refresh",
     },
   ],
   dapae: {
@@ -252,15 +259,14 @@ const AnimatedStepCard = ({
   );
 };
 
-// ナビゲーションセクション定義
+// ナビゲーションセクション定義（新構成）
 const sections = [
   { id: "hero", label: "トップ" },
-  { id: "philosophy", label: "基本理念" },
+  { id: "innovation", label: "革新性" },
   { id: "business", label: "事業内容" },
   { id: "vision", label: "ビジョン" },
   { id: "guidelines", label: "行動指針" },
-  { id: "dapae", label: "DAPAE" },
-  { id: "logo", label: "ロゴ" },
+  { id: "logo", label: "ロゴ＆資料" },
 ];
 
 export default function AboutFractalPage() {
@@ -392,81 +398,153 @@ export default function AboutFractalPage() {
         </div>
       </div>
 
-      {/* ヒーローセクション */}
+      {/* ヒーローセクション - 革新性を強調 */}
       <section
         id="hero"
         ref={(el) => { sectionRefs.current.hero = el; }}
-        className="relative min-h-[60vh] md:min-h-[80vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-[var(--color-logo-light-green)]/5 to-white"
+        className="relative min-h-[70vh] md:min-h-[85vh] flex items-center overflow-hidden"
+        style={{
+          background: 'linear-gradient(135deg, #0D5643 0%, #0D5643 40%, #7FC5A0 100%)'
+        }}
       >
-        {/* 装飾的な三角形 - シンプルなフラクタルパターン */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute bottom-0 right-0 w-64 md:w-96 h-64 md:h-96 opacity-5">
-            <svg viewBox="0 0 100 100" className="w-full h-full fill-[var(--color-logo-light-green)]">
+        {/* 装飾的な三角形 - フラクタルパターン */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
+          <div className="absolute bottom-0 right-0 w-64 md:w-96 h-64 md:h-96">
+            <svg viewBox="0 0 100 100" className="w-full h-full fill-white">
               <polygon points="50,0 100,86.6 0,86.6" />
             </svg>
           </div>
-          <div className="absolute top-0 left-0 w-48 md:w-72 h-48 md:h-72 opacity-5">
-            <svg viewBox="0 0 100 100" className="w-full h-full fill-[var(--color-logo-dark-green)]">
+          <div className="absolute top-20 left-10 w-32 md:w-48 h-32 md:h-48">
+            <svg viewBox="0 0 100 100" className="w-full h-full fill-white">
+              <polygon points="50,0 100,86.6 0,86.6" />
+            </svg>
+          </div>
+          <div className="absolute top-1/2 right-1/4 w-24 md:w-32 h-24 md:h-32">
+            <svg viewBox="0 0 100 100" className="w-full h-full fill-white">
               <polygon points="50,0 100,86.6 0,86.6" />
             </svg>
           </div>
         </div>
 
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto py-8">
-          {/* ロゴ */}
-          <div className="mb-6 md:mb-10 flex justify-center">
-            <div className="relative w-24 h-24 md:w-48 md:h-48 drop-shadow-2xl">
-              <Image
-                src="/images/logos/corporate-logo.png"
-                alt="株式会社フラクタル"
-                fill
-                className="object-contain"
-              />
+        <div className="relative z-10 w-full max-w-6xl mx-auto px-4 md:px-8 py-12">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+            {/* 左側: 強いメッセージ */}
+            <div className="text-center md:text-left">
+              {/* ロゴ（小さめ） */}
+              <div className="mb-4 md:mb-6 flex justify-center md:justify-start">
+                <div className="relative w-16 h-16 md:w-24 md:h-24 drop-shadow-2xl">
+                  <Image
+                    src="/images/logos/corporate-logo.png"
+                    alt="株式会社フラクタル"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+              </div>
+
+              <h2
+                className="font-bold text-white tracking-wide"
+                style={{
+                  fontSize: 'var(--font-size-fluid-4xl)',
+                  marginBottom: 'var(--spacing-fluid-md)',
+                  lineHeight: '1.2'
+                }}
+              >
+                データで看護を<br />進化させる
+              </h2>
+
+              <p
+                className="text-white/80 font-normal"
+                style={{
+                  fontSize: 'var(--font-size-fluid-lg)',
+                  marginBottom: 'var(--spacing-fluid-lg)',
+                  lineHeight: '1.6'
+                }}
+              >
+                ITと数字の力で、現場の負担を減らし、<br className="hidden md:block" />
+                質の高いケアを届ける訪問看護へ。
+              </p>
+
+              <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-3 md:gap-4">
+                <a
+                  href="#innovation"
+                  className="px-6 py-3 md:px-8 md:py-4 bg-[#F4E951] text-[#0D5643] rounded-full font-bold text-sm md:text-base hover:bg-yellow-300 transition-all shadow-lg"
+                >
+                  革新性を見る
+                </a>
+                <a
+                  href="#vision"
+                  className="px-6 py-3 md:px-8 md:py-4 bg-white/10 text-white border-2 border-white/30 rounded-full font-bold text-sm md:text-base hover:bg-white/20 transition-all"
+                >
+                  ビジョンを知る
+                </a>
+              </div>
             </div>
-          </div>
 
-          <h2
-            className="font-bold text-primary tracking-wide"
-            style={{
-              fontSize: 'var(--font-size-fluid-3xl)',
-              marginBottom: 'var(--spacing-fluid-lg)',
-              letterSpacing: '0.05em'
-            }}
-          >
-            株式会社フラクタル
-          </h2>
+            {/* 右側: DAPAE 5ステップ簡略図 */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl md:rounded-3xl p-4 md:p-6 border border-white/20">
+              <p className="text-center text-white/90 font-bold mb-4" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>
+                DAPAEフレームワーク
+              </p>
 
-          <p
-            className="text-primary/70 font-normal"
-            style={{
-              fontSize: 'var(--font-size-fluid-xl)',
-              marginBottom: 'var(--spacing-fluid-2xl)',
-              letterSpacing: '0.03em'
-            }}
-          >
-            シンプルで独創的な社会を実現する
-          </p>
+              <div className="flex flex-col gap-2">
+                {/* Data */}
+                <div className="flex items-center gap-3 bg-emerald-500/80 rounded-lg px-4 py-2">
+                  <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-sm">D</span>
+                  <div className="flex-1">
+                    <p className="text-white font-bold text-sm">Data</p>
+                    <p className="text-white/70 text-xs">事実を数字で記録</p>
+                  </div>
+                </div>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4">
-            <a
-              href="#philosophy"
-              className="px-6 py-3 md:px-8 md:py-4 bg-emerald-600 text-white rounded-full font-bold text-sm md:text-base hover:bg-emerald-700 transition-all shadow-lg"
-            >
-              理念を知る
-            </a>
-            <a
-              href="#guidelines"
-              className="px-6 py-3 md:px-8 md:py-4 bg-white text-emerald-800 border-2 border-emerald-100 rounded-full font-bold text-sm md:text-base hover:border-emerald-600 hover:text-emerald-600 transition-all shadow-lg"
-            >
-              行動指針を見る
-            </a>
+                {/* Analysis */}
+                <div className="flex items-center gap-3 bg-teal-500/80 rounded-lg px-4 py-2">
+                  <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-sm">A</span>
+                  <div className="flex-1">
+                    <p className="text-white font-bold text-sm">Analysis</p>
+                    <p className="text-white/70 text-xs">課題とヒントを抽出</p>
+                  </div>
+                </div>
+
+                {/* Plan */}
+                <div className="flex items-center gap-3 bg-cyan-500/80 rounded-lg px-4 py-2">
+                  <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-sm">P</span>
+                  <div className="flex-1">
+                    <p className="text-white font-bold text-sm">Plan</p>
+                    <p className="text-white/70 text-xs">負担を減らす具体策</p>
+                  </div>
+                </div>
+
+                {/* Act */}
+                <div className="flex items-center gap-3 bg-sky-500/80 rounded-lg px-4 py-2">
+                  <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-sm">A</span>
+                  <div className="flex-1">
+                    <p className="text-white font-bold text-sm">Act</p>
+                    <p className="text-white/70 text-xs">柔軟に実行</p>
+                  </div>
+                </div>
+
+                {/* Evaluation */}
+                <div className="flex items-center gap-3 bg-blue-500/80 rounded-lg px-4 py-2">
+                  <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-sm">E</span>
+                  <div className="flex-1">
+                    <p className="text-white font-bold text-sm">Evaluation</p>
+                    <p className="text-white/70 text-xs">成果を確認し次へ</p>
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-center text-[#F4E951] font-bold mt-4" style={{ fontSize: 'var(--font-size-fluid-xs)' }}>
+                仕組みが、質の高いサービスを生みだす。
+              </p>
+            </div>
           </div>
         </div>
 
         {/* スクロールインジケーター */}
         <div className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
           <svg
-            className="w-5 h-5 md:w-6 md:h-6 text-primary/50"
+            className="w-5 h-5 md:w-6 md:h-6 text-white/50"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -481,61 +559,140 @@ export default function AboutFractalPage() {
         </div>
       </section>
 
-      {/* 基本理念 */}
+      {/* 革新性の証明セクション */}
       <Section
-        id="philosophy"
+        id="innovation"
         className="bg-white relative overflow-hidden"
         ref={(el) => {
-          if (el) sectionRefs.current.philosophy = el;
+          if (el) sectionRefs.current.innovation = el;
         }}
       >
-        {/* 背景装飾 - ライトグリーン */}
-        <div className="absolute top-0 right-0 w-40 md:w-64 h-40 md:h-64 bg-[var(--color-logo-light-green)]/20 rounded-full blur-3xl -z-10"></div>
-        <div className="absolute bottom-0 left-0 w-40 md:w-64 h-40 md:h-64 bg-[var(--color-logo-light-green)]/30 rounded-full blur-3xl -z-10"></div>
+        {/* 背景装飾 */}
+        <div className="absolute top-0 right-0 w-64 h-64 bg-[#F4E951]/20 rounded-full blur-3xl -z-10"></div>
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#7FC5A0]/20 rounded-full blur-3xl -z-10"></div>
 
-        <div
-          className="text-center"
-          style={{ marginBottom: 'var(--spacing-fluid-xl)' }}
-        >
+        <div className="text-center" style={{ marginBottom: 'var(--spacing-fluid-xl)' }}>
           <span
-            className="inline-block px-3 py-1 bg-[var(--color-logo-light-green)]/20 text-[var(--color-logo-dark-green)] rounded-full font-bold tracking-wider"
+            className="inline-block px-3 py-1 bg-[#F4E951] text-[#0D5643] rounded-full font-bold tracking-wider"
             style={{ fontSize: 'var(--font-size-fluid-xs)', marginBottom: 'var(--spacing-fluid-sm)' }}
           >
-            PHILOSOPHY
+            INNOVATION
           </span>
           <h3
-            className="font-bold text-primary leading-tight"
-            style={{ fontSize: 'var(--font-size-fluid-3xl)' }}
+            className="font-bold text-primary"
+            style={{ fontSize: 'var(--font-size-fluid-3xl)', marginBottom: 'var(--spacing-fluid-sm)' }}
           >
-            {aboutData.philosophy.title}
+            DAPAE - 数字とITで、ケアを前へ。
           </h3>
+          <p
+            className="text-primary/70 max-w-3xl mx-auto leading-relaxed"
+            style={{ fontSize: 'var(--font-size-fluid-base)' }}
+          >
+            「大変そう」で終わらせない。現場の事実を数字で捉え、やさしさを軸に最善の一手へ。
+          </p>
         </div>
 
-        <div className="relative max-w-4xl mx-auto">
-          <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-logo-light-green)] to-emerald-400 rounded-2xl md:rounded-4xl transform rotate-1 md:rotate-2 blur-sm opacity-70"></div>
-          <div
-            className="relative bg-white rounded-2xl md:rounded-4xl shadow-2xl border border-[var(--color-logo-light-green)]/30"
-            style={{ padding: 'var(--spacing-fluid-lg)' }}
-          >
-            <div className="absolute top-0 left-0 w-full h-1 md:h-2 bg-gradient-to-r from-[var(--color-logo-light-green)] to-emerald-400 rounded-t-2xl md:rounded-t-4xl"></div>
-            <p
-              className="font-bold text-center bg-gradient-to-r from-emerald-600 to-[var(--color-logo-dark-green)] bg-clip-text text-transparent leading-tight"
-              style={{ fontSize: 'var(--font-size-fluid-3xl)', marginBottom: 'var(--spacing-fluid-md)' }}
-            >
-              {aboutData.philosophy.main}
-            </p>
-            <p
-              className="text-center text-slate-600 max-w-2xl mx-auto leading-relaxed font-medium"
-              style={{ fontSize: 'var(--font-size-fluid-base)' }}
-            >
-              {aboutData.philosophy.description}
-            </p>
-            <div
-              className="flex justify-center"
-              style={{ marginTop: 'var(--spacing-fluid-md)' }}
-            >
-              <div className="w-12 md:w-16 h-1 bg-[var(--color-logo-light-green)]/50 rounded-full"></div>
+        {/* DAPAE 5ステップ図解 */}
+        <div className="max-w-4xl mx-auto" style={{ marginBottom: 'var(--spacing-fluid-xl)' }}>
+          <div className="grid md:grid-cols-5 gap-3 md:gap-4">
+            {/* Data */}
+            <div className="bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl p-4 text-white text-center">
+              <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-white/20 flex items-center justify-center">
+                <span className="font-bold text-lg">D</span>
+              </div>
+              <p className="font-bold text-sm mb-1">Data</p>
+              <p className="text-white/80 text-xs leading-tight">訪問時のバイタルや生活状況、書類作業2.5時間などを客観的に記録</p>
             </div>
+
+            {/* Analysis */}
+            <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-xl p-4 text-white text-center">
+              <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-white/20 flex items-center justify-center">
+                <span className="font-bold text-lg">A</span>
+              </div>
+              <p className="font-bold text-sm mb-1">Analysis</p>
+              <p className="text-white/80 text-xs leading-tight">数字と変化から課題と支援のヒントを抽出</p>
+            </div>
+
+            {/* Plan */}
+            <div className="bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl p-4 text-white text-center">
+              <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-white/20 flex items-center justify-center">
+                <span className="font-bold text-lg">P</span>
+              </div>
+              <p className="font-bold text-sm mb-1">Plan</p>
+              <p className="text-white/80 text-xs leading-tight">タブレット導入やテンプレート統一など、負担を減らす具体策を設計</p>
+            </div>
+
+            {/* Act */}
+            <div className="bg-gradient-to-br from-sky-500 to-sky-600 rounded-xl p-4 text-white text-center">
+              <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-white/20 flex items-center justify-center">
+                <span className="font-bold text-lg">A</span>
+              </div>
+              <p className="font-bold text-sm mb-1">Act</p>
+              <p className="text-white/80 text-xs leading-tight">利用者と家族の想いに寄り添い、状況に応じて柔軟に実行</p>
+            </div>
+
+            {/* Evaluation */}
+            <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-4 text-white text-center">
+              <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-white/20 flex items-center justify-center">
+                <span className="font-bold text-lg">E</span>
+              </div>
+              <p className="font-bold text-sm mb-1">Evaluation</p>
+              <p className="text-white/80 text-xs leading-tight">52%削減など成果を確認し、学びを次へ</p>
+            </div>
+          </div>
+        </div>
+
+        {/* IT活用実績 */}
+        <div className="max-w-4xl mx-auto">
+          <h4
+            className="text-center font-bold text-primary"
+            style={{ fontSize: 'var(--font-size-fluid-xl)', marginBottom: 'var(--spacing-fluid-md)' }}
+          >
+            IT活用による成果
+          </h4>
+
+          {/* 数値カード */}
+          <div className="grid md:grid-cols-3 gap-4" style={{ marginBottom: 'var(--spacing-fluid-lg)' }}>
+            <div className="bg-gradient-to-br from-[#F4E951]/30 to-[#F4E951]/10 rounded-xl p-6 text-center border border-[#F4E951]/50">
+              <p className="text-[#0D5643] font-bold" style={{ fontSize: 'var(--font-size-fluid-3xl)' }}>52%</p>
+              <p className="text-primary/70 font-medium" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>書類作業時間削減</p>
+            </div>
+            <div className="bg-gradient-to-br from-[#F4E951]/30 to-[#F4E951]/10 rounded-xl p-6 text-center border border-[#F4E951]/50">
+              <p className="text-[#0D5643] font-bold" style={{ fontSize: 'var(--font-size-fluid-3xl)' }}>2.5h</p>
+              <p className="text-primary/70 font-medium" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>→ 1.2h に短縮</p>
+            </div>
+            <div className="bg-gradient-to-br from-[#F4E951]/30 to-[#F4E951]/10 rounded-xl p-6 text-center border border-[#F4E951]/50">
+              <p className="text-[#0D5643] font-bold" style={{ fontSize: 'var(--font-size-fluid-3xl)' }}>3ヶ月</p>
+              <p className="text-primary/70 font-medium" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>で効果を実証</p>
+            </div>
+          </div>
+
+          {/* Before/After ストーリー */}
+          <div className="bg-slate-50 rounded-2xl p-6">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="bg-white rounded-xl p-5 border-l-4 border-red-400">
+                <p className="text-red-500 font-bold mb-2" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>Before</p>
+                <p className="text-primary/70" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>
+                  手書き → PC入力 → 印刷という二度手間で、1日の書類作業に平均2.5時間。スタッフから「書類が多すぎる」という声が上がっていました。
+                </p>
+              </div>
+              <div className="bg-white rounded-xl p-5 border-l-4 border-emerald-500">
+                <p className="text-emerald-600 font-bold mb-2" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>After</p>
+                <p className="text-primary/70" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>
+                  タブレット直接入力 → 自動連携で二度手間を解消。書類作業時間は1.2時間に。空いた時間で利用者様とのコミュニケーションが充実しました。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* 締めのメッセージ */}
+          <div className="text-center" style={{ marginTop: 'var(--spacing-fluid-lg)' }}>
+            <p
+              className="text-[#0D5643] font-bold"
+              style={{ fontSize: 'var(--font-size-fluid-lg)' }}
+            >
+              仕組みが、質の高いサービスを生みだす。
+            </p>
           </div>
         </div>
       </Section>
@@ -600,7 +757,7 @@ export default function AboutFractalPage() {
         </div>
       </Section>
 
-      {/* 成長戦略とビジョン */}
+      {/* ビジョン・基本理念（統合セクション） */}
       <Section
         id="vision"
         className="bg-slate-900 text-white"
@@ -608,76 +765,98 @@ export default function AboutFractalPage() {
           if (el) sectionRefs.current.vision = el;
         }}
       >
-        <div
-          className="text-center"
-          style={{ marginBottom: 'var(--spacing-fluid-xl)' }}
-        >
+        {/* 基本理念部分 */}
+        <div className="text-center" style={{ marginBottom: 'var(--spacing-fluid-xl)' }}>
           <span
-            className="inline-block px-3 py-1 bg-cyan-500 text-white rounded-full font-medium"
+            className="inline-block px-3 py-1 bg-[#7FC5A0] text-white rounded-full font-bold tracking-wider"
             style={{ fontSize: 'var(--font-size-fluid-xs)', marginBottom: 'var(--spacing-fluid-sm)' }}
           >
-            VISION {aboutData.vision.period}
+            PHILOSOPHY & VISION
           </span>
           <h3
             className="font-bold text-white"
-            style={{ fontSize: 'var(--font-size-fluid-3xl)' }}
+            style={{ fontSize: 'var(--font-size-fluid-3xl)', marginBottom: 'var(--spacing-fluid-md)' }}
           >
-            {aboutData.vision.title}
+            {aboutData.philosophy.main}
           </h3>
+          <p
+            className="text-white/70 max-w-2xl mx-auto"
+            style={{ fontSize: 'var(--font-size-fluid-base)' }}
+          >
+            この理念に基づき、社会に新しい価値を提供します。
+          </p>
         </div>
 
-        {/* 戦略の柱 */}
+        {/* ビジョン部分 */}
         <div
-          className="flex flex-wrap justify-center"
-          style={{ gap: 'var(--spacing-fluid-sm)', marginBottom: 'var(--spacing-fluid-xl)' }}
+          className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10"
+          style={{ padding: 'var(--spacing-fluid-lg)', marginBottom: 'var(--spacing-fluid-lg)' }}
         >
-          {aboutData.vision.pillars.map((pillar, index) => (
+          <div className="text-center" style={{ marginBottom: 'var(--spacing-fluid-md)' }}>
             <span
-              key={index}
-              className="bg-slate-800 border border-slate-700 rounded-full text-white font-medium"
-              style={{ padding: 'var(--spacing-fluid-xs) var(--spacing-fluid-md)', fontSize: 'var(--font-size-fluid-sm)' }}
+              className="inline-block px-3 py-1 bg-cyan-500 text-white rounded-full font-medium"
+              style={{ fontSize: 'var(--font-size-fluid-xs)', marginBottom: 'var(--spacing-fluid-sm)' }}
             >
-              {pillar}
+              {aboutData.vision.period}
             </span>
-          ))}
-        </div>
-
-        {/* 目標 */}
-        <div
-          className="grid md:grid-cols-2"
-          style={{ gap: 'var(--spacing-fluid-md)' }}
-        >
-          {aboutData.vision.goals.map((goal, index) => (
-            <div
-              key={index}
-              className="bg-slate-800 border border-slate-700 rounded-2xl md:rounded-3xl"
-              style={{ padding: 'var(--spacing-fluid-md)' }}
+            <h4
+              className="font-bold text-white"
+              style={{ fontSize: 'var(--font-size-fluid-xl)' }}
             >
-              <h4
-                className="font-bold text-cyan-400 flex items-center"
-                style={{ fontSize: 'var(--font-size-fluid-base)', marginBottom: 'var(--spacing-fluid-sm)', gap: 'var(--spacing-fluid-xs)' }}
+              {aboutData.vision.title}
+            </h4>
+          </div>
+
+          {/* 戦略の柱 */}
+          <div
+            className="flex flex-wrap justify-center"
+            style={{ gap: 'var(--spacing-fluid-xs)', marginBottom: 'var(--spacing-fluid-md)' }}
+          >
+            {aboutData.vision.pillars.map((pillar, index) => (
+              <span
+                key={index}
+                className="bg-slate-700/50 border border-slate-600 rounded-full text-white/90 font-medium"
+                style={{ padding: '0.25rem 0.75rem', fontSize: 'var(--font-size-fluid-xs)' }}
               >
-                <span className="w-1.5 md:w-2 h-6 md:h-8 bg-cyan-500 rounded-full"></span>
-                {goal.name}
-              </h4>
-              <p
-                className="font-bold tracking-tight"
-                style={{ fontSize: 'var(--font-size-fluid-2xl)', marginBottom: 'var(--spacing-fluid-sm)' }}
+                {pillar}
+              </span>
+            ))}
+          </div>
+
+          {/* 目標 */}
+          <div className="grid md:grid-cols-2" style={{ gap: 'var(--spacing-fluid-sm)' }}>
+            {aboutData.vision.goals.map((goal, index) => (
+              <div
+                key={index}
+                className="bg-slate-800/50 border border-slate-700 rounded-xl"
+                style={{ padding: 'var(--spacing-fluid-sm)' }}
               >
-                {goal.target}
-              </p>
-              <p
-                className="text-slate-300 leading-relaxed"
-                style={{ fontSize: 'var(--font-size-fluid-sm)' }}
-              >
-                {goal.detail}
-              </p>
-            </div>
-          ))}
+                <h5
+                  className="font-bold text-cyan-400 flex items-center"
+                  style={{ fontSize: 'var(--font-size-fluid-sm)', marginBottom: 'var(--spacing-fluid-xs)', gap: '0.5rem' }}
+                >
+                  <span className="w-1 h-5 bg-cyan-500 rounded-full"></span>
+                  {goal.name}
+                </h5>
+                <p
+                  className="font-bold text-white"
+                  style={{ fontSize: 'var(--font-size-fluid-base)', marginBottom: '0.25rem' }}
+                >
+                  {goal.target}
+                </p>
+                <p
+                  className="text-slate-400"
+                  style={{ fontSize: 'var(--font-size-fluid-xs)' }}
+                >
+                  {goal.detail}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </Section>
 
-      {/* 7つの行動指針 */}
+      {/* 7つの行動指針 - アイコン付き小カードUI */}
       <Section
         id="guidelines"
         className="bg-slate-50"
@@ -697,611 +876,162 @@ export default function AboutFractalPage() {
           </span>
           <h3
             className="font-bold text-primary"
-            style={{ fontSize: 'var(--font-size-fluid-3xl)' }}
+            style={{ fontSize: 'var(--font-size-fluid-2xl)' }}
           >
             7つの行動指針
           </h3>
           <p
             className="text-slate-500"
-            style={{ marginTop: 'var(--spacing-fluid-sm)', fontSize: 'var(--font-size-fluid-base)' }}
+            style={{ marginTop: 'var(--spacing-fluid-xs)', fontSize: 'var(--font-size-fluid-sm)' }}
           >
             フラクタルで働くということ
           </p>
         </div>
 
-        {/* インタラクティブな行動指針 */}
+        {/* アイコン付き小カードグリッド */}
         <div className="max-w-5xl mx-auto">
-          <div
-            className="flex flex-wrap justify-center"
-            style={{ gap: 'var(--spacing-fluid-sm)', marginBottom: 'var(--spacing-fluid-lg)' }}
-          >
-            {aboutData.guidelines.map((item, index) => (
-              <button
-                key={index}
-                onClick={() => handleGuidelineChange(index)}
-                className={`w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all duration-300 font-bold hover:scale-110 ${
-                  activeGuideline === index
-                    ? "bg-emerald-500 text-white scale-110 shadow-lg shadow-emerald-500/30 ring-2 md:ring-4 ring-emerald-100"
-                    : "bg-white text-slate-400 hover:bg-emerald-50 hover:text-emerald-500 border border-slate-200"
-                }`}
-                style={{ fontSize: 'var(--font-size-fluid-base)' }}
-              >
-                {item.num}
-              </button>
-            ))}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
+            {aboutData.guidelines.map((item, index) => {
+              // アイコンSVGを定義
+              const getIcon = (iconName: string) => {
+                switch (iconName) {
+                  case "heart-data":
+                    return (
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                      </svg>
+                    );
+                  case "team":
+                    return (
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                    );
+                  case "mirror":
+                    return (
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
+                    );
+                  case "lightbulb":
+                    return (
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                      </svg>
+                    );
+                  case "tool":
+                    return (
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                    );
+                  case "handshake":
+                    return (
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11" />
+                      </svg>
+                    );
+                  case "refresh":
+                    return (
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                      </svg>
+                    );
+                  default:
+                    return null;
+                }
+              };
+
+              return (
+                <div
+                  key={index}
+                  className={`group bg-white rounded-xl shadow-sm border border-slate-100 hover:shadow-md hover:border-emerald-200 transition-all duration-300 cursor-pointer ${
+                    activeGuideline === index ? "ring-2 ring-emerald-500 border-emerald-300" : ""
+                  }`}
+                  style={{ padding: 'var(--spacing-fluid-sm)' }}
+                  onClick={() => handleGuidelineChange(index)}
+                >
+                  {/* アイコンと番号 */}
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className={`w-9 h-9 rounded-lg flex items-center justify-center transition-colors ${
+                      activeGuideline === index
+                        ? "bg-emerald-500 text-white"
+                        : "bg-emerald-50 text-emerald-600 group-hover:bg-emerald-100"
+                    }`}>
+                      {getIcon(item.icon)}
+                    </div>
+                    <span
+                      className={`text-xs font-bold px-2 py-0.5 rounded-full ${
+                        activeGuideline === index
+                          ? "bg-emerald-100 text-emerald-700"
+                          : "bg-slate-100 text-slate-500"
+                      }`}
+                    >
+                      {item.num}
+                    </span>
+                  </div>
+
+                  {/* タイトル */}
+                  <h4
+                    className={`font-bold leading-tight ${
+                      activeGuideline === index ? "text-emerald-700" : "text-primary"
+                    }`}
+                    style={{ fontSize: 'var(--font-size-fluid-sm)' }}
+                  >
+                    {item.shortTitle}
+                  </h4>
+
+                  {/* サブタイトル（ホバー時やアクティブ時に表示） */}
+                  <p
+                    className={`text-slate-500 mt-1 transition-all ${
+                      activeGuideline === index ? "opacity-100" : "opacity-70 group-hover:opacity-100"
+                    }`}
+                    style={{ fontSize: 'var(--font-size-fluid-xs)' }}
+                  >
+                    {item.subtitle}
+                  </p>
+                </div>
+              );
+            })}
           </div>
 
-          <div className="relative">
-            <div className="absolute inset-0 bg-linear-to-r from-emerald-500 to-teal-500 rounded-2xl md:rounded-3xl transform rotate-1 opacity-10 blur-xl"></div>
-            <div
-              className="relative bg-white rounded-2xl md:rounded-3xl shadow-xl border border-slate-100"
-              style={{ padding: 'var(--spacing-fluid-lg)' }}
-            >
-              <div className={`transition-opacity duration-150 ${isChanging ? 'opacity-0' : 'opacity-100'}`}>
-                <div style={{ marginBottom: 'var(--spacing-fluid-md)' }}>
-                  <span
-                    className="inline-block px-4 py-1 bg-emerald-50 text-emerald-600 rounded-full font-bold"
-                    style={{ fontSize: 'var(--font-size-fluid-xs)', marginBottom: 'var(--spacing-fluid-sm)' }}
-                  >
-                    GUIDELINE {aboutData.guidelines[activeGuideline].num}
-                  </span>
+          {/* 選択中の行動指針の詳細（展開表示） */}
+          <div
+            className={`mt-6 transition-all duration-300 ${isChanging ? 'opacity-0' : 'opacity-100'}`}
+          >
+            <div className="bg-white rounded-xl shadow-md border border-emerald-100 p-5">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-emerald-500 text-white flex items-center justify-center shrink-0">
+                  <span className="font-bold text-lg">{aboutData.guidelines[activeGuideline].num}</span>
+                </div>
+                <div className="flex-1">
                   <h4
-                    className="font-bold text-primary leading-tight"
-                    style={{ fontSize: 'var(--font-size-fluid-2xl)', marginBottom: 'var(--spacing-fluid-sm)' }}
+                    className="font-bold text-primary mb-1"
+                    style={{ fontSize: 'var(--font-size-fluid-lg)' }}
                   >
                     {aboutData.guidelines[activeGuideline].shortTitle}
                   </h4>
                   <p
-                    className="text-teal-600 font-medium"
-                    style={{ fontSize: 'var(--font-size-fluid-lg)' }}
+                    className="text-emerald-600 font-medium mb-3"
+                    style={{ fontSize: 'var(--font-size-fluid-sm)' }}
                   >
                     {aboutData.guidelines[activeGuideline].subtitle}
                   </p>
+                  <p
+                    className="text-slate-600 leading-relaxed"
+                    style={{ fontSize: 'var(--font-size-fluid-sm)' }}
+                  >
+                    {aboutData.guidelines[activeGuideline].description}
+                  </p>
                 </div>
-                <div
-                  className="w-12 md:w-16 h-1 bg-emerald-100 rounded-full"
-                  style={{ marginBottom: 'var(--spacing-fluid-md)' }}
-                ></div>
-                <p
-                  className="text-slate-700 leading-relaxed max-w-3xl mx-auto"
-                  style={{ fontSize: 'var(--font-size-fluid-base)' }}
-                >
-                  {aboutData.guidelines[activeGuideline].description}
-                </p>
               </div>
             </div>
           </div>
-        </div>
-
-        {/* 全リスト - モバイルではスクロール可能なリスト */}
-        <div
-          className="grid md:grid-cols-2"
-          style={{ marginTop: 'var(--spacing-fluid-xl)', gap: 'var(--spacing-fluid-sm)' }}
-        >
-          {aboutData.guidelines.map((item, index) => (
-            <div
-              key={index}
-              className={`flex items-center rounded-xl transition-all duration-300 cursor-pointer hover:-translate-y-0.5 ${
-                activeGuideline === index
-                  ? "bg-white shadow-md border-l-4 border-emerald-500"
-                  : "bg-white/50 border border-transparent hover:bg-white hover:border-slate-200 hover:shadow-sm"
-              }`}
-              style={{ padding: 'var(--spacing-fluid-sm)', gap: 'var(--spacing-fluid-sm)' }}
-              onClick={() => handleGuidelineChange(index)}
-            >
-              <span
-                className={`shrink-0 w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center font-bold transition-all duration-300 ${
-                  activeGuideline === index
-                    ? "bg-emerald-500 text-white"
-                    : "bg-slate-200 text-slate-500"
-                }`}
-                style={{ fontSize: 'var(--font-size-fluid-xs)' }}
-              >
-                {item.num}
-              </span>
-              <p
-                className={`font-medium ${activeGuideline === index ? "text-primary" : "text-slate-500"}`}
-                style={{ fontSize: 'var(--font-size-fluid-sm)' }}
-              >
-                {item.shortTitle}
-              </p>
-            </div>
-          ))}
         </div>
       </Section>
 
-      {/* DAPAE */}
-      <Section
-        id="dapae"
-        className="bg-[var(--color-logo-dark-green)] text-white relative overflow-hidden"
-        ref={(el) => {
-          if (el) sectionRefs.current.dapae = el;
-        }}
-      >
-        <div
-          className="text-center relative z-10"
-          style={{ marginBottom: 'var(--spacing-fluid-xl)' }}
-        >
-          <span
-            className="inline-block px-3 py-1 bg-teal-500 text-white rounded-full font-medium"
-            style={{ fontSize: 'var(--font-size-fluid-xs)', marginBottom: 'var(--spacing-fluid-sm)' }}
-          >
-            FRAMEWORK
-          </span>
-          <div
-            className="text-center"
-            style={{ marginBottom: 'var(--spacing-fluid-sm)' }}
-          >
-            <h3
-              className="font-bold tracking-tight"
-              style={{ fontSize: 'var(--font-size-fluid-3xl)' }}
-            >
-              {aboutData.dapae.title}
-            </h3>
-            <p
-              className="text-teal-300 font-medium"
-              style={{ marginTop: 'var(--spacing-fluid-xs)', fontSize: 'var(--font-size-fluid-xl)' }}
-            >
-              {aboutData.dapae.tagline}
-            </p>
-          </div>
-          <p
-            className="text-white/80 max-w-3xl mx-auto leading-relaxed"
-            style={{ fontSize: 'var(--font-size-fluid-sm)' }}
-          >
-            {aboutData.dapae.description}
-          </p>
-        </div>
-
-        {/* DAPAEフローチャート */}
-        <div className="max-w-5xl mx-auto px-4 relative z-10">
-          {/* モバイル: 完全縦並び / デスクトップ: 横並び（2グループ） */}
-
-          {/* モバイル表示: 縦並び（2グループ囲み） */}
-          <div className="md:hidden flex flex-col items-center gap-4">
-            {/* 情報（Information）囲み */}
-            <div className="flex flex-col items-center w-full">
-              <p className="text-white/90 text-sm font-bold mb-2">
-                情報 <span className="text-white/50">-Information-</span>
-              </p>
-              <div className="border-2 border-dashed border-amber-400/60 rounded-xl p-4 flex flex-col items-center gap-2 w-full max-w-[200px]">
-                {/* Data */}
-                <div className="bg-emerald-500 text-white px-6 py-2 rounded-lg border-2 border-white/20 shadow-lg w-full text-center">
-                  <p className="text-xs text-white/80">データ</p>
-                  <p className="text-sm font-bold">Data</p>
-                </div>
-                {/* 下矢印 */}
-                <div className="flex flex-col items-center">
-                  <div className="w-[2px] h-2 bg-amber-400"></div>
-                  <div className="w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-t-[5px] border-t-amber-400"></div>
-                </div>
-                {/* Analysis */}
-                <div className="bg-teal-500 text-white px-6 py-2 rounded-lg border-2 border-white/20 shadow-lg w-full text-center">
-                  <p className="text-xs text-white/80">分析</p>
-                  <p className="text-sm font-bold">Analysis</p>
-                </div>
-              </div>
-            </div>
-
-            {/* 下矢印（グループ間） */}
-            <div className="flex flex-col items-center">
-              <div className="w-[2px] h-4 bg-amber-400"></div>
-              <div className="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[6px] border-t-amber-400"></div>
-            </div>
-
-            {/* データ（Data）囲み */}
-            <div className="flex flex-col items-center w-full">
-              <p className="text-white/90 text-xs font-bold mb-2">
-                データ <span className="text-white/50">-Data-</span>
-              </p>
-              <div className="border-2 border-dashed border-amber-400/60 rounded-xl p-4 flex flex-col items-center gap-2 w-full max-w-[200px]">
-                {/* Plan */}
-                <div className="bg-cyan-500 text-white px-6 py-2 rounded-lg border-2 border-white/20 shadow-lg w-full text-center">
-                  <p className="text-xs text-white/80">計画</p>
-                  <p className="text-sm font-bold">Plan</p>
-                </div>
-                {/* 下矢印 */}
-                <div className="flex flex-col items-center">
-                  <div className="w-[2px] h-2 bg-amber-400"></div>
-                  <div className="w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-t-[5px] border-t-amber-400"></div>
-                </div>
-                {/* Act */}
-                <div className="bg-sky-500 text-white px-6 py-2 rounded-lg border-2 border-white/20 shadow-lg w-full text-center">
-                  <p className="text-xs text-white/80">実行</p>
-                  <p className="text-sm font-bold">Act</p>
-                </div>
-                {/* 下矢印 */}
-                <div className="flex flex-col items-center">
-                  <div className="w-[2px] h-2 bg-amber-400"></div>
-                  <div className="w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-t-[5px] border-t-amber-400"></div>
-                </div>
-                {/* Evaluation */}
-                <div className="bg-blue-500 text-white px-6 py-2 rounded-lg border-2 border-white/20 shadow-lg w-full text-center">
-                  <p className="text-xs text-white/80">評価</p>
-                  <p className="text-sm font-bold">Evaluation</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* デスクトップ表示: 横並び（2グループ） */}
-          <div className="hidden md:flex items-end justify-center gap-4">
-            {/* 情報（Information）囲み: Data + Analysis */}
-            <div className="flex flex-col items-center">
-              <p className="text-white/90 text-sm font-bold mb-2">
-                情報 <span className="text-white/50">-Information-</span>
-              </p>
-              <div className="border-2 border-dashed border-amber-400/60 rounded-xl p-4 flex items-center gap-3">
-                {/* Data */}
-                <div className="bg-emerald-500 text-white px-8 py-3 rounded-lg border-2 border-white/20 shadow-lg">
-                  <p className="text-xs text-white/80 text-center">データ</p>
-                  <p className="text-base font-bold text-center">Data</p>
-                </div>
-                {/* 矢印 → */}
-                <div className="flex items-center">
-                  <div className="w-6 h-[3px] bg-amber-400"></div>
-                  <div className="w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[9px] border-l-amber-400"></div>
-                </div>
-                {/* Analysis */}
-                <div className="bg-teal-500 text-white px-8 py-3 rounded-lg border-2 border-white/20 shadow-lg">
-                  <p className="text-xs text-white/80 text-center">分析</p>
-                  <p className="text-base font-bold text-center">Analysis</p>
-                </div>
-              </div>
-            </div>
-
-            {/* 矢印 → （囲いの中央に揃える） */}
-            <div className="flex items-center mb-[50px]">
-              <div className="w-6 h-[3px] bg-amber-400"></div>
-              <div className="w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[9px] border-l-amber-400"></div>
-            </div>
-
-            {/* データ（Data）囲み: Plan + Act + Evaluation */}
-            <div className="flex flex-col items-center">
-              <p className="text-white/90 text-sm font-bold mb-2">
-                データ <span className="text-white/50">-Data-</span>
-              </p>
-              <div className="border-2 border-dashed border-amber-400/60 rounded-xl p-4 flex items-center gap-3">
-                {/* Plan */}
-                <div className="bg-cyan-500 text-white px-8 py-3 rounded-lg border-2 border-white/20 shadow-lg">
-                  <p className="text-xs text-white/80 text-center">計画</p>
-                  <p className="text-base font-bold text-center">Plan</p>
-                </div>
-                {/* 矢印 → */}
-                <div className="flex items-center">
-                  <div className="w-6 h-[3px] bg-amber-400"></div>
-                  <div className="w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[9px] border-l-amber-400"></div>
-                </div>
-                {/* Act */}
-                <div className="bg-sky-500 text-white px-8 py-3 rounded-lg border-2 border-white/20 shadow-lg">
-                  <p className="text-xs text-white/80 text-center">実行</p>
-                  <p className="text-base font-bold text-center">Act</p>
-                </div>
-                {/* 矢印 → */}
-                <div className="flex items-center">
-                  <div className="w-6 h-[3px] bg-amber-400"></div>
-                  <div className="w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[9px] border-l-amber-400"></div>
-                </div>
-                {/* Evaluation */}
-                <div className="bg-blue-500 text-white px-8 py-3 rounded-lg border-2 border-white/20 shadow-lg">
-                  <p className="text-xs text-white/80 text-center">評価</p>
-                  <p className="text-base font-bold text-center">Evaluation</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* GROWTH CYCLE テキスト */}
-          <div
-            className="text-center"
-            style={{ marginTop: 'var(--spacing-fluid-lg)' }}
-          >
-            <p
-              className="text-teal-400 font-bold tracking-widest"
-              style={{ fontSize: 'var(--font-size-fluid-xs)' }}
-            >
-              GROWTH CYCLE
-            </p>
-            <p
-              className="text-white/60"
-              style={{ fontSize: 'var(--font-size-fluid-xs)', marginTop: 'var(--spacing-fluid-xs)' }}
-            >
-              データに基づいた継続的な改善
-            </p>
-          </div>
-
-          {/* 導入カード */}
-          <div
-            className="max-w-4xl mx-auto"
-            style={{ marginTop: 'var(--spacing-fluid-xl)', marginBottom: 'var(--spacing-fluid-lg)' }}
-          >
-            <div
-              className="bg-slate-700/50 rounded-xl border-l-4 border-yellow-400"
-              style={{ padding: 'var(--spacing-fluid-md)' }}
-            >
-              <div
-                className="flex items-start"
-                style={{ gap: 'var(--spacing-fluid-sm)' }}
-              >
-                <span
-                  className="shrink-0"
-                  style={{ fontSize: 'var(--font-size-fluid-2xl)' }}
-                >
-                  {aboutData.dapae.introduction.icon}
-                </span>
-                <p
-                  className="text-white/90 italic leading-relaxed"
-                  style={{ fontSize: 'var(--font-size-fluid-sm)' }}
-                >
-                  {aboutData.dapae.introduction.text}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* 各ステップの詳細説明 */}
-          <div className="max-w-4xl mx-auto">
-            {aboutData.dapae.steps.map((step, index) => (
-              <AnimatedStepCard key={index} delay={index * 100}>
-                <div className="flex items-start" style={{ gap: 'var(--spacing-fluid-md)' }}>
-                  {/* 左側の大きな頭文字 */}
-                  <div className="shrink-0 flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/10 border-2 border-white/20">
-                    <span
-                      className="font-bold text-white"
-                      style={{ fontSize: 'var(--font-size-fluid-2xl)' }}
-                    >
-                      {step.name[0]}
-                    </span>
-                  </div>
-
-                  {/* 右側の説明カード */}
-                  <div
-                    className="flex-1 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:border-white/20 transition-all"
-                    style={{ padding: 'var(--spacing-fluid-md)' }}
-                  >
-                    {/* タイトル（英語のみ）を改行 */}
-                    <div style={{ marginBottom: 'var(--spacing-fluid-sm)' }}>
-                      <h4
-                        className="font-bold text-white"
-                        style={{ fontSize: 'var(--font-size-fluid-lg)', marginBottom: '0.25rem' }}
-                      >
-                        {step.name}
-                      </h4>
-                      <p
-                        className="text-teal-300 font-medium"
-                        style={{ fontSize: 'var(--font-size-fluid-base)' }}
-                      >
-                        {step.subtitle}
-                      </p>
-                    </div>
-
-                    {/* ストーリーセクション */}
-                    <div
-                      className="bg-white/5 rounded-lg border-l-2 border-emerald-400"
-                      style={{ padding: 'var(--spacing-fluid-sm)', marginBottom: 'var(--spacing-fluid-sm)' }}
-                    >
-                      <p
-                        className="text-emerald-200 font-bold"
-                        style={{ fontSize: 'var(--font-size-fluid-sm)', marginBottom: 'var(--spacing-fluid-xs)' }}
-                      >
-                        現場の物語:
-                      </p>
-                      <p
-                        className="text-white/80 leading-relaxed"
-                        style={{ fontSize: 'var(--font-size-fluid-sm)' }}
-                      >
-                        {step.story}
-                      </p>
-                    </div>
-
-                    {/* Before/After対比（Analysisのみ） */}
-                    {step.beforeAfter && (
-                      <div
-                        className="grid grid-cols-1 md:grid-cols-2"
-                        style={{ gap: 'var(--spacing-fluid-sm)', marginBottom: 'var(--spacing-fluid-sm)' }}
-                      >
-                        <div
-                          className="bg-red-500/10 rounded-lg border border-red-500/20"
-                          style={{ padding: 'var(--spacing-fluid-sm)' }}
-                        >
-                          <p
-                            className="text-red-300 font-bold"
-                            style={{ fontSize: 'var(--font-size-fluid-xs)', marginBottom: 'var(--spacing-fluid-xs)' }}
-                          >
-                            Before:
-                          </p>
-                          <p
-                            className="text-white/70"
-                            style={{ fontSize: 'var(--font-size-fluid-sm)' }}
-                          >
-                            {step.beforeAfter.before}
-                          </p>
-                        </div>
-                        <div
-                          className="bg-emerald-500/10 rounded-lg border border-emerald-500/20"
-                          style={{ padding: 'var(--spacing-fluid-sm)' }}
-                        >
-                          <p
-                            className="text-emerald-300 font-bold"
-                            style={{ fontSize: 'var(--font-size-fluid-xs)', marginBottom: 'var(--spacing-fluid-xs)' }}
-                          >
-                            After:
-                          </p>
-                          <p
-                            className="text-white/70"
-                            style={{ fontSize: 'var(--font-size-fluid-sm)' }}
-                          >
-                            {step.beforeAfter.after}
-                          </p>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* チェックリスト（Planのみ） */}
-                    {step.checklist && (
-                      <div
-                        className="bg-white/5 rounded-lg"
-                        style={{ padding: 'var(--spacing-fluid-sm)', marginBottom: 'var(--spacing-fluid-sm)' }}
-                      >
-                        <p
-                          className="text-cyan-200 font-bold"
-                          style={{ fontSize: 'var(--font-size-fluid-sm)', marginBottom: 'var(--spacing-fluid-xs)' }}
-                        >
-                          改善計画:
-                        </p>
-                        <ul className="space-y-2">
-                          {step.checklist.map((item, i) => (
-                            <li key={i} className="flex items-start gap-2">
-                              <span className={i === step.checklist!.length - 1 ? "text-yellow-400" : "text-emerald-400"}>
-                                {i === step.checklist!.length - 1 ? (
-                                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
-                                    <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm9.707 5.707a1 1 0 00-1.414-1.414L9 12.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                                  </svg>
-                                ) : (
-                                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                  </svg>
-                                )}
-                              </span>
-                              <span
-                                className={`text-white/80 ${i === step.checklist!.length - 1 ? 'font-bold' : ''}`}
-                                style={{ fontSize: 'var(--font-size-fluid-sm)' }}
-                              >
-                                {item}
-                              </span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-
-                    {/* 成果表示（Evaluationのみ） */}
-                    {step.results && (
-                      <div
-                        className="bg-gradient-to-r from-emerald-500/20 to-teal-500/20 rounded-lg border border-emerald-400/30"
-                        style={{ padding: 'var(--spacing-fluid-md)', marginBottom: 'var(--spacing-fluid-sm)' }}
-                      >
-                        <p
-                          className="text-emerald-200 font-bold"
-                          style={{ fontSize: 'var(--font-size-fluid-sm)', marginBottom: 'var(--spacing-fluid-xs)' }}
-                        >
-                          成果:
-                        </p>
-                        <div
-                          className="flex items-center justify-center my-3"
-                          style={{ gap: 'var(--spacing-fluid-md)' }}
-                        >
-                          <div className="text-center">
-                            <p className="text-white/60" style={{ fontSize: 'var(--font-size-fluid-xs)' }}>Before</p>
-                            <p className="text-white font-bold" style={{ fontSize: 'var(--font-size-fluid-xl)' }}>{step.results.before}</p>
-                          </div>
-                          <span className="text-emerald-400" style={{ fontSize: 'var(--font-size-fluid-xl)' }}>→</span>
-                          <div className="text-center">
-                            <p className="text-white/60" style={{ fontSize: 'var(--font-size-fluid-xs)' }}>After</p>
-                            <p className="text-emerald-400 font-bold" style={{ fontSize: 'var(--font-size-fluid-xl)' }}>{step.results.after}</p>
-                          </div>
-                        </div>
-                        <p className="text-center text-emerald-300 font-bold" style={{ fontSize: 'var(--font-size-fluid-lg)' }}>{step.results.improvement}</p>
-                      </div>
-                    )}
-
-                    {/* 説明 */}
-                    <p
-                      className="text-white/80 leading-relaxed"
-                      style={{ fontSize: 'var(--font-size-fluid-sm)' }}
-                    >
-                      {step.description}
-                    </p>
-                  </div>
-                </div>
-
-                {/* 下矢印（最後以外） */}
-                {index < aboutData.dapae.steps.length - 1 && (
-                  <div
-                    className="flex justify-center"
-                    style={{ marginTop: 'var(--spacing-fluid-md)', marginBottom: 'var(--spacing-fluid-md)' }}
-                  >
-                    <svg className="w-6 h-6 md:w-8 md:h-8 text-teal-400" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z" transform="rotate(90 12 12)" />
-                    </svg>
-                  </div>
-                )}
-              </AnimatedStepCard>
-            ))}
-
-            {/* 結論カード */}
-            <AnimatedStepCard delay={500}>
-              <div style={{ marginTop: 'var(--spacing-fluid-lg)' }}>
-                <div
-                  className="bg-gradient-to-br from-teal-500/20 to-cyan-500/20 rounded-xl border-2 border-teal-400/30 text-center"
-                  style={{ padding: 'var(--spacing-fluid-lg)' }}
-                >
-                  <div
-                    className="flex justify-center"
-                    style={{ marginBottom: 'var(--spacing-fluid-sm)' }}
-                  >
-                    <svg className="w-12 h-12 md:w-16 md:h-16 text-teal-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                    </svg>
-                  </div>
-                  <p
-                    className="text-white/90 font-medium"
-                    style={{ fontSize: 'var(--font-size-fluid-base)', marginBottom: 'var(--spacing-fluid-xs)' }}
-                  >
-                    {aboutData.dapae.conclusion.text}
-                  </p>
-                  <p
-                    className="text-teal-300"
-                    style={{ fontSize: 'var(--font-size-fluid-sm)' }}
-                  >
-                    {aboutData.dapae.conclusion.subtitle}
-                  </p>
-                </div>
-              </div>
-            </AnimatedStepCard>
-          </div>
-
-          {/* 核心となる考え方 */}
-          <AnimatedStepCard delay={600}>
-            <div
-              className="max-w-3xl mx-auto"
-              style={{ marginTop: 'var(--spacing-fluid-lg)' }}
-            >
-              <div
-                className="bg-gradient-to-br from-teal-500/20 to-cyan-500/20 backdrop-blur-sm rounded-2xl border-2 border-teal-400/30"
-                style={{ padding: 'var(--spacing-fluid-lg)' }}
-              >
-                <h4
-                  className="font-bold text-teal-300 text-center"
-                  style={{ fontSize: 'var(--font-size-fluid-lg)', marginBottom: 'var(--spacing-fluid-sm)' }}
-                >
-                  {aboutData.dapae.coreIdea.title}
-                </h4>
-                <p
-                  className="text-white/90 leading-relaxed"
-                  style={{ fontSize: 'var(--font-size-fluid-sm)', marginBottom: 'var(--spacing-fluid-sm)' }}
-                >
-                  {aboutData.dapae.coreIdea.description}
-                </p>
-                <div
-                  className="bg-white/5 rounded-lg border-l-4 border-yellow-400"
-                  style={{ padding: 'var(--spacing-fluid-sm)' }}
-                >
-                  <p
-                    className="text-white/80 leading-relaxed"
-                    style={{ fontSize: 'var(--font-size-fluid-sm)' }}
-                  >
-                    {aboutData.dapae.coreIdea.example}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </AnimatedStepCard>
-        </div>
-      </Section>
-
-      {/* ロゴの意味 */}
+      {/* ロゴ＆資料（統合セクション） */}
       <Section
         id="logo"
         className="bg-white relative overflow-hidden"
@@ -1309,158 +1039,102 @@ export default function AboutFractalPage() {
           if (el) sectionRefs.current.logo = el;
         }}
       >
-        {/* 背景装飾 - イエロー */}
+        {/* 背景装飾 */}
         <div className="absolute top-0 left-0 w-64 h-64 bg-[var(--color-logo-yellow)]/10 rounded-full blur-3xl -z-10"></div>
-        <div className="absolute bottom-0 right-0 w-64 h-64 bg-[var(--color-logo-yellow)]/10 rounded-full blur-3xl -z-10"></div>
+        <div className="absolute bottom-0 right-0 w-64 h-64 bg-[var(--color-logo-light-green)]/10 rounded-full blur-3xl -z-10"></div>
 
         {/* タイトル */}
-        <div
-          className="text-center"
-          style={{ marginBottom: 'var(--spacing-fluid-xl)' }}
-        >
+        <div className="text-center" style={{ marginBottom: 'var(--spacing-fluid-xl)' }}>
           <span
             className="inline-block px-3 py-1 bg-[var(--color-logo-yellow)]/30 text-[var(--color-logo-dark-green)] rounded-full font-medium"
             style={{ fontSize: 'var(--font-size-fluid-xs)', marginBottom: 'var(--spacing-fluid-sm)' }}
           >
-            IDENTITY
+            IDENTITY & MATERIALS
           </span>
           <h3
             className="font-bold text-primary"
             style={{ fontSize: 'var(--font-size-fluid-2xl)' }}
           >
-            {aboutData.logo.title}
+            フラクタルのかたち
           </h3>
-          <p
-            className="text-[var(--color-logo-dark-green)] font-medium"
-            style={{ fontSize: 'var(--font-size-fluid-lg)', marginTop: 'var(--spacing-fluid-xs)' }}
-          >
-            {aboutData.logo.subtitle}
-          </p>
         </div>
 
-        {/* ロゴと導入文 */}
-        <div
-          className="flex flex-col md:flex-row items-center"
-          style={{ gap: 'var(--spacing-fluid-lg)', marginBottom: 'var(--spacing-fluid-xl)' }}
-        >
-          <div className="shrink-0">
-            <div className="relative w-40 h-40 md:w-56 md:h-56">
-              <Image
-                src="/images/logos/corporate-logo.png"
-                alt="株式会社フラクタル ロゴ"
-                fill
-                className="object-contain"
-              />
-            </div>
-          </div>
-          <div className="flex-1">
-            <p
-              className="text-primary/80 leading-relaxed"
-              style={{ fontSize: 'var(--font-size-fluid-base)' }}
-            >
-              {aboutData.logo.introduction}
-            </p>
-          </div>
-        </div>
-
-        {/* 4つの意味 */}
-        <div
-          className="grid md:grid-cols-2"
-          style={{ gap: 'var(--spacing-fluid-md)' }}
-        >
-          {aboutData.logo.meanings.map((meaning, index) => (
-            <div
-              key={index}
-              className="bg-gradient-to-br from-[var(--color-logo-yellow)]/10 to-white rounded-2xl border border-[var(--color-logo-yellow)]/30 hover:border-[var(--color-logo-light-green)] hover:shadow-lg transition-all duration-300"
-              style={{ padding: 'var(--spacing-fluid-md)' }}
-            >
-              <div className="flex items-center gap-3 mb-3">
-                <span className="text-3xl md:text-4xl">{meaning.icon}</span>
-                <h4
-                  className="font-bold text-[var(--color-logo-dark-green)]"
-                  style={{ fontSize: 'var(--font-size-fluid-base)' }}
-                >
-                  {meaning.name}
-                </h4>
-              </div>
-              <p
-                className="text-primary/70 leading-relaxed"
-                style={{ fontSize: 'var(--font-size-fluid-sm)' }}
-              >
-                {meaning.description}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        {/* 結論 */}
-        <div
-          className="text-center bg-gradient-to-r from-[var(--color-logo-light-green)]/20 via-[var(--color-logo-yellow)]/20 to-[var(--color-logo-light-green)]/20 rounded-2xl"
-          style={{ marginTop: 'var(--spacing-fluid-xl)', padding: 'var(--spacing-fluid-lg)' }}
-        >
-          <p
-            className="text-[var(--color-logo-dark-green)] font-medium leading-relaxed"
-            style={{ fontSize: 'var(--font-size-fluid-base)' }}
-          >
-            {aboutData.logo.conclusion}
-          </p>
-        </div>
-      </Section>
-
-      {/* 会社案内資料 */}
-      <Section className="bg-slate-50">
-        <div
-          className="text-center"
-          style={{ marginBottom: 'var(--spacing-fluid-xl)' }}
-        >
-          <span
-            className="inline-block px-3 py-1 bg-slate-200 text-slate-700 rounded-full font-medium"
-            style={{ fontSize: 'var(--font-size-fluid-xs)', marginBottom: 'var(--spacing-fluid-sm)' }}
-          >
-            MATERIALS
-          </span>
-          <h3
-            className="font-bold text-primary"
-            style={{ fontSize: 'var(--font-size-fluid-2xl)' }}
-          >
-            資料で見るフラクタル
-          </h3>
-          <p
-            className="text-primary/70"
-            style={{ marginTop: 'var(--spacing-fluid-sm)', fontSize: 'var(--font-size-fluid-sm)' }}
-          >
-            企業理念や事業内容をまとめた資料をご覧いただけます。
-          </p>
-        </div>
-
-        <div
-          className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide -mx-4"
-          style={{ paddingBottom: 'var(--spacing-fluid-md)', gap: 'var(--spacing-fluid-md)' }}
-        >
-          {[13, 14, 16, 17, 18, 19, 21].map((num, index) => (
-            <div
-              key={num}
-              className="shrink-0 w-[75vw] md:w-150 snap-center"
-              style={{ marginLeft: index === 0 ? 'var(--spacing-fluid-md)' : 0 }}
-            >
-              <div className="relative aspect-video shadow-xl rounded-lg md:rounded-xl overflow-hidden border border-slate-200 bg-white">
+        {/* ロゴと簡潔な説明 */}
+        <div className="grid md:grid-cols-2 gap-8 items-center" style={{ marginBottom: 'var(--spacing-fluid-xl)' }}>
+          <div className="text-center md:text-left">
+            <div className="flex justify-center md:justify-start mb-4">
+              <div className="relative w-32 h-32 md:w-40 md:h-40">
                 <Image
-                  src={`/images/philosophy/${num}.png`}
-                  alt={`フラクタル資料 ${num}`}
+                  src="/images/logos/corporate-logo.png"
+                  alt="株式会社フラクタル ロゴ"
                   fill
                   className="object-contain"
                 />
               </div>
             </div>
-          ))}
-          <div style={{ width: 'var(--spacing-fluid-md)', flexShrink: 0 }}></div>
+            <p className="text-primary/80 leading-relaxed" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>
+              シンプルな三角形の組み合わせが、複雑で美しい形を生み出す。
+              私たちのロゴは、「フラクタル構造」そのものを表現しています。
+            </p>
+          </div>
+
+          {/* ロゴの意味（コンパクト版） */}
+          <div className="space-y-3">
+            {aboutData.logo.meanings.slice(0, 3).map((meaning, index) => (
+              <div
+                key={index}
+                className="flex items-start gap-3 bg-gradient-to-r from-[var(--color-logo-yellow)]/10 to-transparent rounded-lg p-3"
+              >
+                <span className="text-xl shrink-0">{meaning.icon}</span>
+                <div>
+                  <h4 className="font-bold text-[var(--color-logo-dark-green)] text-sm">{meaning.name}</h4>
+                  <p className="text-primary/60 text-xs leading-relaxed line-clamp-2">
+                    {meaning.description.substring(0, 60)}...
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-        <p
-          className="text-center text-muted md:hidden"
-          style={{ marginTop: 'var(--spacing-fluid-xs)', fontSize: 'var(--font-size-fluid-xs)' }}
-        >
-          ← スクロールしてご覧ください →
-        </p>
+
+        {/* 会社案内資料 */}
+        <div style={{ marginTop: 'var(--spacing-fluid-lg)' }}>
+          <h4
+            className="text-center font-bold text-primary"
+            style={{ fontSize: 'var(--font-size-fluid-lg)', marginBottom: 'var(--spacing-fluid-md)' }}
+          >
+            資料で見るフラクタル
+          </h4>
+
+          <div
+            className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide -mx-4"
+            style={{ paddingBottom: 'var(--spacing-fluid-md)', gap: 'var(--spacing-fluid-md)' }}
+          >
+            {[13, 14, 16, 17, 18, 19, 21].map((num, index) => (
+              <div
+                key={num}
+                className="shrink-0 w-[70vw] md:w-120 snap-center"
+                style={{ marginLeft: index === 0 ? 'var(--spacing-fluid-md)' : 0 }}
+              >
+                <div className="relative aspect-video shadow-lg rounded-lg overflow-hidden border border-slate-200 bg-white">
+                  <Image
+                    src={`/images/philosophy/${num}.png`}
+                    alt={`フラクタル資料 ${num}`}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+              </div>
+            ))}
+            <div style={{ width: 'var(--spacing-fluid-md)', flexShrink: 0 }}></div>
+          </div>
+          <p
+            className="text-center text-muted md:hidden"
+            style={{ marginTop: 'var(--spacing-fluid-xs)', fontSize: 'var(--font-size-fluid-xs)' }}
+          >
+            スワイプしてご覧ください
+          </p>
+        </div>
       </Section>
 
       {/* CTA */}
