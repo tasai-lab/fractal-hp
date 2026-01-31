@@ -14,7 +14,6 @@
 | Philosophy | Philosophy.tsx | セクション | 私たちのカタチ |
 | Features | Features.tsx | セクション | 特徴一覧 |
 | Office | Office.tsx | セクション | 事業所情報 |
-| ServiceArea | ServiceArea.tsx | セクション | 訪問エリア |
 | Flow | Flow.tsx | セクション | ご利用の流れ |
 | Staff | Staff.tsx | セクション | スタッフ紹介 |
 | Recruit | Recruit.tsx | セクション | リクルート |
@@ -26,6 +25,7 @@
 | GoogleAnalytics | GoogleAnalytics.tsx | ユーティリティ | GA4トラッキング |
 | CountUp | CountUp.tsx | ユーティリティ | 数値カウントアップ |
 | StructuredData | StructuredData.tsx | SEO | 構造化データ |
+| JobDetails | recruit/JobDetails.tsx | 採用 | 職種詳細モーダル |
 
 ---
 
@@ -131,16 +131,6 @@
 - 電話・メールリンク
 
 **データソース**: `src/lib/data.ts` → `officeInfo`
-
----
-
-### ServiceArea
-
-訪問エリアセクション。対応地域を地図とリストで表示。
-
-**ファイル**: `src/components/ServiceArea.tsx`
-
-**データソース**: `src/lib/data.ts` → `serviceAreas`
 
 ---
 

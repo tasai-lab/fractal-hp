@@ -19,14 +19,13 @@
 
 - ESLint
 - Tailwind CSS IntelliSense
-- TypeScript Vue Plugin (Volar)
 - Prettier - Code formatter
 
 ### 初期セットアップ
 
 ```bash
 # 1. リポジトリをクローン
-git clone https://github.com/your-org/fractal-hp.git
+git clone https://github.com/tasai-lab/fractal-hp.git
 cd fractal-hp
 
 # 2. 依存関係をインストール
@@ -69,7 +68,6 @@ src/
 │   ├── Philosophy.tsx      # 私たちのカタチ
 │   ├── Features.tsx        # 特徴
 │   ├── Office.tsx          # 事業所情報
-│   ├── ServiceArea.tsx     # 訪問エリア
 │   ├── Flow.tsx            # ご利用の流れ
 │   ├── Staff.tsx           # スタッフ紹介
 │   ├── Recruit.tsx         # リクルート
