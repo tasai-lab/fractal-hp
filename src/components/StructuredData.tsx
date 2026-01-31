@@ -372,3 +372,161 @@ export function FlyersStructuredData() {
     />
   );
 }
+
+// 募集開始日（固定値を使用してビルド日問題を回避）
+const JOB_POSTED_DATE = "2024-01-15";
+
+// エリア別求人構造化データコンポーネント
+export function AreaJobPostingStructuredData({
+  areaName,
+  areaSlug,
+}: {
+  areaName: string;
+  areaSlug: string;
+}) {
+  const validThrough = new Date();
+  validThrough.setDate(validThrough.getDate() + 90);
+
+  const nurseJobPosting = {
+    "@context": "https://schema.org",
+    "@type": "JobPosting",
+    title: `訪問看護師（${areaName}エリア）`,
+    description: `${areaName}エリアでの訪問看護業務。年間休日139日以上、入社祝い金最大30万円。直行直帰OK、AI活用で記録業務を効率化。`,
+    datePosted: JOB_POSTED_DATE,
+    validThrough: validThrough.toISOString().split("T")[0],
+    employmentType: "FULL_TIME",
+    hiringOrganization: {
+      "@type": "Organization",
+      name: "フラクタル訪問看護 船橋",
+      sameAs: "https://fractal-hokan.com",
+      logo: "https://fractal-hokan.com/images/logos/corporate-logo.png",
+    },
+    jobLocation: {
+      "@type": "Place",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "三山6丁目22-2 パレドール小川201",
+        addressLocality: areaName,
+        addressRegion: "千葉県",
+        postalCode: "274-0072",
+        addressCountry: "JP",
+      },
+    },
+    baseSalary: {
+      "@type": "MonetaryAmount",
+      currency: "JPY",
+      value: {
+        "@type": "QuantitativeValue",
+        minValue: 4500000,
+        maxValue: 6000000,
+        unitText: "YEAR",
+      },
+    },
+    jobBenefits: "入社祝い金最大30万円、年間休日139日以上、社用車貸与、直行直帰OK",
+    skills: "看護師免許、普通自動車運転免許",
+    industry: "医療・福祉",
+    directApply: true,
+    applicantLocationRequirements: {
+      "@type": "Country",
+      name: "JP",
+    },
+  };
+
+  const therapistJobPosting = {
+    "@context": "https://schema.org",
+    "@type": "JobPosting",
+    title: `理学療法士・作業療法士・言語聴覚士（${areaName}エリア）`,
+    description: `${areaName}エリアでの訪問リハビリテーション業務。年間休日120日以上、入社祝い金最大30万円。直行直帰OK。`,
+    datePosted: JOB_POSTED_DATE,
+    validThrough: validThrough.toISOString().split("T")[0],
+    employmentType: "FULL_TIME",
+    hiringOrganization: {
+      "@type": "Organization",
+      name: "フラクタル訪問看護 船橋",
+      sameAs: "https://fractal-hokan.com",
+      logo: "https://fractal-hokan.com/images/logos/corporate-logo.png",
+    },
+    jobLocation: {
+      "@type": "Place",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "三山6丁目22-2 パレドール小川201",
+        addressLocality: areaName,
+        addressRegion: "千葉県",
+        postalCode: "274-0072",
+        addressCountry: "JP",
+      },
+    },
+    baseSalary: {
+      "@type": "MonetaryAmount",
+      currency: "JPY",
+      value: {
+        "@type": "QuantitativeValue",
+        minValue: 4000000,
+        maxValue: 5500000,
+        unitText: "YEAR",
+      },
+    },
+    jobBenefits: "入社祝い金最大30万円、年間休日120日以上、社用車貸与、直行直帰OK",
+    skills: "理学療法士免許、作業療法士免許、言語聴覚士免許のいずれか、普通自動車運転免許",
+    industry: "医療・福祉",
+    directApply: true,
+    applicantLocationRequirements: {
+      "@type": "Country",
+      name: "JP",
+    },
+  };
+
+  return (
+    <>
+      <Script
+        id={`structured-data-${areaSlug}-nurse-job`}
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(nurseJobPosting),
+        }}
+      />
+      <Script
+        id={`structured-data-${areaSlug}-therapist-job`}
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(therapistJobPosting),
+        }}
+      />
+    </>
+  );
+}
+
+// エリア別FAQスキーマコンポーネント
+export function AreaFAQStructuredData({
+  faqs,
+  areaSlug,
+}: {
+  faqs: { question: string; answer: string }[];
+  areaSlug: string;
+}) {
+  if (!faqs || faqs.length === 0) return null;
+
+  const faqData = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
+  return (
+    <Script
+      id={`structured-data-${areaSlug}-faq`}
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(faqData),
+      }}
+    />
+  );
+}

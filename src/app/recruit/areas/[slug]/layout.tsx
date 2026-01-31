@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
-import { BreadcrumbStructuredData } from "@/components/StructuredData";
+import {
+  BreadcrumbStructuredData,
+  AreaJobPostingStructuredData,
+  AreaFAQStructuredData,
+} from "@/components/StructuredData";
 import { recruitAreas } from "@/lib/recruit-areas";
 
 export async function generateMetadata({
@@ -55,16 +59,25 @@ export default async function RecruitAreaLayout({
   return (
     <>
       {area && (
-        <BreadcrumbStructuredData
-          items={[
-            { name: "ホーム", url: "https://fractal-hokan.com" },
-            { name: "採用情報", url: "https://fractal-hokan.com/recruit" },
-            {
-              name: `${area.name}の求人`,
-              url: `https://fractal-hokan.com/recruit/areas/${area.slug}`,
-            },
-          ]}
-        />
+        <>
+          <BreadcrumbStructuredData
+            items={[
+              { name: "ホーム", url: "https://fractal-hokan.com" },
+              { name: "採用情報", url: "https://fractal-hokan.com/recruit" },
+              {
+                name: `${area.name}の求人`,
+                url: `https://fractal-hokan.com/recruit/areas/${area.slug}`,
+              },
+            ]}
+          />
+          <AreaJobPostingStructuredData
+            areaName={area.name}
+            areaSlug={area.slug}
+          />
+          {area.faq && area.faq.length > 0 && (
+            <AreaFAQStructuredData faqs={area.faq} areaSlug={area.slug} />
+          )}
+        </>
       )}
       {children}
     </>
