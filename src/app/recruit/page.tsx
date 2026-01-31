@@ -3,6 +3,7 @@
 import { useState, type ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { BadgeCheck, CheckCircle2 } from "lucide-react";
 import Contact from "@/components/Contact";
 import { CountUp } from "@/components/CountUp";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
@@ -39,11 +40,6 @@ const featureIcons = [
   "/images/recruit/icons/3.png",
 ];
 
-const listIcons = [
-  "/images/recruit/icons/4.png",
-  "/images/recruit/icons/5.png",
-  "/images/recruit/icons/6.png",
-];
 
 const FadeIn = ({
   children,
@@ -135,6 +131,14 @@ export default function RecruitPage() {
                 募集職種を見る
               </Link>
             </div>
+            <div className="flex flex-wrap gap-2 pt-3">
+              <span className="px-3 py-1 rounded-full bg-white/90 text-[var(--color-olive)] text-xs font-semibold">
+                祝金 最大30万円
+              </span>
+              <span className="px-3 py-1 rounded-full bg-[var(--color-olive)] text-white text-xs font-semibold">
+                看護師 年休139日以上
+              </span>
+            </div>
             <div className="grid sm:grid-cols-3 gap-3 pt-4">
               <div className="bg-white/80 rounded-2xl p-4 border border-white shadow-sm">
                 <p className="text-xs text-ink-soft">入社祝い金</p>
@@ -145,11 +149,29 @@ export default function RecruitPage() {
                 <p className="heading-mincho text-lg text-[var(--color-olive)]">
                   120日以上
                 </p>
-                <p className="text-xs text-ink-soft">看護師は139日以上</p>
+                <p className="text-xs font-semibold text-[var(--color-olive)]">
+                  看護師は139日以上
+                </p>
               </div>
               <div className="bg-white/80 rounded-2xl p-4 border border-white shadow-sm">
                 <p className="text-xs text-ink-soft">働き方</p>
                 <p className="heading-mincho text-lg text-[var(--color-olive)]">未経験歓迎</p>
+              </div>
+            </div>
+            <div className="md:hidden -mx-4 pt-4">
+              <div className="flex gap-3 overflow-x-auto px-4 pb-2">
+                <div className="min-w-[180px] bg-white rounded-2xl border border-[var(--color-sand)] p-3 shadow-sm">
+                  <p className="text-xs text-ink-soft">入社祝い金</p>
+                  <p className="heading-mincho text-lg text-[var(--color-olive)]">最大30万円</p>
+                </div>
+                <div className="min-w-[180px] bg-[var(--color-olive)] text-white rounded-2xl p-3 shadow-sm">
+                  <p className="text-xs">看護師限定</p>
+                  <p className="heading-mincho text-lg">年休139日以上</p>
+                </div>
+                <div className="min-w-[180px] bg-white rounded-2xl border border-[var(--color-sand)] p-3 shadow-sm">
+                  <p className="text-xs text-ink-soft">年間休日</p>
+                  <p className="heading-mincho text-lg text-[var(--color-olive)]">120日以上</p>
+                </div>
               </div>
             </div>
           </FadeIn>
@@ -505,17 +527,9 @@ export default function RecruitPage() {
 
                 <InfoCard title="待遇・福利厚生">
                   <ul className="grid gap-2 text-ink-soft text-sm md:text-base">
-                    {currentJob.details.benefits.map((benefit, index) => (
+                    {currentJob.details.benefits.map((benefit) => (
                       <li key={benefit} className="flex items-start gap-3">
-                        <div className="relative w-6 h-6 rounded-full bg-[var(--color-paper)] border border-white shadow-sm">
-                          <Image
-                            src={listIcons[index % listIcons.length]}
-                            alt=""
-                            fill
-                            sizes="24px"
-                            className="object-contain p-1"
-                          />
-                        </div>
+                        <CheckCircle2 className="w-5 h-5 text-[var(--color-olive)] mt-0.5" />
                         <span>{benefit}</span>
                       </li>
                     ))}
@@ -524,17 +538,9 @@ export default function RecruitPage() {
 
                 <InfoCard title="応募要件">
                   <ul className="grid gap-2 text-ink-soft text-sm md:text-base">
-                    {currentJob.details.requirements.map((req, index) => (
+                    {currentJob.details.requirements.map((req) => (
                       <li key={req} className="flex items-start gap-3">
-                        <div className="relative w-6 h-6 rounded-full bg-[var(--color-paper)] border border-white shadow-sm">
-                          <Image
-                            src={listIcons[(index + 2) % listIcons.length]}
-                            alt=""
-                            fill
-                            sizes="24px"
-                            className="object-contain p-1"
-                          />
-                        </div>
+                        <BadgeCheck className="w-5 h-5 text-[var(--color-olive)] mt-0.5" />
                         <span>{req}</span>
                       </li>
                     ))}
