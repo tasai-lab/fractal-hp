@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 // 企業データ
 const aboutData = {
@@ -105,80 +104,6 @@ const aboutData = {
     tagline: "データ駆動型・成長サイクル",
     description:
       "客観的な事実（データ）を価値ある判断材料（情報）に変え、精度の高い意思決定を繰り返すためのフレームワーク。",
-    introduction: {
-      text: "ある日、スタッフから『書類作業が多すぎる』という声が上がりました。感情的には『大変そうだ』と思いますが、フラクタルでは感情だけで判断しません。まずはデータを集めるところから始めます。",
-      icon: "💬",
-    },
-    steps: [
-      {
-        name: "Data",
-        ja: "データ",
-        subtitle: "事実の収集",
-        color: "bg-emerald-500",
-        description: "単なる数字や出来事を、色眼鏡なしに集める段階。",
-        example: "訪問件数、キャンセル率、スタッフの稼働時間、顧客アンケートの生の声、市場の統計数値。それ自体は「ただの数字」である。",
-        story: "まず、感情ではなく事実を集めました。1日の書類作業時間を計測したところ、平均2.5時間。どの書類に時間がかかるか記録すると、訪問記録が最多でした。",
-      },
-      {
-        name: "Analysis",
-        ja: "分析",
-        subtitle: "情報の抽出",
-        color: "bg-teal-500",
-        description: "収集したデータを比較・加工し、意味のある「情報」へと変換する。",
-        example: "「なぜキャンセルが増えたのか」という要因特定や、「競合他社と比較して自社が優れている点はどこか」という強みの抽出。課題や機会を浮き彫りにする。",
-        story: "データを分析すると、パターンが見えてきました。手書き → PC入力 → 印刷という二度手間が発生していました。",
-        beforeAfter: {
-          before: "手書き → PC入力 → 印刷という二度手間",
-          after: "タブレット直接入力 → 自動連携",
-        },
-      },
-      {
-        name: "Plan",
-        ja: "計画",
-        subtitle: "戦略の策定",
-        color: "bg-cyan-500",
-        description: "分析で得られた情報に基づき、勝算のある具体的な実行プランを立てる。",
-        example: "達成すべきKPI（重要指標）の設定、ITツール導入による効率化手順の策定、担当者の割り振り、予算とスケジュールの確定。",
-        story: "分析結果から、具体的な改善策を立てました。",
-        checklist: [
-          "タブレット導入で現場入力",
-          "テンプレート統一で転記削減",
-          "目標: 書類時間を1時間以内に",
-        ],
-      },
-      {
-        name: "Act",
-        ja: "実行",
-        subtitle: "柔軟な遂行",
-        color: "bg-sky-500",
-        description: "計画を現場で動かす。ここでは「やり抜くこと」と「状況に応じた微調整」を両立させる。",
-        example: "新しいITシステムの運用開始。現場で発生した「不便」に対して、計画をガチガチに守るのではなく、目的達成のためにその場で最適化を行う。",
-        story: "計画を実行しながら、現場の声で微調整しました。当初のテンプレートが使いにくいという声があり、現場で改良。入力タイミングも柔軟に変更しました。",
-      },
-      {
-        name: "Evaluation",
-        ja: "評価",
-        subtitle: "成果の検証と蓄積",
-        color: "bg-blue-500",
-        description: "実行結果を定量（数字）と定性（質）の両面から振り返る。",
-        example: "目標値（KPI）の達成率の確認。成功・失敗の要因を言語化し、それを新たな「データ」として次回のサイクルへと受け渡す。",
-        story: "3ヶ月後、結果を検証しました。",
-        results: {
-          before: "2.5時間",
-          after: "1.2時間",
-          improvement: "52%削減",
-        },
-      },
-    ],
-    conclusion: {
-      text: "この評価結果が新たなデータとなり、次の改善サイクルへ",
-      subtitle: "DAPAEサイクルは終わらない成長の物語",
-    },
-    coreIdea: {
-      title: "核心となる考え方：「データ」を「情報」へ",
-      description: "このサイクルの肝は、「未加工の数値（データ）」に文脈や意味を与えて「行動の指針（情報）」へ昇華させることにある。",
-      example: "例えば、「書類作業に2.5時間かかっている」というデータだけでは、何をすべきか分からない。分析を経て「訪問記録が最も時間を取っている」「手書きからPC入力への二度手間が原因」という情報になって初めて、「タブレットで現場入力」という具体的な改善策が見えてくる。",
-    },
   },
   logo: {
     title: "フラクタルのかたち",
@@ -236,27 +161,55 @@ const Section = React.forwardRef<
 
 Section.displayName = "Section";
 
-// スクロールアニメーション付きカードコンポーネント（DAPAEステップ用）
-const AnimatedStepCard = ({
-  children,
-  delay = 0,
-}: {
-  children: React.ReactNode;
-  delay?: number;
-}) => {
-  const { ref, isVisible } = useScrollAnimation(0.1);
-
-  return (
-    <div
-      ref={ref as React.RefObject<HTMLDivElement>}
-      className={`transition-all duration-700 ease-out ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-      }`}
-      style={{ transitionDelay: `${delay}ms` }}
-    >
-      {children}
-    </div>
-  );
+// アイコンSVGを定義（行動指針用）
+const getIcon = (iconName: string) => {
+  switch (iconName) {
+    case "heart-data":
+      return (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+        </svg>
+      );
+    case "team":
+      return (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+      );
+    case "mirror":
+      return (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+        </svg>
+      );
+    case "lightbulb":
+      return (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+        </svg>
+      );
+    case "tool":
+      return (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+      );
+    case "handshake":
+      return (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11" />
+        </svg>
+      );
+    case "refresh":
+      return (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+        </svg>
+      );
+    default:
+      return null;
+  }
 };
 
 // ナビゲーションセクション定義（新構成）
@@ -891,59 +844,7 @@ export default function AboutFractalPage() {
         {/* アイコン付き小カードグリッド */}
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
-            {aboutData.guidelines.map((item, index) => {
-              // アイコンSVGを定義
-              const getIcon = (iconName: string) => {
-                switch (iconName) {
-                  case "heart-data":
-                    return (
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                      </svg>
-                    );
-                  case "team":
-                    return (
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                      </svg>
-                    );
-                  case "mirror":
-                    return (
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                      </svg>
-                    );
-                  case "lightbulb":
-                    return (
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                      </svg>
-                    );
-                  case "tool":
-                    return (
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                    );
-                  case "handshake":
-                    return (
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11" />
-                      </svg>
-                    );
-                  case "refresh":
-                    return (
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                      </svg>
-                    );
-                  default:
-                    return null;
-                }
-              };
-
-              return (
+            {aboutData.guidelines.map((item, index) => (
                 <div
                   key={index}
                   className={`group bg-white rounded-xl shadow-sm border border-slate-100 hover:shadow-md hover:border-emerald-200 transition-all duration-300 cursor-pointer ${
@@ -992,8 +893,7 @@ export default function AboutFractalPage() {
                     {item.subtitle}
                   </p>
                 </div>
-              );
-            })}
+              ))}
           </div>
 
           {/* 選択中の行動指針の詳細（展開表示） */}
