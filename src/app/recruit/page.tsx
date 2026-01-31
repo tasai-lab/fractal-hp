@@ -280,7 +280,62 @@ export default function RecruitPage() {
           </div>
         </section>
 
-        <section className="order-6 bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
+        <section className="order-5 bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
+          <FadeIn>
+            <p className="text-xs tracking-[0.3em] text-ink-soft">ONE DAY</p>
+            <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
+              1日の流れ
+            </h3>
+            <p className="text-ink-soft mt-2">
+              フラクタルの1日は、ファンタスティック・ジョニー（愛称：ジョニ）が案内。
+              音声入力AIで記録までスムーズです。
+            </p>
+            <div className="grid lg:grid-cols-[0.9fr,1.1fr] gap-6 mt-6 items-center">
+              <div className="bg-[var(--color-paper)] rounded-3xl p-5 border border-white shadow-sm">
+                <div className="flex items-center gap-4">
+                  <div className="relative w-16 h-16 rounded-2xl overflow-hidden bg-white">
+                    <Image
+                      src="/images/recruit/johnny.png"
+                      alt="ファンタスティック・ジョニー"
+                      fill
+                      sizes="64px"
+                      className="object-contain"
+                    />
+                  </div>
+                  <div>
+                    <p className="text-xs tracking-[0.3em] text-ink-soft">FRACTAL FAIRY</p>
+                    <p className="heading-mincho text-lg text-[var(--color-olive)]">
+                      ファンタスティック・ジョニー
+                    </p>
+                    <p className="text-xs text-ink-soft mt-1">愛称：ジョニ</p>
+                  </div>
+                </div>
+                <p className="text-sm text-ink-soft mt-3">
+                  物知りで親切、何でも教えてくれるフラクタルの妖精です。
+                </p>
+                <Link
+                  href="/recruit/day-flow"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-olive)] mt-4"
+                >
+                  1日の流れを詳しく見る →
+                </Link>
+              </div>
+              <div className="grid gap-3">
+                <div className="bg-white/80 rounded-2xl border border-white px-4 py-3 text-sm text-ink-soft">
+                  営業時間は9:00〜19:00、1日6〜7件の訪問が目安です。
+                </div>
+                <div className="bg-white/80 rounded-2xl border border-white px-4 py-3 text-sm text-ink-soft">
+                  記録は移動中の音声入力 → AIが文章化。帰ってまとめて記録しません。
+                </div>
+                <div className="bg-white/80 rounded-2xl border border-white px-4 py-3 text-sm text-ink-soft">
+                  朝礼なし・直行直帰OK。申し送りを確認すれば翌日もスムーズです。
+                </div>
+              </div>
+            </div>
+          </FadeIn>
+        </section>
+
+        <section className="order-7 bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
           <FadeIn>
             <p className="text-xs tracking-[0.3em] text-ink-soft">TEAM</p>
             <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
@@ -327,7 +382,7 @@ export default function RecruitPage() {
           </div>
         </section>
 
-        <section className="order-8 grid lg:grid-cols-[1.1fr,0.9fr] gap-10 items-center">
+        <section className="order-9 grid lg:grid-cols-[1.1fr,0.9fr] gap-10 items-center">
           <FadeIn className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg bg-white">
             <Image
               src="/images/service-area/area-map.png"
@@ -375,7 +430,7 @@ export default function RecruitPage() {
           </FadeIn>
         </section>
 
-        <section className="order-9 bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
+        <section className="order-10 bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
           <FadeIn>
             <p className="text-xs tracking-[0.3em] text-ink-soft">PHILOSOPHY</p>
             <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
@@ -387,7 +442,7 @@ export default function RecruitPage() {
           </FadeIn>
         </section>
 
-        <section id="positions" className="order-5 space-y-6">
+        <section id="positions" className="order-6 space-y-6">
           <FadeIn>
             <p className="text-xs tracking-[0.3em] text-ink-soft">POSITIONS</p>
             <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
@@ -465,7 +520,7 @@ export default function RecruitPage() {
           </div>
         </section>
 
-        <section id="process" className="order-7 bg-[var(--color-paper)] rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
+        <section id="process" className="order-8 bg-[var(--color-paper)] rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
           <FadeIn>
             <p className="text-xs tracking-[0.3em] text-ink-soft">PROCESS</p>
             <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
@@ -491,7 +546,7 @@ export default function RecruitPage() {
           </FadeIn>
         </section>
 
-        <section id="faq" className="order-10 bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
+        <section id="faq" className="order-11 bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
           <FadeIn>
             <p className="text-xs tracking-[0.3em] text-ink-soft">FAQ</p>
             <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">

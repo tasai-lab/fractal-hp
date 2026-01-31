@@ -3,14 +3,6 @@
 import { useEffect, useState, type ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  Bot,
-  Coffee,
-  LogOut,
-  MessagesSquare,
-  Mic,
-  Stethoscope,
-} from "lucide-react";
 import Contact from "@/components/Contact";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { visitAreas } from "@/lib/recruit-data";
@@ -37,7 +29,6 @@ const FadeIn = ({
   );
 };
 
-const flowIcons = [Bot, Stethoscope, Coffee, Mic, MessagesSquare, LogOut];
 
 export default function AreaClient({ area }: { area: RecruitArea }) {
   const [isContactOpen, setIsContactOpen] = useState(false);
@@ -166,13 +157,17 @@ export default function AreaClient({ area }: { area: RecruitArea }) {
           <FadeIn className="bg-[var(--color-paper)] rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
             <p className="text-xs tracking-[0.3em] text-ink-soft">ONE DAY</p>
             <h3 className="heading-mincho text-2xl md:text-3xl text-[var(--color-olive)] mt-3">
-              1日の流れ
+              1日の流れ（独立ページ）
             </h3>
+            <p className="text-ink-soft mt-3 text-sm md:text-base">
+              フラクタルの1日は、ジョニの情報共有と音声入力AIでスムーズに回ります。
+              営業時間や訪問件数の詳細は独立ページでまとめています。
+            </p>
             <div className="mt-4 flex items-center gap-4 bg-white/80 rounded-2xl border border-white p-4">
               <div className="relative w-14 h-14 rounded-2xl overflow-hidden bg-white">
                 <Image
                   src="/images/recruit/johnny.png"
-                  alt="AIジョニー"
+                  alt="ファンタスティック・ジョニー"
                   fill
                   sizes="56px"
                   className="object-contain"
@@ -180,33 +175,19 @@ export default function AreaClient({ area }: { area: RecruitArea }) {
               </div>
               <div>
                 <p className="text-sm font-semibold text-[var(--color-olive)]">
-                  朝礼なし。AIジョニーが情報を共有
+                  ファンタスティック・ジョニー（愛称：ジョニ）
                 </p>
                 <p className="text-xs text-ink-soft mt-1">
-                  利用者さまの情報や最近の出来事をジョニーが整理して教えてくれます。
+                  フラクタルの妖精。物知りで親切、何でも教えてくれます。
                 </p>
               </div>
             </div>
-            <div className="space-y-4 mt-6">
-              {area.dayFlow.map((flow, index) => {
-                const Icon = flowIcons[index] ?? Stethoscope;
-                return (
-                  <div key={flow.title} className="relative pl-12">
-                    <div className="absolute left-0 top-3 w-9 h-9 rounded-full bg-white border border-[var(--color-sand)] shadow-sm flex items-center justify-center text-[var(--color-olive)]">
-                      <Icon className="w-4 h-4" />
-                    </div>
-                    {index < area.dayFlow.length - 1 && (
-                      <div className="absolute left-[18px] top-12 h-full w-px bg-[var(--color-olive)]/30"></div>
-                    )}
-                    <div className="bg-white/80 rounded-2xl border border-white px-4 py-3">
-                      <p className="text-xs tracking-[0.2em] text-ink-soft">{flow.time}</p>
-                      <p className="font-semibold text-[var(--color-olive)] mt-1">{flow.title}</p>
-                      <p className="text-sm text-ink-soft mt-1">{flow.detail}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+            <Link
+              href="/recruit/day-flow"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-olive)] mt-5"
+            >
+              1日の流れを詳しく見る →
+            </Link>
           </FadeIn>
 
           <FadeIn className="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
