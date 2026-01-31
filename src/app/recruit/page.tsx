@@ -95,9 +95,9 @@ export default function RecruitPage() {
 
         {/* HP限定入社祝い金バナー */}
         <section className="mb-6 md:mb-12">
-          <div className="bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 rounded-xl md:rounded-2xl p-4 md:p-8 shadow-lg relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-20 md:w-32 h-20 md:h-32 bg-yellow-200 rounded-full -translate-y-1/2 translate-x-1/2 opacity-50"></div>
-            <div className="absolute bottom-0 left-0 w-16 md:w-24 h-16 md:h-24 bg-yellow-200 rounded-full translate-y-1/2 -translate-x-1/2 opacity-50"></div>
+          <div className="bg-gradient-to-r from-[var(--color-logo-yellow)] via-[var(--color-logo-yellow)]/80 to-[var(--color-logo-yellow)] rounded-xl md:rounded-2xl p-4 md:p-8 shadow-lg relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-20 md:w-32 h-20 md:h-32 bg-[var(--color-logo-yellow)]/50 rounded-full -translate-y-1/2 translate-x-1/2 opacity-50"></div>
+            <div className="absolute bottom-0 left-0 w-16 md:w-24 h-16 md:h-24 bg-[var(--color-logo-yellow)]/50 rounded-full translate-y-1/2 -translate-x-1/2 opacity-50"></div>
 
             <div className="relative z-10">
               <div className="inline-block bg-red-500 text-white text-base md:text-lg font-bold px-2 md:px-3 py-1 rounded-full mb-3 md:mb-4">
@@ -277,7 +277,7 @@ export default function RecruitPage() {
               {activeTab === "nurse" && (
                 <div
                   ref={el => { cardRefs.current[2] = el; }}
-                  className={`bg-white rounded-xl p-4 md:p-6 shadow-md border-l-4 border-yellow-500 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ${
+                  className={`bg-white rounded-xl p-4 md:p-6 shadow-md border-l-4 border-[var(--color-logo-yellow)] hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ${
                     cardVisibility[2] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                   }`}
                 >

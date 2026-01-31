@@ -356,7 +356,7 @@ export default function AboutFractalPage() {
         ref={(el) => { sectionRefs.current.hero = el; }}
         className="relative min-h-[70vh] md:min-h-[85vh] flex items-center overflow-hidden"
         style={{
-          background: 'linear-gradient(135deg, #0D5643 0%, #0D5643 40%, #7FC5A0 100%)'
+          background: 'linear-gradient(135deg, var(--color-logo-dark-green) 0%, var(--color-logo-dark-green) 40%, var(--color-logo-light-green) 100%)'
         }}
       >
         {/* 装飾的な三角形 - フラクタルパターン */}
@@ -420,7 +420,7 @@ export default function AboutFractalPage() {
               <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-3 md:gap-4">
                 <a
                   href="#innovation"
-                  className="px-6 py-3 md:px-8 md:py-4 bg-[#F4E951] text-[#0D5643] rounded-full font-bold text-sm md:text-base hover:bg-yellow-300 transition-all shadow-lg"
+                  className="px-6 py-3 md:px-8 md:py-4 bg-[var(--color-logo-yellow)] text-[var(--color-logo-dark-green)] rounded-full font-bold text-sm md:text-base hover:bg-[var(--color-logo-yellow)]/80 transition-all shadow-lg"
                 >
                   革新性を見る
                 </a>
@@ -486,7 +486,7 @@ export default function AboutFractalPage() {
                 </div>
               </div>
 
-              <p className="text-center text-[#F4E951] font-bold mt-4" style={{ fontSize: 'var(--font-size-fluid-xs)' }}>
+              <p className="text-center text-[var(--color-logo-yellow)] font-bold mt-4" style={{ fontSize: 'var(--font-size-fluid-xs)' }}>
                 仕組みが、質の高いサービスを生みだす。
               </p>
             </div>
@@ -521,12 +521,12 @@ export default function AboutFractalPage() {
         }}
       >
         {/* 背景装飾 */}
-        <div className="absolute top-0 right-0 w-64 h-64 bg-[#F4E951]/20 rounded-full blur-3xl -z-10"></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#7FC5A0]/20 rounded-full blur-3xl -z-10"></div>
+        <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--color-logo-yellow)]/20 rounded-full blur-3xl -z-10"></div>
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-[var(--color-logo-light-green)]/20 rounded-full blur-3xl -z-10"></div>
 
         <div className="text-center" style={{ marginBottom: 'var(--spacing-fluid-xl)' }}>
           <span
-            className="inline-block px-3 py-1 bg-[#F4E951] text-[#0D5643] rounded-full font-bold tracking-wider"
+            className="inline-block px-3 py-1 bg-[var(--color-logo-yellow)] text-[var(--color-logo-dark-green)] rounded-full font-bold tracking-wider"
             style={{ fontSize: 'var(--font-size-fluid-xs)', marginBottom: 'var(--spacing-fluid-sm)' }}
           >
             INNOVATION
@@ -606,16 +606,16 @@ export default function AboutFractalPage() {
 
           {/* 数値カード */}
           <div className="grid md:grid-cols-3 gap-4" style={{ marginBottom: 'var(--spacing-fluid-lg)' }}>
-            <div className="bg-gradient-to-br from-[#F4E951]/30 to-[#F4E951]/10 rounded-xl p-6 text-center border border-[#F4E951]/50">
-              <p className="text-[#0D5643] font-bold" style={{ fontSize: 'var(--font-size-fluid-3xl)' }}>52%</p>
+            <div className="bg-gradient-to-br from-[var(--color-logo-yellow)]/30 to-[var(--color-logo-yellow)]/10 rounded-xl p-6 text-center border border-[var(--color-logo-yellow)]/50">
+              <p className="text-[var(--color-logo-dark-green)] font-bold" style={{ fontSize: 'var(--font-size-fluid-3xl)' }}>52%</p>
               <p className="text-primary/70 font-medium" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>書類作業時間削減</p>
             </div>
-            <div className="bg-gradient-to-br from-[#F4E951]/30 to-[#F4E951]/10 rounded-xl p-6 text-center border border-[#F4E951]/50">
-              <p className="text-[#0D5643] font-bold" style={{ fontSize: 'var(--font-size-fluid-3xl)' }}>2.5h</p>
+            <div className="bg-gradient-to-br from-[var(--color-logo-yellow)]/30 to-[var(--color-logo-yellow)]/10 rounded-xl p-6 text-center border border-[var(--color-logo-yellow)]/50">
+              <p className="text-[var(--color-logo-dark-green)] font-bold" style={{ fontSize: 'var(--font-size-fluid-3xl)' }}>2.5h</p>
               <p className="text-primary/70 font-medium" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>→ 1.2h に短縮</p>
             </div>
-            <div className="bg-gradient-to-br from-[#F4E951]/30 to-[#F4E951]/10 rounded-xl p-6 text-center border border-[#F4E951]/50">
-              <p className="text-[#0D5643] font-bold" style={{ fontSize: 'var(--font-size-fluid-3xl)' }}>3ヶ月</p>
+            <div className="bg-gradient-to-br from-[var(--color-logo-yellow)]/30 to-[var(--color-logo-yellow)]/10 rounded-xl p-6 text-center border border-[var(--color-logo-yellow)]/50">
+              <p className="text-[var(--color-logo-dark-green)] font-bold" style={{ fontSize: 'var(--font-size-fluid-3xl)' }}>3ヶ月</p>
               <p className="text-primary/70 font-medium" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>で効果を実証</p>
             </div>
           </div>
@@ -641,7 +641,7 @@ export default function AboutFractalPage() {
           {/* 締めのメッセージ */}
           <div className="text-center" style={{ marginTop: 'var(--spacing-fluid-lg)' }}>
             <p
-              className="text-[#0D5643] font-bold"
+              className="text-[var(--color-logo-dark-green)] font-bold"
               style={{ fontSize: 'var(--font-size-fluid-lg)' }}
             >
               仕組みが、質の高いサービスを生みだす。
@@ -721,7 +721,7 @@ export default function AboutFractalPage() {
         {/* 基本理念部分 */}
         <div className="text-center" style={{ marginBottom: 'var(--spacing-fluid-xl)' }}>
           <span
-            className="inline-block px-3 py-1 bg-[#7FC5A0] text-white rounded-full font-bold tracking-wider"
+            className="inline-block px-3 py-1 bg-[var(--color-logo-light-green)] text-white rounded-full font-bold tracking-wider"
             style={{ fontSize: 'var(--font-size-fluid-xs)', marginBottom: 'var(--spacing-fluid-sm)' }}
           >
             PHILOSOPHY & VISION
