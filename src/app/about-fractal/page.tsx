@@ -212,7 +212,11 @@ export default function AboutFractalPage() {
   const [isChanging, setIsChanging] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
   const [passedSections, setPassedSections] = useState<string[]>([]);
+  const [visibleDapaeSteps, setVisibleDapaeSteps] = useState<number[]>([]);
+  const [ctaVisible, setCtaVisible] = useState(false);
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
+  const dapaeRef = useRef<HTMLDivElement | null>(null);
+  const ctaRef = useRef<HTMLElement | null>(null);
   const guidelineTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // 行動指針切り替え時のフェードアニメーション
@@ -237,6 +241,50 @@ export default function AboutFractalPage() {
         clearTimeout(guidelineTimeoutRef.current);
       }
     };
+  }, []);
+
+  // DAPAEステップの順番フェードインアニメーション
+  useEffect(() => {
+    const dapaeObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // 順番にステップを表示
+            [0, 1, 2, 3, 4].forEach((index) => {
+              setTimeout(() => {
+                setVisibleDapaeSteps((prev) => [...prev, index]);
+              }, index * 150);
+            });
+            dapaeObserver.disconnect();
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    if (dapaeRef.current) {
+      dapaeObserver.observe(dapaeRef.current);
+    }
+
+    return () => dapaeObserver.disconnect();
+  }, []);
+
+  // CTAセクション到達時のアニメーション
+  useEffect(() => {
+    const ctaObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setCtaVisible(entry.isIntersecting);
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    if (ctaRef.current) {
+      ctaObserver.observe(ctaRef.current);
+    }
+
+    return () => ctaObserver.disconnect();
   }, []);
 
   // Intersection Observerで現在位置を検出（1つのObserverで全セクションを監視）
@@ -546,10 +594,16 @@ export default function AboutFractalPage() {
         </div>
 
         {/* DAPAE 5ステップ図解 */}
-        <div className="max-w-4xl mx-auto" style={{ marginBottom: 'var(--spacing-fluid-xl)' }}>
+        <div ref={dapaeRef} className="max-w-4xl mx-auto" style={{ marginBottom: 'var(--spacing-fluid-xl)' }}>
           <div className="grid md:grid-cols-5 gap-3 md:gap-4">
             {/* Data */}
-            <div className="bg-[var(--color-logo-dark-green)] rounded-xl p-4 text-white text-center">
+            <div
+              className={`bg-[var(--color-logo-dark-green)] rounded-xl p-4 text-white text-center transition-all duration-500 ${
+                visibleDapaeSteps.includes(0)
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-4"
+              }`}
+            >
               <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-white/20 flex items-center justify-center">
                 <span className="font-bold text-lg">D</span>
               </div>
@@ -558,7 +612,13 @@ export default function AboutFractalPage() {
             </div>
 
             {/* Analysis */}
-            <div className="bg-[var(--color-logo-dark-green)]/85 rounded-xl p-4 text-white text-center">
+            <div
+              className={`bg-[var(--color-logo-dark-green)]/85 rounded-xl p-4 text-white text-center transition-all duration-500 ${
+                visibleDapaeSteps.includes(1)
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-4"
+              }`}
+            >
               <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-white/20 flex items-center justify-center">
                 <span className="font-bold text-lg">A</span>
               </div>
@@ -567,7 +627,13 @@ export default function AboutFractalPage() {
             </div>
 
             {/* Plan */}
-            <div className="bg-[var(--color-logo-light-green)] rounded-xl p-4 text-white text-center">
+            <div
+              className={`bg-[var(--color-logo-light-green)] rounded-xl p-4 text-white text-center transition-all duration-500 ${
+                visibleDapaeSteps.includes(2)
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-4"
+              }`}
+            >
               <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-white/20 flex items-center justify-center">
                 <span className="font-bold text-lg">P</span>
               </div>
@@ -576,7 +642,13 @@ export default function AboutFractalPage() {
             </div>
 
             {/* Act */}
-            <div className="bg-[var(--color-logo-light-green)]/85 rounded-xl p-4 text-white text-center">
+            <div
+              className={`bg-[var(--color-logo-light-green)]/85 rounded-xl p-4 text-white text-center transition-all duration-500 ${
+                visibleDapaeSteps.includes(3)
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-4"
+              }`}
+            >
               <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-white/20 flex items-center justify-center">
                 <span className="font-bold text-lg">A</span>
               </div>
@@ -585,7 +657,13 @@ export default function AboutFractalPage() {
             </div>
 
             {/* Evaluation */}
-            <div className="bg-[var(--color-logo-light-green)]/70 rounded-xl p-4 text-white text-center">
+            <div
+              className={`bg-[var(--color-logo-light-green)]/70 rounded-xl p-4 text-white text-center transition-all duration-500 ${
+                visibleDapaeSteps.includes(4)
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-4"
+              }`}
+            >
               <div className="w-10 h-10 mx-auto mb-2 rounded-full bg-white/20 flex items-center justify-center">
                 <span className="font-bold text-lg">E</span>
               </div>
@@ -604,19 +682,31 @@ export default function AboutFractalPage() {
             IT活用による成果
           </h4>
 
-          {/* 数値カード */}
+          {/* 数値カード - ホバーで詳細表示 */}
           <div className="grid md:grid-cols-3 gap-4" style={{ marginBottom: 'var(--spacing-fluid-lg)' }}>
-            <div className="bg-gradient-to-br from-[var(--color-logo-yellow)]/30 to-[var(--color-logo-yellow)]/10 rounded-xl p-6 text-center border border-[var(--color-logo-yellow)]/50">
-              <p className="text-[var(--color-logo-dark-green)] font-bold" style={{ fontSize: 'var(--font-size-fluid-3xl)' }}>52%</p>
+            <div className="group relative bg-gradient-to-br from-[var(--color-logo-yellow)]/30 to-[var(--color-logo-yellow)]/10 rounded-xl p-6 text-center border border-[var(--color-logo-yellow)]/50 hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer overflow-hidden">
+              <p className="text-[var(--color-logo-dark-green)] font-bold transition-all duration-300 group-hover:scale-110" style={{ fontSize: 'var(--font-size-fluid-3xl)' }}>52%</p>
               <p className="text-primary/70 font-medium" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>書類作業時間削減</p>
+              {/* ホバー時の詳細情報 */}
+              <div className="absolute inset-0 bg-[var(--color-logo-dark-green)]/95 flex items-center justify-center p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="text-white text-sm leading-relaxed">タブレット導入と記録テンプレートの統一で、手書き→PC入力の二度手間を解消</p>
+              </div>
             </div>
-            <div className="bg-gradient-to-br from-[var(--color-logo-yellow)]/30 to-[var(--color-logo-yellow)]/10 rounded-xl p-6 text-center border border-[var(--color-logo-yellow)]/50">
-              <p className="text-[var(--color-logo-dark-green)] font-bold" style={{ fontSize: 'var(--font-size-fluid-3xl)' }}>2.5h</p>
+            <div className="group relative bg-gradient-to-br from-[var(--color-logo-yellow)]/30 to-[var(--color-logo-yellow)]/10 rounded-xl p-6 text-center border border-[var(--color-logo-yellow)]/50 hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer overflow-hidden">
+              <p className="text-[var(--color-logo-dark-green)] font-bold transition-all duration-300 group-hover:scale-110" style={{ fontSize: 'var(--font-size-fluid-3xl)' }}>2.5h</p>
               <p className="text-primary/70 font-medium" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>→ 1.2h に短縮</p>
+              {/* ホバー時の詳細情報 */}
+              <div className="absolute inset-0 bg-[var(--color-logo-dark-green)]/95 flex items-center justify-center p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="text-white text-sm leading-relaxed">1日あたり1.3時間の削減で、利用者様との対話時間が増加</p>
+              </div>
             </div>
-            <div className="bg-gradient-to-br from-[var(--color-logo-yellow)]/30 to-[var(--color-logo-yellow)]/10 rounded-xl p-6 text-center border border-[var(--color-logo-yellow)]/50">
-              <p className="text-[var(--color-logo-dark-green)] font-bold" style={{ fontSize: 'var(--font-size-fluid-3xl)' }}>3ヶ月</p>
+            <div className="group relative bg-gradient-to-br from-[var(--color-logo-yellow)]/30 to-[var(--color-logo-yellow)]/10 rounded-xl p-6 text-center border border-[var(--color-logo-yellow)]/50 hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer overflow-hidden">
+              <p className="text-[var(--color-logo-dark-green)] font-bold transition-all duration-300 group-hover:scale-110" style={{ fontSize: 'var(--font-size-fluid-3xl)' }}>3ヶ月</p>
               <p className="text-primary/70 font-medium" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>で効果を実証</p>
+              {/* ホバー時の詳細情報 */}
+              <div className="absolute inset-0 bg-[var(--color-logo-dark-green)]/95 flex items-center justify-center p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="text-white text-sm leading-relaxed">DAPAEサイクルを回し、短期間で改善効果を検証・実証</p>
+              </div>
             </div>
           </div>
 
@@ -1039,45 +1129,67 @@ export default function AboutFractalPage() {
         </div>
       </Section>
 
-      {/* CTA */}
-      <Section className="bg-[var(--color-logo-dark-green)] text-white">
-        <div className="text-center">
-          <h3
-            className="font-bold"
-            style={{
-              fontSize: 'var(--font-size-fluid-2xl)',
-              marginBottom: 'var(--spacing-fluid-md)'
-            }}
-          >
-            一緒に働きませんか？
-          </h3>
-          <p
-            className="text-white/90 max-w-2xl mx-auto"
-            style={{ marginBottom: 'var(--spacing-fluid-lg)', fontSize: 'var(--font-size-fluid-sm)' }}
-          >
-            フラクタルでは、私たちの理念に共感し、共に成長していける仲間を募集しています。
-          </p>
-          <div
-            className="flex flex-col sm:flex-row justify-center"
-            style={{ gap: 'var(--spacing-fluid-sm)' }}
-          >
-            <Link
-              href="/recruit"
-              className="bg-white text-[var(--color-logo-dark-green)] rounded-full font-bold hover:bg-gray-100 transition-all hover:shadow-lg"
-              style={{ padding: 'var(--spacing-fluid-sm) var(--spacing-fluid-lg)', fontSize: 'var(--font-size-fluid-sm)' }}
+      {/* CTA - 到達時に背景が暗くなり、ボタンが拡大アニメーション */}
+      <section
+        ref={(el) => { ctaRef.current = el; }}
+        className={`transition-all duration-700 ${
+          ctaVisible
+            ? "bg-[#0a2e1a]"
+            : "bg-[var(--color-logo-dark-green)]"
+        } text-white`}
+        style={{
+          paddingTop: 'var(--spacing-fluid-2xl)',
+          paddingBottom: 'var(--spacing-fluid-2xl)'
+        }}
+      >
+        <div
+          className="max-w-5xl mx-auto"
+          style={{ paddingLeft: 'var(--spacing-fluid-md)', paddingRight: 'var(--spacing-fluid-md)' }}
+        >
+          <div className="text-center">
+            <h3
+              className={`font-bold transition-all duration-500 ${
+                ctaVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
+              style={{
+                fontSize: 'var(--font-size-fluid-2xl)',
+                marginBottom: 'var(--spacing-fluid-md)'
+              }}
             >
-              採用情報を見る
-            </Link>
-            <Link
-              href="/#contact"
-              className="bg-[var(--color-logo-dark-green)] text-white border-2 border-white/30 rounded-full font-bold hover:bg-[var(--color-logo-dark-green)]/90 transition-all hover:shadow-lg"
-              style={{ padding: 'var(--spacing-fluid-sm) var(--spacing-fluid-lg)', fontSize: 'var(--font-size-fluid-sm)' }}
+              一緒に働きませんか？
+            </h3>
+            <p
+              className={`text-white/90 max-w-2xl mx-auto transition-all duration-500 delay-100 ${
+                ctaVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
+              style={{ marginBottom: 'var(--spacing-fluid-lg)', fontSize: 'var(--font-size-fluid-sm)' }}
             >
-              お問い合わせ
-            </Link>
+              フラクタルでは、私たちの理念に共感し、共に成長していける仲間を募集しています。
+            </p>
+            <div
+              className="flex flex-col sm:flex-row justify-center"
+              style={{ gap: 'var(--spacing-fluid-sm)' }}
+            >
+              <Link
+                href="/recruit"
+                className={`bg-white text-[var(--color-logo-dark-green)] rounded-full font-bold hover:bg-[var(--color-logo-yellow)] hover:scale-105 transition-all duration-300 hover:shadow-xl ${
+                  ctaVisible ? "animate-[pulse_2s_ease-in-out_1]" : ""
+                }`}
+                style={{ padding: 'var(--spacing-fluid-sm) var(--spacing-fluid-lg)', fontSize: 'var(--font-size-fluid-sm)' }}
+              >
+                採用情報を見る
+              </Link>
+              <Link
+                href="/#contact"
+                className="bg-transparent text-white border-2 border-white/50 rounded-full font-bold hover:bg-white/10 hover:border-white hover:scale-105 transition-all duration-300 hover:shadow-lg"
+                style={{ padding: 'var(--spacing-fluid-sm) var(--spacing-fluid-lg)', fontSize: 'var(--font-size-fluid-sm)' }}
+              >
+                お問い合わせ
+              </Link>
+            </div>
           </div>
         </div>
-      </Section>
+      </section>
 
       {/* モバイル下部メニュー分の余白 */}
       <div className="h-20 lg:hidden"></div>
