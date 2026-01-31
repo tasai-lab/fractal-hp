@@ -7,10 +7,7 @@ import Link from "next/link";
 // 企業データ
 const aboutData = {
   philosophy: {
-    title: "私たちが目指す未来 / 基本理念",
     main: "シンプルで独創的な社会を実現する",
-    description:
-      "この理念が私たちの存在意義であり、全ての事業活動の原動力です。この理念に基づき、社会に対して新しい価値を提供することを目指しています。",
   },
   business: {
     title: "事業内容",
@@ -19,13 +16,11 @@ const aboutData = {
     items: [
       {
         name: "訪問看護事業",
-        icon: "🏥",
         description:
           "積極的なIT活用で社員の業務負担を軽減することで安定的な地域医療への貢献を目指し、ご利用者様とそのご家族に寄り添ったサービスを提供します。",
       },
       {
         name: "IT支援事業",
-        icon: "💻",
         description:
           "関東圏内の中小企業のITの導入・活用の課題解決をサポートし、業務効率化を通じて成長を支援します。",
       },
@@ -99,16 +94,7 @@ const aboutData = {
       icon: "refresh",
     },
   ],
-  dapae: {
-    title: "DAPAE（ダパエ）",
-    tagline: "データ駆動型・成長サイクル",
-    description:
-      "客観的な事実（データ）を価値ある判断材料（情報）に変え、精度の高い意思決定を繰り返すためのフレームワーク。",
-  },
   logo: {
-    title: "フラクタルのかたち",
-    subtitle: "シンプルで独創的、それがフラクタル",
-    introduction: "シンプルな三角形の組み合わせが、複雑で美しい形を生み出す。私たちのロゴは、社名の由来である「フラクタル構造」そのものを表現しています。",
     meanings: [
       {
         name: "フラクタル構造",
@@ -126,7 +112,6 @@ const aboutData = {
         icon: "⚡",
       },
     ],
-    conclusion: "シンプルなルールから独創的な価値を生み出す。このロゴは、私たちフラクタルの理念そのものです。",
   },
 };
 
@@ -166,44 +151,44 @@ const getIcon = (iconName: string) => {
   switch (iconName) {
     case "heart-data":
       return (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
         </svg>
       );
     case "team":
       return (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
         </svg>
       );
     case "mirror":
       return (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
         </svg>
       );
     case "lightbulb":
       return (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
         </svg>
       );
     case "tool":
       return (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
         </svg>
       );
     case "handshake":
       return (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11" />
         </svg>
       );
     case "refresh":
       return (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
         </svg>
       );
@@ -228,50 +213,64 @@ export default function AboutFractalPage() {
   const [activeSection, setActiveSection] = useState("hero");
   const [passedSections, setPassedSections] = useState<string[]>([]);
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
+  const guidelineTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // 行動指針切り替え時のフェードアニメーション
   const handleGuidelineChange = (index: number) => {
     if (index === activeGuideline) return;
+    // 既存のタイムアウトをクリア
+    if (guidelineTimeoutRef.current) {
+      clearTimeout(guidelineTimeoutRef.current);
+    }
     setIsChanging(true);
-    setTimeout(() => {
+    guidelineTimeoutRef.current = setTimeout(() => {
       setActiveGuideline(index);
       setIsChanging(false);
+      guidelineTimeoutRef.current = null;
     }, 150);
   };
 
-  // Intersection Observerで現在位置を検出
+  // コンポーネントアンマウント時のクリーンアップ
   useEffect(() => {
-    const observers: IntersectionObserver[] = [];
+    return () => {
+      if (guidelineTimeoutRef.current) {
+        clearTimeout(guidelineTimeoutRef.current);
+      }
+    };
+  }, []);
 
-    sections.forEach((section, index) => {
+  // Intersection Observerで現在位置を検出（1つのObserverで全セクションを監視）
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const sectionId = entry.target.id;
+            setActiveSection(sectionId);
+
+            // 現在のセクションより前のセクションを通過済みとして記録
+            const currentIndex = sections.findIndex((s) => s.id === sectionId);
+            const passed = sections.slice(0, currentIndex).map((s) => s.id);
+            setPassedSections(passed);
+          }
+        });
+      },
+      {
+        rootMargin: "-50% 0px -50% 0px",
+        threshold: 0,
+      }
+    );
+
+    // 全セクションを同一のObserverで監視
+    sections.forEach((section) => {
       const element = sectionRefs.current[section.id];
-      if (!element) return;
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setActiveSection(section.id);
-
-              // 現在のセクションより前のセクションを通過済みとして記録
-              const currentIndex = sections.findIndex((s) => s.id === section.id);
-              const passed = sections.slice(0, currentIndex).map((s) => s.id);
-              setPassedSections(passed);
-            }
-          });
-        },
-        {
-          rootMargin: "-50% 0px -50% 0px",
-          threshold: 0,
-        }
-      );
-
-      observer.observe(element);
-      observers.push(observer);
+      if (element) {
+        observer.observe(element);
+      }
     });
 
     return () => {
-      observers.forEach((observer) => observer.disconnect());
+      observer.disconnect();
     };
   }, []);
 
@@ -361,19 +360,19 @@ export default function AboutFractalPage() {
         }}
       >
         {/* 装飾的な三角形 - フラクタルパターン */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10" aria-hidden="true">
           <div className="absolute bottom-0 right-0 w-64 md:w-96 h-64 md:h-96">
-            <svg viewBox="0 0 100 100" className="w-full h-full fill-white">
+            <svg viewBox="0 0 100 100" className="w-full h-full fill-white" aria-hidden="true">
               <polygon points="50,0 100,86.6 0,86.6" />
             </svg>
           </div>
           <div className="absolute top-20 left-10 w-32 md:w-48 h-32 md:h-48">
-            <svg viewBox="0 0 100 100" className="w-full h-full fill-white">
+            <svg viewBox="0 0 100 100" className="w-full h-full fill-white" aria-hidden="true">
               <polygon points="50,0 100,86.6 0,86.6" />
             </svg>
           </div>
           <div className="absolute top-1/2 right-1/4 w-24 md:w-32 h-24 md:h-32">
-            <svg viewBox="0 0 100 100" className="w-full h-full fill-white">
+            <svg viewBox="0 0 100 100" className="w-full h-full fill-white" aria-hidden="true">
               <polygon points="50,0 100,86.6 0,86.6" />
             </svg>
           </div>
@@ -495,12 +494,13 @@ export default function AboutFractalPage() {
         </div>
 
         {/* スクロールインジケーター */}
-        <div className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <div className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 animate-bounce" aria-hidden="true">
           <svg
             className="w-5 h-5 md:w-6 md:h-6 text-white/50"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
+            aria-hidden="true"
           >
             <path
               strokeLinecap="round"
@@ -653,7 +653,7 @@ export default function AboutFractalPage() {
       {/* 事業内容 */}
       <Section
         id="business"
-        className="bg-linear-to-b from-white to-emerald-50"
+        className="bg-gradient-to-b from-white to-emerald-50"
         ref={(el) => {
           if (el) sectionRefs.current.business = el;
         }}
@@ -845,13 +845,15 @@ export default function AboutFractalPage() {
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
             {aboutData.guidelines.map((item, index) => (
-                <div
+                <button
+                  type="button"
                   key={index}
-                  className={`group bg-white rounded-xl shadow-sm border border-slate-100 hover:shadow-md hover:border-emerald-200 transition-all duration-300 cursor-pointer ${
+                  className={`group bg-white rounded-xl shadow-sm border border-slate-100 hover:shadow-md hover:border-emerald-200 transition-all duration-300 cursor-pointer text-left ${
                     activeGuideline === index ? "ring-2 ring-emerald-500 border-emerald-300" : ""
                   }`}
                   style={{ padding: 'var(--spacing-fluid-sm)' }}
                   onClick={() => handleGuidelineChange(index)}
+                  aria-pressed={activeGuideline === index}
                 >
                   {/* アイコンと番号 */}
                   <div className="flex items-center gap-2 mb-2">
@@ -892,7 +894,7 @@ export default function AboutFractalPage() {
                   >
                     {item.subtitle}
                   </p>
-                </div>
+                </button>
               ))}
           </div>
 
@@ -989,7 +991,7 @@ export default function AboutFractalPage() {
                 <div>
                   <h4 className="font-bold text-[var(--color-logo-dark-green)] text-sm">{meaning.name}</h4>
                   <p className="text-primary/60 text-xs leading-relaxed line-clamp-2">
-                    {meaning.description.substring(0, 60)}...
+                    {meaning.description}
                   </p>
                 </div>
               </div>
@@ -1013,7 +1015,7 @@ export default function AboutFractalPage() {
             {[13, 14, 16, 17, 18, 19, 21].map((num, index) => (
               <div
                 key={num}
-                className="shrink-0 w-[70vw] md:w-120 snap-center"
+                className="shrink-0 w-[70vw] md:w-[30rem] snap-center"
                 style={{ marginLeft: index === 0 ? 'var(--spacing-fluid-md)' : 0 }}
               >
                 <div className="relative aspect-video shadow-lg rounded-lg overflow-hidden border border-slate-200 bg-white">
