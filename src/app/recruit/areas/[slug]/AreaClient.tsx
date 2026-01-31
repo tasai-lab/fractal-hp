@@ -220,6 +220,105 @@ export default function AreaClient({ area }: { area: RecruitArea }) {
           </section>
         )}
 
+        {/* 地域の特徴セクション */}
+        <section className="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
+          <FadeIn>
+            <p className="text-xs tracking-[0.3em] text-ink-soft">AREA INFO</p>
+            <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
+              {area.name}の訪問看護について
+            </h3>
+            <div className="mt-6 text-ink-soft leading-relaxed whitespace-pre-line">
+              {area.seoContent.areaDescription}
+            </div>
+            <div className="grid md:grid-cols-2 gap-4 mt-6">
+              <div className="bg-[var(--color-paper)] rounded-2xl p-4">
+                <p className="font-semibold text-[var(--color-olive)]">アクセス情報</p>
+                <p className="text-sm text-ink-soft mt-2">{area.seoContent.accessInfo}</p>
+              </div>
+              <div className="bg-[var(--color-paper)] rounded-2xl p-4">
+                <p className="font-semibold text-[var(--color-olive)]">最寄り駅</p>
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {area.seoContent.nearbyStations.map((station) => (
+                    <span key={station} className="px-2 py-1 bg-white rounded text-xs">
+                      {station}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className="mt-4">
+              <p className="font-semibold text-[var(--color-olive)] mb-2">エリアの特徴</p>
+              <div className="flex flex-wrap gap-2">
+                {area.seoContent.characteristics.map((char) => (
+                  <span
+                    key={char}
+                    className="px-3 py-1 rounded-full bg-[var(--color-olive)]/10 text-[var(--color-olive)] text-xs"
+                  >
+                    {char}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </FadeIn>
+        </section>
+
+        {/* 給与例セクション */}
+        <section className="bg-[var(--color-paper)] rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
+          <FadeIn>
+            <p className="text-xs tracking-[0.3em] text-ink-soft">SALARY</p>
+            <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
+              {area.name}勤務の給与例
+            </h3>
+            <div className="overflow-x-auto mt-6">
+              <table className="w-full text-sm">
+                <caption className="sr-only">{area.name}勤務の職種別給与一覧</caption>
+                <thead>
+                  <tr className="border-b border-[var(--color-olive)]/20">
+                    <th scope="col" className="py-3 text-left font-semibold text-[var(--color-olive)]">職種</th>
+                    <th scope="col" className="py-3 text-left font-semibold text-[var(--color-olive)]">月給</th>
+                    <th scope="col" className="py-3 text-left font-semibold text-[var(--color-olive)]">年収目安</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-[var(--color-olive)]/10">
+                    <td className="py-3">看護師</td>
+                    <td className="py-3">{area.salaryExample.nurseMonthly}</td>
+                    <td className="py-3">{area.salaryExample.nurseAnnual}</td>
+                  </tr>
+                  <tr className="border-b border-[var(--color-olive)]/10">
+                    <td className="py-3">PT/OT/ST</td>
+                    <td className="py-3">{area.salaryExample.therapistMonthly}</td>
+                    <td className="py-3">{area.salaryExample.therapistAnnual}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p className="text-xs text-ink-soft mt-4">
+              ※経験・スキルにより決定。入社祝い金最大30万円は別途支給。
+            </p>
+          </FadeIn>
+        </section>
+
+        {/* エリア別FAQ */}
+        {area.faq && area.faq.length > 0 && (
+          <section className="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
+            <FadeIn>
+              <p className="text-xs tracking-[0.3em] text-ink-soft">FAQ</p>
+              <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
+                {area.name}での勤務に関するよくある質問
+              </h3>
+              <div className="space-y-4 mt-6">
+                {area.faq.map((item, index) => (
+                  <div key={index} className="bg-[var(--color-paper)] rounded-2xl p-4">
+                    <p className="font-semibold text-[var(--color-olive)]">Q. {item.question}</p>
+                    <p className="text-sm text-ink-soft mt-2">A. {item.answer}</p>
+                  </div>
+                ))}
+              </div>
+            </FadeIn>
+          </section>
+        )}
+
         <section className="bg-[var(--color-paper)] rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
           <FadeIn>
             <p className="text-xs tracking-[0.3em] text-ink-soft">MORE INFO</p>

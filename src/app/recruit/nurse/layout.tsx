@@ -2,16 +2,16 @@ import type { Metadata } from "next";
 import { BreadcrumbStructuredData } from "@/components/StructuredData";
 
 export const metadata: Metadata = {
-  title: "看護師の求人 | フラクタル訪問看護",
+  title: "船橋市・八千代市 訪問看護師求人 | 年休139日・祝金30万円 | フラクタル訪問看護",
   description:
-    "フラクタル訪問看護の看護師求人。年間休日139日以上、入社祝い金最大30万円。船橋市・八千代市・習志野市・千葉市花見川区・稲毛区エリアで募集しています。",
+    "船橋市・八千代市・習志野市で訪問看護師を募集。年間休日139日以上、入社祝い金最大30万円、月給341,000円〜。直行直帰OK、AI活用で記録業務を効率化。臨床経験3年以上、訪問未経験・ブランク可。",
   alternates: {
     canonical: "/recruit/nurse",
   },
   openGraph: {
-    title: "看護師の求人 | フラクタル訪問看護",
+    title: "船橋市・八千代市 訪問看護師求人 | 年休139日・祝金30万円 | フラクタル訪問看護",
     description:
-      "年間休日139日以上。訪問看護師の働きやすさと待遇を紹介します。",
+      "船橋市・八千代市・習志野市で訪問看護師を募集。年間休日139日以上、入社祝い金最大30万円、月給341,000円〜。直行直帰OK、AI活用で記録業務を効率化。臨床経験3年以上、訪問未経験・ブランク可。",
     url: "https://fractal-hokan.com/recruit/nurse",
     images: [
       {
@@ -21,6 +21,12 @@ export const metadata: Metadata = {
         alt: "フラクタル訪問看護 看護師求人",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "船橋市・八千代市 訪問看護師求人 | 年休139日・祝金30万円 | フラクタル訪問看護",
+    description:
+      "船橋市・八千代市・習志野市で訪問看護師を募集。年間休日139日以上、入社祝い金最大30万円、月給341,000円〜。直行直帰OK、AI活用で記録業務を効率化。臨床経験3年以上、訪問未経験・ブランク可。",
   },
 };
 
