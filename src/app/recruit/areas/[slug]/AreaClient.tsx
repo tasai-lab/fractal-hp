@@ -151,6 +151,96 @@ export default function AreaClient({ area }: { area: RecruitArea }) {
             </div>
           </FadeIn>
         </section>
+
+        <section className="grid lg:grid-cols-2 gap-6">
+          <FadeIn className="bg-[var(--color-paper)] rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
+            <p className="text-xs tracking-[0.3em] text-ink-soft">ONE DAY</p>
+            <h3 className="heading-mincho text-2xl md:text-3xl text-[var(--color-olive)] mt-3">
+              1日の流れ
+            </h3>
+            <div className="space-y-4 mt-6">
+              {area.dayFlow.map((flow) => (
+                <div
+                  key={flow.title}
+                  className="bg-white/80 rounded-2xl border border-white px-4 py-3"
+                >
+                  <p className="font-semibold text-[var(--color-olive)]">{flow.title}</p>
+                  <p className="text-sm text-ink-soft mt-1">{flow.detail}</p>
+                </div>
+              ))}
+            </div>
+          </FadeIn>
+
+          <FadeIn className="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
+            <p className="text-xs tracking-[0.3em] text-ink-soft">WORK STYLE</p>
+            <h3 className="heading-mincho text-2xl md:text-3xl text-[var(--color-olive)] mt-3">
+              働き方のこだわり
+            </h3>
+            <div className="space-y-4 mt-6">
+              {area.workStyle.map((style) => (
+                <div
+                  key={style.title}
+                  className="bg-[var(--color-paper)] rounded-2xl border border-white px-4 py-3"
+                >
+                  <p className="font-semibold text-[var(--color-olive)]">{style.title}</p>
+                  <p className="text-sm text-ink-soft mt-1">{style.detail}</p>
+                </div>
+              ))}
+            </div>
+          </FadeIn>
+        </section>
+
+        {area.staffVoice && (
+          <section className="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
+            <FadeIn>
+              <p className="text-xs tracking-[0.3em] text-ink-soft">VOICE</p>
+              <h3 className="heading-mincho text-2xl md:text-3xl text-[var(--color-olive)] mt-3">
+                スタッフの声
+              </h3>
+              <div className="mt-6 bg-[var(--color-paper)] rounded-2xl p-5 border border-white">
+                <p className="text-sm text-ink-soft">{area.staffVoice.comment}</p>
+                <p className="text-sm font-semibold text-[var(--color-olive)] mt-3">
+                  {area.staffVoice.name} / {area.staffVoice.role}
+                </p>
+              </div>
+            </FadeIn>
+          </section>
+        )}
+
+        <section className="bg-[var(--color-paper)] rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
+          <FadeIn>
+            <p className="text-xs tracking-[0.3em] text-ink-soft">MORE INFO</p>
+            <h3 className="heading-mincho text-2xl md:text-3xl text-[var(--color-olive)] mt-3">
+              採用情報をもっと見る
+            </h3>
+            <p className="text-ink-soft mt-3">
+              募集職種や選考の流れもあわせてご確認ください。
+            </p>
+            <div className="grid md:grid-cols-3 gap-3 mt-6">
+              <Link
+                href="/recruit#positions"
+                className="bg-white rounded-2xl border border-white px-4 py-3 text-sm text-ink-soft hover:shadow-md transition"
+              >
+                <p className="font-semibold text-[var(--color-olive)]">募集職種</p>
+                <p className="text-xs text-ink-soft mt-1">職種ごとの詳細を見る</p>
+              </Link>
+              <Link
+                href="/recruit#process"
+                className="bg-white rounded-2xl border border-white px-4 py-3 text-sm text-ink-soft hover:shadow-md transition"
+              >
+                <p className="font-semibold text-[var(--color-olive)]">選考プロセス</p>
+                <p className="text-xs text-ink-soft mt-1">応募から内定まで</p>
+              </Link>
+              <Link
+                href="/recruit#faq"
+                className="bg-white rounded-2xl border border-white px-4 py-3 text-sm text-ink-soft hover:shadow-md transition"
+              >
+                <p className="font-semibold text-[var(--color-olive)]">よくある質問</p>
+                <p className="text-xs text-ink-soft mt-1">不安を解消する</p>
+              </Link>
+            </div>
+          </FadeIn>
+        </section>
       </main>
 
       {isContactOpen && (
