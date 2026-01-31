@@ -383,15 +383,6 @@ export default function RecruitPage() {
         </section>
 
         <section className="order-9 grid lg:grid-cols-[1.1fr,0.9fr] gap-10 items-center">
-          <FadeIn className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg bg-white">
-            <Image
-              src="/images/service-area/area-map.png"
-              alt="訪問エリアマップ"
-              fill
-              sizes="(max-width: 1024px) 100vw, 45vw"
-              className="object-contain"
-            />
-          </FadeIn>
           <FadeIn className="space-y-4">
             <p className="text-xs tracking-[0.3em] text-ink-soft">SERVICE AREA</p>
             <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)]">
@@ -427,6 +418,15 @@ export default function RecruitPage() {
                 </Link>
               ))}
             </div>
+          </FadeIn>
+          <FadeIn className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg bg-white">
+            <Image
+              src="/images/service-area/area-map.png"
+              alt="訪問エリアマップ"
+              fill
+              sizes="(max-width: 1024px) 100vw, 45vw"
+              className="object-contain"
+            />
           </FadeIn>
         </section>
 
