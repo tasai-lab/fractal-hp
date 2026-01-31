@@ -18,13 +18,6 @@ import { recruitFAQs } from "@/lib/faq-data";
 import { staffMembers } from "@/lib/data";
 import { recruitAreas } from "@/lib/recruit-areas";
 
-const tabs = jobPositions
-  .filter((job) => !job.hidden)
-  .map((job) => ({
-    id: job.id,
-    label: job.id === "nurse" ? "看護師" : "理学/作業/言語",
-  }));
-
 const roleOverrides: Record<string, string> = {
   "古谷 一真": "管理者",
   "浅井 拓哉": "看護師",
@@ -41,6 +34,10 @@ const teamProfiles = teamOrder
     ...staff,
     role: roleOverrides[staff.name] ?? staff.role,
   }));
+
+const visibleJobs = jobPositions.filter((job) =>
+  ["nurse", "therapist"].includes(job.id)
+);
 
 const featureIcons = [
   "/images/recruit/icons/1.png",
@@ -71,8 +68,7 @@ const FadeIn = ({
 };
 
 export default function RecruitPage() {
-  const [activeTab, setActiveTab] = useState(tabs[0]?.id || "nurse");
-  const currentJob = jobPositions.find((job) => job.id === activeTab) || jobPositions[0];
+  const currentJob = jobPositions.find((job) => job.id === "nurse") || jobPositions[0];
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
   const [selectedTeam, setSelectedTeam] = useState<(typeof teamProfiles)[number] | null>(null);
   const [isContactOpen, setIsContactOpen] = useState(false);
@@ -442,29 +438,15 @@ export default function RecruitPage() {
           </FadeIn>
         </section>
 
-        <section id="positions" className="order-6 space-y-6">
+                <section id="positions" className="order-6 space-y-6">
           <FadeIn>
             <p className="text-xs tracking-[0.3em] text-ink-soft">POSITIONS</p>
             <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
               募集職種
             </h3>
             <p className="text-ink-soft mt-2">
-              看護師・理学療法士・作業療法士・言語聴覚士を募集中です。
+              看護師・理学療法士・作業療法士・言語聴覚士を同じボリュームで掲載しています。
             </p>
-            <div className="flex flex-wrap gap-3 mt-4">
-              <Link
-                href="/recruit/nurse"
-                className="px-4 py-2 rounded-full bg-[var(--color-olive)] text-white text-sm font-semibold hover:opacity-90 transition"
-              >
-                看護師の詳細を見る
-              </Link>
-              <Link
-                href="/recruit/therapist"
-                className="px-4 py-2 rounded-full border border-[var(--color-olive)] text-[var(--color-olive)] text-sm font-semibold hover:bg-[var(--color-olive)]/10 transition"
-              >
-                PT・OT・STの詳細を見る
-              </Link>
-            </div>
           </FadeIn>
           <FadeIn className="relative aspect-[3/2] rounded-3xl overflow-hidden shadow-lg bg-[var(--color-paper)]">
             <Image
@@ -475,52 +457,16 @@ export default function RecruitPage() {
               className="object-contain bg-[var(--color-paper)]"
             />
           </FadeIn>
-
-          <div className="md:hidden space-y-4">
-            {jobPositions.filter((job) => !job.hidden).map((job) => (
-              <details
-                key={job.id}
-                className="bg-white rounded-2xl border border-white shadow-sm overflow-hidden"
-              >
-                <summary className="list-none cursor-pointer px-4 py-4">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <p className="heading-mincho text-lg text-[var(--color-olive)]">
-                        {job.title}
-                      </p>
-                      <p className="text-xs text-ink-soft mt-2">{job.subtitle}</p>
-                    </div>
-                    <span className="text-[var(--color-olive)] text-xl">＋</span>
-                  </div>
-                </summary>
-                <div className="px-4 pb-5">
-                  <JobDetails job={job} />
-                </div>
-              </details>
+          <div className="space-y-8">
+            {visibleJobs.map((job) => (
+              <FadeIn key={job.id}>
+                <JobDetails job={job} />
+              </FadeIn>
             ))}
-          </div>
-
-          <div className="hidden md:block space-y-6">
-            <div className="flex bg-white/80 rounded-full p-1 border border-white shadow-sm">
-              {tabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`flex-1 py-2 md:py-3 rounded-full text-base md:text-lg font-semibold tracking-wide transition-all ${
-                    activeTab === tab.id
-                      ? "bg-[var(--color-olive)] text-white"
-                      : "text-[var(--color-olive)] hover:bg-[var(--color-paper)]"
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-            <JobDetails job={currentJob} />
           </div>
         </section>
 
-        <section id="process" className="order-8 bg-[var(--color-paper)] rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
+<section id="process" className="order-8 bg-[var(--color-paper)] rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
           <FadeIn>
             <p className="text-xs tracking-[0.3em] text-ink-soft">PROCESS</p>
             <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">

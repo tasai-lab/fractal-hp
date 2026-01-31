@@ -100,8 +100,8 @@ export default function RecruitDayFlowPage() {
           </FadeIn>
           <FadeIn className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg bg-white">
             <Image
-              src="/images/recruit/photos/work.jpg"
-              alt="フラクタル訪問看護の1日"
+              src="/images/recruit/photos/day-flow.jpg"
+              alt="フラクタル訪問看護の1日の流れ"
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 45vw"

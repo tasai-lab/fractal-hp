@@ -83,16 +83,10 @@ export default function AreaClient({ area }: { area: RecruitArea }) {
             </div>
             <div className="flex flex-wrap gap-3 pt-2">
               <Link
-                href="/recruit/nurse"
+                href="/recruit#positions"
                 className="px-5 py-2.5 rounded-full bg-[var(--color-olive)] text-white text-sm font-semibold hover:opacity-90 transition"
               >
-                看護師の募集を見る
-              </Link>
-              <Link
-                href="/recruit/therapist"
-                className="px-5 py-2.5 rounded-full border border-[var(--color-olive)] text-[var(--color-olive)] text-sm font-semibold hover:bg-[var(--color-olive)]/10 transition"
-              >
-                PT・OT・STの募集を見る
+                募集職種を見る
               </Link>
             </div>
             <button
