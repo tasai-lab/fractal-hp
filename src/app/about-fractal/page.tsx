@@ -1244,7 +1244,7 @@ export default function AboutFractalPage() {
       </section>
 
       {/* モバイル下部メニュー分の余白 */}
-      <div className="h-20 lg:hidden"></div>
+      <div className="h-20 md:hidden"></div>
     </div>
   );
 }
