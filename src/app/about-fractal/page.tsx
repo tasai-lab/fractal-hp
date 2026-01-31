@@ -434,7 +434,7 @@ export default function AboutFractalPage() {
       <section
         id="hero"
         ref={(el) => { sectionRefs.current.hero = el; }}
-        className="relative min-h-[70vh] md:min-h-[85vh] flex items-center overflow-hidden"
+        className="relative min-h-[60vh] sm:min-h-[70vh] md:min-h-[85vh] flex items-center overflow-hidden"
         style={{
           background: 'linear-gradient(135deg, var(--color-logo-dark-green) 0%, var(--color-logo-dark-green) 40%, var(--color-logo-light-green) 100%)'
         }}
@@ -458,8 +458,8 @@ export default function AboutFractalPage() {
           </div>
         </div>
 
-        <div className="relative z-10 w-full max-w-6xl mx-auto px-4 md:px-8 py-12">
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+        <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 md:px-8 py-8 sm:py-12">
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center">
             {/* 左側: 強いメッセージ */}
             <div className="text-center md:text-left">
               {/* ロゴ（小さめ） */}
@@ -514,7 +514,7 @@ export default function AboutFractalPage() {
             </div>
 
             {/* 右側: DAPAE 5ステップ簡略図 */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl md:rounded-3xl p-4 md:p-6 border border-white/20">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl md:rounded-3xl p-4 sm:p-5 md:p-6 border border-white/20">
               <p className="text-center text-white/90 font-bold mb-4" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>
                 DAPAEフレームワーク
               </p>
@@ -627,7 +627,7 @@ export default function AboutFractalPage() {
 
         {/* DAPAE 5ステップ図解 */}
         <div ref={dapaeRef} className="max-w-4xl mx-auto" style={{ marginBottom: 'var(--spacing-fluid-xl)' }}>
-          <div className="grid md:grid-cols-5 gap-3 md:gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-2 sm:gap-3 md:gap-4">
             {/* Data */}
             <div
               className={`bg-[var(--color-logo-dark-green)] rounded-xl p-4 text-white text-center ${prefersReducedMotion ? "" : "transition-all duration-500"} ${
@@ -715,7 +715,7 @@ export default function AboutFractalPage() {
           </h4>
 
           {/* 数値カード - ホバー/フォーカス/タップで詳細表示 */}
-          <div className="grid md:grid-cols-3 gap-4" style={{ marginBottom: 'var(--spacing-fluid-lg)' }}>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4" style={{ marginBottom: 'var(--spacing-fluid-lg)' }}>
             {[
               { value: "52%", label: "書類作業時間削減", detail: "タブレット導入と記録テンプレートの統一で、手書き→PC入力の二度手間を解消" },
               { value: "2.5h", label: "→ 1.2h に短縮", detail: "1日あたり1.3時間の削減で、利用者様との対話時間が増加" },
@@ -757,15 +757,15 @@ export default function AboutFractalPage() {
           </div>
 
           {/* Before/After ストーリー */}
-          <div className="bg-slate-50 rounded-2xl p-6">
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-white rounded-xl p-5 border-l-4 border-red-400">
+          <div className="bg-slate-50 rounded-xl sm:rounded-2xl p-4 sm:p-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+              <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 border-l-4 border-red-400">
                 <p className="text-red-500 font-bold mb-2" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>Before</p>
                 <p className="text-primary/70" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>
                   手書き → PC入力 → 印刷という二度手間で、1日の書類作業に平均2.5時間。スタッフから「書類が多すぎる」という声が上がっていました。
                 </p>
               </div>
-              <div className="bg-white rounded-xl p-5 border-l-4 border-[var(--color-logo-light-green)]">
+              <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 border-l-4 border-[var(--color-logo-light-green)]">
                 <p className="text-[var(--color-logo-dark-green)] font-bold mb-2" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>After</p>
                 <p className="text-primary/70" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>
                   タブレット直接入力 → 自動連携で二度手間を解消。書類作業時間は1.2時間に。空いた時間で利用者様とのコミュニケーションが充実しました。
@@ -819,13 +819,15 @@ export default function AboutFractalPage() {
         </div>
 
         <div
-          className="grid md:grid-cols-2"
+          className="grid grid-cols-1 md:grid-cols-2"
           style={{ gap: 'var(--spacing-fluid-md)' }}
         >
           {aboutData.business.items.map((item, index) => (
             <div
               key={index}
-              className="group relative bg-white rounded-2xl md:rounded-3xl shadow-lg border-l-4 border-[var(--color-logo-yellow)] hover:border-[var(--color-logo-light-green)] transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+              className={`group relative bg-white rounded-xl sm:rounded-2xl md:rounded-3xl shadow-lg border-l-4 border-[var(--color-logo-yellow)] ${
+                prefersReducedMotion ? "" : "hover:border-[var(--color-logo-light-green)] transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+              }`}
               style={{ padding: 'var(--spacing-fluid-md)' }}
             >
               <div className="absolute top-0 right-0 w-20 md:w-32 h-20 md:h-32 bg-gradient-to-br from-[var(--color-logo-yellow)]/20 to-transparent rounded-bl-full opacity-50"></div>
@@ -913,7 +915,7 @@ export default function AboutFractalPage() {
           </div>
 
           {/* 目標 */}
-          <div className="grid md:grid-cols-2" style={{ gap: 'var(--spacing-fluid-sm)' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 'var(--spacing-fluid-sm)' }}>
             {aboutData.vision.goals.map((goal, index) => (
               <div
                 key={index}
@@ -979,7 +981,7 @@ export default function AboutFractalPage() {
 
         {/* アイコン付き小カードグリッド */}
         <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
             {aboutData.guidelines.map((item, index) => (
                 <button
                   type="button"
@@ -1098,7 +1100,7 @@ export default function AboutFractalPage() {
         </div>
 
         {/* ロゴと簡潔な説明 */}
-        <div className="grid md:grid-cols-2 gap-8 items-center" style={{ marginBottom: 'var(--spacing-fluid-xl)' }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center" style={{ marginBottom: 'var(--spacing-fluid-xl)' }}>
           <div className="text-center md:text-left">
             <div className="flex justify-center md:justify-start mb-4">
               <div className="relative w-32 h-32 md:w-40 md:h-40">
@@ -1145,13 +1147,13 @@ export default function AboutFractalPage() {
           </h4>
 
           <div
-            className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide -mx-4"
-            style={{ paddingBottom: 'var(--spacing-fluid-md)', gap: 'var(--spacing-fluid-md)' }}
+            className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide -mx-4 sm:-mx-6"
+            style={{ paddingBottom: 'var(--spacing-fluid-md)', gap: 'var(--spacing-fluid-sm)' }}
           >
             {[13, 14, 16, 17, 18, 19, 21].map((num, index) => (
               <div
                 key={num}
-                className="shrink-0 w-[70vw] md:w-[30rem] snap-center"
+                className="shrink-0 w-[75vw] sm:w-[60vw] md:w-[30rem] snap-center"
                 style={{ marginLeft: index === 0 ? 'var(--spacing-fluid-md)' : 0 }}
               >
                 <div className="relative aspect-video shadow-lg rounded-lg overflow-hidden border border-slate-200 bg-white">
@@ -1229,7 +1231,9 @@ export default function AboutFractalPage() {
               </Link>
               <Link
                 href="/#contact"
-                className="bg-transparent text-white border-2 border-white/50 rounded-full font-bold hover:bg-white/10 hover:border-white hover:scale-105 transition-all duration-300 hover:shadow-lg"
+                className={`bg-transparent text-white border-2 border-white/50 rounded-full font-bold ${
+                  prefersReducedMotion ? "" : "hover:bg-white/10 hover:border-white hover:scale-105 transition-all duration-300 hover:shadow-lg"
+                }`}
                 style={{ padding: 'var(--spacing-fluid-sm) var(--spacing-fluid-lg)', fontSize: 'var(--font-size-fluid-sm)' }}
               >
                 お問い合わせ
