@@ -296,10 +296,10 @@ export default function RecruitPage() {
           </FadeIn>
           <FadeIn className="relative aspect-[3/2] rounded-3xl overflow-hidden shadow-lg bg-white mt-6">
             <Image
-              src="/images/recruit/labels/team-title.png"
+              src="/images/recruit/labels/team-title.jpg"
               alt="一緒に働く仲間"
               fill
-              sizes="(max-width: 1024px) 100vw, 70vw"
+              sizes="(max-width: 1024px) 100vw, 80vw"
               className="object-contain bg-white"
             />
           </FadeIn>
@@ -380,13 +380,13 @@ export default function RecruitPage() {
               看護師・理学療法士・作業療法士・言語聴覚士を募集中です。
             </p>
           </FadeIn>
-          <FadeIn className="relative aspect-square max-w-[360px] rounded-3xl overflow-hidden shadow-lg bg-white">
+          <FadeIn className="relative aspect-[3/2] rounded-3xl overflow-hidden shadow-lg bg-[var(--color-sand)]">
             <Image
               src="/images/recruit/labels/positions-title.png"
               alt="募集職種"
               fill
-              sizes="(max-width: 1024px) 70vw, 360px"
-              className="object-contain bg-white"
+              sizes="(max-width: 1024px) 100vw, 80vw"
+              className="object-contain bg-[var(--color-sand)]"
             />
           </FadeIn>
 
