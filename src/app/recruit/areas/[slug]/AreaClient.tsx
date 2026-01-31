@@ -3,6 +3,14 @@
 import { useEffect, useState, type ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  Bot,
+  Coffee,
+  LogOut,
+  MessagesSquare,
+  Mic,
+  Stethoscope,
+} from "lucide-react";
 import Contact from "@/components/Contact";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { visitAreas } from "@/lib/recruit-data";
@@ -28,6 +36,8 @@ const FadeIn = ({
     </div>
   );
 };
+
+const flowIcons = [Bot, Stethoscope, Coffee, Mic, MessagesSquare, LogOut];
 
 export default function AreaClient({ area }: { area: RecruitArea }) {
   const [isContactOpen, setIsContactOpen] = useState(false);
@@ -158,20 +168,44 @@ export default function AreaClient({ area }: { area: RecruitArea }) {
             <h3 className="heading-mincho text-2xl md:text-3xl text-[var(--color-olive)] mt-3">
               1日の流れ
             </h3>
+            <div className="mt-4 flex items-center gap-4 bg-white/80 rounded-2xl border border-white p-4">
+              <div className="relative w-14 h-14 rounded-2xl overflow-hidden bg-white">
+                <Image
+                  src="/images/recruit/johnny.png"
+                  alt="AIジョニー"
+                  fill
+                  sizes="56px"
+                  className="object-contain"
+                />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-[var(--color-olive)]">
+                  朝礼なし。AIジョニーが情報を共有
+                </p>
+                <p className="text-xs text-ink-soft mt-1">
+                  利用者さまの情報や最近の出来事をジョニーが整理して教えてくれます。
+                </p>
+              </div>
+            </div>
             <div className="space-y-4 mt-6">
-              {area.dayFlow.map((flow, index) => (
-                <div key={flow.title} className="relative pl-10">
-                  <div className="absolute left-1 top-4 w-2 h-2 rounded-full bg-[var(--color-olive)]"></div>
-                  {index < area.dayFlow.length - 1 && (
-                    <div className="absolute left-[5px] top-6 h-full w-px bg-[var(--color-olive)]/30"></div>
-                  )}
-                  <div className="bg-white/80 rounded-2xl border border-white px-4 py-3">
-                    <p className="text-xs tracking-[0.2em] text-ink-soft">{flow.time}</p>
-                    <p className="font-semibold text-[var(--color-olive)] mt-1">{flow.title}</p>
-                    <p className="text-sm text-ink-soft mt-1">{flow.detail}</p>
+              {area.dayFlow.map((flow, index) => {
+                const Icon = flowIcons[index] ?? Stethoscope;
+                return (
+                  <div key={flow.title} className="relative pl-12">
+                    <div className="absolute left-0 top-3 w-9 h-9 rounded-full bg-white border border-[var(--color-sand)] shadow-sm flex items-center justify-center text-[var(--color-olive)]">
+                      <Icon className="w-4 h-4" />
+                    </div>
+                    {index < area.dayFlow.length - 1 && (
+                      <div className="absolute left-[18px] top-12 h-full w-px bg-[var(--color-olive)]/30"></div>
+                    )}
+                    <div className="bg-white/80 rounded-2xl border border-white px-4 py-3">
+                      <p className="text-xs tracking-[0.2em] text-ink-soft">{flow.time}</p>
+                      <p className="font-semibold text-[var(--color-olive)] mt-1">{flow.title}</p>
+                      <p className="text-sm text-ink-soft mt-1">{flow.detail}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </FadeIn>
 
