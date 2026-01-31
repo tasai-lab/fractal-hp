@@ -103,18 +103,17 @@ const JobDetails = ({ job }: { job: JobPosition }) => {
         {job.highlights.map((highlight) => (
           <span
             key={highlight}
-            className="px-3 py-1 rounded-full bg-[var(--color-paper)] text-xs text-[var(--color-olive)]"
+            className={`px-3 py-1 rounded-full text-xs ${
+              highlight.includes("139")
+                ? "bg-[var(--color-olive)] text-white font-semibold"
+                : "bg-[var(--color-paper)] text-[var(--color-olive)]"
+            }`}
           >
             {highlight}
           </span>
         ))}
-        {isNurse && (
-          <span className="px-3 py-1 rounded-full bg-[var(--color-olive)] text-xs text-white font-semibold">
-            年休139日以上
-          </span>
-        )}
       </div>
-      <h4 className="heading-mincho text-2xl text-[var(--color-olive)] mt-4">
+      <h4 className="heading-mincho text-3xl md:text-4xl text-[var(--color-olive)] mt-4">
         {job.title}募集
       </h4>
       <p className="text-ink-soft mt-2">{job.subtitle}</p>
@@ -201,11 +200,9 @@ const JobDetails = ({ job }: { job: JobPosition }) => {
               <p className="heading-mincho text-xl text-[var(--color-olive)]">
                 {job.details.holidays.annual}
               </p>
-              {isNurse && (
-                <p className="text-xs font-semibold text-[var(--color-olive)]">
-                  看護師は139日以上
-                </p>
-              )}
+              <p className="text-xs font-semibold text-[var(--color-olive)]">
+                {isNurse ? "年休139日以上" : "PT・OT・STは120日以上"}
+              </p>
               {job.details.holidays.monthly && (
                 <p className="text-xs text-ink-soft">
                   月の公休：{job.details.holidays.monthly}日
@@ -254,13 +251,14 @@ export default function RecruitPage() {
   const currentJob = jobPositions.find((job) => job.id === activeTab) || jobPositions[0];
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
   const [selectedTeam, setSelectedTeam] = useState<(typeof teamProfiles)[number] | null>(null);
+  const [isContactOpen, setIsContactOpen] = useState(false);
 
   const toggleFAQ = (index: number) => {
     setOpenFAQIndex(openFAQIndex === index ? null : index);
   };
 
   useEffect(() => {
-    if (selectedTeam) {
+    if (selectedTeam || isContactOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
@@ -268,7 +266,12 @@ export default function RecruitPage() {
     return () => {
       document.body.style.overflow = "";
     };
-  }, [selectedTeam]);
+  }, [selectedTeam, isContactOpen]);
+
+  const openContact = () => {
+    setSelectedTeam(null);
+    setIsContactOpen(true);
+  };
 
   return (
     <div className="min-h-screen body-editorial">
@@ -286,24 +289,25 @@ export default function RecruitPage() {
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-4 md:px-6 pt-10 md:pt-16 pb-28 md:pb-16 flex flex-col gap-16 md:gap-24">
+      <main className="max-w-6xl mx-auto px-4 md:px-6 pt-10 md:pt-16 pb-32 md:pb-24 flex flex-col gap-16 md:gap-24">
         <section className="order-1 grid lg:grid-cols-[1.1fr,0.9fr] gap-10 items-center">
           <FadeIn className="space-y-4">
             <p className="text-xs tracking-[0.3em] text-ink-soft">RECRUIT</p>
             <h2 className="heading-mincho text-3xl md:text-5xl text-[var(--color-olive)]">
-              フラクタルだから、できることがある。
+              フラクタルだから、できる。
             </h2>
             <p className="text-ink-soft text-base md:text-lg leading-relaxed">
               船橋市、八千代市、習志野市、千葉市花見川区で看護師・理学療法士・作業療法士・言語聴覚士を募集しています。
-              入社祝い金最大30万円、年間休日120日以上（看護師139日以上）。未経験・ブランクのある方も歓迎です。
+              入社祝い金最大30万円、年間休日139日以上（PT・OT・STは120日以上）。未経験・ブランクのある方も歓迎です。
             </p>
             <div className="flex flex-wrap gap-3 pt-2">
-              <Link
-                href="#entry"
+              <button
+                type="button"
+                onClick={openContact}
                 className="px-5 py-2.5 md:px-6 md:py-3 rounded-full bg-[var(--color-olive)] text-white text-sm md:text-base font-semibold hover:opacity-90 transition"
               >
                 応募する
-              </Link>
+              </button>
               <Link
                 href="#positions"
                 className="px-5 py-2.5 md:px-6 md:py-3 rounded-full border border-[var(--color-olive)] text-[var(--color-olive)] text-sm md:text-base font-semibold hover:bg-[var(--color-olive)]/10 transition"
@@ -316,7 +320,10 @@ export default function RecruitPage() {
                 祝金 最大30万円
               </span>
               <span className="px-3 py-1 rounded-full bg-[var(--color-olive)] text-white text-xs font-semibold">
-                看護師 年休139日以上
+                年休139日以上
+              </span>
+              <span className="px-3 py-1 rounded-full bg-[var(--color-paper)] text-[var(--color-olive)] text-xs font-semibold">
+                PT・OT・STは120日以上
               </span>
             </div>
           </FadeIn>
@@ -342,14 +349,14 @@ export default function RecruitPage() {
                 <p className="text-xs text-ink-soft mt-1">全職種対象</p>
               </div>
               <div className="min-w-[200px] md:min-w-0 snap-center bg-[var(--color-olive)] text-white rounded-2xl p-4 shadow-sm">
-                <p className="text-xs">年間休日139日以上</p>
-                <p className="heading-mincho text-lg mt-1">看護師</p>
-                <p className="text-xs mt-1">正社員の場合</p>
+                <p className="text-xs">年間休日</p>
+                <p className="heading-mincho text-lg mt-1">139日以上</p>
+                <p className="text-xs mt-1">看護師</p>
               </div>
               <div className="min-w-[200px] md:min-w-0 snap-center bg-white rounded-2xl border border-[var(--color-sand)] p-4 shadow-sm">
                 <p className="text-xs text-ink-soft">年間休日</p>
                 <p className="heading-mincho text-lg text-[var(--color-olive)] mt-1">120日以上</p>
-                <p className="text-xs text-ink-soft mt-1">全職種</p>
+                <p className="text-xs text-ink-soft mt-1">PT・OT・ST</p>
               </div>
             </div>
           </FadeIn>
@@ -571,10 +578,10 @@ export default function RecruitPage() {
                 <summary className="list-none cursor-pointer px-4 py-4">
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <p className="text-xs tracking-[0.2em] text-ink-soft">
+                      <p className="heading-mincho text-lg text-[var(--color-olive)]">
                         {job.title}
                       </p>
-                      <p className="text-sm text-ink-soft mt-2">{job.subtitle}</p>
+                      <p className="text-xs text-ink-soft mt-2">{job.subtitle}</p>
                     </div>
                     <span className="text-[var(--color-olive)] text-xl">＋</span>
                   </div>
@@ -592,7 +599,7 @@ export default function RecruitPage() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex-1 py-2 md:py-3 rounded-full text-sm md:text-base font-semibold transition-all ${
+                  className={`flex-1 py-2 md:py-3 rounded-full text-base md:text-lg font-semibold tracking-wide transition-all ${
                     activeTab === tab.id
                       ? "bg-[var(--color-olive)] text-white"
                       : "text-[var(--color-olive)] hover:bg-[var(--color-paper)]"
@@ -678,44 +685,66 @@ export default function RecruitPage() {
           </FadeIn>
         </section>
 
-        <section id="entry" className="order-11 bg-[var(--color-paper)] rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
-          <div className="grid lg:grid-cols-[1.1fr,0.9fr] gap-8 items-start">
-            <FadeIn>
-              <p className="text-xs tracking-[0.3em] text-ink-soft">CONTACT</p>
-              <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
-                お問い合わせ
-              </h3>
-              <div className="text-ink-soft mt-4">
-                <p className="leading-relaxed">{applicationMessage.main}</p>
-                <p className="text-sm mt-2">{applicationMessage.visit}</p>
-              </div>
-              <div className="mt-6">
-                <Contact initialContactType="求人・採用について" embedded={true} hideTitle={true} />
-              </div>
-            </FadeIn>
-            <FadeIn className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg bg-white">
-              <Image
-                src="/images/recruit/labels/contact-photo.jpg"
-                alt="募集お問い合わせ"
-                fill
-                sizes="(max-width: 1024px) 100vw, 40vw"
-                className="object-cover"
-              />
-            </FadeIn>
-          </div>
-        </section>
       </main>
 
-      <div className="md:hidden fixed bottom-0 left-0 right-0 z-50">
-        <div className="mx-4 mb-4 rounded-full bg-[var(--color-olive)] shadow-lg">
-          <Link
-            href="#entry"
-            className="block text-center text-white font-semibold py-3"
+      <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/80 backdrop-blur border-t border-white/80">
+        <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-center md:justify-end">
+          <button
+            type="button"
+            onClick={openContact}
+            className="w-full md:w-auto px-6 py-3 rounded-full bg-[var(--color-olive)] text-white font-semibold shadow-lg"
           >
             応募する
-          </Link>
+          </button>
         </div>
       </div>
+
+      {isContactOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40"
+          onClick={() => setIsContactOpen(false)}
+        >
+          <div
+            className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-[var(--color-paper)] rounded-3xl shadow-xl border border-white"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="relative px-6 py-8 md:px-8 md:py-10">
+              <button
+                type="button"
+                onClick={() => setIsContactOpen(false)}
+                className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white shadow-sm flex items-center justify-center"
+                aria-label="閉じる"
+              >
+                <span className="text-lg text-ink-soft">×</span>
+              </button>
+              <div className="space-y-6">
+                <div>
+                  <p className="text-xs tracking-[0.3em] text-ink-soft">CONTACT</p>
+                  <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
+                    お問い合わせ
+                  </h3>
+                </div>
+                <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg bg-white">
+                  <Image
+                    src="/images/recruit/labels/contact-photo.jpg"
+                    alt="募集お問い合わせ"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="text-ink-soft">
+                  <p className="leading-relaxed">{applicationMessage.main}</p>
+                  <p className="text-sm mt-2">{applicationMessage.visit}</p>
+                </div>
+                <div className="bg-white/80 rounded-2xl border border-white p-4">
+                  <Contact initialContactType="求人・採用について" embedded={true} hideTitle={true} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {selectedTeam && (
         <div
