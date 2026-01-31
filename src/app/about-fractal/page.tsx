@@ -214,6 +214,21 @@ export default function AboutFractalPage() {
   const [passedSections, setPassedSections] = useState<string[]>([]);
   const [visibleDapaeSteps, setVisibleDapaeSteps] = useState<number[]>([]);
   const [ctaVisible, setCtaVisible] = useState(false);
+  const [activeItCard, setActiveItCard] = useState<number | null>(null);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  // prefers-reduced-motion の検出
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches);
+    };
+
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
   const dapaeRef = useRef<HTMLDivElement | null>(null);
   const ctaRef = useRef<HTMLElement | null>(null);
@@ -245,16 +260,25 @@ export default function AboutFractalPage() {
 
   // DAPAEステップの順番フェードインアニメーション
   useEffect(() => {
+    const timeoutIds: ReturnType<typeof setTimeout>[] = [];
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     const dapaeObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             // 順番にステップを表示
-            [0, 1, 2, 3, 4].forEach((index) => {
-              setTimeout(() => {
-                setVisibleDapaeSteps((prev) => [...prev, index]);
-              }, index * 150);
-            });
+            if (prefersReducedMotion) {
+              // アニメーション無効時は即座に全ステップを表示
+              setVisibleDapaeSteps([0, 1, 2, 3, 4]);
+            } else {
+              [0, 1, 2, 3, 4].forEach((index) => {
+                const timeoutId = setTimeout(() => {
+                  setVisibleDapaeSteps((prev) => [...prev, index]);
+                }, index * 150);
+                timeoutIds.push(timeoutId);
+              });
+            }
             dapaeObserver.disconnect();
           }
         });
@@ -266,7 +290,11 @@ export default function AboutFractalPage() {
       dapaeObserver.observe(dapaeRef.current);
     }
 
-    return () => dapaeObserver.disconnect();
+    return () => {
+      dapaeObserver.disconnect();
+      // 全てのタイマーをクリーンアップ
+      timeoutIds.forEach((id) => clearTimeout(id));
+    };
   }, []);
 
   // CTAセクション到達時のアニメーション
@@ -322,11 +350,15 @@ export default function AboutFractalPage() {
     };
   }, []);
 
-  // セクションへスムーズスクロール
+  // セクションへスムーズスクロール（prefers-reduced-motion対応）
   const scrollToSection = (sectionId: string) => {
     const element = sectionRefs.current[sectionId];
     if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      element.scrollIntoView({
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+        block: "start"
+      });
     }
   };
 
@@ -377,12 +409,12 @@ export default function AboutFractalPage() {
               <div key={section.id} className="relative group">
                 <button
                   onClick={() => scrollToSection(section.id)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  className={`w-3 h-3 rounded-full ${prefersReducedMotion ? "" : "transition-all duration-300"} ${
                     isActive
-                      ? "w-4 h-4 bg-[var(--color-logo-light-green)] animate-pulse shadow-lg shadow-[var(--color-logo-light-green)]/50"
+                      ? `w-4 h-4 bg-[var(--color-logo-light-green)] ${prefersReducedMotion ? "" : "animate-pulse"} shadow-lg shadow-[var(--color-logo-light-green)]/50`
                       : isPassed
                       ? "w-2.5 h-2.5 bg-[var(--color-logo-light-green)]/60"
-                      : "w-2 h-2 bg-slate-300 hover:bg-[var(--color-logo-light-green)]/40"
+                      : `w-2 h-2 bg-slate-300 ${prefersReducedMotion ? "" : "hover:bg-[var(--color-logo-light-green)]/40"}`
                   }`}
                   aria-label={`${section.label}へ移動`}
                 />
@@ -542,7 +574,7 @@ export default function AboutFractalPage() {
         </div>
 
         {/* スクロールインジケーター */}
-        <div className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 animate-bounce" aria-hidden="true">
+        <div className={`absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 ${prefersReducedMotion ? "" : "animate-bounce"}`} aria-hidden="true">
           <svg
             className="w-5 h-5 md:w-6 md:h-6 text-white/50"
             fill="none"
@@ -598,8 +630,8 @@ export default function AboutFractalPage() {
           <div className="grid md:grid-cols-5 gap-3 md:gap-4">
             {/* Data */}
             <div
-              className={`bg-[var(--color-logo-dark-green)] rounded-xl p-4 text-white text-center transition-all duration-500 ${
-                visibleDapaeSteps.includes(0)
+              className={`bg-[var(--color-logo-dark-green)] rounded-xl p-4 text-white text-center ${prefersReducedMotion ? "" : "transition-all duration-500"} ${
+                prefersReducedMotion || visibleDapaeSteps.includes(0)
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-4"
               }`}
@@ -613,8 +645,8 @@ export default function AboutFractalPage() {
 
             {/* Analysis */}
             <div
-              className={`bg-[var(--color-logo-dark-green)]/85 rounded-xl p-4 text-white text-center transition-all duration-500 ${
-                visibleDapaeSteps.includes(1)
+              className={`bg-[var(--color-logo-dark-green)]/85 rounded-xl p-4 text-white text-center ${prefersReducedMotion ? "" : "transition-all duration-500"} ${
+                prefersReducedMotion || visibleDapaeSteps.includes(1)
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-4"
               }`}
@@ -628,8 +660,8 @@ export default function AboutFractalPage() {
 
             {/* Plan */}
             <div
-              className={`bg-[var(--color-logo-light-green)] rounded-xl p-4 text-white text-center transition-all duration-500 ${
-                visibleDapaeSteps.includes(2)
+              className={`bg-[var(--color-logo-light-green)] rounded-xl p-4 text-white text-center ${prefersReducedMotion ? "" : "transition-all duration-500"} ${
+                prefersReducedMotion || visibleDapaeSteps.includes(2)
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-4"
               }`}
@@ -643,8 +675,8 @@ export default function AboutFractalPage() {
 
             {/* Act */}
             <div
-              className={`bg-[var(--color-logo-light-green)]/85 rounded-xl p-4 text-white text-center transition-all duration-500 ${
-                visibleDapaeSteps.includes(3)
+              className={`bg-[var(--color-logo-light-green)]/85 rounded-xl p-4 text-white text-center ${prefersReducedMotion ? "" : "transition-all duration-500"} ${
+                prefersReducedMotion || visibleDapaeSteps.includes(3)
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-4"
               }`}
@@ -658,8 +690,8 @@ export default function AboutFractalPage() {
 
             {/* Evaluation */}
             <div
-              className={`bg-[var(--color-logo-light-green)]/70 rounded-xl p-4 text-white text-center transition-all duration-500 ${
-                visibleDapaeSteps.includes(4)
+              className={`bg-[var(--color-logo-light-green)]/70 rounded-xl p-4 text-white text-center ${prefersReducedMotion ? "" : "transition-all duration-500"} ${
+                prefersReducedMotion || visibleDapaeSteps.includes(4)
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-4"
               }`}
@@ -682,32 +714,46 @@ export default function AboutFractalPage() {
             IT活用による成果
           </h4>
 
-          {/* 数値カード - ホバーで詳細表示 */}
+          {/* 数値カード - ホバー/フォーカス/タップで詳細表示 */}
           <div className="grid md:grid-cols-3 gap-4" style={{ marginBottom: 'var(--spacing-fluid-lg)' }}>
-            <div className="group relative bg-gradient-to-br from-[var(--color-logo-yellow)]/30 to-[var(--color-logo-yellow)]/10 rounded-xl p-6 text-center border border-[var(--color-logo-yellow)]/50 hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer overflow-hidden">
-              <p className="text-[var(--color-logo-dark-green)] font-bold transition-all duration-300 group-hover:scale-110" style={{ fontSize: 'var(--font-size-fluid-3xl)' }}>52%</p>
-              <p className="text-primary/70 font-medium" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>書類作業時間削減</p>
-              {/* ホバー時の詳細情報 */}
-              <div className="absolute inset-0 bg-[var(--color-logo-dark-green)]/95 flex items-center justify-center p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <p className="text-white text-sm leading-relaxed">タブレット導入と記録テンプレートの統一で、手書き→PC入力の二度手間を解消</p>
-              </div>
-            </div>
-            <div className="group relative bg-gradient-to-br from-[var(--color-logo-yellow)]/30 to-[var(--color-logo-yellow)]/10 rounded-xl p-6 text-center border border-[var(--color-logo-yellow)]/50 hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer overflow-hidden">
-              <p className="text-[var(--color-logo-dark-green)] font-bold transition-all duration-300 group-hover:scale-110" style={{ fontSize: 'var(--font-size-fluid-3xl)' }}>2.5h</p>
-              <p className="text-primary/70 font-medium" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>→ 1.2h に短縮</p>
-              {/* ホバー時の詳細情報 */}
-              <div className="absolute inset-0 bg-[var(--color-logo-dark-green)]/95 flex items-center justify-center p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <p className="text-white text-sm leading-relaxed">1日あたり1.3時間の削減で、利用者様との対話時間が増加</p>
-              </div>
-            </div>
-            <div className="group relative bg-gradient-to-br from-[var(--color-logo-yellow)]/30 to-[var(--color-logo-yellow)]/10 rounded-xl p-6 text-center border border-[var(--color-logo-yellow)]/50 hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer overflow-hidden">
-              <p className="text-[var(--color-logo-dark-green)] font-bold transition-all duration-300 group-hover:scale-110" style={{ fontSize: 'var(--font-size-fluid-3xl)' }}>3ヶ月</p>
-              <p className="text-primary/70 font-medium" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>で効果を実証</p>
-              {/* ホバー時の詳細情報 */}
-              <div className="absolute inset-0 bg-[var(--color-logo-dark-green)]/95 flex items-center justify-center p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <p className="text-white text-sm leading-relaxed">DAPAEサイクルを回し、短期間で改善効果を検証・実証</p>
-              </div>
-            </div>
+            {[
+              { value: "52%", label: "書類作業時間削減", detail: "タブレット導入と記録テンプレートの統一で、手書き→PC入力の二度手間を解消" },
+              { value: "2.5h", label: "→ 1.2h に短縮", detail: "1日あたり1.3時間の削減で、利用者様との対話時間が増加" },
+              { value: "3ヶ月", label: "で効果を実証", detail: "DAPAEサイクルを回し、短期間で改善効果を検証・実証" }
+            ].map((card, index) => {
+              const isActive = activeItCard === index;
+              return (
+                <div
+                  key={index}
+                  role="button"
+                  tabIndex={0}
+                  aria-expanded={isActive}
+                  className={`group relative bg-gradient-to-br from-[var(--color-logo-yellow)]/30 to-[var(--color-logo-yellow)]/10 rounded-xl p-6 text-center border border-[var(--color-logo-yellow)]/50 ${
+                    prefersReducedMotion ? "" : "hover:shadow-lg hover:scale-[1.02] transition-all duration-300"
+                  } cursor-pointer overflow-hidden focus:outline-none focus:ring-2 focus:ring-[var(--color-logo-light-green)] focus:ring-offset-2`}
+                  onClick={() => setActiveItCard(isActive ? null : index)}
+                  onFocus={() => setActiveItCard(index)}
+                  onBlur={() => setActiveItCard(null)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      setActiveItCard(isActive ? null : index);
+                    }
+                  }}
+                >
+                  <p className={`text-[var(--color-logo-dark-green)] font-bold ${
+                    prefersReducedMotion ? "" : "transition-all duration-300 group-hover:scale-110"
+                  }`} style={{ fontSize: 'var(--font-size-fluid-3xl)' }}>{card.value}</p>
+                  <p className="text-primary/70 font-medium" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>{card.label}</p>
+                  {/* ホバー/フォーカス/タップ時の詳細情報 */}
+                  <div className={`absolute inset-0 bg-[var(--color-logo-dark-green)]/95 flex items-center justify-center p-4 ${
+                    prefersReducedMotion ? "" : "transition-opacity duration-300"
+                  } ${isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100 group-focus:opacity-100"}`}>
+                    <p className="text-white text-sm leading-relaxed">{card.detail}</p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
 
           {/* Before/After ストーリー */}
@@ -1132,7 +1178,7 @@ export default function AboutFractalPage() {
       {/* CTA - 到達時に背景が暗くなり、ボタンが拡大アニメーション */}
       <section
         ref={(el) => { ctaRef.current = el; }}
-        className={`transition-all duration-700 ${
+        className={`${prefersReducedMotion ? "" : "transition-all duration-700"} ${
           ctaVisible
             ? "bg-[#0a2e1a]"
             : "bg-[var(--color-logo-dark-green)]"
@@ -1148,8 +1194,8 @@ export default function AboutFractalPage() {
         >
           <div className="text-center">
             <h3
-              className={`font-bold transition-all duration-500 ${
-                ctaVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              className={`font-bold ${prefersReducedMotion ? "" : "transition-all duration-500"} ${
+                prefersReducedMotion || ctaVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}
               style={{
                 fontSize: 'var(--font-size-fluid-2xl)',
@@ -1159,8 +1205,8 @@ export default function AboutFractalPage() {
               一緒に働きませんか？
             </h3>
             <p
-              className={`text-white/90 max-w-2xl mx-auto transition-all duration-500 delay-100 ${
-                ctaVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              className={`text-white/90 max-w-2xl mx-auto ${prefersReducedMotion ? "" : "transition-all duration-500 delay-100"} ${
+                prefersReducedMotion || ctaVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}
               style={{ marginBottom: 'var(--spacing-fluid-lg)', fontSize: 'var(--font-size-fluid-sm)' }}
             >
@@ -1172,8 +1218,10 @@ export default function AboutFractalPage() {
             >
               <Link
                 href="/recruit"
-                className={`bg-white text-[var(--color-logo-dark-green)] rounded-full font-bold hover:bg-[var(--color-logo-yellow)] hover:scale-105 transition-all duration-300 hover:shadow-xl ${
-                  ctaVisible ? "animate-[pulse_2s_ease-in-out_1]" : ""
+                className={`bg-white text-[var(--color-logo-dark-green)] rounded-full font-bold ${
+                  prefersReducedMotion ? "" : "hover:bg-[var(--color-logo-yellow)] hover:scale-105 transition-all duration-300 hover:shadow-xl"
+                } ${
+                  !prefersReducedMotion && ctaVisible ? "animate-[pulse_2s_ease-in-out_1]" : ""
                 }`}
                 style={{ padding: 'var(--spacing-fluid-sm) var(--spacing-fluid-lg)', fontSize: 'var(--font-size-fluid-sm)' }}
               >
