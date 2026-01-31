@@ -27,10 +27,10 @@ const tabs = jobPositions
   }));
 
 const teamMembers = [
-  { name: "浅井", image: "/images/staff/asai.png" },
-  { name: "古谷", image: "/images/staff/furuya.png" },
-  { name: "髙山", image: "/images/staff/takayama.png" },
-  { name: "祝迫", image: "/images/staff/iwaizako.png" },
+  { name: "古谷", role: "管理者", image: "/images/staff/furuya.png" },
+  { name: "浅井", role: "看護師", image: "/images/staff/asai.png" },
+  { name: "髙山", role: "看護師", image: "/images/staff/takayama.png" },
+  { name: "祝迫", role: "営業兼事務職", image: "/images/staff/iwaizako.png" },
 ];
 
 const featureIcons = [
@@ -115,7 +115,7 @@ export default function RecruitPage() {
           <FadeIn className="space-y-4">
             <p className="text-xs tracking-[0.3em] text-ink-soft">RECRUIT</p>
             <h2 className="heading-mincho text-3xl md:text-5xl text-[var(--color-olive)]">
-              人だから、できることがある。
+              フラクタルだから、できることがある。
             </h2>
             <p className="text-ink-soft text-base md:text-lg leading-relaxed">
               船橋市、八千代市、習志野市、千葉市花見川区で看護師・理学療法士・作業療法士・言語聴覚士を募集しています。
@@ -299,7 +299,7 @@ export default function RecruitPage() {
                 <p className="heading-mincho text-lg text-[var(--color-olive)]">
                   {member.name}
                 </p>
-                <p className="text-xs text-ink-soft">スタッフ</p>
+                <p className="text-xs text-ink-soft">{member.role}</p>
               </FadeIn>
             ))}
           </div>
