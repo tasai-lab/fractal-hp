@@ -47,8 +47,16 @@ export const therapistFeatures = [
   },
 ];
 
+// モデル年収の型定義
+export type ModelIncome = {
+  label: string;
+  monthly: string;
+  annual: string;
+  breakdown: { label: string; value: string }[];
+};
+
 // 療法士のモデル年収（給与テーブルP1 + 訪問手当）
-export const therapistModelIncome = [
+export const therapistModelIncome: ModelIncome[] = [
   {
     label: "月100時間訪問の場合",
     monthly: "月収32.6万円",
@@ -75,6 +83,41 @@ export const therapistModelIncome = [
       { label: "月収合計", value: "376,300円" },
       { label: "賞与（年2回）", value: "430,000円（基本給2ヶ月分）" },
       { label: "年収", value: "376,300円×12ヶ月＋430,000円＝4,945,600円" },
+    ],
+  },
+];
+
+// 看護師のモデル年収（給与テーブルP1/P6）
+export const nurseModelIncome = [
+  {
+    label: "P1（一般）の場合",
+    monthly: "月収35.1万円",
+    annual: "年収465万円",
+    breakdown: [
+      { label: "基本給", value: "225,000円" },
+      { label: "資格手当", value: "30,000円" },
+      { label: "船橋市介護保険訪問看護職員雇用促進手当", value: "15,000円" },
+      { label: "オンコール待機手当", value: "35,000円" },
+      { label: "固定残業代", value: "45,600円（20時間分）" },
+      { label: "月収合計", value: "350,600円" },
+      { label: "賞与（年2回）", value: "450,000円（基本給2ヶ月分）" },
+      { label: "年収", value: "350,600円×12ヶ月＋450,000円＝4,657,200円" },
+    ],
+  },
+  {
+    label: "P6（主任）の場合",
+    monthly: "月収41.4万円",
+    annual: "年収548万円",
+    breakdown: [
+      { label: "基本給", value: "260,000円" },
+      { label: "資格手当", value: "30,000円" },
+      { label: "船橋市介護保険訪問看護職員雇用促進手当", value: "15,000円" },
+      { label: "役職手当", value: "20,000円" },
+      { label: "オンコール待機手当", value: "35,000円" },
+      { label: "固定残業代", value: "53,900円（20時間分）" },
+      { label: "月収合計", value: "413,900円" },
+      { label: "賞与（年2回）", value: "520,000円（基本給2ヶ月分）" },
+      { label: "年収", value: "413,900円×12ヶ月＋520,000円＝5,486,800円" },
     ],
   },
 ];
