@@ -87,37 +87,68 @@ export const therapistModelIncome: ModelIncome[] = [
   },
 ];
 
-// 看護師のモデル年収（給与テーブルP1/P6）
-export const nurseModelIncome = [
+// 看護師のモデル年収（役職別: 一般→一般上→主任→副所長）
+export const nurseModelIncome: ModelIncome[] = [
   {
-    label: "P1（一般）の場合",
+    label: "一般（P1）",
     monthly: "月収35.1万円",
     annual: "年収465万円",
     breakdown: [
       { label: "基本給", value: "225,000円" },
       { label: "資格手当", value: "30,000円" },
-      { label: "船橋市介護保険訪問看護職員雇用促進手当", value: "15,000円" },
+      { label: "船橋市手当", value: "15,000円" },
       { label: "オンコール待機手当", value: "35,000円" },
       { label: "固定残業代", value: "45,600円（20時間分）" },
       { label: "月収合計", value: "350,600円" },
-      { label: "賞与（年2回）", value: "450,000円（基本給2ヶ月分）" },
-      { label: "年収", value: "350,600円×12ヶ月＋450,000円＝4,657,200円" },
+      { label: "賞与（年2回）", value: "450,000円" },
+      { label: "年収", value: "約465万円" },
     ],
   },
   {
-    label: "P6（主任）の場合",
+    label: "一般上（P5）",
+    monthly: "月収38.5万円",
+    annual: "年収513万円",
+    breakdown: [
+      { label: "基本給", value: "255,000円" },
+      { label: "資格手当", value: "30,000円" },
+      { label: "船橋市手当", value: "15,000円" },
+      { label: "オンコール待機手当", value: "35,000円" },
+      { label: "固定残業代", value: "50,200円（20時間分）" },
+      { label: "月収合計", value: "385,200円" },
+      { label: "賞与（年2回）", value: "510,000円" },
+      { label: "年収", value: "約513万円" },
+    ],
+  },
+  {
+    label: "主任（P6）",
     monthly: "月収41.4万円",
     annual: "年収548万円",
     breakdown: [
       { label: "基本給", value: "260,000円" },
       { label: "資格手当", value: "30,000円" },
-      { label: "船橋市介護保険訪問看護職員雇用促進手当", value: "15,000円" },
+      { label: "船橋市手当", value: "15,000円" },
       { label: "役職手当", value: "20,000円" },
       { label: "オンコール待機手当", value: "35,000円" },
       { label: "固定残業代", value: "53,900円（20時間分）" },
       { label: "月収合計", value: "413,900円" },
-      { label: "賞与（年2回）", value: "520,000円（基本給2ヶ月分）" },
-      { label: "年収", value: "413,900円×12ヶ月＋520,000円＝5,486,800円" },
+      { label: "賞与（年2回）", value: "520,000円" },
+      { label: "年収", value: "約548万円" },
+    ],
+  },
+  {
+    label: "副所長（P8）",
+    monthly: "月収47.1万円",
+    annual: "年収621万円",
+    breakdown: [
+      { label: "基本給", value: "280,000円" },
+      { label: "資格手当", value: "30,000円" },
+      { label: "船橋市手当", value: "15,000円" },
+      { label: "役職手当", value: "50,000円" },
+      { label: "オンコール待機手当", value: "35,000円" },
+      { label: "固定残業代", value: "61,400円（20時間分）" },
+      { label: "月収合計", value: "471,400円" },
+      { label: "賞与（年2回）", value: "560,000円" },
+      { label: "年収", value: "約621万円" },
     ],
   },
 ];
