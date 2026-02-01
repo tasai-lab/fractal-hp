@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { recruitAreas } from "@/lib/recruit-areas";
+import { serviceAreas } from "@/lib/service-areas";
 
 export const dynamic = "force-static";
 
@@ -45,6 +46,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: weekly,
       priority: 0.75,
+    })),
+    // サービス利用者向け地域別ページ（SEO重要）
+    ...serviceAreas.map((area) => ({
+      url: `${baseUrl}/areas/${area.slug}`,
+      lastModified,
+      changeFrequency: weekly,
+      priority: 0.85, // 地域SEOのため高優先度
     })),
     {
       url: `${baseUrl}/about-fractal`,

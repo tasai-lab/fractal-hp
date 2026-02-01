@@ -1,5 +1,7 @@
 import { officeInfo, navLinks } from "@/lib/data";
+import { serviceAreas } from "@/lib/service-areas";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -29,7 +31,7 @@ export default function Footer() {
         </div>
 
         {/* 事業所情報とナビゲーション */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-6 md:mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-6 md:mb-8">
           {/* 事業所情報 */}
           <div>
             <h3 className="font-bold mb-3 md:mb-4 text-lg md:text-xl">事業所情報</h3>
@@ -55,6 +57,22 @@ export default function Footer() {
                 </a>
               </p>
             </div>
+          </div>
+
+          {/* 対応エリア（SEO内部リンク） */}
+          <div>
+            <h3 className="font-bold mb-3 md:mb-4 text-lg md:text-xl">対応エリア</h3>
+            <nav className="flex flex-col gap-2 text-sm md:text-base">
+              {serviceAreas.map((area) => (
+                <Link
+                  key={area.slug}
+                  href={`/areas/${area.slug}`}
+                  className="opacity-90 hover:opacity-100 hover:underline transition-opacity"
+                >
+                  {area.name}の訪問看護
+                </Link>
+              ))}
+            </nav>
           </div>
 
           {/* ナビゲーションリンク */}

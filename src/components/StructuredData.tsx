@@ -99,6 +99,83 @@ const localBusinessData = {
   },
 };
 
+// サービス構造化データ（SEO強化用）
+const serviceData = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": "https://fractal-hokan.com/#service",
+  name: "フラクタル訪問看護サービス",
+  description:
+    "船橋市・八千代市・習志野市・千葉市花見川区を中心とした訪問看護サービス。24時間365日対応。終末期ケア、精神科訪問看護、訪問リハビリテーションに対応。",
+  provider: {
+    "@id": "https://fractal-hokan.com/#organization",
+  },
+  serviceType: "訪問看護",
+  areaServed: [
+    { "@type": "City", name: "船橋市" },
+    { "@type": "City", name: "八千代市" },
+    { "@type": "City", name: "習志野市" },
+    { "@type": "AdministrativeArea", name: "千葉市花見川区" },
+    { "@type": "AdministrativeArea", name: "千葉市美浜区" },
+  ],
+  availableChannel: {
+    "@type": "ServiceChannel",
+    serviceUrl: "https://fractal-hokan.com",
+    servicePhone: {
+      "@type": "ContactPoint",
+      telephone: "047-770-1228",
+      contactType: "customer service",
+      availableLanguage: "ja",
+    },
+    availableLanguage: "ja",
+  },
+  hoursAvailable: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ],
+    opens: "09:00",
+    closes: "19:00",
+  },
+  offers: {
+    "@type": "Offer",
+    description: "医療保険・介護保険適用（自己負担1〜3割）",
+    priceCurrency: "JPY",
+  },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "訪問看護サービス一覧",
+    itemListElement: [
+      {
+        "@type": "OfferCatalog",
+        name: "訪問看護",
+        description: "看護師による健康管理、医療処置、服薬管理、療養上のケア",
+      },
+      {
+        "@type": "OfferCatalog",
+        name: "訪問リハビリテーション",
+        description: "理学療法士・作業療法士・言語聴覚士による在宅リハビリ",
+      },
+      {
+        "@type": "OfferCatalog",
+        name: "精神科訪問看護",
+        description: "精神疾患をお持ちの方への訪問看護サービス",
+      },
+      {
+        "@type": "OfferCatalog",
+        name: "終末期ケア",
+        description: "ご自宅での看取り支援、緩和ケア",
+      },
+    ],
+  },
+};
+
 // ウェブサイト構造化データ
 const websiteData = {
   "@context": "https://schema.org",
@@ -231,6 +308,13 @@ export default function StructuredData() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(localBusinessData),
+        }}
+      />
+      <Script
+        id="structured-data-service"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(serviceData),
         }}
       />
       <Script
@@ -373,9 +457,13 @@ export function FlyersStructuredData() {
   );
 }
 
-// 募集開始日・有効期限（固定値を使用してビルド日問題を回避）
-const JOB_POSTED_DATE = "2024-01-15";
-const JOB_VALID_THROUGH = "2025-12-31";
+// 募集開始日・有効期限（ビルド時の日付を基準に動的生成）
+// 注意: 定期的なビルドで日付が更新される
+const today = new Date();
+const JOB_POSTED_DATE = today.toISOString().split("T")[0];
+const JOB_VALID_THROUGH = new Date(today.getTime() + 180 * 24 * 60 * 60 * 1000)
+  .toISOString()
+  .split("T")[0]; // 180日後
 
 // 事業所住所（全エリアで共通）
 const OFFICE_ADDRESS = {
