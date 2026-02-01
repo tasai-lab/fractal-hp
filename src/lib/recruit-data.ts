@@ -47,25 +47,19 @@ export const therapistFeatures = [
   },
 ];
 
-// 療法士のモデル年収（給与テーブル基準）
+// 療法士のモデル年収（給与テーブル + 訪問手当）
 export const therapistModelIncome = [
   {
-    label: "P1（一般）の場合",
-    calculation: "月収286,300円＋賞与430,000円（基本給2ヶ月分）",
-    monthly: "月収28.6万円",
-    annual: "年収386万円",
+    label: "月100時間訪問の場合",
+    calculation: "月収28.6万円＋訪問手当4万円（20h×2,000円）＋賞与43万円",
+    monthly: "月収32.6万円",
+    annual: "年収435万円",
   },
   {
-    label: "P3（一般）＋訪問手当の場合",
-    calculation: "月収303,800円＋訪問手当＋賞与460,000円",
-    monthly: "月収34万円〜",
-    annual: "年収410万円〜",
-  },
-  {
-    label: "P6（主任）の場合",
-    calculation: "月収350,600円＋賞与510,000円",
-    monthly: "月収35万円",
-    annual: "年収471万円",
+    label: "月120時間訪問の場合",
+    calculation: "月収28.6万円＋訪問手当9万円（30h×2,000円＋10h×3,000円）＋賞与43万円",
+    monthly: "月収37.6万円",
+    annual: "年収495万円",
   },
 ];
 
