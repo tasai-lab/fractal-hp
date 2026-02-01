@@ -113,15 +113,30 @@ export const JobDetails = ({ job }: { job: JobPosition }) => {
 
           {!isNurse && (
             <InfoCard title="モデル年収">
-              <div className="grid gap-3">
+              <div className="grid gap-4">
                 {therapistModelIncome.map((model) => (
-                  <div key={model.label} className="bg-[var(--color-paper)] rounded-xl p-3">
-                    <p className="text-xs text-ink-soft">{model.label}</p>
-                    <p className="text-ink-soft text-sm mt-1">{model.calculation}</p>
-                    <p className="heading-mincho text-[var(--color-olive)] mt-2">
-                      {model.monthly}
-                    </p>
-                    <p className="text-sm text-[var(--color-olive)]">{model.annual}</p>
+                  <div key={model.label} className="bg-[var(--color-paper)] rounded-xl p-4">
+                    <div className="flex justify-between items-center mb-3">
+                      <p className="font-bold text-[var(--color-olive)]">{model.label}</p>
+                      <p className="heading-mincho text-lg text-[var(--color-olive)]">
+                        {model.annual}
+                      </p>
+                    </div>
+                    <div className="space-y-1 text-sm">
+                      {model.breakdown.map((item, idx) => (
+                        <div
+                          key={idx}
+                          className={`flex justify-between ${
+                            item.label === "月収合計" || item.label === "年収"
+                              ? "border-t border-[var(--color-olive)]/20 pt-1 mt-2 font-semibold"
+                              : ""
+                          }`}
+                        >
+                          <span className="text-ink-soft">{item.label}</span>
+                          <span className="text-[var(--color-olive)]">{item.value}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 ))}
               </div>
