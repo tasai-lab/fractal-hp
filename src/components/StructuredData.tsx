@@ -396,9 +396,10 @@ export function JobPostingStructuredData({ jobId }: { jobId: string }) {
   const skills = isNurse
     ? "看護師免許"
     : "理学療法士免許、作業療法士免許、言語聴覚士免許";
+  // 給与テーブル実データ基準（seed-salary-structures.ts）
   const baseSalary = isNurse
-    ? { min: 4500000, max: 6000000 }
-    : { min: 3750000, max: 5000000 }; // リハ職: 月収278,000円×12+ボーナス(基本給2ヶ月)
+    ? { min: 4650000, max: 6510000 } // 看護師: P1(465万)〜P9(651万)
+    : { min: 3860000, max: 5450000 }; // リハ職: P1(386万)〜P8(545万)
 
   const jobPosting = generateJobPostingData({
     title: `${job.title}（正社員）`,
@@ -506,8 +507,8 @@ export function AreaJobPostingStructuredData({
       currency: "JPY",
       value: {
         "@type": "QuantitativeValue",
-        minValue: 4500000,
-        maxValue: 6000000,
+        minValue: 4650000, // 看護師P1
+        maxValue: 6510000, // 看護師P9
         unitText: "YEAR",
       },
     },
@@ -544,8 +545,8 @@ export function AreaJobPostingStructuredData({
       currency: "JPY",
       value: {
         "@type": "QuantitativeValue",
-        minValue: 3750000, // P0: 月収278,000円×12 + ボーナス(基本給208,000円×2ヶ月)
-        maxValue: 5000000,
+        minValue: 3860000, // リハ職P1
+        maxValue: 5450000, // リハ職P8
         unitText: "YEAR",
       },
     },
