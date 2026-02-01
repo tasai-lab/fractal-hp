@@ -398,7 +398,7 @@ export function JobPostingStructuredData({ jobId }: { jobId: string }) {
     : "理学療法士免許、作業療法士免許、言語聴覚士免許";
   const baseSalary = isNurse
     ? { min: 4500000, max: 6000000 }
-    : { min: 4000000, max: 5500000 };
+    : { min: 3750000, max: 5000000 }; // リハ職: 月収278,000円×12+ボーナス(基本給2ヶ月)
 
   const jobPosting = generateJobPostingData({
     title: `${job.title}（正社員）`,
@@ -544,12 +544,12 @@ export function AreaJobPostingStructuredData({
       currency: "JPY",
       value: {
         "@type": "QuantitativeValue",
-        minValue: 4000000,
-        maxValue: 5500000,
+        minValue: 3750000, // P0: 月収278,000円×12 + ボーナス(基本給208,000円×2ヶ月)
+        maxValue: 5000000,
         unitText: "YEAR",
       },
     },
-    jobBenefits: "入社祝い金最大30万円、年間休日120日以上、社用車貸与、直行直帰OK",
+    jobBenefits: "入社祝い金最大30万円、年間休日120日以上、社用車貸与、直行直帰OK、賞与年2回（基本給2ヶ月分）",
     skills: "理学療法士免許、作業療法士免許、言語聴覚士免許のいずれか、普通自動車運転免許",
     industry: "医療・福祉",
     directApply: true,
