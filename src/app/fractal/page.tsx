@@ -64,7 +64,7 @@ function SierpinskiTriangle({
     if (level === 0) {
       const h = size * Math.sqrt(3) / 2;
       const points = `${x},${y + h} ${x + size / 2},${y} ${x + size},${y + h}`;
-      triangles.push({ points, delay: index * 0.05, level });
+      triangles.push({ points, delay: index * 0.04, level });
       return index + 1;
     }
 
@@ -97,7 +97,7 @@ function SierpinskiTriangle({
           strokeWidth={0.5}
           opacity={0.6 - t.level * 0.1}
           style={animate ? {
-            animation: `fractalFadeIn 0.6s ease-out forwards`,
+            animation: `fractalFadeIn 0.5s ease-out forwards`,
             animationDelay: `${t.delay}s`,
             opacity: 0,
           } : undefined}
