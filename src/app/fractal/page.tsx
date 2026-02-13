@@ -197,49 +197,120 @@ const natureExamples = [
   },
 ];
 
-// 入れ子構造の視覚化
+// 入れ子構造の視覚化（正三角形版）
 function NestedStructure() {
+  // 正三角形の高さ = 底辺 × √3/2 ≈ 0.866
+  const triangleHeight = 86.6;
+
+  // 正三角形のポイント（上向き）
+  const getTrianglePoints = (cx: number, cy: number, size: number) => {
+    const h = size * 0.866;
+    const top = { x: cx, y: cy - h * 0.6 };
+    const bottomLeft = { x: cx - size / 2, y: cy + h * 0.4 };
+    const bottomRight = { x: cx + size / 2, y: cy + h * 0.4 };
+    return `${top.x},${top.y} ${bottomLeft.x},${bottomLeft.y} ${bottomRight.x},${bottomRight.y}`;
+  };
+
+  const layers = [
+    { label: "組織全体", size: 90, color: "var(--color-logo-dark-green)", opacity: 0.2, textY: 12 },
+    { label: "チーム", size: 60, color: "var(--color-logo-light-green)", opacity: 0.4, textY: 35 },
+    { label: "個人", size: 30, color: "var(--color-logo-dark-green)", opacity: 1, textY: 58, filled: true },
+  ];
+
   return (
-    <div className="relative w-full max-w-md mx-auto aspect-square">
-      {/* 外側の三角形 - 組織全体 */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div
-          className="w-full h-full border-2 border-[var(--color-logo-dark-green)] opacity-30"
-          style={{
-            clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
-          }}
-        />
-      </div>
+    <div className="relative w-full max-w-md mx-auto">
+      <svg viewBox="0 0 100 90" className="w-full h-auto">
+        {/* 三角形レイヤー */}
+        {layers.map((layer, i) => (
+          <g key={i}>
+            <polygon
+              points={getTrianglePoints(50, 52, layer.size)}
+              fill={layer.filled ? layer.color : "none"}
+              stroke={layer.color}
+              strokeWidth={layer.filled ? 0 : 2}
+              opacity={layer.opacity}
+            />
+          </g>
+        ))}
 
-      {/* 中間の三角形 - チーム */}
-      <div className="absolute inset-[15%] flex items-center justify-center">
-        <div
-          className="w-full h-full border-2 border-[var(--color-logo-light-green)] opacity-50"
-          style={{
-            clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
-          }}
-        />
-      </div>
+        {/* ラベル */}
+        <text
+          x="50" y="12"
+          textAnchor="middle"
+          fill="var(--color-logo-dark-green)"
+          fontSize="5"
+          fontWeight="600"
+        >
+          組織全体
+        </text>
+        <text
+          x="50" y="35"
+          textAnchor="middle"
+          fill="var(--color-logo-light-green)"
+          fontSize="5"
+          fontWeight="600"
+        >
+          チーム
+        </text>
+        <text
+          x="50" y="58"
+          textAnchor="middle"
+          fill="white"
+          fontSize="4.5"
+          fontWeight="700"
+        >
+          個人
+        </text>
 
-      {/* 内側の三角形 - 個人 */}
-      <div className="absolute inset-[30%] flex items-center justify-center">
-        <div
-          className="w-full h-full bg-gradient-to-b from-[var(--color-logo-light-green)] to-[var(--color-logo-dark-green)]"
-          style={{
-            clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
-          }}
-        />
-      </div>
+        {/* 矢印で相似性を示す */}
+        <defs>
+          <marker id="arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+            <polygon points="0 0, 6 3, 0 6" fill="var(--color-logo-light-green)" />
+          </marker>
+        </defs>
 
-      {/* ラベル */}
-      <div className="absolute top-[5%] left-1/2 -translate-x-1/2 text-sm font-medium text-[var(--color-logo-dark-green)]">
-        組織全体
-      </div>
-      <div className="absolute top-[25%] left-1/2 -translate-x-1/2 text-sm font-medium text-[var(--color-logo-light-green)]">
-        チーム
-      </div>
-      <div className="absolute top-[48%] left-1/2 -translate-x-1/2 text-sm font-bold text-white">
-        個人
+        {/* 外側から内側への矢印 */}
+        <path
+          d="M 18 70 Q 10 55 18 40"
+          fill="none"
+          stroke="var(--color-logo-light-green)"
+          strokeWidth="1"
+          strokeDasharray="2 1"
+          markerEnd="url(#arrow)"
+          opacity="0.6"
+        />
+        <text x="6" y="56" fill="var(--color-ink-soft)" fontSize="3" textAnchor="middle">
+          相似
+        </text>
+
+        <path
+          d="M 82 70 Q 90 55 82 40"
+          fill="none"
+          stroke="var(--color-logo-light-green)"
+          strokeWidth="1"
+          strokeDasharray="2 1"
+          markerEnd="url(#arrow)"
+          opacity="0.6"
+        />
+        <text x="94" y="56" fill="var(--color-ink-soft)" fontSize="3" textAnchor="middle">
+          相似
+        </text>
+      </svg>
+
+      {/* 凡例 */}
+      <div className="flex justify-center gap-6 mt-4 text-sm">
+        <div className="flex items-center gap-2">
+          <div className="w-4 h-4 border-2 border-[var(--color-logo-dark-green)] opacity-30" style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }} />
+          <span style={{ color: 'var(--color-ink-soft)' }}>組織</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="w-4 h-4 border-2 border-[var(--color-logo-light-green)] opacity-60" style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }} />
+          <span style={{ color: 'var(--color-ink-soft)' }}>チーム</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="w-4 h-4 bg-[var(--color-logo-dark-green)]" style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }} />
+          <span style={{ color: 'var(--color-ink-soft)' }}>個人</span>
+        </div>
       </div>
     </div>
   );
