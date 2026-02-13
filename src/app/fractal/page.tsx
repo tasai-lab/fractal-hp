@@ -312,10 +312,10 @@ export default function FractalPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/about-fractal"
+                href="/company"
                 className="inline-flex items-center justify-center px-8 py-4 bg-[var(--color-logo-dark-green)] text-white rounded-full font-medium hover:opacity-90 transition-opacity"
               >
-                フラクタルを知る
+                株式会社フラクタル
               </Link>
               <Link
                 href="/recruit"

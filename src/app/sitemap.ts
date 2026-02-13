@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 import { recruitAreas } from "@/lib/recruit-areas";
-import { serviceAreas } from "@/lib/service-areas";
+import { regionalData } from "@/lib/regional-data";
 
 export const dynamic = "force-static";
 
@@ -11,23 +11,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const monthly = "monthly" as const;
 
   return [
+    // トップページ（最重要）
     {
       url: baseUrl,
       lastModified,
       changeFrequency: weekly,
       priority: 1.0,
     },
+
+    // 採用ページ群（重要）
     {
       url: `${baseUrl}/recruit`,
       lastModified,
       changeFrequency: weekly,
       priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/recruit/day-flow`,
-      lastModified,
-      changeFrequency: weekly,
-      priority: 0.8,
     },
     {
       url: `${baseUrl}/recruit/nurse`,
@@ -41,21 +38,38 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: weekly,
       priority: 0.85,
     },
+    {
+      url: `${baseUrl}/recruit/day-flow`,
+      lastModified,
+      changeFrequency: monthly,
+      priority: 0.75,
+    },
+
+    // 採用エリア別ページ
     ...recruitAreas.map((area) => ({
       url: `${baseUrl}/recruit/areas/${area.slug}`,
       lastModified,
       changeFrequency: weekly,
       priority: 0.75,
     })),
-    // サービス利用者向け地域別ページ（SEO重要）
-    ...serviceAreas.map((area) => ({
+
+    // サービス利用者向け地域別ページ（地域SEO重要）
+    ...regionalData.map((area) => ({
       url: `${baseUrl}/areas/${area.slug}`,
       lastModified,
       changeFrequency: weekly,
-      priority: 0.85, // 地域SEOのため高優先度
+      priority: 0.85,
     })),
+
+    // 会社情報・その他
     {
-      url: `${baseUrl}/about-fractal`,
+      url: `${baseUrl}/fractal`,
+      lastModified,
+      changeFrequency: monthly,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/company`,
       lastModified,
       changeFrequency: monthly,
       priority: 0.7,
@@ -64,7 +78,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/flyers`,
       lastModified,
       changeFrequency: monthly,
-      priority: 0.6,
+      priority: 0.5,
     },
   ];
 }

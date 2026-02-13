@@ -59,6 +59,10 @@ const localBusinessData = {
     },
     {
       "@type": "AdministrativeArea",
+      name: "千葉市稲毛区",
+    },
+    {
+      "@type": "AdministrativeArea",
       name: "千葉市美浜区",
     },
   ],
@@ -95,7 +99,7 @@ const localBusinessData = {
   parentOrganization: {
     "@type": "Organization",
     name: "株式会社フラクタル",
-    url: "https://fractal-hokan.com/about-fractal",
+    url: "https://fractal-hokan.com/company",
   },
 };
 
@@ -116,6 +120,7 @@ const serviceData = {
     { "@type": "City", name: "八千代市" },
     { "@type": "City", name: "習志野市" },
     { "@type": "AdministrativeArea", name: "千葉市花見川区" },
+    { "@type": "AdministrativeArea", name: "千葉市稲毛区" },
     { "@type": "AdministrativeArea", name: "千葉市美浜区" },
   ],
   availableChannel: {
@@ -189,11 +194,6 @@ const websiteData = {
     "@id": "https://fractal-hokan.com/#organization",
   },
   inLanguage: "ja",
-  potentialAction: {
-    "@type": "SearchAction",
-    target: "https://fractal-hokan.com/?s={search_term_string}",
-    "query-input": "required name=search_term_string",
-  },
 };
 
 // FAQスキーマ生成関数
@@ -426,7 +426,7 @@ export function JobPostingStructuredData({ jobId }: { jobId: string }) {
 export function AboutFractalStructuredData() {
   const breadcrumbData = generateBreadcrumbData([
     { name: "ホーム", url: "https://fractal-hokan.com" },
-    { name: "フラクタルを知る", url: "https://fractal-hokan.com/about-fractal" },
+    { name: "フラクタルを知る", url: "https://fractal-hokan.com/company" },
   ]);
 
   return (

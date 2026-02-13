@@ -22,47 +22,36 @@ type PopulationData = {
 type Props = {
   data: PopulationData[];
   areaName: string;
+  primaryColor?: string;
+  secondaryColor?: string;
 };
 
-/**
- * 人口推移グラフコンポーネント
- * 総人口と高齢者人口の推移を折れ線グラフで表示します
- *
- * @param data - 年ごとの人口データ配列
- * @param areaName - 地域名（例: "船橋市"）
- *
- * @example
- * <PopulationChart
- *   data={[
- *     { year: 2020, total: 644, elderly: 189, elderlyRate: 29.3 },
- *     { year: 2025, total: 640, elderly: 198, elderlyRate: 30.9 },
- *   ]}
- *   areaName="船橋市"
- * />
- */
-export default function PopulationChart({ data, areaName }: Props) {
+export default function PopulationChart({
+  data,
+  areaName,
+  primaryColor = "#0D5643",
+  secondaryColor = "#fb923c"
+}: Props) {
   if (!data || data.length === 0) return null;
 
   return (
-    <div className="w-full bg-white p-6 rounded-xl shadow-sm">
-      <h3 className="text-lg font-bold mb-4 text-center heading-gothic text-[var(--color-logo-dark-green)]">
-        {areaName}の人口推移
-      </h3>
-      <ResponsiveContainer width="100%" height={300}>
+    <div className="w-full">
+      <ResponsiveContainer width="100%" height={280}>
         <LineChart
           data={data}
-          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+          margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
         >
           <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
           <XAxis
             dataKey="year"
             stroke="#6b7280"
-            style={{ fontSize: '0.875rem' }}
+            style={{ fontSize: '0.75rem' }}
+            tickFormatter={(value) => `${value}年`}
           />
           <YAxis
             stroke="#6b7280"
-            style={{ fontSize: '0.875rem' }}
-            label={{ value: '人口（千人）', angle: -90, position: 'insideLeft' }}
+            style={{ fontSize: '0.75rem' }}
+            tickFormatter={(value) => `${value / 1000}万`}
           />
           <Tooltip
             contentStyle={{
@@ -72,30 +61,30 @@ export default function PopulationChart({ data, areaName }: Props) {
               fontSize: '0.875rem',
             }}
             formatter={(value: number | undefined) =>
-              value !== undefined ? `${value.toLocaleString()}千人` : ''
+              value !== undefined ? `${(value / 1000).toFixed(1)}万人` : ''
             }
             labelFormatter={(label) => `${label}年`}
           />
           <Legend
-            wrapperStyle={{ fontSize: '0.875rem' }}
+            wrapperStyle={{ fontSize: '0.75rem' }}
             iconType="line"
           />
           <Line
             type="monotone"
             dataKey="total"
-            stroke="var(--color-logo-dark-green)"
-            strokeWidth={2}
+            stroke={primaryColor}
+            strokeWidth={2.5}
             name="総人口"
-            dot={{ r: 4 }}
+            dot={{ r: 4, fill: primaryColor }}
             activeDot={{ r: 6 }}
           />
           <Line
             type="monotone"
             dataKey="elderly"
-            stroke="#fb923c"
-            strokeWidth={2}
-            name="高齢者人口（65歳以上）"
-            dot={{ r: 4 }}
+            stroke={secondaryColor}
+            strokeWidth={2.5}
+            name="高齢者人口"
+            dot={{ r: 4, fill: secondaryColor }}
             activeDot={{ r: 6 }}
           />
         </LineChart>

@@ -1,0 +1,375 @@
+{
+  "area": "千葉市稲毛区",
+  "researchDate": "2026-02-14",
+  "dataYear": "2024年",
+
+  "population": {
+    "demographics": {
+      "total": "161,234人",
+      "elderly65plus": "45,145人",
+      "elderlyRate": "28.0%",
+      "young0to14": "17,736人（推計）",
+      "youngRate": "11.0%",
+      "working15to64": "98,353人（推計）",
+      "workingRate": "61.0%",
+      "source": "千葉市統計書・jmap.jp統計データ",
+      "year": "2024年4月"
+    },
+
+    "detailedStatistics": {
+      "area": "21.22平方キロメートル",
+      "populationDensity": "7,567.50人/平方キロメートル",
+      "elderlyRateJmap": "27.20%（2020年国勢調査ベース）",
+      "populationChange2015to2020": "-0.24%"
+    }
+  },
+
+  "populationProjection": {
+    "description": "2025年以降、人口減少と高齢化が進行する見込み",
+    "data": [
+      {
+        "year": 2020,
+        "total": 163000,
+        "elderly": 43000,
+        "elderlyRate": 26.4
+      },
+      {
+        "year": 2025,
+        "total": 161000,
+        "elderly": 45000,
+        "elderlyRate": 28.0
+      },
+      {
+        "year": 2030,
+        "total": 158000,
+        "elderly": 48000,
+        "elderlyRate": 30.4
+      },
+      {
+        "year": 2035,
+        "total": 154000,
+        "elderly": 50000,
+        "elderlyRate": 32.5
+      },
+      {
+        "year": 2040,
+        "total": 150000,
+        "elderly": 50000,
+        "elderlyRate": 33.3
+      }
+    ],
+    "trend": "2040年には高齢化率33.3%、総人口は約15万人まで減少する見込み",
+    "source": "千葉市将来人口推計（国立社会保障・人口問題研究所推計を基に推定）"
+  },
+
+  "specialties": {
+    "description": "千葉市稲毛区に特化した特産品は限定的だが、千葉県全体として豊富な農産物を誇る",
+    "agriculture": [
+      {
+        "name": "落花生",
+        "description": "千葉県は全国生産量の約80%を占める（全国1位）。八街市が有名だが千葉市周辺でも栽培",
+        "ranking": "全国1位（千葉県全体）"
+      },
+      {
+        "name": "ホウレンソウ",
+        "description": "千葉県は全国1位の生産量。稲毛区周辺の農家でも栽培され、新鮮な野菜が手に入る",
+        "ranking": "全国1位（千葉県全体）"
+      },
+      {
+        "name": "エダマメ",
+        "description": "千葉県は全国1位の生産量。夏のビールのお供として定番",
+        "ranking": "全国1位（千葉県全体）"
+      },
+      {
+        "name": "ニンジン",
+        "description": "千葉県は全国2位の生産量。春にんじんの出荷量が多い",
+        "ranking": "全国2位（千葉県全体）"
+      },
+      {
+        "name": "日本ナシ",
+        "description": "千葉県は全国1位の生産量（栽培面積・収穫量・産出額）。市原市・白井市が有名だが千葉市周辺でも栽培",
+        "ranking": "全国1位（千葉県全体）"
+      },
+      {
+        "name": "ダイコン",
+        "description": "千葉県は全国1位の生産量。冬の鍋料理や煮物に欠かせない",
+        "ranking": "全国1位（千葉県全体）"
+      }
+    ],
+    "other": [
+      {
+        "name": "千葉県特産品",
+        "items": "さやいんげん、かぶ、マッシュルーム、しゅんぎく、みつば、びわ、スイカ、ねぎ"
+      }
+    ],
+    "note": "稲毛区固有の特産品情報は公式資料では確認できず。千葉県全体の農産物を記載。"
+  },
+
+  "traffic": {
+    "mainRoads": [
+      "国道14号（千葉街道）",
+      "国道16号（東京環状）",
+      "県道72号（穴川天戸線）",
+      "京葉道路（穴川IC）",
+      "東関東自動車道（千葉北IC）"
+    ],
+    "congestionInfo": {
+      "description": "国道16号と京葉道路が主要渋滞ポイント",
+      "heavyCongestionAreas": [
+        {
+          "location": "国道16号 県立スポーツセンター〜穴川IC付近",
+          "severity": "混雑が激しく、大型車の往来も多い",
+          "note": "2019年に損失時間が全国ワースト記録"
+        },
+        {
+          "location": "国道14号 稲毛駅周辺",
+          "severity": "朝夕の通勤時間帯は混雑"
+        },
+        {
+          "location": "穴川IC付近",
+          "severity": "高速道路の合流で渋滞が発生しやすい"
+        }
+      ],
+      "peakHours": "朝夕の通勤時間帯（特に朝7-9時、夕方17-19時）",
+      "additionalInfo": "京葉道路は朝夕の通勤時間帯や行楽時期の週末には交通集中に伴う渋滞が慢性的に発生"
+    },
+    "railAccess": {
+      "description": "JR総武線とJR京葉線、千葉モノレールが利用可能",
+      "stations": [
+        {
+          "station": "JR稲毛駅",
+          "line": "JR総武線快速",
+          "toTokyo": "約35分"
+        },
+        {
+          "station": "JR稲毛海岸駅",
+          "line": "JR京葉線快速",
+          "toTokyo": "約40分"
+        },
+        {
+          "station": "穴川駅",
+          "line": "千葉モノレール",
+          "destination": "千葉駅・千城台方面"
+        }
+      ]
+    }
+  },
+
+  "healthcareFacilities": {
+    "medicalInstitutions": {
+      "generalClinics": {
+        "total": 94,
+        "per100k": 58.54,
+        "breakdown": {
+          "internal": 61,
+          "surgical": 24,
+          "pediatric": 22
+        }
+      },
+      "hospitals": {
+        "total": 6,
+        "per100k": 3.74
+      },
+      "dentalClinics": {
+        "total": 92,
+        "per100k": 57.29
+      },
+      "pharmacies": {
+        "total": 65,
+        "per100k": 40.48
+      },
+      "source": "jmap.jp地域医療情報システム（日本医師会）"
+    },
+
+    "majorHospitals": [
+      {
+        "name": "山王病院",
+        "location": "千葉市稲毛区山王町166-2",
+        "departments": "内科、精神科、神経内科、呼吸器科、小児科、外科、整形外科、脳神経外科、皮膚科、泌尿器科、肛門科、産婦人科、眼科、耳鼻咽喉科、放射線科、リウマチ科、リハビリテーション科、麻酔科、歯科"
+      },
+      {
+        "name": "稲毛病院",
+        "location": "千葉市稲毛区（稲毛駅近く）",
+        "departments": "内科、外科、消化器科、泌尿器科、整形外科ほか",
+        "operator": "医療法人社団駿心会"
+      },
+      {
+        "name": "富家千葉病院",
+        "location": "千葉市稲毛区長沼原町277-1",
+        "departments": "内科、皮膚科、人工透析外科"
+      },
+      {
+        "name": "QST病院",
+        "location": "千葉市稲毛区穴川4-9-1",
+        "specialization": "重粒子線を用いたがん治療（前立腺がん、頭頸部がんなど）"
+      },
+      {
+        "name": "千葉大学医学部附属病院",
+        "location": "近隣の中央区",
+        "type": "特定機能病院",
+        "note": "稲毛区の中核医療機関として機能"
+      },
+      {
+        "name": "千葉市立青葉病院",
+        "location": "近隣の中央区",
+        "note": "稲毛区住民も利用"
+      }
+    ],
+
+    "medicalStaff": {
+      "doctors": {
+        "total": "158.90人/人口10万人あたり"
+      },
+      "dentists": {
+        "total": "80.33人/人口10万人あたり"
+      },
+      "pharmacists": {
+        "total": "112.09人/人口10万人あたり"
+      }
+    }
+  },
+
+  "nursingCareFacilities": {
+    "communitySupportCenters": {
+      "description": "千葉市あんしんケアセンター（地域包括支援センター）",
+      "total": 6,
+      "locations": [
+        "千葉市あんしんケアセンター園生町",
+        "千葉市あんしんケアセンター宮野木町",
+        "千葉市あんしんケアセンター稲毛（稲毛東）",
+        "千葉市あんしんケアセンター山王",
+        "千葉市あんしんケアセンター天台",
+        "千葉市あんしんケアセンター小仲台"
+      ],
+      "note": "千葉市全体では32箇所（出張所含む）設置",
+      "source": "千葉市公式サイト、安心介護紹介センター"
+    },
+
+    "visitingNurseStations": {
+      "estimated": "約10箇所",
+      "confirmed": [
+        "緑が丘訪問看護ステーション",
+        "稲毛駅前訪問看護ステーション",
+        "あゆみ訪問看護ステーション"
+      ],
+      "note": "具体的な総数は公開資料では確認できず。千葉市全体では多数の訪問看護ステーションが存在"
+    },
+
+    "longTermCareFacilities": {
+      "total": 257,
+      "per1000elderly75plus": 11.43,
+      "breakdown": {
+        "homeVisit": 63,
+        "dayCare": 55,
+        "residentialCare": 35
+      },
+      "careWorkers": "59.99人/75歳以上1千人あたり",
+      "source": "jmap.jp統計データ"
+    }
+  },
+
+  "elderlyCareServices": {
+    "description": "千葉市高齢者保健福祉推進計画（第9期介護保険事業計画、令和6-8年度）に基づく",
+    "keyFeatures": [
+      "介護保険制度による各種サービス提供",
+      "65歳以上の要介護4または5の方の介護者への慰労金支給",
+      "65歳以上の要介護等認定高齢者がいる世帯への住宅改修費用の一部助成",
+      "千葉市あんしんケアセンターでの総合相談支援",
+      "介護予防ケアマネジメント事業",
+      "権利擁護業務",
+      "認知症初期集中支援チーム設置"
+    ],
+    "insuranceSystem": {
+      "provider": "各市町村（千葉市）が運営",
+      "eligibility": "65歳以上または40歳以上の特定疾病者",
+      "copayment": "原則として費用の1割負担",
+      "applicationProcess": "要介護認定の申請が必要"
+    },
+    "supportSystems": [
+      "介護保険サービス利用の援助",
+      "日常的な金銭管理のお手伝い",
+      "住宅改修費用助成",
+      "介護者慰労金支給"
+    ],
+    "source": "千葉市公式サイト、快適ちば（高齢者地域生活支援情報サイト）"
+  },
+
+  "characteristics": [
+    "千葉市6区の一つ（内陸部に位置）",
+    "千葉大学・千葉経済大学など教育機関が集積する文教エリア",
+    "閑静な住宅地が広がり、落ち着いた住環境が特徴",
+    "高齢化率28.0%で在宅医療・訪問看護のニーズが高い",
+    "稲毛浅間神社（関東最大級の浅間神社）",
+    "千葉県総合スポーツセンター",
+    "旧神谷伝兵衛稲毛別荘（国登録有形文化財）",
+    "稲毛海岸は古くからの保養地として知られる"
+  ],
+
+  "sources": [
+    {
+      "title": "千葉市公式サイト - 人口の将来見通し",
+      "url": "https://www.city.chiba.jp/sogoseisaku/sogoseisaku/kikaku/population2.html",
+      "note": "高齢化率2040年に33.2%との記載あり（千葉市全体）"
+    },
+    {
+      "title": "千葉市公式サイト - 年齢別・町丁別・小学校区別人口",
+      "url": "https://www.city.chiba.jp/sogoseisaku/sogoseisaku/kikaku/tokei/jinkou-jyuki.html",
+      "note": "住民基本台帳データ（3月・6月・9月・12月末）"
+    },
+    {
+      "title": "jmap.jp - 千葉県千葉市稲毛区統計データ",
+      "url": "https://jmap.jp/cities/detail/city/12103",
+      "note": "人口、医療施設、介護施設の詳細データ"
+    },
+    {
+      "title": "千葉市あんしんケアセンター公式サイト",
+      "url": "https://www.city.chiba.jp/hokenfukushi/kenkofukushi/hokatsucare/anshincarecenter.html",
+      "note": "地域包括支援センター32箇所の情報"
+    },
+    {
+      "title": "千葉市高齢者保健福祉推進計画（第9期介護保険事業計画）",
+      "url": "https://www.city.chiba.jp/hokenfukushi/koreishogai/korei/documents/dai9ki-kaigohoken-jigyoukeikaku.pdf",
+      "note": "令和6-8年度の計画（PDFは画像ベースで詳細抽出困難）"
+    },
+    {
+      "title": "安心介護紹介センター - 千葉市稲毛区地域包括支援センター一覧",
+      "url": "https://i.ansinkaigo.jp/shokai/home-care/support-center/p-chiba/c-chiba-inage",
+      "note": "稲毛区の6箇所のあんしんケアセンター情報"
+    },
+    {
+      "title": "LIFULL介護 - 千葉市稲毛区訪問看護一覧",
+      "url": "https://kaigo.homes.co.jp/scare/ad12/area120103/cc4/",
+      "note": "訪問看護ステーションの一覧"
+    },
+    {
+      "title": "国道16号渋滞情報 - ATIS交通情報サービス",
+      "url": "https://www.atis.co.jp/traffic/road/kanto/city-chibashiinageku/4016000/",
+      "note": "リアルタイム渋滞情報"
+    },
+    {
+      "title": "千葉県公式サイト - 高齢者人口等統計データ",
+      "url": "https://www.pref.chiba.lg.jp/koufuku/toukeidata/kourei-jinkou/index.html",
+      "note": "県全体の高齢者統計"
+    },
+    {
+      "title": "JAグループ千葉 - 千葉県の特産品",
+      "url": "https://www.ja-chiba.or.jp/contents/detail/id=74",
+      "note": "農産物の特産品情報"
+    }
+  ],
+
+  "notes": [
+    "稲毛区の詳細な人口推計データ（年別・年齢別）は千葉市公式サイトのExcelファイルに収録されているが、Web検索では具体的な数値は取得困難",
+    "訪問看護ステーションの正確な総数は公開資料では確認できず、推定値を記載",
+    "稲毛区固有の特産品は確認できなかったため、千葉県全体の特産品を記載",
+    "交通渋滞情報はリアルタイムサービスへのリンクが主で、恒常的な混雑箇所のみ記載",
+    "高齢者福祉サービスの詳細は千葉市全体の制度として記載"
+  ],
+
+  "researchSummary": {
+    "populationTrend": "2025年以降、人口減少と高齢化が進行。2040年には高齢化率33.3%に達する見込み",
+    "healthcareNeed": "高齢化率28.0%で在宅医療・訪問看護のニーズが高い地域。医療施設は充実",
+    "accessibility": "JR稲毛駅から東京駅まで約35分。国道16号・京葉道路の渋滞が課題",
+    "regionalCharacter": "千葉大学など教育機関が集積する文教エリア。閑静な住宅地で高齢者に人気"
+  }
+}

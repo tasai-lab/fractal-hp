@@ -19,55 +19,45 @@ type ElderlyRateTrendData = {
 
 type Props = {
   data: ElderlyRateTrendData[];
+  primaryColor?: string;
+  gradientId?: string;
 };
 
-/**
- * 高齢化率推移グラフコンポーネント
- * 高齢化率の推移を面グラフで表示し、全国平均との比較を行います
- *
- * @param data - 年ごとの高齢化率データ配列
- *
- * @example
- * <ElderlyRateTrendChart
- *   data={[
- *     { year: 2020, elderlyRate: 29.3 },
- *     { year: 2025, elderlyRate: 30.9 },
- *     { year: 2030, elderlyRate: 32.3 },
- *   ]}
- * />
- */
-export default function ElderlyRateTrendChart({ data }: Props) {
+export default function ElderlyRateTrendChart({
+  data,
+  primaryColor = "#0D5643",
+  gradientId = "colorElderlyRate"
+}: Props) {
   if (!data || data.length === 0) return null;
 
-  const NATIONAL_AVERAGE = 29.3; // 全国平均高齢化率（2020年）
+  const NATIONAL_AVERAGE = 29.3;
+  const uniqueGradientId = `${gradientId}-${primaryColor.replace('#', '')}`;
 
   return (
-    <div className="w-full bg-white p-6 rounded-xl shadow-sm">
-      <h3 className="text-lg font-bold mb-4 text-center heading-gothic text-[var(--color-logo-dark-green)]">
-        高齢化率の推移
-      </h3>
-      <ResponsiveContainer width="100%" height={300}>
+    <div className="w-full">
+      <ResponsiveContainer width="100%" height={220}>
         <AreaChart
           data={data}
-          margin={{ top: 10, right: 30, left: 20, bottom: 5 }}
+          margin={{ top: 10, right: 20, left: 10, bottom: 5 }}
         >
           <defs>
-            <linearGradient id="colorElderlyRate" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="var(--color-logo-dark-green)" stopOpacity={0.8}/>
-              <stop offset="95%" stopColor="var(--color-logo-dark-green)" stopOpacity={0.1}/>
+            <linearGradient id={uniqueGradientId} x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor={primaryColor} stopOpacity={0.6}/>
+              <stop offset="95%" stopColor={primaryColor} stopOpacity={0.05}/>
             </linearGradient>
           </defs>
           <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
           <XAxis
             dataKey="year"
             stroke="#6b7280"
-            style={{ fontSize: '0.875rem' }}
+            style={{ fontSize: '0.75rem' }}
+            tickFormatter={(value) => `${value}年`}
           />
           <YAxis
             stroke="#6b7280"
-            style={{ fontSize: '0.875rem' }}
-            domain={[25, 35]}
-            label={{ value: '高齢化率（%）', angle: -90, position: 'insideLeft' }}
+            style={{ fontSize: '0.75rem' }}
+            domain={[20, 40]}
+            tickFormatter={(value) => `${value}%`}
           />
           <Tooltip
             contentStyle={{
@@ -83,22 +73,22 @@ export default function ElderlyRateTrendChart({ data }: Props) {
           />
           <ReferenceLine
             y={NATIONAL_AVERAGE}
-            stroke="#ef4444"
+            stroke="#94a3b8"
             strokeDasharray="5 5"
             label={{
-              value: `全国平均 ${NATIONAL_AVERAGE}%`,
+              value: `全国平均`,
               position: 'right',
-              fill: '#ef4444',
-              fontSize: 12,
+              fill: '#94a3b8',
+              fontSize: 10,
             }}
           />
           <Area
             type="monotone"
             dataKey="elderlyRate"
-            stroke="var(--color-logo-dark-green)"
-            strokeWidth={2}
+            stroke={primaryColor}
+            strokeWidth={2.5}
             fillOpacity={1}
-            fill="url(#colorElderlyRate)"
+            fill={`url(#${uniqueGradientId})`}
             name="高齢化率"
           />
         </AreaChart>

@@ -13,13 +13,13 @@ export const metadata: Metadata = {
     "フラクタル ビジョン",
   ],
   alternates: {
-    canonical: "/about-fractal",
+    canonical: "/company",
   },
   openGraph: {
     title: "フラクタルを知る | 株式会社フラクタル",
     description:
       "企業理念「シンプルで独創的な社会を実現する」。訪問看護事業とIT支援事業を展開。",
-    url: "https://fractal-hokan.com/about-fractal",
+    url: "https://fractal-hokan.com/company",
   },
 };
 

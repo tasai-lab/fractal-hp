@@ -33,7 +33,7 @@ export const companyInfo = {
 
 // ナビゲーションリンク
 export const navLinks = [
-  { href: "/about-fractal", label: "フラクタルを知る" },
+  { href: "/company", label: "フラクタルを知る" },
   { href: "#staff", label: "スタッフ紹介" },
   { href: "/areas/funabashi", label: "対応エリア" },
   { href: "/recruit", label: "採用情報" },
@@ -44,7 +44,7 @@ export const navLinks = [
 // モバイルメニュー項目
 export const mobileMenuItems = [
   { href: "/", label: "ホーム", icon: "Home" },
-  { href: "/about-fractal", label: "フラクタルを知る", icon: "Building2" },
+  { href: "/company", label: "フラクタルを知る", icon: "Building2" },
   { href: "/recruit", label: "採用情報", icon: "Users" },
   { href: "#contact", label: "お問い合わせ", icon: "Phone" },
 ];
@@ -68,7 +68,7 @@ export const otherMenuCategories = {
   pages: {
     title: "その他のページ",
     items: [
-      { href: "/about-fractal", label: "フラクタルを知る" },
+      { href: "/company", label: "フラクタルを知る" },
       { href: "/recruit", label: "採用情報" },
       { href: "/flyers", label: "チラシ" },
     ],

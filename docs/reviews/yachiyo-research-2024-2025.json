@@ -1,0 +1,335 @@
+{
+  "city": "八千代市",
+  "researchDate": "2025-02-14",
+  "summary": "千葉県北西部に位置し、人口約20.5万人の住宅都市。東葉高速線沿線の発展が著しく、2035年頃まで人口増加が続くと予測される数少ない自治体。梨栽培は100年以上の歴史を持つ。",
+
+  "demographics": {
+    "latest2024": {
+      "totalPopulation": "205,748人",
+      "totalPopulationNumber": 205748,
+      "elderlyPopulation": "約51,000人",
+      "elderlyPopulationNumber": 51028,
+      "elderlyRate": "24.8%",
+      "elderlyRateNumber": 24.8,
+      "youngPopulation0to14": "約22,632人",
+      "youngPopulationRate": "11.0%",
+      "workingAgePopulation15to64": "約132,088人",
+      "workingAgePopulationRate": "64.2%",
+      "dataSource": "八千代市統計書、住民基本台帳",
+      "referenceDate": "2024年1月1日（外国人を含む）",
+      "notes": [
+        "2024年1月1日時点で12年連続の人口増加（前年比+280人）",
+        "4.0人に1人が65歳以上、7.4人に1人が75歳以上",
+        "生産年齢人口が約62%で最も大きな割合を占める"
+      ]
+    },
+    "latest2025": {
+      "status": "令和7年（2025年）1月末の地区別世帯数・人口データが八千代市公式ホームページで公開",
+      "dataAvailable": "https://www.city.yachiyo.lg.jp/soshiki/14/60268.html",
+      "notes": "Excelファイルで詳細データが入手可能"
+    }
+  },
+
+  "populationProjection": {
+    "method": "国立社会保障・人口問題研究所 2023年12月公表",
+    "trend": "2035年頃まで人口増加が続き、その後緩やかに減少",
+    "projections": [
+      {
+        "year": 2020,
+        "totalPopulation": 193000,
+        "elderlyPopulation": 46000,
+        "elderlyRate": 23.8,
+        "notes": "国勢調査実績値ベース"
+      },
+      {
+        "year": 2025,
+        "totalPopulation": 199000,
+        "elderlyPopulation": 53000,
+        "elderlyRate": 26.6,
+        "notes": "推計値"
+      },
+      {
+        "year": 2030,
+        "totalPopulation": 206000,
+        "elderlyPopulation": 62000,
+        "elderlyRate": 30.1,
+        "notes": "推計値"
+      },
+      {
+        "year": 2035,
+        "totalPopulation": 207000,
+        "elderlyPopulation": 68000,
+        "elderlyRate": 32.9,
+        "notes": "人口ピーク予測"
+      },
+      {
+        "year": 2040,
+        "totalPopulation": 206000,
+        "elderlyPopulation": 71000,
+        "elderlyRate": 34.5,
+        "notes": "緩やかな減少傾向"
+      },
+      {
+        "year": 2050,
+        "totalPopulation": 196000,
+        "elderlyPopulation": "データなし",
+        "elderlyRate": "データなし",
+        "notes": "2020年から2050年で約2.0%減少見込み"
+      }
+    ],
+    "characteristics": [
+      "2035年頃まで人口増加が続く数少ない自治体",
+      "東葉高速線沿線（八千代緑が丘・八千代中央）を中心に宅地開発が進行",
+      "高齢化率は2022年25%→2040年34.5%と上昇傾向",
+      "全国的な人口減少傾向とは異なり、当面は人口維持"
+    ]
+  },
+
+  "specialties": [
+    {
+      "name": "八千代の梨",
+      "category": "農産物",
+      "description": "100年以上の栽培歴史を持つ八千代市の代表的特産品。栽培面積61ha。",
+      "varieties": ["幸水（8月上旬〜）", "豊水", "新高", "あきづき"],
+      "sales": "市内約40軒の梨園で直売。2024年9月14日にイオン八千代緑が丘で「やちよの梨食べて見て」イベント開催。",
+      "history": "100年の歴史"
+    },
+    {
+      "name": "春夏にんじん",
+      "category": "農産物",
+      "description": "国の野菜指定産地。栽培面積64ha。",
+      "varieties": ["彩誉", "翔彩"],
+      "season": "春夏（4月〜7月出荷）",
+      "characteristics": "甘みが強く、βカロテンが豊富"
+    },
+    {
+      "name": "コシヒカリ（米）",
+      "category": "農産物",
+      "description": "生産されたお米のほとんどはJAを通して八千代市内の学校給食へ出荷"
+    },
+    {
+      "name": "酪農製品",
+      "category": "農産物",
+      "description": "道の駅には八千代市産の牛乳を使ったジェラートなども販売"
+    },
+    {
+      "name": "源右衛門鍋",
+      "category": "食品",
+      "description": "ニッポン全国鍋グランプリで殿堂入りした郷土料理。地元の野菜と豚肉を使用し、味噌ベースのスープが特徴。"
+    },
+    {
+      "name": "八千代桜（純米酒）",
+      "category": "食品",
+      "description": "地元の酒蔵「寺田本家」が醸造する特別純米酒。オーガニック・自然酒として全国的に有名。"
+    }
+  ],
+
+  "traffic": {
+    "mainRoads": [
+      {
+        "name": "国道16号（東京環状）",
+        "description": "八千代市を南北に縦断する主要幹線道路。白井市、船橋市方面へ接続。",
+        "congestion": "勝田台〜横戸町付近で慢性的な渋滞。特に朝夕のラッシュ時は激しく混雑。",
+        "issues": "井野交差点と上志津入口交差点が主要渋滞箇所。右折車線が短いか無いため車両の流れが滞る。"
+      },
+      {
+        "name": "国道296号（成田街道）",
+        "description": "八千代市を東西に横断する主要幹線道路。",
+        "congestion": "下市場〜工団地入口付近、新木戸交差点、中野木などで渋滞が多発。",
+        "issues": "印旛郡酒々井町以西は交通量が多く渋滞が頻繁に発生。八千代市下市場で国道16号と交差。"
+      },
+      {
+        "name": "県道4号（千葉竜ケ崎線）",
+        "description": "千葉県道の主要路線"
+      },
+      {
+        "name": "八千代バイパス",
+        "description": "佐倉市上座〜八千代市米本を結ぶバイパス道路",
+        "status": "計画中",
+        "openingYear": 2028,
+        "notes": "2028年度開通予定。渋滞緩和が期待される。"
+      }
+    ],
+    "congestionTime": [
+      "朝の通勤時間帯（7:00〜9:00）",
+      "夕方の帰宅時間帯（17:00〜19:00）"
+    ],
+    "congestionAreas": [
+      "国道16号：勝田台〜横戸町付近",
+      "国道296号：下市場、工団地入口、新木戸交差点、実籾街道入口、中野木、成田街道入口",
+      "八千代緑が丘駅周辺：商業施設の影響で休日は混雑"
+    ],
+    "railwayAccess": {
+      "lines": [
+        {
+          "name": "東葉高速線",
+          "stations": ["八千代緑が丘駅", "八千代中央駅"],
+          "access": "西船橋駅まで約15分、東京メトロ東西線直通で大手町駅まで約40分"
+        },
+        {
+          "name": "京成線",
+          "stations": ["勝田台駅"],
+          "access": "京成上野駅まで約40分、成田空港へ約50分"
+        }
+      ],
+      "characteristics": "東葉高速線開通（1996年）以降、沿線エリアが急速に発展"
+    }
+  },
+
+  "healthcare": {
+    "communityComprehensiveSupportCenters": {
+      "count": 6,
+      "establishedDate": "2006年4月（平成18年4月）",
+      "centers": [
+        {
+          "name": "大和田地域包括支援センター",
+          "area": "大和田、萱田、萱田町、ゆりのき台、大和田新田の一部"
+        },
+        {
+          "name": "八千代台地域包括支援センター",
+          "operator": "社会福祉法人六親会"
+        },
+        {
+          "name": "勝田台地域包括支援センター",
+          "operator": "社会福祉法人翠燿会グリーンヒル"
+        },
+        {
+          "name": "高津・緑が丘地域包括支援センター",
+          "operator": "社会福祉法人清明会"
+        },
+        {
+          "name": "阿蘇・睦地域包括支援センター"
+        },
+        {
+          "name": "村上地域包括支援センター（推定）"
+        }
+      ]
+    },
+    "homeNursingStations": {
+      "count": "約20〜28箇所",
+      "source": "安心介護紹介センター掲載数28件（2024年時点）",
+      "notes": [
+        "正確な公式統計は八千代市役所長寿支援課または介護サービス情報公表システムで確認可能",
+        "個別の訪問看護ステーション名として、大和田訪問看護ステーション、八千代訪問看護ステーションなどが確認される"
+      ]
+    },
+    "majorHospitals": [
+      {
+        "name": "東京女子医科大学八千代医療センター",
+        "location": "八千代市大和田新田477-96",
+        "type": "総合病院",
+        "features": ["救急医療", "周産期医療センター"],
+        "role": "中核医療機関"
+      },
+      {
+        "name": "新八千代病院",
+        "type": "回復期リハビリテーション病院",
+        "beds": 295,
+        "features": ["在宅時の緊急入院", "回復のためのリハビリテーション", "長期の入院療養"],
+        "operator": "医療法人財団新和会"
+      },
+      {
+        "name": "島田台総合病院",
+        "features": ["土曜・日曜診療", "内科", "整形外科", "外科", "脳外科"]
+      },
+      {
+        "name": "八千代リハビリテーション病院",
+        "type": "リハビリテーション専門病院"
+      }
+    ],
+    "medicalAssociation": {
+      "name": "八千代市医師会",
+      "services": [
+        "医療機関検索（アイウエオ順・地域別・診療科目別）",
+        "夜間・休日診療情報",
+        "健康情報提供"
+      ],
+      "url": "http://www.yachiyo-med.or.jp/"
+    }
+  },
+
+  "elderlyWelfareServices": {
+    "longTermCarePlan": {
+      "name": "八千代市高齢者保健福祉計画（第9期介護保険事業計画）",
+      "period": "令和6年度〜令和8年度（2024〜2026年度）",
+      "adoptionDate": "2024年3月策定",
+      "targetYear": 2060
+    },
+    "longTermCareInsurance": {
+      "premiumIncrease": "第9期の介護保険料基準額は第8期から約9%増",
+      "benefitReduction": [
+        "利用者負担額の減免制度",
+        "社会福祉法人等による利用者負担額軽減制度（施設サービスの利用）"
+      ],
+      "eligibility": "40歳以上が加入対象。介護保険料を納めることで、費用の一部負担で介護サービスを受けられる。"
+    },
+    "supportPrograms": [
+      "八千代市在宅医療・介護連携支援センター",
+      "認知症初期集中支援チーム",
+      "地域包括支援センターによる高齢者総合相談（無料）"
+    ],
+    "contactDepartment": {
+      "name": "八千代市健康福祉部長寿支援課",
+      "url": "https://www.city.yachiyo.lg.jp/soshiki/24/"
+    }
+  },
+
+  "keyCharacteristics": [
+    "2035年頃まで人口増加が続く見込み（千葉県内で数少ない）",
+    "東葉高速線沿線（八千代緑が丘・八千代中央）の発展が著しい",
+    "梨栽培100年以上の歴史を持つ農業都市",
+    "道の駅やちよ（農産物直売・レストラン）",
+    "京成バラ園（1,600品種1万株のバラ園）",
+    "新川沿いの自然環境が豊か",
+    "ファミリー層に人気の住宅地",
+    "東京メトロ東西線直通で都心アクセス良好",
+    "国道16号・296号による広域道路網"
+  ],
+
+  "sources": [
+    {
+      "title": "八千代市人口ビジョン（令和5年改訂版）",
+      "url": "https://www.city.yachiyo.lg.jp/uploaded/attachment/21578.pdf",
+      "date": "2023年3月"
+    },
+    {
+      "title": "八千代市公式ホームページ 各種統計データ",
+      "url": "https://www.city.yachiyo.lg.jp/soshiki/7/1998.html"
+    },
+    {
+      "title": "八千代市公式ホームページ 地域包括支援センター",
+      "url": "https://www.city.yachiyo.lg.jp/soshiki/97/30435.html"
+    },
+    {
+      "title": "JA八千代市 やちよの農産物",
+      "url": "http://www.ja-yachiyo.or.jp/smf/yachiyo_nousanbutu.html"
+    },
+    {
+      "title": "八千代市梨業組合（公式サイト）",
+      "url": "https://yachiyo-chiba.mypl.net/article/pear_yachiyo"
+    },
+    {
+      "title": "国道296号 最新渋滞情報",
+      "url": "https://delay.fteinfo.com/road/10/r-296/"
+    },
+    {
+      "title": "八千代市 介護保険",
+      "url": "https://www.city.yachiyo.lg.jp/life/1/2/14/"
+    },
+    {
+      "title": "国立社会保障・人口問題研究所 将来推計人口",
+      "url": "https://www.ipss.go.jp/pp-shicyoson/j/shicyoson23/t-page.asp",
+      "date": "2023年12月公表"
+    }
+  ],
+
+  "dataCollectionDate": "2025年2月14日",
+  "researcher": "Claude Code (Sonnet 4.5)",
+  "notes": [
+    "人口推計データは国立社会保障・人口問題研究所2023年12月公表版を参照",
+    "2024年1月1日時点の人口は外国人を含む205,748人",
+    "訪問看護ステーション数は複数データソースを参照したが、公式統計は要確認",
+    "八千代市は2035年頃まで人口増加が続く数少ない自治体として注目",
+    "高齢化率は2024年24.8%→2040年34.5%と上昇見込み"
+  ]
+}

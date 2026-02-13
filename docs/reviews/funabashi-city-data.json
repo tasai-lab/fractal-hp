@@ -1,0 +1,512 @@
+{
+  "city": "船橋市",
+  "prefecture": "千葉県",
+  "lastUpdated": "2025-02-14",
+  "dataSources": {
+    "population": "船橋市公式ホームページ、国立社会保障・人口問題研究所",
+    "medical": "船橋市在宅医療支援拠点 ふなぽーと",
+    "welfare": "船橋市介護保険・高齢者福祉ガイド（令和6年度版）"
+  },
+
+  "population": {
+    "current": {
+      "year": 2025,
+      "month": 12,
+      "total": 652365,
+      "japanese": 626039,
+      "foreign": 26326,
+      "male": 328576,
+      "female": 323789,
+      "note": "住民基本台帳に基づく2025年12月時点のデータ"
+    },
+
+    "ageStructure2020": {
+      "year": 2020,
+      "source": "2020年国勢調査",
+      "total": 642907,
+      "youth": {
+        "population": 81000,
+        "percentage": 12.6,
+        "note": "0-14歳"
+      },
+      "workingAge": {
+        "population": 397000,
+        "percentage": 61.8,
+        "note": "15-64歳"
+      },
+      "elderly": {
+        "population": 153000,
+        "percentage": 24.3,
+        "note": "65歳以上"
+      },
+      "elderlyDetail": {
+        "youngElderly": {
+          "population": 156165,
+          "note": "前期高齢者（65-74歳）含む"
+        }
+      }
+    },
+
+    "projections": [
+      {
+        "year": 2020,
+        "total": 643000,
+        "youth": 81000,
+        "workingAge": 397000,
+        "elderly": 153000,
+        "elderlyRate": 24.3,
+        "source": "基準年（国勢調査）"
+      },
+      {
+        "year": 2025,
+        "total": 654810,
+        "youth": 81000,
+        "workingAge": 406000,
+        "elderly": 158361,
+        "elderlyRate": 24.2,
+        "elderlyDetail": {
+          "youngElderly": 60693,
+          "oldElderly": 97668
+        },
+        "source": "日本の市町村別将来推計人口（2023年12月推計）"
+      },
+      {
+        "year": 2030,
+        "total": 659308,
+        "youth": 72000,
+        "workingAge": 423000,
+        "elderly": 164094,
+        "elderlyRate": 24.9,
+        "elderlyDetail": {
+          "youngElderly": 64562,
+          "oldElderly": 99532
+        },
+        "source": "日本の市町村別将来推計人口（2023年12月推計）"
+      },
+      {
+        "year": 2035,
+        "total": 660381,
+        "youth": 72000,
+        "workingAge": 413000,
+        "elderly": 175880,
+        "elderlyRate": 26.6,
+        "elderlyDetail": {
+          "youngElderly": 79654,
+          "oldElderly": 96226
+        },
+        "source": "日本の市町村別将来推計人口（2023年12月推計）"
+      },
+      {
+        "year": 2040,
+        "total": 659063,
+        "youth": 73000,
+        "workingAge": 394000,
+        "elderly": 192000,
+        "elderlyRate": 29.2,
+        "source": "日本の市町村別将来推計人口（2023年12月推計）"
+      },
+      {
+        "year": 2045,
+        "total": 656259,
+        "youth": 72000,
+        "workingAge": 383000,
+        "elderly": 201000,
+        "elderlyRate": 30.6,
+        "source": "日本の市町村別将来推計人口（2023年12月推計）"
+      }
+    ],
+
+    "trends": {
+      "summary": "船橋市は2030年頃にピーク（約66万人）を迎え、その後緩やかに減少。高齢化率は2020年の24.3%から2040年には29.2%、2045年には30.6%へ上昇",
+      "keyPoints": [
+        "2020-2050年で人口は約1.4%増加の見込み（約65万人規模を維持）",
+        "年少人口（0-14歳）は減少傾向",
+        "生産年齢人口（15-64歳）は2030年頃まで増加後、減少に転じる",
+        "高齢者人口（65歳以上）は一貫して増加し続ける",
+        "2035年以降、後期高齢者（75歳以上）の割合が増加"
+      ]
+    }
+  },
+
+  "specialties": {
+    "agricultural": [
+      {
+        "name": "船橋にんじん",
+        "category": "農産物",
+        "description": "平成25年1月に特許庁から地域団体商標の認可を受けた春人参。北部地域を中心に栽培",
+        "certification": "地域団体商標"
+      },
+      {
+        "name": "小松菜",
+        "category": "農産物",
+        "description": "西船地区で盛んに生産。ハウス栽培と露地栽培を組み合わせて周年栽培で一年中出荷。根つきのまま販売することが特徴",
+        "production": "周年"
+      },
+      {
+        "name": "船橋のなし",
+        "category": "農産物",
+        "description": "贈答用として用いられる機会が多く、大玉で高品質な梨を生産",
+        "characteristics": "大玉、高品質"
+      },
+      {
+        "name": "枝豆",
+        "category": "農産物",
+        "description": "生産が盛んな農産物の一つ"
+      }
+    ],
+
+    "fishery": [
+      {
+        "name": "海苔",
+        "category": "水産物",
+        "description": "三番瀬産の海苔は船橋の代表的な水産物。焼海苔として加工されることが多い"
+      },
+      {
+        "name": "コノシロ",
+        "category": "水産物",
+        "description": "漁獲量日本一の新名物",
+        "distinction": "日本一の漁獲量"
+      },
+      {
+        "name": "スズキ",
+        "category": "水産物",
+        "description": "盛んに漁獲される代表的な魚"
+      },
+      {
+        "name": "ホンビノス貝",
+        "category": "水産物",
+        "description": "三番瀬で獲れる二枚貝。佃煮などに加工される"
+      }
+    ],
+
+    "processed": [
+      {
+        "name": "ふなばしセレクション",
+        "category": "認証品",
+        "description": "船橋市が認証する地域ブランド商品",
+        "count": 37,
+        "breakdown": {
+          "food": 28,
+          "industrial": 9
+        },
+        "examples": [
+          "うなぎ沢煮",
+          "御菜浦生のり佃煮",
+          "小松菜パウダー",
+          "船橋三番瀬海苔 焼海苔",
+          "船橋三番瀬最中",
+          "にんじんドレッシング",
+          "日本一のクラムチャウダー",
+          "ボーソーの米油",
+          "コンフィチュール「梨っ娘」"
+        ]
+      }
+    ],
+
+    "history": {
+      "note": "江戸時代に徳川家へ魚や貝を献上するなど、船橋は古くから漁場として栄えた歴史を持つ"
+    }
+  },
+
+  "transportation": {
+    "majorRoads": [
+      {
+        "name": "国道14号（千葉街道）",
+        "type": "国道",
+        "characteristics": "片側1車線の構造で渋滞が常態化。船橋駅周辺では特に混雑が顕著",
+        "congestion": {
+          "severity": "高",
+          "peakTimes": ["朝の通勤時間帯（7-9時）", "夕方の通勤時間帯（17-19時）", "休日の昼間（12-15時）"],
+          "hotspots": ["船橋駅周辺", "津田沼駅周辺", "ショッピングモールへのアクセス道路"]
+        }
+      },
+      {
+        "name": "国道357号（湾岸道路・東京湾岸道路）",
+        "type": "国道",
+        "description": "千葉市中央区から横須賀市に至る幹線道路。京葉工業地域の重交通を担う",
+        "improvement": "東京方面行きを2車線から3車線へ拡幅工事が進行中（2024年時点）"
+      }
+    ],
+
+    "railways": [
+      {
+        "name": "JR総武線",
+        "type": "JR",
+        "stations": ["船橋駅", "西船橋駅", "東船橋駅"]
+      },
+      {
+        "name": "JR京葉線",
+        "type": "JR",
+        "stations": ["西船橋駅", "南船橋駅"]
+      },
+      {
+        "name": "JR武蔵野線",
+        "type": "JR",
+        "stations": ["西船橋駅", "船橋法典駅"]
+      },
+      {
+        "name": "京成本線",
+        "type": "私鉄",
+        "operator": "京成電鉄",
+        "stations": ["京成船橋駅", "京成西船駅", "海神駅", "京成中山駅"]
+      },
+      {
+        "name": "新京成線",
+        "type": "私鉄",
+        "operator": "新京成電鉄",
+        "stations": ["京成船橋駅", "新船橋駅", "前原駅", "習志野駅", "北習志野駅", "高根公団駅", "高根木戸駅", "滝不動駅", "三咲駅", "二和向台駅", "鎌ヶ谷大仏駅"]
+      },
+      {
+        "name": "東葉高速線",
+        "type": "私鉄",
+        "operator": "東葉高速鉄道",
+        "stations": ["西船橋駅", "東海神駅", "飯山満駅", "北習志野駅", "船橋日大前駅"]
+      },
+      {
+        "name": "東武野田線（東武アーバンパークライン）",
+        "type": "私鉄",
+        "operator": "東武鉄道",
+        "stations": ["船橋駅", "新船橋駅", "塚田駅", "馬込沢駅"]
+      },
+      {
+        "name": "北総線",
+        "type": "私鉄",
+        "operator": "北総鉄道",
+        "stations": ["小室駅", "白井駅"]
+      },
+      {
+        "name": "東京メトロ東西線",
+        "type": "地下鉄",
+        "operator": "東京メトロ",
+        "note": "西船橋駅で乗り入れ"
+      }
+    ],
+
+    "characteristics": {
+      "position": "東京湾岸地域の重要な交通ハブ",
+      "issues": [
+        "国道14号沿いの慢性的な渋滞",
+        "車線が少ないうえに信号が多く、交通量の増加に対応しきれない構造",
+        "朝夕の通勤時間帯と休日の昼間に混雑が集中"
+      ],
+      "trafficInfo": "GoogleマップやYahoo!地図のリアルタイム渋滞情報で確認可能"
+    }
+  },
+
+  "medicalAndWelfare": {
+    "majorHospitals": [
+      {
+        "name": "船橋市立医療センター",
+        "type": "公立総合病院",
+        "address": "千葉県船橋市金杉1-21-1",
+        "access": "塚田駅から徒歩圏内",
+        "established": 1983,
+        "specialties": ["三次救急医療", "がん治療"],
+        "role": "市の中核病院"
+      },
+      {
+        "name": "JCHO船橋中央病院（船橋中央病院）",
+        "type": "総合病院",
+        "address": "千葉県船橋市海神6丁目13-10",
+        "operator": "地域医療機能推進機構（JCHO）"
+      },
+      {
+        "name": "船橋総合病院",
+        "type": "総合病院",
+        "operator": "医療法人社団協友会",
+        "location": "新船橋駅付近",
+        "specialties": ["泌尿器科", "神経内科", "呼吸器内科", "消化器内科"]
+      },
+      {
+        "name": "セコメディック病院",
+        "type": "総合病院",
+        "address": "千葉県船橋市豊富町696-1"
+      },
+      {
+        "name": "北習志野メディカルプラザ",
+        "type": "医療施設",
+        "address": "千葉県船橋市習志野台1-38"
+      }
+    ],
+
+    "communitySupportCenters": {
+      "name": "地域包括支援センター",
+      "count": 14,
+      "cooperativeOrganizations": {
+        "name": "在宅介護支援センター（協働機関）",
+        "count": 15
+      },
+      "role": "高齢者の総合相談窓口、介護予防、地域包括ケアシステムの中核"
+    },
+
+    "visitingNurse": {
+      "name": "訪問看護ステーション",
+      "count": 70,
+      "lastUpdated": "2024年",
+      "source": "船橋市在宅医療支援拠点 ふなぽーと",
+      "distribution": {
+        "south": 19,
+        "west": 17,
+        "central": 6,
+        "east": 21,
+        "north": 7
+      },
+      "characteristics": [
+        "精神科対応可能な事業所あり",
+        "小児対応可能な事業所あり",
+        "ターミナルケア対応可能な事業所あり",
+        "24時間対応可能な事業所あり"
+      ],
+      "supportHub": {
+        "name": "船橋市在宅医療支援拠点「ふなぽーと」",
+        "role": "訪問看護ステーション情報の提供、医療と介護の連携支援"
+      }
+    }
+  },
+
+  "elderlyCareServices": {
+    "overview": {
+      "guideName": "介護保険・高齢者福祉ガイド（令和6年度版）",
+      "availability": "介護保険課、高齢者福祉課、船橋駅前総合窓口センターで配布",
+      "onlineAccess": "船橋市公式ホームページでPDF閲覧可能"
+    },
+
+    "communityIntegratedSupportProject": {
+      "name": "介護予防・日常生活支援総合事業（総合事業）",
+      "purpose": "地域全体で高齢者を支える「地域包括ケアシステム」の構築",
+      "features": [
+        "基本チェックリストによる「事業対象者」判定で要介護認定手続きを省略可能",
+        "訪問型・通所型サービスの迅速な利用開始が可能",
+        "サービス内容を限定することで負担額を抑えた新サービスの創設",
+        "利用者の多様なニーズに合わせたサービス提供"
+      ]
+    },
+
+    "services": {
+      "visitingCare": {
+        "name": "訪問型サービス",
+        "previousName": "介護予防訪問介護（ホームヘルプサービス）",
+        "eligibility": ["要支援1・2の認定を受けた方", "事業対象者"]
+      },
+      "dayCare": {
+        "name": "通所型サービス",
+        "previousName": "介護予防通所介護（デイサービス）",
+        "eligibility": ["要支援1・2の認定を受けた方", "事業対象者"]
+      },
+      "homeWelfareServices": {
+        "name": "在宅福祉サービス",
+        "types": ["配食サービス", "緊急通報装置の貸与", "福祉用具の貸与"]
+      }
+    },
+
+    "communitySupport": {
+      "name": "地域の助け合い支援",
+      "activities": [
+        "避難行動要支援者への支援体制づくり",
+        "子ども食堂の支援",
+        "移動販売の支援",
+        "地域福祉活動の推進"
+      ]
+    },
+
+    "organizationSupport": {
+      "name": "船橋市生きがい福祉事業団",
+      "role": "高齢者の生きがいづくりと社会参加の支援"
+    },
+
+    "careInsurance": {
+      "serviceFlow": {
+        "forCareLevel1to5": {
+          "eligibility": "要介護1～5の認定を受けた方",
+          "coordinator": "居宅介護支援事業者のケアマネジャー",
+          "freedom": "利用者が事業所を自由に選択可能"
+        },
+        "forSupportLevel1to2": {
+          "eligibility": "要支援1～2の認定を受けた方",
+          "coordinator": "地域包括支援センター（各地域担当）"
+        }
+      }
+    }
+  },
+
+  "additionalInfo": {
+    "ranking": {
+      "populationRank": "千葉県内第2位（千葉市に次ぐ）",
+      "nationalRank": "中核市級の人口規模"
+    },
+
+    "features": [
+      "東京都心へのアクセスが良好（都心まで約30分）",
+      "商業施設が充実（ららぽーとTOKYO-BAY、イケア等）",
+      "教育機関が多数（市立船橋高校は全国的に有名）",
+      "三番瀬など自然環境も保全"
+    ],
+
+    "challenges": [
+      "交通渋滞の慢性化",
+      "高齢化率の上昇（2040年には29.2%）",
+      "生産年齢人口の減少（2035年以降顕著）",
+      "医療・介護需要の増加"
+    ],
+
+    "opportunities": [
+      "人口規模の維持（2050年まで約65万人を維持見込み）",
+      "多様な交通網による利便性",
+      "訪問看護ステーションの充実（70事業所）",
+      "地域包括ケアシステムの構築推進"
+    ]
+  },
+
+  "references": [
+    {
+      "title": "人口統計資料",
+      "source": "船橋市公式ホームページ",
+      "url": "https://www.city.funabashi.lg.jp/shisei/toukei/003/index.html"
+    },
+    {
+      "title": "住民基本台帳人口",
+      "source": "船橋市公式ホームページ",
+      "url": "https://www.city.funabashi.lg.jp/shisei/toukei/003/p024069.html"
+    },
+    {
+      "title": "日本の地域別将来推計人口（令和5年推計）",
+      "source": "国立社会保障・人口問題研究所",
+      "url": "https://www.ipss.go.jp/pp-shicyoson/j/shicyoson23/t-page.asp"
+    },
+    {
+      "title": "船橋のブランド農産物の紹介",
+      "source": "船橋市公式ホームページ",
+      "url": "https://www.city.funabashi.lg.jp/jigyou/nousuisan/001/p110002.html"
+    },
+    {
+      "title": "ふなばしセレクション歴代認証品",
+      "source": "船橋市公式ホームページ",
+      "url": "https://www.city.funabashi.lg.jp/funabashistyle/jp/005/p044474.html"
+    },
+    {
+      "title": "船橋市訪問看護情報",
+      "source": "船橋市在宅医療支援拠点 ふなぽーと",
+      "url": "https://www.funaport.com/visiting-nursing/"
+    },
+    {
+      "title": "船橋市地域包括支援センター",
+      "source": "船橋市公式ホームページ",
+      "url": "https://www.city.funabashi.lg.jp/kenkou/koureisha/001/p004493.html"
+    },
+    {
+      "title": "令和6年度版介護保険・高齢者福祉ガイド",
+      "source": "船橋市公式ホームページ",
+      "url": "https://www.city.funabashi.lg.jp/senior/kaigo/0001/p031306.html"
+    },
+    {
+      "title": "介護予防・日常生活支援総合事業について",
+      "source": "船橋市公式ホームページ",
+      "url": "https://www.city.funabashi.lg.jp/kenkou/kaigo/004/p041299.html"
+    },
+    {
+      "title": "国道357号船橋拡幅工事",
+      "source": "乗りものニュース",
+      "url": "https://trafficnews.jp/post/125801"
+    }
+  ]
+}

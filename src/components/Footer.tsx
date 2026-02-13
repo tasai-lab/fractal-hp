@@ -61,7 +61,7 @@ export default function Footer() {
 
           {/* 対応エリア（SEO内部リンク） */}
           <div>
-            <h3 className="font-bold mb-3 md:mb-4 text-lg md:text-xl">対応エリア</h3>
+            <h3 className="font-bold mb-3 md:mb-4 text-lg md:text-xl">訪問エリア</h3>
             <nav className="flex flex-col gap-2 text-sm md:text-base">
               {regionalData.map((area) => (
                 <Link
@@ -69,7 +69,7 @@ export default function Footer() {
                   href={`/areas/${area.slug}`}
                   className="opacity-90 hover:opacity-100 hover:underline transition-opacity"
                 >
-                  {area.name}の地域情報
+                  {area.name}
                 </Link>
               ))}
             </nav>

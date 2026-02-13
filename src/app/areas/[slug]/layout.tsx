@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { serviceAreas, getServiceAreaBySlug } from "@/lib/service-areas";
+import { regionalData, getRegionalDataBySlug } from "@/lib/regional-data";
 import {
   BreadcrumbStructuredData,
   AreaFAQStructuredData,
@@ -57,7 +57,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }> | { slug: string };
 }): Promise<Metadata> {
   const resolvedParams = await Promise.resolve(params);
-  const area = getServiceAreaBySlug(resolvedParams.slug);
+  const area = getRegionalDataBySlug(resolvedParams.slug);
 
   if (!area) {
     return {
@@ -96,7 +96,7 @@ export async function generateMetadata({
 }
 
 export function generateStaticParams() {
-  return serviceAreas.map((area) => ({
+  return regionalData.map((area) => ({
     slug: area.slug,
   }));
 }
@@ -109,7 +109,7 @@ export default async function AreaLayout({
   params: Promise<{ slug: string }> | { slug: string };
 }) {
   const resolvedParams = await Promise.resolve(params);
-  const area = getServiceAreaBySlug(resolvedParams.slug);
+  const area = getRegionalDataBySlug(resolvedParams.slug);
 
   if (!area) {
     notFound();

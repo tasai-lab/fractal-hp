@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { navLinks, mobileMenuItems, otherMenuCategories } from "@/lib/data";
-import { Instagram, Home, Building2, Phone, Users, Menu, X, FileText, LucideIcon } from "lucide-react";
+import { Instagram, Home, Building2, Phone, Users, Menu, X, FileText, ChevronDown, LucideIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -17,6 +17,7 @@ const iconMap: { [key: string]: LucideIcon } = {
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAreaDropdownOpen, setIsAreaDropdownOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -24,6 +25,14 @@ export default function Header() {
 
   const closeMenu = () => {
     setIsMenuOpen(false);
+  };
+
+  const toggleAreaDropdown = () => {
+    setIsAreaDropdownOpen(!isAreaDropdownOpen);
+  };
+
+  const closeAreaDropdown = () => {
+    setIsAreaDropdownOpen(false);
   };
 
   return (
@@ -53,7 +62,42 @@ export default function Header() {
             {/* デスクトップナビゲーション */}
             <nav className="hidden lg:flex items-center space-x-6">
               {navLinks.map((link) =>
-                link.href.startsWith("#") ? (
+                link.label === "対応エリア" ? (
+                  <div
+                    key={link.href}
+                    className="relative"
+                    onMouseEnter={() => setIsAreaDropdownOpen(true)}
+                    onMouseLeave={() => setIsAreaDropdownOpen(false)}
+                  >
+                    <button
+                      onClick={toggleAreaDropdown}
+                      className="flex items-center gap-1 text-base text-[var(--color-primary)] hover:text-[var(--color-accent-blue)] transition-colors duration-200 py-2"
+                    >
+                      {link.label}
+                      <ChevronDown
+                        className={`w-4 h-4 transition-transform duration-200 ${
+                          isAreaDropdownOpen ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                    {isAreaDropdownOpen && (
+                      <div className="absolute top-full left-0 pt-1 z-50">
+                        <div className="bg-white rounded-lg shadow-lg border border-gray-100 py-2 min-w-[160px]">
+                          {otherMenuCategories.areas.items.map((item) => (
+                            <Link
+                              key={item.href}
+                              href={item.href}
+                              onClick={closeAreaDropdown}
+                              className="block px-4 py-2 text-sm text-[var(--color-primary)] hover:bg-amber-50 hover:text-[var(--color-accent-blue)] transition-colors"
+                            >
+                              {item.label}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ) : link.href.startsWith("#") ? (
                   <a
                     key={link.href}
                     href={link.href}
