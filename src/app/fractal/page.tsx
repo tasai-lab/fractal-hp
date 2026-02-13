@@ -471,19 +471,24 @@ export default function FractalPage() {
         }
       `}</style>
 
-      {/* 固定背景のフラクタルパターン */}
+      {/* 固定背景のフラクタルパターン - 画面上部中央に大きく配置 */}
       <div
-        className="fixed inset-0 flex items-center justify-center pointer-events-none z-0"
+        className="fixed pointer-events-none z-0"
         style={{
-          top: '50%',
+          top: '0',
           left: '50%',
-          transform: 'translate(-50%, -50%)',
+          transform: 'translateX(-50%)',
+          width: '150vw',
+          height: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
         <SierpinskiTriangle
           depth={6}
           size={800}
-          className="text-[var(--color-logo-light-green)] w-[150vw] max-w-none opacity-40"
+          className="text-[var(--color-logo-light-green)] w-full max-w-none"
         />
       </div>
 
@@ -493,7 +498,7 @@ export default function FractalPage() {
           ref={heroRef}
           className="relative min-h-screen flex items-center justify-center overflow-hidden"
           style={{
-            background: 'linear-gradient(180deg, rgba(var(--color-paper-rgb, 252, 250, 245), 0.85) 0%, rgba(240, 247, 244, 0.9) 50%, rgba(255, 255, 255, 0.95) 100%)',
+            background: 'linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.7) 100%)',
           }}
         >
 
