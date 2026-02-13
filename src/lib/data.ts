@@ -212,7 +212,7 @@ export const staffMembers = [
     hobbies: "筋トレ・散歩、読書",
     introduction:
       "千葉市の訪問看護ステーションで管理者・訪問業務は6年目となります。美味しいもの探しも趣味で、最近はタコス作りにハマっています！ハローワールド！ハロータコチューズデイ！",
-    image: "/images/staff/furuya.png",
+    image: "/images/staff/furuya.webp",
   },
   {
     name: "髙山 里美",
@@ -222,7 +222,7 @@ export const staffMembers = [
     hobbies: "LIVE遠征",
     introduction:
       "前職は手術室に勤務していたこともあり刺激的なことが大好き！好きな手術はTKA(人工膝関節置換術)です。",
-    image: "/images/staff/takayama.png",
+    image: "/images/staff/takayama.webp",
   },
   {
     name: "浅井 拓哉",
@@ -232,7 +232,7 @@ export const staffMembers = [
     hobbies: "美味しいご飯を作る、食べる。",
     introduction:
       "新しいものが好きで、常に何かを考えています。雨と不便が嫌いで、何事も工夫してブラッシュアップしていく人生なんだと思います。永遠と終わりなき道を彷徨ってますね、ええ。",
-    image: "/images/staff/asai.png",
+    image: "/images/staff/asai.webp",
   },
   {
     name: "祝迫 萌々",
@@ -242,7 +242,7 @@ export const staffMembers = [
     hobbies: "映画・アニメ鑑賞、猫を眺める",
     introduction:
       "フラクタルのなんでも屋です。直近まで人事労務のアドバイザーとして勤務しておりました。労務関係のご相談があればお気軽に聞いてください。",
-    image: "/images/staff/iwaizako.png",
+    image: "/images/staff/iwaizako.webp",
   },
 ];
 

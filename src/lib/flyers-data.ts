@@ -17,8 +17,8 @@ export interface Flyer {
 
 // チラシ一覧（新しい順）
 // 画像は /public/images/flyers/ に配置
-// ファイル名規則: {年月}_{種類}_front.png / {年月}_{種類}_back.png
-// 例: 202412_newspaper_front.png, 202412_newspaper_back.png
+// ファイル名規則: {年月}_{種類}_front.webp / {年月}_{種類}_back.webp
+// 例: 202412_newspaper_front.webp, 202412_newspaper_back.webp
 export const flyers: Flyer[] = [
   // 2025年（新しい順）
   {
@@ -26,8 +26,8 @@ export const flyers: Flyer[] = [
     type: "newspaper",
     title: "地域新聞 2025年12月号",
     date: "2025年12月",
-    frontImage: "/images/flyers/202512_newspaper_front.png",
-    backImage: "/images/flyers/202512_newspaper_back.png",
+    frontImage: "/images/flyers/202512_newspaper_front.webp",
+    backImage: "/images/flyers/202512_newspaper_back.webp",
     orientation: "landscape",
   },
   {
@@ -35,8 +35,8 @@ export const flyers: Flyer[] = [
     type: "newspaper",
     title: "地域新聞 2025年11月号",
     date: "2025年11月",
-    frontImage: "/images/flyers/202511_newspaper_front.png",
-    backImage: "/images/flyers/202511_newspaper_back.png",
+    frontImage: "/images/flyers/202511_newspaper_front.webp",
+    backImage: "/images/flyers/202511_newspaper_back.webp",
     orientation: "portrait",
   },
   {
@@ -44,8 +44,8 @@ export const flyers: Flyer[] = [
     type: "area",
     title: "エリアチラシ 2025年11月",
     date: "2025年11月",
-    frontImage: "/images/flyers/202511_area_front.png",
-    backImage: "/images/flyers/202511_area_back.png",
+    frontImage: "/images/flyers/202511_area_front.webp",
+    backImage: "/images/flyers/202511_area_back.webp",
     orientation: "portrait",
   },
   {
@@ -53,8 +53,8 @@ export const flyers: Flyer[] = [
     type: "newspaper",
     title: "地域新聞 2025年10月号",
     date: "2025年10月",
-    frontImage: "/images/flyers/202510_newspaper_front.png",
-    backImage: "/images/flyers/202510_newspaper_back.png",
+    frontImage: "/images/flyers/202510_newspaper_front.webp",
+    backImage: "/images/flyers/202510_newspaper_back.webp",
     orientation: "portrait",
   },
   {
@@ -62,8 +62,8 @@ export const flyers: Flyer[] = [
     type: "area",
     title: "エリアチラシ 2025年10月",
     date: "2025年10月",
-    frontImage: "/images/flyers/202510_area_front.png",
-    backImage: "/images/flyers/202510_area_back.png",
+    frontImage: "/images/flyers/202510_area_front.webp",
+    backImage: "/images/flyers/202510_area_back.webp",
     orientation: "portrait",
   },
   {
@@ -71,8 +71,8 @@ export const flyers: Flyer[] = [
     type: "area",
     title: "エリアチラシ 2025年8月",
     date: "2025年8月",
-    frontImage: "/images/flyers/202508_area_front.png",
-    backImage: "/images/flyers/202508_area_back.png",
+    frontImage: "/images/flyers/202508_area_front.webp",
+    backImage: "/images/flyers/202508_area_back.webp",
     orientation: "portrait",
   },
   {
@@ -80,8 +80,8 @@ export const flyers: Flyer[] = [
     type: "area",
     title: "エリアチラシ 2025年7月 Vol.2",
     date: "2025年7月",
-    frontImage: "/images/flyers/202507_area2_front.png",
-    backImage: "/images/flyers/202507_area2_back.png",
+    frontImage: "/images/flyers/202507_area2_front.webp",
+    backImage: "/images/flyers/202507_area2_back.webp",
     orientation: "portrait",
   },
   {
@@ -89,8 +89,8 @@ export const flyers: Flyer[] = [
     type: "area",
     title: "エリアチラシ 2025年7月 Vol.1",
     date: "2025年7月",
-    frontImage: "/images/flyers/202507_area1_front.png",
-    backImage: "/images/flyers/202507_area1_back.png",
+    frontImage: "/images/flyers/202507_area1_front.webp",
+    backImage: "/images/flyers/202507_area1_back.webp",
     orientation: "portrait",
   },
   {
@@ -98,8 +98,8 @@ export const flyers: Flyer[] = [
     type: "area",
     title: "エリアチラシ 2025年6月",
     date: "2025年6月",
-    frontImage: "/images/flyers/202506_area_front.png",
-    backImage: "/images/flyers/202506_area_back.png",
+    frontImage: "/images/flyers/202506_area_front.webp",
+    backImage: "/images/flyers/202506_area_back.webp",
     orientation: "portrait",
   },
   {
@@ -107,8 +107,8 @@ export const flyers: Flyer[] = [
     type: "area",
     title: "エリアチラシ 2025年5月",
     date: "2025年5月",
-    frontImage: "/images/flyers/202505_area_front.png",
-    backImage: "/images/flyers/202505_area_back.png",
+    frontImage: "/images/flyers/202505_area_front.webp",
+    backImage: "/images/flyers/202505_area_back.webp",
     orientation: "portrait",
   },
 ];

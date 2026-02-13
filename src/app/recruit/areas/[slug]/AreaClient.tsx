@@ -110,7 +110,7 @@ export default function AreaClient({ area }: { area: RecruitArea }) {
           </FadeIn>
           <FadeIn className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg">
             <Image
-              src="/images/recruit/photos/hero.jpg"
+              src="/images/recruit/photos/hero.webp"
               alt={`${area.name}エリアの訪問看護`}
               fill
               priority
@@ -382,7 +382,7 @@ export default function AreaClient({ area }: { area: RecruitArea }) {
                 </div>
                 <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg bg-white">
                   <Image
-                    src="/images/recruit/labels/contact-photo.jpg"
+                    src="/images/recruit/labels/contact-photo.webp"
                     alt="募集お問い合わせ"
                     fill
                     sizes="(max-width: 1024px) 100vw, 40vw"

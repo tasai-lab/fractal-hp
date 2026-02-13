@@ -119,7 +119,7 @@ export default function Office() {
               {/* 地図（上部） */}
               <div className="relative w-full aspect-[16/9] md:aspect-[2/1]">
                 <Image
-                  src="/images/service-area/area-map.png"
+                  src="/images/service-area/area-map.webp"
                   alt="フラクタル訪問看護 船橋 訪問エリアマップ - 船橋市・習志野市・八千代市・千葉市花見川区"
                   fill
                   className="object-contain"

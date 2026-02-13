@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "optimize:images": "node scripts/optimize-images.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.560.0",
@@ -25,6 +26,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.0.10",
+    "sharp": "^0.33.5",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

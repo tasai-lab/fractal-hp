@@ -109,7 +109,7 @@ export default function JobPageClient({ jobId }: { jobId: string }) {
           </FadeIn>
           <FadeIn className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg">
             <Image
-              src="/images/recruit/photos/hero.jpg"
+              src="/images/recruit/photos/hero.webp"
               alt={`${job.title}の募集`}
               fill
               priority
@@ -170,7 +170,7 @@ export default function JobPageClient({ jobId }: { jobId: string }) {
               </div>
               <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg bg-white">
                 <Image
-                  src="/images/recruit/photos/bonus.jpg"
+                  src="/images/recruit/photos/bonus.webp"
                   alt="入社祝い金のイメージ"
                   fill
                   sizes="(max-width: 1024px) 100vw, 40vw"
@@ -249,7 +249,7 @@ export default function JobPageClient({ jobId }: { jobId: string }) {
                 </div>
                 <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg bg-white">
                   <Image
-                    src="/images/recruit/labels/contact-photo.jpg"
+                    src="/images/recruit/labels/contact-photo.webp"
                     alt="募集お問い合わせ"
                     fill
                     sizes="(max-width: 1024px) 100vw, 40vw"

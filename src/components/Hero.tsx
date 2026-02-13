@@ -8,7 +8,7 @@ export default function Hero() {
     >
       {/* 背景画像 */}
       <Image
-        src="/images/hero/hero-bg.jpg"
+        src="/images/hero/hero-bg.webp"
         alt="フラクタル訪問看護スタッフ"
         fill
         className="object-cover"

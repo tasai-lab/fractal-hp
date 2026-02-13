@@ -146,7 +146,7 @@ export default function RecruitPage() {
           </FadeIn>
           <FadeIn className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg">
             <Image
-              src="/images/recruit/photos/hero.jpg"
+              src="/images/recruit/photos/hero.webp"
               alt="フラクタル訪問看護の現場"
               fill
               priority
@@ -204,7 +204,7 @@ export default function RecruitPage() {
               </div>
               <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg">
                 <Image
-                  src="/images/recruit/photos/bonus.jpg"
+                  src="/images/recruit/photos/bonus.webp"
                   alt="現場の様子"
                   fill
                   sizes="(max-width: 1024px) 100vw, 40vw"
@@ -254,7 +254,7 @@ export default function RecruitPage() {
           <div className="space-y-4">
             <FadeIn className="relative aspect-[16/9] rounded-3xl overflow-hidden shadow-lg bg-white">
               <Image
-                src="/images/recruit/photos/work.jpg"
+                src="/images/recruit/photos/work.webp"
                 alt="働く環境の様子"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -265,7 +265,7 @@ export default function RecruitPage() {
               <p className="text-xs tracking-[0.3em] text-ink-soft">SHIFT EXAMPLE</p>
               <div className="relative aspect-[16/9] rounded-xl overflow-hidden mt-3">
                 <Image
-                  src="/images/recruit/shift-example.png"
+                  src="/images/recruit/shift-example.webp"
                   alt="実際のシフト例"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
@@ -343,7 +343,7 @@ export default function RecruitPage() {
           </FadeIn>
           <FadeIn className="relative aspect-[3/2] rounded-3xl overflow-hidden shadow-lg bg-white mt-6">
             <Image
-              src="/images/recruit/labels/team-title.jpg"
+              src="/images/recruit/labels/team-title.webp"
               alt="一緒に働く仲間"
               fill
               sizes="(max-width: 1024px) 100vw, 80vw"
@@ -397,37 +397,27 @@ export default function RecruitPage() {
                 </span>
               ))}
             </div>
-            <div className="grid md:grid-cols-2 gap-3 mt-4">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 mt-4">
               {recruitAreas.map((area) => (
-                <div
+                <Link
                   key={area.slug}
-                  className="bg-white/80 rounded-2xl border border-white px-4 py-3 text-sm text-ink-soft hover:shadow-md transition"
+                  href={`/areas/${area.slug}`}
+                  className="bg-white/80 rounded-2xl border border-white px-4 py-3 text-sm hover:shadow-md transition group"
                 >
-                  <Link
-                    href={`/recruit/areas/${area.slug}`}
-                    className="group block"
-                  >
-                    <p className="text-[var(--color-olive)] font-semibold">
-                      {area.name}の訪問看護求人
-                    </p>
-                    <p className="text-xs text-ink-soft mt-1">{area.shortCopy}</p>
-                    <p className="text-xs text-[var(--color-olive)] mt-2">
-                      詳しく見る →
-                    </p>
-                  </Link>
-                  <Link
-                    href={`/areas/${area.slug}`}
-                    className="text-xs text-[var(--color-olive)] underline mt-2 inline-block"
-                  >
-                    {area.name}の地域情報を見る
-                  </Link>
-                </div>
+                  <p className="text-[var(--color-olive)] font-semibold group-hover:text-[var(--color-logo-dark-green)]">
+                    {area.name}の地域情報
+                  </p>
+                  <p className="text-xs text-ink-soft mt-1">{area.shortCopy}</p>
+                  <p className="text-xs text-[var(--color-olive)] mt-2 group-hover:underline">
+                    詳しく見る →
+                  </p>
+                </Link>
               ))}
             </div>
           </FadeIn>
           <FadeIn className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg bg-white">
             <Image
-              src="/images/service-area/area-map.png"
+              src="/images/service-area/area-map.webp"
               alt="訪問エリアマップ"
               fill
               sizes="(max-width: 1024px) 100vw, 45vw"
@@ -460,7 +450,7 @@ export default function RecruitPage() {
           </FadeIn>
           <FadeIn className="relative aspect-[3/2] rounded-3xl overflow-hidden shadow-lg bg-[var(--color-paper)]">
             <Image
-              src="/images/recruit/labels/positions-title.png"
+              src="/images/recruit/labels/positions-title.webp"
               alt="募集職種"
               fill
               sizes="(max-width: 1024px) 100vw, 80vw"
@@ -589,7 +579,7 @@ export default function RecruitPage() {
                 </div>
                 <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg bg-white">
                   <Image
-                    src="/images/recruit/labels/contact-photo.jpg"
+                    src="/images/recruit/labels/contact-photo.webp"
                     alt="募集お問い合わせ"
                     fill
                     sizes="(max-width: 1024px) 100vw, 40vw"

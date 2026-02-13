@@ -13,13 +13,13 @@ const mplus1 = M_PLUS_1({
 const zenOldMincho = Zen_Old_Mincho({
   variable: "--font-mincho",
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  weight: ["400"], // 500, 700 削除（未使用）
 });
 
 const notoSansJP = Noto_Sans_JP({
   variable: "--font-noto",
   subsets: ["latin"],
-  weight: ["400", "500", "700", "900"],
+  weight: ["700"], // 400, 500, 900 削除（見出し専用で700のみ使用）
 });
 
 // SEO最適化されたメタデータ（AIレビュー統合版）

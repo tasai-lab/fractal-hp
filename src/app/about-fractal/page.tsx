@@ -1195,7 +1195,7 @@ export default function AboutFractalPage() {
               >
                 <div className="relative aspect-video shadow-lg rounded-lg overflow-hidden border border-slate-200 bg-white">
                   <Image
-                    src={`/images/philosophy/${num}.png`}
+                    src={`/images/philosophy/${num}.webp`}
                     alt={`フラクタル資料 ${num}`}
                     fill
                     className="object-contain"

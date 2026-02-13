@@ -61,7 +61,7 @@ export default function Recruit() {
             <div className="rounded-xl md:rounded-2xl overflow-hidden shadow-sm mb-8 md:mb-12">
               <div className="relative w-full">
                 <Image
-                  src="/images/recruit/recruit-team.png"
+                  src="/images/recruit/recruit-team.webp"
                   alt="フラクタル訪問看護 船橋 スタッフ"
                   width={1200}
                   height={800}
@@ -93,7 +93,7 @@ export default function Recruit() {
                           padding: index === 0 ? '8px 12px' : index === 1 ? '10px 14px' : '12px 16px',
                         }}
                       >
-                        <p className={`text-muted mb-0.5 ${index === 0 ? 'text-sm md:text-base' : index === 1 ? 'text-base md:text-lg' : 'text-lg md:text-xl'}`}>
+                        <p className={`text-primary/70 mb-0.5 ${index === 0 ? 'text-sm md:text-base' : index === 1 ? 'text-base md:text-lg' : 'text-lg md:text-xl'}`}>
                           {milestone.label}
                         </p>
                         <p className={`font-bold text-primary ${index === 0 ? 'text-base md:text-xl' : index === 1 ? 'text-lg md:text-2xl' : 'text-xl md:text-3xl'}`}>
