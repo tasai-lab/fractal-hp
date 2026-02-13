@@ -497,40 +497,7 @@ export default function FractalPage() {
         <section
           ref={heroRef}
           className="relative min-h-screen flex items-center justify-center overflow-hidden"
-          style={{
-            background: 'linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.7) 100%)',
-          }}
         >
-
-          {/* 浮遊する三角形の装飾 */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            {[
-              { top: '10%', left: '5%', size: 60, delay: 0 },
-              { top: '20%', right: '10%', size: 40, delay: 0.5 },
-              { top: '60%', left: '8%', size: 30, delay: 1 },
-              { top: '70%', right: '5%', size: 50, delay: 1.5 },
-              { top: '40%', left: '3%', size: 25, delay: 2 },
-            ].map((tri, i) => (
-              <div
-                key={i}
-                className="absolute text-[var(--color-logo-dark-green)]"
-                style={{
-                  top: tri.top,
-                  left: tri.left,
-                  right: tri.right,
-                  width: tri.size,
-                  height: tri.size,
-                  animation: `float 4s ease-in-out infinite`,
-                  animationDelay: `${tri.delay}s`,
-                  opacity: 0.15,
-                }}
-              >
-                <svg viewBox="0 0 100 87" fill="currentColor">
-                  <polygon points="50,0 100,87 0,87" />
-                </svg>
-              </div>
-            ))}
-          </div>
 
           {/* コンテンツ */}
           <div className="relative z-10 max-w-4xl mx-auto px-4 text-center pt-24">
@@ -565,31 +532,24 @@ export default function FractalPage() {
                 それは、私たちの理念そのものです。
               </span>
             </p>
+          </div>
 
-            {/* スクロールインジケーター */}
-            <div
-              className="absolute bottom-12 left-1/2 -translate-x-1/2"
-              style={{ animation: 'float 2s ease-in-out infinite' }}
-            >
-              <div className="flex flex-col items-center gap-2 text-[var(--color-logo-light-green)]">
-                <span className="text-xs tracking-widest">SCROLL</span>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M12 5v14M5 12l7 7 7-7" />
-                </svg>
-              </div>
+          {/* スクロールインジケーター - セクション基準で配置 */}
+          <div
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
+            style={{ animation: 'float 2s ease-in-out infinite' }}
+          >
+            <div className="flex flex-col items-center gap-2 text-[var(--color-logo-dark-green)]">
+              <span className="text-xs tracking-widest font-medium">SCROLL</span>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M12 5v14M5 12l7 7 7-7" />
+              </svg>
             </div>
           </div>
         </section>
 
         {/* Part 1: フラクタルとは */}
-        <section className="py-24 md:py-32 relative" style={{ background: 'rgba(255, 255, 255, 0.92)' }}>
-          {/* 背景の装飾 */}
-          <div
-            className="absolute top-0 right-0 w-1/3 h-full pointer-events-none"
-            style={{
-              background: 'linear-gradient(270deg, rgba(127, 197, 160, 0.05) 0%, transparent 100%)',
-            }}
-          />
+        <section className="py-24 md:py-32 relative">
 
           <div className="max-w-6xl mx-auto px-4">
             <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center mb-20">
@@ -690,22 +650,7 @@ export default function FractalPage() {
         </section>
 
         {/* Part 2: 私たちのフラクタル */}
-        <section
-          className="py-24 md:py-32 relative overflow-hidden"
-          style={{
-            background: 'linear-gradient(180deg, rgba(240, 247, 244, 0.92) 0%, rgba(255, 255, 255, 0.92) 50%, rgba(255, 254, 245, 0.92) 100%)',
-          }}
-        >
-          {/* 背景の三角形パターン */}
-          <div className="absolute inset-0 pointer-events-none opacity-5">
-            <svg className="w-full h-full" preserveAspectRatio="xMidYMid slice">
-              <pattern id="trianglePattern" x="0" y="0" width="60" height="52" patternUnits="userSpaceOnUse">
-                <polygon points="30,0 60,52 0,52" fill="var(--color-logo-dark-green)" />
-              </pattern>
-              <rect width="100%" height="100%" fill="url(#trianglePattern)" />
-            </svg>
-          </div>
-
+        <section className="py-24 md:py-32 relative overflow-hidden">
           <div className="max-w-6xl mx-auto px-4 relative z-10">
             <div className="text-center mb-16">
               <span
