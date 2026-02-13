@@ -145,7 +145,7 @@ export default function Header() {
             className="bg-white shadow-lg p-4 safe-area-pb max-h-[80vh] overflow-y-auto w-full lg:w-auto lg:max-w-4xl lg:rounded-2xl rounded-t-2xl lg:p-8"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="space-y-6 pb-24 lg:pb-0 lg:grid lg:grid-cols-3 lg:gap-8 lg:space-y-0">
+            <div className="space-y-6 pb-24 lg:pb-0 lg:grid lg:grid-cols-4 lg:gap-8 lg:space-y-0">
               {/* ホーム（ページ内リンク） */}
               <section>
                 <h3 className="text-xs font-bold text-gray-500 mb-2 px-1">{otherMenuCategories.home.title}</h3>
@@ -173,6 +173,23 @@ export default function Header() {
                       href={item.href}
                       onClick={closeMenu}
                       className="flex items-center justify-start p-3 rounded-lg bg-emerald-50 hover:bg-emerald-100 transition-colors text-left"
+                    >
+                      <span className="text-sm font-medium text-[var(--color-primary)]">{item.label}</span>
+                    </Link>
+                  ))}
+                </div>
+              </section>
+
+              {/* 対応エリア */}
+              <section>
+                <h3 className="text-xs font-bold text-gray-500 mb-2 px-1">{otherMenuCategories.areas.title}</h3>
+                <div className="grid grid-cols-1 gap-2">
+                  {otherMenuCategories.areas.items.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={closeMenu}
+                      className="flex items-center justify-start p-3 rounded-lg bg-amber-50 hover:bg-amber-100 transition-colors text-left"
                     >
                       <span className="text-sm font-medium text-[var(--color-primary)]">{item.label}</span>
                     </Link>

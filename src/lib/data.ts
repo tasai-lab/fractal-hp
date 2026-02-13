@@ -35,6 +35,7 @@ export const companyInfo = {
 export const navLinks = [
   { href: "/about-fractal", label: "フラクタルを知る" },
   { href: "#staff", label: "スタッフ紹介" },
+  { href: "/areas/funabashi", label: "対応エリア" },
   { href: "/recruit", label: "採用情報" },
   { href: "/flyers", label: "チラシ" },
   { href: "#company", label: "会社情報" },
@@ -70,6 +71,16 @@ export const otherMenuCategories = {
       { href: "/about-fractal", label: "フラクタルを知る" },
       { href: "/recruit", label: "採用情報" },
       { href: "/flyers", label: "チラシ" },
+    ],
+  },
+  areas: {
+    title: "対応エリア",
+    items: [
+      { href: "/areas/funabashi", label: "船橋市" },
+      { href: "/areas/yachiyo", label: "八千代市" },
+      { href: "/areas/narashino", label: "習志野市" },
+      { href: "/areas/chiba-hanamigawa", label: "千葉市花見川区" },
+      { href: "/areas/chiba-inage", label: "千葉市稲毛区" },
     ],
   },
   external: {
