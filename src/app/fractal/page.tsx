@@ -436,15 +436,6 @@ function CircularFlow() {
 
 export default function FractalPage() {
   const heroRef = useRef<HTMLDivElement>(null);
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   return (
     <>
@@ -480,29 +471,31 @@ export default function FractalPage() {
         }
       `}</style>
 
-      <main className="min-h-screen overflow-hidden">
+      {/* 固定背景のフラクタルパターン */}
+      <div
+        className="fixed inset-0 flex items-center justify-center pointer-events-none z-0"
+        style={{
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+        }}
+      >
+        <SierpinskiTriangle
+          depth={6}
+          size={800}
+          className="text-[var(--color-logo-light-green)] w-[150vw] max-w-none opacity-40"
+        />
+      </div>
+
+      <main className="min-h-screen overflow-hidden relative z-10">
         {/* Hero Section */}
         <section
           ref={heroRef}
           className="relative min-h-screen flex items-center justify-center overflow-hidden"
           style={{
-            background: 'linear-gradient(180deg, var(--color-paper) 0%, #f0f7f4 50%, white 100%)',
+            background: 'linear-gradient(180deg, rgba(var(--color-paper-rgb, 252, 250, 245), 0.85) 0%, rgba(240, 247, 244, 0.9) 50%, rgba(255, 255, 255, 0.95) 100%)',
           }}
         >
-          {/* 背景のフラクタルパターン */}
-          <div
-            className="absolute inset-0 flex items-center justify-center pointer-events-none"
-            style={{
-              transform: `translateY(${scrollY * 0.3}px) scale(${1 + scrollY * 0.0005})`,
-              opacity: Math.max(0, 1 - scrollY * 0.002),
-            }}
-          >
-            <SierpinskiTriangle
-              depth={6}
-              size={800}
-              className="text-[var(--color-logo-light-green)] w-[150vw] max-w-none"
-            />
-          </div>
 
           {/* 浮遊する三角形の装飾 */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -584,7 +577,7 @@ export default function FractalPage() {
         </section>
 
         {/* Part 1: フラクタルとは */}
-        <section className="py-24 md:py-32 bg-white relative">
+        <section className="py-24 md:py-32 relative" style={{ background: 'rgba(255, 255, 255, 0.92)' }}>
           {/* 背景の装飾 */}
           <div
             className="absolute top-0 right-0 w-1/3 h-full pointer-events-none"
@@ -695,7 +688,7 @@ export default function FractalPage() {
         <section
           className="py-24 md:py-32 relative overflow-hidden"
           style={{
-            background: 'linear-gradient(180deg, #f0f7f4 0%, white 50%, #fffef5 100%)',
+            background: 'linear-gradient(180deg, rgba(240, 247, 244, 0.92) 0%, rgba(255, 255, 255, 0.92) 50%, rgba(255, 254, 245, 0.92) 100%)',
           }}
         >
           {/* 背景の三角形パターン */}
