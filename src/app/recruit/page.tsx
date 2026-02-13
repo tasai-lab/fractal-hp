@@ -399,19 +399,29 @@ export default function RecruitPage() {
             </div>
             <div className="grid md:grid-cols-2 gap-3 mt-4">
               {recruitAreas.map((area) => (
-                <Link
+                <div
                   key={area.slug}
-                  href={`/recruit/areas/${area.slug}`}
-                  className="group bg-white/80 rounded-2xl border border-white px-4 py-3 text-sm text-ink-soft hover:shadow-md transition"
+                  className="bg-white/80 rounded-2xl border border-white px-4 py-3 text-sm text-ink-soft hover:shadow-md transition"
                 >
-                  <p className="text-[var(--color-olive)] font-semibold">
-                    {area.name}の訪問看護求人
-                  </p>
-                  <p className="text-xs text-ink-soft mt-1">{area.shortCopy}</p>
-                  <p className="text-xs text-[var(--color-olive)] mt-2">
-                    詳しく見る →
-                  </p>
-                </Link>
+                  <Link
+                    href={`/recruit/areas/${area.slug}`}
+                    className="group block"
+                  >
+                    <p className="text-[var(--color-olive)] font-semibold">
+                      {area.name}の訪問看護求人
+                    </p>
+                    <p className="text-xs text-ink-soft mt-1">{area.shortCopy}</p>
+                    <p className="text-xs text-[var(--color-olive)] mt-2">
+                      詳しく見る →
+                    </p>
+                  </Link>
+                  <Link
+                    href={`/areas/${area.slug}`}
+                    className="text-xs text-[var(--color-olive)] underline mt-2 inline-block"
+                  >
+                    {area.name}の地域情報を見る
+                  </Link>
+                </div>
               ))}
             </div>
           </FadeIn>

@@ -1,5 +1,5 @@
 import { officeInfo, navLinks } from "@/lib/data";
-import { serviceAreas } from "@/lib/service-areas";
+import { regionalData } from "@/lib/regional-data";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -63,13 +63,13 @@ export default function Footer() {
           <div>
             <h3 className="font-bold mb-3 md:mb-4 text-lg md:text-xl">対応エリア</h3>
             <nav className="flex flex-col gap-2 text-sm md:text-base">
-              {serviceAreas.map((area) => (
+              {regionalData.map((area) => (
                 <Link
                   key={area.slug}
                   href={`/areas/${area.slug}`}
                   className="opacity-90 hover:opacity-100 hover:underline transition-opacity"
                 >
-                  {area.name}の訪問看護
+                  {area.name}の地域情報
                 </Link>
               ))}
             </nav>
