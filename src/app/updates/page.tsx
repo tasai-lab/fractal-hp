@@ -90,7 +90,7 @@ export default function UpdatesPage() {
                 />
               </div>
               <p className="text-[var(--color-ink-soft)]">
-                ホームページだってDAPAEで成長してるよ
+                ホームページだってDAPAEで成長してるよ <span className="text-xs">by ジョニー</span>
               </p>
             </div>
           </div>
