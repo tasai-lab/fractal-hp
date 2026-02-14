@@ -244,7 +244,7 @@ export default function ForMedicalInstitutionsPage() {
                   ].map((item, index) => (
                     <div key={item.step}>
                       <div className="bg-white rounded-lg p-6">
-                        <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-[var(--color-logo-dark-green)] to-[var(--color-logo-light-green)] text-white flex items-center justify-center text-2xl font-bold shadow-lg">
+                        <div className="w-14 h-14 mx-auto mb-4 rounded-full border-2 border-[var(--color-logo-dark-green)] text-[var(--color-logo-dark-green)] flex items-center justify-center text-xl font-bold bg-white">
                           {item.step}
                         </div>
                         <h3 className="font-bold mb-2" style={{ color: 'var(--color-ink)' }}>
@@ -281,25 +281,41 @@ export default function ForMedicalInstitutionsPage() {
             <div className="max-w-4xl mx-auto grid sm:grid-cols-2 gap-6">
               {[
                 {
-                  icon: "🏥",
+                  icon: (
+                    <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
+                  ),
                   title: "終末期ケア・在宅看取り",
                   description: "ご自宅での看取りを希望される方へ、緩和ケアと家族支援を提供します。",
                   disabled: false
                 },
                 {
-                  icon: "🧠",
+                  icon: (
+                    <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                  ),
                   title: "精神科訪問看護",
                   description: "精神疾患をお持ちの方への専門的な訪問看護サービスを提供します。",
                   disabled: false
                 },
                 {
-                  icon: "🩺",
+                  icon: (
+                    <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                  ),
                   title: "医療依存度の高い患者",
                   description: "人工呼吸器、胃ろう、ストーマ、中心静脈栄養などの医療処置に対応します。",
                   disabled: false
                 },
                 {
-                  icon: "🏃",
+                  icon: (
+                    <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  ),
                   title: "リハビリテーション",
                   description: "理学療法士・作業療法士・言語聴覚士による在宅リハビリを提供します。",
                   disabled: true,
@@ -307,7 +323,7 @@ export default function ForMedicalInstitutionsPage() {
                 }
               ].map((item, i) => (
                 <div key={i} className={`bg-white rounded-xl p-6 shadow-sm ${item.disabled ? 'opacity-50' : 'hover-lift'}`}>
-                  <div className="text-4xl mb-4">{item.icon}</div>
+                  <div className="text-[var(--color-logo-light-green)] mb-4">{item.icon}</div>
                   <h3 className={`text-lg font-bold mb-3 ${item.disabled ? 'text-gray-400' : ''}`} style={{ color: item.disabled ? undefined : 'var(--color-ink)' }}>
                     {item.title}
                   </h3>

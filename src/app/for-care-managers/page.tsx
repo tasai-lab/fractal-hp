@@ -295,17 +295,17 @@ export default function ForCareManagersPage() {
               {availableCases.map((caseItem, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-2xl p-6 shadow-sm hover-lift"
+                  className={`bg-white rounded-2xl p-6 shadow-sm ${caseItem.disabled ? 'opacity-50' : 'hover-lift'}`}
                 >
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="flex-shrink-0 text-[var(--color-logo-light-green)]">
+                    <div className={`flex-shrink-0 ${caseItem.disabled ? 'text-gray-400' : 'text-[var(--color-logo-light-green)]'}`}>
                       {caseItem.icon}
                     </div>
-                    <h3 className="text-lg font-bold text-[var(--color-ink)]">
+                    <h3 className={`text-lg font-bold ${caseItem.disabled ? 'text-gray-400' : 'text-[var(--color-ink)]'}`}>
                       {caseItem.title}
                     </h3>
                   </div>
-                  <p className="text-sm leading-relaxed text-[var(--color-ink-soft)]">
+                  <p className={`text-sm leading-relaxed ${caseItem.disabled ? 'text-gray-400' : 'text-[var(--color-ink-soft)]'}`}>
                     {caseItem.description}
                   </p>
                 </div>
