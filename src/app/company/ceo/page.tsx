@@ -624,16 +624,6 @@ export default function CEOPage() {
                 className="object-cover object-top"
                 priority
               />
-              {/* 装飾三角 */}
-              <div
-                className="absolute top-0 left-0 w-0 h-0"
-                style={{
-                  borderStyle: "solid",
-                  borderWidth: "50px 50px 0 0",
-                  borderColor:
-                    "var(--color-logo-light-green) transparent transparent transparent",
-                }}
-              />
             </FadeIn>
             <FadeIn className="text-center mt-6" delay={300}>
               <p className="text-xl md:text-2xl font-bold text-[var(--color-ink)]">
