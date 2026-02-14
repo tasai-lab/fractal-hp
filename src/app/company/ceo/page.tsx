@@ -2,6 +2,8 @@
 
 import React from "react";
 import Link from "next/link";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 // 代表者データ
 const ceoData = {
@@ -77,23 +79,9 @@ const getIcon = (iconName: string) => {
 
 export default function CEOPage() {
   return (
-    <div className="min-h-screen body-editorial">
-      {/* ヘッダー */}
-      <header className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-40">
-        <div className="max-w-6xl mx-auto px-4 py-3 md:py-4 flex items-center justify-between">
-          <Link
-            href="/company"
-            className="text-primary font-bold text-sm md:text-lg hover:opacity-80 transition-opacity"
-          >
-            ← 株式会社フラクタル
-          </Link>
-          <h1 className="text-lg md:text-2xl font-bold text-primary heading-gothic">
-            代表の取扱説明書
-          </h1>
-        </div>
-      </header>
-
-      <main>
+    <>
+      <Header />
+      <main className="pt-14 lg:pt-20">
         {/* ヒーロー */}
         <section
           className="relative min-h-[50vh] flex items-center overflow-hidden"
@@ -381,19 +369,7 @@ export default function CEOPage() {
           </div>
         </section>
       </main>
-
-      {/* フッター */}
-      <footer className="bg-slate-900 text-white/60 py-6">
-        <div className="max-w-5xl mx-auto px-4 text-center text-sm">
-          <Link href="/" className="hover:text-white transition-colors">
-            フラクタル訪問看護 船橋
-          </Link>
-          <span className="mx-2">|</span>
-          <Link href="/company" className="hover:text-white transition-colors">
-            株式会社フラクタル
-          </Link>
-        </div>
-      </footer>
-    </div>
+      <Footer />
+    </>
   );
 }
