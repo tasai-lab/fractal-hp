@@ -266,35 +266,35 @@ function ThinkingFlowChart() {
           </div>
 
           {/* ループバック矢印 */}
-          <div className="relative h-10 md:h-14 mt-1">
-            <svg className="absolute inset-0 w-full h-full overflow-visible" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <div className="relative h-8 md:h-10 mt-1">
+            <svg className="absolute inset-0 w-full h-full overflow-visible" viewBox="0 0 100 50" preserveAspectRatio="none">
               <defs>
                 <linearGradient id="loopGradient" x1="100%" y1="0%" x2="0%" y2="0%">
-                  <stop offset="0%" stopColor="#F4E951" stopOpacity="0.6" />
+                  <stop offset="0%" stopColor="#F4E951" stopOpacity="0.5" />
                   <stop offset="50%" stopColor="#64748b" stopOpacity="0.3" />
-                  <stop offset="100%" stopColor="#ef4444" stopOpacity="0.6" />
+                  <stop offset="100%" stopColor="#ef4444" stopOpacity="0.5" />
                 </linearGradient>
               </defs>
-              {/* U字型のループ */}
+              {/* U字型のループ（幅を狭める） */}
               <path
-                d="M 93 5 L 93 55 L 7 55 L 7 5"
+                d="M 88 5 L 88 30 L 12 30 L 12 5"
                 fill="none"
                 stroke="url(#loopGradient)"
-                strokeWidth="0.8"
+                strokeWidth="1"
                 vectorEffect="non-scaling-stroke"
               />
               {/* 上向き矢印 */}
               <path
-                d="M 4 15 L 7 5 L 10 15"
+                d="M 9 12 L 12 5 L 15 12"
                 fill="none"
                 stroke="#ef4444"
-                strokeWidth="0.8"
-                strokeOpacity="0.6"
+                strokeWidth="1"
+                strokeOpacity="0.5"
                 vectorEffect="non-scaling-stroke"
               />
             </svg>
             {/* ループラベル */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1">
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2">
               <span className="font-mono text-[9px] md:text-[10px] text-slate-500 bg-slate-900 px-2 py-0.5 rounded border border-slate-700/50 whitespace-nowrap">
                 ITERATION LOOP
               </span>
