@@ -732,15 +732,35 @@ export default function AboutFractalPage() {
           {/* Before/After ストーリー */}
           <div className="bg-slate-50 rounded-xl sm:rounded-2xl p-4 sm:p-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-              <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 border-l-4 border-red-400">
-                <p className="text-red-500 font-bold mb-2" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>Before</p>
-                <p className="text-primary/70" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>
+              {/* Before カード */}
+              <div className="relative bg-white rounded-lg sm:rounded-xl shadow-sm p-4 sm:p-5">
+                {/* 左上の三角マーク */}
+                <div
+                  className="absolute -top-px -left-px w-0 h-0"
+                  style={{
+                    borderStyle: 'solid',
+                    borderWidth: '24px 24px 0 0',
+                    borderColor: '#ef4444 transparent transparent transparent'
+                  }}
+                />
+                <p className="text-red-500 font-bold text-sm tracking-wider mb-2 pl-4">Before</p>
+                <p className="text-primary/70 leading-relaxed" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>
                   記録項目が多く何を書くべきか分かりにくい。手入力に時間がかかり残業が発生、重要な情報の抜け漏れも散見されていた。
                 </p>
               </div>
-              <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 border-l-4 border-[var(--color-logo-light-green)]">
-                <p className="text-[var(--color-logo-dark-green)] font-bold mb-2" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>After</p>
-                <p className="text-primary/70" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>
+              {/* After カード */}
+              <div className="relative bg-white rounded-lg sm:rounded-xl shadow-sm p-4 sm:p-5">
+                {/* 左上の三角マーク */}
+                <div
+                  className="absolute -top-px -left-px w-0 h-0"
+                  style={{
+                    borderStyle: 'solid',
+                    borderWidth: '24px 24px 0 0',
+                    borderColor: 'var(--color-logo-light-green) transparent transparent transparent'
+                  }}
+                />
+                <p className="text-[var(--color-logo-dark-green)] font-bold text-sm tracking-wider mb-2 pl-4">After</p>
+                <p className="text-primary/70 leading-relaxed" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>
                   音声入力を導入し、重要項目は手入力で補完する運用へ。記録作成が効率化され、要点を押さえた質の高い記録を短時間で作成できるように。
                 </p>
               </div>
@@ -798,14 +818,33 @@ export default function AboutFractalPage() {
           {aboutData.business.items.map((item, index) => (
             <div
               key={index}
-              className={`group relative bg-white rounded-xl sm:rounded-2xl md:rounded-3xl shadow-lg border-l-4 border-[var(--color-logo-yellow)] ${
-                prefersReducedMotion ? "" : "hover:border-[var(--color-logo-light-green)] transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+              className={`group relative bg-white rounded-xl sm:rounded-2xl shadow-sm ${
+                prefersReducedMotion ? "" : "transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
               }`}
               style={{ padding: 'var(--spacing-fluid-md)' }}
             >
-              <div className="absolute top-0 right-0 w-20 md:w-32 h-20 md:h-32 bg-gradient-to-br from-[var(--color-logo-yellow)]/20 to-transparent rounded-bl-full opacity-50"></div>
+              {/* 左上の三角マーク */}
+              <div
+                className="absolute -top-px -left-px w-0 h-0"
+                style={{
+                  borderStyle: 'solid',
+                  borderWidth: '32px 32px 0 0',
+                  borderColor: `${index === 0 ? 'var(--color-logo-dark-green)' : 'var(--color-logo-light-green)'} transparent transparent transparent`
+                }}
+              />
+              {/* 右下の小さな三角（ホバー時に強調） */}
+              <div
+                className={`absolute bottom-0 right-0 w-0 h-0 ${
+                  prefersReducedMotion ? "opacity-30" : "opacity-20 group-hover:opacity-50 transition-opacity"
+                }`}
+                style={{
+                  borderStyle: 'solid',
+                  borderWidth: '0 0 20px 20px',
+                  borderColor: `transparent transparent ${index === 0 ? 'var(--color-logo-light-green)' : 'var(--color-logo-yellow)'} transparent`
+                }}
+              />
               <h4
-                className="font-bold text-primary heading-gothic"
+                className="font-bold text-primary heading-gothic pl-4"
                 style={{ fontSize: 'var(--font-size-fluid-xl)', marginBottom: 'var(--spacing-fluid-sm)' }}
               >
                 {item.name}
@@ -892,14 +931,26 @@ export default function AboutFractalPage() {
             {aboutData.vision.goals.map((goal, index) => (
               <div
                 key={index}
-                className="bg-slate-800/50 border border-slate-700 rounded-xl"
+                className="group relative bg-slate-800/50 rounded-xl backdrop-blur-sm transition-all duration-300 hover:bg-slate-800/70"
                 style={{ padding: 'var(--spacing-fluid-sm)' }}
               >
+                {/* 左上の三角マーク */}
+                <div
+                  className="absolute -top-px -left-px w-0 h-0"
+                  style={{
+                    borderStyle: 'solid',
+                    borderWidth: '24px 24px 0 0',
+                    borderColor: `${index === 0 ? 'var(--color-logo-light-green)' : 'var(--color-logo-yellow)'} transparent transparent transparent`
+                  }}
+                />
                 <h5
-                  className="font-bold text-[var(--color-logo-light-green)] flex items-center"
-                  style={{ fontSize: 'var(--font-size-fluid-sm)', marginBottom: 'var(--spacing-fluid-xs)', gap: '0.5rem' }}
+                  className="font-bold pl-4"
+                  style={{
+                    fontSize: 'var(--font-size-fluid-sm)',
+                    marginBottom: 'var(--spacing-fluid-xs)',
+                    color: index === 0 ? 'var(--color-logo-light-green)' : 'var(--color-logo-yellow)'
+                  }}
                 >
-                  <span className="w-1 h-5 bg-[var(--color-logo-light-green)] rounded-full"></span>
                   {goal.name}
                 </h5>
                 <p
@@ -914,6 +965,15 @@ export default function AboutFractalPage() {
                 >
                   {goal.detail}
                 </p>
+                {/* 右下の小さな三角 */}
+                <div
+                  className="absolute bottom-0 right-0 w-0 h-0 opacity-20 group-hover:opacity-40 transition-opacity"
+                  style={{
+                    borderStyle: 'solid',
+                    borderWidth: '0 0 16px 16px',
+                    borderColor: `transparent transparent ${index === 0 ? 'var(--color-logo-light-green)' : 'var(--color-logo-yellow)'} transparent`
+                  }}
+                />
               </div>
             ))}
           </div>

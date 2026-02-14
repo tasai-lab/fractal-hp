@@ -702,13 +702,22 @@ export default function FractalPage() {
               </div>
 
               {/* 右: 説明 */}
-              <div className="order-1 lg:order-2 space-y-8">
+              <div className="order-1 lg:order-2 space-y-6">
+                {/* カード1: ユニークなかたち */}
                 <div
-                  className="bg-white rounded-3xl p-8 shadow-sm"
-                  style={{ borderLeft: '4px solid var(--color-logo-dark-green)' }}
+                  className="relative bg-white rounded-2xl p-6 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                 >
+                  {/* 左上の三角マーク */}
+                  <div
+                    className="absolute -top-px -left-px w-0 h-0"
+                    style={{
+                      borderStyle: 'solid',
+                      borderWidth: '28px 28px 0 0',
+                      borderColor: 'var(--color-logo-dark-green) transparent transparent transparent'
+                    }}
+                  />
                   <h3
-                    className="text-xl font-bold mb-4"
+                    className="text-xl font-bold mb-3 pl-6"
                     style={{ color: 'var(--color-ink)' }}
                   >
                     ひとつひとつが、ユニークなかたち
@@ -719,12 +728,21 @@ export default function FractalPage() {
                   </p>
                 </div>
 
+                {/* カード2: 温かいケア */}
                 <div
-                  className="bg-white rounded-3xl p-8 shadow-sm"
-                  style={{ borderLeft: '4px solid var(--color-logo-light-green)' }}
+                  className="relative bg-white rounded-2xl p-6 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                 >
+                  {/* 左上の三角マーク */}
+                  <div
+                    className="absolute -top-px -left-px w-0 h-0"
+                    style={{
+                      borderStyle: 'solid',
+                      borderWidth: '28px 28px 0 0',
+                      borderColor: 'var(--color-logo-light-green) transparent transparent transparent'
+                    }}
+                  />
                   <h3
-                    className="text-xl font-bold mb-4"
+                    className="text-xl font-bold mb-3 pl-6"
                     style={{ color: 'var(--color-ink)' }}
                   >
                     どこを切り取っても、温かいケアを
@@ -740,8 +758,12 @@ export default function FractalPage() {
                     ].map((item, i) => (
                       <li key={i} className="flex items-center gap-3">
                         <div
-                          className="w-2 h-2 rounded-full"
-                          style={{ background: 'var(--color-logo-light-green)' }}
+                          className="w-0 h-0"
+                          style={{
+                            borderStyle: 'solid',
+                            borderWidth: '4px 0 4px 6px',
+                            borderColor: 'transparent transparent transparent var(--color-logo-light-green)'
+                          }}
                         />
                         <span>
                           <strong style={{ color: 'var(--color-ink)' }}>{item.level}</strong>
@@ -752,12 +774,21 @@ export default function FractalPage() {
                   </ul>
                 </div>
 
+                {/* カード3: 仕組み */}
                 <div
-                  className="bg-white rounded-3xl p-8 shadow-sm"
-                  style={{ borderLeft: '4px solid var(--color-logo-yellow)' }}
+                  className="relative bg-white rounded-2xl p-6 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                 >
+                  {/* 左上の三角マーク */}
+                  <div
+                    className="absolute -top-px -left-px w-0 h-0"
+                    style={{
+                      borderStyle: 'solid',
+                      borderWidth: '28px 28px 0 0',
+                      borderColor: 'var(--color-logo-yellow) transparent transparent transparent'
+                    }}
+                  />
                   <h3
-                    className="text-xl font-bold mb-4"
+                    className="text-xl font-bold mb-3 pl-6"
                     style={{ color: 'var(--color-ink)' }}
                   >
                     仕組みが質の高いサービスを作る
