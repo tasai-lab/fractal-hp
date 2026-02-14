@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "アップデート情報 | フラクタル訪問看護 船橋",
@@ -78,9 +79,20 @@ export default function UpdatesPage() {
             <h1 className="text-3xl md:text-4xl font-bold heading-gothic text-[var(--color-ink)] mb-4">
               アップデート情報
             </h1>
-            <p className="text-[var(--color-ink-soft)]">
-              HPの変更履歴を紹介
-            </p>
+            <div className="flex items-center justify-center gap-3">
+              <div className="relative w-10 h-10 rounded-full overflow-hidden bg-white shadow-sm">
+                <Image
+                  src="/images/recruit/johnny.png"
+                  alt="ジョニー"
+                  fill
+                  sizes="40px"
+                  className="object-contain"
+                />
+              </div>
+              <p className="text-[var(--color-ink-soft)]">
+                ホームページだってDAPAEで成長してるよ
+              </p>
+            </div>
           </div>
         </div>
 
