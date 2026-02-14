@@ -382,7 +382,7 @@ export default function ForMedicalInstitutionsPage() {
                 {[
                   { label: "FAX", value: "047-413-0502" },
                   { label: "Email", value: "hokan-f@fractal-group.co.jp" },
-                  { label: "住所", value: "船橋市三山6-22-2" }
+                  { label: "住所", value: "〒274-0072 千葉県船橋市三山6丁目22-2 パレドール小川201" }
                 ].map((item, i) => (
                   <div key={i} className="bg-white/60 rounded-lg p-4">
                     <div className="text-[var(--color-ink-soft)] text-xs mb-1">{item.label}</div>
