@@ -28,31 +28,31 @@ export default function ForMedicalInstitutionsPage() {
           </div>
         </section>
 
-        {/* 患者紹介プロセス */}
+        {/* 訪問開始までの流れ */}
         <section className="section-wrapper relative overflow-hidden">
           <BackgroundTriangles pattern="flow" />
 
           <div className="relative z-10 section-container">
             <h2 className="text-2xl md:text-3xl font-bold heading-gothic text-center mb-12" style={{ color: 'var(--color-ink)' }}>
-              患者紹介プロセス
+              訪問開始までの流れ
             </h2>
 
             <div className="max-w-3xl mx-auto space-y-6">
               {[
                 {
                   step: "01",
-                  title: "退院前カンファレンス・情報共有",
-                  description: "退院前カンファレンスに参加し、患者様の状態や必要なケアについて情報共有いたします。オンライン参加も対応可能です。"
+                  title: "お電話でご依頼",
+                  description: "まずはお電話にてご連絡ください。患者様の状態やご希望をお伺いし、訪問看護の導入についてご相談いたします。"
                 },
                 {
                   step: "02",
-                  title: "訪問看護指示書の発行",
-                  description: "厚生労働省様式に準拠した訪問看護指示書をFAXまたは郵送でお送りください。速やかにサービスを開始いたします。"
+                  title: "患者様情報のご送付",
+                  description: "FAXまたはメールで患者様の情報（診療情報提供書、看護サマリー等）をお送りください。訪問看護指示書も併せてご発行をお願いいたします。"
                 },
                 {
                   step: "03",
-                  title: "初回訪問・アセスメント",
-                  description: "初回訪問時に詳細なアセスメントを実施し、個別のケアプランを作成いたします。"
+                  title: "最短即日で訪問開始",
+                  description: "情報が揃い次第、最短その日から訪問看護を開始いたします。緊急性の高いケースにも柔軟に対応いたします。"
                 },
                 {
                   step: "04",
@@ -277,32 +277,40 @@ export default function ForMedicalInstitutionsPage() {
                 {
                   icon: "🏥",
                   title: "終末期ケア・在宅看取り",
-                  description: "ご自宅での看取りを希望される方へ、緩和ケアと家族支援を提供します。"
+                  description: "ご自宅での看取りを希望される方へ、緩和ケアと家族支援を提供します。",
+                  disabled: false
                 },
                 {
                   icon: "🧠",
                   title: "精神科訪問看護",
-                  description: "精神疾患をお持ちの方への専門的な訪問看護サービスを提供します。"
+                  description: "精神疾患をお持ちの方への専門的な訪問看護サービスを提供します。",
+                  disabled: false
                 },
                 {
                   icon: "🩺",
                   title: "医療依存度の高い患者",
-                  description: "人工呼吸器、胃ろう、ストーマ、中心静脈栄養などの医療処置に対応します。"
+                  description: "人工呼吸器、胃ろう、ストーマ、中心静脈栄養などの医療処置に対応します。",
+                  disabled: false
                 },
                 {
                   icon: "🏃",
                   title: "リハビリテーション",
-                  description: "理学療法士・作業療法士・言語聴覚士による在宅リハビリを提供します。"
+                  description: "理学療法士・作業療法士・言語聴覚士による在宅リハビリを提供します。",
+                  disabled: true,
+                  note: "※現在、リハビリのご依頼は受け付けておりません"
                 }
               ].map((item, i) => (
-                <div key={i} className="bg-white rounded-xl p-6 shadow-sm hover-lift">
+                <div key={i} className={`bg-white rounded-xl p-6 shadow-sm ${item.disabled ? 'opacity-50' : 'hover-lift'}`}>
                   <div className="text-4xl mb-4">{item.icon}</div>
-                  <h3 className="text-lg font-bold mb-3" style={{ color: 'var(--color-ink)' }}>
+                  <h3 className={`text-lg font-bold mb-3 ${item.disabled ? 'text-gray-400' : ''}`} style={{ color: item.disabled ? undefined : 'var(--color-ink)' }}>
                     {item.title}
                   </h3>
-                  <p className="leading-relaxed" style={{ color: 'var(--color-ink-soft)' }}>
+                  <p className="leading-relaxed" style={{ color: item.disabled ? '#9ca3af' : 'var(--color-ink-soft)' }}>
                     {item.description}
                   </p>
+                  {item.note && (
+                    <p className="text-sm text-gray-400 mt-2">{item.note}</p>
+                  )}
                 </div>
               ))}
             </div>
