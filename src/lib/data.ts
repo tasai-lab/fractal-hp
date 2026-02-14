@@ -55,7 +55,7 @@ export const footerLinks = [
 // モバイルメニュー項目（下部固定メニュー用）
 export const mobileMenuItems = [
   { href: "/", label: "ホーム", icon: "Home" },
-  { href: "/fractal", label: "フラクタル", icon: "Building2" },
+  { href: "/fractal", label: "フラクタルとは", icon: "Triangle" },
   { href: "/recruit", label: "採用", icon: "Users" },
   { href: "/#contact", label: "問合せ", icon: "Phone" },
 ];

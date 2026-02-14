@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { navLinks, mobileMenuItems, otherMenuCategories } from "@/lib/data";
-import { Instagram, Home, Building2, Phone, Users, Menu, X, FileText, ChevronDown, LucideIcon } from "lucide-react";
+import { Instagram, Home, Building2, Phone, Users, Menu, X, FileText, ChevronDown, Triangle, LucideIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -12,6 +12,7 @@ const iconMap: { [key: string]: LucideIcon } = {
   Users,
   Phone,
   Instagram,
+  Triangle,
   FileText,
 };
 
