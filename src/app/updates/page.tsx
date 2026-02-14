@@ -80,7 +80,7 @@ export default function UpdatesPage() {
               アップデート情報
             </h1>
             <div className="flex items-center justify-center gap-3">
-              <div className="relative w-10 h-10 rounded-full overflow-hidden bg-white shadow-sm">
+              <div className="relative w-10 h-10">
                 <Image
                   src="/images/recruit/johnny.png"
                   alt="ジョニー"
