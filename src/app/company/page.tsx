@@ -1248,9 +1248,18 @@ export default function AboutFractalPage() {
               フラクタルでは、私たちの理念に共感し、共に成長していける仲間を募集しています。
             </p>
             <div
-              className="flex flex-col sm:flex-row justify-center"
+              className="flex flex-col sm:flex-row justify-center flex-wrap"
               style={{ gap: 'var(--spacing-fluid-sm)' }}
             >
+              <Link
+                href="/company/ceo"
+                className={`bg-[var(--color-logo-yellow)] text-[var(--color-logo-dark-green)] rounded-full font-bold ${
+                  prefersReducedMotion ? "" : "hover:bg-white hover:scale-105 transition-all duration-300 hover:shadow-xl"
+                }`}
+                style={{ padding: 'var(--spacing-fluid-sm) var(--spacing-fluid-lg)', fontSize: 'var(--font-size-fluid-sm)' }}
+              >
+                代表の取扱説明書を見る
+              </Link>
               <Link
                 href="/recruit"
                 className={`bg-white text-[var(--color-logo-dark-green)] rounded-full font-bold ${

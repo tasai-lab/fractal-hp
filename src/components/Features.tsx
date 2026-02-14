@@ -261,33 +261,35 @@ export default function Features() {
         {/* 特徴カードグリッド - 丸みを帯びた四角形で囲む */}
         <div className="section-content">
           <div className="section-card">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 lg:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 lg:gap-6">
               {features.map((feature, index) => (
                 <div
                   key={index}
-                  className="fractal-feature-card shadow-sm"
+                  className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-5 lg:p-6 shadow-sm hover-lift border border-transparent hover:border-[var(--color-accent-yellow)]"
                 >
-                  {/* アイコン */}
-                  <div className="icon-wrapper mx-auto">
-                    <FeatureIcon icon={feature.icon} />
-                  </div>
+                  <div className="flex flex-col items-center text-center">
+                    {/* アイコン */}
+                    <div className="mb-3 md:mb-4 p-3 md:p-4 bg-[var(--color-accent-yellow-dark)]/20 rounded-full">
+                      <FeatureIcon icon={feature.icon} />
+                    </div>
 
-                  {/* タイトル */}
-                  <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3 text-[var(--color-primary)]">
-                    {feature.title}
-                  </h3>
+                    {/* タイトル */}
+                    <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3 text-[var(--color-primary)]">
+                      {feature.title}
+                    </h3>
 
-                  {/* 説明 */}
-                  <p className="text-sm md:text-base mb-2 md:mb-3 whitespace-pre-line leading-relaxed text-[var(--color-foreground)]">
-                    {feature.description}
-                  </p>
-
-                  {/* 注釈 */}
-                  {feature.note && (
-                    <p className="text-xs md:text-sm text-[var(--color-muted)] whitespace-pre-line leading-relaxed">
-                      {feature.note}
+                    {/* 説明 */}
+                    <p className="text-sm md:text-base mb-2 md:mb-3 whitespace-pre-line leading-relaxed text-[var(--color-foreground)]">
+                      {feature.description}
                     </p>
-                  )}
+
+                    {/* 注釈 */}
+                    {feature.note && (
+                      <p className="text-xs md:text-sm text-[var(--color-muted)] whitespace-pre-line leading-relaxed">
+                        {feature.note}
+                      </p>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
