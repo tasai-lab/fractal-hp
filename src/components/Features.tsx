@@ -293,6 +293,30 @@ export default function Features() {
                 </div>
               ))}
             </div>
+
+            {/* フラクタルを知るボタン */}
+            <div className="flex justify-center mt-8 md:mt-12">
+              <a
+                href="/fractal"
+                className="group relative inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 font-bold text-white transition-all duration-200 bg-primary rounded-full hover:bg-gray-800 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary shadow-lg hover:shadow-xl"
+              >
+                <span className="mr-2 text-base md:text-lg">フラクタルを知る</span>
+                <svg
+                  className="w-4 h-4 md:w-5 md:h-5 transition-transform duration-200 group-hover:translate-x-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  ></path>
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>

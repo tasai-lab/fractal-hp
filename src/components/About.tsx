@@ -125,13 +125,13 @@ export default function About() {
               ))}
             </div>
 
-            {/* フラクタルを知るボタン */}
+            {/* 会社を知るボタン */}
             <div className="flex justify-center mt-6 md:mt-12">
               <a
                 href="/company"
                 className="group relative inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 font-bold text-white transition-all duration-200 bg-primary rounded-full hover:bg-gray-800 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary shadow-lg hover:shadow-xl"
               >
-                <span className="mr-2 text-base md:text-lg">フラクタルを知る</span>
+                <span className="mr-2 text-base md:text-lg">会社を知る</span>
                 <svg
                   className="w-4 h-4 md:w-5 md:h-5 transition-transform duration-200 group-hover:translate-x-1"
                   fill="none"

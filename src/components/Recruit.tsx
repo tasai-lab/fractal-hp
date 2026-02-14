@@ -126,7 +126,7 @@ export default function Recruit() {
                 href="/recruit"
                 className="inline-block bg-primary text-white px-6 py-3 md:px-8 md:py-4 rounded-full font-bold text-base md:text-lg hover:opacity-90 transition-opacity shadow-lg"
               >
-                船橋事業所の看護師求人を見る
+                求人募集を見る
               </Link>
             </div>
           </div>

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { FlyersStructuredData } from "@/components/StructuredData";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "チラシ・広報誌バックナンバー",
@@ -28,7 +30,9 @@ export default function FlyersLayout({
   return (
     <>
       <FlyersStructuredData />
+      <Header />
       {children}
+      <Footer />
     </>
   );
 }

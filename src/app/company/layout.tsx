@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { AboutFractalStructuredData } from "@/components/StructuredData";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "株式会社フラクタル | 企業理念・ビジョン・行動指針",
@@ -31,7 +33,9 @@ export default function AboutFractalLayout({
   return (
     <>
       <AboutFractalStructuredData />
+      <Header />
       {children}
+      <Footer />
     </>
   );
 }
