@@ -314,7 +314,7 @@ function QABlock({
   );
 }
 
-// ストレングスカード
+// ストレングスカード（アコーディオン形式）
 function StrengthCard({
   rank,
   name,
@@ -332,6 +332,7 @@ function StrengthCard({
   growth?: string;
   blindspot?: string;
 }) {
+  const [isOpen, setIsOpen] = useState(false);
   const isTop3 = rank <= 3;
   const isTop5 = rank <= 5;
 
@@ -344,7 +345,7 @@ function StrengthCard({
 
   return (
     <div
-      className={`relative p-4 md:p-5 rounded-2xl border transition-all duration-300 hover:scale-[1.02] ${
+      className={`relative rounded-2xl border transition-all duration-300 ${
         isTop3
           ? "bg-[var(--color-logo-light-green)]/10 border-[var(--color-logo-light-green)]/30"
           : isTop5
@@ -352,7 +353,12 @@ function StrengthCard({
             : "bg-[var(--color-paper)] border-[var(--color-sand)]"
       }`}
     >
-      <div className="flex items-start gap-3">
+      {/* ヘッダー（クリックで開閉） */}
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full p-4 md:p-5 flex items-center gap-3 text-left"
+      >
         <span
           className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
             isTop3
@@ -365,36 +371,57 @@ function StrengthCard({
           {rank}
         </span>
         <div className="flex-1 min-w-0">
-          <div className="flex flex-wrap items-center gap-2 mb-1">
+          <div className="flex flex-wrap items-center gap-2">
             <h4 className="font-bold text-[var(--color-ink)]">{name}</h4>
             <span className="text-xs text-[var(--color-ink-soft)]">
               {nameEn}
             </span>
+            {category && (
+              <span className={`text-xs px-2 py-0.5 rounded-full ${categoryColors[category] || "bg-gray-100 text-gray-600"}`}>
+                {category}
+              </span>
+            )}
           </div>
-          {category && (
-            <span className={`inline-block text-xs px-2 py-0.5 rounded-full mb-2 ${categoryColors[category] || "bg-gray-100 text-gray-600"}`}>
-              {category}
-            </span>
-          )}
-          <p className="text-sm text-[var(--color-ink-soft)] leading-relaxed">
-            {description}
-          </p>
-          {(growth || blindspot) && (
-            <div className="mt-3 pt-3 border-t border-[var(--color-sand)]/50 space-y-2">
-              {growth && (
-                <div className="flex items-start gap-2">
-                  <span className="text-xs text-[var(--color-logo-light-green)] mt-0.5">↑</span>
-                  <p className="text-xs text-[var(--color-ink-soft)]">{growth}</p>
-                </div>
-              )}
-              {blindspot && (
-                <div className="flex items-start gap-2">
-                  <span className="text-xs text-amber-500 mt-0.5">!</span>
-                  <p className="text-xs text-[var(--color-ink-soft)]">{blindspot}</p>
-                </div>
-              )}
-            </div>
-          )}
+        </div>
+        <span
+          className={`flex-shrink-0 text-[var(--color-ink-soft)] transition-transform duration-200 ${
+            isOpen ? "rotate-180" : ""
+          }`}
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        </span>
+      </button>
+
+      {/* コンテンツ（開閉式） */}
+      <div
+        className={`overflow-hidden transition-all duration-300 ${
+          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <div className="px-4 md:px-5 pb-4 md:pb-5 pt-0">
+          <div className="pl-11">
+            <p className="text-sm text-[var(--color-ink-soft)] leading-relaxed">
+              {description}
+            </p>
+            {(growth || blindspot) && (
+              <div className="mt-3 pt-3 border-t border-[var(--color-sand)]/50 space-y-2">
+                {growth && (
+                  <div className="flex items-start gap-2">
+                    <span className="text-xs text-[var(--color-logo-light-green)] mt-0.5">↑</span>
+                    <p className="text-xs text-[var(--color-ink-soft)]">{growth}</p>
+                  </div>
+                )}
+                {blindspot && (
+                  <div className="flex items-start gap-2">
+                    <span className="text-xs text-amber-500 mt-0.5">!</span>
+                    <p className="text-xs text-[var(--color-ink-soft)]">{blindspot}</p>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
