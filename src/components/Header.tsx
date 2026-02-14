@@ -263,6 +263,23 @@ export default function Header() {
                   })}
                 </div>
               </section>
+
+              {/* アップデート情報 */}
+              <section>
+                <h3 className="text-xs font-bold text-gray-500 mb-2 px-1">{otherMenuCategories.updates.title}</h3>
+                <div className="grid grid-cols-1 gap-2">
+                  {otherMenuCategories.updates.items.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={closeMenu}
+                      className="flex items-center justify-start p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors text-left"
+                    >
+                      <span className="text-sm font-medium text-[var(--color-primary)]">{item.label}</span>
+                    </Link>
+                  ))}
+                </div>
+              </section>
             </div>
           </div>
         </div>
