@@ -1,829 +1,726 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, type ReactNode } from "react";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-// 代表者データ - 完全版
-const ceoData = {
-  version: "Final",
-  securityLevel: "Top Secret",
+// 代表者プロフィールデータ
+const ceoProfile = {
   name: "浅井 拓哉",
   nameEn: "Asai Takuya",
   title: "代表取締役",
+  catchphrase: "完璧より最適を。",
 
-  coreIdentity: {
-    primary: "構造主義的な支配者",
-    primaryEn: "The System Architect",
-    secondary: "攻略者",
-    secondaryEn: "The Game Beater",
-    definition: "カオス（混沌）とした現実に介入し、独自のアルゴリズムによって最もエレガントな秩序（コスモス）を実装する「エンジニア」であり、難解なパズルを解くことに至上の喜びを感じる「ゲーマー」。",
-    purpose: "世界に散らばる「非効率」「バグ（不合理）」「機能不全」を発見し、それを再設計（リデザイン）して最適化すること。",
-    stance: "「感情」ではなく「機能」。「道徳」ではなく「論理」。「現状維持」ではなく「進化」。",
-    metaphor: "塔の上から戦場全体を俯瞰し、勝利への最短ルートを描く「大賢者」であり、同時に冷徹に駒を動かす「魔王」の資質を持つ。",
-  },
+  introduction: {
+    summary: "ひとことで言うと「仕組みづくりが好きな人」です。",
+    detail: `カオスな状況を見ると、つい「どう整理すれば最適化できるか」を考えてしまう。それが私の性分です。
 
-  os: {
-    recognition: {
-      name: "機能主義的スキャナー",
-      nameEn: "Functional Scanner",
-      composition: "「個別化 (1位)」 × 「分析思考 (5位)」",
-      process: "人間や組織を見た瞬間、感情や性格といったウェットな情報の奥にある「スペック（機能・才能）」と「バグ（思考の歪み・ボトルネック）」をX線のように透過してスキャン。",
-      output: "「この人はAの配置ではエラーを起こすが、Bの配置なら最大出力が出る」という人事配置や、「この業務プロセスのここが詰まっている」という構造的欠陥を、直感レベルで瞬時に把握。",
-    },
-    processing: {
-      name: "仮説検証の高速ループ",
-      nameEn: "High-Speed Iteration",
-      composition: "「着想 (2位)」 × 「戦略性 (3位)」 × 「活発性 (4位)」",
-      steps: [
-        { label: "Input", desc: "違和感や非効率を検知する（「なぜこんな無駄なことを？」）" },
-        { label: "Logic", desc: "過去の慣習を無視し、ゼロベースで「最も楽（効率的）な攻略ルート」を構築" },
-        { label: "Command", desc: "議論や合意形成をスキップし、まずは「実行（テスト）」ボタンを押す" },
-        { label: "Feedback", desc: "結果をデータとして回収し、即座に修正パッチを当てる" },
-      ],
-      feature: "完璧な計画を練ってから動くのではなく、「動きながら考える（走りながらコードを書く）」スタイル。「検討中」の時間は、人生の浪費（タイムロス）に他ならない。",
-    },
-    memory: {
-      name: "感情のブラックボックス化",
-      nameEn: "Emotional Black-boxing",
-      process: "ビジネスや問題解決において、他者の「感情（モチベーション、好き嫌い）」を「計算不可能なノイズ」として処理コストから除外する傾向。",
-      interface: "「共感（Empathy）」機能はデフォルトでオフ。代わりに高度な「理解（Understanding）」機能が搭載。「あなたの気持ちは分からないが、あなたの行動原理と解決策は完全に理解している」というスタンス。",
-    },
+訪問看護の現場でも同じ。「この人にはこのケアが合う」「この業務はこう改善できる」と、常に最適解を探しています。人を見たとき、その人の「得意なこと」と「苦手なこと」が自然と見えてくる。だからこそ、一人ひとりに合った役割や関わり方を考えることができます。
+
+効率化というと冷たく聞こえるかもしれませんが、私の目指す効率化は「看護師さんが看護に集中できる環境を作ること」。書類や移動や雑務に時間を取られるのではなく、患者さんと向き合う時間を最大化したいのです。
+
+難しい課題を解くことに喜びを感じるタイプ。逆に、すべてが整って安定した状態になると、次の挑戦を探し始めてしまいます。`,
   },
 
   strengths: [
-    { rank: 1, name: "個別化", nameEn: "Individualization", description: "一人ひとりの違いを見抜き、最適な配置を考える" },
-    { rank: 2, name: "着想", nameEn: "Ideation", description: "一見無関係なものをつなげて新しいアイデアを生む" },
-    { rank: 3, name: "戦略性", nameEn: "Strategic", description: "複数の選択肢から最適なルートを見極める" },
-    { rank: 4, name: "活発性", nameEn: "Activator", description: "考えるより先に動く。まず試してから考える" },
-    { rank: 5, name: "分析思考", nameEn: "Analytical", description: "「なぜ？」を繰り返して本質を掘り下げる" },
-  ],
-
-  bugs: [
     {
-      id: "BUG-001",
-      severity: "CRITICAL",
-      name: "他責への生理的拒絶",
-      nameEn: "External Blame Rejection",
-      trigger: "「環境が悪い」「教わっていない」「時間がない」など、自己のスペック不足や努力不足を直視せず、外部要因に責任を転嫁する言動。",
-      reaction: "単なる「怒り」を超えた、生理的な「吐き気」や「嫌悪感」が発生。",
-      logic: "相手の「本来の実力」が見えている（個別化）。やればできる人間が言い訳をして動かない状態は、「意図的なサボタージュ」または「修復不可能なバグ」として認識され、即座に「損切り（永久追放）」の判定が下される。",
+      rank: 1,
+      name: "個別化",
+      nameEn: "Individualization",
+      description: "一人ひとりの違いを見抜き、その人に合った関わり方を考える。「この人はAの配置よりBの配置で力を発揮する」という人材配置の勘所がわかる。",
     },
     {
-      id: "BUG-002",
-      severity: "HIGH",
-      name: "非効率への耐性欠如",
-      nameEn: "Inefficiency Intolerance",
-      trigger: "意味のない定例会議、手書き書類、根回し、忖度、非論理的な上司や顧客。",
-      reaction: "急速なパフォーマンス低下（シャットダウン）。",
-      workaround: "これらの環境に身を置かないこと。または、これらを処理する「フィルター役（秘書やNo.2）」を設置すること。",
+      rank: 2,
+      name: "着想",
+      nameEn: "Ideation",
+      description: "一見バラバラなものをつなげて、新しいアイデアを生み出す。既存の枠にとらわれず、「こうしたらどうだろう？」と常に新しい可能性を探る。",
     },
     {
-      id: "BUG-003",
-      severity: "MEDIUM",
-      name: "維持管理フェーズでの機能不全",
-      nameEn: "Maintenance Mode Dysfunction",
-      trigger: "システムが完成し、トラブルがなくなり、ルーティンワークのみになった状態。",
-      reaction: "猛烈な退屈（Boredom）による意欲減退。あえてシステムを壊したくなる衝動、または別の刺激への逃避。",
-      workaround: "「平和」が訪れたら、それは「次の戦場へ移動せよ」という合図である。",
+      rank: 3,
+      name: "戦略性",
+      nameEn: "Strategic",
+      description: "複数の選択肢から最短ルートを見極める。目標に対して「どう進めば最も効率的か」を自然と考えてしまう。",
+    },
+    {
+      rank: 4,
+      name: "活発性",
+      nameEn: "Activator",
+      description: "考えるより先に動く。「検討中」の時間がもったいない。まず試して、結果を見てから修正すればいい。",
+    },
+    {
+      rank: 5,
+      name: "分析思考",
+      nameEn: "Analytical",
+      description: "「なぜ？」を繰り返して本質を掘り下げる。感覚ではなく、データと論理で物事を判断したい。",
     },
   ],
 
-  leadership: {
-    style: "冷徹な庭師",
-    styleEn: "The Cold Gardener",
-    concept: "組織を「家族」ではなく「美しい庭園（エコシステム）」として管理する。",
-    action: "全体最適（庭の美しさ）のためなら、病気の枝や伸びすぎた枝（組織に害をなす人物）を躊躇なく剪定する。これは冷酷さではなく、「全体の生存と繁栄」を最優先する高度な倫理観に基づく。",
-    charisma: "「優しさ」で人はついてこない。「圧倒的な正しさ」と「勝てる地図」を示すことで、合理的な人間（優秀なプレイヤー）を惹きつける。",
-    requiredModule: {
-      name: "翻訳機",
-      nameEn: "The Translator",
-      function: "浅井氏の「結論」をインプットし、それを「納得感のある物語」や「温かい言葉」に変換して現場にアウトプットする。",
-      role: "浅井氏が切り捨てた感情的ケア（ゴミ拾い）を担当し、組織のエンゲージメントを維持する。",
-    },
-  },
-
-  lifeStrategy: {
-    winningCondition: "「解けないと思われていた難問（カオス）に対し、独自の解法（システム）を実装し、それが美しく稼働することを証明して去ること」",
-    cycle: [
-      { phase: "Discover", desc: "非効率やバグにまみれた市場・組織を見つける" },
-      { phase: "Architect", desc: "破壊的創造によって、全く新しい仕組みを実装する" },
-      { phase: "Prove", desc: "システムが利益を生むことを数字で証明する" },
-      { phase: "Exit", desc: "完成したシステム（会社・事業）を他者に譲渡し、リセットする", critical: true },
-      { phase: "Restart", desc: "身軽になり、より難易度の高い次のパズルへ向かう" },
+  thinkingCycle: {
+    title: "私の思考サイクル",
+    description: "完璧な計画を練ってから動くのではなく、「動きながら考える」スタイル。このサイクルを高速で回すことで、素早く最適解にたどり着きます。",
+    steps: [
+      {
+        num: "01",
+        label: "気づく",
+        desc: "「なんか変だな」「もっと良くなるはず」という違和感をキャッチ",
+        color: "red",
+      },
+      {
+        num: "02",
+        label: "考える",
+        desc: "過去のやり方にとらわれず、ゼロベースで最適な方法を構築",
+        color: "cyan",
+      },
+      {
+        num: "03",
+        label: "動く",
+        desc: "議論より実行。まずは小さく試してみる",
+        color: "green",
+      },
+      {
+        num: "04",
+        label: "直す",
+        desc: "結果を見て、すぐに修正。このサイクルを繰り返す",
+        color: "yellow",
+      },
     ],
-    destiny: "「シリアル・アントレプレナー（連続起業家）」あるいは「事業再生請負人」として、永遠に退屈することなく、その才能を輝かせ続ける。",
   },
 
-  compatibility: {
+  workStyle: {
+    values: [
+      {
+        icon: "question",
+        title: "「なぜ？」から始める",
+        description:
+          "「昔からこうだから」は理由になりません。すべてに理由があるべきで、理由がないなら変えるべき。慣習や前例にとらわれず、本当に必要かどうかを常に問い直します。",
+      },
+      {
+        icon: "target",
+        title: "最短距離を探す",
+        description:
+          "遠回りは嫌い。無駄な会議、意味のない書類、形だけの手続き。「それ、本当に必要？」と常に問いかけます。同じ結果が出るなら、より少ない労力で達成したい。",
+      },
+      {
+        icon: "rocket",
+        title: "動きながら考える",
+        description:
+          "完璧な計画を待っていたら、何も始まりません。まず動いて、やりながら修正する。失敗しても、そこから学べばいい。このスピード感がフラクタルの強みです。",
+      },
+    ],
+  },
+
+  teamFit: {
     good: [
-      "「なぜ？」を一緒に追求できる人",
-      "自分で考えて動ける人",
-      "改善提案を恐れない人",
-      "論理で議論できる人",
+      {
+        text: "「なぜ？」を一緒に追求できる人",
+        detail: "現状に疑問を持ち、より良い方法を一緒に考えられる",
+      },
+      {
+        text: "自分で考えて動ける人",
+        detail: "指示を待つのではなく、自分で判断して行動できる",
+      },
+      {
+        text: "改善提案を恐れない人",
+        detail: "「こうした方がいいのでは？」と率直に意見を言える",
+      },
+      {
+        text: "論理的に議論できる人",
+        detail: "感情ではなく、事実とロジックで建設的に話し合える",
+      },
     ],
     challenging: [
-      "「言われたことだけやる」スタイルの人",
-      "感情論で物事を決める人",
-      "変化を嫌う人",
-      "言い訳が先に出る人",
+      {
+        text: "「言われたことだけ」で満足する人",
+        detail: "与えられた仕事以上のことを考えない姿勢は合わない",
+      },
+      {
+        text: "変化を嫌う人",
+        detail: "フラクタルは常に進化し続ける組織。現状維持は後退",
+      },
+      {
+        text: "環境のせいにする人",
+        detail: "「教わってない」「時間がない」—できない理由より、できる方法を考えたい",
+      },
     ],
+    note: "正直に書いていますが、これは「合う・合わない」の話。どちらが良い・悪いではありません。フラクタルが合う人には、最高の環境を用意したい。それが私のスタンスです。",
   },
 
-  conclusion: "浅井拓哉とは、「世界をデバッグ（修正）するために送り込まれた特異点」である。その「冷徹さ」は、混乱した世界を救うためのメスであり、「飽きっぽさ」は、一箇所に留まらず多くの場所を救うための駆動力である。",
+  leadership: {
+    style: "全体最適を考える",
+    description: `組織を「美しい庭園」のように考えています。
 
-  message: "「完璧」より「最適」を。一緒に仕組みを作りませんか。",
+一人ひとりが自分の場所で花を咲かせられるように、適材適所の配置を考える。全体のバランスを見ながら、必要な手入れをする。
+
+「優しさ」だけでは組織は回りません。時には厳しい判断も必要です。でもそれは、全体がより良くなるため。一人の問題を放置して、チーム全体が苦しむことがないように。
+
+私だけでは、すべての人のケアはできません。だからこそ、私の考えを現場の言葉に「翻訳」してくれるNo.2の存在が不可欠です。`,
+  },
+
+  vision: `訪問看護の業界には、まだまだ改善できることがたくさんあります。
+
+紙の書類、非効率な移動、属人的になりがちなケア、情報共有の不足...
+
+これらの課題を「仕組み」に変えて、看護師さんが本来の仕事——患者さんのケア——に集中できる環境を作りたい。
+
+私が目指すのは、「浅井がいなくても回る組織」です。
+
+仕組みで動く組織は、特定の人に依存しません。誰かが休んでも、誰かが抜けても、サービスの質は落ちない。それが本当の強さだと思っています。
+
+そして、その仕組みが完成したら？ 私は次の課題を見つけに行きます。
+
+「完成したら次へ」——それが私のスタイルであり、フラクタルを常に進化させ続ける原動力です。`,
+
+  message: `ここまで読んでくださり、ありがとうございます。
+
+誰にでも「得意なこと」と「不得意なこと」があります。私もそう。
+
+私は仕組みを作るのは得意ですが、一人ひとりに寄り添った細やかなケアは苦手です。だからこそ、それが得意な人と一緒に働きたい。
+
+フラクタルは、あなたの「得意」を活かせる場所です。
+
+不得意なことは、それが得意な誰かがカバーする。そうやってチームで補い合いながら、一人では成し遂げられないことを実現する。
+
+得意なことに集中できる環境が、最高のパフォーマンスを生む。そう信じています。`,
 };
 
-// タイピングアニメーション用コンポーネント
-function TypeWriter({ text, delay = 50, className = "" }: { text: string; delay?: number; className?: string }) {
-  const [displayText, setDisplayText] = useState("");
-  const [currentIndex, setCurrentIndex] = useState(0);
+// FadeInコンポーネント
+function FadeIn({
+  children,
+  className = "",
+  delay = 0,
+}: {
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    if (currentIndex < text.length) {
-      const timeout = setTimeout(() => {
-        setDisplayText(prev => prev + text[currentIndex]);
-        setCurrentIndex(prev => prev + 1);
-      }, delay);
-      return () => clearTimeout(timeout);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => setIsVisible(true), delay);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
     }
-  }, [currentIndex, delay, text]);
+
+    return () => observer.disconnect();
+  }, [delay]);
 
   return (
-    <span className={className}>
-      {displayText}
-      {currentIndex < text.length && <span className="animate-pulse">|</span>}
-    </span>
-  );
-}
-
-// ターミナルプロンプト
-function Prompt({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="flex items-start gap-2 font-mono text-sm md:text-base">
-      <span className="text-[#7FC5A0] shrink-0">$</span>
-      <span className="text-slate-300">{children}</span>
+    <div
+      ref={ref}
+      className={`transition-all duration-700 ease-out ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+      } ${className}`}
+    >
+      {children}
     </div>
   );
 }
 
-// セクションヘッダー
-function SectionHeader({ tag, title, titleEn }: { tag: string; title: string; titleEn?: string }) {
+// Q&Aブロックコンポーネント
+function QABlock({
+  question,
+  children,
+}: {
+  question: string;
+  children: ReactNode;
+}) {
   return (
-    <div className="mb-6 md:mb-8">
-      <div className="flex items-center gap-3 mb-2">
-        <span className="font-mono text-xs md:text-sm text-[#7FC5A0] bg-[#7FC5A0]/10 px-2 py-0.5 rounded">{tag}</span>
-        {titleEn && <span className="font-mono text-xs text-slate-500">{titleEn}</span>}
+    <div className="space-y-6">
+      <h2 className="heading-mincho text-2xl md:text-3xl lg:text-4xl text-[var(--color-olive)]">
+        {question}
+      </h2>
+      <div className="bg-white/80 rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
+        {children}
       </div>
-      <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white tracking-tight">{title}</h2>
     </div>
   );
 }
 
-// コードブロック風カード
-function CodeBlock({ children, title, className = "" }: { children: React.ReactNode; title?: string; className?: string }) {
+// ストレングスカード
+function StrengthCard({
+  rank,
+  name,
+  nameEn,
+  description,
+}: {
+  rank: number;
+  name: string;
+  nameEn: string;
+  description: string;
+}) {
+  const isTop = rank <= 2;
   return (
-    <div className={`bg-[#1a1a2e] rounded-lg border border-slate-700/50 overflow-hidden ${className}`}>
-      {title && (
-        <div className="px-4 py-2 bg-slate-800/50 border-b border-slate-700/50 flex items-center gap-2">
-          <div className="flex gap-1.5">
-            <div className="w-3 h-3 rounded-full bg-red-500/80" />
-            <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-            <div className="w-3 h-3 rounded-full bg-green-500/80" />
+    <div
+      className={`relative p-4 md:p-5 rounded-2xl border transition-all duration-300 hover:scale-[1.02] ${
+        isTop
+          ? "bg-[var(--color-logo-light-green)]/10 border-[var(--color-logo-light-green)]/30"
+          : "bg-[var(--color-paper)] border-[var(--color-sand)]"
+      }`}
+    >
+      <div className="flex items-start gap-3">
+        <span
+          className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
+            isTop
+              ? "bg-[var(--color-logo-light-green)] text-white"
+              : "bg-[var(--color-sand)] text-[var(--color-ink-soft)]"
+          }`}
+        >
+          {rank}
+        </span>
+        <div className="flex-1 min-w-0">
+          <div className="flex flex-wrap items-baseline gap-2">
+            <h4 className="font-bold text-[var(--color-ink)]">{name}</h4>
+            <span className="text-xs text-[var(--color-ink-soft)]">
+              {nameEn}
+            </span>
           </div>
-          <span className="font-mono text-xs text-slate-400 ml-2">{title}</span>
+          <p className="text-sm text-[var(--color-ink-soft)] mt-1 leading-relaxed">
+            {description}
+          </p>
         </div>
-      )}
-      <div className="p-4 md:p-6">{children}</div>
+      </div>
     </div>
   );
 }
 
-// 重要度バッジ
-function SeverityBadge({ severity }: { severity: string }) {
-  const colors = {
-    CRITICAL: "bg-red-500/20 text-red-400 border-red-500/30",
-    HIGH: "bg-orange-500/20 text-orange-400 border-orange-500/30",
-    MEDIUM: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30",
+// 価値観カード
+function ValueCard({
+  icon,
+  title,
+  description,
+}: {
+  icon: string;
+  title: string;
+  description: string;
+}) {
+  const iconMap: Record<string, ReactNode> = {
+    question: (
+      <svg
+        className="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
+      </svg>
+    ),
+    target: (
+      <svg
+        className="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+        />
+      </svg>
+    ),
+    rocket: (
+      <svg
+        className="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M13 10V3L4 14h7v7l9-11h-7z"
+        />
+      </svg>
+    ),
   };
+
   return (
-    <span className={`font-mono text-xs px-2 py-0.5 rounded border ${colors[severity as keyof typeof colors] || colors.MEDIUM}`}>
-      {severity}
-    </span>
+    <div className="bg-[var(--color-paper)] rounded-2xl p-5 md:p-6 border border-[var(--color-sand)] hover:shadow-md transition-shadow">
+      <div className="w-12 h-12 rounded-xl bg-[var(--color-logo-light-green)]/20 flex items-center justify-center text-[var(--color-olive)] mb-4">
+        {iconMap[icon]}
+      </div>
+      <h4 className="font-bold text-[var(--color-ink)] mb-2">{title}</h4>
+      <p className="text-sm text-[var(--color-ink-soft)] leading-relaxed">
+        {description}
+      </p>
+    </div>
   );
 }
 
-// マーメイド風フローチャート
-function ThinkingFlowChart() {
-  const steps = [
-    { num: "01", label: "Input", desc: "違和感検知", color: "red" },
-    { num: "02", label: "Logic", desc: "攻略ルート構築", color: "cyan" },
-    { num: "03", label: "Command", desc: "即実行", color: "green" },
-    { num: "04", label: "Feedback", desc: "修正パッチ", color: "yellow" },
-  ];
-
-  const colorMap = {
-    red: { bg: "bg-red-500/10", border: "border-red-500/30", text: "text-red-400", hover: "hover:bg-red-500/20" },
-    cyan: { bg: "bg-cyan-500/10", border: "border-cyan-500/30", text: "text-cyan-400", hover: "hover:bg-cyan-500/20" },
-    green: { bg: "bg-[#7FC5A0]/10", border: "border-[#7FC5A0]/30", text: "text-[#7FC5A0]", hover: "hover:bg-[#7FC5A0]/20" },
-    yellow: { bg: "bg-[#F4E951]/10", border: "border-[#F4E951]/30", text: "text-[#F4E951]", hover: "hover:bg-[#F4E951]/20" },
-  };
-
+// 相性リスト
+function CompatibilityList({
+  type,
+  items,
+}: {
+  type: "good" | "challenging";
+  items: { text: string; detail: string }[];
+}) {
+  const isGood = type === "good";
   return (
-    <div className="w-full overflow-x-auto">
-      <div className="min-w-[550px] md:min-w-0">
-        <div className="relative px-2 md:px-4 pt-2">
-          {/* メインフロー */}
-          <div className="grid grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] items-center gap-1">
-            {steps.map((step, index) => {
-              const colors = colorMap[step.color as keyof typeof colorMap];
-              return (
-                <React.Fragment key={step.num}>
-                  {/* ステップボックス */}
-                  <div className="relative">
-                    <div className={`${colors.bg} ${colors.border} ${colors.hover} border rounded-lg p-2 md:p-3 text-center transition-all`}>
-                      <div className="flex items-center justify-center gap-1 mb-1">
-                        <span className={`font-mono text-[10px] ${colors.text} opacity-60`}>{step.num}</span>
-                        <span className={`font-mono text-xs md:text-sm ${colors.text} font-bold`}>{step.label}</span>
-                      </div>
-                      <p className="text-[10px] md:text-xs text-slate-400 leading-tight">{step.desc}</p>
-                    </div>
-                  </div>
-
-                  {/* 矢印（最後以外） */}
-                  {index < steps.length - 1 && (
-                    <div className="flex items-center justify-center">
-                      <svg className="w-4 h-4 md:w-5 md:h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
-                  )}
-                </React.Fragment>
-              );
-            })}
-          </div>
-
-          {/* ループバック矢印 */}
-          <div className="relative h-8 md:h-10 mt-1">
-            <svg className="absolute inset-0 w-full h-full overflow-visible" viewBox="0 0 100 50" preserveAspectRatio="none">
-              <defs>
-                <linearGradient id="loopGradient" x1="100%" y1="0%" x2="0%" y2="0%">
-                  <stop offset="0%" stopColor="#F4E951" stopOpacity="0.5" />
-                  <stop offset="50%" stopColor="#64748b" stopOpacity="0.3" />
-                  <stop offset="100%" stopColor="#ef4444" stopOpacity="0.5" />
-                </linearGradient>
-              </defs>
-              {/* U字型のループ（幅を狭める） */}
-              <path
-                d="M 88 5 L 88 30 L 12 30 L 12 5"
-                fill="none"
-                stroke="url(#loopGradient)"
-                strokeWidth="1"
-                vectorEffect="non-scaling-stroke"
-              />
-              {/* 上向き矢印 */}
-              <path
-                d="M 9 12 L 12 5 L 15 12"
-                fill="none"
-                stroke="#ef4444"
-                strokeWidth="1"
-                strokeOpacity="0.5"
-                vectorEffect="non-scaling-stroke"
-              />
-            </svg>
-            {/* ループラベル */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2">
-              <span className="font-mono text-[9px] md:text-[10px] text-slate-500 bg-slate-900 px-2 py-0.5 rounded border border-slate-700/50 whitespace-nowrap">
-                ITERATION LOOP
-              </span>
+    <div
+      className={`rounded-2xl p-5 md:p-6 ${
+        isGood
+          ? "bg-[var(--color-logo-light-green)]/10 border border-[var(--color-logo-light-green)]/30"
+          : "bg-[var(--color-logo-yellow)]/10 border border-[var(--color-logo-yellow)]/30"
+      }`}
+    >
+      <h4
+        className={`font-bold mb-4 ${
+          isGood ? "text-[var(--color-olive)]" : "text-[var(--color-ink)]"
+        }`}
+      >
+        {isGood ? "一緒に働きたい人" : "こんな人は難しいかも"}
+      </h4>
+      <ul className="space-y-4">
+        {items.map((item, index) => (
+          <li key={index} className="flex items-start gap-3">
+            <span
+              className={`flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-xs mt-0.5 ${
+                isGood
+                  ? "bg-[var(--color-logo-light-green)] text-white"
+                  : "bg-[var(--color-logo-yellow)] text-[var(--color-ink)]"
+              }`}
+            >
+              {isGood ? "✓" : "!"}
+            </span>
+            <div>
+              <p className="text-sm font-medium text-[var(--color-ink)]">{item.text}</p>
+              <p className="text-xs text-[var(--color-ink-soft)] mt-0.5">{item.detail}</p>
             </div>
-          </div>
-        </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+// 思考サイクルコンポーネント
+function ThinkingCycle({
+  steps,
+}: {
+  steps: { num: string; label: string; desc: string; color: string }[];
+}) {
+  const colorMap: Record<string, { bg: string; border: string; text: string }> = {
+    red: { bg: "bg-red-50", border: "border-red-200", text: "text-red-600" },
+    cyan: { bg: "bg-cyan-50", border: "border-cyan-200", text: "text-cyan-600" },
+    green: { bg: "bg-[var(--color-logo-light-green)]/10", border: "border-[var(--color-logo-light-green)]/30", text: "text-[var(--color-olive)]" },
+    yellow: { bg: "bg-[var(--color-logo-yellow)]/20", border: "border-[var(--color-logo-yellow)]/40", text: "text-[var(--color-ink)]" },
+  };
+
+  return (
+    <div className="relative">
+      {/* ステップ */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+        {steps.map((step, index) => {
+          const colors = colorMap[step.color] || colorMap.green;
+          return (
+            <div
+              key={step.num}
+              className={`${colors.bg} ${colors.border} border rounded-xl p-4 relative`}
+            >
+              <div className="flex items-center gap-2 mb-2">
+                <span className={`text-xs font-mono ${colors.text} opacity-60`}>
+                  {step.num}
+                </span>
+                <span className={`text-sm font-bold ${colors.text}`}>
+                  {step.label}
+                </span>
+              </div>
+              <p className="text-xs text-[var(--color-ink-soft)] leading-relaxed">
+                {step.desc}
+              </p>
+              {/* 矢印（最後以外） */}
+              {index < steps.length - 1 && (
+                <div className="hidden md:block absolute -right-3 top-1/2 -translate-y-1/2 z-10">
+                  <svg className="w-5 h-5 text-[var(--color-ink-soft)]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+      {/* ループ表示 */}
+      <div className="mt-4 text-center">
+        <span className="inline-flex items-center gap-2 text-xs text-[var(--color-ink-soft)] bg-[var(--color-paper)] px-3 py-1 rounded-full border border-[var(--color-sand)]">
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
+          このサイクルを高速で繰り返す
+        </span>
       </div>
     </div>
   );
 }
 
 export default function CEOPage() {
-  const [loaded, setLoaded] = useState(false);
-
-  useEffect(() => {
-    setLoaded(true);
-  }, []);
-
   return (
     <>
       <Header />
-      <main className="bg-[#0a0a0f] min-h-screen pt-14 lg:pt-20">
-        {/* ヒーロー - ターミナル風 */}
-        <section className="relative min-h-[70vh] md:min-h-[80vh] flex items-center overflow-hidden">
-          {/* 背景グリッド */}
-          <div
-            className="absolute inset-0 opacity-[0.03]"
-            style={{
-              backgroundImage: `
-                linear-gradient(rgba(127, 197, 160, 0.5) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(127, 197, 160, 0.5) 1px, transparent 1px)
-              `,
-              backgroundSize: '50px 50px',
-            }}
-          />
-
-          {/* フラクタル装飾 */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute top-20 right-10 w-64 h-64 md:w-96 md:h-96 opacity-5">
-              <svg viewBox="0 0 100 100" className="w-full h-full fill-[#7FC5A0]">
-                <polygon points="50,0 100,86.6 0,86.6" />
-              </svg>
-            </div>
-            <div className="absolute bottom-10 left-10 w-32 h-32 md:w-48 md:h-48 opacity-5">
-              <svg viewBox="0 0 100 100" className="w-full h-full fill-[#F4E951]">
-                <polygon points="50,0 100,86.6 0,86.6" />
-              </svg>
-            </div>
-            {/* スキャンライン */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#7FC5A0]/[0.02] to-transparent animate-scan" />
+      <div className="min-h-screen body-editorial">
+        {/* ヘッダー */}
+        <header className="bg-white/80 backdrop-blur-md shadow-sm sticky top-14 lg:top-20 z-30">
+          <div className="max-w-5xl mx-auto px-4 py-3 md:py-4 flex items-center justify-between">
+            <Link
+              href="/company"
+              className="text-[var(--color-olive)] font-bold text-sm md:text-base hover:opacity-80 transition-opacity"
+            >
+              ← 会社情報へ戻る
+            </Link>
+            <span className="text-xs tracking-[0.2em] text-[var(--color-ink-soft)]">
+              INTERVIEW
+            </span>
           </div>
+        </header>
 
-          <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-8 py-12 md:py-20">
-            {/* ターミナルウィンドウ */}
-            <CodeBlock title="human_architecture_report.md" className="backdrop-blur-sm">
-              <div className="space-y-4">
-                <Prompt>cat /system/identity.conf</Prompt>
+        <main className="max-w-5xl mx-auto px-4 md:px-6 pt-10 md:pt-16 pb-20 md:pb-24 flex flex-col gap-16 md:gap-24">
+          {/* 1. ヒーローセクション */}
+          <section className="text-center max-w-3xl mx-auto">
+            <FadeIn className="space-y-6">
+              <p className="text-xs tracking-[0.3em] text-[var(--color-ink-soft)]">
+                REPRESENTATIVE
+              </p>
+              <h1
+                className="heading-mincho text-3xl md:text-4xl lg:text-5xl text-[var(--color-olive)] leading-tight"
+                style={{ fontSize: "var(--font-size-fluid-3xl)" }}
+              >
+                {ceoProfile.catchphrase}
+              </h1>
+              <div className="space-y-1">
+                <p className="text-xl md:text-2xl font-bold text-[var(--color-ink)]">
+                  {ceoProfile.name}
+                </p>
+                <p className="text-sm text-[var(--color-ink-soft)]">
+                  {ceoProfile.nameEn} | {ceoProfile.title}
+                </p>
+              </div>
+            </FadeIn>
+          </section>
 
-                <div className="pl-4 border-l-2 border-[#7FC5A0]/30 space-y-3 mt-4">
-                  <div className="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-3">
-                    <span className="font-mono text-xs text-slate-500">VERSION:</span>
-                    <span className="font-mono text-sm text-[#F4E951]">{ceoData.version}</span>
-                    <span className="font-mono text-xs text-slate-500 md:ml-4">SECURITY:</span>
-                    <span className="font-mono text-sm text-red-400">{ceoData.securityLevel}</span>
-                  </div>
+          {/* 2. 自己紹介セクション */}
+          <FadeIn>
+            <QABlock question="浅井さんってどんな人？">
+              <div className="space-y-8">
+                <p className="text-lg md:text-xl text-[var(--color-ink)] leading-relaxed">
+                  {ceoProfile.introduction.summary}
+                </p>
+                <p className="text-[var(--color-ink-soft)] leading-relaxed whitespace-pre-line">
+                  {ceoProfile.introduction.detail}
+                </p>
 
-                  <div className="pt-4">
-                    <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight">
-                      {loaded ? <TypeWriter text={ceoData.name} delay={100} /> : ceoData.name}
-                    </h1>
-                    <p className="font-mono text-sm md:text-base text-slate-400 mt-1">{ceoData.nameEn}</p>
-                    <p className="text-[#7FC5A0] font-medium mt-2">{ceoData.title}</p>
-                  </div>
-
-                  <div className="pt-6 space-y-2">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="font-mono text-sm text-[#7FC5A0]">{ceoData.coreIdentity.primaryEn}</span>
-                      <span className="text-slate-500">×</span>
-                      <span className="font-mono text-sm text-[#F4E951]">{ceoData.coreIdentity.secondaryEn}</span>
-                    </div>
-                    <h2 className="text-xl md:text-2xl font-bold text-white">
-                      {ceoData.coreIdentity.primary}
-                      <span className="text-slate-500 mx-2">兼</span>
-                      {ceoData.coreIdentity.secondary}
-                    </h2>
+                {/* ストレングスファインダー */}
+                <div className="pt-6 border-t border-[var(--color-sand)]">
+                  <h3 className="text-sm font-bold text-[var(--color-ink-soft)] mb-4 tracking-wider">
+                    ストレングスファインダー TOP5
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                    {ceoProfile.strengths.map((strength) => (
+                      <StrengthCard key={strength.rank} {...strength} />
+                    ))}
                   </div>
                 </div>
+              </div>
+            </QABlock>
+          </FadeIn>
 
-                <div className="mt-6 p-4 bg-slate-800/30 rounded-lg border border-slate-700/30">
-                  <p className="text-slate-300 text-sm md:text-base leading-relaxed">
-                    {ceoData.coreIdentity.definition}
+          {/* 3. 仕事への向き合い方セクション */}
+          <FadeIn>
+            <QABlock question="仕事で大切にしていることは？">
+              <div className="space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                  {ceoProfile.workStyle.values.map((value, index) => (
+                    <ValueCard key={index} {...value} />
+                  ))}
+                </div>
+
+                {/* 思考サイクル */}
+                <div className="pt-6 border-t border-[var(--color-sand)]">
+                  <h3 className="text-lg font-bold text-[var(--color-ink)] mb-2">
+                    {ceoProfile.thinkingCycle.title}
+                  </h3>
+                  <p className="text-sm text-[var(--color-ink-soft)] mb-6">
+                    {ceoProfile.thinkingCycle.description}
+                  </p>
+                  <ThinkingCycle steps={ceoProfile.thinkingCycle.steps} />
+                </div>
+              </div>
+            </QABlock>
+          </FadeIn>
+
+          {/* 4. チームとの関わり方セクション */}
+          <FadeIn>
+            <QABlock question="どんなチームを作りたい？">
+              <div className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                  <CompatibilityList
+                    type="good"
+                    items={ceoProfile.teamFit.good}
+                  />
+                  <CompatibilityList
+                    type="challenging"
+                    items={ceoProfile.teamFit.challenging}
+                  />
+                </div>
+                <p className="text-sm text-[var(--color-ink-soft)] leading-relaxed bg-[var(--color-paper)] rounded-xl p-4">
+                  {ceoProfile.teamFit.note}
+                </p>
+              </div>
+            </QABlock>
+          </FadeIn>
+
+          {/* 5. リーダーシップセクション */}
+          <FadeIn>
+            <QABlock question="どんなリーダーシップを取る？">
+              <div className="space-y-6">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-xl bg-[var(--color-olive)] flex items-center justify-center">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-bold text-[var(--color-ink)]">
+                    {ceoProfile.leadership.style}
+                  </h3>
+                </div>
+                <p className="text-[var(--color-ink-soft)] leading-relaxed whitespace-pre-line">
+                  {ceoProfile.leadership.description}
+                </p>
+              </div>
+            </QABlock>
+          </FadeIn>
+
+          {/* 6. フラクタルへの想いセクション */}
+          <FadeIn>
+            <QABlock question="フラクタルで実現したいことは？">
+              <p className="text-[var(--color-ink)] leading-relaxed whitespace-pre-line text-base md:text-lg">
+                {ceoProfile.vision}
+              </p>
+            </QABlock>
+          </FadeIn>
+
+          {/* 6. メッセージセクション */}
+          <FadeIn>
+            <section className="bg-[var(--color-olive)] rounded-3xl p-8 md:p-12 text-white relative overflow-hidden">
+              {/* 装飾 */}
+              <div
+                className="absolute top-0 right-0 w-32 h-32 md:w-48 md:h-48 opacity-10"
+                style={{
+                  background:
+                    "linear-gradient(135deg, var(--color-logo-yellow) 0%, transparent 70%)",
+                }}
+              />
+
+              <div className="relative z-10 space-y-6">
+                <h2 className="heading-mincho text-2xl md:text-3xl">
+                  最後に
+                </h2>
+                <p className="leading-relaxed whitespace-pre-line opacity-90">
+                  {ceoProfile.message}
+                </p>
+                <div className="pt-6 border-t border-white/20">
+                  <p className="text-xl md:text-2xl font-bold">
+                    「完璧」より「最適」を。
+                    <br />
+                    一緒に仕組みを作りましょう。
+                  </p>
+                  <p className="mt-4 text-sm opacity-80">
+                    {ceoProfile.title} {ceoProfile.name}
                   </p>
                 </div>
               </div>
-            </CodeBlock>
-          </div>
-        </section>
+            </section>
+          </FadeIn>
 
-        {/* 存在意義 */}
-        <section className="py-12 md:py-20 px-4 sm:px-6 md:px-8">
-          <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-              <CodeBlock title="purpose.ts">
-                <div className="space-y-2">
-                  <span className="font-mono text-xs text-[#7FC5A0]">// 存在意義</span>
-                  <p className="text-slate-300 text-sm leading-relaxed">{ceoData.coreIdentity.purpose}</p>
-                </div>
-              </CodeBlock>
-              <CodeBlock title="stance.ts">
-                <div className="space-y-2">
-                  <span className="font-mono text-xs text-[#7FC5A0]">// 基本スタンス</span>
-                  <p className="text-slate-300 text-sm leading-relaxed">{ceoData.coreIdentity.stance}</p>
-                </div>
-              </CodeBlock>
-              <CodeBlock title="metaphor.ts">
-                <div className="space-y-2">
-                  <span className="font-mono text-xs text-[#7FC5A0]">// メタファー</span>
-                  <p className="text-slate-300 text-sm leading-relaxed">{ceoData.coreIdentity.metaphor}</p>
-                </div>
-              </CodeBlock>
-            </div>
-          </div>
-        </section>
-
-        {/* OSアーキテクチャ */}
-        <section className="py-12 md:py-20 px-4 sm:px-6 md:px-8 bg-[#0d0d14]">
-          <div className="max-w-5xl mx-auto">
-            <SectionHeader tag="02" title="OSアーキテクチャ" titleEn="Operating System" />
-
-            <div className="space-y-6">
-              {/* 認識機能 */}
-              <CodeBlock title={`os/recognition.module.ts`}>
-                <div className="space-y-4">
-                  <div className="flex flex-wrap items-center gap-3">
-                    <span className="font-mono text-lg md:text-xl text-white font-bold">{ceoData.os.recognition.name}</span>
-                    <span className="font-mono text-xs text-slate-500">{ceoData.os.recognition.nameEn}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm">
-                    <span className="font-mono text-slate-500">構成資質:</span>
-                    <span className="font-mono text-[#7FC5A0]">{ceoData.os.recognition.composition}</span>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                    <div className="p-4 bg-slate-800/30 rounded-lg border border-slate-700/30">
-                      <p className="font-mono text-xs text-[#F4E951] mb-2">PROCESS</p>
-                      <p className="text-slate-300 text-sm">{ceoData.os.recognition.process}</p>
-                    </div>
-                    <div className="p-4 bg-slate-800/30 rounded-lg border border-slate-700/30">
-                      <p className="font-mono text-xs text-[#7FC5A0] mb-2">OUTPUT</p>
-                      <p className="text-slate-300 text-sm">{ceoData.os.recognition.output}</p>
-                    </div>
-                  </div>
-                </div>
-              </CodeBlock>
-
-              {/* 演算機能 */}
-              <CodeBlock title={`os/processing.module.ts`}>
-                <div className="space-y-4">
-                  <div className="flex flex-wrap items-center gap-3">
-                    <span className="font-mono text-lg md:text-xl text-white font-bold">{ceoData.os.processing.name}</span>
-                    <span className="font-mono text-xs text-slate-500">{ceoData.os.processing.nameEn}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm">
-                    <span className="font-mono text-slate-500">構成資質:</span>
-                    <span className="font-mono text-[#7FC5A0]">{ceoData.os.processing.composition}</span>
-                  </div>
-
-                  {/* マーメイド風フローチャート */}
-                  <div className="mt-6 p-4 bg-slate-900/50 rounded-lg border border-slate-700/30">
-                    <p className="font-mono text-xs text-slate-500 mb-4 text-center">// 思考フロー図</p>
-                    <ThinkingFlowChart />
-                  </div>
-
-                  <div className="mt-4 space-y-2">
-                    {ceoData.os.processing.steps.map((step, index) => (
-                      <div key={index} className="flex items-start gap-3 p-3 bg-slate-800/20 rounded border-l-2 border-[#7FC5A0]/50">
-                        <span className="font-mono text-xs text-[#7FC5A0] bg-[#7FC5A0]/10 px-2 py-0.5 rounded shrink-0">
-                          {step.label}
-                        </span>
-                        <p className="text-slate-300 text-sm">{step.desc}</p>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="p-4 bg-[#F4E951]/10 rounded-lg border border-[#F4E951]/20 mt-4">
-                    <p className="font-mono text-xs text-[#F4E951] mb-2">FEATURE</p>
-                    <p className="text-slate-300 text-sm">{ceoData.os.processing.feature}</p>
-                  </div>
-                </div>
-              </CodeBlock>
-
-              {/* メモリ管理 */}
-              <CodeBlock title={`os/memory.module.ts`}>
-                <div className="space-y-4">
-                  <div className="flex flex-wrap items-center gap-3">
-                    <span className="font-mono text-lg md:text-xl text-white font-bold">{ceoData.os.memory.name}</span>
-                    <span className="font-mono text-xs text-slate-500">{ceoData.os.memory.nameEn}</span>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                    <div className="p-4 bg-slate-800/30 rounded-lg border border-slate-700/30">
-                      <p className="font-mono text-xs text-orange-400 mb-2">PROCESS</p>
-                      <p className="text-slate-300 text-sm">{ceoData.os.memory.process}</p>
-                    </div>
-                    <div className="p-4 bg-slate-800/30 rounded-lg border border-slate-700/30">
-                      <p className="font-mono text-xs text-cyan-400 mb-2">INTERFACE</p>
-                      <p className="text-slate-300 text-sm">{ceoData.os.memory.interface}</p>
-                    </div>
-                  </div>
-                </div>
-              </CodeBlock>
-            </div>
-          </div>
-        </section>
-
-        {/* ストレングスファインダー */}
-        <section className="py-12 md:py-20 px-4 sm:px-6 md:px-8">
-          <div className="max-w-5xl mx-auto">
-            <SectionHeader tag="03" title="インストール済みモジュール" titleEn="StrengthsFinder TOP5" />
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 md:gap-4">
-              {ceoData.strengths.map((strength, index) => (
-                <div
-                  key={index}
-                  className={`relative p-4 rounded-lg border transition-all duration-300 hover:scale-105 ${
-                    index === 0
-                      ? 'bg-[#F4E951]/10 border-[#F4E951]/30'
-                      : index < 3
-                        ? 'bg-[#7FC5A0]/10 border-[#7FC5A0]/30'
-                        : 'bg-slate-800/30 border-slate-700/30'
-                  }`}
-                >
-                  <div className="flex items-center justify-between mb-3">
-                    <span className={`font-mono text-xs ${
-                      index === 0 ? 'text-[#F4E951]' : index < 3 ? 'text-[#7FC5A0]' : 'text-slate-400'
-                    }`}>
-                      #{strength.rank}
-                    </span>
-                    <div className={`w-2 h-2 rounded-full animate-pulse ${
-                      index === 0 ? 'bg-[#F4E951]' : index < 3 ? 'bg-[#7FC5A0]' : 'bg-slate-500'
-                    }`} />
-                  </div>
-                  <h3 className="text-white font-bold mb-1">{strength.name}</h3>
-                  <p className="font-mono text-xs text-slate-500 mb-2">{strength.nameEn}</p>
-                  <p className="text-slate-400 text-xs leading-relaxed">{strength.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* バグと地雷 */}
-        <section className="py-12 md:py-20 px-4 sm:px-6 md:px-8 bg-[#0d0d14]">
-          <div className="max-w-5xl mx-auto">
-            <SectionHeader tag="04" title="致命的なバグと地雷" titleEn="Critical Bugs & Vulnerabilities" />
-
-            <div className="space-y-4">
-              {ceoData.bugs.map((bug, index) => (
-                <CodeBlock key={index} title={`bugs/${bug.id.toLowerCase()}.log`}>
-                  <div className="space-y-4">
-                    <div className="flex flex-wrap items-center gap-3">
-                      <SeverityBadge severity={bug.severity} />
-                      <span className="font-mono text-white font-bold">{bug.name}</span>
-                      <span className="font-mono text-xs text-slate-500">{bug.nameEn}</span>
-                    </div>
-
-                    <div className="space-y-3 mt-4">
-                      <div className="p-3 bg-red-500/5 rounded border-l-2 border-red-500/50">
-                        <p className="font-mono text-xs text-red-400 mb-1">TRIGGER</p>
-                        <p className="text-slate-300 text-sm">{bug.trigger}</p>
-                      </div>
-                      <div className="p-3 bg-orange-500/5 rounded border-l-2 border-orange-500/50">
-                        <p className="font-mono text-xs text-orange-400 mb-1">SYSTEM REACTION</p>
-                        <p className="text-slate-300 text-sm">{bug.reaction}</p>
-                      </div>
-                      {(bug.logic || bug.workaround) && (
-                        <div className="p-3 bg-cyan-500/5 rounded border-l-2 border-cyan-500/50">
-                          <p className="font-mono text-xs text-cyan-400 mb-1">
-                            {bug.logic ? 'LOGIC BACKGROUND' : 'WORKAROUND'}
-                          </p>
-                          <p className="text-slate-300 text-sm">{bug.logic || bug.workaround}</p>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </CodeBlock>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* リーダーシップ */}
-        <section className="py-12 md:py-20 px-4 sm:px-6 md:px-8">
-          <div className="max-w-5xl mx-auto">
-            <SectionHeader tag="05" title="リーダーシップスタイル" titleEn="Leadership Specs" />
-
-            <CodeBlock title="leadership/config.yaml">
-              <div className="space-y-6">
-                <div className="flex flex-wrap items-center gap-3">
-                  <span className="text-2xl md:text-3xl text-white font-bold">{ceoData.leadership.style}</span>
-                  <span className="font-mono text-sm text-[#7FC5A0]">{ceoData.leadership.styleEn}</span>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="p-4 bg-slate-800/30 rounded-lg border border-slate-700/30">
-                    <p className="font-mono text-xs text-[#7FC5A0] mb-2">CONCEPT</p>
-                    <p className="text-slate-300 text-sm">{ceoData.leadership.concept}</p>
-                  </div>
-                  <div className="p-4 bg-slate-800/30 rounded-lg border border-slate-700/30">
-                    <p className="font-mono text-xs text-[#F4E951] mb-2">ACTION</p>
-                    <p className="text-slate-300 text-sm">{ceoData.leadership.action}</p>
-                  </div>
-                  <div className="p-4 bg-slate-800/30 rounded-lg border border-slate-700/30">
-                    <p className="font-mono text-xs text-cyan-400 mb-2">CHARISMA</p>
-                    <p className="text-slate-300 text-sm">{ceoData.leadership.charisma}</p>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-[#7FC5A0]/10 rounded-lg border border-[#7FC5A0]/20">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="font-mono text-sm text-[#7FC5A0]">REQUIRED MODULE:</span>
-                    <span className="text-white font-bold">{ceoData.leadership.requiredModule.name}</span>
-                    <span className="font-mono text-xs text-slate-500">{ceoData.leadership.requiredModule.nameEn}</span>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
-                    <div>
-                      <p className="font-mono text-xs text-slate-500 mb-1">FUNCTION</p>
-                      <p className="text-slate-300">{ceoData.leadership.requiredModule.function}</p>
-                    </div>
-                    <div>
-                      <p className="font-mono text-xs text-slate-500 mb-1">ROLE</p>
-                      <p className="text-slate-300">{ceoData.leadership.requiredModule.role}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </CodeBlock>
-          </div>
-        </section>
-
-        {/* 人生攻略ロードマップ */}
-        <section className="py-12 md:py-20 px-4 sm:px-6 md:px-8 bg-[#0d0d14]">
-          <div className="max-w-5xl mx-auto">
-            <SectionHeader tag="06" title="人生攻略のロードマップ" titleEn="Life Strategy" />
-
-            <CodeBlock title="strategy/roadmap.md">
-              <div className="space-y-6">
-                <div className="p-4 bg-[#F4E951]/10 rounded-lg border border-[#F4E951]/20">
-                  <p className="font-mono text-xs text-[#F4E951] mb-2">WINNING CONDITION</p>
-                  <p className="text-white font-medium">{ceoData.lifeStrategy.winningCondition}</p>
-                </div>
-
-                <div className="space-y-3">
-                  <p className="font-mono text-sm text-slate-500">// 推奨キャリアサイクル</p>
-                  {ceoData.lifeStrategy.cycle.map((item, index) => (
-                    <div
-                      key={index}
-                      className={`flex items-start gap-4 p-4 rounded-lg border transition-all ${
-                        item.critical
-                          ? 'bg-[#F4E951]/10 border-[#F4E951]/30'
-                          : 'bg-slate-800/20 border-slate-700/30'
-                      }`}
-                    >
-                      <div className={`flex items-center justify-center w-10 h-10 rounded-lg shrink-0 ${
-                        item.critical ? 'bg-[#F4E951]/20 text-[#F4E951]' : 'bg-[#7FC5A0]/20 text-[#7FC5A0]'
-                      }`}>
-                        <span className="font-mono font-bold">{index + 1}</span>
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <span className={`font-mono font-bold ${item.critical ? 'text-[#F4E951]' : 'text-white'}`}>
-                            {item.phase}
-                          </span>
-                          {item.critical && (
-                            <span className="font-mono text-xs text-[#F4E951] bg-[#F4E951]/10 px-2 py-0.5 rounded">
-                              CRITICAL
-                            </span>
-                          )}
-                        </div>
-                        <p className="text-slate-300 text-sm mt-1">{item.desc}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="p-4 bg-slate-800/30 rounded-lg border border-slate-700/30">
-                  <p className="font-mono text-xs text-[#7FC5A0] mb-2">DESTINY</p>
-                  <p className="text-slate-300">{ceoData.lifeStrategy.destiny}</p>
-                </div>
-              </div>
-            </CodeBlock>
-          </div>
-        </section>
-
-        {/* 相性 */}
-        <section className="py-12 md:py-20 px-4 sm:px-6 md:px-8">
-          <div className="max-w-5xl mx-auto">
-            <SectionHeader tag="07" title="互換性チェック" titleEn="Compatibility Matrix" />
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <CodeBlock title="compatibility/good.json">
-                <div className="space-y-3">
-                  <p className="font-mono text-sm text-[#7FC5A0] mb-4">// 相性が良い人</p>
-                  {ceoData.compatibility.good.map((item, index) => (
-                    <div key={index} className="flex items-center gap-3 p-3 bg-[#7FC5A0]/5 rounded border-l-2 border-[#7FC5A0]">
-                      <span className="text-[#7FC5A0]">✓</span>
-                      <span className="text-slate-300 text-sm">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </CodeBlock>
-
-              <CodeBlock title="compatibility/challenging.json">
-                <div className="space-y-3">
-                  <p className="font-mono text-sm text-orange-400 mb-4">// 相性に注意が必要な人</p>
-                  {ceoData.compatibility.challenging.map((item, index) => (
-                    <div key={index} className="flex items-center gap-3 p-3 bg-orange-500/5 rounded border-l-2 border-orange-500/50">
-                      <span className="text-orange-400">!</span>
-                      <span className="text-slate-300 text-sm">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </CodeBlock>
-            </div>
-          </div>
-        </section>
-
-        {/* 結論 */}
-        <section className="py-12 md:py-20 px-4 sm:px-6 md:px-8 bg-[#0d0d14]">
-          <div className="max-w-5xl mx-auto">
-            <CodeBlock title="conclusion.md" className="border-[#7FC5A0]/30">
-              <div className="space-y-6 text-center">
-                <p className="font-mono text-xs text-[#7FC5A0]">// CONCLUSION</p>
-                <p className="text-lg md:text-xl lg:text-2xl text-white font-medium leading-relaxed max-w-3xl mx-auto">
-                  {ceoData.conclusion}
-                </p>
-              </div>
-            </CodeBlock>
-          </div>
-        </section>
-
-        {/* CTA */}
-        <section className="py-16 md:py-24 px-4 sm:px-6 md:px-8 relative overflow-hidden">
-          {/* 背景装飾 */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f] via-[#0D5643]/10 to-[#0a0a0f]" />
-
-          {/* グリッドパターン */}
-          <div
-            className="absolute inset-0 opacity-[0.02]"
-            style={{
-              backgroundImage: `
-                linear-gradient(rgba(127, 197, 160, 0.5) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(127, 197, 160, 0.5) 1px, transparent 1px)
-              `,
-              backgroundSize: '30px 30px',
-            }}
-          />
-
-          <div className="relative z-10 max-w-4xl mx-auto">
-            {/* ターミナル風メッセージボックス */}
-            <CodeBlock title="message.sh" className="mb-8 md:mb-12">
-              <div className="text-center py-4">
-                <Prompt>echo $MESSAGE</Prompt>
-                <p className="text-xl md:text-2xl lg:text-3xl font-bold text-[#F4E951] mt-4">
-                  {ceoData.message}
-                </p>
-              </div>
-            </CodeBlock>
-
-            {/* アクションボタン */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-2xl mx-auto">
+          {/* 7. CTAセクション */}
+          <FadeIn>
+            <section className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
               <Link
                 href="/company"
-                className="group relative overflow-hidden bg-[#1a1a2e] border border-[#7FC5A0]/30 rounded-lg p-5 md:p-6 hover:border-[#7FC5A0] transition-all duration-300"
+                className="group relative overflow-hidden bg-white/80 border border-[var(--color-sand)] rounded-2xl p-6 md:p-8 hover:border-[var(--color-logo-light-green)] transition-all duration-300 hover:shadow-md"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-[#7FC5A0]/0 via-[#7FC5A0]/5 to-[#7FC5A0]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
-                <div className="relative">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="font-mono text-xs text-[#7FC5A0]">$ cd /company</span>
-                  </div>
-                  <p className="text-white font-bold text-lg mb-1">浅井が作るフラクタル構造</p>
-                  <p className="text-slate-400 text-sm">株式会社フラクタルについて</p>
-                  <div className="absolute right-0 top-1/2 -translate-y-1/2">
-                    <svg className="w-6 h-6 text-[#7FC5A0] group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
+                <div className="relative z-10">
+                  <p className="text-xs tracking-wider text-[var(--color-ink-soft)] mb-2">
+                    COMPANY
+                  </p>
+                  <p className="text-lg md:text-xl font-bold text-[var(--color-ink)] mb-1">
+                    フラクタルについて
+                  </p>
+                  <p className="text-sm text-[var(--color-ink-soft)]">
+                    会社の理念と文化を知る
+                  </p>
+                </div>
+                <div className="absolute right-6 top-1/2 -translate-y-1/2">
+                  <svg
+                    className="w-6 h-6 text-[var(--color-logo-light-green)] group-hover:translate-x-1 transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
                 </div>
               </Link>
 
               <Link
                 href="/recruit"
-                className="group relative overflow-hidden bg-[#1a1a2e] border border-[#F4E951]/30 rounded-lg p-5 md:p-6 hover:border-[#F4E951] transition-all duration-300"
+                className="group relative overflow-hidden bg-[var(--color-logo-yellow)]/20 border border-[var(--color-logo-yellow)]/30 rounded-2xl p-6 md:p-8 hover:border-[var(--color-logo-yellow)] transition-all duration-300 hover:shadow-md"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-[#F4E951]/0 via-[#F4E951]/5 to-[#F4E951]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
-                <div className="relative">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="font-mono text-xs text-[#F4E951]">$ cd /recruit</span>
-                  </div>
-                  <p className="text-white font-bold text-lg mb-1">採用情報を見る</p>
-                  <p className="text-slate-400 text-sm">一緒に仕組みを作りませんか</p>
-                  <div className="absolute right-0 top-1/2 -translate-y-1/2">
-                    <svg className="w-6 h-6 text-[#F4E951] group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
+                <div className="relative z-10">
+                  <p className="text-xs tracking-wider text-[var(--color-ink-soft)] mb-2">
+                    RECRUIT
+                  </p>
+                  <p className="text-lg md:text-xl font-bold text-[var(--color-ink)] mb-1">
+                    採用情報を見る
+                  </p>
+                  <p className="text-sm text-[var(--color-ink-soft)]">
+                    一緒に仕組みを作りませんか
+                  </p>
+                </div>
+                <div className="absolute right-6 top-1/2 -translate-y-1/2">
+                  <svg
+                    className="w-6 h-6 text-[var(--color-logo-yellow)] group-hover:translate-x-1 transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
                 </div>
               </Link>
-            </div>
-
-            {/* フッターメッセージ */}
-            <div className="mt-8 md:mt-12 text-center">
-              <p className="font-mono text-xs text-slate-600">
-                // End of Human Architecture Report
-              </p>
-            </div>
-          </div>
-        </section>
-      </main>
+            </section>
+          </FadeIn>
+        </main>
+      </div>
       <Footer />
-
-      {/* カスタムアニメーション用のスタイル */}
-      <style jsx>{`
-        @keyframes scan {
-          0% { transform: translateY(-100%); }
-          100% { transform: translateY(100%); }
-        }
-        .animate-scan {
-          animation: scan 8s linear infinite;
-        }
-      `}</style>
     </>
   );
 }
