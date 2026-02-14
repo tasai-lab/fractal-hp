@@ -215,6 +215,112 @@ function SeverityBadge({ severity }: { severity: string }) {
   );
 }
 
+// マーメイド風フローチャート
+function ThinkingFlowChart() {
+  return (
+    <div className="w-full overflow-x-auto pb-4">
+      <div className="min-w-[600px] md:min-w-0">
+        {/* フローチャート本体 */}
+        <div className="relative">
+          {/* メインフロー */}
+          <div className="flex items-center justify-between gap-2 md:gap-4">
+            {/* Input */}
+            <div className="flex-1 max-w-[140px] md:max-w-[180px]">
+              <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-3 md:p-4 text-center relative group hover:bg-red-500/20 transition-all">
+                <div className="absolute -top-2 left-1/2 -translate-x-1/2 bg-[#0d0d14] px-2">
+                  <span className="font-mono text-[10px] text-red-400">01</span>
+                </div>
+                <p className="font-mono text-xs md:text-sm text-red-400 font-bold mb-1">Input</p>
+                <p className="text-[10px] md:text-xs text-slate-400">違和感検知</p>
+              </div>
+            </div>
+
+            {/* Arrow */}
+            <div className="flex items-center text-slate-600">
+              <div className="w-4 md:w-8 h-px bg-gradient-to-r from-red-500/50 to-cyan-500/50" />
+              <svg className="w-3 h-3 md:w-4 md:h-4 text-cyan-500/50" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+            </div>
+
+            {/* Logic */}
+            <div className="flex-1 max-w-[140px] md:max-w-[180px]">
+              <div className="bg-cyan-500/10 border border-cyan-500/30 rounded-lg p-3 md:p-4 text-center relative group hover:bg-cyan-500/20 transition-all">
+                <div className="absolute -top-2 left-1/2 -translate-x-1/2 bg-[#0d0d14] px-2">
+                  <span className="font-mono text-[10px] text-cyan-400">02</span>
+                </div>
+                <p className="font-mono text-xs md:text-sm text-cyan-400 font-bold mb-1">Logic</p>
+                <p className="text-[10px] md:text-xs text-slate-400">攻略ルート構築</p>
+              </div>
+            </div>
+
+            {/* Arrow */}
+            <div className="flex items-center text-slate-600">
+              <div className="w-4 md:w-8 h-px bg-gradient-to-r from-cyan-500/50 to-[#7FC5A0]/50" />
+              <svg className="w-3 h-3 md:w-4 md:h-4 text-[#7FC5A0]/50" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+            </div>
+
+            {/* Command */}
+            <div className="flex-1 max-w-[140px] md:max-w-[180px]">
+              <div className="bg-[#7FC5A0]/10 border border-[#7FC5A0]/30 rounded-lg p-3 md:p-4 text-center relative group hover:bg-[#7FC5A0]/20 transition-all">
+                <div className="absolute -top-2 left-1/2 -translate-x-1/2 bg-[#0d0d14] px-2">
+                  <span className="font-mono text-[10px] text-[#7FC5A0]">03</span>
+                </div>
+                <p className="font-mono text-xs md:text-sm text-[#7FC5A0] font-bold mb-1">Command</p>
+                <p className="text-[10px] md:text-xs text-slate-400">即実行</p>
+              </div>
+            </div>
+
+            {/* Arrow */}
+            <div className="flex items-center text-slate-600">
+              <div className="w-4 md:w-8 h-px bg-gradient-to-r from-[#7FC5A0]/50 to-[#F4E951]/50" />
+              <svg className="w-3 h-3 md:w-4 md:h-4 text-[#F4E951]/50" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+            </div>
+
+            {/* Feedback */}
+            <div className="flex-1 max-w-[140px] md:max-w-[180px]">
+              <div className="bg-[#F4E951]/10 border border-[#F4E951]/30 rounded-lg p-3 md:p-4 text-center relative group hover:bg-[#F4E951]/20 transition-all">
+                <div className="absolute -top-2 left-1/2 -translate-x-1/2 bg-[#0d0d14] px-2">
+                  <span className="font-mono text-[10px] text-[#F4E951]">04</span>
+                </div>
+                <p className="font-mono text-xs md:text-sm text-[#F4E951] font-bold mb-1">Feedback</p>
+                <p className="text-[10px] md:text-xs text-slate-400">修正パッチ</p>
+              </div>
+            </div>
+          </div>
+
+          {/* ループバック矢印 */}
+          <div className="relative mt-4 md:mt-6">
+            <div className="absolute left-[10%] right-[10%] h-8 md:h-12">
+              {/* 下向きの線（右端） */}
+              <div className="absolute right-0 top-0 w-px h-3 md:h-4 bg-gradient-to-b from-[#F4E951]/50 to-slate-600" />
+              {/* 水平線 */}
+              <div className="absolute right-0 left-0 top-3 md:top-4 h-px bg-gradient-to-l from-slate-600 via-slate-500 to-slate-600" />
+              {/* 上向きの矢印（左端） */}
+              <div className="absolute left-0 top-3 md:top-4 flex flex-col items-center">
+                <div className="w-px h-3 md:h-4 bg-gradient-to-b from-slate-600 to-red-500/50" />
+                <svg className="w-3 h-3 md:w-4 md:h-4 text-red-500/50 -mt-1" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clipRule="evenodd" />
+                </svg>
+              </div>
+            </div>
+            {/* ループラベル */}
+            <div className="text-center pt-6 md:pt-10">
+              <span className="font-mono text-[10px] md:text-xs text-slate-500 bg-[#0d0d14] px-3 py-1 rounded border border-slate-700/50">
+                HIGH-SPEED ITERATION LOOP
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function CEOPage() {
   const [loaded, setLoaded] = useState(false);
 
@@ -368,6 +474,12 @@ export default function CEOPage() {
                   <div className="flex items-center gap-2 text-sm">
                     <span className="font-mono text-slate-500">構成資質:</span>
                     <span className="font-mono text-[#7FC5A0]">{ceoData.os.processing.composition}</span>
+                  </div>
+
+                  {/* マーメイド風フローチャート */}
+                  <div className="mt-6 p-4 bg-slate-900/50 rounded-lg border border-slate-700/30">
+                    <p className="font-mono text-xs text-slate-500 mb-4 text-center">// 思考フロー図</p>
+                    <ThinkingFlowChart />
                   </div>
 
                   <div className="mt-4 space-y-2">
@@ -640,29 +752,77 @@ export default function CEOPage() {
         {/* CTA */}
         <section className="py-16 md:py-24 px-4 sm:px-6 md:px-8 relative overflow-hidden">
           {/* 背景装飾 */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f] via-[#0D5643]/20 to-[#0a0a0f]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f] via-[#0D5643]/10 to-[#0a0a0f]" />
 
-          <div className="relative z-10 max-w-4xl mx-auto text-center">
-            <div className="inline-block mb-8 px-6 py-3 bg-[#F4E951] text-[#0D5643] font-bold rounded-lg text-lg md:text-xl">
-              {ceoData.message}
-            </div>
+          {/* グリッドパターン */}
+          <div
+            className="absolute inset-0 opacity-[0.02]"
+            style={{
+              backgroundImage: `
+                linear-gradient(rgba(127, 197, 160, 0.5) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(127, 197, 160, 0.5) 1px, transparent 1px)
+              `,
+              backgroundSize: '30px 30px',
+            }}
+          />
 
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
+          <div className="relative z-10 max-w-4xl mx-auto">
+            {/* ターミナル風メッセージボックス */}
+            <CodeBlock title="message.sh" className="mb-8 md:mb-12">
+              <div className="text-center py-4">
+                <Prompt>echo $MESSAGE</Prompt>
+                <p className="text-xl md:text-2xl lg:text-3xl font-bold text-[#F4E951] mt-4">
+                  {ceoData.message}
+                </p>
+              </div>
+            </CodeBlock>
+
+            {/* アクションボタン */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-2xl mx-auto">
               <Link
                 href="/company"
-                className="group inline-flex items-center justify-center px-8 py-4 bg-[#7FC5A0] text-[#0D5643] rounded-lg font-bold hover:bg-[#F4E951] transition-all duration-300"
+                className="group relative overflow-hidden bg-[#1a1a2e] border border-[#7FC5A0]/30 rounded-lg p-5 md:p-6 hover:border-[#7FC5A0] transition-all duration-300"
               >
-                <span>浅井が作るフラクタル構造</span>
-                <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#7FC5A0]/0 via-[#7FC5A0]/5 to-[#7FC5A0]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+                <div className="relative">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="font-mono text-xs text-[#7FC5A0]">$ cd /company</span>
+                  </div>
+                  <p className="text-white font-bold text-lg mb-1">浅井が作るフラクタル構造</p>
+                  <p className="text-slate-400 text-sm">株式会社フラクタルについて</p>
+                  <div className="absolute right-0 top-1/2 -translate-y-1/2">
+                    <svg className="w-6 h-6 text-[#7FC5A0] group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </div>
               </Link>
+
               <Link
                 href="/recruit"
-                className="inline-flex items-center justify-center px-8 py-4 border-2 border-slate-600 text-slate-300 rounded-lg font-bold hover:border-[#7FC5A0] hover:text-[#7FC5A0] transition-all duration-300"
+                className="group relative overflow-hidden bg-[#1a1a2e] border border-[#F4E951]/30 rounded-lg p-5 md:p-6 hover:border-[#F4E951] transition-all duration-300"
               >
-                採用情報を見る
+                <div className="absolute inset-0 bg-gradient-to-r from-[#F4E951]/0 via-[#F4E951]/5 to-[#F4E951]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+                <div className="relative">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="font-mono text-xs text-[#F4E951]">$ cd /recruit</span>
+                  </div>
+                  <p className="text-white font-bold text-lg mb-1">採用情報を見る</p>
+                  <p className="text-slate-400 text-sm">一緒に仕組みを作りませんか</p>
+                  <div className="absolute right-0 top-1/2 -translate-y-1/2">
+                    <svg className="w-6 h-6 text-[#F4E951] group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </div>
               </Link>
+            </div>
+
+            {/* フッターメッセージ */}
+            <div className="mt-8 md:mt-12 text-center">
+              <p className="font-mono text-xs text-slate-600">
+                // End of Human Architecture Report
+              </p>
             </div>
           </div>
         </section>
