@@ -7,24 +7,30 @@ export default function ForMedicalInstitutionsPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-white">
+      <main className="pt-14 lg:pt-20">
         {/* ヒーローセクション */}
-        <section className="relative overflow-hidden bg-gradient-to-br from-[var(--color-paper)] to-white pt-32 pb-20">
-          <BackgroundTriangles pattern="about" />
+        <section className="relative min-h-[50vh] md:min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[var(--color-logo-dark-green)] to-[var(--color-logo-light-green)]">
+          {/* 背景装飾 */}
+          <div className="absolute inset-0 opacity-10">
+            <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <polygon points="0,0 100,0 100,100" fill="white" />
+              <polygon points="0,100 50,0 100,100" fill="white" opacity="0.5" />
+            </svg>
+          </div>
+          {/* 下部グラデーション */}
+          <div className="absolute bottom-0 left-0 right-0 h-24 md:h-32 bg-gradient-to-t from-white via-white/50 to-transparent pointer-events-none"></div>
 
-          <div className="relative z-10 max-w-5xl mx-auto px-4">
-            <div className="text-center">
-              <div className="inline-block px-4 py-2 rounded-full bg-[var(--color-logo-light-green)]/10 text-[var(--color-logo-dark-green)] text-sm font-bold tracking-wider mb-6">
-                FOR MEDICAL INSTITUTIONS
-              </div>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold heading-gothic mb-6" style={{ color: 'var(--color-ink)' }}>
-                医療機関の皆様へ
-              </h1>
-              <p className="text-lg md:text-xl leading-relaxed max-w-2xl mx-auto" style={{ color: 'var(--color-ink-soft)' }}>
-                退院支援から在宅療養まで、<br className="sm:hidden" />
-                シームレスな連携を
-              </p>
-            </div>
+          <div className="relative z-10 max-w-5xl mx-auto px-4 py-16 md:py-24 text-center text-white">
+            <span className="inline-block px-4 py-2 rounded-full text-sm font-bold tracking-wider mb-6" style={{ background: 'rgba(255, 255, 255, 0.2)' }}>
+              FOR MEDICAL INSTITUTIONS
+            </span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold heading-gothic mb-6 drop-shadow-lg">
+              医療機関の皆様へ
+            </h1>
+            <p className="text-xl md:text-2xl opacity-90">
+              退院支援から在宅療養まで、<br className="sm:hidden" />
+              シームレスな連携を
+            </p>
           </div>
         </section>
 

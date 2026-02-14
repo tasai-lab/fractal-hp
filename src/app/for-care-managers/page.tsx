@@ -129,49 +129,50 @@ export default function ForCareManagersPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-white">
+      <main className="pt-14 lg:pt-20">
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-[var(--color-logo-dark-green)] to-[var(--color-logo-light-green)] text-white overflow-hidden">
+        <section className="relative min-h-[50vh] md:min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[var(--color-logo-dark-green)] to-[var(--color-logo-light-green)]">
+          {/* 背景装飾 */}
           <div className="absolute inset-0 opacity-10">
             <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
               <polygon points="0,0 100,0 100,100" fill="white" />
               <polygon points="0,100 50,0 100,100" fill="white" opacity="0.5" />
             </svg>
           </div>
-          <div className="relative z-10 max-w-6xl mx-auto px-4 py-20 md:py-32">
-            <div className="text-center">
-              <span
-                className="inline-block px-4 py-2 rounded-full text-sm font-medium tracking-wider mb-6"
-                style={{
-                  background: 'rgba(255, 255, 255, 0.2)',
-                  color: 'white',
-                }}
+          {/* 下部グラデーション */}
+          <div className="absolute bottom-0 left-0 right-0 h-24 md:h-32 bg-gradient-to-t from-white via-white/50 to-transparent pointer-events-none"></div>
+
+          <div className="relative z-10 max-w-6xl mx-auto px-4 py-16 md:py-24 text-center text-white">
+            <span
+              className="inline-block px-4 py-2 rounded-full text-sm font-medium tracking-wider mb-6"
+              style={{
+                background: 'rgba(255, 255, 255, 0.2)',
+              }}
+            >
+              FOR CARE MANAGERS
+            </span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 heading-gothic drop-shadow-lg">
+              ケアマネージャー様へ
+            </h1>
+            <p className="text-xl md:text-2xl mb-8 opacity-90">
+              迅速・丁寧な連携でケアプランをサポートします
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="tel:047-770-1228"
+                className="inline-flex items-center justify-center px-8 py-4 bg-white text-[var(--color-logo-dark-green)] rounded-full font-bold text-lg hover:bg-[var(--color-logo-yellow)] transition-colors shadow-lg"
               >
-                FOR CARE MANAGERS
-              </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 heading-gothic">
-                ケアマネージャー様へ
-              </h1>
-              <p className="text-xl md:text-2xl mb-8 opacity-90">
-                迅速・丁寧な連携でケアプランをサポートします
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a
-                  href="tel:047-770-1228"
-                  className="inline-flex items-center justify-center px-8 py-4 bg-white text-[var(--color-logo-dark-green)] rounded-full font-bold text-lg hover:bg-[var(--color-logo-yellow)] transition-colors shadow-lg"
-                >
-                  <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                  047-770-1228
-                </a>
-                <a
-                  href="#contact"
-                  className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white rounded-full font-bold text-lg hover:bg-white/10 transition-all"
-                >
-                  お問い合わせフォーム
-                </a>
-              </div>
+                <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                047-770-1228
+              </a>
+              <a
+                href="#contact"
+                className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white rounded-full font-bold text-lg hover:bg-white/10 transition-all"
+              >
+                お問い合わせフォーム
+              </a>
             </div>
           </div>
         </section>
