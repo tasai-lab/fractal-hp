@@ -2,6 +2,7 @@
 
 import React, { useRef, useEffect, useState, type ReactNode } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -600,8 +601,8 @@ export default function CEOPage() {
 
         <main className="max-w-5xl mx-auto px-4 md:px-6 pt-10 md:pt-16 pb-20 md:pb-24 flex flex-col gap-16 md:gap-24">
           {/* 1. ヒーローセクション */}
-          <section className="text-center max-w-3xl mx-auto">
-            <FadeIn className="space-y-6">
+          <section className="grid lg:grid-cols-[1fr,1fr] gap-8 md:gap-12 items-center">
+            <FadeIn className="space-y-6 order-2 lg:order-1 text-center lg:text-left">
               <p className="text-xs tracking-[0.3em] text-[var(--color-ink-soft)]">
                 REPRESENTATIVE
               </p>
@@ -619,6 +620,28 @@ export default function CEOPage() {
                   {ceoProfile.nameEn} | {ceoProfile.title}
                 </p>
               </div>
+            </FadeIn>
+            <FadeIn
+              className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg order-1 lg:order-2"
+              delay={200}
+            >
+              <Image
+                src="/images/company/ceo-portrait.jpg"
+                alt={`${ceoProfile.name} - ${ceoProfile.title}`}
+                fill
+                className="object-cover object-top"
+                priority
+              />
+              {/* 装飾三角 */}
+              <div
+                className="absolute top-0 left-0 w-0 h-0"
+                style={{
+                  borderStyle: "solid",
+                  borderWidth: "40px 40px 0 0",
+                  borderColor:
+                    "var(--color-logo-light-green) transparent transparent transparent",
+                }}
+              />
             </FadeIn>
           </section>
 
