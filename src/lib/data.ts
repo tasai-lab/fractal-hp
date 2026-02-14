@@ -42,7 +42,7 @@ export const navLinks = [
 // フッター用サイトマップリンク
 export const footerLinks = [
   { href: "/fractal", label: "フラクタルを知る" },
-  { href: "/company", label: "会社情報" },
+  { href: "/company", label: "株式会社フラクタル" },
   { href: "/#features", label: "サービスの特徴" },
   { href: "/#flow", label: "ご利用の流れ" },
   { href: "/recruit", label: "採用情報" },
@@ -77,7 +77,7 @@ export const otherMenuCategories = {
     title: "詳しく見る",
     items: [
       { href: "/fractal", label: "フラクタルを知る" },
-      { href: "/company", label: "会社情報" },
+      { href: "/company", label: "株式会社フラクタル" },
       { href: "/recruit", label: "採用情報" },
       { href: "/flyers", label: "チラシ一覧" },
     ],

@@ -422,11 +422,11 @@ export function JobPostingStructuredData({ jobId }: { jobId: string }) {
   );
 }
 
-// フラクタルを知るページ用構造化データコンポーネント
+// 会社情報ページ用構造化データコンポーネント
 export function AboutFractalStructuredData() {
   const breadcrumbData = generateBreadcrumbData([
     { name: "ホーム", url: "https://fractal-hokan.com" },
-    { name: "フラクタルを知る", url: "https://fractal-hokan.com/company" },
+    { name: "株式会社フラクタル", url: "https://fractal-hokan.com/company" },
   ]);
 
   return (

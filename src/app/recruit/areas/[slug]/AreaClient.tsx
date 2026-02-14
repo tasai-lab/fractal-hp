@@ -20,8 +20,8 @@ const FadeIn = ({
   return (
     <div
       ref={ref as React.RefObject<HTMLDivElement>}
-      className={`transition-all duration-700 ease-out ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+      className={`transition-opacity duration-700 ease-out ${
+        isVisible ? "opacity-100" : "opacity-0"
       } ${className}`}
     >
       {children}

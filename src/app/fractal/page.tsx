@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { BreadcrumbStructuredData } from "@/components/StructuredData";
@@ -335,7 +336,7 @@ function CircularFlow() {
 
   return (
     <div className="relative w-full max-w-lg mx-auto">
-      {/* 円形の接続線 */}
+      {/* 三角形の接続線 */}
       <svg viewBox="0 0 400 400" className="w-full h-auto">
         <defs>
           <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
@@ -343,9 +344,9 @@ function CircularFlow() {
           </marker>
         </defs>
 
-        {/* 円形のパス */}
-        <circle
-          cx="200" cy="200" r="140"
+        {/* 三角形のパス（破線） */}
+        <polygon
+          points="200,60 321,270 79,270"
           fill="none"
           stroke="var(--color-logo-light-green)"
           strokeWidth="2"
@@ -353,28 +354,27 @@ function CircularFlow() {
           opacity="0.3"
         />
 
-        {/* 流れを示す矢印付きの弧 */}
-        <path
-          d="M 200 60 A 140 140 0 0 1 321 270"
-          fill="none"
+        {/* 流れを示す矢印付きの直線 - 会社→スタッフ */}
+        <line
+          x1="200" y1="60" x2="321" y2="270"
           stroke="var(--color-logo-light-green)"
           strokeWidth="3"
           markerEnd="url(#arrowhead)"
           className="transition-opacity duration-500"
           opacity={activeIndex === 0 ? 1 : 0.2}
         />
-        <path
-          d="M 321 270 A 140 140 0 0 1 79 270"
-          fill="none"
+        {/* スタッフ→利用者様 */}
+        <line
+          x1="321" y1="270" x2="79" y2="270"
           stroke="var(--color-logo-light-green)"
           strokeWidth="3"
           markerEnd="url(#arrowhead)"
           className="transition-opacity duration-500"
           opacity={activeIndex === 1 ? 1 : 0.2}
         />
-        <path
-          d="M 79 270 A 140 140 0 0 1 200 60"
-          fill="none"
+        {/* 利用者様→会社 */}
+        <line
+          x1="79" y1="270" x2="200" y2="60"
           stroke="var(--color-logo-light-green)"
           strokeWidth="3"
           markerEnd="url(#arrowhead)"
@@ -382,11 +382,15 @@ function CircularFlow() {
           opacity={activeIndex === 2 ? 1 : 0.2}
         />
 
-        {/* 各ノード */}
+        {/* 各ノード - 三角形の頂点に配置 */}
         {items.map((item, i) => {
-          const angle = (i * 120 - 90) * (Math.PI / 180);
-          const x = 200 + 140 * Math.cos(angle);
-          const y = 200 + 140 * Math.sin(angle);
+          // 三角形の頂点座標: 上、右下、左下
+          const positions = [
+            { x: 200, y: 60 },   // 会社（上）
+            { x: 321, y: 270 },  // スタッフ（右下）
+            { x: 79, y: 270 },   // 利用者様（左下）
+          ];
+          const { x, y } = positions[i];
           const isActive = activeIndex === i;
 
           return (
@@ -412,24 +416,15 @@ function CircularFlow() {
           );
         })}
 
-        {/* 中心のテキスト */}
-        <text x="200" y="195" textAnchor="middle" fill="var(--color-ink-soft)" fontSize="14">
-          幸せの
+        {/* 中心のテキスト - アクティブな項目の説明を表示 */}
+        <text x="200" y="185" textAnchor="middle" fill="var(--color-logo-dark-green)" fontSize="20" fontWeight="bold" className="transition-all duration-500">
+          {items[activeIndex].label}
         </text>
-        <text x="200" y="215" textAnchor="middle" fill="var(--color-logo-dark-green)" fontSize="18" fontWeight="bold">
-          フラクタル
+        <text x="200" y="210" textAnchor="middle" fill="var(--color-ink-soft)" fontSize="11" className="transition-all duration-500">
+          <tspan x="200" dy="0">{items[activeIndex].desc.slice(0, 12)}</tspan>
+          <tspan x="200" dy="14">{items[activeIndex].desc.slice(12)}</tspan>
         </text>
       </svg>
-
-      {/* 説明文 */}
-      <div className="mt-8 text-center min-h-[80px]">
-        <p className="text-lg font-medium text-[var(--color-ink)] mb-2">
-          {items[activeIndex].label}
-        </p>
-        <p className="text-[var(--color-ink-soft)]">
-          {items[activeIndex].desc}
-        </p>
-      </div>
     </div>
   );
 }
@@ -513,11 +508,15 @@ export default function FractalPage() {
               </span>
             </div>
 
-            <h1
-              className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 heading-gothic tracking-tight"
-              style={{ color: 'var(--color-logo-dark-green)' }}
-            >
-              フラクタル
+            <h1 className="mb-8">
+              <Image
+                src="/images/fractal-title.png"
+                alt="フラクタル"
+                width={400}
+                height={120}
+                className="w-auto h-16 md:h-24 lg:h-32 mx-auto"
+                priority
+              />
             </h1>
 
             <p
@@ -562,10 +561,17 @@ export default function FractalPage() {
                   PART 01
                 </span>
                 <h2
-                  className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 heading-gothic"
+                  className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 heading-gothic flex items-center gap-2 md:gap-3"
                   style={{ color: 'var(--color-ink)' }}
                 >
-                  フラクタルとは
+                  <Image
+                    src="/images/fractal-title.png"
+                    alt="フラクタル"
+                    width={200}
+                    height={60}
+                    className="h-8 md:h-10 lg:h-14 w-auto"
+                  />
+                  <span>とは</span>
                 </h2>
                 <div className="space-y-6 text-lg" style={{ color: 'var(--color-ink-soft)' }}>
                   <p className="leading-relaxed">
@@ -609,10 +615,17 @@ export default function FractalPage() {
             {/* 自然界のフラクタル */}
             <div className="mb-12">
               <h3
-                className="text-2xl md:text-3xl font-bold mb-12 text-center heading-gothic"
+                className="text-2xl md:text-3xl font-bold mb-12 text-center heading-gothic flex items-center justify-center gap-2"
                 style={{ color: 'var(--color-ink)' }}
               >
-                自然界のフラクタル
+                <span>自然界の</span>
+                <Image
+                  src="/images/fractal-title.png"
+                  alt="フラクタル"
+                  width={150}
+                  height={45}
+                  className="h-6 md:h-8 w-auto"
+                />
               </h3>
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
@@ -660,10 +673,18 @@ export default function FractalPage() {
                 PART 02
               </span>
               <h2
-                className="text-3xl md:text-4xl lg:text-5xl font-bold heading-gothic"
+                className="text-3xl md:text-4xl lg:text-5xl font-bold heading-gothic flex items-center justify-center gap-2 md:gap-3"
                 style={{ color: 'var(--color-ink)' }}
               >
-                私たちのフラクタル構造
+                <span>私たちの</span>
+                <Image
+                  src="/images/fractal-title.png"
+                  alt="フラクタル"
+                  width={200}
+                  height={60}
+                  className="h-8 md:h-10 lg:h-14 w-auto"
+                />
+                <span>構造</span>
               </h2>
             </div>
 
@@ -760,7 +781,18 @@ export default function FractalPage() {
                 className="text-2xl md:text-3xl font-bold text-center mb-4 heading-gothic"
                 style={{ color: 'var(--color-ink)' }}
               >
-                めぐり、つながる
+                <span>めぐり、つながる、</span>
+                <br />
+                <span className="inline-flex items-center gap-2">
+                  <span>それが</span>
+                  <Image
+                    src="/images/fractal-title.png"
+                    alt="フラクタル"
+                    width={150}
+                    height={45}
+                    className="h-6 md:h-8 w-auto inline-block"
+                  />
+                </span>
               </h3>
               <p
                 className="text-center mb-12"

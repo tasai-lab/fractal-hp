@@ -61,13 +61,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.85,
     })),
 
-    // 会社情報・その他
+    // フラクタルを知る
     {
       url: `${baseUrl}/fractal`,
       lastModified,
       changeFrequency: monthly,
       priority: 0.8,
     },
+    // 株式会社フラクタル
     {
       url: `${baseUrl}/company`,
       lastModified,

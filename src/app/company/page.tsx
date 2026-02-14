@@ -374,7 +374,7 @@ export default function AboutFractalPage() {
             ← 戻る
           </Link>
           <h1 className="text-lg md:text-2xl font-bold text-primary heading-gothic">
-            フラクタルを知る
+            株式会社フラクタル
           </h1>
         </div>
       </header>
@@ -458,126 +458,62 @@ export default function AboutFractalPage() {
           </div>
         </div>
 
-        <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 md:px-8 py-8 sm:py-12">
-          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center">
-            {/* 左側: 強いメッセージ */}
-            <div className="text-center md:text-left">
-              {/* ロゴ（小さめ） */}
-              <div className="mb-4 md:mb-6 flex justify-center md:justify-start">
-                <div className="relative w-16 h-16 md:w-24 md:h-24 drop-shadow-2xl">
-                  <Image
-                    src="/images/logos/corporate-logo.png"
-                    alt="株式会社フラクタル"
-                    fill
-                    className="object-contain"
-                  />
-                </div>
-              </div>
-
-              <p
-                className="text-[var(--color-logo-yellow)] font-bold tracking-widest uppercase"
-                style={{
-                  fontSize: 'var(--font-size-fluid-sm)',
-                  marginBottom: 'var(--spacing-fluid-sm)',
-                }}
-              >
-                Corporate Philosophy
-              </p>
-
-              <h2
-                className="font-bold text-white tracking-wide heading-gothic"
-                style={{
-                  fontSize: 'var(--font-size-fluid-4xl)',
-                  marginBottom: 'var(--spacing-fluid-md)',
-                  lineHeight: '1.2'
-                }}
-              >
-                シンプルで独創的な社会を実現する
-              </h2>
-
-              <p
-                className="text-white/80 font-normal"
-                style={{
-                  fontSize: 'var(--font-size-fluid-lg)',
-                  marginBottom: 'var(--spacing-fluid-lg)',
-                  lineHeight: '1.6'
-                }}
-              >
-                シンプルな仕組みがもたらす圧倒的な独自性と業務効率が成長へと繋がる。
-              </p>
-
-              <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-3 md:gap-4">
-                <a
-                  href="#innovation"
-                  className="px-6 py-3 md:px-8 md:py-4 bg-[var(--color-logo-yellow)] text-[var(--color-logo-dark-green)] rounded-full font-bold text-sm md:text-base hover:bg-[var(--color-logo-yellow)]/80 transition-all shadow-lg"
-                >
-                  革新性を見る
-                </a>
-                <a
-                  href="#vision"
-                  className="px-6 py-3 md:px-8 md:py-4 bg-white/10 text-white border-2 border-white/30 rounded-full font-bold text-sm md:text-base hover:bg-white/20 transition-all"
-                >
-                  ビジョンを知る
-                </a>
+        <div className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 md:px-8 py-12 sm:py-16 md:py-20">
+          <div className="text-center">
+            {/* ロゴ（大きく） */}
+            <div className="mb-8 md:mb-12 flex justify-center">
+              <div className="relative w-32 h-32 md:w-48 md:h-48 lg:w-56 lg:h-56 drop-shadow-2xl">
+                <Image
+                  src="/images/logos/corporate-logo.png"
+                  alt="株式会社フラクタル"
+                  fill
+                  className="object-contain"
+                />
               </div>
             </div>
 
-            {/* 右側: DAPAE 5ステップ簡略図 */}
-            <div className="bg-[var(--color-logo-dark-green)]/40 backdrop-blur-md rounded-2xl md:rounded-3xl p-4 sm:p-5 md:p-6 border border-white/30 shadow-2xl">
-              <p className="text-center text-white font-bold mb-4" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>
-                DAPAEフレームワーク
-              </p>
+            <p
+              className="text-[var(--color-logo-yellow)] font-bold tracking-widest uppercase mb-4"
+              style={{ fontSize: 'var(--font-size-fluid-sm)' }}
+            >
+              Corporate Philosophy
+            </p>
 
-              <div className="flex flex-col gap-2">
-                {/* Data */}
-                <div className="flex items-center gap-3 bg-white/95 rounded-lg px-4 py-2.5 shadow-sm">
-                  <span className="w-9 h-9 rounded-full bg-[var(--color-logo-dark-green)] flex items-center justify-center text-white font-bold text-sm shadow">D</span>
-                  <div className="flex-1">
-                    <p className="text-[var(--color-logo-dark-green)] font-bold text-sm">Data</p>
-                    <p className="text-slate-600 text-xs">事実を数字で記録</p>
-                  </div>
-                </div>
+            {/* タイプライター風アニメーション */}
+            <h2
+              className="font-bold text-white tracking-wide heading-gothic whitespace-nowrap overflow-hidden mx-auto inline-block typing-main"
+              style={{
+                fontSize: 'clamp(1.25rem, 4vw, 2.5rem)',
+                lineHeight: '1.4',
+              }}
+            >
+              シンプルで独創的な社会を実現する
+            </h2>
 
-                {/* Analysis */}
-                <div className="flex items-center gap-3 bg-white/90 rounded-lg px-4 py-2.5 shadow-sm">
-                  <span className="w-9 h-9 rounded-full bg-[var(--color-logo-dark-green)]/80 flex items-center justify-center text-white font-bold text-sm shadow">A</span>
-                  <div className="flex-1">
-                    <p className="text-[var(--color-logo-dark-green)] font-bold text-sm">Analysis</p>
-                    <p className="text-slate-600 text-xs">課題とヒントを抽出</p>
-                  </div>
-                </div>
+            {/* サブテキスト - 遅延タイピングアニメーション */}
+            <p
+              className="text-white/80 font-normal whitespace-nowrap overflow-hidden mx-auto block mt-4 typing-sub"
+              style={{
+                fontSize: 'clamp(0.875rem, 2vw, 1.25rem)',
+                lineHeight: '1.6',
+              }}
+            >
+              シンプルな仕組みがもたらす独自性と業務効率が成長へ
+            </p>
 
-                {/* Plan - アクセント */}
-                <div className="flex items-center gap-3 bg-[var(--color-logo-yellow)] rounded-lg px-4 py-3 shadow-md ring-2 ring-white/50">
-                  <span className="w-9 h-9 rounded-full bg-[var(--color-logo-dark-green)] flex items-center justify-center text-white font-bold text-sm shadow">P</span>
-                  <div className="flex-1">
-                    <p className="text-[var(--color-logo-dark-green)] font-bold text-sm">Plan</p>
-                    <p className="text-[var(--color-logo-dark-green)]/70 text-xs">負担を減らす具体策</p>
-                  </div>
-                </div>
-
-                {/* Act */}
-                <div className="flex items-center gap-3 bg-white/90 rounded-lg px-4 py-2.5 shadow-sm">
-                  <span className="w-9 h-9 rounded-full bg-[var(--color-logo-light-green)] flex items-center justify-center text-white font-bold text-sm shadow">A</span>
-                  <div className="flex-1">
-                    <p className="text-[var(--color-logo-dark-green)] font-bold text-sm">Act</p>
-                    <p className="text-slate-600 text-xs">柔軟に実行</p>
-                  </div>
-                </div>
-
-                {/* Evaluation */}
-                <div className="flex items-center gap-3 bg-white/95 rounded-lg px-4 py-2.5 shadow-sm">
-                  <span className="w-9 h-9 rounded-full bg-[var(--color-logo-light-green)]/80 flex items-center justify-center text-white font-bold text-sm shadow">E</span>
-                  <div className="flex-1">
-                    <p className="text-[var(--color-logo-dark-green)] font-bold text-sm">Evaluation</p>
-                    <p className="text-slate-600 text-xs">成果を確認し次へ</p>
-                  </div>
-                </div>
-              </div>
-
-              <p className="text-center text-white font-bold mt-4" style={{ fontSize: 'var(--font-size-fluid-xs)' }}>
-                仕組みが、質の高いサービスを生みだす。
-              </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4 mt-12">
+              <a
+                href="#innovation"
+                className="px-6 py-3 md:px-8 md:py-4 bg-[var(--color-logo-yellow)] text-[var(--color-logo-dark-green)] rounded-full font-bold text-sm md:text-base hover:bg-[var(--color-logo-yellow)]/80 transition-all shadow-lg"
+              >
+                革新性を見る
+              </a>
+              <a
+                href="#vision"
+                className="px-6 py-3 md:px-8 md:py-4 bg-white/10 text-white border-2 border-white/30 rounded-full font-bold text-sm md:text-base hover:bg-white/20 transition-all"
+              >
+                ビジョンを知る
+              </a>
             </div>
           </div>
         </div>
@@ -1282,6 +1218,34 @@ export default function AboutFractalPage() {
 
       {/* モバイル下部メニュー分の余白 */}
       <div className="h-20 md:hidden"></div>
+
+      {/* タイピングアニメーション */}
+      <style jsx global>{`
+        .typing-main {
+          width: 0;
+          border-right: 3px solid var(--color-logo-yellow);
+          animation: typing-main 2s steps(16) forwards, blink 0.5s step-end 4 forwards;
+        }
+        .typing-sub {
+          width: 0;
+          opacity: 0;
+          border-right: 2px solid transparent;
+          animation: typing-sub 2.5s steps(26) 2.2s forwards, blink-sub 0.5s step-end 2.2s 5 forwards;
+        }
+        @keyframes typing-main {
+          to { width: 18em; border-right-color: transparent; }
+        }
+        @keyframes typing-sub {
+          to { width: 28em; opacity: 1; border-right-color: transparent; }
+        }
+        @keyframes blink {
+          50% { border-color: transparent; }
+        }
+        @keyframes blink-sub {
+          0% { border-color: var(--color-logo-yellow); }
+          50% { border-color: transparent; }
+        }
+      `}</style>
     </div>
   );
 }
