@@ -23,38 +23,88 @@ const ceoProfile = {
 難しい課題を解くことに喜びを感じるタイプ。逆に、すべてが整って安定した状態になると、次の挑戦を探し始めてしまいます。`,
   },
 
-  strengths: [
-    {
-      rank: 1,
-      name: "個別化",
-      nameEn: "Individualization",
-      description: "一人ひとりの違いを見抜き、その人に合った関わり方を考える。「この人はAの配置よりBの配置で力を発揮する」という人材配置の勘所がわかる。",
-    },
-    {
-      rank: 2,
-      name: "着想",
-      nameEn: "Ideation",
-      description: "一見バラバラなものをつなげて、新しいアイデアを生み出す。既存の枠にとらわれず、「こうしたらどうだろう？」と常に新しい可能性を探る。",
-    },
-    {
-      rank: 3,
-      name: "戦略性",
-      nameEn: "Strategic",
-      description: "複数の選択肢から最短ルートを見極める。目標に対して「どう進めば最も効率的か」を自然と考えてしまう。",
-    },
-    {
-      rank: 4,
-      name: "活発性",
-      nameEn: "Activator",
-      description: "考えるより先に動く。「検討中」の時間がもったいない。まず試して、結果を見てから修正すればいい。",
-    },
-    {
-      rank: 5,
-      name: "分析思考",
-      nameEn: "Analytical",
-      description: "「なぜ？」を繰り返して本質を掘り下げる。感覚ではなく、データと論理で物事を判断したい。",
-    },
-  ],
+  strengths: {
+    top10: [
+      {
+        rank: 1,
+        name: "個別化",
+        nameEn: "Individualization",
+        category: "人間関係構築力",
+        description: "一人ひとりの違いを見抜き、その人に合った関わり方を考える。「この人はAの配置よりBの配置で力を発揮する」という人材配置の勘所がわかる。",
+      },
+      {
+        rank: 2,
+        name: "着想",
+        nameEn: "Ideation",
+        category: "戦略的思考力",
+        description: "一見バラバラなものをつなげて、新しいアイデアを生み出す。既存の枠にとらわれず、「こうしたらどうだろう？」と常に新しい可能性を探る。",
+      },
+      {
+        rank: 3,
+        name: "戦略性",
+        nameEn: "Strategic",
+        category: "戦略的思考力",
+        description: "複数の選択肢から最短ルートを見極める。目標に対して「どう進めば最も効率的か」を自然と考えてしまう。",
+      },
+      {
+        rank: 4,
+        name: "活発性",
+        nameEn: "Activator",
+        category: "影響力",
+        description: "考えるより先に動く。「検討中」の時間がもったいない。まず試して、結果を見てから修正すればいい。",
+      },
+      {
+        rank: 5,
+        name: "分析思考",
+        nameEn: "Analytical",
+        category: "戦略的思考力",
+        description: "「なぜ？」を繰り返して本質を掘り下げる。感覚ではなく、データと論理で物事を判断したい。",
+      },
+      {
+        rank: 6,
+        name: "最上志向",
+        nameEn: "Maximizer",
+        category: "影響力",
+        description: "平均ではなく卓越を目指す。「まあまあ」で妥協せず、もっと良くできないかを追求する。",
+      },
+      {
+        rank: 7,
+        name: "ポジティブ",
+        nameEn: "Positivity",
+        category: "人間関係構築力",
+        description: "熱意を持って人を褒め、笑顔を引き出す。困難な状況でも前向きなエネルギーを保つ。",
+      },
+      {
+        rank: 8,
+        name: "コミュニケーション",
+        nameEn: "Communication",
+        category: "影響力",
+        description: "考えを言葉にするのが得意。複雑なことも分かりやすく伝えられる。",
+      },
+      {
+        rank: 9,
+        name: "未来志向",
+        nameEn: "Futuristic",
+        category: "戦略的思考力",
+        description: "「こうなったらいいな」というビジョンを描く。未来の可能性に惹きつけられる。",
+      },
+      {
+        rank: 10,
+        name: "親密性",
+        nameEn: "Relator",
+        category: "人間関係構築力",
+        description: "深い関係を築くことを好む。広く浅くより、狭く深い人間関係を大切にする。",
+      },
+    ],
+    bottom5: [
+      { rank: 30, name: "達成欲" },
+      { rank: 31, name: "公平性" },
+      { rank: 32, name: "規律性" },
+      { rank: 33, name: "調和性" },
+      { rank: 34, name: "競争性" },
+    ],
+    note: "「戦略的思考力」の資質が多いのが特徴。一方で「達成欲」「規律性」「調和性」は低め。コツコツ積み上げたり、みんなに合わせたりするのは得意ではありません。だからこそ、それが得意な人と一緒に働きたい。",
+  },
 
   thinkingCycle: {
     title: "私の思考サイクル",
@@ -143,7 +193,7 @@ const ceoProfile = {
         detail: "「教わってない」「時間がない」—できない理由より、できる方法を考えたい",
       },
     ],
-    note: "正直に書いていますが、これは「合う・合わない」の話。どちらが良い・悪いではありません。フラクタルが合う人には、最高の環境を用意したい。それが私のスタンスです。",
+    note: "正直に書いていますが、これは「合う・合わない」の話。どちらが良い・悪いではありません。フラクタルが合う人には、最適な環境を用意したい。それが私のスタンスです。",
   },
 
   leadership: {
@@ -252,40 +302,60 @@ function StrengthCard({
   rank,
   name,
   nameEn,
+  category,
   description,
 }: {
   rank: number;
   name: string;
   nameEn: string;
+  category?: string;
   description: string;
 }) {
-  const isTop = rank <= 2;
+  const isTop3 = rank <= 3;
+  const isTop5 = rank <= 5;
+
+  const categoryColors: Record<string, string> = {
+    "戦略的思考力": "bg-emerald-100 text-emerald-700",
+    "影響力": "bg-amber-100 text-amber-700",
+    "人間関係構築力": "bg-blue-100 text-blue-700",
+    "実行力": "bg-purple-100 text-purple-700",
+  };
+
   return (
     <div
       className={`relative p-4 md:p-5 rounded-2xl border transition-all duration-300 hover:scale-[1.02] ${
-        isTop
+        isTop3
           ? "bg-[var(--color-logo-light-green)]/10 border-[var(--color-logo-light-green)]/30"
-          : "bg-[var(--color-paper)] border-[var(--color-sand)]"
+          : isTop5
+            ? "bg-[var(--color-logo-yellow)]/10 border-[var(--color-logo-yellow)]/30"
+            : "bg-[var(--color-paper)] border-[var(--color-sand)]"
       }`}
     >
       <div className="flex items-start gap-3">
         <span
           className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
-            isTop
+            isTop3
               ? "bg-[var(--color-logo-light-green)] text-white"
-              : "bg-[var(--color-sand)] text-[var(--color-ink-soft)]"
+              : isTop5
+                ? "bg-[var(--color-logo-yellow)] text-[var(--color-ink)]"
+                : "bg-[var(--color-sand)] text-[var(--color-ink-soft)]"
           }`}
         >
           {rank}
         </span>
         <div className="flex-1 min-w-0">
-          <div className="flex flex-wrap items-baseline gap-2">
+          <div className="flex flex-wrap items-center gap-2 mb-1">
             <h4 className="font-bold text-[var(--color-ink)]">{name}</h4>
             <span className="text-xs text-[var(--color-ink-soft)]">
               {nameEn}
             </span>
           </div>
-          <p className="text-sm text-[var(--color-ink-soft)] mt-1 leading-relaxed">
+          {category && (
+            <span className={`inline-block text-xs px-2 py-0.5 rounded-full mb-2 ${categoryColors[category] || "bg-gray-100 text-gray-600"}`}>
+              {category}
+            </span>
+          )}
+          <p className="text-sm text-[var(--color-ink-soft)] leading-relaxed">
             {description}
           </p>
         </div>
@@ -530,12 +600,33 @@ export default function CEOPage() {
                 {/* ストレングスファインダー */}
                 <div className="pt-6 border-t border-[var(--color-sand)]">
                   <h3 className="text-sm font-bold text-[var(--color-ink-soft)] mb-4 tracking-wider">
-                    ストレングスファインダー TOP5
+                    クリフトンストレングス TOP10
                   </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                    {ceoProfile.strengths.map((strength) => (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                    {ceoProfile.strengths.top10.map((strength) => (
                       <StrengthCard key={strength.rank} {...strength} />
                     ))}
+                  </div>
+
+                  {/* 下位資質 */}
+                  <div className="bg-[var(--color-paper)] rounded-xl p-4 border border-[var(--color-sand)]">
+                    <h4 className="text-sm font-bold text-[var(--color-ink-soft)] mb-3">
+                      下位の資質（苦手なこと）
+                    </h4>
+                    <div className="flex flex-wrap gap-2 mb-3">
+                      {ceoProfile.strengths.bottom5.map((s) => (
+                        <span
+                          key={s.rank}
+                          className="inline-flex items-center gap-1 text-xs bg-white px-2 py-1 rounded-full border border-[var(--color-sand)]"
+                        >
+                          <span className="text-[var(--color-ink-soft)]">#{s.rank}</span>
+                          <span className="text-[var(--color-ink)]">{s.name}</span>
+                        </span>
+                      ))}
+                    </div>
+                    <p className="text-sm text-[var(--color-ink-soft)] leading-relaxed">
+                      {ceoProfile.strengths.note}
+                    </p>
                   </div>
                 </div>
               </div>
