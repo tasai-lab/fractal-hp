@@ -7,9 +7,10 @@ export default function ForMedicalInstitutionsPage() {
   return (
     <>
       <Header />
-      <main className="pt-14 lg:pt-20">
+      <main className="pt-14 lg:pt-20 bg-white">
         {/* ヒーローセクション */}
-        <section className="relative min-h-[50vh] md:min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[var(--color-logo-dark-green)] to-[var(--color-logo-light-green)] rounded-b-[3rem] md:rounded-b-[5rem]">
+        <div className="px-4 md:px-8 py-6 md:py-10">
+          <section className="relative min-h-[45vh] md:min-h-[55vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[var(--color-logo-dark-green)] to-[var(--color-logo-light-green)] rounded-3xl md:rounded-[3rem] shadow-xl">
           {/* 背景装飾 */}
           <div className="absolute inset-0 opacity-10">
             <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -31,6 +32,7 @@ export default function ForMedicalInstitutionsPage() {
             </p>
           </div>
         </section>
+        </div>
 
         {/* 訪問開始までの流れ */}
         <section className="section-wrapper relative overflow-hidden">
