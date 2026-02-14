@@ -61,6 +61,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.85,
     })),
 
+    // B2B向けページ（ケアマネ・医療機関）
+    {
+      url: `${baseUrl}/for-care-managers`,
+      lastModified,
+      changeFrequency: monthly,
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/for-medical-institutions`,
+      lastModified,
+      changeFrequency: monthly,
+      priority: 0.85,
+    },
+
     // フラクタルを知る
     {
       url: `${baseUrl}/fractal`,

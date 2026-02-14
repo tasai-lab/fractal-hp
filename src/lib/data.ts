@@ -35,6 +35,7 @@ export const companyInfo = {
 export const navLinks = [
   { href: "/fractal", label: "フラクタルを知る" },
   { href: "/areas/funabashi", label: "対応エリア" },
+  { href: "/for-care-managers", label: "ケアマネ様へ" },
   { href: "/recruit", label: "採用情報" },
   { href: "/#contact", label: "お問い合わせ" },
 ];
@@ -45,10 +46,10 @@ export const footerLinks = [
   { href: "/company", label: "株式会社フラクタル" },
   { href: "/#features", label: "サービスの特徴" },
   { href: "/#flow", label: "ご利用の流れ" },
+  { href: "/for-care-managers", label: "ケアマネ様へ" },
+  { href: "/for-medical-institutions", label: "医療機関様へ" },
   { href: "/recruit", label: "採用情報" },
-  { href: "/flyers", label: "チラシ一覧" },
   { href: "/#contact", label: "お問い合わせ" },
-  { href: "/#faq", label: "よくある質問" },
 ];
 
 // モバイルメニュー項目（下部固定メニュー用）
@@ -79,6 +80,8 @@ export const otherMenuCategories = {
       { href: "/fractal", label: "フラクタルを知る" },
       { href: "/company", label: "株式会社フラクタル" },
       { href: "/company/ceo", label: "代表の取扱説明書" },
+      { href: "/for-care-managers", label: "ケアマネージャー様へ" },
+      { href: "/for-medical-institutions", label: "医療機関の皆様へ" },
       { href: "/recruit", label: "採用情報" },
       { href: "/flyers", label: "チラシ一覧" },
     ],

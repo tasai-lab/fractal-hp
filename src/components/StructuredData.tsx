@@ -96,6 +96,27 @@ const localBusinessData = {
     },
   ],
   sameAs: ["https://www.instagram.com/fractal_hokan/"],
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      telephone: "047-770-1228",
+      availableLanguage: "ja",
+      hoursAvailable: {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        opens: "09:00",
+        closes: "19:00",
+      },
+    },
+    {
+      "@type": "ContactPoint",
+      contactType: "24時間緊急対応",
+      telephone: "047-770-1228",
+      availableLanguage: "ja",
+      description: "24時間オンコール体制で緊急時も対応いたします",
+    },
+  ],
   parentOrganization: {
     "@type": "Organization",
     name: "株式会社フラクタル",
