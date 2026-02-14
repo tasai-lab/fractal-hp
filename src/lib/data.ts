@@ -84,6 +84,7 @@ export const otherMenuCategories = {
       { href: "/for-medical-institutions", label: "医療機関の皆様へ" },
       { href: "/recruit", label: "採用情報" },
       { href: "/flyers", label: "チラシ一覧" },
+      { href: "/updates", label: "サイト更新情報" },
     ],
   },
   areas: {
