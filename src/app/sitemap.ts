@@ -44,23 +44,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
 
     // === 採用ページ群（求人SEO重要）===
+    // /recruit/nurse と /recruit/therapist は /recruit に統合済み（301リダイレクト設定）
     {
       url: `${baseUrl}/recruit`,
       lastModified,
       changeFrequency: weekly,
       priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/recruit/nurse`,
-      lastModified,
-      changeFrequency: weekly,
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/recruit/therapist`,
-      lastModified,
-      changeFrequency: weekly,
-      priority: 0.85,
     },
     {
       url: `${baseUrl}/recruit/day-flow`,

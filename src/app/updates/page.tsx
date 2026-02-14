@@ -19,6 +19,7 @@ const updates = [
       { type: "new", title: "地域別ページを追加（船橋・八千代・習志野・千葉市）", link: "/areas/funabashi" },
       { type: "improve", title: "フラクタルを知るページをリニューアル", link: "/fractal" },
       { type: "improve", title: "会社概要ページをリニューアル", link: "/company" },
+      { type: "improve", title: "採用ページに職種タブを追加し統合", link: "/recruit#positions" },
       { type: "improve", title: "SEO対策を強化" },
     ],
   },

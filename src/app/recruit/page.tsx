@@ -39,6 +39,12 @@ const visibleJobs = jobPositions.filter((job) =>
   ["nurse", "therapist"].includes(job.id)
 );
 
+// タブ設定
+const jobTabs = [
+  { id: "nurse", label: "看護師", shortLabel: "看護師" },
+  { id: "therapist", label: "理学療法士・作業療法士・言語聴覚士", shortLabel: "PT・OT・ST" },
+];
+
 const featureIcons = [
   "/images/recruit/icons/1.png",
   "/images/recruit/icons/2.png",
@@ -68,10 +74,15 @@ const FadeIn = ({
 };
 
 export default function RecruitPage() {
-  const currentJob = jobPositions.find((job) => job.id === "nurse") || jobPositions[0];
+  const [selectedJobId, setSelectedJobId] = useState<string>("nurse");
+  const currentJob = jobPositions.find((job) => job.id === selectedJobId) || jobPositions[0];
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
   const [selectedTeam, setSelectedTeam] = useState<(typeof teamProfiles)[number] | null>(null);
   const [isContactOpen, setIsContactOpen] = useState(false);
+
+  const isNurse = selectedJobId === "nurse";
+  const holidayLabel = isNurse ? "139日以上" : "120日以上";
+  const holidayNote = isNurse ? "看護師" : "PT・OT・ST";
 
   const toggleFAQ = (index: number) => {
     setOpenFAQIndex(openFAQIndex === index ? null : index);
@@ -445,25 +456,59 @@ export default function RecruitPage() {
               募集職種
             </h3>
             <p className="text-ink-soft mt-2">
-              看護師・理学療法士・作業療法士・言語聴覚士を同じボリュームで掲載しています。
+              看護師・理学療法士・作業療法士・言語聴覚士を募集しています。
             </p>
           </FadeIn>
-          <FadeIn className="relative aspect-[3/2] rounded-3xl overflow-hidden shadow-lg bg-[var(--color-paper)]">
-            <Image
-              src="/images/recruit/labels/positions-title.webp"
-              alt="募集職種"
-              fill
-              sizes="(max-width: 1024px) 100vw, 80vw"
-              className="object-contain bg-[var(--color-paper)]"
-            />
+
+          {/* 職種タブ */}
+          <FadeIn>
+            <div className="flex gap-2 overflow-x-auto pb-2 snap-x snap-mandatory">
+              {jobTabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => setSelectedJobId(tab.id)}
+                  className={`flex-shrink-0 snap-center px-5 py-3 rounded-full font-semibold text-sm md:text-base transition-all ${
+                    selectedJobId === tab.id
+                      ? "bg-[var(--color-olive)] text-white shadow-md"
+                      : "bg-white/80 text-[var(--color-olive)] border border-[var(--color-sand)] hover:bg-white"
+                  }`}
+                >
+                  <span className="hidden md:inline">{tab.label}</span>
+                  <span className="md:hidden">{tab.shortLabel}</span>
+                </button>
+              ))}
+            </div>
           </FadeIn>
-          <div className="space-y-8">
-            {visibleJobs.map((job) => (
-              <FadeIn key={job.id}>
-                <JobDetails job={job} />
-              </FadeIn>
-            ))}
-          </div>
+
+          {/* 選択した職種の詳細 */}
+          <FadeIn>
+            <div className="bg-white/80 rounded-3xl p-4 md:p-6 shadow-sm border border-white/80">
+              <p className="text-xs tracking-[0.3em] text-ink-soft">KEY BENEFITS</p>
+              <div className="mt-4 flex md:grid md:grid-cols-3 gap-3 overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-2">
+                <div className="min-w-[200px] md:min-w-0 snap-center bg-white rounded-2xl border border-[var(--color-sand)] p-4 shadow-sm">
+                  <p className="text-xs text-ink-soft">祝金30万円支給</p>
+                  <p className="heading-mincho text-lg text-[var(--color-olive)] mt-1">最大30万円</p>
+                  <p className="text-xs text-ink-soft mt-1">全職種対象</p>
+                </div>
+                <div className="min-w-[200px] md:min-w-0 snap-center bg-[var(--color-olive)] text-white rounded-2xl p-4 shadow-sm">
+                  <p className="text-xs">年間休日</p>
+                  <p className="heading-mincho text-lg mt-1">{holidayLabel}</p>
+                  <p className="text-xs mt-1">{holidayNote}</p>
+                </div>
+                <div className="min-w-[200px] md:min-w-0 snap-center bg-white rounded-2xl border border-[var(--color-sand)] p-4 shadow-sm">
+                  <p className="text-xs text-ink-soft">応募から内定まで</p>
+                  <p className="heading-mincho text-lg text-[var(--color-olive)] mt-1">1〜2週間</p>
+                  <p className="text-xs text-ink-soft mt-1">最短</p>
+                </div>
+              </div>
+            </div>
+          </FadeIn>
+
+          {/* 職種詳細 */}
+          <FadeIn>
+            <JobDetails job={currentJob} />
+          </FadeIn>
         </section>
 
 <section id="process" className="order-8 bg-[var(--color-paper)] rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">

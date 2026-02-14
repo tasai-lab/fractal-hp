@@ -6,6 +6,28 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "redirects": [
+      {
+        "source": "/recruit/nurse",
+        "destination": "/recruit/#positions",
+        "type": 301
+      },
+      {
+        "source": "/recruit/nurse/",
+        "destination": "/recruit/#positions",
+        "type": 301
+      },
+      {
+        "source": "/recruit/therapist",
+        "destination": "/recruit/#positions",
+        "type": 301
+      },
+      {
+        "source": "/recruit/therapist/",
+        "destination": "/recruit/#positions",
+        "type": 301
+      }
+    ],
     "rewrites": [
       {
         "source": "/api/contact",
