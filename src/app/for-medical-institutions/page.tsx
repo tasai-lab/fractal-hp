@@ -10,7 +10,7 @@ export default function ForMedicalInstitutionsPage() {
       <main className="pt-14 lg:pt-20 bg-white">
         {/* ヒーローセクション */}
         <div className="px-4 md:px-8 py-6 md:py-10">
-          <section className="relative min-h-[45vh] md:min-h-[55vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[var(--color-logo-dark-green)] to-[var(--color-logo-light-green)] rounded-3xl md:rounded-[3rem] shadow-xl">
+          <section className="relative min-h-[45vh] md:min-h-[55vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#a8d5ba] to-[#d4edda] rounded-3xl md:rounded-[3rem] shadow-lg">
           {/* 背景装飾 */}
           <div className="absolute inset-0 opacity-10">
             <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -19,14 +19,14 @@ export default function ForMedicalInstitutionsPage() {
             </svg>
           </div>
 
-          <div className="relative z-10 max-w-5xl mx-auto px-4 py-16 md:py-24 text-center text-white">
-            <span className="inline-block px-4 py-2 rounded-full text-sm font-bold tracking-wider mb-6" style={{ background: 'rgba(255, 255, 255, 0.2)' }}>
+          <div className="relative z-10 max-w-5xl mx-auto px-4 py-16 md:py-24 text-center text-[var(--color-logo-dark-green)]">
+            <span className="inline-block px-4 py-2 rounded-full text-sm font-bold tracking-wider mb-6 bg-white/60">
               FOR MEDICAL INSTITUTIONS
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold heading-gothic mb-6 drop-shadow-lg">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold heading-gothic mb-6">
               医療機関の皆様へ
             </h1>
-            <p className="text-xl md:text-2xl opacity-90">
+            <p className="text-xl md:text-2xl text-[var(--color-ink-soft)]">
               退院支援から在宅療養まで、<br className="sm:hidden" />
               シームレスな連携を
             </p>
@@ -324,65 +324,59 @@ export default function ForMedicalInstitutionsPage() {
         </section>
 
         {/* お問い合わせCTA */}
-        <section className="section-wrapper relative overflow-hidden" style={{ background: 'var(--color-logo-dark-green)' }}>
-          <div className="absolute inset-0 opacity-10 pointer-events-none">
-            <div className="w-full h-full" style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50,10 90,80 10,80' fill='white' fill-opacity='0.1'/%3E%3C/svg%3E")`,
-              backgroundSize: '150px 150px',
-              backgroundRepeat: 'repeat'
-            }} />
-          </div>
+        <div className="px-4 md:px-8 py-6 md:py-10">
+          <section className="relative overflow-hidden rounded-3xl md:rounded-[3rem] bg-gradient-to-br from-[#a8d5ba] to-[#d4edda] shadow-lg py-12 md:py-16">
+            <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold heading-gothic text-[var(--color-logo-dark-green)] mb-6">
+                退院支援・在宅移行の<br className="sm:hidden" />ご相談はお気軽に
+              </h2>
+              <p className="text-[var(--color-ink-soft)] text-lg mb-8 max-w-2xl mx-auto">
+                患者様の退院支援、訪問看護の導入について、<br className="hidden sm:block" />
+                まずはお電話にてご相談ください。
+              </p>
 
-          <div className="relative z-10 section-container text-center">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold heading-gothic text-white mb-6">
-              退院支援・在宅移行の<br className="sm:hidden" />ご相談はお気軽に
-            </h2>
-            <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
-              患者様の退院支援、訪問看護の導入について、<br className="hidden sm:block" />
-              まずはお電話にてご相談ください。
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
-              <div className="bg-white rounded-2xl px-8 py-6 shadow-xl">
-                <div className="text-sm font-bold mb-2" style={{ color: 'var(--color-logo-dark-green)' }}>
-                  お電話でのご相談
+              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
+                <div className="bg-white rounded-2xl px-8 py-6 shadow-lg">
+                  <div className="text-sm font-bold mb-2" style={{ color: 'var(--color-logo-dark-green)' }}>
+                    お電話でのご相談
+                  </div>
+                  <a
+                    href="tel:047-770-1228"
+                    className="text-3xl md:text-4xl font-bold hover:opacity-80 transition-opacity"
+                    style={{ color: 'var(--color-logo-dark-green)' }}
+                  >
+                    047-770-1228
+                  </a>
+                  <div className="text-sm mt-2" style={{ color: 'var(--color-ink-soft)' }}>
+                    受付時間: 9:00〜19:00（年中無休）
+                  </div>
                 </div>
-                <a
-                  href="tel:047-770-1228"
-                  className="text-3xl md:text-4xl font-bold hover:opacity-80 transition-opacity"
-                  style={{ color: 'var(--color-logo-dark-green)' }}
+
+                <div className="text-[var(--color-logo-dark-green)] text-2xl font-bold">または</div>
+
+                <Link
+                  href="/#contact"
+                  className="inline-block px-8 py-4 bg-white text-[var(--color-logo-dark-green)] rounded-full font-bold text-lg hover:bg-[var(--color-logo-yellow)] transition-colors shadow-lg"
                 >
-                  047-770-1228
-                </a>
-                <div className="text-sm mt-2" style={{ color: 'var(--color-ink-soft)' }}>
-                  受付時間: 9:00〜19:00（年中無休）
-                </div>
+                  お問い合わせフォーム
+                </Link>
               </div>
 
-              <div className="text-white text-2xl font-bold">または</div>
-
-              <Link
-                href="/#contact"
-                className="inline-block px-8 py-4 bg-white text-[var(--color-logo-dark-green)] rounded-full font-bold text-lg hover:bg-[var(--color-logo-yellow)] transition-colors shadow-lg"
-              >
-                お問い合わせフォーム
-              </Link>
+              <div className="max-w-3xl mx-auto grid sm:grid-cols-3 gap-4 text-left">
+                {[
+                  { label: "FAX", value: "047-413-0502" },
+                  { label: "Email", value: "hokan-f@fractal-group.co.jp" },
+                  { label: "住所", value: "船橋市三山6-22-2" }
+                ].map((item, i) => (
+                  <div key={i} className="bg-white/60 rounded-lg p-4">
+                    <div className="text-[var(--color-ink-soft)] text-xs mb-1">{item.label}</div>
+                    <div className="text-[var(--color-ink)] text-sm font-medium break-all">{item.value}</div>
+                  </div>
+                ))}
+              </div>
             </div>
-
-            <div className="max-w-3xl mx-auto grid sm:grid-cols-3 gap-4 text-left">
-              {[
-                { label: "FAX", value: "047-413-0502" },
-                { label: "Email", value: "hokan-f@fractal-group.co.jp" },
-                { label: "住所", value: "船橋市三山6-22-2" }
-              ].map((item, i) => (
-                <div key={i} className="bg-white/10 rounded-lg p-4 backdrop-blur-sm">
-                  <div className="text-white/70 text-xs mb-1">{item.label}</div>
-                  <div className="text-white text-sm font-medium break-all">{item.value}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+          </section>
+        </div>
       </main>
       <Footer />
     </>
