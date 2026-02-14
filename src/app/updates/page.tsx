@@ -4,8 +4,8 @@ import Footer from "@/components/Footer";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "サイト更新情報 | フラクタル訪問看護 船橋",
-  description: "フラクタル訪問看護 船橋のウェブサイト更新情報・お知らせ一覧です。",
+  title: "アップデート情報 | フラクタル訪問看護 船橋",
+  description: "フラクタル訪問看護 船橋のHPの変更履歴を紹介しています。",
 };
 
 // 更新情報データ
@@ -13,6 +13,7 @@ const updates = [
   {
     date: "2026-02-14",
     items: [
+      { type: "new", title: "アップデート情報ページを新設", link: "/updates" },
       { type: "new", title: "ケアマネージャー様向けページを新設", link: "/for-care-managers" },
       { type: "new", title: "医療機関様向けページを新設", link: "/for-medical-institutions" },
       { type: "new", title: "代表の取扱説明書ページを追加", link: "/company/ceo" },
@@ -75,10 +76,10 @@ export default function UpdatesPage() {
         <div className="bg-gradient-to-br from-gray-50 to-white py-12 md:py-16">
           <div className="max-w-4xl mx-auto px-4 text-center">
             <h1 className="text-3xl md:text-4xl font-bold heading-gothic text-[var(--color-ink)] mb-4">
-              サイト更新情報
+              アップデート情報
             </h1>
             <p className="text-[var(--color-ink-soft)]">
-              フラクタル訪問看護 船橋のウェブサイト更新情報
+              HPの変更履歴を紹介
             </p>
           </div>
         </div>
