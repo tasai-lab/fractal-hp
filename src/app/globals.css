@@ -78,18 +78,17 @@
   --font-mincho: var(--font-mincho);
 }
 
-html {
-  scroll-behavior: smooth;
-}
+/* scroll-behavior: smooth はページ遷移時に問題があるため、
+   アンカーリンクのスクロールはJSで制御 */
 
 /* アンカーリンクのスクロールオフセット（固定ヘッダー対応） */
 [id] {
-  scroll-margin-top: 4rem; /* モバイル: 56px + 余白 */
+  scroll-margin-top: 5rem; /* モバイル: 56px + 余白 */
 }
 
 @media (min-width: 1024px) {
   [id] {
-    scroll-margin-top: 6rem; /* デスクトップ: 80px + 余白 */
+    scroll-margin-top: 7rem; /* デスクトップ: 80px + 余白 */
   }
 }
 

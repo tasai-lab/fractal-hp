@@ -278,7 +278,8 @@ export default async function RegionalAreaPage({
                   className="text-xl md:text-3xl font-bold heading-gothic"
                   style={{ color: area.theme.secondary }}
                 >
-                  フラクタルが提供する{area.name}での訪問看護サービス
+                  <span className="block">{area.name}で提供する</span>
+                  <span className="block">フラクタルの訪問看護サービス</span>
                 </h2>
               </div>
 
