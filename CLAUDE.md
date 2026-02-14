@@ -57,15 +57,24 @@ src/
 
 ## Git Workflow
 
-**IMPORTANT**: プッシュ前に必ず以下を実行:
-1. `/update-changelog` スキルを実行し、更新情報ページ (`src/app/updates/page.tsx`) を最新化
-2. 更新があれば追加コミット
-3. プッシュ
+**IMPORTANT**: プッシュ前に必ず `/pre-push-checklist` スキルを実行:
+
+1. 更新情報ページ (`src/app/updates/page.tsx`) を最新化
+2. 関連ドキュメント (CLAUDE.md, docs/*.md) を確認・更新
+3. 更新があれば追加コミット
+4. プッシュ
 
 ### 更新情報の記載ルール
 - `type: "new"` - 新規ページ追加時
 - `type: "improve"` - 機能追加、デザイン改善、バグ修正
 - 内部リファクタリング、依存関係更新は記載不要
+
+### ドキュメント更新トリガー
+| ドキュメント | 更新タイミング |
+|-------------|---------------|
+| CLAUDE.md | プロジェクト構造、コマンド、スタイル変更時 |
+| docs/COMPONENTS.md | コンポーネント追加・変更・削除時 |
+| docs/DEPLOYMENT.md | デプロイ手順、環境変数、Firebase設定変更時 |
 - ユーザーに見える変更のみ記載
 
 @docs/DEPLOYMENT.md - デプロイ詳細
