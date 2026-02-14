@@ -65,35 +65,45 @@ const ceoProfile = {
         name: "最上志向",
         nameEn: "Maximizer",
         category: "影響力",
-        description: "平均ではなく卓越を目指す。「まあまあ」で妥協せず、もっと良くできないかを追求する。",
+        description: "クオリティーを重視し、最高の仲間と最善の仕事をすることを好む。各人が最も得意とすることを理解し、実行するよう促して、個人やチームを向上させる。",
+        growth: "自分の強みに集中し、弱点はパートナーを見つけたり仕組みで補う",
+        blindspot: "「十分良い」が適正な場合もあることを受け入れる必要がある",
       },
       {
         rank: 7,
         name: "ポジティブ",
         nameEn: "Positivity",
         category: "人間関係構築力",
-        description: "熱意を持って人を褒め、笑顔を引き出す。困難な状況でも前向きなエネルギーを保つ。",
+        description: "人から人へと伝播するエネルギーと熱意を持つ。心からの励ましと楽観的な人生観で、周囲の人の気持ちを楽にする能力がある。",
+        growth: "物事が順調に進んでいることを周りにも見えるようにし、ちょっとした功績も祝う",
+        blindspot: "相手がネガティブな感情を吐き出すまでは、ただ話を聞くことも大切",
       },
       {
         rank: 8,
         name: "コミュニケーション",
         nameEn: "Communication",
         category: "影響力",
-        description: "考えを言葉にするのが得意。複雑なことも分かりやすく伝えられる。",
+        description: "言葉や表現で他の人の注意を惹きつけることに長ける。自分や他の人の考えをぴったりの言葉で表現でき、重要なメッセージを際立たせる。",
+        growth: "知識や専門性も身に付けて、メッセージに内容が伴って初めて効果を発揮する",
+        blindspot: "議論を牛耳っていることに気づかないときがあるため、話を聞く時間を作る",
       },
       {
         rank: 9,
         name: "未来志向",
         nameEn: "Futuristic",
         category: "戦略的思考力",
-        description: "「こうなったらいいな」というビジョンを描く。未来の可能性に惹きつけられる。",
+        description: "ビジョンを持った人であり、より良い未来を詳細に思い描く能力で、願望を実現させる。未来のビジョンで他の人を触発し、レベルアップを促す。",
+        growth: "思い描くビジョンを他の人と共有し、できる限り細かく描写して伝える",
+        blindspot: "未来を良くするためには、現在の真の問題に対処しなければならないことを受け入れる",
       },
       {
         rank: 10,
         name: "親密性",
         nameEn: "Relator",
         category: "人間関係構築力",
-        description: "深い関係を築くことを好む。広く浅くより、狭く深い人間関係を大切にする。",
+        description: "互いにとって誠実で意義のある真の1対1の人間関係を自然に作る。偽りのない姿を示すため、長続きする親密な関係を築き、信頼と自信を育む。",
+        growth: "グループではなく1対1の時間を作り、どれほど忙しくても友人とは連絡を取る",
+        blindspot: "信頼を勝ち取るのに時間がかかるため、親しくなれないと感じる人もいることを意識する",
       },
     ],
     bottom5: [
@@ -304,12 +314,16 @@ function StrengthCard({
   nameEn,
   category,
   description,
+  growth,
+  blindspot,
 }: {
   rank: number;
   name: string;
   nameEn: string;
   category?: string;
   description: string;
+  growth?: string;
+  blindspot?: string;
 }) {
   const isTop3 = rank <= 3;
   const isTop5 = rank <= 5;
@@ -358,6 +372,22 @@ function StrengthCard({
           <p className="text-sm text-[var(--color-ink-soft)] leading-relaxed">
             {description}
           </p>
+          {(growth || blindspot) && (
+            <div className="mt-3 pt-3 border-t border-[var(--color-sand)]/50 space-y-2">
+              {growth && (
+                <div className="flex items-start gap-2">
+                  <span className="text-xs text-[var(--color-logo-light-green)] mt-0.5">↑</span>
+                  <p className="text-xs text-[var(--color-ink-soft)]">{growth}</p>
+                </div>
+              )}
+              {blindspot && (
+                <div className="flex items-start gap-2">
+                  <span className="text-xs text-amber-500 mt-0.5">!</span>
+                  <p className="text-xs text-[var(--color-ink-soft)]">{blindspot}</p>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>
