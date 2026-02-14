@@ -31,47 +31,55 @@ export const companyInfo = {
     "https://www.google.com/maps?q=%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%E3%83%95%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%AB+%E8%88%B9%E6%A9%8B&output=embed",
 };
 
-// ナビゲーションリンク
+// ナビゲーションリンク（デスクトップヘッダー用）
 export const navLinks = [
-  { href: "/fractal", label: "フラクタルとは" },
-  { href: "/company", label: "会社情報" },
-  { href: "#staff", label: "スタッフ紹介" },
+  { href: "/fractal", label: "フラクタルを知る" },
   { href: "/areas/funabashi", label: "対応エリア" },
   { href: "/recruit", label: "採用情報" },
-  { href: "/flyers", label: "チラシ" },
+  { href: "/#contact", label: "お問い合わせ" },
 ];
 
-// モバイルメニュー項目
+// フッター用サイトマップリンク
+export const footerLinks = [
+  { href: "/fractal", label: "フラクタルを知る" },
+  { href: "/company", label: "会社情報" },
+  { href: "/#features", label: "サービスの特徴" },
+  { href: "/#flow", label: "ご利用の流れ" },
+  { href: "/recruit", label: "採用情報" },
+  { href: "/flyers", label: "チラシ一覧" },
+  { href: "/#contact", label: "お問い合わせ" },
+  { href: "/#faq", label: "よくある質問" },
+];
+
+// モバイルメニュー項目（下部固定メニュー用）
 export const mobileMenuItems = [
   { href: "/", label: "ホーム", icon: "Home" },
-  { href: "/fractal", label: "フラクタルとは", icon: "Building2" },
-  { href: "/recruit", label: "採用情報", icon: "Users" },
-  { href: "#contact", label: "お問い合わせ", icon: "Phone" },
+  { href: "/fractal", label: "フラクタル", icon: "Building2" },
+  { href: "/recruit", label: "採用", icon: "Users" },
+  { href: "/#contact", label: "問合せ", icon: "Phone" },
 ];
 
-// その他メニューのカテゴリ分け
+// サイトマップメニューのカテゴリ分け
 export const otherMenuCategories = {
   home: {
-    title: "ホーム（ページ内リンク）",
+    title: "トップページ",
     items: [
-      { href: "/#hero", label: "トップ" },
       { href: "/#about", label: "フラクタルとは" },
-      { href: "/#features", label: "特徴" },
+      { href: "/#features", label: "サービスの特徴" },
       { href: "/#office", label: "事業所案内" },
       { href: "/#flow", label: "ご利用の流れ" },
       { href: "/#staff", label: "スタッフ紹介" },
-      { href: "/#recruit", label: "フラクタルで働く？" },
+      { href: "/#faq", label: "よくある質問" },
       { href: "/#contact", label: "お問い合わせ" },
-      { href: "/#company", label: "会社情報" },
     ],
   },
   pages: {
-    title: "その他のページ",
+    title: "詳しく見る",
     items: [
-      { href: "/fractal", label: "フラクタルとは" },
+      { href: "/fractal", label: "フラクタルを知る" },
       { href: "/company", label: "会社情報" },
       { href: "/recruit", label: "採用情報" },
-      { href: "/flyers", label: "チラシ" },
+      { href: "/flyers", label: "チラシ一覧" },
     ],
   },
   areas: {

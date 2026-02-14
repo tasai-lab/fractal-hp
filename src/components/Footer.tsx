@@ -1,4 +1,4 @@
-import { officeInfo, navLinks } from "@/lib/data";
+import { officeInfo, footerLinks } from "@/lib/data";
 import { regionalData } from "@/lib/regional-data";
 import Image from "next/image";
 import Link from "next/link";
@@ -31,7 +31,7 @@ export default function Footer() {
         </div>
 
         {/* 事業所情報とナビゲーション */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-6 md:mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8 mb-6 sm:mb-7 lg:mb-8">
           {/* 事業所情報 */}
           <div>
             <h3 className="font-bold mb-3 md:mb-4 text-lg md:text-xl">事業所情報</h3>
@@ -79,7 +79,7 @@ export default function Footer() {
           <div>
             <h3 className="font-bold mb-3 md:mb-4 text-lg md:text-xl">サイトマップ</h3>
             <nav className="grid grid-cols-2 gap-2 text-sm md:text-base">
-              {navLinks.map((link) => (
+              {footerLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}

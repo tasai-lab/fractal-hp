@@ -261,11 +261,11 @@ export default function Features() {
         {/* 特徴カードグリッド - 丸みを帯びた四角形で囲む */}
         <div className="section-content">
           <div className="section-card">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 lg:gap-6">
               {features.map((feature, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-sm hover-lift border border-transparent hover:border-[var(--color-accent-yellow)]"
+                  className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-5 lg:p-6 shadow-sm hover-lift border border-transparent hover:border-[var(--color-accent-yellow)]"
                 >
                   <div className="flex flex-col items-center text-center">
                     {/* アイコン */}
