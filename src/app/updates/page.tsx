@@ -25,7 +25,7 @@ const updates = [
   {
     date: "2026-02-01",
     items: [
-      { type: "new", title: "看護師・リハビリ職のモデル年収情報を追加", link: "/recruit/nurse" },
+      { type: "new", title: "モデル年収情報を追加", link: "/recruit" },
       { type: "improve", title: "求人ページのSEO最適化", link: "/recruit" },
     ],
   },
