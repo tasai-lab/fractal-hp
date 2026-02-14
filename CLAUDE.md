@@ -55,5 +55,18 @@ src/
 
 データは `src/lib/*.ts` で一元管理。コンポーネント内にハードコードしない。
 
+## Git Workflow
+
+**IMPORTANT**: プッシュ前に必ず以下を実行:
+1. `/update-changelog` スキルを実行し、更新情報ページ (`src/app/updates/page.tsx`) を最新化
+2. 更新があれば追加コミット
+3. プッシュ
+
+### 更新情報の記載ルール
+- `type: "new"` - 新規ページ追加時
+- `type: "improve"` - 機能追加、デザイン改善、バグ修正
+- 内部リファクタリング、依存関係更新は記載不要
+- ユーザーに見える変更のみ記載
+
 @docs/DEPLOYMENT.md - デプロイ詳細
 @docs/COMPONENTS.md - コンポーネント仕様
