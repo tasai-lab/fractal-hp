@@ -598,6 +598,271 @@ body {
    地域ページ用カードスタイル
    =================================================== */
 
+/* ===================================================
+   フラクタル・カードスタイル
+   三角形の自己相似性を表現した独創的なカードデザイン
+   =================================================== */
+
+/* 基本カード - 三角コーナー装飾 */
+.fractal-card {
+  position: relative;
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: visible;
+}
+
+/* 左上の三角装飾 */
+.fractal-card::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 24px 24px 0 0;
+  border-color: var(--color-logo-light-green) transparent transparent transparent;
+  transition: all 0.3s ease;
+  opacity: 0.8;
+}
+
+/* 右下の入れ子三角（ホバーで出現） */
+.fractal-card::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 16px 16px;
+  border-color: transparent transparent var(--color-logo-yellow) transparent;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.fractal-card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 4px 6px -1px rgba(13, 86, 67, 0.1),
+    0 10px 20px -5px rgba(13, 86, 67, 0.15),
+    0 20px 40px -10px rgba(13, 86, 67, 0.1);
+}
+
+.fractal-card:hover::before {
+  border-width: 32px 32px 0 0;
+  opacity: 1;
+}
+
+.fractal-card:hover::after {
+  opacity: 1;
+  transform: scale(1);
+  border-width: 0 0 24px 24px;
+}
+
+/* バリエーション: ミント */
+.fractal-card-mint::before {
+  border-color: var(--color-accent-mint) transparent transparent transparent;
+}
+
+/* バリエーション: イエロー */
+.fractal-card-yellow::before {
+  border-color: var(--color-logo-yellow) transparent transparent transparent;
+}
+
+.fractal-card-yellow::after {
+  border-color: transparent transparent var(--color-logo-light-green) transparent;
+}
+
+/* フローティングカード - 影のレイヤーでフラクタル的深度 */
+.fractal-float-card {
+  position: relative;
+  background: white;
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fractal-float-card::before,
+.fractal-float-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.fractal-float-card::before {
+  background: linear-gradient(135deg, var(--color-logo-light-green), var(--color-logo-dark-green));
+  transform: translate(4px, 4px);
+  opacity: 0.15;
+}
+
+.fractal-float-card::after {
+  background: linear-gradient(135deg, var(--color-logo-yellow), var(--color-logo-light-green));
+  transform: translate(8px, 8px);
+  opacity: 0.08;
+}
+
+.fractal-float-card:hover {
+  transform: translateY(-4px);
+}
+
+.fractal-float-card:hover::before {
+  transform: translate(6px, 6px);
+  opacity: 0.2;
+}
+
+.fractal-float-card:hover::after {
+  transform: translate(12px, 12px);
+  opacity: 0.12;
+}
+
+/* グラデーションボーダーカード */
+.fractal-gradient-card {
+  position: relative;
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.fractal-gradient-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(
+    135deg,
+    var(--color-logo-light-green) 0%,
+    var(--color-logo-dark-green) 50%,
+    var(--color-logo-yellow) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+}
+
+.fractal-gradient-card:hover::before {
+  opacity: 0.8;
+}
+
+.fractal-gradient-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px -10px rgba(13, 86, 67, 0.2);
+}
+
+/* 番号付きカード（理念など） */
+.fractal-numbered-card {
+  position: relative;
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  padding-left: 4.5rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.fractal-numbered-card::before {
+  content: attr(data-number);
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mincho), serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(180deg, var(--color-logo-dark-green), var(--color-logo-light-green));
+  clip-path: polygon(0 0, 100% 0, 75% 100%, 0 100%);
+  transition: all 0.3s ease;
+}
+
+.fractal-numbered-card:hover {
+  transform: translateX(4px);
+  box-shadow: -4px 4px 20px -5px rgba(13, 86, 67, 0.2);
+}
+
+.fractal-numbered-card:hover::before {
+  clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);
+}
+
+/* 特徴カード - アイコン中心 */
+.fractal-feature-card {
+  position: relative;
+  background: white;
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+/* 背景の三角パターン */
+.fractal-feature-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='100,0 100,30 70,0' fill='%237FC5A0' fill-opacity='0.08'/%3E%3Cpolygon points='100,15 100,45 70,15' fill='%230D5643' fill-opacity='0.05'/%3E%3C/svg%3E");
+  background-position: top right;
+  background-repeat: no-repeat;
+  background-size: 80px 80px;
+  transition: all 0.4s ease;
+  pointer-events: none;
+}
+
+.fractal-feature-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow:
+    0 8px 16px -4px rgba(13, 86, 67, 0.1),
+    0 16px 32px -8px rgba(127, 197, 160, 0.15);
+}
+
+.fractal-feature-card:hover::before {
+  background-size: 100px 100px;
+  opacity: 1;
+}
+
+/* アイコンラッパー */
+.fractal-feature-card .icon-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, rgba(127, 197, 160, 0.15), rgba(244, 233, 81, 0.15));
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+}
+
+.fractal-feature-card:hover .icon-wrapper {
+  transform: scale(1.1) rotate(-3deg);
+  background: linear-gradient(135deg, rgba(127, 197, 160, 0.25), rgba(244, 233, 81, 0.25));
+}
+
+/* レガシー互換 */
 .area-card {
   border-radius: 1.5rem;
   padding: 2rem;

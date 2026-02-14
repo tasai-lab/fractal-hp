@@ -64,11 +64,11 @@ export default function Staff() {
             </div>
 
             {/* スタッフカードグリッド */}
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5 lg:gap-8">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
               {staffMembers.map((staff, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-xl md:rounded-2xl shadow-sm p-3 md:p-8 hover-lift group cursor-pointer md:cursor-default"
+                  className="fractal-float-card p-3 md:p-6 group cursor-pointer md:cursor-default"
                   onClick={() => {
                     if (window.innerWidth < 768) {
                       openModal(staff, index);

@@ -15,47 +15,40 @@ export default function Flow() {
           {/* 丸みを帯びた四角形で囲む */}
           <div className="section-card section-card-pink">
             {/* フローチャート - 均等配置 */}
-            <div className="grid grid-cols-1 gap-6">
+            <div className="grid grid-cols-1 gap-5">
               {flowSteps.map((step, index) => (
                 <div key={step.step} className="flex flex-col items-center">
-                  {/* ステップカード - 白背景 */}
-                  <div className="bg-white rounded-xl p-4 md:p-6 shadow-sm w-full hover-lift border-l-4 border-[var(--color-accent-pink)]">
-                    <div className="flex items-start gap-4 md:gap-6">
-                      {/* ステップ番号バッジ */}
-                      <div className="flex-shrink-0">
-                        <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white text-primary flex items-center justify-center text-2xl md:text-3xl font-bold shadow-md">
-                          {step.step}
-                        </div>
-                      </div>
-
-                      {/* コンテンツ */}
-                      <div className="flex-1">
-                        <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3">
-                          {step.title}
-                        </h3>
-                        <p className="text-foreground leading-relaxed text-base md:text-lg">
-                          {step.description}
-                        </p>
-                      </div>
-                    </div>
+                  {/* ステップカード - フラクタル番号付きカード */}
+                  <div
+                    className="fractal-numbered-card shadow-sm w-full"
+                    data-number={step.step}
+                  >
+                    <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3 text-[var(--color-primary)]">
+                      {step.title}
+                    </h3>
+                    <p className="text-foreground leading-relaxed text-sm md:text-base">
+                      {step.description}
+                    </p>
                   </div>
 
-                  {/* 矢印（最後のステップ以外）- 均等配置 */}
+                  {/* 矢印（最後のステップ以外）- 三角形モチーフ */}
                   {index < flowSteps.length - 1 && (
-                    <div className="flex justify-center py-3">
+                    <div className="flex justify-center py-2">
                       <svg
-                        width="40"
-                        height="40"
-                        viewBox="0 0 40 40"
-                        className="text-primary"
+                        width="32"
+                        height="24"
+                        viewBox="0 0 32 24"
+                        className="text-[var(--color-logo-light-green)]"
                       >
                         <path
-                          d="M20 5 L20 30 M20 30 L10 22 M20 30 L30 22"
-                          stroke="currentColor"
-                          strokeWidth="3"
-                          fill="none"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
+                          d="M16 20 L4 6 L28 6 Z"
+                          fill="currentColor"
+                          opacity="0.6"
+                        />
+                        <path
+                          d="M16 16 L8 6 L24 6 Z"
+                          fill="currentColor"
+                          opacity="0.3"
                         />
                       </svg>
                     </div>

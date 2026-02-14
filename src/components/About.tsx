@@ -102,25 +102,17 @@ export default function About() {
             </p>
 
             {/* 理念項目リスト */}
-            <div className="space-y-4 md:space-y-6">
+            <div className="space-y-4 md:space-y-5">
               {philosophyItems.map((item) => (
                 <div
                   key={item.number}
-                  className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow"
+                  className="fractal-numbered-card shadow-sm"
+                  data-number={item.number}
                 >
-                  <div className="flex gap-3 md:gap-4">
-                    <div className="flex-shrink-0">
-                      <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold text-base md:text-lg">
-                        {item.number}
-                      </div>
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="text-lg md:text-xl font-bold mb-1 md:mb-2 text-primary">{item.title}</h4>
-                      <p className="text-foreground leading-relaxed text-sm md:text-base">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
+                  <h4 className="text-lg md:text-xl font-bold mb-1 md:mb-2 text-primary">{item.title}</h4>
+                  <p className="text-foreground leading-relaxed text-sm md:text-base">
+                    {item.description}
+                  </p>
                 </div>
               ))}
             </div>

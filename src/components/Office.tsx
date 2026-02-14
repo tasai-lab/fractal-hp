@@ -24,34 +24,25 @@ export default function Office() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
               {/* 左側：テキスト情報 */}
               <div className="space-y-8">
-                <div className="space-y-6 text-foreground">
+                <div className="space-y-5 text-foreground">
                   {/* 事業所番号 */}
-                  <div>
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className="w-1 h-6 bg-primary rounded-full"></div>
-                      <span className="font-bold text-lg">事業所番号</span>
-                    </div>
-                    <p className="pl-3 text-2xl md:text-3xl font-bold text-primary tracking-wider">
+                  <div className="fractal-card bg-white/80 !p-4">
+                    <span className="text-sm font-bold text-[var(--color-logo-dark-green)]">事業所番号</span>
+                    <p className="text-2xl md:text-3xl font-bold text-primary tracking-wider mt-1">
                       {officeInfo.businessNumber}
                     </p>
                   </div>
 
                   {/* 営業時間 */}
-                  <div>
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className="w-1 h-6 bg-primary rounded-full"></div>
-                      <span className="font-bold text-lg">営業時間</span>
-                    </div>
-                    <p className="pl-3 text-lg">{officeInfo.hours}</p>
+                  <div className="fractal-card bg-white/80 !p-4">
+                    <span className="text-sm font-bold text-[var(--color-logo-dark-green)]">営業時間</span>
+                    <p className="text-lg mt-1">{officeInfo.hours}</p>
                   </div>
 
                   {/* 所在地 */}
-                  <div>
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className="w-1 h-6 bg-primary rounded-full"></div>
-                      <span className="font-bold text-lg">所在地</span>
-                    </div>
-                    <p className="pl-3 leading-relaxed">
+                  <div className="fractal-card bg-white/80 !p-4">
+                    <span className="text-sm font-bold text-[var(--color-logo-dark-green)]">所在地</span>
+                    <p className="leading-relaxed mt-1">
                       〒{officeInfo.address.postalCode}
                       <br />
                       {officeInfo.address.prefecture}
@@ -61,14 +52,11 @@ export default function Office() {
                   </div>
 
                   {/* お問い合わせ先 */}
-                  <div>
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className="w-1 h-6 bg-primary rounded-full"></div>
-                      <span className="font-bold text-lg">お問い合わせ先</span>
-                    </div>
-                    <div className="pl-3 mt-2 space-y-3">
+                  <div className="fractal-card bg-white/80 !p-4">
+                    <span className="text-sm font-bold text-[var(--color-logo-dark-green)]">お問い合わせ先</span>
+                    <div className="mt-3 space-y-3">
                       <div className="flex items-center gap-3">
-                        <span className="font-bold text-muted bg-white px-2 py-1 rounded text-sm min-w-[3.5rem] text-center">TEL</span>
+                        <span className="font-bold text-white bg-[var(--color-logo-dark-green)] px-2 py-1 rounded text-sm min-w-[3.5rem] text-center">TEL</span>
                         <a
                           href={`tel:${officeInfo.phone.replace(/-/g, "")}`}
                           className="hover:underline font-bold text-xl md:text-2xl text-primary"
@@ -77,11 +65,11 @@ export default function Office() {
                         </a>
                       </div>
                       <div className="flex items-center gap-3">
-                        <span className="font-bold text-muted bg-white px-2 py-1 rounded text-sm min-w-[3.5rem] text-center">FAX</span>
+                        <span className="font-bold text-white bg-[var(--color-logo-light-green)] px-2 py-1 rounded text-sm min-w-[3.5rem] text-center">FAX</span>
                         <span className="text-lg">{officeInfo.fax}</span>
                       </div>
                       <div className="flex items-start gap-3">
-                        <span className="font-bold text-muted bg-white px-2 py-1 rounded text-sm min-w-[3.5rem] text-center mt-1">Email</span>
+                        <span className="font-bold text-[var(--color-logo-dark-green)] bg-[var(--color-logo-yellow)] px-2 py-1 rounded text-sm min-w-[3.5rem] text-center mt-1">Email</span>
                         <a
                           href={`mailto:${officeInfo.email}`}
                           className="hover:underline break-all text-base md:text-lg mt-0.5"
@@ -131,21 +119,21 @@ export default function Office() {
               <div>
                 <h4 className="text-lg md:text-xl font-bold text-center text-primary mb-4 md:mb-6">訪問可能エリア</h4>
                 {/* エリア詳細（2×2） */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
                   {serviceAreas.priority.cities.map((city, index) => (
-                    <div key={index} className="bg-white rounded-lg p-3 md:p-4 shadow-sm flex flex-col">
-                      <h5 className="font-bold text-base md:text-lg mb-2 text-primary">
+                    <div key={index} className="fractal-card bg-white/90 flex flex-col">
+                      <h5 className="font-bold text-base md:text-lg mb-3 text-[var(--color-logo-dark-green)]">
                         {city.name}
                       </h5>
                       <ul className={`text-sm md:text-base flex-1 ${city.areas.length > 6 ? "grid grid-cols-2 gap-x-2 gap-y-1" : "space-y-1"}`}>
                         {city.areas.map((area, areaIndex) => (
                           <li key={areaIndex} className="flex items-start gap-1 md:gap-2">
-                            <span className="text-accent-pink mt-0.5">▸</span>
+                            <span className="text-[var(--color-logo-light-green)] mt-0.5">▸</span>
                             <span>{area}</span>
                           </li>
                         ))}
                       </ul>
-                      <p className="text-muted text-right text-sm md:text-base mt-2">上記以外の地域も承ります。</p>
+                      <p className="text-muted text-right text-sm md:text-base mt-3">上記以外の地域も承ります。</p>
                     </div>
                   ))}
                 </div>
