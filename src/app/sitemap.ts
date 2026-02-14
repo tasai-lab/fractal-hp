@@ -11,7 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const monthly = "monthly" as const;
 
   return [
-    // トップページ（最重要）
+    // === トップページ（最重要）===
     {
       url: baseUrl,
       lastModified,
@@ -19,7 +19,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1.0,
     },
 
-    // 採用ページ群（重要）
+    // === サービス利用者向け地域別ページ（地域SEO最重要）===
+    // 船橋市・八千代市・習志野市 + 訪問看護 の検索対策
+    ...regionalData.map((area) => ({
+      url: `${baseUrl}/areas/${area.slug}`,
+      lastModified,
+      changeFrequency: weekly,
+      priority: 0.9,
+    })),
+
+    // === B2B向けページ（ケアマネ・医療機関）===
+    // 紹介元向け重要ページ
+    {
+      url: `${baseUrl}/for-care-managers`,
+      lastModified,
+      changeFrequency: weekly,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/for-medical-institutions`,
+      lastModified,
+      changeFrequency: weekly,
+      priority: 0.9,
+    },
+
+    // === 採用ページ群（求人SEO重要）===
     {
       url: `${baseUrl}/recruit`,
       lastModified,
@@ -42,53 +66,38 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/recruit/day-flow`,
       lastModified,
       changeFrequency: monthly,
-      priority: 0.75,
+      priority: 0.8,
     },
 
-    // 採用エリア別ページ
+    // 採用エリア別ページ（xx + 訪問看護 + 求人）
     ...recruitAreas.map((area) => ({
       url: `${baseUrl}/recruit/areas/${area.slug}`,
       lastModified,
       changeFrequency: weekly,
-      priority: 0.75,
-    })),
-
-    // サービス利用者向け地域別ページ（地域SEO重要）
-    ...regionalData.map((area) => ({
-      url: `${baseUrl}/areas/${area.slug}`,
-      lastModified,
-      changeFrequency: weekly,
       priority: 0.85,
     })),
 
-    // B2B向けページ（ケアマネ・医療機関）
-    {
-      url: `${baseUrl}/for-care-managers`,
-      lastModified,
-      changeFrequency: monthly,
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/for-medical-institutions`,
-      lastModified,
-      changeFrequency: monthly,
-      priority: 0.85,
-    },
-
-    // フラクタルを知る
+    // === 会社・サービス紹介ページ ===
     {
       url: `${baseUrl}/fractal`,
       lastModified,
       changeFrequency: monthly,
       priority: 0.8,
     },
-    // 株式会社フラクタル
     {
       url: `${baseUrl}/company`,
       lastModified,
       changeFrequency: monthly,
       priority: 0.7,
     },
+    {
+      url: `${baseUrl}/company/ceo`,
+      lastModified,
+      changeFrequency: monthly,
+      priority: 0.6,
+    },
+
+    // === その他 ===
     {
       url: `${baseUrl}/flyers`,
       lastModified,
