@@ -217,101 +217,86 @@ function SeverityBadge({ severity }: { severity: string }) {
 
 // マーメイド風フローチャート
 function ThinkingFlowChart() {
+  const steps = [
+    { num: "01", label: "Input", desc: "違和感検知", color: "red" },
+    { num: "02", label: "Logic", desc: "攻略ルート構築", color: "cyan" },
+    { num: "03", label: "Command", desc: "即実行", color: "green" },
+    { num: "04", label: "Feedback", desc: "修正パッチ", color: "yellow" },
+  ];
+
+  const colorMap = {
+    red: { bg: "bg-red-500/10", border: "border-red-500/30", text: "text-red-400", hover: "hover:bg-red-500/20" },
+    cyan: { bg: "bg-cyan-500/10", border: "border-cyan-500/30", text: "text-cyan-400", hover: "hover:bg-cyan-500/20" },
+    green: { bg: "bg-[#7FC5A0]/10", border: "border-[#7FC5A0]/30", text: "text-[#7FC5A0]", hover: "hover:bg-[#7FC5A0]/20" },
+    yellow: { bg: "bg-[#F4E951]/10", border: "border-[#F4E951]/30", text: "text-[#F4E951]", hover: "hover:bg-[#F4E951]/20" },
+  };
+
   return (
-    <div className="w-full overflow-x-auto pb-4">
-      <div className="min-w-[600px] md:min-w-0">
-        {/* フローチャート本体 */}
-        <div className="relative">
+    <div className="w-full overflow-x-auto">
+      <div className="min-w-[550px] md:min-w-0">
+        <div className="relative px-2 md:px-4 pt-2">
           {/* メインフロー */}
-          <div className="flex items-center justify-between gap-2 md:gap-4">
-            {/* Input */}
-            <div className="flex-1 max-w-[140px] md:max-w-[180px]">
-              <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-3 md:p-4 text-center relative group hover:bg-red-500/20 transition-all">
-                <div className="absolute -top-2 left-1/2 -translate-x-1/2 bg-[#0d0d14] px-2">
-                  <span className="font-mono text-[10px] text-red-400">01</span>
-                </div>
-                <p className="font-mono text-xs md:text-sm text-red-400 font-bold mb-1">Input</p>
-                <p className="text-[10px] md:text-xs text-slate-400">違和感検知</p>
-              </div>
-            </div>
+          <div className="grid grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] items-center gap-1">
+            {steps.map((step, index) => {
+              const colors = colorMap[step.color as keyof typeof colorMap];
+              return (
+                <React.Fragment key={step.num}>
+                  {/* ステップボックス */}
+                  <div className="relative">
+                    <div className={`${colors.bg} ${colors.border} ${colors.hover} border rounded-lg p-2 md:p-3 text-center transition-all`}>
+                      <div className="flex items-center justify-center gap-1 mb-1">
+                        <span className={`font-mono text-[10px] ${colors.text} opacity-60`}>{step.num}</span>
+                        <span className={`font-mono text-xs md:text-sm ${colors.text} font-bold`}>{step.label}</span>
+                      </div>
+                      <p className="text-[10px] md:text-xs text-slate-400 leading-tight">{step.desc}</p>
+                    </div>
+                  </div>
 
-            {/* Arrow */}
-            <div className="flex items-center text-slate-600">
-              <div className="w-4 md:w-8 h-px bg-gradient-to-r from-red-500/50 to-cyan-500/50" />
-              <svg className="w-3 h-3 md:w-4 md:h-4 text-cyan-500/50" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
-            </div>
-
-            {/* Logic */}
-            <div className="flex-1 max-w-[140px] md:max-w-[180px]">
-              <div className="bg-cyan-500/10 border border-cyan-500/30 rounded-lg p-3 md:p-4 text-center relative group hover:bg-cyan-500/20 transition-all">
-                <div className="absolute -top-2 left-1/2 -translate-x-1/2 bg-[#0d0d14] px-2">
-                  <span className="font-mono text-[10px] text-cyan-400">02</span>
-                </div>
-                <p className="font-mono text-xs md:text-sm text-cyan-400 font-bold mb-1">Logic</p>
-                <p className="text-[10px] md:text-xs text-slate-400">攻略ルート構築</p>
-              </div>
-            </div>
-
-            {/* Arrow */}
-            <div className="flex items-center text-slate-600">
-              <div className="w-4 md:w-8 h-px bg-gradient-to-r from-cyan-500/50 to-[#7FC5A0]/50" />
-              <svg className="w-3 h-3 md:w-4 md:h-4 text-[#7FC5A0]/50" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
-            </div>
-
-            {/* Command */}
-            <div className="flex-1 max-w-[140px] md:max-w-[180px]">
-              <div className="bg-[#7FC5A0]/10 border border-[#7FC5A0]/30 rounded-lg p-3 md:p-4 text-center relative group hover:bg-[#7FC5A0]/20 transition-all">
-                <div className="absolute -top-2 left-1/2 -translate-x-1/2 bg-[#0d0d14] px-2">
-                  <span className="font-mono text-[10px] text-[#7FC5A0]">03</span>
-                </div>
-                <p className="font-mono text-xs md:text-sm text-[#7FC5A0] font-bold mb-1">Command</p>
-                <p className="text-[10px] md:text-xs text-slate-400">即実行</p>
-              </div>
-            </div>
-
-            {/* Arrow */}
-            <div className="flex items-center text-slate-600">
-              <div className="w-4 md:w-8 h-px bg-gradient-to-r from-[#7FC5A0]/50 to-[#F4E951]/50" />
-              <svg className="w-3 h-3 md:w-4 md:h-4 text-[#F4E951]/50" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
-            </div>
-
-            {/* Feedback */}
-            <div className="flex-1 max-w-[140px] md:max-w-[180px]">
-              <div className="bg-[#F4E951]/10 border border-[#F4E951]/30 rounded-lg p-3 md:p-4 text-center relative group hover:bg-[#F4E951]/20 transition-all">
-                <div className="absolute -top-2 left-1/2 -translate-x-1/2 bg-[#0d0d14] px-2">
-                  <span className="font-mono text-[10px] text-[#F4E951]">04</span>
-                </div>
-                <p className="font-mono text-xs md:text-sm text-[#F4E951] font-bold mb-1">Feedback</p>
-                <p className="text-[10px] md:text-xs text-slate-400">修正パッチ</p>
-              </div>
-            </div>
+                  {/* 矢印（最後以外） */}
+                  {index < steps.length - 1 && (
+                    <div className="flex items-center justify-center">
+                      <svg className="w-4 h-4 md:w-5 md:h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  )}
+                </React.Fragment>
+              );
+            })}
           </div>
 
           {/* ループバック矢印 */}
-          <div className="relative mt-4 md:mt-6">
-            <div className="absolute left-[10%] right-[10%] h-8 md:h-12">
-              {/* 下向きの線（右端） */}
-              <div className="absolute right-0 top-0 w-px h-3 md:h-4 bg-gradient-to-b from-[#F4E951]/50 to-slate-600" />
-              {/* 水平線 */}
-              <div className="absolute right-0 left-0 top-3 md:top-4 h-px bg-gradient-to-l from-slate-600 via-slate-500 to-slate-600" />
-              {/* 上向きの矢印（左端） */}
-              <div className="absolute left-0 top-3 md:top-4 flex flex-col items-center">
-                <div className="w-px h-3 md:h-4 bg-gradient-to-b from-slate-600 to-red-500/50" />
-                <svg className="w-3 h-3 md:w-4 md:h-4 text-red-500/50 -mt-1" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clipRule="evenodd" />
-                </svg>
-              </div>
-            </div>
+          <div className="relative h-10 md:h-14 mt-1">
+            <svg className="absolute inset-0 w-full h-full overflow-visible" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="loopGradient" x1="100%" y1="0%" x2="0%" y2="0%">
+                  <stop offset="0%" stopColor="#F4E951" stopOpacity="0.6" />
+                  <stop offset="50%" stopColor="#64748b" stopOpacity="0.3" />
+                  <stop offset="100%" stopColor="#ef4444" stopOpacity="0.6" />
+                </linearGradient>
+              </defs>
+              {/* U字型のループ */}
+              <path
+                d="M 93 5 L 93 55 L 7 55 L 7 5"
+                fill="none"
+                stroke="url(#loopGradient)"
+                strokeWidth="0.8"
+                vectorEffect="non-scaling-stroke"
+              />
+              {/* 上向き矢印 */}
+              <path
+                d="M 4 15 L 7 5 L 10 15"
+                fill="none"
+                stroke="#ef4444"
+                strokeWidth="0.8"
+                strokeOpacity="0.6"
+                vectorEffect="non-scaling-stroke"
+              />
+            </svg>
             {/* ループラベル */}
-            <div className="text-center pt-6 md:pt-10">
-              <span className="font-mono text-[10px] md:text-xs text-slate-500 bg-[#0d0d14] px-3 py-1 rounded border border-slate-700/50">
-                HIGH-SPEED ITERATION LOOP
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1">
+              <span className="font-mono text-[9px] md:text-[10px] text-slate-500 bg-slate-900 px-2 py-0.5 rounded border border-slate-700/50 whitespace-nowrap">
+                ITERATION LOOP
               </span>
             </div>
           </div>
