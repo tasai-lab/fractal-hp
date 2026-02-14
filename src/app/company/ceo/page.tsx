@@ -181,35 +181,35 @@ const ceoProfile = {
   },
 
   teamFit: {
-    good: [
+    fast: [
       {
-        text: "「なぜ？」を一緒に追求できる人",
+        text: "「なぜ？」を一緒に追求できる",
         detail: "現状に疑問を持ち、より良い方法を一緒に考えられる",
       },
       {
-        text: "自分で考えて動ける人",
+        text: "自分で考えて動ける",
         detail: "指示を待つのではなく、自分で判断して行動できる",
       },
       {
-        text: "改善提案を恐れない人",
+        text: "改善提案を恐れない",
         detail: "「こうした方がいいのでは？」と率直に意見を言える",
       },
       {
-        text: "論理的に議論できる人",
+        text: "論理的に議論できる",
         detail: "感情ではなく、事実とロジックで建設的に話し合える",
       },
     ],
-    challenging: [
+    slow: [
       {
-        text: "変化を嫌う人",
-        detail: "フラクタルは常に進化し続ける組織。現状維持は後退",
+        text: "変化を嫌う",
+        detail: "現状維持は後退。常に進化し続ける組織でありたい",
       },
       {
-        text: "環境のせいにする人",
+        text: "環境のせいにする",
         detail: "「教わってない」「時間がない」—できない理由より、できる方法を考えたい",
       },
     ],
-    note: "正直に書いていますが、これは「合う・合わない」の話。どちらが良い・悪いではありません。フラクタルが合う人には、最適な環境を用意したい。それが私のスタンスです。",
+    note: "これはチームの特性の話。フラクタルは成長が早いチームを目指しています。",
   },
 
   leadership: {
@@ -471,41 +471,41 @@ function ValueCard({
   );
 }
 
-// 相性リスト
-function CompatibilityList({
+// チーム特性リスト
+function TeamTraitList({
   type,
   items,
 }: {
-  type: "good" | "challenging";
+  type: "fast" | "slow";
   items: { text: string; detail: string }[];
 }) {
-  const isGood = type === "good";
+  const isFast = type === "fast";
   return (
     <div
       className={`rounded-2xl p-5 md:p-6 ${
-        isGood
+        isFast
           ? "bg-[var(--color-logo-light-green)]/10 border border-[var(--color-logo-light-green)]/30"
-          : "bg-[var(--color-logo-yellow)]/10 border border-[var(--color-logo-yellow)]/30"
+          : "bg-[var(--color-paper)] border border-[var(--color-sand)]"
       }`}
     >
       <h4
         className={`font-bold mb-4 ${
-          isGood ? "text-[var(--color-olive)]" : "text-[var(--color-ink)]"
+          isFast ? "text-[var(--color-olive)]" : "text-[var(--color-ink-soft)]"
         }`}
       >
-        {isGood ? "一緒に働きたい人" : "こんな人は難しいかも"}
+        {isFast ? "成長が早いチーム" : "成長が遅いチーム"}
       </h4>
       <ul className="space-y-4">
         {items.map((item, index) => (
           <li key={index} className="flex items-start gap-3">
             <span
               className={`flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-xs mt-0.5 ${
-                isGood
+                isFast
                   ? "bg-[var(--color-logo-light-green)] text-white"
-                  : "bg-[var(--color-logo-yellow)] text-[var(--color-ink)]"
+                  : "bg-[var(--color-sand)] text-[var(--color-ink-soft)]"
               }`}
             >
-              {isGood ? "✓" : "!"}
+              {isFast ? "↑" : "↓"}
             </span>
             <div>
               <p className="text-sm font-medium text-[var(--color-ink)]">{item.text}</p>
@@ -698,13 +698,13 @@ export default function CEOPage() {
             <QABlock question="どんなチームを作りたい？">
               <div className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                  <CompatibilityList
-                    type="good"
-                    items={ceoProfile.teamFit.good}
+                  <TeamTraitList
+                    type="fast"
+                    items={ceoProfile.teamFit.fast}
                   />
-                  <CompatibilityList
-                    type="challenging"
-                    items={ceoProfile.teamFit.challenging}
+                  <TeamTraitList
+                    type="slow"
+                    items={ceoProfile.teamFit.slow}
                   />
                 </div>
                 <p className="text-sm text-[var(--color-ink-soft)] leading-relaxed bg-[var(--color-paper)] rounded-xl p-4">
