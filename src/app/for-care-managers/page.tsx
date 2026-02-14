@@ -131,7 +131,7 @@ export default function ForCareManagersPage() {
       <Header />
       <main className="pt-14 lg:pt-20">
         {/* Hero Section */}
-        <section className="relative min-h-[50vh] md:min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[var(--color-logo-dark-green)] to-[var(--color-logo-light-green)]">
+        <section className="relative min-h-[50vh] md:min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[var(--color-logo-dark-green)] to-[var(--color-logo-light-green)] rounded-b-[3rem] md:rounded-b-[5rem]">
           {/* 背景装飾 */}
           <div className="absolute inset-0 opacity-10">
             <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -139,8 +139,6 @@ export default function ForCareManagersPage() {
               <polygon points="0,100 50,0 100,100" fill="white" opacity="0.5" />
             </svg>
           </div>
-          {/* 下部グラデーション */}
-          <div className="absolute bottom-0 left-0 right-0 h-24 md:h-32 bg-gradient-to-t from-white via-white/50 to-transparent pointer-events-none"></div>
 
           <div className="relative z-10 max-w-6xl mx-auto px-4 py-16 md:py-24 text-center text-white">
             <span
