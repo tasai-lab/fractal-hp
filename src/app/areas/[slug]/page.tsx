@@ -278,7 +278,7 @@ export default async function RegionalAreaPage({
                   className="text-xl md:text-3xl font-bold heading-gothic"
                   style={{ color: area.theme.secondary }}
                 >
-                  {area.name}で提供する訪問看護サービス
+                  フラクタルが提供する{area.name}での訪問看護サービス
                 </h2>
               </div>
 
@@ -287,36 +287,62 @@ export default async function RegionalAreaPage({
                   {
                     title: "訪問看護",
                     desc: "看護師による健康状態の観察、医療処置、服薬管理、療養上のケアを提供します。",
+                    disabled: false,
                   },
                   {
                     title: "訪問リハビリテーション",
                     desc: "理学療法士・作業療法士・言語聴覚士による自宅でのリハビリを行います。",
+                    disabled: true,
+                    disabledNote: "現在休止中",
                   },
                   {
                     title: "精神科訪問看護",
                     desc: "精神疾患をお持ちの方への訪問看護サービス。心のケアと生活支援を行います。",
+                    disabled: false,
                   },
                   {
                     title: "終末期ケア・看取り",
                     desc: "ご自宅での最期を希望される方への緩和ケア、ご家族のサポートを行います。",
+                    disabled: false,
+                  },
+                  {
+                    title: "24時間対応",
+                    desc: "緊急時も安心。24時間365日、電話対応と必要に応じた緊急訪問を行います。",
+                    disabled: false,
+                  },
+                  {
+                    title: "土日・祝日訪問",
+                    desc: "土日や祝日も訪問可能。生活リズムに合わせた柔軟な訪問スケジュールに対応します。",
+                    disabled: false,
                   },
                 ].map((service, index) => (
                   <div
                     key={index}
-                    className="group relative bg-white p-5 md:p-6 rounded-2xl border transition-all hover:shadow-lg hover:-translate-y-0.5"
-                    style={{ borderColor: `${area.theme.primary}15` }}
+                    className={`group relative p-5 md:p-6 rounded-2xl border transition-all ${
+                      service.disabled
+                        ? "bg-gray-100 opacity-60"
+                        : "bg-white hover:shadow-lg hover:-translate-y-0.5"
+                    }`}
+                    style={{ borderColor: service.disabled ? "#e5e5e5" : `${area.theme.primary}15` }}
                   >
                     <div
                       className="absolute top-0 left-0 w-full h-0.5 rounded-t-2xl"
-                      style={{ backgroundColor: area.theme.primary }}
+                      style={{ backgroundColor: service.disabled ? "#9ca3af" : area.theme.primary }}
                     />
-                    <h3
-                      className="text-lg font-bold mb-2"
-                      style={{ color: area.theme.secondary }}
-                    >
-                      {service.title}
-                    </h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">
+                    <div className="flex items-start justify-between gap-2">
+                      <h3
+                        className="text-lg font-bold mb-2"
+                        style={{ color: service.disabled ? "#9ca3af" : area.theme.secondary }}
+                      >
+                        {service.title}
+                      </h3>
+                      {service.disabled && service.disabledNote && (
+                        <span className="text-xs px-2 py-1 bg-gray-200 text-gray-500 rounded-full flex-shrink-0">
+                          {service.disabledNote}
+                        </span>
+                      )}
+                    </div>
+                    <p className={`text-sm leading-relaxed ${service.disabled ? "text-gray-400" : "text-gray-600"}`}>
                       {service.desc}
                     </p>
                   </div>
