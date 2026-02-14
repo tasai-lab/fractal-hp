@@ -601,8 +601,8 @@ export default function CEOPage() {
 
         <main className="max-w-5xl mx-auto px-4 md:px-6 pt-10 md:pt-16 pb-20 md:pb-24 flex flex-col gap-16 md:gap-24">
           {/* 1. ヒーローセクション */}
-          <section className="max-w-3xl mx-auto">
-            <FadeIn className="space-y-6 text-center">
+          <section>
+            <FadeIn className="space-y-6 text-center max-w-3xl mx-auto">
               <p className="text-xs tracking-[0.3em] text-[var(--color-ink-soft)]">
                 REPRESENTATIVE
               </p>
@@ -614,7 +614,7 @@ export default function CEOPage() {
               </h1>
             </FadeIn>
             <FadeIn
-              className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg mt-8"
+              className="relative aspect-[3/2] rounded-3xl overflow-hidden shadow-lg mt-8"
               delay={200}
             >
               <Image
@@ -629,7 +629,7 @@ export default function CEOPage() {
                 className="absolute top-0 left-0 w-0 h-0"
                 style={{
                   borderStyle: "solid",
-                  borderWidth: "40px 40px 0 0",
+                  borderWidth: "50px 50px 0 0",
                   borderColor:
                     "var(--color-logo-light-green) transparent transparent transparent",
                 }}
