@@ -84,7 +84,6 @@ export const otherMenuCategories = {
       { href: "/for-medical-institutions", label: "医療機関の皆様へ" },
       { href: "/recruit", label: "採用情報" },
       { href: "/flyers", label: "チラシ一覧" },
-      { href: "/updates", label: "サイト更新情報" },
     ],
   },
   areas: {
@@ -106,6 +105,12 @@ export const otherMenuCategories = {
         icon: "Instagram",
       },
       { href: "https://note.com/fractal_hokan", label: "Note", icon: "FileText" },
+    ],
+  },
+  updates: {
+    title: "アップデート情報",
+    items: [
+      { href: "/updates", label: "何が変わった？" },
     ],
   },
 };
