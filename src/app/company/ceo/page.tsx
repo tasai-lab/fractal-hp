@@ -3,8 +3,6 @@
 import React, { useRef, useEffect, useState, type ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 
 // 代表者プロフィールデータ
 const ceoProfile = {
@@ -610,7 +608,6 @@ function ThinkingCycle({
 export default function CEOPage() {
   return (
     <>
-      <Header />
       <div className="min-h-screen body-editorial">
         {/* ヘッダー */}
         <header className="bg-white/80 backdrop-blur-md shadow-sm sticky top-14 lg:top-20 z-30">
@@ -888,7 +885,6 @@ export default function CEOPage() {
           </FadeIn>
         </main>
       </div>
-      <Footer />
     </>
   );
 }
