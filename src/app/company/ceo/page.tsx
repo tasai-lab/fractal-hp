@@ -601,8 +601,8 @@ export default function CEOPage() {
 
         <main className="max-w-5xl mx-auto px-4 md:px-6 pt-10 md:pt-16 pb-20 md:pb-24 flex flex-col gap-16 md:gap-24">
           {/* 1. ヒーローセクション */}
-          <section className="grid lg:grid-cols-[1fr,1fr] gap-8 md:gap-12 items-center">
-            <FadeIn className="space-y-6 order-2 lg:order-1 text-center lg:text-left">
+          <section className="max-w-3xl mx-auto">
+            <FadeIn className="space-y-6 text-center">
               <p className="text-xs tracking-[0.3em] text-[var(--color-ink-soft)]">
                 REPRESENTATIVE
               </p>
@@ -612,17 +612,9 @@ export default function CEOPage() {
               >
                 {ceoProfile.catchphrase}
               </h1>
-              <div className="space-y-1">
-                <p className="text-xl md:text-2xl font-bold text-[var(--color-ink)]">
-                  {ceoProfile.name}
-                </p>
-                <p className="text-sm text-[var(--color-ink-soft)]">
-                  {ceoProfile.nameEn} | {ceoProfile.title}
-                </p>
-              </div>
             </FadeIn>
             <FadeIn
-              className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg order-1 lg:order-2"
+              className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg mt-8"
               delay={200}
             >
               <Image
@@ -642,6 +634,14 @@ export default function CEOPage() {
                     "var(--color-logo-light-green) transparent transparent transparent",
                 }}
               />
+            </FadeIn>
+            <FadeIn className="text-center mt-6" delay={300}>
+              <p className="text-xl md:text-2xl font-bold text-[var(--color-ink)]">
+                {ceoProfile.name}
+              </p>
+              <p className="text-sm text-[var(--color-ink-soft)]">
+                {ceoProfile.nameEn} | {ceoProfile.title}
+              </p>
             </FadeIn>
           </section>
 
