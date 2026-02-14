@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { RecruitStructuredData } from "@/components/StructuredData";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "【船橋市】訪問看護師・PT・OT・ST求人｜フラクタル訪問看護",
@@ -38,7 +40,9 @@ export default function RecruitLayout({
   return (
     <>
       <RecruitStructuredData />
+      <Header />
       {children}
+      <Footer />
     </>
   );
 }

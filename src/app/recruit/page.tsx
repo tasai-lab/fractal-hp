@@ -540,16 +540,14 @@ export default function RecruitPage() {
 
       </main>
 
-      <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/80 backdrop-blur border-t border-white/80">
-        <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-center md:justify-end">
-          <button
-            type="button"
-            onClick={openContact}
-            className="w-full md:w-auto px-6 py-3 rounded-full bg-[var(--color-olive)] text-white font-semibold shadow-lg"
-          >
-            応募する
-          </button>
-        </div>
+      <div className="fixed bottom-20 lg:bottom-6 right-4 lg:right-8 z-40">
+        <button
+          type="button"
+          onClick={openContact}
+          className="px-6 py-3 rounded-full bg-[var(--color-olive)] text-white font-semibold shadow-lg hover:opacity-90 transition"
+        >
+          応募する
+        </button>
       </div>
 
       {isContactOpen && (
