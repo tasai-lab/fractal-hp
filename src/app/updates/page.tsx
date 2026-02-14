@@ -8,68 +8,99 @@ export const metadata: Metadata = {
   description: "フラクタル訪問看護 船橋のウェブサイト更新情報・お知らせ一覧です。",
 };
 
-// 更新情報データ
+// 更新情報データ（コミット履歴より）
 const updates = [
   {
     date: "2026-02-14",
     items: [
-      {
-        type: "new",
-        title: "ケアマネージャー様向けページを新設",
-        description: "ケアマネージャーの皆様への情報を集約した専用ページを追加しました。",
-        link: "/for-care-managers",
-      },
-      {
-        type: "new",
-        title: "医療機関様向けページを新設",
-        description: "医療機関の皆様への情報を集約した専用ページを追加しました。",
-        link: "/for-medical-institutions",
-      },
-      {
-        type: "improve",
-        title: "SEO対策を強化",
-        description: "サイトマップの最適化、メタデータの改善を行いました。",
-      },
-      {
-        type: "improve",
-        title: "地域別ページを拡充",
-        description: "船橋市・八千代市・習志野市・千葉市花見川区・千葉市稲毛区の地域情報を追加しました。",
-        link: "/areas/funabashi",
-      },
-      {
-        type: "new",
-        title: "代表の取扱説明書ページを追加",
-        description: "代表・浅井の強みや働き方についてご紹介するページを追加しました。",
-        link: "/company/ceo",
-      },
-      {
-        type: "improve",
-        title: "フラクタルを知るページをリニューアル",
-        description: "フラクタルの理念をインタラクティブに伝えるデザインに刷新しました。",
-        link: "/fractal",
-      },
-      {
-        type: "improve",
-        title: "会社概要ページをリニューアル",
-        description: "シンプルで和風なデザインに刷新しました。",
-        link: "/company",
-      },
-      {
-        type: "improve",
-        title: "UIデザインを改善",
-        description: "レスポンシブデザインの最適化、アニメーションの調整を行いました。",
-      },
+      { type: "new", title: "サイト更新情報ページを追加" },
+      { type: "improve", title: "サイトマップを最適化" },
+      { type: "fix", title: "住所を省略せず全て記述" },
+      { type: "improve", title: "アイコンをSVGに統一" },
+      { type: "improve", title: "B2Bページをパステル調カードデザインに変更" },
+      { type: "new", title: "ケアマネージャー様向けページを新設", link: "/for-care-managers" },
+      { type: "new", title: "医療機関様向けページを新設", link: "/for-medical-institutions" },
+      { type: "improve", title: "SEO改善 - メタデータ・構造化データを強化" },
+      { type: "improve", title: "地域情報リンクを追加" },
+      { type: "improve", title: "訪問エリアボタンを各市への個別リンクに変更" },
+      { type: "improve", title: "地域ページのサービスセクションを更新" },
+      { type: "improve", title: "採用ページのモバイル下部メニューを追加" },
+      { type: "new", title: "代表の取扱説明書ページを追加", link: "/company/ceo" },
+      { type: "improve", title: "代表ページにクリフトンストレングス情報を追加" },
+      { type: "improve", title: "会社概要ページをシンプルで和風なデザインにリニューアル", link: "/company" },
+      { type: "improve", title: "フラクタルカードデザインを実装" },
+      { type: "improve", title: "レスポンシブデザイン最適化とメニュー構造改善" },
+      { type: "improve", title: "フラクタルとはページをインタラクティブにリデザイン", link: "/fractal" },
+      { type: "improve", title: "Lighthouse改善 - 画像WebP化・フォント最適化" },
+      { type: "new", title: "地域別ページを追加（船橋・八千代・習志野・千葉市）", link: "/areas/funabashi" },
+      { type: "new", title: "グラフコンポーネントを実装" },
     ],
   },
   {
     date: "2026-02-01",
     items: [
-      {
-        type: "new",
-        title: "看護師モデル年収情報を追加",
-        description: "役職別4パターンのモデル年収を採用ページに追加しました。",
-        link: "/recruit/nurse",
-      },
+      { type: "new", title: "看護師モデル年収を役職別4パターンで追加", link: "/recruit/nurse" },
+      { type: "improve", title: "モデル年収UIをサイト雰囲気に合わせて再設計" },
+      { type: "new", title: "リハビリ職モデル年収に詳細内訳を追加", link: "/recruit/therapist" },
+      { type: "fix", title: "求人給与データを給与テーブル実データに最適化" },
+      { type: "improve", title: "地域SEO最適化 - 包括的改善" },
+      { type: "improve", title: "求人ページSEO最適化 - 地域名タイトル・構造化データ" },
+      { type: "improve", title: "フラクタルを知るページUI再設計" },
+      { type: "improve", title: "採用ページの1日の流れと職種情報を刷新", link: "/recruit/day-flow" },
+    ],
+  },
+  {
+    date: "2026-01-25",
+    items: [
+      { type: "improve", title: "SEO対策を強化 - H1タグ最適化" },
+      { type: "improve", title: "FAQセクションをページ上に表示" },
+      { type: "fix", title: "年間休日を職種別に修正" },
+      { type: "improve", title: "フラクタルを知るページを大幅改善" },
+      { type: "improve", title: "UIフィードバックに対応してデザインを改善" },
+      { type: "new", title: "チラシデータにorientationフィールドを追加" },
+    ],
+  },
+  {
+    date: "2026-01-24",
+    items: [
+      { type: "improve", title: "全ページにfluid値を適用してレスポンシブ改善" },
+      { type: "improve", title: "求人ページをカード化してエメラルド系に変更", link: "/recruit" },
+      { type: "improve", title: "フラクタルを知るページにロゴ3色を配置" },
+      { type: "new", title: "デザインシステムの基盤整備を完了" },
+    ],
+  },
+  {
+    date: "2025-12-14",
+    items: [
+      { type: "improve", title: "モバイルテキストサイズ更新とUI可読性向上" },
+    ],
+  },
+  {
+    date: "2025-12-13",
+    items: [
+      { type: "improve", title: "ファビコンをロゴに更新" },
+      { type: "improve", title: "サイトマップボタンを三角形デザインに変更" },
+      { type: "new", title: "訪問エリアボタンとスタッフ紹介を追加" },
+      { type: "improve", title: "ヘッダーレイアウトとナビゲーションを改善" },
+      { type: "improve", title: "訪問エリア画像追加、フォント変更、ヘッダーロゴ拡大" },
+      { type: "improve", title: "DAPAEセクションのレイアウト改善" },
+    ],
+  },
+  {
+    date: "2025-12-12",
+    items: [
+      { type: "new", title: "SEO対策とGoogle Analytics/Search Console対応" },
+      { type: "improve", title: "リクルートセクションの祝い金表示を改善" },
+      { type: "improve", title: "ご利用開始までの流れのデザイン改善" },
+      { type: "improve", title: "DAPAEフレームワークの詳細説明を追加" },
+      { type: "improve", title: "Heroアニメーションを追加" },
+      { type: "new", title: "採用ページ祝い金表示統一とスタッフ紹介モーダル追加" },
+      { type: "improve", title: "採用情報ページのモバイルUI最適化" },
+      { type: "improve", title: "トップページコンポーネントのモバイルUI最適化" },
+      { type: "new", title: "求人ページとフラクタルを知るページを追加" },
+      { type: "new", title: "チラシバックナンバーページ追加", link: "/flyers" },
+      { type: "improve", title: "レスポンシブデザイン対応とスタッフ写真追加" },
+      { type: "new", title: "フラクタル訪問看護 船橋 Webサイト初期実装" },
     ],
   },
 ];
@@ -122,47 +153,28 @@ export default function UpdatesPage() {
                 </div>
 
                 {/* 更新項目 */}
-                <div className="space-y-4 ml-6">
+                <div className="space-y-3 ml-6">
                   {update.items.map((item, index) => {
                     const config = typeConfig[item.type as keyof typeof typeConfig];
                     return (
                       <div
                         key={index}
-                        className="bg-white rounded-xl p-5 shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+                        className="flex flex-wrap items-center gap-3 py-2"
                       >
-                        <div className="flex flex-wrap items-start gap-3 mb-2">
-                          <span
-                            className={`inline-block px-3 py-1 rounded-full text-xs font-bold ${config.className}`}
-                          >
-                            {config.label}
-                          </span>
-                          <h3 className="text-lg font-bold text-[var(--color-ink)]">
-                            {item.title}
-                          </h3>
-                        </div>
-                        <p className="text-[var(--color-ink-soft)] text-sm leading-relaxed mb-3">
-                          {item.description}
-                        </p>
-                        {item.link && (
+                        <span
+                          className={`inline-block px-2 py-0.5 rounded text-xs font-bold ${config.className}`}
+                        >
+                          {config.label}
+                        </span>
+                        {item.link ? (
                           <Link
                             href={item.link}
-                            className="inline-flex items-center text-sm font-medium text-[var(--color-logo-dark-green)] hover:underline"
+                            className="text-[var(--color-ink)] hover:text-[var(--color-logo-dark-green)] hover:underline"
                           >
-                            詳しく見る
-                            <svg
-                              className="w-4 h-4 ml-1"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M9 5l7 7-7 7"
-                              />
-                            </svg>
+                            {item.title}
                           </Link>
+                        ) : (
+                          <span className="text-[var(--color-ink)]">{item.title}</span>
                         )}
                       </div>
                     );
