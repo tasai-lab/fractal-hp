@@ -568,7 +568,7 @@ function ThinkingCycle({
           return (
             <div key={step.num} className="relative">
               <div
-                className={`${colors.bg} ${colors.border} border rounded-xl p-4`}
+                className={`${colors.bg} ${colors.border} border rounded-xl p-4 h-full`}
               >
                 <div className="flex items-center gap-2 mb-2">
                   <span className={`text-xs font-mono ${colors.text} opacity-60`}>
