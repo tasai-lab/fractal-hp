@@ -33,9 +33,9 @@ export default function Footer() {
         {/* 事業所情報とナビゲーション */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8 mb-6 sm:mb-7 lg:mb-8">
           {/* 事業所情報 */}
-          <div className="bg-gradient-to-br from-[#a8d5ba] to-[#d4edda] rounded-2xl p-4 md:p-5 text-[var(--color-ink)]">
+          <div>
             <h3 className="font-bold mb-3 md:mb-4 text-lg md:text-xl">事業所情報</h3>
-            <div className="space-y-2 text-sm md:text-base">
+            <div className="space-y-2 text-sm md:text-base opacity-90">
               <p>{officeInfo.address.full}</p>
               <p>
                 電話:{" "}

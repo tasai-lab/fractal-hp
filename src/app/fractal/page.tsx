@@ -851,40 +851,41 @@ export default function FractalPage() {
         </section>
 
         {/* CTA */}
-        <section
-          className="py-24 md:py-32 relative overflow-hidden"
-          style={{ background: 'var(--color-logo-dark-green)' }}
-        >
-          {/* 背景の装飾 */}
-          <div className="absolute inset-0 pointer-events-none opacity-10">
-            <SierpinskiTriangle
-              depth={4}
-              size={600}
-              className="absolute -right-48 -top-24 text-white w-[600px]"
-              animate={false}
-            />
-          </div>
+        <section className="py-16 md:py-24">
+          <div className="max-w-4xl mx-auto px-4">
+            <div className="bg-gradient-to-br from-[#a8d5ba] to-[#d4edda] rounded-3xl md:rounded-[3rem] p-8 md:p-12 text-center relative overflow-hidden">
+              {/* 背景の装飾 */}
+              <div className="absolute inset-0 pointer-events-none opacity-10">
+                <SierpinskiTriangle
+                  depth={4}
+                  size={400}
+                  className="absolute -right-32 -top-16 text-[var(--color-logo-dark-green)] w-[400px]"
+                  animate={false}
+                />
+              </div>
 
-          <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 heading-gothic">
-              フラクタル訪問看護について
-            </h2>
-            <p className="text-white/80 text-lg mb-12 max-w-xl mx-auto">
-              私たちのサービスや採用情報について、詳しくはこちらをご覧ください。
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/company"
-                className="inline-flex items-center justify-center px-10 py-5 bg-white text-[var(--color-logo-dark-green)] rounded-full font-bold text-lg hover:bg-[var(--color-logo-yellow)] transition-colors shadow-lg"
-              >
-                株式会社フラクタル
-              </Link>
-              <Link
-                href="/recruit"
-                className="inline-flex items-center justify-center px-10 py-5 border-2 border-white/50 text-white rounded-full font-bold text-lg hover:bg-white/10 hover:border-white transition-all"
-              >
-                採用情報
-              </Link>
+              <div className="relative z-10">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[var(--color-ink)] mb-4 heading-gothic">
+                  フラクタル訪問看護について
+                </h2>
+                <p className="text-[var(--color-ink-soft)] text-base md:text-lg mb-8 max-w-xl mx-auto">
+                  私たちのサービスや採用情報について、詳しくはこちらをご覧ください。
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Link
+                    href="/company"
+                    className="inline-flex items-center justify-center px-8 py-4 bg-[var(--color-logo-dark-green)] text-white rounded-full font-bold text-base hover:opacity-90 transition-opacity shadow-lg"
+                  >
+                    株式会社フラクタル
+                  </Link>
+                  <Link
+                    href="/recruit"
+                    className="inline-flex items-center justify-center px-8 py-4 border-2 border-[var(--color-logo-dark-green)] text-[var(--color-logo-dark-green)] rounded-full font-bold text-base hover:bg-[var(--color-logo-dark-green)]/10 transition-colors"
+                  >
+                    採用情報
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </section>
