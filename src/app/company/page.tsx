@@ -175,8 +175,8 @@ export default function CompanyPage() {
           >
             ← トップページ
           </Link>
-          <span className="text-xs tracking-[0.2em] text-[var(--color-ink-soft)]">
-            COMPANY
+          <span className="text-sm text-[var(--color-ink)]">
+            株式会社フラクタル
           </span>
         </div>
       </header>
