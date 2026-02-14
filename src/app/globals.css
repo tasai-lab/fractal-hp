@@ -82,6 +82,17 @@ html {
   scroll-behavior: smooth;
 }
 
+/* アンカーリンクのスクロールオフセット（固定ヘッダー対応） */
+[id] {
+  scroll-margin-top: 4rem; /* モバイル: 56px + 余白 */
+}
+
+@media (min-width: 1024px) {
+  [id] {
+    scroll-margin-top: 6rem; /* デスクトップ: 80px + 余白 */
+  }
+}
+
 body {
   background: var(--color-background);
   color: var(--color-foreground);
