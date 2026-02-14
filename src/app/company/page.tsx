@@ -23,48 +23,55 @@ const companyData = {
   ],
 
   dapae: [
-    { letter: "D", name: "Data", desc: "現場の事実を数字で記録" },
-    { letter: "A", name: "Analysis", desc: "課題と改善のヒントを抽出" },
-    { letter: "P", name: "Plan", desc: "負担を減らす具体策を設計" },
-    { letter: "A", name: "Act", desc: "状況に応じて柔軟に実行" },
-    { letter: "E", name: "Evaluation", desc: "成果を確認し学びを次へ" },
+    { letter: "D", name: "Data", desc: "現場の事実を数字で記録する" },
+    { letter: "A", name: "Analysis", desc: "データを分析し、価値ある情報に変える" },
+    { letter: "P", name: "Plan", desc: "情報を基に具体的な計画を策定する" },
+    { letter: "A", name: "Act", desc: "計画を基に状況に応じて柔軟に実行する" },
+    { letter: "E", name: "Evaluation", desc: "サイクル全体を評価し、次のデータへ繋げる" },
   ],
 
   guidelines: [
     {
       num: 1,
       title: "感情は大切に、判断はロジカルに",
-      description: "気持ちを尊重しつつ、決断は事実とデータで",
+      subtitle: "気持ちを尊重しつつ、決断は事実とデータで",
+      description: "相手の気持ちや自分の感情を大切にしながらも、仕事の判断は感情に流されず、事実やデータに基づいて冷静に行う。",
     },
     {
       num: 2,
       title: "全員がチーム、全員がリーダー",
-      description: "他人任せにせず、自分から動く",
+      subtitle: "他人任せにせず、自分から動く",
+      description: "「誰かがやるだろう」ではなく、全員が当事者意識を持つ。情報を積極的に共有し、チームとして最高の成果を目指す。",
     },
     {
       num: 3,
       title: "まず自分を知り、相手を理解する",
-      description: "強みと弱みを認め、補い合う",
+      subtitle: "強みと弱みを認め、補い合う",
+      description: "自分の得意・不得意を正しく把握することが、相手を理解する第一歩。お互いの弱みを補い合うことで、一人では出せない力を発揮できる。",
     },
     {
       num: 4,
       title: "好奇心を知識に、知識を力に",
-      description: "「なぜ？」から始まる成長",
+      subtitle: "「なぜ？」から始まる成長",
+      description: "「なぜ？」という好奇心を持ち続け、学び続ける。知識が増えれば視野が広がり、「当たり前」を疑う力が新しい価値を生み出す。",
     },
     {
       num: 5,
       title: "不便は改善のヒント",
-      description: "違和感を見逃さない",
+      subtitle: "違和感を見逃さない",
+      description: "日々の「使いにくさ」や「面倒くささ」を放置しない。その違和感こそが、組織を成長させる改善の種になる。",
     },
     {
       num: 6,
       title: "相手にとっての最善を考える",
-      description: "貢献が信頼を生む",
+      subtitle: "貢献が信頼を生む",
+      description: "自分の利益だけでなく、相手や社会にとって何が良いかを基準に動く。貢献が信頼を生み、結果として自分の成長にもつながる。",
     },
     {
       num: 7,
       title: "完璧より最適化",
-      description: "常にアップデートし続ける",
+      subtitle: "常にアップデートし続ける",
+      description: "完璧なものは存在しない。だからこそ現状に満足せず、ITなどを活用して、その時々のベストな状態へと仕組みを更新し続ける。",
     },
   ],
 
@@ -241,11 +248,13 @@ export default function CompanyPage() {
         {/* DAPAE サイクル */}
         <Section id="dapae">
           <FadeIn>
-            <SectionTitle>フラクタルの成長サイクル</SectionTitle>
+            <SectionTitle>DAPAE | 成長のワークフロー</SectionTitle>
             <p className="text-[var(--color-ink-soft)] mb-10 leading-relaxed">
-              「大変」で終わらない。
-              <br className="md:hidden" />
-              「なぜこうなっている、ではどうする」という考え方。
+              フラクタルの成長を支えるワークフロー、それがDAPAE。
+              <br />
+              データを分析して情報に変え、計画を立て、柔軟に実行し、評価する。
+              <br />
+              その評価がまた新たなデータとなり、サイクルは回り続けます。
             </p>
 
             {/* DAPAE ステップ */}
@@ -270,9 +279,14 @@ export default function CompanyPage() {
             </div>
 
             {/* ループ表示 */}
-            <p className="text-center text-sm text-[var(--color-ink-soft)] mt-8">
-              このサイクルを繰り返し、常に最適化を続けます
-            </p>
+            <div className="mt-10 pt-6 border-t border-[var(--color-sand)]">
+              <p className="text-center text-sm text-[var(--color-ink-soft)]">
+                評価（E）が次のデータ（D）となり、サイクルは継続する
+              </p>
+              <p className="text-center text-xs text-[var(--color-terracotta)] mt-2">
+                D → A → P → A → E → D …
+              </p>
+            </div>
           </FadeIn>
         </Section>
 
@@ -286,19 +300,22 @@ export default function CompanyPage() {
               フラクタルで働くということ
             </p>
 
-            <div className="space-y-6">
+            <div className="space-y-8">
               {companyData.guidelines.map((item, index) => (
                 <FadeIn key={item.num} delay={index * 60}>
                   <div className="group">
-                    <div className="flex items-baseline gap-4">
-                      <span className="flex-shrink-0 text-xs text-[var(--color-terracotta)] font-medium tabular-nums">
+                    <div className="flex items-start gap-4">
+                      <span className="flex-shrink-0 text-xs text-[var(--color-terracotta)] font-medium tabular-nums mt-1">
                         {String(item.num).padStart(2, "0")}
                       </span>
                       <div>
                         <h3 className="text-[var(--color-ink)] font-medium leading-relaxed">
                           {item.title}
                         </h3>
-                        <p className="text-sm text-[var(--color-ink-soft)] mt-1">
+                        <p className="text-sm text-[var(--color-terracotta)]/80 mt-1">
+                          {item.subtitle}
+                        </p>
+                        <p className="text-sm text-[var(--color-ink-soft)] mt-2 leading-relaxed">
                           {item.description}
                         </p>
                       </div>
