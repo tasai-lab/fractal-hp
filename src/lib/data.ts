@@ -78,6 +78,7 @@ export const otherMenuCategories = {
     items: [
       { href: "/fractal", label: "フラクタルを知る" },
       { href: "/company", label: "株式会社フラクタル" },
+      { href: "/company/ceo", label: "代表の取扱説明書" },
       { href: "/recruit", label: "採用情報" },
       { href: "/flyers", label: "チラシ一覧" },
     ],
