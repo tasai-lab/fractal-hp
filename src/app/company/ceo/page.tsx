@@ -562,29 +562,30 @@ function ThinkingCycle({
   return (
     <div className="relative">
       {/* ステップ */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
         {steps.map((step, index) => {
           const colors = colorMap[step.color] || colorMap.green;
           return (
-            <div
-              key={step.num}
-              className={`${colors.bg} ${colors.border} border rounded-xl p-4 relative`}
-            >
-              <div className="flex items-center gap-2 mb-2">
-                <span className={`text-xs font-mono ${colors.text} opacity-60`}>
-                  {step.num}
-                </span>
-                <span className={`text-sm font-bold ${colors.text}`}>
-                  {step.label}
-                </span>
+            <div key={step.num} className="relative">
+              <div
+                className={`${colors.bg} ${colors.border} border rounded-xl p-4`}
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <span className={`text-xs font-mono ${colors.text} opacity-60`}>
+                    {step.num}
+                  </span>
+                  <span className={`text-sm font-bold ${colors.text}`}>
+                    {step.label}
+                  </span>
+                </div>
+                <p className="text-xs text-[var(--color-ink-soft)] leading-relaxed">
+                  {step.desc}
+                </p>
               </div>
-              <p className="text-xs text-[var(--color-ink-soft)] leading-relaxed">
-                {step.desc}
-              </p>
               {/* 矢印（最後以外） */}
               {index < steps.length - 1 && (
-                <div className="hidden md:block absolute -right-3 top-1/2 -translate-y-1/2 z-10">
-                  <svg className="w-5 h-5 text-[var(--color-ink-soft)]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="hidden md:flex absolute -right-5 top-1/2 -translate-y-1/2 w-6 items-center justify-center">
+                  <svg className="w-4 h-4 text-[var(--color-ink-soft)]/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </div>
