@@ -158,15 +158,23 @@ export default function Office() {
                 </p>
               </div>
 
-              {/* チラシへの誘導ボタン */}
-              <div className="text-center mt-4">
-                <Link
-                  href="/flyers"
-                  className="inline-flex items-center justify-center px-6 py-3 bg-primary text-white rounded-full font-bold hover:bg-primary-light transition-colors shadow-md group text-sm md:text-base"
-                >
-                  <span>訪問エリアを見る</span>
-                  <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
-                </Link>
+              {/* 各市の詳細ページへのリンク */}
+              <div className="flex flex-wrap justify-center gap-3 mt-4">
+                {[
+                  { name: "船橋市", slug: "funabashi" },
+                  { name: "八千代市", slug: "yachiyo" },
+                  { name: "習志野市", slug: "narashino" },
+                  { name: "千葉市花見川区", slug: "chiba-hanamigawa" },
+                ].map((city) => (
+                  <Link
+                    key={city.slug}
+                    href={`/areas/${city.slug}`}
+                    className="inline-flex items-center justify-center px-5 py-2.5 bg-primary text-white rounded-full font-bold hover:bg-primary-light transition-colors shadow-md group text-sm"
+                  >
+                    <span>{city.name}</span>
+                    <ArrowRight className="ml-1.5 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
