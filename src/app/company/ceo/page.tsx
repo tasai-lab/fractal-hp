@@ -1,367 +1,665 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-// 代表者データ
+// 代表者データ - 完全版
 const ceoData = {
+  version: "Final",
+  securityLevel: "Top Secret",
   name: "浅井 拓哉",
+  nameEn: "Asai Takuya",
   title: "代表取締役",
+
   coreIdentity: {
-    title: "仕組みで課題を解決する人",
-    subtitle: "The System Architect",
-    description: "混乱した状況を見ると、つい整理したくなる。非効率を見つけると、つい直したくなる。それが私の性分です。",
+    primary: "構造主義的な支配者",
+    primaryEn: "The System Architect",
+    secondary: "攻略者",
+    secondaryEn: "The Game Beater",
+    definition: "カオス（混沌）とした現実に介入し、独自のアルゴリズムによって最もエレガントな秩序（コスモス）を実装する「エンジニア」であり、難解なパズルを解くことに至上の喜びを感じる「ゲーマー」。",
+    purpose: "世界に散らばる「非効率」「バグ（不合理）」「機能不全」を発見し、それを再設計（リデザイン）して最適化すること。",
+    stance: "「感情」ではなく「機能」。「道徳」ではなく「論理」。「現状維持」ではなく「進化」。",
+    metaphor: "塔の上から戦場全体を俯瞰し、勝利への最短ルートを描く「大賢者」であり、同時に冷徹に駒を動かす「魔王」の資質を持つ。",
   },
+
+  os: {
+    recognition: {
+      name: "機能主義的スキャナー",
+      nameEn: "Functional Scanner",
+      composition: "「個別化 (1位)」 × 「分析思考 (5位)」",
+      process: "人間や組織を見た瞬間、感情や性格といったウェットな情報の奥にある「スペック（機能・才能）」と「バグ（思考の歪み・ボトルネック）」をX線のように透過してスキャン。",
+      output: "「この人はAの配置ではエラーを起こすが、Bの配置なら最大出力が出る」という人事配置や、「この業務プロセスのここが詰まっている」という構造的欠陥を、直感レベルで瞬時に把握。",
+    },
+    processing: {
+      name: "仮説検証の高速ループ",
+      nameEn: "High-Speed Iteration",
+      composition: "「着想 (2位)」 × 「戦略性 (3位)」 × 「活発性 (4位)」",
+      steps: [
+        { label: "Input", desc: "違和感や非効率を検知する（「なぜこんな無駄なことを？」）" },
+        { label: "Logic", desc: "過去の慣習を無視し、ゼロベースで「最も楽（効率的）な攻略ルート」を構築" },
+        { label: "Command", desc: "議論や合意形成をスキップし、まずは「実行（テスト）」ボタンを押す" },
+        { label: "Feedback", desc: "結果をデータとして回収し、即座に修正パッチを当てる" },
+      ],
+      feature: "完璧な計画を練ってから動くのではなく、「動きながら考える（走りながらコードを書く）」スタイル。「検討中」の時間は、人生の浪費（タイムロス）に他ならない。",
+    },
+    memory: {
+      name: "感情のブラックボックス化",
+      nameEn: "Emotional Black-boxing",
+      process: "ビジネスや問題解決において、他者の「感情（モチベーション、好き嫌い）」を「計算不可能なノイズ」として処理コストから除外する傾向。",
+      interface: "「共感（Empathy）」機能はデフォルトでオフ。代わりに高度な「理解（Understanding）」機能が搭載。「あなたの気持ちは分からないが、あなたの行動原理と解決策は完全に理解している」というスタンス。",
+    },
+  },
+
   strengths: [
-    { rank: 1, name: "個別化", description: "一人ひとりの違いを見抜き、最適な配置を考える" },
-    { rank: 2, name: "着想", description: "一見無関係なものをつなげて新しいアイデアを生む" },
-    { rank: 3, name: "戦略性", description: "複数の選択肢から最適なルートを見極める" },
-    { rank: 4, name: "活発性", description: "考えるより先に動く。まず試してから考える" },
-    { rank: 5, name: "分析思考", description: "「なぜ？」を繰り返して本質を掘り下げる" },
+    { rank: 1, name: "個別化", nameEn: "Individualization", description: "一人ひとりの違いを見抜き、最適な配置を考える" },
+    { rank: 2, name: "着想", nameEn: "Ideation", description: "一見無関係なものをつなげて新しいアイデアを生む" },
+    { rank: 3, name: "戦略性", nameEn: "Strategic", description: "複数の選択肢から最適なルートを見極める" },
+    { rank: 4, name: "活発性", nameEn: "Activator", description: "考えるより先に動く。まず試してから考える" },
+    { rank: 5, name: "分析思考", nameEn: "Analytical", description: "「なぜ？」を繰り返して本質を掘り下げる" },
   ],
-  thinkingStyle: [
+
+  bugs: [
     {
-      title: "機能で見る",
-      description: "人や組織を見るとき、「何ができるか」「どう活かせるか」を自然と考えます",
-      icon: "scan",
+      id: "BUG-001",
+      severity: "CRITICAL",
+      name: "他責への生理的拒絶",
+      nameEn: "External Blame Rejection",
+      trigger: "「環境が悪い」「教わっていない」「時間がない」など、自己のスペック不足や努力不足を直視せず、外部要因に責任を転嫁する言動。",
+      reaction: "単なる「怒り」を超えた、生理的な「吐き気」や「嫌悪感」が発生。",
+      logic: "相手の「本来の実力」が見えている（個別化）。やればできる人間が言い訳をして動かない状態は、「意図的なサボタージュ」または「修復不可能なバグ」として認識され、即座に「損切り（永久追放）」の判定が下される。",
     },
     {
-      title: "高速で回す",
-      description: "完璧な計画より、まず動く。やってみて、ダメなら直す。そのサイクルを高速で回します",
-      icon: "loop",
+      id: "BUG-002",
+      severity: "HIGH",
+      name: "非効率への耐性欠如",
+      nameEn: "Inefficiency Intolerance",
+      trigger: "意味のない定例会議、手書き書類、根回し、忖度、非論理的な上司や顧客。",
+      reaction: "急速なパフォーマンス低下（シャットダウン）。",
+      workaround: "これらの環境に身を置かないこと。または、これらを処理する「フィルター役（秘書やNo.2）」を設置すること。",
     },
     {
-      title: "理解は深く",
-      description: "あなたの行動原理は理解できる。でも「分かる〜」とは言えないタイプかも",
-      icon: "brain",
+      id: "BUG-003",
+      severity: "MEDIUM",
+      name: "維持管理フェーズでの機能不全",
+      nameEn: "Maintenance Mode Dysfunction",
+      trigger: "システムが完成し、トラブルがなくなり、ルーティンワークのみになった状態。",
+      reaction: "猛烈な退屈（Boredom）による意欲減退。あえてシステムを壊したくなる衝動、または別の刺激への逃避。",
+      workaround: "「平和」が訪れたら、それは「次の戦場へ移動せよ」という合図である。",
     },
   ],
-  leadershipStyle: {
-    title: "全体最適を考える庭師",
-    description: "組織を「庭」として見ています。全体が美しく健康に育つために、時には剪定も必要。それは冷たさではなく、チーム全員が輝くための判断です。",
+
+  leadership: {
+    style: "冷徹な庭師",
+    styleEn: "The Cold Gardener",
+    concept: "組織を「家族」ではなく「美しい庭園（エコシステム）」として管理する。",
+    action: "全体最適（庭の美しさ）のためなら、病気の枝や伸びすぎた枝（組織に害をなす人物）を躊躇なく剪定する。これは冷酷さではなく、「全体の生存と繁栄」を最優先する高度な倫理観に基づく。",
+    charisma: "「優しさ」で人はついてこない。「圧倒的な正しさ」と「勝てる地図」を示すことで、合理的な人間（優秀なプレイヤー）を惹きつける。",
+    requiredModule: {
+      name: "翻訳機",
+      nameEn: "The Translator",
+      function: "浅井氏の「結論」をインプットし、それを「納得感のある物語」や「温かい言葉」に変換して現場にアウトプットする。",
+      role: "浅井氏が切り捨てた感情的ケア（ゴミ拾い）を担当し、組織のエンゲージメントを維持する。",
+    },
   },
-  workingWith: [
-    { type: "good", text: "「なぜ？」を一緒に追求できる人と相性◎" },
-    { type: "good", text: "自分で考えて動ける人を尊重します" },
-    { type: "good", text: "改善提案、大歓迎。現状維持は苦手です" },
-    { type: "note", text: "「言われたことだけやる」スタイルとは合わないかも" },
-  ],
+
+  lifeStrategy: {
+    winningCondition: "「解けないと思われていた難問（カオス）に対し、独自の解法（システム）を実装し、それが美しく稼働することを証明して去ること」",
+    cycle: [
+      { phase: "Discover", desc: "非効率やバグにまみれた市場・組織を見つける" },
+      { phase: "Architect", desc: "破壊的創造によって、全く新しい仕組みを実装する" },
+      { phase: "Prove", desc: "システムが利益を生むことを数字で証明する" },
+      { phase: "Exit", desc: "完成したシステム（会社・事業）を他者に譲渡し、リセットする", critical: true },
+      { phase: "Restart", desc: "身軽になり、より難易度の高い次のパズルへ向かう" },
+    ],
+    destiny: "「シリアル・アントレプレナー（連続起業家）」あるいは「事業再生請負人」として、永遠に退屈することなく、その才能を輝かせ続ける。",
+  },
+
+  compatibility: {
+    good: [
+      "「なぜ？」を一緒に追求できる人",
+      "自分で考えて動ける人",
+      "改善提案を恐れない人",
+      "論理で議論できる人",
+    ],
+    challenging: [
+      "「言われたことだけやる」スタイルの人",
+      "感情論で物事を決める人",
+      "変化を嫌う人",
+      "言い訳が先に出る人",
+    ],
+  },
+
+  conclusion: "浅井拓哉とは、「世界をデバッグ（修正）するために送り込まれた特異点」である。その「冷徹さ」は、混乱した世界を救うためのメスであり、「飽きっぽさ」は、一箇所に留まらず多くの場所を救うための駆動力である。",
+
   message: "「完璧」より「最適」を。一緒に仕組みを作りませんか。",
 };
 
-// アイコンSVGを定義
-const getIcon = (iconName: string) => {
-  switch (iconName) {
-    case "scan":
-      return (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-        </svg>
-      );
-    case "loop":
-      return (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-        </svg>
-      );
-    case "brain":
-      return (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-        </svg>
-      );
-    default:
-      return null;
-  }
-};
+// タイピングアニメーション用コンポーネント
+function TypeWriter({ text, delay = 50, className = "" }: { text: string; delay?: number; className?: string }) {
+  const [displayText, setDisplayText] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (currentIndex < text.length) {
+      const timeout = setTimeout(() => {
+        setDisplayText(prev => prev + text[currentIndex]);
+        setCurrentIndex(prev => prev + 1);
+      }, delay);
+      return () => clearTimeout(timeout);
+    }
+  }, [currentIndex, delay, text]);
+
+  return (
+    <span className={className}>
+      {displayText}
+      {currentIndex < text.length && <span className="animate-pulse">|</span>}
+    </span>
+  );
+}
+
+// ターミナルプロンプト
+function Prompt({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex items-start gap-2 font-mono text-sm md:text-base">
+      <span className="text-[#7FC5A0] shrink-0">$</span>
+      <span className="text-slate-300">{children}</span>
+    </div>
+  );
+}
+
+// セクションヘッダー
+function SectionHeader({ tag, title, titleEn }: { tag: string; title: string; titleEn?: string }) {
+  return (
+    <div className="mb-6 md:mb-8">
+      <div className="flex items-center gap-3 mb-2">
+        <span className="font-mono text-xs md:text-sm text-[#7FC5A0] bg-[#7FC5A0]/10 px-2 py-0.5 rounded">{tag}</span>
+        {titleEn && <span className="font-mono text-xs text-slate-500">{titleEn}</span>}
+      </div>
+      <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white tracking-tight">{title}</h2>
+    </div>
+  );
+}
+
+// コードブロック風カード
+function CodeBlock({ children, title, className = "" }: { children: React.ReactNode; title?: string; className?: string }) {
+  return (
+    <div className={`bg-[#1a1a2e] rounded-lg border border-slate-700/50 overflow-hidden ${className}`}>
+      {title && (
+        <div className="px-4 py-2 bg-slate-800/50 border-b border-slate-700/50 flex items-center gap-2">
+          <div className="flex gap-1.5">
+            <div className="w-3 h-3 rounded-full bg-red-500/80" />
+            <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+            <div className="w-3 h-3 rounded-full bg-green-500/80" />
+          </div>
+          <span className="font-mono text-xs text-slate-400 ml-2">{title}</span>
+        </div>
+      )}
+      <div className="p-4 md:p-6">{children}</div>
+    </div>
+  );
+}
+
+// 重要度バッジ
+function SeverityBadge({ severity }: { severity: string }) {
+  const colors = {
+    CRITICAL: "bg-red-500/20 text-red-400 border-red-500/30",
+    HIGH: "bg-orange-500/20 text-orange-400 border-orange-500/30",
+    MEDIUM: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30",
+  };
+  return (
+    <span className={`font-mono text-xs px-2 py-0.5 rounded border ${colors[severity as keyof typeof colors] || colors.MEDIUM}`}>
+      {severity}
+    </span>
+  );
+}
 
 export default function CEOPage() {
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
+
   return (
     <>
       <Header />
-      <main className="pt-14 lg:pt-20">
-        {/* ヒーロー */}
-        <section
-          className="relative min-h-[50vh] flex items-center overflow-hidden"
-          style={{
-            background: 'linear-gradient(135deg, var(--color-logo-dark-green) 0%, var(--color-logo-dark-green) 40%, var(--color-logo-light-green) 100%)'
-          }}
-        >
-          {/* 装飾的な三角形 */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10" aria-hidden="true">
-            <div className="absolute bottom-0 right-0 w-64 md:w-96 h-64 md:h-96">
-              <svg viewBox="0 0 100 100" className="w-full h-full fill-white" aria-hidden="true">
+      <main className="bg-[#0a0a0f] min-h-screen pt-14 lg:pt-20">
+        {/* ヒーロー - ターミナル風 */}
+        <section className="relative min-h-[70vh] md:min-h-[80vh] flex items-center overflow-hidden">
+          {/* 背景グリッド */}
+          <div
+            className="absolute inset-0 opacity-[0.03]"
+            style={{
+              backgroundImage: `
+                linear-gradient(rgba(127, 197, 160, 0.5) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(127, 197, 160, 0.5) 1px, transparent 1px)
+              `,
+              backgroundSize: '50px 50px',
+            }}
+          />
+
+          {/* フラクタル装飾 */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute top-20 right-10 w-64 h-64 md:w-96 md:h-96 opacity-5">
+              <svg viewBox="0 0 100 100" className="w-full h-full fill-[#7FC5A0]">
                 <polygon points="50,0 100,86.6 0,86.6" />
               </svg>
             </div>
-            <div className="absolute top-20 left-10 w-32 md:w-48 h-32 md:h-48">
-              <svg viewBox="0 0 100 100" className="w-full h-full fill-white" aria-hidden="true">
+            <div className="absolute bottom-10 left-10 w-32 h-32 md:w-48 md:h-48 opacity-5">
+              <svg viewBox="0 0 100 100" className="w-full h-full fill-[#F4E951]">
                 <polygon points="50,0 100,86.6 0,86.6" />
               </svg>
             </div>
+            {/* スキャンライン */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#7FC5A0]/[0.02] to-transparent animate-scan" />
           </div>
 
-          <div className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 md:px-8 py-12 sm:py-16 text-center">
-            <p
-              className="text-[var(--color-logo-yellow)] font-medium tracking-wider"
-              style={{ fontSize: 'var(--font-size-fluid-xs)', marginBottom: 'var(--spacing-fluid-xs)' }}
-            >
-              {ceoData.coreIdentity.subtitle}
-            </p>
-            <h2
-              className="font-bold text-white heading-gothic"
-              style={{ fontSize: 'var(--font-size-fluid-3xl)', marginBottom: 'var(--spacing-fluid-sm)' }}
-            >
-              {ceoData.name}
-            </h2>
-            <p className="text-white/80" style={{ fontSize: 'var(--font-size-fluid-base)' }}>
-              {ceoData.title}
-            </p>
-            <div className="mt-8 pt-8 border-t border-white/20">
-              <p
-                className="font-bold text-white"
-                style={{ fontSize: 'var(--font-size-fluid-xl)', marginBottom: 'var(--spacing-fluid-xs)' }}
-              >
-                {ceoData.coreIdentity.title}
-              </p>
-              <p className="text-white/80 max-w-xl mx-auto" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>
-                {ceoData.coreIdentity.description}
-              </p>
+          <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-8 py-12 md:py-20">
+            {/* ターミナルウィンドウ */}
+            <CodeBlock title="human_architecture_report.md" className="backdrop-blur-sm">
+              <div className="space-y-4">
+                <Prompt>cat /system/identity.conf</Prompt>
+
+                <div className="pl-4 border-l-2 border-[#7FC5A0]/30 space-y-3 mt-4">
+                  <div className="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-3">
+                    <span className="font-mono text-xs text-slate-500">VERSION:</span>
+                    <span className="font-mono text-sm text-[#F4E951]">{ceoData.version}</span>
+                    <span className="font-mono text-xs text-slate-500 md:ml-4">SECURITY:</span>
+                    <span className="font-mono text-sm text-red-400">{ceoData.securityLevel}</span>
+                  </div>
+
+                  <div className="pt-4">
+                    <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight">
+                      {loaded ? <TypeWriter text={ceoData.name} delay={100} /> : ceoData.name}
+                    </h1>
+                    <p className="font-mono text-sm md:text-base text-slate-400 mt-1">{ceoData.nameEn}</p>
+                    <p className="text-[#7FC5A0] font-medium mt-2">{ceoData.title}</p>
+                  </div>
+
+                  <div className="pt-6 space-y-2">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="font-mono text-sm text-[#7FC5A0]">{ceoData.coreIdentity.primaryEn}</span>
+                      <span className="text-slate-500">×</span>
+                      <span className="font-mono text-sm text-[#F4E951]">{ceoData.coreIdentity.secondaryEn}</span>
+                    </div>
+                    <h2 className="text-xl md:text-2xl font-bold text-white">
+                      {ceoData.coreIdentity.primary}
+                      <span className="text-slate-500 mx-2">兼</span>
+                      {ceoData.coreIdentity.secondary}
+                    </h2>
+                  </div>
+                </div>
+
+                <div className="mt-6 p-4 bg-slate-800/30 rounded-lg border border-slate-700/30">
+                  <p className="text-slate-300 text-sm md:text-base leading-relaxed">
+                    {ceoData.coreIdentity.definition}
+                  </p>
+                </div>
+              </div>
+            </CodeBlock>
+          </div>
+        </section>
+
+        {/* 存在意義 */}
+        <section className="py-12 md:py-20 px-4 sm:px-6 md:px-8">
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+              <CodeBlock title="purpose.ts">
+                <div className="space-y-2">
+                  <span className="font-mono text-xs text-[#7FC5A0]">// 存在意義</span>
+                  <p className="text-slate-300 text-sm leading-relaxed">{ceoData.coreIdentity.purpose}</p>
+                </div>
+              </CodeBlock>
+              <CodeBlock title="stance.ts">
+                <div className="space-y-2">
+                  <span className="font-mono text-xs text-[#7FC5A0]">// 基本スタンス</span>
+                  <p className="text-slate-300 text-sm leading-relaxed">{ceoData.coreIdentity.stance}</p>
+                </div>
+              </CodeBlock>
+              <CodeBlock title="metaphor.ts">
+                <div className="space-y-2">
+                  <span className="font-mono text-xs text-[#7FC5A0]">// メタファー</span>
+                  <p className="text-slate-300 text-sm leading-relaxed">{ceoData.coreIdentity.metaphor}</p>
+                </div>
+              </CodeBlock>
             </div>
           </div>
         </section>
 
-        {/* ストレングスファインダー TOP5 */}
-        <section
-          className="bg-white"
-          style={{ paddingTop: 'var(--spacing-fluid-2xl)', paddingBottom: 'var(--spacing-fluid-xl)' }}
-        >
-          <div
-            className="max-w-5xl mx-auto"
-            style={{ paddingLeft: 'var(--spacing-fluid-md)', paddingRight: 'var(--spacing-fluid-md)' }}
-          >
-            <h3
-              className="text-center font-bold text-primary heading-gothic"
-              style={{ fontSize: 'var(--font-size-fluid-xl)', marginBottom: 'var(--spacing-fluid-md)' }}
-            >
-              強みTOP5（ストレングスファインダー）
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-5 gap-3">
+        {/* OSアーキテクチャ */}
+        <section className="py-12 md:py-20 px-4 sm:px-6 md:px-8 bg-[#0d0d14]">
+          <div className="max-w-5xl mx-auto">
+            <SectionHeader tag="02" title="OSアーキテクチャ" titleEn="Operating System" />
+
+            <div className="space-y-6">
+              {/* 認識機能 */}
+              <CodeBlock title={`os/recognition.module.ts`}>
+                <div className="space-y-4">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span className="font-mono text-lg md:text-xl text-white font-bold">{ceoData.os.recognition.name}</span>
+                    <span className="font-mono text-xs text-slate-500">{ceoData.os.recognition.nameEn}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <span className="font-mono text-slate-500">構成資質:</span>
+                    <span className="font-mono text-[#7FC5A0]">{ceoData.os.recognition.composition}</span>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                    <div className="p-4 bg-slate-800/30 rounded-lg border border-slate-700/30">
+                      <p className="font-mono text-xs text-[#F4E951] mb-2">PROCESS</p>
+                      <p className="text-slate-300 text-sm">{ceoData.os.recognition.process}</p>
+                    </div>
+                    <div className="p-4 bg-slate-800/30 rounded-lg border border-slate-700/30">
+                      <p className="font-mono text-xs text-[#7FC5A0] mb-2">OUTPUT</p>
+                      <p className="text-slate-300 text-sm">{ceoData.os.recognition.output}</p>
+                    </div>
+                  </div>
+                </div>
+              </CodeBlock>
+
+              {/* 演算機能 */}
+              <CodeBlock title={`os/processing.module.ts`}>
+                <div className="space-y-4">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span className="font-mono text-lg md:text-xl text-white font-bold">{ceoData.os.processing.name}</span>
+                    <span className="font-mono text-xs text-slate-500">{ceoData.os.processing.nameEn}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <span className="font-mono text-slate-500">構成資質:</span>
+                    <span className="font-mono text-[#7FC5A0]">{ceoData.os.processing.composition}</span>
+                  </div>
+
+                  <div className="mt-4 space-y-2">
+                    {ceoData.os.processing.steps.map((step, index) => (
+                      <div key={index} className="flex items-start gap-3 p-3 bg-slate-800/20 rounded border-l-2 border-[#7FC5A0]/50">
+                        <span className="font-mono text-xs text-[#7FC5A0] bg-[#7FC5A0]/10 px-2 py-0.5 rounded shrink-0">
+                          {step.label}
+                        </span>
+                        <p className="text-slate-300 text-sm">{step.desc}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="p-4 bg-[#F4E951]/10 rounded-lg border border-[#F4E951]/20 mt-4">
+                    <p className="font-mono text-xs text-[#F4E951] mb-2">FEATURE</p>
+                    <p className="text-slate-300 text-sm">{ceoData.os.processing.feature}</p>
+                  </div>
+                </div>
+              </CodeBlock>
+
+              {/* メモリ管理 */}
+              <CodeBlock title={`os/memory.module.ts`}>
+                <div className="space-y-4">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span className="font-mono text-lg md:text-xl text-white font-bold">{ceoData.os.memory.name}</span>
+                    <span className="font-mono text-xs text-slate-500">{ceoData.os.memory.nameEn}</span>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                    <div className="p-4 bg-slate-800/30 rounded-lg border border-slate-700/30">
+                      <p className="font-mono text-xs text-orange-400 mb-2">PROCESS</p>
+                      <p className="text-slate-300 text-sm">{ceoData.os.memory.process}</p>
+                    </div>
+                    <div className="p-4 bg-slate-800/30 rounded-lg border border-slate-700/30">
+                      <p className="font-mono text-xs text-cyan-400 mb-2">INTERFACE</p>
+                      <p className="text-slate-300 text-sm">{ceoData.os.memory.interface}</p>
+                    </div>
+                  </div>
+                </div>
+              </CodeBlock>
+            </div>
+          </div>
+        </section>
+
+        {/* ストレングスファインダー */}
+        <section className="py-12 md:py-20 px-4 sm:px-6 md:px-8">
+          <div className="max-w-5xl mx-auto">
+            <SectionHeader tag="03" title="インストール済みモジュール" titleEn="StrengthsFinder TOP5" />
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 md:gap-4">
               {ceoData.strengths.map((strength, index) => (
                 <div
                   key={index}
-                  className="relative bg-white rounded-xl shadow-sm border border-slate-100 text-center transition-all duration-300 hover:shadow-md hover:-translate-y-1"
-                  style={{ padding: 'var(--spacing-fluid-sm)' }}
+                  className={`relative p-4 rounded-lg border transition-all duration-300 hover:scale-105 ${
+                    index === 0
+                      ? 'bg-[#F4E951]/10 border-[#F4E951]/30'
+                      : index < 3
+                        ? 'bg-[#7FC5A0]/10 border-[#7FC5A0]/30'
+                        : 'bg-slate-800/30 border-slate-700/30'
+                  }`}
                 >
-                  <div
-                    className="absolute -top-px -left-px w-0 h-0"
-                    style={{
-                      borderStyle: 'solid',
-                      borderWidth: '20px 20px 0 0',
-                      borderColor: `${index === 0 ? 'var(--color-logo-yellow)' : index < 3 ? 'var(--color-logo-light-green)' : 'var(--color-logo-dark-green)/30'} transparent transparent transparent`
-                    }}
-                  />
-                  <span
-                    className={`inline-block px-2 py-0.5 rounded-full font-bold mb-2 ${
-                      index === 0
-                        ? 'bg-[var(--color-logo-yellow)] text-[var(--color-logo-dark-green)]'
-                        : 'bg-slate-100 text-slate-600'
-                    }`}
-                    style={{ fontSize: 'var(--font-size-fluid-xs)' }}
-                  >
-                    #{strength.rank}
-                  </span>
-                  <p
-                    className="font-bold text-primary"
-                    style={{ fontSize: 'var(--font-size-fluid-sm)', marginBottom: '0.25rem' }}
-                  >
-                    {strength.name}
-                  </p>
-                  <p className="text-slate-500 hidden sm:block" style={{ fontSize: '0.7rem' }}>
-                    {strength.description}
-                  </p>
+                  <div className="flex items-center justify-between mb-3">
+                    <span className={`font-mono text-xs ${
+                      index === 0 ? 'text-[#F4E951]' : index < 3 ? 'text-[#7FC5A0]' : 'text-slate-400'
+                    }`}>
+                      #{strength.rank}
+                    </span>
+                    <div className={`w-2 h-2 rounded-full animate-pulse ${
+                      index === 0 ? 'bg-[#F4E951]' : index < 3 ? 'bg-[#7FC5A0]' : 'bg-slate-500'
+                    }`} />
+                  </div>
+                  <h3 className="text-white font-bold mb-1">{strength.name}</h3>
+                  <p className="font-mono text-xs text-slate-500 mb-2">{strength.nameEn}</p>
+                  <p className="text-slate-400 text-xs leading-relaxed">{strength.description}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* 思考スタイル */}
-        <section
-          className="bg-slate-50"
-          style={{ paddingTop: 'var(--spacing-fluid-xl)', paddingBottom: 'var(--spacing-fluid-xl)' }}
-        >
-          <div
-            className="max-w-5xl mx-auto"
-            style={{ paddingLeft: 'var(--spacing-fluid-md)', paddingRight: 'var(--spacing-fluid-md)' }}
-          >
-            <h3
-              className="text-center font-bold text-primary heading-gothic"
-              style={{ fontSize: 'var(--font-size-fluid-xl)', marginBottom: 'var(--spacing-fluid-md)' }}
-            >
-              こんな風に考えます
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {ceoData.thinkingStyle.map((style, index) => (
-                <div
-                  key={index}
-                  className="relative bg-white rounded-xl shadow-sm transition-all duration-300 hover:shadow-md"
-                  style={{ padding: 'var(--spacing-fluid-md)' }}
-                >
-                  <div
-                    className="absolute -top-px -left-px w-0 h-0"
-                    style={{
-                      borderStyle: 'solid',
-                      borderWidth: '24px 24px 0 0',
-                      borderColor: 'var(--color-logo-light-green) transparent transparent transparent'
-                    }}
-                  />
-                  <div className="flex items-start gap-3 pl-3">
-                    <div className="w-10 h-10 rounded-lg bg-[var(--color-logo-light-green)]/20 text-[var(--color-logo-dark-green)] flex items-center justify-center shrink-0">
-                      {getIcon(style.icon)}
+        {/* バグと地雷 */}
+        <section className="py-12 md:py-20 px-4 sm:px-6 md:px-8 bg-[#0d0d14]">
+          <div className="max-w-5xl mx-auto">
+            <SectionHeader tag="04" title="致命的なバグと地雷" titleEn="Critical Bugs & Vulnerabilities" />
+
+            <div className="space-y-4">
+              {ceoData.bugs.map((bug, index) => (
+                <CodeBlock key={index} title={`bugs/${bug.id.toLowerCase()}.log`}>
+                  <div className="space-y-4">
+                    <div className="flex flex-wrap items-center gap-3">
+                      <SeverityBadge severity={bug.severity} />
+                      <span className="font-mono text-white font-bold">{bug.name}</span>
+                      <span className="font-mono text-xs text-slate-500">{bug.nameEn}</span>
+                    </div>
+
+                    <div className="space-y-3 mt-4">
+                      <div className="p-3 bg-red-500/5 rounded border-l-2 border-red-500/50">
+                        <p className="font-mono text-xs text-red-400 mb-1">TRIGGER</p>
+                        <p className="text-slate-300 text-sm">{bug.trigger}</p>
+                      </div>
+                      <div className="p-3 bg-orange-500/5 rounded border-l-2 border-orange-500/50">
+                        <p className="font-mono text-xs text-orange-400 mb-1">SYSTEM REACTION</p>
+                        <p className="text-slate-300 text-sm">{bug.reaction}</p>
+                      </div>
+                      {(bug.logic || bug.workaround) && (
+                        <div className="p-3 bg-cyan-500/5 rounded border-l-2 border-cyan-500/50">
+                          <p className="font-mono text-xs text-cyan-400 mb-1">
+                            {bug.logic ? 'LOGIC BACKGROUND' : 'WORKAROUND'}
+                          </p>
+                          <p className="text-slate-300 text-sm">{bug.logic || bug.workaround}</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </CodeBlock>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* リーダーシップ */}
+        <section className="py-12 md:py-20 px-4 sm:px-6 md:px-8">
+          <div className="max-w-5xl mx-auto">
+            <SectionHeader tag="05" title="リーダーシップスタイル" titleEn="Leadership Specs" />
+
+            <CodeBlock title="leadership/config.yaml">
+              <div className="space-y-6">
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="text-2xl md:text-3xl text-white font-bold">{ceoData.leadership.style}</span>
+                  <span className="font-mono text-sm text-[#7FC5A0]">{ceoData.leadership.styleEn}</span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="p-4 bg-slate-800/30 rounded-lg border border-slate-700/30">
+                    <p className="font-mono text-xs text-[#7FC5A0] mb-2">CONCEPT</p>
+                    <p className="text-slate-300 text-sm">{ceoData.leadership.concept}</p>
+                  </div>
+                  <div className="p-4 bg-slate-800/30 rounded-lg border border-slate-700/30">
+                    <p className="font-mono text-xs text-[#F4E951] mb-2">ACTION</p>
+                    <p className="text-slate-300 text-sm">{ceoData.leadership.action}</p>
+                  </div>
+                  <div className="p-4 bg-slate-800/30 rounded-lg border border-slate-700/30">
+                    <p className="font-mono text-xs text-cyan-400 mb-2">CHARISMA</p>
+                    <p className="text-slate-300 text-sm">{ceoData.leadership.charisma}</p>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-[#7FC5A0]/10 rounded-lg border border-[#7FC5A0]/20">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="font-mono text-sm text-[#7FC5A0]">REQUIRED MODULE:</span>
+                    <span className="text-white font-bold">{ceoData.leadership.requiredModule.name}</span>
+                    <span className="font-mono text-xs text-slate-500">{ceoData.leadership.requiredModule.nameEn}</span>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                    <div>
+                      <p className="font-mono text-xs text-slate-500 mb-1">FUNCTION</p>
+                      <p className="text-slate-300">{ceoData.leadership.requiredModule.function}</p>
                     </div>
                     <div>
-                      <h4
-                        className="font-bold text-primary"
-                        style={{ fontSize: 'var(--font-size-fluid-sm)', marginBottom: '0.25rem' }}
-                      >
-                        {style.title}
-                      </h4>
-                      <p className="text-slate-600" style={{ fontSize: 'var(--font-size-fluid-xs)' }}>
-                        {style.description}
-                      </p>
+                      <p className="font-mono text-xs text-slate-500 mb-1">ROLE</p>
+                      <p className="text-slate-300">{ceoData.leadership.requiredModule.role}</p>
                     </div>
                   </div>
                 </div>
-              ))}
+              </div>
+            </CodeBlock>
+          </div>
+        </section>
+
+        {/* 人生攻略ロードマップ */}
+        <section className="py-12 md:py-20 px-4 sm:px-6 md:px-8 bg-[#0d0d14]">
+          <div className="max-w-5xl mx-auto">
+            <SectionHeader tag="06" title="人生攻略のロードマップ" titleEn="Life Strategy" />
+
+            <CodeBlock title="strategy/roadmap.md">
+              <div className="space-y-6">
+                <div className="p-4 bg-[#F4E951]/10 rounded-lg border border-[#F4E951]/20">
+                  <p className="font-mono text-xs text-[#F4E951] mb-2">WINNING CONDITION</p>
+                  <p className="text-white font-medium">{ceoData.lifeStrategy.winningCondition}</p>
+                </div>
+
+                <div className="space-y-3">
+                  <p className="font-mono text-sm text-slate-500">// 推奨キャリアサイクル</p>
+                  {ceoData.lifeStrategy.cycle.map((item, index) => (
+                    <div
+                      key={index}
+                      className={`flex items-start gap-4 p-4 rounded-lg border transition-all ${
+                        item.critical
+                          ? 'bg-[#F4E951]/10 border-[#F4E951]/30'
+                          : 'bg-slate-800/20 border-slate-700/30'
+                      }`}
+                    >
+                      <div className={`flex items-center justify-center w-10 h-10 rounded-lg shrink-0 ${
+                        item.critical ? 'bg-[#F4E951]/20 text-[#F4E951]' : 'bg-[#7FC5A0]/20 text-[#7FC5A0]'
+                      }`}>
+                        <span className="font-mono font-bold">{index + 1}</span>
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className={`font-mono font-bold ${item.critical ? 'text-[#F4E951]' : 'text-white'}`}>
+                            {item.phase}
+                          </span>
+                          {item.critical && (
+                            <span className="font-mono text-xs text-[#F4E951] bg-[#F4E951]/10 px-2 py-0.5 rounded">
+                              CRITICAL
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-slate-300 text-sm mt-1">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="p-4 bg-slate-800/30 rounded-lg border border-slate-700/30">
+                  <p className="font-mono text-xs text-[#7FC5A0] mb-2">DESTINY</p>
+                  <p className="text-slate-300">{ceoData.lifeStrategy.destiny}</p>
+                </div>
+              </div>
+            </CodeBlock>
+          </div>
+        </section>
+
+        {/* 相性 */}
+        <section className="py-12 md:py-20 px-4 sm:px-6 md:px-8">
+          <div className="max-w-5xl mx-auto">
+            <SectionHeader tag="07" title="互換性チェック" titleEn="Compatibility Matrix" />
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <CodeBlock title="compatibility/good.json">
+                <div className="space-y-3">
+                  <p className="font-mono text-sm text-[#7FC5A0] mb-4">// 相性が良い人</p>
+                  {ceoData.compatibility.good.map((item, index) => (
+                    <div key={index} className="flex items-center gap-3 p-3 bg-[#7FC5A0]/5 rounded border-l-2 border-[#7FC5A0]">
+                      <span className="text-[#7FC5A0]">✓</span>
+                      <span className="text-slate-300 text-sm">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </CodeBlock>
+
+              <CodeBlock title="compatibility/challenging.json">
+                <div className="space-y-3">
+                  <p className="font-mono text-sm text-orange-400 mb-4">// 相性に注意が必要な人</p>
+                  {ceoData.compatibility.challenging.map((item, index) => (
+                    <div key={index} className="flex items-center gap-3 p-3 bg-orange-500/5 rounded border-l-2 border-orange-500/50">
+                      <span className="text-orange-400">!</span>
+                      <span className="text-slate-300 text-sm">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </CodeBlock>
             </div>
           </div>
         </section>
 
-        {/* リーダーシップスタイル */}
-        <section
-          className="bg-white"
-          style={{ paddingTop: 'var(--spacing-fluid-xl)', paddingBottom: 'var(--spacing-fluid-xl)' }}
-        >
-          <div
-            className="max-w-5xl mx-auto"
-            style={{ paddingLeft: 'var(--spacing-fluid-md)', paddingRight: 'var(--spacing-fluid-md)' }}
-          >
-            <div
-              className="relative bg-gradient-to-r from-[var(--color-logo-light-green)]/10 to-[var(--color-logo-yellow)]/10 rounded-2xl"
-              style={{ padding: 'var(--spacing-fluid-lg)' }}
-            >
-              <div
-                className="absolute -top-px -left-px w-0 h-0"
-                style={{
-                  borderStyle: 'solid',
-                  borderWidth: '32px 32px 0 0',
-                  borderColor: 'var(--color-logo-dark-green) transparent transparent transparent'
-                }}
-              />
-              <div className="text-center pl-4">
-                <p
-                  className="text-[var(--color-logo-dark-green)] font-medium tracking-wider"
-                  style={{ fontSize: 'var(--font-size-fluid-xs)', marginBottom: 'var(--spacing-fluid-xs)' }}
-                >
-                  LEADERSHIP STYLE
-                </p>
-                <h3
-                  className="font-bold text-primary heading-gothic"
-                  style={{ fontSize: 'var(--font-size-fluid-xl)', marginBottom: 'var(--spacing-fluid-sm)' }}
-                >
-                  {ceoData.leadershipStyle.title}
-                </h3>
-                <p className="text-slate-600 max-w-2xl mx-auto" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>
-                  {ceoData.leadershipStyle.description}
+        {/* 結論 */}
+        <section className="py-12 md:py-20 px-4 sm:px-6 md:px-8 bg-[#0d0d14]">
+          <div className="max-w-5xl mx-auto">
+            <CodeBlock title="conclusion.md" className="border-[#7FC5A0]/30">
+              <div className="space-y-6 text-center">
+                <p className="font-mono text-xs text-[#7FC5A0]">// CONCLUSION</p>
+                <p className="text-lg md:text-xl lg:text-2xl text-white font-medium leading-relaxed max-w-3xl mx-auto">
+                  {ceoData.conclusion}
                 </p>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 一緒に働くと */}
-        <section
-          className="bg-slate-50"
-          style={{ paddingTop: 'var(--spacing-fluid-xl)', paddingBottom: 'var(--spacing-fluid-xl)' }}
-        >
-          <div
-            className="max-w-5xl mx-auto"
-            style={{ paddingLeft: 'var(--spacing-fluid-md)', paddingRight: 'var(--spacing-fluid-md)' }}
-          >
-            <h3
-              className="text-center font-bold text-primary heading-gothic"
-              style={{ fontSize: 'var(--font-size-fluid-xl)', marginBottom: 'var(--spacing-fluid-md)' }}
-            >
-              一緒に働くとこうなります
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-3xl mx-auto">
-              {ceoData.workingWith.map((item, index) => (
-                <div
-                  key={index}
-                  className={`relative flex items-start gap-3 rounded-xl ${
-                    item.type === 'good'
-                      ? 'bg-[var(--color-logo-light-green)]/10'
-                      : 'bg-slate-200'
-                  }`}
-                  style={{ padding: 'var(--spacing-fluid-sm)' }}
-                >
-                  <div
-                    className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 ${
-                      item.type === 'good'
-                        ? 'bg-[var(--color-logo-light-green)] text-white'
-                        : 'bg-slate-400 text-white'
-                    }`}
-                  >
-                    {item.type === 'good' ? (
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    ) : (
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                      </svg>
-                    )}
-                  </div>
-                  <p className="text-primary" style={{ fontSize: 'var(--font-size-fluid-sm)' }}>
-                    {item.text}
-                  </p>
-                </div>
-              ))}
-            </div>
+            </CodeBlock>
           </div>
         </section>
 
         {/* CTA */}
-        <section
-          className="bg-[var(--color-logo-dark-green)] text-white"
-          style={{ paddingTop: 'var(--spacing-fluid-2xl)', paddingBottom: 'var(--spacing-fluid-2xl)' }}
-        >
-          <div
-            className="max-w-4xl mx-auto text-center"
-            style={{ paddingLeft: 'var(--spacing-fluid-md)', paddingRight: 'var(--spacing-fluid-md)' }}
-          >
-            <p
-              className="inline-block bg-[var(--color-logo-yellow)] text-[var(--color-logo-dark-green)] font-bold rounded-full"
-              style={{ padding: 'var(--spacing-fluid-sm) var(--spacing-fluid-lg)', fontSize: 'var(--font-size-fluid-lg)', marginBottom: 'var(--spacing-fluid-lg)' }}
-            >
-              {ceoData.message}
-            </p>
+        <section className="py-16 md:py-24 px-4 sm:px-6 md:px-8 relative overflow-hidden">
+          {/* 背景装飾 */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f] via-[#0D5643]/20 to-[#0a0a0f]" />
 
-            <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
+          <div className="relative z-10 max-w-4xl mx-auto text-center">
+            <div className="inline-block mb-8 px-6 py-3 bg-[#F4E951] text-[#0D5643] font-bold rounded-lg text-lg md:text-xl">
+              {ceoData.message}
+            </div>
+
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link
                 href="/company"
-                className="inline-flex items-center justify-center px-8 py-4 bg-white text-[var(--color-logo-dark-green)] rounded-full font-bold hover:bg-[var(--color-logo-yellow)] transition-all shadow-lg"
-                style={{ fontSize: 'var(--font-size-fluid-sm)' }}
+                className="group inline-flex items-center justify-center px-8 py-4 bg-[#7FC5A0] text-[#0D5643] rounded-lg font-bold hover:bg-[#F4E951] transition-all duration-300"
               >
-                浅井が作るフラクタル構造 →
+                <span>浅井が作るフラクタル構造</span>
+                <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
               </Link>
               <Link
                 href="/recruit"
-                className="inline-flex items-center justify-center px-8 py-4 border-2 border-white/50 text-white rounded-full font-bold hover:bg-white/10 hover:border-white transition-all"
-                style={{ fontSize: 'var(--font-size-fluid-sm)' }}
+                className="inline-flex items-center justify-center px-8 py-4 border-2 border-slate-600 text-slate-300 rounded-lg font-bold hover:border-[#7FC5A0] hover:text-[#7FC5A0] transition-all duration-300"
               >
                 採用情報を見る
               </Link>
@@ -370,6 +668,17 @@ export default function CEOPage() {
         </section>
       </main>
       <Footer />
+
+      {/* カスタムアニメーション用のスタイル */}
+      <style jsx>{`
+        @keyframes scan {
+          0% { transform: translateY(-100%); }
+          100% { transform: translateY(100%); }
+        }
+        .animate-scan {
+          animation: scan 8s linear infinite;
+        }
+      `}</style>
     </>
   );
 }
