@@ -259,9 +259,9 @@ export default function CompanyPage() {
         {/* DAPAE サイクル */}
         <Section id="dapae">
           <FadeIn>
-            <SectionTitle>DAPAE | 成長のワークフロー</SectionTitle>
+            <SectionTitle>DAPAE | ダパエ</SectionTitle>
             <p className="text-[var(--color-ink-soft)] mb-10 leading-relaxed">
-              フラクタルの成長を支えるワークフロー、それがDAPAE。
+              フラクタル独自のフレームワーク、それがDAPAE。
               <br />
               データを分析して情報に変え、計画を立て、柔軟に実行し、評価する。
               <br />
