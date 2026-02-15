@@ -50,6 +50,7 @@ export const footerLinks = [
   { href: "/for-medical-institutions", label: "医療機関様へ" },
   { href: "/recruit", label: "採用情報" },
   { href: "/#contact", label: "お問い合わせ" },
+  { href: "/updates", label: "更新情報" },
 ];
 
 // モバイルメニュー項目（下部固定メニュー用）
