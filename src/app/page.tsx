@@ -11,6 +11,7 @@ import FAQ from "@/components/FAQ";
 import Company from "@/components/Company";
 import Footer from "@/components/Footer";
 import FloatingRecruitBanner from "@/components/FloatingRecruitBanner";
+import UpdatesPopup from "@/components/UpdatesPopup";
 
 export default function Home() {
   return (
@@ -30,6 +31,7 @@ export default function Home() {
       </main>
       <Footer />
       <FloatingRecruitBanner />
+      <UpdatesPopup />
     </>
   );
 }
