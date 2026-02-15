@@ -106,7 +106,7 @@ export default function About() {
               {philosophyItems.map((item) => (
                 <div
                   key={item.number}
-                  className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow"
+                  className="bg-white rounded-2xl p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow"
                 >
                   <div className="flex gap-3 md:gap-4">
                     <div className="flex-shrink-0">

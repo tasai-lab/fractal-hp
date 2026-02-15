@@ -60,40 +60,29 @@ export const mobileMenuItems = [
   { href: "/#contact", label: "問合せ", icon: "Phone" },
 ];
 
-// サイトマップメニューのカテゴリ分け
+// サイトマップメニューのカテゴリ分け（4カテゴリ・10項目）
 export const otherMenuCategories = {
-  home: {
-    title: "トップページ",
+  service: {
+    title: "サービス案内",
     items: [
-      { href: "/#about", label: "フラクタルとは" },
-      { href: "/#features", label: "サービスの特徴" },
-      { href: "/#office", label: "事業所案内" },
-      { href: "/#flow", label: "ご利用の流れ" },
-      { href: "/#staff", label: "スタッフ紹介" },
-      { href: "/#faq", label: "よくある質問" },
       { href: "/#contact", label: "お問い合わせ" },
+      { href: "/areas", label: "対応エリア" },
+      { href: "/for-care-managers", label: "ケアマネ様へ" },
+      { href: "/for-medical-institutions", label: "医療機関様へ" },
     ],
   },
-  pages: {
-    title: "詳しく見る",
+  recruit: {
+    title: "採用情報",
+    items: [
+      { href: "/recruit", label: "採用情報" },
+      { href: "/company/ceo", label: "代表の取扱説明書" },
+    ],
+  },
+  company: {
+    title: "会社情報",
     items: [
       { href: "/fractal", label: "フラクタルを知る" },
       { href: "/company", label: "株式会社フラクタル" },
-      { href: "/company/ceo", label: "代表の取扱説明書" },
-      { href: "/for-care-managers", label: "ケアマネージャー様へ" },
-      { href: "/for-medical-institutions", label: "医療機関の皆様へ" },
-      { href: "/recruit", label: "採用情報" },
-      { href: "/flyers", label: "チラシ一覧" },
-    ],
-  },
-  areas: {
-    title: "対応エリア",
-    items: [
-      { href: "/areas/funabashi", label: "船橋市" },
-      { href: "/areas/yachiyo", label: "八千代市" },
-      { href: "/areas/narashino", label: "習志野市" },
-      { href: "/areas/chiba-hanamigawa", label: "千葉市花見川区" },
-      { href: "/areas/chiba-inage", label: "千葉市稲毛区" },
     ],
   },
   external: {
@@ -105,12 +94,6 @@ export const otherMenuCategories = {
         icon: "Instagram",
       },
       { href: "https://note.com/fractal_hokan", label: "Note", icon: "FileText" },
-    ],
-  },
-  updates: {
-    title: "アップデート情報",
-    items: [
-      { href: "/updates", label: "何が変わった？" },
     ],
   },
 };

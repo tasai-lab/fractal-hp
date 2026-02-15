@@ -33,7 +33,7 @@ export default function AboutFractalLayout({
   return (
     <>
       <AboutFractalStructuredData />
-      <Header />
+      <Header variant="paper" />
       {children}
       <Footer />
     </>

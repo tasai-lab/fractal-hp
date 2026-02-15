@@ -12,6 +12,16 @@ export const metadata: Metadata = {
 // 更新情報データ
 const updates = [
   {
+    date: "2026-02-15",
+    items: [
+      { type: "new", title: "訪問エリア一覧ページを新設", link: "/areas" },
+      { type: "improve", title: "トップページの訪問エリアセクションを改善", link: "/#service-area" },
+      { type: "improve", title: "ご利用の流れにケアマネ・医療機関向けリンクを追加", link: "/#flow" },
+      { type: "improve", title: "会社概要ページに会社情報を追加", link: "/company" },
+      { type: "improve", title: "UIデザインの統一性を向上" },
+    ],
+  },
+  {
     date: "2026-02-14",
     items: [
       { type: "new", title: "アップデート情報ページを新設", link: "/updates" },

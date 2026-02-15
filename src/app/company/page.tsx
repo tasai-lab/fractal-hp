@@ -9,6 +9,14 @@ const companyData = {
   philosophy: "シンプルで独創的な社会を実現する",
   subtext: "シンプルな仕組みがもたらす独自性と業務効率が成長へ",
 
+  info: {
+    name: "株式会社フラクタル",
+    representative: "浅井 拓哉",
+    address: "〒274-0072 千葉県船橋市三山6丁目22-2 パレドール小川201",
+    phone: "050-3529-1176",
+    hours: "9:00 〜 18:00",
+  },
+
   business: [
     {
       name: "訪問看護事業",
@@ -174,16 +182,16 @@ export default function CompanyPage() {
   return (
     <div className="min-h-screen bg-[var(--color-paper)]">
       {/* ヘッダー */}
-      <header className="bg-[var(--color-paper)]/95 backdrop-blur-sm border-b border-[var(--color-sand)] sticky top-0 z-40">
-        <div className="max-w-3xl mx-auto px-5 md:px-8 py-4 flex items-center justify-between">
+      <header className="bg-[var(--color-paper)] border-b border-[var(--color-sand)] sticky top-14 lg:top-20 z-30">
+        <div className="max-w-3xl mx-auto px-5 md:px-8 py-3 md:py-4 flex items-center justify-between">
           <Link
             href="/"
-            className="text-[var(--color-olive)] text-sm hover:opacity-70 transition-opacity"
+            className="text-[var(--color-olive)] font-bold text-sm md:text-base hover:opacity-80 transition-opacity"
           >
             ← トップページ
           </Link>
-          <span className="text-sm text-[var(--color-ink)]">
-            株式会社フラクタル
+          <span className="text-xs tracking-[0.2em] text-[var(--color-ink-soft)]">
+            COMPANY
           </span>
         </div>
       </header>
@@ -194,7 +202,7 @@ export default function CompanyPage() {
           <FadeIn className="text-center">
             {/* ロゴ */}
             <div className="mb-10 md:mb-14">
-              <div className="relative w-24 h-24 md:w-32 md:h-32 mx-auto">
+              <div className="relative w-32 h-32 md:w-44 md:h-44 mx-auto">
                 <Image
                   src="/images/logos/corporate-logo.png"
                   alt="株式会社フラクタル"
@@ -206,14 +214,17 @@ export default function CompanyPage() {
             </div>
 
             {/* 会社名 */}
-            <p className="text-xs tracking-[0.3em] text-[var(--color-ink-soft)] mb-4">
+            <h1 className="heading-mincho text-2xl md:text-3xl text-[var(--color-ink)] mb-2">
+              株式会社フラクタル
+            </h1>
+            <p className="text-xs tracking-[0.3em] text-[var(--color-ink-soft)] mb-8">
               FRACTAL Inc.
             </p>
 
             {/* 理念 */}
-            <h1 className="heading-mincho text-2xl md:text-4xl text-[var(--color-ink)] leading-relaxed mb-6">
+            <p className="heading-mincho text-2xl md:text-4xl text-[var(--color-ink)] leading-relaxed mb-6">
               {companyData.philosophy}
-            </h1>
+            </p>
 
             <p className="text-sm md:text-base text-[var(--color-ink-soft)] leading-relaxed">
               {companyData.subtext}
@@ -353,6 +364,66 @@ export default function CompanyPage() {
 
         <Divider />
 
+        {/* 会社概要 */}
+        <Section id="info">
+          <FadeIn>
+            <SectionTitle>会社概要</SectionTitle>
+            <div className="bg-white/60 border border-[var(--color-sand)] rounded-lg overflow-hidden">
+              <table className="w-full text-sm md:text-base">
+                <tbody>
+                  <tr className="border-b border-[var(--color-sand)]">
+                    <th className="text-left font-medium py-4 px-5 bg-[var(--color-sand)]/30 w-28 md:w-36 align-top">
+                      会社名
+                    </th>
+                    <td className="py-4 px-5 text-[var(--color-ink)]">
+                      {companyData.info.name}
+                    </td>
+                  </tr>
+                  <tr className="border-b border-[var(--color-sand)]">
+                    <th className="text-left font-medium py-4 px-5 bg-[var(--color-sand)]/30 w-28 md:w-36 align-top">
+                      代表取締役
+                    </th>
+                    <td className="py-4 px-5 text-[var(--color-ink)]">
+                      {companyData.info.representative}
+                    </td>
+                  </tr>
+                  <tr className="border-b border-[var(--color-sand)]">
+                    <th className="text-left font-medium py-4 px-5 bg-[var(--color-sand)]/30 w-28 md:w-36 align-top">
+                      所在地
+                    </th>
+                    <td className="py-4 px-5 text-[var(--color-ink)]">
+                      {companyData.info.address}
+                    </td>
+                  </tr>
+                  <tr className="border-b border-[var(--color-sand)]">
+                    <th className="text-left font-medium py-4 px-5 bg-[var(--color-sand)]/30 w-28 md:w-36 align-top">
+                      電話番号
+                    </th>
+                    <td className="py-4 px-5 text-[var(--color-ink)]">
+                      <a
+                        href={`tel:${companyData.info.phone.replace(/-/g, "")}`}
+                        className="hover:text-[var(--color-terracotta)] transition-colors"
+                      >
+                        {companyData.info.phone}
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th className="text-left font-medium py-4 px-5 bg-[var(--color-sand)]/30 w-28 md:w-36 align-top">
+                      営業時間
+                    </th>
+                    <td className="py-4 px-5 text-[var(--color-ink)]">
+                      {companyData.info.hours}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </FadeIn>
+        </Section>
+
+        <Divider />
+
         {/* CTA */}
         <Section className="pb-24 md:pb-32">
           <FadeIn>
@@ -423,15 +494,6 @@ export default function CompanyPage() {
           </FadeIn>
         </Section>
       </main>
-
-      {/* フッター */}
-      <footer className="bg-white/50 border-t border-[var(--color-sand)] py-8">
-        <div className="max-w-3xl mx-auto px-5 md:px-8 text-center">
-          <p className="text-xs text-[var(--color-ink-soft)]">
-            © {new Date().getFullYear()} 株式会社フラクタル
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }

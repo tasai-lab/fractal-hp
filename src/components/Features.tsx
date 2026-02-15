@@ -265,7 +265,7 @@ export default function Features() {
               {features.map((feature, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-5 lg:p-6 shadow-sm hover-lift border border-transparent hover:border-[var(--color-accent-yellow)]"
+                  className="bg-white rounded-2xl p-4 sm:p-5 lg:p-6 shadow-sm hover-lift border border-transparent hover:border-[var(--color-accent-yellow)]"
                 >
                   <div className="flex flex-col items-center text-center">
                     {/* アイコン */}

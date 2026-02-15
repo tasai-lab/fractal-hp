@@ -68,7 +68,7 @@ export default function Staff() {
               {staffMembers.map((staff, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-xl md:rounded-2xl shadow-sm p-3 md:p-8 hover-lift group cursor-pointer md:cursor-default"
+                  className="bg-white rounded-2xl shadow-sm p-3 md:p-8 hover-lift group cursor-pointer md:cursor-default"
                   onClick={() => {
                     if (window.innerWidth < 768) {
                       openModal(staff, index);

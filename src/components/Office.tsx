@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { officeInfo, serviceAreas } from "@/lib/data";
+import { regionalData } from "@/lib/regional-data";
 import BackgroundTriangles from "./BackgroundTriangles";
 
 export default function Office() {
@@ -95,7 +96,7 @@ export default function Office() {
               </div>
 
               {/* 右側：Google Maps */}
-              <div className="h-[250px] md:h-[400px] rounded-xl overflow-hidden shadow-lg">
+              <div className="h-[250px] md:h-[400px] rounded-2xl overflow-hidden shadow-lg">
                 <iframe
                   src={officeInfo.googleMapsUrl}
                   width="100%"
@@ -111,86 +112,180 @@ export default function Office() {
           </div>
 
           {/* 訪問エリアカード */}
-          <div id="service-area" className="section-card section-card-mint">
+          <div id="service-area" className="section-card section-card-mint space-y-8">
             {/* タイトル */}
-            <h3 className="text-xl md:text-2xl font-bold text-center text-primary mb-2">船橋市・八千代市・習志野市の訪問エリア</h3>
+            <h3 className="text-xl md:text-2xl font-bold text-center text-primary">訪問エリア</h3>
 
-            <div className="space-y-6 md:space-y-8">
-              {/* 地図（上部） */}
-              <div className="relative w-full aspect-[16/9] md:aspect-[2/1]">
+            {/* エリアマップ */}
+            <div>
+              <p className="text-center text-gray-600 mb-6">
+                船橋市・八千代市・習志野市・千葉市を中心に24時間365日の訪問看護サービスを提供しています
+              </p>
+              <div className="relative w-full aspect-square md:aspect-[4/3] lg:aspect-[3/2]">
                 <Image
-                  src="/images/service-area/area-map.webp"
-                  alt="フラクタル訪問看護 船橋 訪問エリアマップ - 船橋市・習志野市・八千代市・千葉市花見川区"
+                  src="/images/service-area/area-map-new.png"
+                  alt="フラクタル訪問看護 船橋 訪問エリアマップ - 船橋市・習志野市・八千代市・千葉市花見川区・稲毛区"
                   fill
                   className="object-contain"
-                  sizes="(max-width: 768px) 100vw, 800px"
+                  sizes="100vw"
                 />
               </div>
+              <p className="text-center text-sm text-gray-500 mt-4">
+                駐車場代・交通費は訪問可能エリア内であればいただきません
+              </p>
+            </div>
 
-              {/* 訪問可能エリア */}
-              <div>
-                <h4 className="text-lg md:text-xl font-bold text-center text-primary mb-4 md:mb-6">訪問可能エリア</h4>
-                {/* エリア詳細（2×2） */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
-                  {serviceAreas.priority.cities.map((city, index) => (
-                    <div key={index} className="bg-white rounded-lg p-3 md:p-4 shadow-sm flex flex-col">
-                      <h5 className="font-bold text-base md:text-lg mb-2 text-primary">
-                        {city.name}
-                      </h5>
-                      <ul className={`text-sm md:text-base flex-1 ${city.areas.length > 6 ? "grid grid-cols-2 gap-x-2 gap-y-1" : "space-y-1"}`}>
+            {/* 訪問可能エリアカード */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+              {serviceAreas.priority.cities.map((city, index) => {
+                const areaData = regionalData.find((r) => r.name === city.name);
+
+                return (
+                  <div
+                    key={index}
+                    className="bg-white rounded-2xl overflow-hidden shadow-sm"
+                  >
+                    {/* カラーバー */}
+                    {areaData && (
+                      <div
+                        className="h-2"
+                        style={{ backgroundColor: areaData.theme.primary }}
+                      />
+                    )}
+
+                    <div className="p-4 md:p-5">
+                      {/* 市名とタグライン */}
+                      <div className="flex items-center justify-between mb-3 pb-2 border-b border-gray-200">
+                        <h4
+                          className="font-bold text-lg"
+                          style={{ color: areaData?.theme.secondary || "var(--color-primary)" }}
+                        >
+                          {city.name}
+                        </h4>
+                        {areaData && (
+                          <span
+                            className="inline-block px-2 py-0.5 rounded-full text-xs font-bold text-white"
+                            style={{ backgroundColor: areaData.theme.primary }}
+                          >
+                            {areaData.theme.tagline}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* 訪問可能地域リスト */}
+                      <ul className={`text-sm md:text-base mb-4 ${city.areas.length > 6 ? "grid grid-cols-2 gap-x-3 gap-y-1" : "space-y-1"}`}>
                         {city.areas.map((area, areaIndex) => (
-                          <li key={areaIndex} className="flex items-start gap-1 md:gap-2">
-                            <span className="text-accent-pink mt-0.5">▸</span>
+                          <li key={areaIndex} className="flex items-start gap-2">
+                            <span className="text-[var(--color-logo-light-green)] mt-0.5">●</span>
                             <span>{area}</span>
                           </li>
                         ))}
                       </ul>
-                      <p className="text-muted text-right text-sm md:text-base mt-2">上記以外の地域も承ります。</p>
+                      <p className="text-gray-500 text-xs mb-4">
+                        上記以外の地域も承ります
+                      </p>
+
+                      {/* 詳細リンク */}
+                      {areaData && (
+                        <Link
+                          href={`/areas/${areaData.slug}`}
+                          className="group flex items-center justify-between p-3 rounded-lg transition-colors"
+                          style={{ backgroundColor: `${areaData.theme.primary}15` }}
+                        >
+                          <div className="flex items-center gap-3">
+                            <div>
+                              <span
+                                className="font-bold text-sm"
+                                style={{ color: areaData.theme.primary }}
+                              >
+                                {areaData.population.elderlyRate}
+                              </span>
+                              <span className="text-xs text-gray-500 ml-1">高齢化率</span>
+                            </div>
+                            <div className="h-4 w-px bg-gray-300" />
+                            <div>
+                              <span className="text-xs text-gray-500">人口</span>
+                              <span className="text-sm font-medium ml-1">{areaData.population.total}</span>
+                            </div>
+                          </div>
+                          <div
+                            className="flex items-center gap-1 text-sm font-bold group-hover:gap-2 transition-all"
+                            style={{ color: areaData.theme.primary }}
+                          >
+                            <span>詳しく</span>
+                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                          </div>
+                        </Link>
+                      )}
                     </div>
-                  ))}
-                </div>
-              </div>
+                  </div>
+                );
+              })}
 
-              {/* 注記 */}
-              <div className="bg-white rounded-lg p-4 md:p-5 text-center shadow-sm">
-                <p className="font-medium text-foreground text-sm md:text-base">
-                  駐車場代・交通費は訪問可能エリア内であればいただきません。
-                </p>
-              </div>
+              {/* 千葉市稲毛区（serviceAreasにないがregionalDataにある） */}
+              {regionalData
+                .filter((r) => !serviceAreas.priority.cities.some((c) => c.name === r.name))
+                .map((areaData) => (
+                  <div
+                    key={areaData.slug}
+                    className="bg-white rounded-2xl overflow-hidden shadow-sm"
+                  >
+                    <div
+                      className="h-2"
+                      style={{ backgroundColor: areaData.theme.primary }}
+                    />
+                    <div className="p-4 md:p-5">
+                      <div className="flex items-center justify-between mb-3 pb-2 border-b border-gray-200">
+                        <h4
+                          className="font-bold text-lg"
+                          style={{ color: areaData.theme.secondary }}
+                        >
+                          {areaData.name}
+                        </h4>
+                        <span
+                          className="inline-block px-2 py-0.5 rounded-full text-xs font-bold text-white"
+                          style={{ backgroundColor: areaData.theme.primary }}
+                        >
+                          {areaData.theme.tagline}
+                        </span>
+                      </div>
 
-              {/* 各市の詳細ページへのリンク */}
-              <div className="mt-8">
-                <h4 className="text-lg md:text-xl font-bold text-primary text-center mb-5">地域情報を見る</h4>
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-                  {[
-                    { name: "船橋市", slug: "funabashi", color: "#3B5998" },
-                    { name: "八千代市", slug: "yachiyo", color: "#00A099" },
-                    { name: "習志野市", slug: "narashino", color: "#006400" },
-                    { name: "千葉市花見川区", slug: "chiba-hanamigawa", color: "#E75480" },
-                    { name: "千葉市稲毛区", slug: "chiba-inage", color: "#E89A3D" },
-                  ].map((city) => (
-                    <Link
-                      key={city.slug}
-                      href={`/areas/${city.slug}`}
-                      className="group flex flex-col items-center justify-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5 border border-gray-100"
-                    >
-                      <span
-                        className="font-bold text-sm md:text-base mb-1"
-                        style={{ color: city.color }}
+                      <p className="text-sm text-gray-600 mb-4">
+                        訪問可能エリアについてはお問い合わせください
+                      </p>
+
+                      <Link
+                        href={`/areas/${areaData.slug}`}
+                        className="group flex items-center justify-between p-3 rounded-lg transition-colors"
+                        style={{ backgroundColor: `${areaData.theme.primary}15` }}
                       >
-                        {city.name}
-                      </span>
-                      <span
-                        className="text-xs flex items-center gap-1 opacity-70 group-hover:opacity-100 transition-opacity"
-                        style={{ color: city.color }}
-                      >
-                        詳しく見る
-                        <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-                      </span>
-                    </Link>
-                  ))}
-                </div>
-              </div>
+                        <div className="flex items-center gap-3">
+                          <div>
+                            <span
+                              className="font-bold text-sm"
+                              style={{ color: areaData.theme.primary }}
+                            >
+                              {areaData.population.elderlyRate}
+                            </span>
+                            <span className="text-xs text-gray-500 ml-1">高齢化率</span>
+                          </div>
+                          <div className="h-4 w-px bg-gray-300" />
+                          <div>
+                            <span className="text-xs text-gray-500">人口</span>
+                            <span className="text-sm font-medium ml-1">{areaData.population.total}</span>
+                          </div>
+                        </div>
+                        <div
+                          className="flex items-center gap-1 text-sm font-bold group-hover:gap-2 transition-all"
+                          style={{ color: areaData.theme.primary }}
+                        >
+                          <span>詳しく</span>
+                          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        </div>
+                      </Link>
+                    </div>
+                  </div>
+                ))}
             </div>
           </div>
         </div>

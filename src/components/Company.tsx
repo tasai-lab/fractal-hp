@@ -15,7 +15,7 @@ export default function Company() {
           {/* 丸みを帯びた四角形で囲む */}
           <div className="section-card section-card-blue">
             {/* 会社情報テーブル - 白背景のカード */}
-            <div className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 mb-6 md:mb-8 shadow-sm">
+            <div className="bg-white rounded-2xl p-4 md:p-6 mb-6 md:mb-8 shadow-sm">
               <table className="w-full text-base md:text-lg">
               <tbody className="space-y-4">
                 <tr className="border-b border-gray-300">
@@ -60,7 +60,7 @@ export default function Company() {
           </div>
 
           {/* Google Maps - 下部に配置 */}
-          <div className="h-[250px] md:h-[400px] rounded-xl overflow-hidden shadow-sm">
+          <div className="h-[250px] md:h-[400px] rounded-2xl overflow-hidden shadow-sm">
             <iframe
               src={companyInfo.googleMapsUrl}
               width="100%"

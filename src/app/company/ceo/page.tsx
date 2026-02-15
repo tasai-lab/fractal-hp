@@ -610,7 +610,7 @@ export default function CEOPage() {
     <>
       <div className="min-h-screen body-editorial">
         {/* ヘッダー */}
-        <header className="bg-white/80 backdrop-blur-md shadow-sm sticky top-14 lg:top-20 z-30">
+        <header className="bg-[var(--color-paper)] backdrop-blur-sm border-b border-[var(--color-sand)] sticky top-14 lg:top-20 z-30">
           <div className="max-w-5xl mx-auto px-4 py-3 md:py-4 flex items-center justify-between">
             <Link
               href="/company"

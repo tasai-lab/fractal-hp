@@ -93,7 +93,7 @@ export default function Contact({ initialContactType, embedded = false, hideTitl
   };
 
   const content = (
-    <div className={`section-card section-card-mint ${embedded ? "max-w-3xl mx-auto shadow-md" : ""}`}>
+    <div className={`section-card section-card-mint ${embedded ? "shadow-md" : ""}`}>
       {/* セクションタイトル */}
       {embedded && !hideTitle && (
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12 text-primary">

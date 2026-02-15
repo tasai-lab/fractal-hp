@@ -30,7 +30,7 @@ export default function Recruit() {
             </div>
 
             {/* Q&A セクション */}
-            <div className="bg-white rounded-xl sm:rounded-2xl shadow-sm p-4 sm:p-6 md:p-8 lg:p-12 mb-8 sm:mb-10 lg:mb-12">
+            <div className="bg-white rounded-2xl shadow-sm p-4 sm:p-6 md:p-8 lg:p-12 mb-8 sm:mb-10 lg:mb-12">
               <div className="mb-6 md:mb-8">
                 <div className="flex items-start gap-3 md:gap-4 mb-4 md:mb-6">
                   <div className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 bg-accent-blue rounded-full flex items-center justify-center">
@@ -58,7 +58,7 @@ export default function Recruit() {
             </div>
 
             {/* スタッフ集合写真 */}
-            <div className="rounded-xl md:rounded-2xl overflow-hidden shadow-sm mb-8 md:mb-12">
+            <div className="rounded-2xl overflow-hidden shadow-sm mb-8 md:mb-12">
               <div className="relative w-full">
                 <Image
                   src="/images/recruit/recruit-team.webp"
@@ -71,7 +71,7 @@ export default function Recruit() {
             </div>
 
             {/* HP限定入社祝い金バナー */}
-            <div className="bg-gradient-to-r from-[var(--color-logo-yellow)] via-[var(--color-logo-yellow)]/80 to-[var(--color-logo-yellow)] rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-lg relative overflow-hidden mb-8 sm:mb-10 lg:mb-12">
+            <div className="bg-gradient-to-r from-[var(--color-logo-yellow)] via-[var(--color-logo-yellow)]/80 to-[var(--color-logo-yellow)] rounded-2xl p-4 sm:p-6 lg:p-8 shadow-lg relative overflow-hidden mb-8 sm:mb-10 lg:mb-12">
               <div className="absolute top-0 right-0 w-20 md:w-32 h-20 md:h-32 bg-[var(--color-logo-yellow)]/50 rounded-full -translate-y-1/2 translate-x-1/2 opacity-50"></div>
               <div className="absolute bottom-0 left-0 w-16 md:w-24 h-16 md:h-24 bg-[var(--color-logo-yellow)]/50 rounded-full translate-y-1/2 -translate-x-1/2 opacity-50"></div>
 

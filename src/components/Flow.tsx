@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { flowSteps } from "@/lib/data";
 import BackgroundTriangles from "./BackgroundTriangles";
 
@@ -19,7 +21,7 @@ export default function Flow() {
               {flowSteps.map((step, index) => (
                 <div key={step.step} className="flex flex-col items-center">
                   {/* ステップカード - 白背景 */}
-                  <div className="bg-white rounded-xl p-4 md:p-6 shadow-sm w-full hover-lift border-l-4 border-[var(--color-accent-pink)]">
+                  <div className="bg-white rounded-2xl p-4 md:p-6 shadow-sm w-full hover-lift border-l-4 border-[var(--color-accent-pink)]">
                     <div className="flex items-start gap-4 md:gap-6">
                       {/* ステップ番号バッジ */}
                       <div className="flex-shrink-0">
@@ -75,6 +77,30 @@ export default function Flow() {
               >
                 お問い合わせフォームはこちら
               </a>
+            </div>
+
+            {/* 医療機関・ケアマネ向けリンク */}
+            <div className="mt-8 md:mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <Link
+                href="/for-care-managers"
+                className="group flex items-center justify-between p-4 md:p-5 bg-white rounded-2xl shadow-sm hover:shadow-md transition-all border border-gray-100"
+              >
+                <div>
+                  <span className="block text-sm text-gray-500 mb-1">ケアマネージャー様へ</span>
+                  <span className="font-bold text-[var(--color-primary)]">ご依頼・連携について</span>
+                </div>
+                <ArrowRight className="w-5 h-5 text-[var(--color-primary)] group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link
+                href="/for-medical-institutions"
+                className="group flex items-center justify-between p-4 md:p-5 bg-white rounded-2xl shadow-sm hover:shadow-md transition-all border border-gray-100"
+              >
+                <div>
+                  <span className="block text-sm text-gray-500 mb-1">医療機関様へ</span>
+                  <span className="font-bold text-[var(--color-primary)]">連携・ご紹介について</span>
+                </div>
+                <ArrowRight className="w-5 h-5 text-[var(--color-primary)] group-hover:translate-x-1 transition-transform" />
+              </Link>
             </div>
           </div>
         </div>

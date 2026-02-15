@@ -94,7 +94,7 @@ export default function Footer() {
 
         {/* コピーライト */}
         <div className="border-t border-gray-700 pt-4 md:pt-6 text-center text-sm md:text-base opacity-75">
-          <p>&copy; 2024 株式会社フラクタル All Rights Reserved.</p>
+          <p>&copy; 2025 株式会社フラクタル All Rights Reserved.</p>
         </div>
 
         {/* モバイル下部メニュー分の余白 */}
