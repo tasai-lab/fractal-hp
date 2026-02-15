@@ -50,6 +50,14 @@ const featureIcons = [
   "/images/recruit/icons/3.png",
 ];
 
+// 採用ページ用のパステルカラー
+const pastelColors: Record<string, { primary: string; secondary: string }> = {
+  "船橋市": { primary: "#a8d5ba", secondary: "#5a8a6e" },
+  "八千代市": { primary: "#f5c6a5", secondary: "#b87333" },
+  "習志野市": { primary: "#a5c8e4", secondary: "#4a7c9b" },
+  "千葉市花見川区": { primary: "#e4b8c9", secondary: "#9e5a7a" },
+  "千葉市稲毛区": { primary: "#c9c8e4", secondary: "#6a6a9e" },
+};
 
 const FadeIn = ({
   children,
@@ -463,16 +471,17 @@ export default function RecruitPage() {
           <FadeIn className="space-y-3 mt-6">
             {serviceAreas.priority.cities.map((city, index) => {
               const areaData = regionalData.find((r) => r.name === city.name);
+              const pastel = pastelColors[city.name];
               const isOpen = openAreaIndex === index;
               return (
                 <div
                   key={index}
-                  className="bg-[var(--color-paper)] rounded-2xl overflow-hidden"
+                  className="bg-white/60 rounded-2xl overflow-hidden"
                 >
-                  {areaData && (
+                  {pastel && (
                     <div
                       className="h-1"
-                      style={{ backgroundColor: areaData.theme.primary }}
+                      style={{ backgroundColor: pastel.primary }}
                     />
                   )}
                   <button
@@ -483,14 +492,14 @@ export default function RecruitPage() {
                     <div className="flex items-center gap-3">
                       <h4
                         className="font-bold text-lg"
-                        style={{ color: areaData?.theme.secondary || "var(--color-olive)" }}
+                        style={{ color: pastel?.secondary || "var(--color-olive)" }}
                       >
                         {city.name}
                       </h4>
-                      {areaData && (
+                      {areaData && pastel && (
                         <span
-                          className="inline-block px-2 py-0.5 rounded-full text-xs font-bold text-white"
-                          style={{ backgroundColor: areaData.theme.primary }}
+                          className="inline-block px-2 py-0.5 rounded-full text-xs font-bold"
+                          style={{ backgroundColor: pastel.primary, color: pastel.secondary }}
                         >
                           {areaData.theme.tagline}
                         </span>
@@ -498,7 +507,7 @@ export default function RecruitPage() {
                     </div>
                     <span
                       className={`transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
-                      style={{ color: areaData?.theme.primary || "var(--color-olive)" }}
+                      style={{ color: pastel?.secondary || "var(--color-olive)" }}
                     >
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -512,22 +521,22 @@ export default function RecruitPage() {
                       <ul className={`text-sm py-3 ${city.areas.length > 6 ? "grid grid-cols-2 gap-x-3 gap-y-1" : "space-y-1"}`}>
                         {city.areas.map((area, areaIndex) => (
                           <li key={areaIndex} className="flex items-start gap-2">
-                            <span className="text-[var(--color-olive)] mt-0.5">●</span>
+                            <span style={{ color: pastel?.primary || "var(--color-olive)" }} className="mt-0.5">●</span>
                             <span className="text-ink-soft">{area}</span>
                           </li>
                         ))}
                       </ul>
-                      {areaData && (
+                      {areaData && pastel && (
                         <Link
                           href={`/areas/${areaData.slug}`}
                           className="group flex items-center justify-between p-3 rounded-lg transition-colors"
-                          style={{ backgroundColor: `${areaData.theme.primary}15` }}
+                          style={{ backgroundColor: `${pastel.primary}30` }}
                         >
                           <div className="flex items-center gap-3">
                             <div>
                               <span
                                 className="font-bold text-sm"
-                                style={{ color: areaData.theme.primary }}
+                                style={{ color: pastel.secondary }}
                               >
                                 {areaData.population.elderlyRate}
                               </span>
@@ -541,7 +550,7 @@ export default function RecruitPage() {
                           </div>
                           <div
                             className="flex items-center gap-1 text-sm font-bold group-hover:gap-2 transition-all"
-                            style={{ color: areaData.theme.primary }}
+                            style={{ color: pastel.secondary }}
                           >
                             <span>詳しく</span>
                             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -559,16 +568,19 @@ export default function RecruitPage() {
               .filter((r) => !serviceAreas.priority.cities.some((c) => c.name === r.name))
               .map((areaData, idx) => {
                 const index = serviceAreas.priority.cities.length + idx;
+                const pastel = pastelColors[areaData.name];
                 const isOpen = openAreaIndex === index;
                 return (
                   <div
                     key={areaData.slug}
-                    className="bg-[var(--color-paper)] rounded-2xl overflow-hidden"
+                    className="bg-white/60 rounded-2xl overflow-hidden"
                   >
-                    <div
-                      className="h-1"
-                      style={{ backgroundColor: areaData.theme.primary }}
-                    />
+                    {pastel && (
+                      <div
+                        className="h-1"
+                        style={{ backgroundColor: pastel.primary }}
+                      />
+                    )}
                     <button
                       type="button"
                       onClick={() => setOpenAreaIndex(isOpen ? null : index)}
@@ -577,20 +589,22 @@ export default function RecruitPage() {
                       <div className="flex items-center gap-3">
                         <h4
                           className="font-bold text-lg"
-                          style={{ color: areaData.theme.secondary }}
+                          style={{ color: pastel?.secondary || "var(--color-olive)" }}
                         >
                           {areaData.name}
                         </h4>
-                        <span
-                          className="inline-block px-2 py-0.5 rounded-full text-xs font-bold text-white"
-                          style={{ backgroundColor: areaData.theme.primary }}
-                        >
-                          {areaData.theme.tagline}
-                        </span>
+                        {pastel && (
+                          <span
+                            className="inline-block px-2 py-0.5 rounded-full text-xs font-bold"
+                            style={{ backgroundColor: pastel.primary, color: pastel.secondary }}
+                          >
+                            {areaData.theme.tagline}
+                          </span>
+                        )}
                       </div>
                       <span
                         className={`transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
-                        style={{ color: areaData.theme.primary }}
+                        style={{ color: pastel?.secondary || "var(--color-olive)" }}
                       >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -604,35 +618,37 @@ export default function RecruitPage() {
                         <p className="text-sm text-ink-soft py-3">
                           訪問可能エリアについてはお問い合わせください
                         </p>
-                        <Link
-                          href={`/areas/${areaData.slug}`}
-                          className="group flex items-center justify-between p-3 rounded-lg transition-colors"
-                          style={{ backgroundColor: `${areaData.theme.primary}15` }}
-                        >
-                          <div className="flex items-center gap-3">
-                            <div>
-                              <span
-                                className="font-bold text-sm"
-                                style={{ color: areaData.theme.primary }}
-                              >
-                                {areaData.population.elderlyRate}
-                              </span>
-                              <span className="text-xs text-ink-soft ml-1">高齢化率</span>
-                            </div>
-                            <div className="h-4 w-px bg-[var(--color-sand)]" />
-                            <div>
-                              <span className="text-xs text-ink-soft">人口</span>
-                              <span className="text-sm font-medium ml-1">{areaData.population.total}</span>
-                            </div>
-                          </div>
-                          <div
-                            className="flex items-center gap-1 text-sm font-bold group-hover:gap-2 transition-all"
-                            style={{ color: areaData.theme.primary }}
+                        {pastel && (
+                          <Link
+                            href={`/areas/${areaData.slug}`}
+                            className="group flex items-center justify-between p-3 rounded-lg transition-colors"
+                            style={{ backgroundColor: `${pastel.primary}30` }}
                           >
-                            <span>詳しく</span>
-                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                          </div>
-                        </Link>
+                            <div className="flex items-center gap-3">
+                              <div>
+                                <span
+                                  className="font-bold text-sm"
+                                  style={{ color: pastel.secondary }}
+                                >
+                                  {areaData.population.elderlyRate}
+                                </span>
+                                <span className="text-xs text-ink-soft ml-1">高齢化率</span>
+                              </div>
+                              <div className="h-4 w-px bg-[var(--color-sand)]" />
+                              <div>
+                                <span className="text-xs text-ink-soft">人口</span>
+                                <span className="text-sm font-medium ml-1">{areaData.population.total}</span>
+                              </div>
+                            </div>
+                            <div
+                              className="flex items-center gap-1 text-sm font-bold group-hover:gap-2 transition-all"
+                              style={{ color: pastel.secondary }}
+                            >
+                              <span>詳しく</span>
+                              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            </div>
+                          </Link>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -789,7 +805,7 @@ export default function RecruitPage() {
 
       </main>
 
-      <div className="fixed bottom-20 lg:bottom-6 right-4 lg:right-8 z-40">
+      <div className="fixed bottom-6 right-4 lg:right-8 z-40">
         <button
           type="button"
           onClick={openContact}
