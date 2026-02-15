@@ -11,7 +11,7 @@ import FAQ from "@/components/FAQ";
 import Company from "@/components/Company";
 import Footer from "@/components/Footer";
 import FloatingRecruitBanner from "@/components/FloatingRecruitBanner";
-import UpdatesPopup from "@/components/UpdatesPopup";
+// import UpdatesPopup from "@/components/UpdatesPopup"; // 一時的に無効化
 import ScrollToTop from "@/components/ScrollToTop";
 
 export default function Home() {
@@ -32,7 +32,7 @@ export default function Home() {
       </main>
       <Footer />
       <FloatingRecruitBanner />
-      <UpdatesPopup />
+      {/* <UpdatesPopup /> 一時的に無効化 */}
       <ScrollToTop />
     </>
   );
