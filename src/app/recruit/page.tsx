@@ -34,11 +34,6 @@ const teamProfiles = teamOrder
     role: roleOverrides[staff.name] ?? staff.role,
   }));
 
-const visibleJobs = jobPositions.filter((job) =>
-  ["nurse", "therapist"].includes(job.id)
-);
-
-// タブ設定
 const jobTabs = [
   { id: "nurse", label: "看護師", shortLabel: "看護師" },
   { id: "therapist", label: "理学療法士・作業療法士・言語聴覚士", shortLabel: "PT・OT・ST" },
@@ -50,7 +45,6 @@ const featureIcons = [
   "/images/recruit/icons/3.png",
 ];
 
-// 採用ページ用のパステルカラー
 const pastelColors: Record<string, { primary: string; secondary: string }> = {
   "船橋市": { primary: "#a8d5ba", secondary: "#5a8a6e" },
   "八千代市": { primary: "#f5c6a5", secondary: "#b87333" },
@@ -59,26 +53,64 @@ const pastelColors: Record<string, { primary: string; secondary: string }> = {
   "千葉市稲毛区": { primary: "#c9c8e4", secondary: "#6a6a9e" },
 };
 
-const FadeIn = ({
+interface AreaAccordionItem {
+  key: string;
+  name: string;
+  areas: string[] | null;
+  areaData: (typeof regionalData)[number] | undefined;
+  pastel: { primary: string; secondary: string } | undefined;
+}
+
+const areaItems: AreaAccordionItem[] = (() => {
+  const cityItems = serviceAreas.priority.cities.map((city) => ({
+    key: city.name,
+    name: city.name,
+    areas: city.areas,
+    areaData: regionalData.find((r) => r.name === city.name),
+    pastel: pastelColors[city.name],
+  }));
+
+  const extraItems = regionalData
+    .filter((r) => !serviceAreas.priority.cities.some((c) => c.name === r.name))
+    .map((r) => ({
+      key: r.slug,
+      name: r.name,
+      areas: null,
+      areaData: r,
+      pastel: pastelColors[r.name],
+    }));
+
+  return [...cityItems, ...extraItems];
+})();
+
+function ChevronDown({ className = "" }: { className?: string }) {
+  return (
+    <svg className={`w-5 h-5 ${className}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+    </svg>
+  );
+}
+
+function FadeIn({
   children,
   className = "",
 }: {
   children: ReactNode;
   className?: string;
-}) => {
+}) {
   const { ref, isVisible } = useScrollAnimation(0.15);
 
   return (
     <div
       ref={ref as React.RefObject<HTMLDivElement>}
       className={`transition-all duration-700 ease-out ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-0"
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       } ${className}`}
     >
       {children}
     </div>
   );
-};
+}
 
 export default function RecruitPage() {
   const [selectedJobId, setSelectedJobId] = useState<string>("nurse");
@@ -469,20 +501,13 @@ export default function RecruitPage() {
 
           {/* 訪問可能エリアアコーディオン */}
           <FadeIn className="space-y-3 mt-6">
-            {serviceAreas.priority.cities.map((city, index) => {
-              const areaData = regionalData.find((r) => r.name === city.name);
-              const pastel = pastelColors[city.name];
+            {areaItems.map((item, index) => {
               const isOpen = openAreaIndex === index;
+              const accentColor = item.pastel?.secondary ?? "var(--color-olive)";
               return (
-                <div
-                  key={index}
-                  className="bg-white/60 rounded-2xl overflow-hidden"
-                >
-                  {pastel && (
-                    <div
-                      className="h-1"
-                      style={{ backgroundColor: pastel.primary }}
-                    />
+                <div key={item.key} className="bg-white/60 rounded-2xl overflow-hidden">
+                  {item.pastel && (
+                    <div className="h-1" style={{ backgroundColor: item.pastel.primary }} />
                   )}
                   <button
                     type="button"
@@ -490,67 +515,63 @@ export default function RecruitPage() {
                     className="w-full p-4 flex items-center justify-between text-left"
                   >
                     <div className="flex items-center gap-3">
-                      <h4
-                        className="font-bold text-lg"
-                        style={{ color: pastel?.secondary || "var(--color-olive)" }}
-                      >
-                        {city.name}
+                      <h4 className="font-bold text-lg" style={{ color: accentColor }}>
+                        {item.name}
                       </h4>
-                      {areaData && pastel && (
+                      {item.areaData && item.pastel && (
                         <span
                           className="inline-block px-2 py-0.5 rounded-full text-xs font-bold"
-                          style={{ backgroundColor: pastel.primary, color: pastel.secondary }}
+                          style={{ backgroundColor: item.pastel.primary, color: item.pastel.secondary }}
                         >
-                          {areaData.theme.tagline}
+                          {item.areaData.theme.tagline}
                         </span>
                       )}
                     </div>
                     <span
                       className={`transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
-                      style={{ color: pastel?.secondary || "var(--color-olive)" }}
+                      style={{ color: accentColor }}
                     >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
+                      <ChevronDown />
                     </span>
                   </button>
-                  <div
-                    className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-96" : "max-h-0"}`}
-                  >
+                  <div className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-96" : "max-h-0"}`}>
                     <div className="px-4 pb-4 border-t border-[var(--color-sand)]">
-                      <ul className={`text-sm py-3 ${city.areas.length > 6 ? "grid grid-cols-2 gap-x-3 gap-y-1" : "space-y-1"}`}>
-                        {city.areas.map((area, areaIndex) => (
-                          <li key={areaIndex} className="flex items-start gap-2">
-                            <span style={{ color: pastel?.primary || "var(--color-olive)" }} className="mt-0.5">●</span>
-                            <span className="text-ink-soft">{area}</span>
-                          </li>
-                        ))}
-                      </ul>
-                      {areaData && pastel && (
+                      {item.areas ? (
+                        <ul className={`text-sm py-3 ${item.areas.length > 6 ? "grid grid-cols-2 gap-x-3 gap-y-1" : "space-y-1"}`}>
+                          {item.areas.map((area, areaIndex) => (
+                            <li key={areaIndex} className="flex items-start gap-2">
+                              <span style={{ color: item.pastel?.primary ?? "var(--color-olive)" }} className="mt-0.5">●</span>
+                              <span className="text-ink-soft">{area}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <p className="text-sm text-ink-soft py-3">
+                          訪問可能エリアについてはお問い合わせください
+                        </p>
+                      )}
+                      {item.areaData && item.pastel && (
                         <Link
-                          href={`/areas/${areaData.slug}`}
+                          href={`/areas/${item.areaData.slug}`}
                           className="group flex items-center justify-between p-3 rounded-lg transition-colors"
-                          style={{ backgroundColor: `${pastel.primary}30` }}
+                          style={{ backgroundColor: `${item.pastel.primary}30` }}
                         >
                           <div className="flex items-center gap-3">
                             <div>
-                              <span
-                                className="font-bold text-sm"
-                                style={{ color: pastel.secondary }}
-                              >
-                                {areaData.population.elderlyRate}
+                              <span className="font-bold text-sm" style={{ color: item.pastel.secondary }}>
+                                {item.areaData.population.elderlyRate}
                               </span>
                               <span className="text-xs text-ink-soft ml-1">高齢化率</span>
                             </div>
                             <div className="h-4 w-px bg-[var(--color-sand)]" />
                             <div>
                               <span className="text-xs text-ink-soft">人口</span>
-                              <span className="text-sm font-medium ml-1">{areaData.population.total}</span>
+                              <span className="text-sm font-medium ml-1">{item.areaData.population.total}</span>
                             </div>
                           </div>
                           <div
                             className="flex items-center gap-1 text-sm font-bold group-hover:gap-2 transition-all"
-                            style={{ color: pastel.secondary }}
+                            style={{ color: item.pastel.secondary }}
                           >
                             <span>詳しく</span>
                             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -562,98 +583,6 @@ export default function RecruitPage() {
                 </div>
               );
             })}
-
-            {/* 千葉市稲毛区（serviceAreasにないがregionalDataにある） */}
-            {regionalData
-              .filter((r) => !serviceAreas.priority.cities.some((c) => c.name === r.name))
-              .map((areaData, idx) => {
-                const index = serviceAreas.priority.cities.length + idx;
-                const pastel = pastelColors[areaData.name];
-                const isOpen = openAreaIndex === index;
-                return (
-                  <div
-                    key={areaData.slug}
-                    className="bg-white/60 rounded-2xl overflow-hidden"
-                  >
-                    {pastel && (
-                      <div
-                        className="h-1"
-                        style={{ backgroundColor: pastel.primary }}
-                      />
-                    )}
-                    <button
-                      type="button"
-                      onClick={() => setOpenAreaIndex(isOpen ? null : index)}
-                      className="w-full p-4 flex items-center justify-between text-left"
-                    >
-                      <div className="flex items-center gap-3">
-                        <h4
-                          className="font-bold text-lg"
-                          style={{ color: pastel?.secondary || "var(--color-olive)" }}
-                        >
-                          {areaData.name}
-                        </h4>
-                        {pastel && (
-                          <span
-                            className="inline-block px-2 py-0.5 rounded-full text-xs font-bold"
-                            style={{ backgroundColor: pastel.primary, color: pastel.secondary }}
-                          >
-                            {areaData.theme.tagline}
-                          </span>
-                        )}
-                      </div>
-                      <span
-                        className={`transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
-                        style={{ color: pastel?.secondary || "var(--color-olive)" }}
-                      >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </span>
-                    </button>
-                    <div
-                      className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-96" : "max-h-0"}`}
-                    >
-                      <div className="px-4 pb-4 border-t border-[var(--color-sand)]">
-                        <p className="text-sm text-ink-soft py-3">
-                          訪問可能エリアについてはお問い合わせください
-                        </p>
-                        {pastel && (
-                          <Link
-                            href={`/areas/${areaData.slug}`}
-                            className="group flex items-center justify-between p-3 rounded-lg transition-colors"
-                            style={{ backgroundColor: `${pastel.primary}30` }}
-                          >
-                            <div className="flex items-center gap-3">
-                              <div>
-                                <span
-                                  className="font-bold text-sm"
-                                  style={{ color: pastel.secondary }}
-                                >
-                                  {areaData.population.elderlyRate}
-                                </span>
-                                <span className="text-xs text-ink-soft ml-1">高齢化率</span>
-                              </div>
-                              <div className="h-4 w-px bg-[var(--color-sand)]" />
-                              <div>
-                                <span className="text-xs text-ink-soft">人口</span>
-                                <span className="text-sm font-medium ml-1">{areaData.population.total}</span>
-                              </div>
-                            </div>
-                            <div
-                              className="flex items-center gap-1 text-sm font-bold group-hover:gap-2 transition-all"
-                              style={{ color: pastel.secondary }}
-                            >
-                              <span>詳しく</span>
-                              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                            </div>
-                          </Link>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
           </FadeIn>
         </section>
 
@@ -669,7 +598,7 @@ export default function RecruitPage() {
           </FadeIn>
         </section>
 
-                <section id="positions" className="order-6 space-y-6">
+        <section id="positions" className="order-6 space-y-6">
           <FadeIn>
             <p className="text-xs tracking-[0.3em] text-ink-soft">POSITIONS</p>
             <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
@@ -731,7 +660,7 @@ export default function RecruitPage() {
           </FadeIn>
         </section>
 
-<section id="process" className="order-8 bg-[var(--color-paper)] rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
+        <section id="process" className="order-8 bg-[var(--color-paper)] rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
           <FadeIn>
             <p className="text-xs tracking-[0.3em] text-ink-soft">PROCESS</p>
             <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
@@ -781,9 +710,7 @@ export default function RecruitPage() {
                         openFAQIndex === index ? "rotate-180" : ""
                       }`}
                     >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
+                      <ChevronDown />
                     </span>
                   </button>
                   <div

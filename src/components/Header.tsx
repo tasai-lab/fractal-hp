@@ -26,11 +26,12 @@ export default function Header({ variant = "default" }: HeaderProps) {
     setIsMenuOpen(false);
   };
 
-  const bgClass = variant === "paper"
-    ? "bg-[var(--color-paper)] border-b border-[var(--color-sand)]"
-    : variant === "editorial"
-    ? "bg-[#f5f0e8]/90 backdrop-blur-md border-b border-[var(--color-sand)]"
-    : "bg-white shadow-md";
+  const bgClassMap: Record<NonNullable<HeaderProps["variant"]>, string> = {
+    default: "bg-white shadow-md",
+    paper: "bg-[var(--color-paper)] border-b border-[var(--color-sand)]",
+    editorial: "bg-[#f5f0e8]/90 backdrop-blur-md border-b border-[var(--color-sand)]",
+  };
+  const bgClass = bgClassMap[variant];
 
   return (
     <>
