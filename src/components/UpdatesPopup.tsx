@@ -34,17 +34,17 @@ export default function UpdatesPopup() {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* オーバーレイ */}
       <div
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/40"
         onClick={handleClose}
       />
 
       {/* モーダル */}
-      <div className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[80vh] overflow-hidden animate-fade-in-up">
+      <div className="relative bg-white rounded-2xl shadow-xl max-w-md w-full max-h-[80vh] overflow-hidden animate-fade-in-up border border-gray-200">
         {/* ヘッダー */}
-        <div className="bg-gradient-to-r from-[var(--color-logo-dark-green)] to-[var(--color-logo-light-green)] p-4 text-white">
+        <div className="bg-[var(--color-logo-dark-green)] p-4 text-white">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="relative w-10 h-10">
+              <div className="relative w-10 h-10 bg-white rounded-full p-1">
                 <Image
                   src="/images/recruit/johnny.png"
                   alt="ジョニー"
