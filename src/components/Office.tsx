@@ -143,7 +143,7 @@ export default function Office() {
                 return (
                   <div
                     key={index}
-                    className="bg-white rounded-2xl overflow-hidden shadow-sm"
+                    className="bg-white rounded-2xl overflow-hidden shadow-sm flex flex-col"
                   >
                     {/* カラーバー */}
                     {areaData && (
@@ -153,7 +153,7 @@ export default function Office() {
                       />
                     )}
 
-                    <div className="p-4 md:p-5">
+                    <div className="p-4 md:p-5 flex flex-col flex-1">
                       {/* 市名とタグライン */}
                       <div className="flex items-center justify-between mb-3 pb-2 border-b border-gray-200">
                         <h4
@@ -189,7 +189,7 @@ export default function Office() {
                       {areaData && (
                         <Link
                           href={`/areas/${areaData.slug}`}
-                          className="group flex items-center justify-between p-3 rounded-lg transition-colors"
+                          className="group flex items-center justify-between p-3 rounded-lg transition-colors mt-auto"
                           style={{ backgroundColor: `${areaData.theme.primary}15` }}
                         >
                           <div className="flex items-center gap-3">
@@ -228,13 +228,13 @@ export default function Office() {
                 .map((areaData) => (
                   <div
                     key={areaData.slug}
-                    className="bg-white rounded-2xl overflow-hidden shadow-sm"
+                    className="bg-white rounded-2xl overflow-hidden shadow-sm flex flex-col"
                   >
                     <div
                       className="h-2"
                       style={{ backgroundColor: areaData.theme.primary }}
                     />
-                    <div className="p-4 md:p-5">
+                    <div className="p-4 md:p-5 flex flex-col flex-1">
                       <div className="flex items-center justify-between mb-3 pb-2 border-b border-gray-200">
                         <h4
                           className="font-bold text-lg"
@@ -256,7 +256,7 @@ export default function Office() {
 
                       <Link
                         href={`/areas/${areaData.slug}`}
-                        className="group flex items-center justify-between p-3 rounded-lg transition-colors"
+                        className="group flex items-center justify-between p-3 rounded-lg transition-colors mt-auto"
                         style={{ backgroundColor: `${areaData.theme.primary}15` }}
                       >
                         <div className="flex items-center gap-3">
