@@ -12,6 +12,7 @@ import Company from "@/components/Company";
 import Footer from "@/components/Footer";
 import FloatingRecruitBanner from "@/components/FloatingRecruitBanner";
 import UpdatesPopup from "@/components/UpdatesPopup";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export default function Home() {
   return (
@@ -32,6 +33,7 @@ export default function Home() {
       <Footer />
       <FloatingRecruitBanner />
       <UpdatesPopup />
+      <ScrollToTop />
     </>
   );
 }
