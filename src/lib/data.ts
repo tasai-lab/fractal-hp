@@ -33,7 +33,7 @@ export const companyInfo = {
 
 // ナビゲーションリンク（デスクトップヘッダー用）
 export const navLinks = [
-  { href: "/fractal", label: "フラクタルを知る" },
+  { href: "/fractal", label: "フラクタルの意味" },
   { href: "/areas/funabashi", label: "対応エリア" },
   { href: "/for-care-managers", label: "ケアマネ様へ" },
   { href: "/recruit", label: "採用情報" },
@@ -42,7 +42,7 @@ export const navLinks = [
 
 // フッター用サイトマップリンク
 export const footerLinks = [
-  { href: "/fractal", label: "フラクタルを知る" },
+  { href: "/fractal", label: "フラクタルの意味" },
   { href: "/company", label: "株式会社フラクタル" },
   { href: "/#features", label: "サービスの特徴" },
   { href: "/#flow", label: "ご利用の流れ" },
@@ -55,7 +55,7 @@ export const footerLinks = [
 // モバイルメニュー項目（下部固定メニュー用）
 export const mobileMenuItems = [
   { href: "/", label: "ホーム", icon: "Home" },
-  { href: "/fractal", label: "フラクタルとは", icon: "Triangle" },
+  { href: "/fractal", label: "フラクタルの意味", icon: "Triangle" },
   { href: "/recruit", label: "採用", icon: "Users" },
   { href: "/#contact", label: "問合せ", icon: "Phone" },
 ];
@@ -81,7 +81,7 @@ export const otherMenuCategories = {
   company: {
     title: "会社情報",
     items: [
-      { href: "/fractal", label: "フラクタルを知る" },
+      { href: "/fractal", label: "フラクタルの意味" },
       { href: "/company", label: "株式会社フラクタル" },
     ],
   },

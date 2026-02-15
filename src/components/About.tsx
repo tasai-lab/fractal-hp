@@ -33,8 +33,7 @@ export default function About() {
             {/* メインコピー */}
             <div className="text-center">
               <h3
-                className="font-bold text-primary leading-relaxed"
-                style={{ fontSize: 'var(--font-size-fluid-2xl)' }}
+                className="font-bold text-primary leading-relaxed text-lg md:text-2xl lg:text-3xl"
               >
                 あなたの人生の、大切な「一部」になりたい。
               </h3>
