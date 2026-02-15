@@ -84,6 +84,7 @@ export const otherMenuCategories = {
     items: [
       { href: "/fractal", label: "フラクタルの意味" },
       { href: "/company", label: "株式会社フラクタル" },
+      { href: "/updates", label: "更新情報" },
     ],
   },
   external: {

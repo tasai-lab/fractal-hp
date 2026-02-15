@@ -12,6 +12,15 @@ export const metadata: Metadata = {
 // 更新情報データ
 const updates = [
   {
+    date: "2026-02-16",
+    items: [
+      { type: "new", title: "トップページに固定求人バナーを追加", link: "/" },
+      { type: "improve", title: "メニュー名称を「フラクタルの意味」に変更", link: "/fractal" },
+      { type: "improve", title: "代表ページの内容を更新", link: "/company/ceo" },
+      { type: "improve", title: "会社ページDAPAEセクションを改善", link: "/company" },
+    ],
+  },
+  {
     date: "2026-02-15",
     items: [
       { type: "new", title: "訪問エリア一覧ページを新設", link: "/areas" },
