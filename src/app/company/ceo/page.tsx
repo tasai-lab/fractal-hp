@@ -739,7 +739,7 @@ export default function CEOPage() {
                     items={ceoProfile.teamFit.slow}
                   />
                 </div>
-                <p className="text-sm text-[var(--color-ink-soft)] leading-relaxed bg-[var(--color-paper)] rounded-xl p-4">
+                <p className="text-sm text-[var(--color-ink-soft)] leading-relaxed border border-[var(--color-sand)] rounded-xl p-4">
                   {ceoProfile.teamFit.note}
                 </p>
               </div>
