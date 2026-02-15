@@ -12,7 +12,7 @@ const iconMap: { [key: string]: LucideIcon } = {
 };
 
 interface HeaderProps {
-  variant?: "default" | "paper";
+  variant?: "default" | "paper" | "editorial";
 }
 
 export default function Header({ variant = "default" }: HeaderProps) {
@@ -28,6 +28,8 @@ export default function Header({ variant = "default" }: HeaderProps) {
 
   const bgClass = variant === "paper"
     ? "bg-[var(--color-paper)] border-b border-[var(--color-sand)]"
+    : variant === "editorial"
+    ? "bg-[#f5f0e8]/90 backdrop-blur-md border-b border-[var(--color-sand)]"
     : "bg-white shadow-md";
 
   return (

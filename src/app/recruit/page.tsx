@@ -9,13 +9,13 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import {
   signOnBonus,
   jobPositions,
-  visitAreas,
   companyPhilosophy,
   applicationMessage,
 } from "@/lib/recruit-data";
 import { recruitFAQs } from "@/lib/faq-data";
-import { staffMembers } from "@/lib/data";
-import { recruitAreas } from "@/lib/recruit-areas";
+import { staffMembers, serviceAreas } from "@/lib/data";
+import { regionalData } from "@/lib/regional-data";
+import { ArrowRight } from "lucide-react";
 
 const roleOverrides: Record<string, string> = {
   "古谷 一真": "管理者",
@@ -153,7 +153,7 @@ export default function RecruitPage() {
 
   return (
     <div className="min-h-screen body-editorial">
-      <header className="bg-white/80 backdrop-blur-md border-b border-[var(--color-sand)] sticky top-14 lg:top-20 z-30">
+      <header className="bg-[#f5f0e8]/90 backdrop-blur-md border-b border-[var(--color-sand)] sticky top-14 lg:top-20 z-30">
         <div className="max-w-6xl mx-auto px-4 py-3 md:py-4 flex items-center justify-between">
           <Link
             href="/"
@@ -445,37 +445,158 @@ export default function RecruitPage() {
             </p>
           </FadeIn>
 
-          <div className="grid lg:grid-cols-[1fr,1fr] gap-8 mt-6 items-start">
-            {/* 地図 */}
-            <FadeIn className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[var(--color-paper)]">
+          {/* エリアマップ */}
+          <FadeIn className="mt-6">
+            <div className="relative w-full aspect-square md:aspect-[4/3] lg:aspect-[3/2]">
               <Image
                 src="/images/service-area/area-map-new.png"
                 alt="訪問エリアマップ"
                 fill
-                sizes="(max-width: 1024px) 100vw, 45vw"
+                sizes="100vw"
                 className="object-contain"
               />
-            </FadeIn>
+            </div>
+          </FadeIn>
 
-            {/* エリアカード */}
-            <FadeIn className="grid grid-cols-2 gap-3">
-              {recruitAreas.map((area) => (
-                <Link
-                  key={area.slug}
-                  href={`/areas/${area.slug}`}
-                  className="bg-[var(--color-paper)] rounded-2xl p-4 hover:shadow-md transition group"
+          {/* 訪問可能エリアカード */}
+          <FadeIn className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+            {serviceAreas.priority.cities.map((city, index) => {
+              const areaData = regionalData.find((r) => r.name === city.name);
+              return (
+                <div
+                  key={index}
+                  className="bg-[var(--color-paper)] rounded-2xl overflow-hidden"
                 >
-                  <p className="text-[var(--color-olive)] font-semibold group-hover:text-[var(--color-logo-dark-green)]">
-                    {area.name}
-                  </p>
-                  <p className="text-xs text-ink-soft mt-1 line-clamp-2">{area.shortCopy}</p>
-                  <p className="text-xs text-[var(--color-olive)] mt-2 group-hover:underline">
-                    詳しく見る →
-                  </p>
-                </Link>
+                  {areaData && (
+                    <div
+                      className="h-2"
+                      style={{ backgroundColor: areaData.theme.primary }}
+                    />
+                  )}
+                  <div className="p-4">
+                    <div className="flex items-center justify-between mb-3 pb-2 border-b border-[var(--color-sand)]">
+                      <h4
+                        className="font-bold text-lg"
+                        style={{ color: areaData?.theme.secondary || "var(--color-olive)" }}
+                      >
+                        {city.name}
+                      </h4>
+                      {areaData && (
+                        <span
+                          className="inline-block px-2 py-0.5 rounded-full text-xs font-bold text-white"
+                          style={{ backgroundColor: areaData.theme.primary }}
+                        >
+                          {areaData.theme.tagline}
+                        </span>
+                      )}
+                    </div>
+                    <ul className={`text-sm mb-3 ${city.areas.length > 6 ? "grid grid-cols-2 gap-x-3 gap-y-1" : "space-y-1"}`}>
+                      {city.areas.map((area, areaIndex) => (
+                        <li key={areaIndex} className="flex items-start gap-2">
+                          <span className="text-[var(--color-olive)] mt-0.5">●</span>
+                          <span className="text-ink-soft">{area}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    {areaData && (
+                      <Link
+                        href={`/areas/${areaData.slug}`}
+                        className="group flex items-center justify-between p-3 rounded-lg transition-colors"
+                        style={{ backgroundColor: `${areaData.theme.primary}15` }}
+                      >
+                        <div className="flex items-center gap-3">
+                          <div>
+                            <span
+                              className="font-bold text-sm"
+                              style={{ color: areaData.theme.primary }}
+                            >
+                              {areaData.population.elderlyRate}
+                            </span>
+                            <span className="text-xs text-ink-soft ml-1">高齢化率</span>
+                          </div>
+                          <div className="h-4 w-px bg-[var(--color-sand)]" />
+                          <div>
+                            <span className="text-xs text-ink-soft">人口</span>
+                            <span className="text-sm font-medium ml-1">{areaData.population.total}</span>
+                          </div>
+                        </div>
+                        <div
+                          className="flex items-center gap-1 text-sm font-bold group-hover:gap-2 transition-all"
+                          style={{ color: areaData.theme.primary }}
+                        >
+                          <span>詳しく</span>
+                          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        </div>
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+
+            {/* 千葉市稲毛区（serviceAreasにないがregionalDataにある） */}
+            {regionalData
+              .filter((r) => !serviceAreas.priority.cities.some((c) => c.name === r.name))
+              .map((areaData) => (
+                <div
+                  key={areaData.slug}
+                  className="bg-[var(--color-paper)] rounded-2xl overflow-hidden"
+                >
+                  <div
+                    className="h-2"
+                    style={{ backgroundColor: areaData.theme.primary }}
+                  />
+                  <div className="p-4">
+                    <div className="flex items-center justify-between mb-3 pb-2 border-b border-[var(--color-sand)]">
+                      <h4
+                        className="font-bold text-lg"
+                        style={{ color: areaData.theme.secondary }}
+                      >
+                        {areaData.name}
+                      </h4>
+                      <span
+                        className="inline-block px-2 py-0.5 rounded-full text-xs font-bold text-white"
+                        style={{ backgroundColor: areaData.theme.primary }}
+                      >
+                        {areaData.theme.tagline}
+                      </span>
+                    </div>
+                    <p className="text-sm text-ink-soft mb-3">
+                      訪問可能エリアについてはお問い合わせください
+                    </p>
+                    <Link
+                      href={`/areas/${areaData.slug}`}
+                      className="group flex items-center justify-between p-3 rounded-lg transition-colors"
+                      style={{ backgroundColor: `${areaData.theme.primary}15` }}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div>
+                          <span
+                            className="font-bold text-sm"
+                            style={{ color: areaData.theme.primary }}
+                          >
+                            {areaData.population.elderlyRate}
+                          </span>
+                          <span className="text-xs text-ink-soft ml-1">高齢化率</span>
+                        </div>
+                        <div className="h-4 w-px bg-[var(--color-sand)]" />
+                        <div>
+                          <span className="text-xs text-ink-soft">人口</span>
+                          <span className="text-sm font-medium ml-1">{areaData.population.total}</span>
+                        </div>
+                      </div>
+                      <div
+                        className="flex items-center gap-1 text-sm font-bold group-hover:gap-2 transition-all"
+                        style={{ color: areaData.theme.primary }}
+                      >
+                        <span>詳しく</span>
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </Link>
+                  </div>
+                </div>
               ))}
-            </FadeIn>
-          </div>
+          </FadeIn>
         </section>
 
         <section className="order-10 bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">

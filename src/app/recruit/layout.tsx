@@ -40,7 +40,7 @@ export default function RecruitLayout({
   return (
     <>
       <RecruitStructuredData />
-      <Header />
+      <Header variant="editorial" />
       {children}
       <Footer />
     </>
