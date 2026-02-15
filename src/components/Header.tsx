@@ -33,6 +33,15 @@ export default function Header({ variant = "default" }: HeaderProps) {
   };
   const bgClass = bgClassMap[variant];
 
+  const menuBgMap: Record<NonNullable<HeaderProps["variant"]>, string> = {
+    default: "bg-white",
+    paper: "bg-[var(--color-paper)]",
+    editorial: "bg-[#f5f0e8]",
+  };
+  const menuBg = menuBgMap[variant];
+
+  const isPastelVariant = variant === "paper" || variant === "editorial";
+
   return (
     <>
       {/* ヘッダー */}
@@ -84,7 +93,7 @@ export default function Header({ variant = "default" }: HeaderProps) {
         onClick={closeMenu}
       >
         <div
-          className={`bg-white shadow-lg p-4 max-h-[calc(100vh-3.5rem)] lg:max-h-[calc(100vh-5rem)] overflow-y-auto w-full transition-all duration-300 ${
+          className={`${menuBg} shadow-lg p-4 max-h-[calc(100vh-3.5rem)] lg:max-h-[calc(100vh-5rem)] overflow-y-auto w-full transition-all duration-300 ${
             isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
           }`}
           onClick={(e) => e.stopPropagation()}
@@ -103,7 +112,11 @@ export default function Header({ variant = "default" }: HeaderProps) {
                           key={item.href}
                           href={item.href}
                           onClick={closeMenu}
-                          className="flex items-center justify-start p-3 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors text-left"
+                          className={`flex items-center justify-start p-3 rounded-lg transition-colors text-left ${
+                            isPastelVariant
+                              ? "bg-[#e8f0eb] hover:bg-[#dce8e0]"
+                              : "bg-blue-50 hover:bg-blue-100"
+                          }`}
                         >
                           <span className="text-sm font-medium text-[var(--color-primary)]">{item.label}</span>
                         </Component>
@@ -121,7 +134,11 @@ export default function Header({ variant = "default" }: HeaderProps) {
                         key={item.href}
                         href={item.href}
                         onClick={closeMenu}
-                        className="flex items-center justify-start p-3 rounded-lg bg-amber-50 hover:bg-amber-100 transition-colors text-left"
+                        className={`flex items-center justify-start p-3 rounded-lg transition-colors text-left ${
+                          isPastelVariant
+                            ? "bg-[#f5ebe0] hover:bg-[#efe3d5]"
+                            : "bg-amber-50 hover:bg-amber-100"
+                        }`}
                       >
                         <span className="text-sm font-medium text-[var(--color-primary)]">{item.label}</span>
                       </Link>
@@ -138,7 +155,11 @@ export default function Header({ variant = "default" }: HeaderProps) {
                         key={item.href}
                         href={item.href}
                         onClick={closeMenu}
-                        className="flex items-center justify-start p-3 rounded-lg bg-emerald-50 hover:bg-emerald-100 transition-colors text-left"
+                        className={`flex items-center justify-start p-3 rounded-lg transition-colors text-left ${
+                          isPastelVariant
+                            ? "bg-[#e8ebe8] hover:bg-[#dce0dc]"
+                            : "bg-emerald-50 hover:bg-emerald-100"
+                        }`}
                       >
                         <span className="text-sm font-medium text-[var(--color-primary)]">{item.label}</span>
                       </Link>
@@ -159,7 +180,11 @@ export default function Header({ variant = "default" }: HeaderProps) {
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={closeMenu}
-                          className="flex items-center justify-start p-3 rounded-lg bg-pink-50 hover:bg-pink-100 transition-colors text-left"
+                          className={`flex items-center justify-start p-3 rounded-lg transition-colors text-left ${
+                            isPastelVariant
+                              ? "bg-[#f0e8eb] hover:bg-[#e8dce0]"
+                              : "bg-pink-50 hover:bg-pink-100"
+                          }`}
                         >
                           {Icon && <Icon className="w-5 h-5 mr-3 text-[var(--color-primary)]" />}
                           <span className="text-sm font-medium text-[var(--color-primary)]">{item.label}</span>

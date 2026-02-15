@@ -221,13 +221,13 @@ export default function RecruitPage() {
               <button
                 type="button"
                 onClick={openContact}
-                className="px-5 py-2.5 md:px-6 md:py-3 rounded-full bg-[var(--color-olive)] text-white text-sm md:text-base font-semibold hover:opacity-90 transition"
+                className="px-5 py-2.5 md:px-6 md:py-3 rounded-full bg-[var(--color-olive-pastel)] text-white text-sm md:text-base font-semibold hover:opacity-90 transition"
               >
                 応募する
               </button>
               <Link
                 href="#positions"
-                className="px-5 py-2.5 md:px-6 md:py-3 rounded-full border border-[var(--color-olive)] text-[var(--color-olive)] text-sm md:text-base font-semibold hover:bg-[var(--color-olive)]/10 transition"
+                className="px-5 py-2.5 md:px-6 md:py-3 rounded-full border border-[var(--color-olive-pastel)] text-[var(--color-olive)] text-sm md:text-base font-semibold hover:bg-[var(--color-olive-pastel)]/10 transition"
               >
                 募集職種を見る
               </Link>
@@ -236,7 +236,7 @@ export default function RecruitPage() {
               <span className="px-3 py-1 rounded-full bg-white/90 text-[var(--color-olive)] text-xs font-semibold">
                 祝金 最大30万円
               </span>
-              <span className="px-3 py-1 rounded-full bg-[var(--color-olive)] text-white text-xs font-semibold">
+              <span className="px-3 py-1 rounded-full bg-[var(--color-olive-pastel)] text-white text-xs font-semibold">
                 年休139日以上（PT・OT・STは120日以上）
               </span>
             </div>
@@ -262,7 +262,7 @@ export default function RecruitPage() {
                 <p className="heading-mincho text-lg text-[var(--color-olive)] mt-1">最大30万円</p>
                 <p className="text-xs text-ink-soft mt-1">全職種対象</p>
               </div>
-              <div className="min-w-[200px] md:min-w-0 snap-center bg-[var(--color-olive)] text-white rounded-2xl p-4 shadow-sm">
+              <div className="min-w-[200px] md:min-w-0 snap-center bg-[var(--color-olive-pastel)] text-white rounded-2xl p-4 shadow-sm">
                 <p className="text-xs">年間休日</p>
                 <p className="heading-mincho text-lg mt-1">139日以上</p>
                 <p className="text-xs mt-1">年休139日以上（PT・OT・STは120日以上）</p>
@@ -619,7 +619,7 @@ export default function RecruitPage() {
                   onClick={() => setSelectedJobId(tab.id)}
                   className={`flex-shrink-0 snap-center px-5 py-3 rounded-full font-semibold text-sm md:text-base transition-all ${
                     selectedJobId === tab.id
-                      ? "bg-[var(--color-olive)] text-white shadow-md"
+                      ? "bg-[var(--color-olive-pastel)] text-white shadow-md"
                       : "bg-white/80 text-[var(--color-olive)] border border-[var(--color-sand)] hover:bg-white"
                   }`}
                 >
@@ -640,7 +640,7 @@ export default function RecruitPage() {
                   <p className="heading-mincho text-lg text-[var(--color-olive)] mt-1">最大30万円</p>
                   <p className="text-xs text-ink-soft mt-1">全職種対象</p>
                 </div>
-                <div className="min-w-[200px] md:min-w-0 snap-center bg-[var(--color-olive)] text-white rounded-2xl p-4 shadow-sm">
+                <div className="min-w-[200px] md:min-w-0 snap-center bg-[var(--color-olive-pastel)] text-white rounded-2xl p-4 shadow-sm">
                   <p className="text-xs">年間休日</p>
                   <p className="heading-mincho text-lg mt-1">{holidayLabel}</p>
                   <p className="text-xs mt-1">{holidayNote}</p>
@@ -670,7 +670,7 @@ export default function RecruitPage() {
             <div className="space-y-6 mt-6">
               {currentJob.selectionProcess.map((step, index) => (
                 <div key={step.step} className="relative pl-8">
-                  <div className="absolute left-0 top-1 w-3 h-3 rounded-full bg-[var(--color-olive)]"></div>
+                  <div className="absolute left-0 top-1 w-3 h-3 rounded-full bg-[var(--color-olive-pastel)]"></div>
                   {index < currentJob.selectionProcess.length - 1 && (
                     <div className="absolute left-[5px] top-5 bottom-0 w-px bg-[var(--color-sand)]"></div>
                   )}
@@ -736,7 +736,7 @@ export default function RecruitPage() {
         <button
           type="button"
           onClick={openContact}
-          className="px-6 py-3 rounded-full bg-[var(--color-olive)] text-white font-semibold shadow-lg hover:opacity-90 transition"
+          className="px-6 py-3 rounded-full bg-[var(--color-olive-pastel)] text-white font-semibold shadow-lg hover:opacity-90 transition"
         >
           応募する
         </button>
@@ -840,7 +840,7 @@ export default function RecruitPage() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-3 rounded-full bg-[var(--color-olive)] text-white font-semibold hover:opacity-90 transition disabled:opacity-50"
+                    className="w-full py-3 rounded-full bg-[var(--color-olive-pastel)] text-white font-semibold hover:opacity-90 transition disabled:opacity-50"
                   >
                     {isSubmitting ? "送信中..." : "送信する"}
                   </button>
