@@ -27,13 +27,13 @@ export default function ScrollToTop() {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed right-4 bottom-20 md:bottom-8 z-40 w-12 h-12 bg-[var(--color-logo-dark-green)] text-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:opacity-90 ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
+      className={`fixed right-6 bottom-24 md:bottom-6 z-30 w-10 h-10 text-[var(--color-ink)] flex items-center justify-center transition-all duration-300 hover:text-[var(--color-logo-dark-green)] ${
+        isVisible ? "opacity-40 translate-y-0 hover:opacity-70" : "opacity-0 translate-y-4 pointer-events-none"
       }`}
       aria-label="トップへ戻る"
     >
       <svg
-        className="w-5 h-5"
+        className="w-6 h-6"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -42,7 +42,7 @@ export default function ScrollToTop() {
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth={2}
-          d="M5 10l7-7m0 0l7 7m-7-7v18"
+          d="M5 15l7-7 7 7"
         />
       </svg>
     </button>
