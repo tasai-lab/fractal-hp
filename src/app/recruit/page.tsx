@@ -91,6 +91,7 @@ export default function RecruitPage() {
     privacyAgreed: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [openAreaIndex, setOpenAreaIndex] = useState<number | null>(null);
 
   const isNurse = selectedJobId === "nurse";
   const holidayLabel = isNurse ? "139日以上" : "120日以上";
@@ -458,10 +459,11 @@ export default function RecruitPage() {
             </div>
           </FadeIn>
 
-          {/* 訪問可能エリアカード */}
-          <FadeIn className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+          {/* 訪問可能エリアアコーディオン */}
+          <FadeIn className="space-y-3 mt-6">
             {serviceAreas.priority.cities.map((city, index) => {
               const areaData = regionalData.find((r) => r.name === city.name);
+              const isOpen = openAreaIndex === index;
               return (
                 <div
                   key={index}
@@ -469,12 +471,16 @@ export default function RecruitPage() {
                 >
                   {areaData && (
                     <div
-                      className="h-2"
+                      className="h-1"
                       style={{ backgroundColor: areaData.theme.primary }}
                     />
                   )}
-                  <div className="p-4">
-                    <div className="flex items-center justify-between mb-3 pb-2 border-b border-[var(--color-sand)]">
+                  <button
+                    type="button"
+                    onClick={() => setOpenAreaIndex(isOpen ? null : index)}
+                    className="w-full p-4 flex items-center justify-between text-left"
+                  >
+                    <div className="flex items-center gap-3">
                       <h4
                         className="font-bold text-lg"
                         style={{ color: areaData?.theme.secondary || "var(--color-olive)" }}
@@ -490,45 +496,59 @@ export default function RecruitPage() {
                         </span>
                       )}
                     </div>
-                    <ul className={`text-sm mb-3 ${city.areas.length > 6 ? "grid grid-cols-2 gap-x-3 gap-y-1" : "space-y-1"}`}>
-                      {city.areas.map((area, areaIndex) => (
-                        <li key={areaIndex} className="flex items-start gap-2">
-                          <span className="text-[var(--color-olive)] mt-0.5">●</span>
-                          <span className="text-ink-soft">{area}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    {areaData && (
-                      <Link
-                        href={`/areas/${areaData.slug}`}
-                        className="group flex items-center justify-between p-3 rounded-lg transition-colors"
-                        style={{ backgroundColor: `${areaData.theme.primary}15` }}
-                      >
-                        <div className="flex items-center gap-3">
-                          <div>
-                            <span
-                              className="font-bold text-sm"
-                              style={{ color: areaData.theme.primary }}
-                            >
-                              {areaData.population.elderlyRate}
-                            </span>
-                            <span className="text-xs text-ink-soft ml-1">高齢化率</span>
-                          </div>
-                          <div className="h-4 w-px bg-[var(--color-sand)]" />
-                          <div>
-                            <span className="text-xs text-ink-soft">人口</span>
-                            <span className="text-sm font-medium ml-1">{areaData.population.total}</span>
-                          </div>
-                        </div>
-                        <div
-                          className="flex items-center gap-1 text-sm font-bold group-hover:gap-2 transition-all"
-                          style={{ color: areaData.theme.primary }}
+                    <span
+                      className={`transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                      style={{ color: areaData?.theme.primary || "var(--color-olive)" }}
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </span>
+                  </button>
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-96" : "max-h-0"}`}
+                  >
+                    <div className="px-4 pb-4 border-t border-[var(--color-sand)]">
+                      <ul className={`text-sm py-3 ${city.areas.length > 6 ? "grid grid-cols-2 gap-x-3 gap-y-1" : "space-y-1"}`}>
+                        {city.areas.map((area, areaIndex) => (
+                          <li key={areaIndex} className="flex items-start gap-2">
+                            <span className="text-[var(--color-olive)] mt-0.5">●</span>
+                            <span className="text-ink-soft">{area}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      {areaData && (
+                        <Link
+                          href={`/areas/${areaData.slug}`}
+                          className="group flex items-center justify-between p-3 rounded-lg transition-colors"
+                          style={{ backgroundColor: `${areaData.theme.primary}15` }}
                         >
-                          <span>詳しく</span>
-                          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                        </div>
-                      </Link>
-                    )}
+                          <div className="flex items-center gap-3">
+                            <div>
+                              <span
+                                className="font-bold text-sm"
+                                style={{ color: areaData.theme.primary }}
+                              >
+                                {areaData.population.elderlyRate}
+                              </span>
+                              <span className="text-xs text-ink-soft ml-1">高齢化率</span>
+                            </div>
+                            <div className="h-4 w-px bg-[var(--color-sand)]" />
+                            <div>
+                              <span className="text-xs text-ink-soft">人口</span>
+                              <span className="text-sm font-medium ml-1">{areaData.population.total}</span>
+                            </div>
+                          </div>
+                          <div
+                            className="flex items-center gap-1 text-sm font-bold group-hover:gap-2 transition-all"
+                            style={{ color: areaData.theme.primary }}
+                          >
+                            <span>詳しく</span>
+                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                          </div>
+                        </Link>
+                      )}
+                    </div>
                   </div>
                 </div>
               );
@@ -537,65 +557,87 @@ export default function RecruitPage() {
             {/* 千葉市稲毛区（serviceAreasにないがregionalDataにある） */}
             {regionalData
               .filter((r) => !serviceAreas.priority.cities.some((c) => c.name === r.name))
-              .map((areaData) => (
-                <div
-                  key={areaData.slug}
-                  className="bg-[var(--color-paper)] rounded-2xl overflow-hidden"
-                >
+              .map((areaData, idx) => {
+                const index = serviceAreas.priority.cities.length + idx;
+                const isOpen = openAreaIndex === index;
+                return (
                   <div
-                    className="h-2"
-                    style={{ backgroundColor: areaData.theme.primary }}
-                  />
-                  <div className="p-4">
-                    <div className="flex items-center justify-between mb-3 pb-2 border-b border-[var(--color-sand)]">
-                      <h4
-                        className="font-bold text-lg"
-                        style={{ color: areaData.theme.secondary }}
-                      >
-                        {areaData.name}
-                      </h4>
-                      <span
-                        className="inline-block px-2 py-0.5 rounded-full text-xs font-bold text-white"
-                        style={{ backgroundColor: areaData.theme.primary }}
-                      >
-                        {areaData.theme.tagline}
-                      </span>
-                    </div>
-                    <p className="text-sm text-ink-soft mb-3">
-                      訪問可能エリアについてはお問い合わせください
-                    </p>
-                    <Link
-                      href={`/areas/${areaData.slug}`}
-                      className="group flex items-center justify-between p-3 rounded-lg transition-colors"
-                      style={{ backgroundColor: `${areaData.theme.primary}15` }}
+                    key={areaData.slug}
+                    className="bg-[var(--color-paper)] rounded-2xl overflow-hidden"
+                  >
+                    <div
+                      className="h-1"
+                      style={{ backgroundColor: areaData.theme.primary }}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setOpenAreaIndex(isOpen ? null : index)}
+                      className="w-full p-4 flex items-center justify-between text-left"
                     >
                       <div className="flex items-center gap-3">
-                        <div>
-                          <span
-                            className="font-bold text-sm"
-                            style={{ color: areaData.theme.primary }}
-                          >
-                            {areaData.population.elderlyRate}
-                          </span>
-                          <span className="text-xs text-ink-soft ml-1">高齢化率</span>
-                        </div>
-                        <div className="h-4 w-px bg-[var(--color-sand)]" />
-                        <div>
-                          <span className="text-xs text-ink-soft">人口</span>
-                          <span className="text-sm font-medium ml-1">{areaData.population.total}</span>
-                        </div>
+                        <h4
+                          className="font-bold text-lg"
+                          style={{ color: areaData.theme.secondary }}
+                        >
+                          {areaData.name}
+                        </h4>
+                        <span
+                          className="inline-block px-2 py-0.5 rounded-full text-xs font-bold text-white"
+                          style={{ backgroundColor: areaData.theme.primary }}
+                        >
+                          {areaData.theme.tagline}
+                        </span>
                       </div>
-                      <div
-                        className="flex items-center gap-1 text-sm font-bold group-hover:gap-2 transition-all"
+                      <span
+                        className={`transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
                         style={{ color: areaData.theme.primary }}
                       >
-                        <span>詳しく</span>
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </span>
+                    </button>
+                    <div
+                      className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-96" : "max-h-0"}`}
+                    >
+                      <div className="px-4 pb-4 border-t border-[var(--color-sand)]">
+                        <p className="text-sm text-ink-soft py-3">
+                          訪問可能エリアについてはお問い合わせください
+                        </p>
+                        <Link
+                          href={`/areas/${areaData.slug}`}
+                          className="group flex items-center justify-between p-3 rounded-lg transition-colors"
+                          style={{ backgroundColor: `${areaData.theme.primary}15` }}
+                        >
+                          <div className="flex items-center gap-3">
+                            <div>
+                              <span
+                                className="font-bold text-sm"
+                                style={{ color: areaData.theme.primary }}
+                              >
+                                {areaData.population.elderlyRate}
+                              </span>
+                              <span className="text-xs text-ink-soft ml-1">高齢化率</span>
+                            </div>
+                            <div className="h-4 w-px bg-[var(--color-sand)]" />
+                            <div>
+                              <span className="text-xs text-ink-soft">人口</span>
+                              <span className="text-sm font-medium ml-1">{areaData.population.total}</span>
+                            </div>
+                          </div>
+                          <div
+                            className="flex items-center gap-1 text-sm font-bold group-hover:gap-2 transition-all"
+                            style={{ color: areaData.theme.primary }}
+                          >
+                            <span>詳しく</span>
+                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                          </div>
+                        </Link>
                       </div>
-                    </Link>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
           </FadeIn>
         </section>
 
