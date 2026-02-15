@@ -180,7 +180,7 @@ function Divider() {
 
 export default function CompanyPage() {
   return (
-    <div className="min-h-screen bg-[var(--color-paper)]">
+    <div className="min-h-screen body-paper">
       {/* ヘッダー */}
       <header className="bg-[var(--color-paper)] border-b border-[var(--color-sand)] sticky top-14 lg:top-20 z-30">
         <div className="max-w-3xl mx-auto px-5 md:px-8 py-3 md:py-4 flex items-center justify-between">

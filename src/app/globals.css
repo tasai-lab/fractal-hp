@@ -111,6 +111,22 @@ body {
   color: var(--color-ink-warm-soft);
 }
 
+.body-paper {
+  background: var(--color-paper);
+  color: var(--color-ink-warm);
+}
+
+.body-paper .text-ink-soft,
+.body-editorial .text-ink-soft {
+  color: var(--color-ink-warm-soft);
+}
+
+/* 温かみのあるインク色（paper/editorial用） */
+.body-paper [class*="text-[var(--color-ink)]"],
+.body-editorial [class*="text-[var(--color-ink)]"] {
+  color: var(--color-ink-warm) !important;
+}
+
 .heading-mincho {
   font-family: var(--font-mincho), serif;
 }
