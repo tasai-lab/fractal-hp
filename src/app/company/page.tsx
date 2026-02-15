@@ -260,9 +260,8 @@ export default function CompanyPage() {
         <Section id="dapae">
           <FadeIn>
             <SectionTitle>DAPAE | ダパエ</SectionTitle>
+            <p className="text-sm text-[var(--color-ink-soft)] mb-4">フラクタル独自のフレームワーク</p>
             <p className="text-[var(--color-ink-soft)] mb-10 leading-relaxed">
-              フラクタル独自のフレームワーク、それがDAPAE。
-              <br />
               データを分析して情報に変え、計画を立て、柔軟に実行し、評価する。
               <br />
               その評価がまた新たなデータとなり、サイクルは回り続けます。
