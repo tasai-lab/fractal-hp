@@ -3,7 +3,6 @@
 import { useEffect, useState, type ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Contact from "@/components/Contact";
 import { CountUp } from "@/components/CountUp";
 import { JobDetails } from "@/components/recruit/JobDetails";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
@@ -79,6 +78,19 @@ export default function RecruitPage() {
   const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
   const [selectedTeam, setSelectedTeam] = useState<(typeof teamProfiles)[number] | null>(null);
   const [isContactOpen, setIsContactOpen] = useState(false);
+  const [contactForm, setContactForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+    privacyAgreed: false,
+  });
+  const [contactErrors, setContactErrors] = useState({
+    name: "",
+    email: "",
+    message: "",
+    privacyAgreed: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const isNurse = selectedJobId === "nurse";
   const holidayLabel = isNurse ? "139日以上" : "120日以上";
@@ -104,9 +116,44 @@ export default function RecruitPage() {
     setIsContactOpen(true);
   };
 
+  const validateContactForm = () => {
+    const newErrors = { name: "", email: "", message: "", privacyAgreed: "" };
+    if (!contactForm.name.trim()) newErrors.name = "氏名を入力してください";
+    if (!contactForm.email.trim()) {
+      newErrors.email = "メールアドレスを入力してください";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactForm.email)) {
+      newErrors.email = "有効なメールアドレスを入力してください";
+    }
+    if (!contactForm.message.trim()) newErrors.message = "メッセージを入力してください";
+    if (!contactForm.privacyAgreed) newErrors.privacyAgreed = "プライバシーポリシーに同意してください";
+    setContactErrors(newErrors);
+    return !Object.values(newErrors).some((e) => e);
+  };
+
+  const handleContactSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!validateContactForm() || isSubmitting) return;
+    setIsSubmitting(true);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...contactForm, contactType: "求人・採用について" }),
+      });
+      if (!response.ok) throw new Error("送信に失敗しました");
+      alert("お問い合わせを送信しました。");
+      setContactForm({ name: "", email: "", message: "", privacyAgreed: false });
+      setIsContactOpen(false);
+    } catch {
+      alert("送信に失敗しました。もう一度お試しください。");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="min-h-screen body-editorial">
-      <header className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-40">
+      <header className="bg-white/80 backdrop-blur-md border-b border-[var(--color-sand)] sticky top-14 lg:top-20 z-30">
         <div className="max-w-6xl mx-auto px-4 py-3 md:py-4 flex items-center justify-between">
           <Link
             href="/"
@@ -114,9 +161,7 @@ export default function RecruitPage() {
           >
             ← 戻る
           </Link>
-          <h1 className="text-lg md:text-2xl font-bold text-primary heading-mincho">
-            採用情報
-          </h1>
+          <span className="text-xs tracking-[0.2em] text-[var(--color-ink-soft)]">RECRUIT</span>
         </div>
       </header>
 
@@ -389,52 +434,48 @@ export default function RecruitPage() {
           </div>
         </section>
 
-        <section className="order-9 grid lg:grid-cols-[1.1fr,0.9fr] gap-10 items-center">
-          <FadeIn className="space-y-4">
+        <section className="order-9 bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
+          <FadeIn>
             <p className="text-xs tracking-[0.3em] text-ink-soft">SERVICE AREA</p>
-            <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)]">
+            <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
               訪問エリア
             </h3>
-            <p className="text-ink-soft">
+            <p className="text-ink-soft mt-2">
               船橋市・八千代市・習志野市・千葉市花見川区を中心に訪問しています。
             </p>
-            <div className="flex flex-wrap gap-2">
-              {visitAreas.map((area) => (
-                <span
-                  key={area}
-                  className="px-3 py-1 rounded-full bg-[var(--color-paper)] text-sm text-[var(--color-olive)]"
-                >
-                  {area}
-                </span>
-              ))}
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 mt-4">
+          </FadeIn>
+
+          <div className="grid lg:grid-cols-[1fr,1fr] gap-8 mt-6 items-start">
+            {/* 地図 */}
+            <FadeIn className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[var(--color-paper)]">
+              <Image
+                src="/images/service-area/area-map-new.png"
+                alt="訪問エリアマップ"
+                fill
+                sizes="(max-width: 1024px) 100vw, 45vw"
+                className="object-contain"
+              />
+            </FadeIn>
+
+            {/* エリアカード */}
+            <FadeIn className="grid grid-cols-2 gap-3">
               {recruitAreas.map((area) => (
                 <Link
                   key={area.slug}
                   href={`/areas/${area.slug}`}
-                  className="bg-white/80 rounded-2xl border border-white px-4 py-3 text-sm hover:shadow-md transition group"
+                  className="bg-[var(--color-paper)] rounded-2xl p-4 hover:shadow-md transition group"
                 >
                   <p className="text-[var(--color-olive)] font-semibold group-hover:text-[var(--color-logo-dark-green)]">
-                    {area.name}の地域情報
+                    {area.name}
                   </p>
-                  <p className="text-xs text-ink-soft mt-1">{area.shortCopy}</p>
+                  <p className="text-xs text-ink-soft mt-1 line-clamp-2">{area.shortCopy}</p>
                   <p className="text-xs text-[var(--color-olive)] mt-2 group-hover:underline">
                     詳しく見る →
                   </p>
                 </Link>
               ))}
-            </div>
-          </FadeIn>
-          <FadeIn className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg bg-white">
-            <Image
-              src="/images/service-area/area-map.webp"
-              alt="訪問エリアマップ"
-              fill
-              sizes="(max-width: 1024px) 100vw, 45vw"
-              className="object-contain"
-            />
-          </FadeIn>
+            </FadeIn>
+          </div>
         </section>
 
         <section className="order-10 bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
@@ -617,10 +658,10 @@ export default function RecruitPage() {
                 <div>
                   <p className="text-xs tracking-[0.3em] text-ink-soft">CONTACT</p>
                   <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
-                    お問い合わせ
+                    応募・お問い合わせ
                   </h3>
                 </div>
-                <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg bg-white">
+                <div className="relative aspect-[16/9] rounded-2xl overflow-hidden bg-white">
                   <Image
                     src="/images/recruit/labels/contact-photo.webp"
                     alt="募集お問い合わせ"
@@ -633,9 +674,71 @@ export default function RecruitPage() {
                   <p className="leading-relaxed">{applicationMessage.main}</p>
                   <p className="text-sm mt-2">{applicationMessage.visit}</p>
                 </div>
-                <div className="bg-white/80 rounded-2xl border border-white p-4">
-                  <Contact initialContactType="求人・採用について" embedded={true} hideTitle={true} />
-                </div>
+                <form onSubmit={handleContactSubmit} className="space-y-4">
+                  <div>
+                    <label htmlFor="contact-name" className="block text-sm font-medium text-[var(--color-olive)] mb-1">
+                      氏名 <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="contact-name"
+                      value={contactForm.name}
+                      onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
+                      className="w-full px-4 py-3 bg-white border border-[var(--color-sand)] rounded-2xl focus:outline-none focus:ring-2 focus:ring-[var(--color-olive)]/30"
+                      placeholder="山田 太郎"
+                    />
+                    {contactErrors.name && <p className="text-red-500 text-sm mt-1">{contactErrors.name}</p>}
+                  </div>
+                  <div>
+                    <label htmlFor="contact-email" className="block text-sm font-medium text-[var(--color-olive)] mb-1">
+                      メールアドレス <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      id="contact-email"
+                      value={contactForm.email}
+                      onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
+                      className="w-full px-4 py-3 bg-white border border-[var(--color-sand)] rounded-2xl focus:outline-none focus:ring-2 focus:ring-[var(--color-olive)]/30"
+                      placeholder="example@example.com"
+                    />
+                    {contactErrors.email && <p className="text-red-500 text-sm mt-1">{contactErrors.email}</p>}
+                  </div>
+                  <div>
+                    <label htmlFor="contact-message" className="block text-sm font-medium text-[var(--color-olive)] mb-1">
+                      メッセージ <span className="text-red-500">*</span>
+                    </label>
+                    <textarea
+                      id="contact-message"
+                      value={contactForm.message}
+                      onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
+                      rows={4}
+                      className="w-full px-4 py-3 bg-white border border-[var(--color-sand)] rounded-2xl focus:outline-none focus:ring-2 focus:ring-[var(--color-olive)]/30 resize-none"
+                      placeholder="ご質問やご希望をお聞かせください"
+                    />
+                    {contactErrors.message && <p className="text-red-500 text-sm mt-1">{contactErrors.message}</p>}
+                  </div>
+                  <div>
+                    <label className="flex items-start gap-3 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={contactForm.privacyAgreed}
+                        onChange={(e) => setContactForm({ ...contactForm, privacyAgreed: e.target.checked })}
+                        className="mt-1 w-5 h-5 rounded border-[var(--color-sand)] text-[var(--color-olive)] focus:ring-[var(--color-olive)]/30"
+                      />
+                      <span className="text-sm text-ink-soft">
+                        プライバシーポリシーに同意します <span className="text-red-500">*</span>
+                      </span>
+                    </label>
+                    {contactErrors.privacyAgreed && <p className="text-red-500 text-sm mt-1">{contactErrors.privacyAgreed}</p>}
+                  </div>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full py-3 rounded-full bg-[var(--color-olive)] text-white font-semibold hover:opacity-90 transition disabled:opacity-50"
+                  >
+                    {isSubmitting ? "送信中..." : "送信する"}
+                  </button>
+                </form>
               </div>
             </div>
           </div>
