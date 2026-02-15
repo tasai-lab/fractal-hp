@@ -27,7 +27,7 @@ export default function ScrollToTop() {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed right-6 bottom-24 md:bottom-6 z-30 w-10 h-10 text-[var(--color-ink)] flex items-center justify-center transition-all duration-300 hover:text-[var(--color-logo-dark-green)] ${
+      className={`fixed right-6 bottom-20 md:bottom-4 z-30 w-10 h-10 text-[var(--color-ink)] flex items-center justify-center transition-all duration-300 hover:text-[var(--color-logo-dark-green)] ${
         isVisible ? "opacity-40 translate-y-0 hover:opacity-70" : "opacity-0 translate-y-4 pointer-events-none"
       }`}
       aria-label="トップへ戻る"
