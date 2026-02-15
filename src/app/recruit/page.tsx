@@ -327,9 +327,7 @@ export default function RecruitPage() {
                 const Icon = featureIconMap[index % featureIconMap.length];
                 return (
                   <li key={feature.title} className="flex items-start gap-3">
-                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-[var(--color-olive-pastel)]/20">
-                      <Icon className="w-4 h-4 text-[var(--color-olive)]" />
-                    </div>
+                    <Icon className="w-5 h-5 text-[var(--color-olive)] mt-0.5 flex-shrink-0" />
                     <span>
                       <span className="font-semibold text-[var(--color-olive)]">
                         {feature.title}
