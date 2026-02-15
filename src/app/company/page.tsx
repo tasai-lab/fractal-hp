@@ -260,7 +260,7 @@ export default function CompanyPage() {
         <Section id="dapae">
           <FadeIn>
             <SectionTitle>DAPAE | ダパエ</SectionTitle>
-            <p className="text-sm text-[var(--color-ink-soft)] -mt-4 mb-6">フラクタル独自のフレームワーク</p>
+            <p className="text-sm text-[var(--color-ink-soft)] -mt-4 mb-6">- フラクタル独自のフレームワーク -</p>
             <p className="text-[var(--color-ink-soft)] mb-10 leading-relaxed">
               データを分析して情報に変え、計画を立て、柔軟に実行し、評価する。
               <br />
