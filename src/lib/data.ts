@@ -35,6 +35,7 @@ export const companyInfo = {
 export const navLinks = [
   { href: "/fractal", label: "フラクタルの意味" },
   { href: "/areas/funabashi", label: "対応エリア" },
+  { href: "/pricing", label: "ご利用料金" },
   { href: "/for-care-managers", label: "ケアマネ様へ" },
   { href: "/recruit", label: "採用情報" },
   { href: "/#contact", label: "お問い合わせ" },
