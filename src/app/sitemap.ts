@@ -43,6 +43,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
 
+    // === 料金・エリア一覧ページ ===
+    {
+      url: `${baseUrl}/pricing`,
+      lastModified,
+      changeFrequency: weekly,
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/areas`,
+      lastModified,
+      changeFrequency: weekly,
+      priority: 0.8,
+    },
+
     // === 採用ページ群（求人SEO重要）===
     // /recruit/nurse と /recruit/therapist は /recruit に統合済み（301リダイレクト設定）
     {

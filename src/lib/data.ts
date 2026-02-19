@@ -46,6 +46,7 @@ export const footerLinks = [
   { href: "/company", label: "株式会社フラクタル" },
   { href: "/#features", label: "サービスの特徴" },
   { href: "/#flow", label: "ご利用の流れ" },
+  { href: "/pricing", label: "ご利用料金" },
   { href: "/for-care-managers", label: "ケアマネ様へ" },
   { href: "/for-medical-institutions", label: "医療機関様へ" },
   { href: "/recruit", label: "採用情報" },
@@ -68,6 +69,7 @@ export const otherMenuCategories = {
     items: [
       { href: "/#contact", label: "お問い合わせ" },
       { href: "/areas", label: "対応エリア" },
+      { href: "/pricing", label: "ご利用料金" },
       { href: "/for-care-managers", label: "ケアマネ様へ" },
       { href: "/for-medical-institutions", label: "医療機関様へ" },
     ],
