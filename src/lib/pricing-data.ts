@@ -20,36 +20,40 @@ export const pricingFAQs: FAQItem[] = [
   },
 ];
 
-// 介護保険の料金表データ
+// 介護保険の料金表データ（令和6年6月改定）
+// 船橋市は4級地：1単位＝10.84円（訪問看護・人件費割合70%）
 export const nursingCareInsurance = {
   title: "介護保険ご利用の場合",
   description: "要支援・要介護認定を受けている方（主に65歳以上）",
   notes: [
-    "1割負担の場合の目安です。所得に応じて2割〜3割負担となる場合があります。",
+    "令和6年6月改定の単位数に基づく目安です。",
+    "船橋市は4級地（1単位＝10.84円）で算出しています。",
     "加算（緊急時訪問看護加算、特別管理加算等）が別途かかる場合があります。",
   ],
   items: [
-    { service: "訪問看護（看護師）", duration: "20分未満", price: "約313円" },
-    { service: "訪問看護（看護師）", duration: "30分未満", price: "約470円" },
-    { service: "訪問看護（看護師）", duration: "30分〜1時間", price: "約821円" },
-    { service: "訪問看護（看護師）", duration: "1時間〜1時間30分", price: "約1,125円" },
-    { service: "訪問リハビリ（PT・OT・ST）", duration: "1回20分", price: "約293円" },
+    { service: "訪問看護Ⅰ1（看護師等）", duration: "20分未満", units: "314単位", price1: "約340円", price2: "約681円", price3: "約1,021円" },
+    { service: "訪問看護Ⅰ2（看護師等）", duration: "30分未満", units: "471単位", price1: "約511円", price2: "約1,021円", price3: "約1,532円" },
+    { service: "訪問看護Ⅰ3（看護師等）", duration: "30分以上1時間未満", units: "823単位", price1: "約892円", price2: "約1,784円", price3: "約2,676円" },
+    { service: "訪問看護Ⅰ4（看護師等）", duration: "1時間以上1時間30分未満", units: "1,128単位", price1: "約1,223円", price2: "約2,446円", price3: "約3,668円" },
+    { service: "訪問看護Ⅰ5（理学療法士等）", duration: "1回20分", units: "294単位", price1: "約319円", price2: "約637円", price3: "約956円" },
+    { service: "訪問看護Ⅰ5・2超（理学療法士等）", duration: "1日3回目以降", units: "265単位", price1: "約287円", price2: "約575円", price3: "約862円" },
   ],
 };
 
-// 医療保険の料金表データ
+// 医療保険の料金表データ（令和6年6月改定）
 export const medicalInsurance = {
   title: "医療保険ご利用の場合",
   description: "40歳未満の方、がん末期・難病等の方、精神科訪問看護",
   notes: [
-    "1割負担の場合の目安です。年齢・所得に応じて自己負担割合が異なります。",
-    "週3回まで（厚生労働大臣が定める疾病等の方は週4回以上可能）。",
+    "令和6年6月改定の金額に基づく目安です。年齢・所得に応じて自己負担割合が異なります。",
+    "原則週3回まで（厚生労働大臣が定める疾病等の方は週4回以上可能）。",
   ],
   items: [
-    { service: "訪問看護基本療養費（I）", duration: "週3日目まで", price: "約555円" },
-    { service: "訪問看護基本療養費（I）", duration: "週4日目以降", price: "約655円" },
-    { service: "精神科訪問看護基本療養費", duration: "30分以上", price: "約580円" },
-    { service: "訪問看護管理療養費", duration: "月初日", price: "約750円" },
-    { service: "訪問看護管理療養費", duration: "2日目以降", price: "約300円" },
+    { service: "訪問看護基本療養費（Ⅰ）イ", duration: "週3日目まで", basePrice: "5,550円", price1: "555円", price2: "1,110円", price3: "1,665円" },
+    { service: "訪問看護基本療養費（Ⅰ）イ", duration: "週4日目以降", basePrice: "6,550円", price1: "655円", price2: "1,310円", price3: "1,965円" },
+    { service: "精神科訪問看護基本療養費（Ⅰ）30分以上", duration: "週3日目まで", basePrice: "5,550円", price1: "555円", price2: "1,110円", price3: "1,665円" },
+    { service: "精神科訪問看護基本療養費（Ⅰ）30分未満", duration: "週3日目まで", basePrice: "4,250円", price1: "425円", price2: "850円", price3: "1,275円" },
+    { service: "訪問看護管理療養費", duration: "月の初日", basePrice: "7,670円", price1: "767円", price2: "1,534円", price3: "2,301円" },
+    { service: "訪問看護管理療養費", duration: "月の2日目以降", basePrice: "3,000円", price1: "300円", price2: "600円", price3: "900円" },
   ],
 };

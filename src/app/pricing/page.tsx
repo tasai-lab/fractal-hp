@@ -39,73 +39,63 @@ export default function PricingPage() {
       <Header />
       <main className="pt-14 lg:pt-20 bg-white">
         {/* Hero Section */}
-        <div className="px-4 md:px-8 py-6 md:py-10">
-          <section className="relative min-h-[45vh] md:min-h-[55vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#a8d5ba] to-[#d4edda] rounded-3xl md:rounded-[3rem] shadow-lg">
-            {/* 背景装飾 */}
-            <div className="absolute inset-0 opacity-10">
-              <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                <polygon points="0,0 100,0 100,100" fill="white" />
-                <polygon points="0,100 50,0 100,100" fill="white" opacity="0.5" />
-              </svg>
-            </div>
-
-            <div className="relative z-10 max-w-6xl mx-auto px-4 py-16 md:py-24 text-center text-[var(--color-logo-dark-green)]">
-              <span
-                className="inline-block px-4 py-2 rounded-full text-sm font-medium tracking-wider mb-6 bg-white/60 text-[var(--color-logo-dark-green)]"
-              >
+        <section className="max-w-6xl mx-auto px-4 py-8 md:py-12">
+          <div className="relative flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#a8d5ba] to-[#d4edda] rounded-2xl md:rounded-3xl shadow-sm">
+            <div className="relative z-10 w-full px-6 py-10 md:py-14 text-center text-[var(--color-logo-dark-green)]">
+              <span className="inline-block px-3 py-1 rounded-full text-xs font-medium tracking-wider mb-4 bg-white/60 text-[var(--color-logo-dark-green)]">
                 PRICING
               </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 heading-gothic">
+              <h1 className="text-2xl md:text-3xl font-bold mb-3 heading-gothic">
                 ご利用料金
               </h1>
-              <p className="text-xl md:text-2xl mb-8 text-[var(--color-ink-soft)]">
+              <p className="text-sm md:text-base mb-6 text-[var(--color-ink-soft)]">
                 訪問看護の費用と保険適用について
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <a
                   href="tel:047-770-1228"
-                  className="inline-flex items-center justify-center px-8 py-4 bg-white text-[var(--color-logo-dark-green)] rounded-full font-bold text-lg hover:bg-[var(--color-logo-yellow)] transition-colors shadow-lg"
+                  className="inline-flex items-center justify-center px-6 py-3 bg-white text-[var(--color-logo-dark-green)] rounded-full font-bold text-sm hover:bg-[var(--color-logo-yellow)] transition-colors shadow-sm"
                 >
-                  <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                   047-770-1228
                 </a>
                 <a
                   href="#contact"
-                  className="inline-flex items-center justify-center px-8 py-4 border-2 border-[var(--color-logo-dark-green)] text-[var(--color-logo-dark-green)] rounded-full font-bold text-lg hover:bg-[var(--color-logo-dark-green)]/10 transition-all"
+                  className="inline-flex items-center justify-center px-6 py-3 border-2 border-[var(--color-logo-dark-green)] text-[var(--color-logo-dark-green)] rounded-full font-bold text-sm hover:bg-[var(--color-logo-dark-green)]/10 transition-all"
                 >
                   料金のご相談
                 </a>
               </div>
             </div>
-          </section>
-        </div>
+          </div>
+        </section>
 
         {/* 訪問看護の費用について */}
-        <section className="section-wrapper relative overflow-hidden">
+        <section className="relative overflow-hidden py-8 md:py-12">
           <BackgroundTriangles pattern="about" />
           <div className="max-w-6xl mx-auto px-4 relative z-10">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 heading-gothic text-[var(--color-ink)]">
+            <div className="text-center mb-8">
+              <h2 className="text-xl md:text-2xl font-bold mb-2 heading-gothic text-[var(--color-ink)]">
                 訪問看護の費用について
               </h2>
-              <p className="text-lg text-[var(--color-ink-soft)]">
+              <p className="text-sm text-[var(--color-ink-soft)]">
                 保険適用で自己負担は1〜3割
               </p>
             </div>
 
-            <div className="bg-white rounded-2xl p-6 md:p-10 shadow-sm">
-              <div className="prose max-w-none">
-                <p className="text-[var(--color-ink-soft)] leading-relaxed text-base md:text-lg mb-6">
+            <div className="bg-white rounded-xl p-5 md:p-8 shadow-sm">
+              <div className="space-y-3">
+                <p className="text-[var(--color-ink-soft)] leading-relaxed text-sm">
                   訪問看護は、医療保険または介護保険が適用されるため、実際のご負担は1〜3割です。
                   利用する保険の種類、訪問回数、訪問時間によって料金が異なります。
                 </p>
-                <p className="text-[var(--color-ink-soft)] leading-relaxed text-base md:text-lg mb-6">
+                <p className="text-[var(--color-ink-soft)] leading-relaxed text-sm">
                   65歳以上で要支援・要介護認定を受けている方は<strong className="text-[var(--color-logo-dark-green)]">介護保険</strong>が適用されます。
                   40歳未満の方や、がん末期・難病などの厚生労働大臣が定める疾病の方は<strong className="text-[var(--color-logo-dark-green)]">医療保険</strong>が適用されます。
                 </p>
-                <p className="text-[var(--color-ink-soft)] leading-relaxed text-base md:text-lg">
+                <p className="text-[var(--color-ink-soft)] leading-relaxed text-sm">
                   詳しい料金については、お気軽にお問い合わせください。お一人おひとりの状況に合わせて、わかりやすくご説明いたします。
                 </p>
               </div>
@@ -114,32 +104,40 @@ export default function PricingPage() {
         </section>
 
         {/* 介護保険の料金表 */}
-        <section className="section-wrapper bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+        <section className="bg-gradient-to-br from-gray-50 to-white relative overflow-hidden py-8 md:py-12">
           <BackgroundTriangles pattern="features" />
           <div className="max-w-6xl mx-auto px-4 relative z-10">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 heading-gothic text-[var(--color-ink)]">
+            <div className="text-center mb-8">
+              <h2 className="text-xl md:text-2xl font-bold mb-2 heading-gothic text-[var(--color-ink)]">
                 {nursingCareInsurance.title}
               </h2>
-              <p className="text-lg text-[var(--color-ink-soft)]">
+              <p className="text-sm text-[var(--color-ink-soft)]">
                 {nursingCareInsurance.description}
               </p>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
-              {/* テーブル */}
+            <div className="bg-white rounded-xl shadow-sm overflow-hidden">
               <div className="overflow-x-auto">
-                <table className="w-full">
+                <table className="w-full text-xs md:text-sm">
                   <thead>
                     <tr className="bg-[var(--color-logo-light-green)]/10">
-                      <th className="px-6 py-4 text-left text-sm md:text-base font-bold text-[var(--color-logo-dark-green)]">
-                        サービス内容
+                      <th className="px-3 md:px-4 py-3 text-left font-bold text-[var(--color-logo-dark-green)]">
+                        サービス名称
                       </th>
-                      <th className="px-6 py-4 text-left text-sm md:text-base font-bold text-[var(--color-logo-dark-green)]">
+                      <th className="px-2 md:px-3 py-3 text-left font-bold text-[var(--color-logo-dark-green)]">
                         時間
                       </th>
-                      <th className="px-6 py-4 text-right text-sm md:text-base font-bold text-[var(--color-logo-dark-green)]">
-                        自己負担額（1割）
+                      <th className="px-2 md:px-3 py-3 text-center font-bold text-[var(--color-logo-dark-green)]">
+                        単位数
+                      </th>
+                      <th className="px-2 md:px-3 py-3 text-right font-bold text-[var(--color-logo-dark-green)]">
+                        1割負担
+                      </th>
+                      <th className="px-2 md:px-3 py-3 text-right font-bold text-[var(--color-logo-dark-green)]">
+                        2割負担
+                      </th>
+                      <th className="px-2 md:px-3 py-3 text-right font-bold text-[var(--color-logo-dark-green)]">
+                        3割負担
                       </th>
                     </tr>
                   </thead>
@@ -149,14 +147,23 @@ export default function PricingPage() {
                         key={index}
                         className={`${index % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'} border-t border-gray-100`}
                       >
-                        <td className="px-6 py-4 text-sm md:text-base text-[var(--color-ink)]">
+                        <td className="px-3 md:px-4 py-3 text-[var(--color-ink)]">
                           {item.service}
                         </td>
-                        <td className="px-6 py-4 text-sm md:text-base text-[var(--color-ink-soft)]">
+                        <td className="px-2 md:px-3 py-3 text-[var(--color-ink-soft)]">
                           {item.duration}
                         </td>
-                        <td className="px-6 py-4 text-right text-sm md:text-base font-bold text-[var(--color-logo-dark-green)]">
-                          {item.price}
+                        <td className="px-2 md:px-3 py-3 text-center text-[var(--color-ink-soft)]">
+                          {item.units}
+                        </td>
+                        <td className="px-2 md:px-3 py-3 text-right font-bold text-[var(--color-logo-dark-green)]">
+                          {item.price1}
+                        </td>
+                        <td className="px-2 md:px-3 py-3 text-right font-bold text-[var(--color-logo-dark-green)]">
+                          {item.price2}
+                        </td>
+                        <td className="px-2 md:px-3 py-3 text-right font-bold text-[var(--color-logo-dark-green)]">
+                          {item.price3}
                         </td>
                       </tr>
                     ))}
@@ -164,12 +171,11 @@ export default function PricingPage() {
                 </table>
               </div>
 
-              {/* 注意事項 */}
-              <div className="px-6 py-4 bg-gray-50/50 border-t border-gray-100">
-                <ul className="space-y-2">
+              <div className="px-4 py-3 bg-gray-50/50 border-t border-gray-100">
+                <ul className="space-y-1">
                   {nursingCareInsurance.notes.map((note, index) => (
-                    <li key={index} className="text-sm text-[var(--color-ink-soft)] flex items-start">
-                      <span className="text-[var(--color-logo-light-green)] mr-2 mt-1">※</span>
+                    <li key={index} className="text-xs text-[var(--color-ink-soft)] flex items-start">
+                      <span className="text-[var(--color-logo-light-green)] mr-1.5 mt-0.5">※</span>
                       <span>{note}</span>
                     </li>
                   ))}
@@ -180,32 +186,40 @@ export default function PricingPage() {
         </section>
 
         {/* 医療保険の料金表 */}
-        <section className="section-wrapper relative overflow-hidden">
+        <section className="relative overflow-hidden py-8 md:py-12">
           <BackgroundTriangles pattern="office" />
           <div className="max-w-6xl mx-auto px-4 relative z-10">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 heading-gothic text-[var(--color-ink)]">
+            <div className="text-center mb-8">
+              <h2 className="text-xl md:text-2xl font-bold mb-2 heading-gothic text-[var(--color-ink)]">
                 {medicalInsurance.title}
               </h2>
-              <p className="text-lg text-[var(--color-ink-soft)]">
+              <p className="text-sm text-[var(--color-ink-soft)]">
                 {medicalInsurance.description}
               </p>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
-              {/* テーブル */}
+            <div className="bg-white rounded-xl shadow-sm overflow-hidden">
               <div className="overflow-x-auto">
-                <table className="w-full">
+                <table className="w-full text-xs md:text-sm">
                   <thead>
                     <tr className="bg-[var(--color-logo-light-green)]/10">
-                      <th className="px-6 py-4 text-left text-sm md:text-base font-bold text-[var(--color-logo-dark-green)]">
-                        サービス内容
+                      <th className="px-3 md:px-4 py-3 text-left font-bold text-[var(--color-logo-dark-green)]">
+                        サービス名称
                       </th>
-                      <th className="px-6 py-4 text-left text-sm md:text-base font-bold text-[var(--color-logo-dark-green)]">
+                      <th className="px-2 md:px-3 py-3 text-left font-bold text-[var(--color-logo-dark-green)]">
                         区分
                       </th>
-                      <th className="px-6 py-4 text-right text-sm md:text-base font-bold text-[var(--color-logo-dark-green)]">
-                        自己負担額（1割）
+                      <th className="px-2 md:px-3 py-3 text-center font-bold text-[var(--color-logo-dark-green)]">
+                        基本料金
+                      </th>
+                      <th className="px-2 md:px-3 py-3 text-right font-bold text-[var(--color-logo-dark-green)]">
+                        1割負担
+                      </th>
+                      <th className="px-2 md:px-3 py-3 text-right font-bold text-[var(--color-logo-dark-green)]">
+                        2割負担
+                      </th>
+                      <th className="px-2 md:px-3 py-3 text-right font-bold text-[var(--color-logo-dark-green)]">
+                        3割負担
                       </th>
                     </tr>
                   </thead>
@@ -215,14 +229,23 @@ export default function PricingPage() {
                         key={index}
                         className={`${index % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'} border-t border-gray-100`}
                       >
-                        <td className="px-6 py-4 text-sm md:text-base text-[var(--color-ink)]">
+                        <td className="px-3 md:px-4 py-3 text-[var(--color-ink)]">
                           {item.service}
                         </td>
-                        <td className="px-6 py-4 text-sm md:text-base text-[var(--color-ink-soft)]">
+                        <td className="px-2 md:px-3 py-3 text-[var(--color-ink-soft)]">
                           {item.duration}
                         </td>
-                        <td className="px-6 py-4 text-right text-sm md:text-base font-bold text-[var(--color-logo-dark-green)]">
-                          {item.price}
+                        <td className="px-2 md:px-3 py-3 text-center text-[var(--color-ink-soft)]">
+                          {item.basePrice}
+                        </td>
+                        <td className="px-2 md:px-3 py-3 text-right font-bold text-[var(--color-logo-dark-green)]">
+                          {item.price1}
+                        </td>
+                        <td className="px-2 md:px-3 py-3 text-right font-bold text-[var(--color-logo-dark-green)]">
+                          {item.price2}
+                        </td>
+                        <td className="px-2 md:px-3 py-3 text-right font-bold text-[var(--color-logo-dark-green)]">
+                          {item.price3}
                         </td>
                       </tr>
                     ))}
@@ -230,12 +253,11 @@ export default function PricingPage() {
                 </table>
               </div>
 
-              {/* 注意事項 */}
-              <div className="px-6 py-4 bg-gray-50/50 border-t border-gray-100">
-                <ul className="space-y-2">
+              <div className="px-4 py-3 bg-gray-50/50 border-t border-gray-100">
+                <ul className="space-y-1">
                   {medicalInsurance.notes.map((note, index) => (
-                    <li key={index} className="text-sm text-[var(--color-ink-soft)] flex items-start">
-                      <span className="text-[var(--color-logo-light-green)] mr-2 mt-1">※</span>
+                    <li key={index} className="text-xs text-[var(--color-ink-soft)] flex items-start">
+                      <span className="text-[var(--color-logo-light-green)] mr-1.5 mt-0.5">※</span>
                       <span>{note}</span>
                     </li>
                   ))}
@@ -246,28 +268,28 @@ export default function PricingPage() {
         </section>
 
         {/* 各種加算の説明 */}
-        <section className="section-wrapper bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+        <section className="bg-gradient-to-br from-gray-50 to-white relative overflow-hidden py-8 md:py-12">
           <BackgroundTriangles pattern="flow" />
           <div className="max-w-6xl mx-auto px-4 relative z-10">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 heading-gothic text-[var(--color-ink)]">
+            <div className="text-center mb-8">
+              <h2 className="text-xl md:text-2xl font-bold mb-2 heading-gothic text-[var(--color-ink)]">
                 各種加算について
               </h2>
-              <p className="text-lg text-[var(--color-ink-soft)]">
-                お客様の状態やサービス内容に応じて加算が適用されます
+              <p className="text-sm text-[var(--color-ink-soft)]">
+                ご利用者様の状態やサービス内容に応じて加算が適用されます
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-4">
               {additionalFees.map((fee, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-2xl p-6 shadow-sm hover-lift border-l-4 border-[var(--color-logo-light-green)]"
+                  className="bg-white rounded-xl p-4 shadow-sm border-l-4 border-[var(--color-logo-light-green)]"
                 >
-                  <h3 className="text-lg md:text-xl font-bold mb-3 text-[var(--color-logo-dark-green)]">
+                  <h3 className="text-sm md:text-base font-bold mb-2 text-[var(--color-logo-dark-green)]">
                     {fee.title}
                   </h3>
-                  <p className="text-sm md:text-base leading-relaxed text-[var(--color-ink-soft)]">
+                  <p className="text-xs md:text-sm leading-relaxed text-[var(--color-ink-soft)]">
                     {fee.description}
                   </p>
                 </div>
@@ -277,30 +299,30 @@ export default function PricingPage() {
         </section>
 
         {/* FAQ */}
-        <section className="section-wrapper relative overflow-hidden">
+        <section className="relative overflow-hidden py-8 md:py-12">
           <BackgroundTriangles pattern="faq" />
-          <div className="max-w-4xl mx-auto px-4 relative z-10">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 heading-gothic text-[var(--color-ink)]">
+          <div className="max-w-6xl mx-auto px-4 relative z-10">
+            <div className="text-center mb-8">
+              <h2 className="text-xl md:text-2xl font-bold mb-2 heading-gothic text-[var(--color-ink)]">
                 料金についてのよくあるご質問
               </h2>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3">
               {pricingFAQs.map((faq, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-xl shadow-sm overflow-hidden"
+                  className="bg-white rounded-lg shadow-sm overflow-hidden"
                 >
                   <button
                     onClick={() => toggleFAQ(index)}
-                    className="w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors"
+                    className="w-full text-left p-4 flex justify-between items-center hover:bg-gray-50 transition-colors"
                   >
-                    <span className="font-bold text-lg text-[var(--color-ink)] pr-4">
+                    <span className="font-bold text-sm md:text-base text-[var(--color-ink)] pr-4">
                       Q. {faq.question}
                     </span>
                     <svg
-                      className={`w-6 h-6 flex-shrink-0 text-[var(--color-logo-dark-green)] transition-transform ${
+                      className={`w-5 h-5 flex-shrink-0 text-[var(--color-logo-dark-green)] transition-transform ${
                         openFAQIndex === index ? "rotate-180" : ""
                       }`}
                       fill="none"
@@ -316,8 +338,8 @@ export default function PricingPage() {
                     </svg>
                   </button>
                   {openFAQIndex === index && (
-                    <div className="px-6 pb-6">
-                      <p className="text-[var(--color-ink-soft)] leading-relaxed border-l-4 border-[var(--color-logo-yellow)] pl-4">
+                    <div className="px-4 pb-4">
+                      <p className="text-sm text-[var(--color-ink-soft)] leading-relaxed border-l-4 border-[var(--color-logo-yellow)] pl-3">
                         A. {faq.answer}
                       </p>
                     </div>
@@ -329,42 +351,42 @@ export default function PricingPage() {
         </section>
 
         {/* お問い合わせCTA */}
-        <div className="px-4 md:px-8 py-6 md:py-10">
-          <section
+        <section className="max-w-6xl mx-auto px-4 py-8 md:py-12">
+          <div
             id="contact"
-            className="relative overflow-hidden rounded-3xl md:rounded-[3rem] bg-gradient-to-br from-[#a8d5ba] to-[#d4edda] shadow-lg py-12 md:py-16"
+            className="relative overflow-hidden rounded-2xl md:rounded-3xl bg-gradient-to-br from-[#a8d5ba] to-[#d4edda] shadow-sm py-8 md:py-12"
           >
-            <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--color-logo-dark-green)] mb-6 heading-gothic">
+            <div className="max-w-3xl mx-auto px-4 text-center relative z-10">
+              <h2 className="text-xl md:text-2xl font-bold text-[var(--color-logo-dark-green)] mb-4 heading-gothic">
                 料金についてお気軽にご相談ください
               </h2>
-              <p className="text-[var(--color-ink-soft)] text-lg mb-12 max-w-xl mx-auto">
+              <p className="text-[var(--color-ink-soft)] text-sm mb-8 max-w-xl mx-auto">
                 お一人おひとりの状況に合わせて、わかりやすくご説明いたします。
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+              <div className="flex flex-col sm:flex-row gap-3 justify-center mb-6">
                 <a
                   href="tel:047-770-1228"
-                  className="inline-flex items-center justify-center px-10 py-5 bg-white text-[var(--color-logo-dark-green)] rounded-full font-bold text-lg hover:bg-[var(--color-logo-yellow)] transition-colors shadow-lg"
+                  className="inline-flex items-center justify-center px-6 py-3 bg-white text-[var(--color-logo-dark-green)] rounded-full font-bold text-sm hover:bg-[var(--color-logo-yellow)] transition-colors shadow-sm"
                 >
-                  <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                   047-770-1228
                 </a>
                 <Link
                   href="/"
-                  className="inline-flex items-center justify-center px-10 py-5 border-2 border-[var(--color-logo-dark-green)] text-[var(--color-logo-dark-green)] rounded-full font-bold text-lg hover:bg-[var(--color-logo-dark-green)]/10 transition-all"
+                  className="inline-flex items-center justify-center px-6 py-3 border-2 border-[var(--color-logo-dark-green)] text-[var(--color-logo-dark-green)] rounded-full font-bold text-sm hover:bg-[var(--color-logo-dark-green)]/10 transition-all"
                 >
                   トップページへ
                 </Link>
               </div>
-              <div className="text-[var(--color-ink-soft)] text-sm">
+              <div className="text-[var(--color-ink-soft)] text-xs">
                 <p>受付時間: 9:00〜19:00（365日対応）</p>
-                <p className="mt-2">メール: hokan-f@fractal-group.co.jp</p>
+                <p className="mt-1">メール: hokan-f@fractal-group.co.jp</p>
               </div>
             </div>
-          </section>
-        </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </>
