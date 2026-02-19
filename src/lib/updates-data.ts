@@ -12,6 +12,14 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-02-19",
+    items: [
+      { type: "new", title: "ご利用料金ページを新設", link: "/pricing" },
+      { type: "improve", title: "SEOタイトル・メタデータを最適化" },
+      { type: "improve", title: "ヘッダーナビ・フッターに料金ページリンクを追加" },
+    ],
+  },
+  {
     date: "2026-02-16",
     items: [
       { type: "new", title: "更新情報ポップアップ通知機能を追加", link: "/updates" },
