@@ -326,10 +326,8 @@ export function generateJobPostingData(job: {
   };
 }
 
-// メインの構造化データコンポーネント（トップページ用）
+// サイト共通の構造化データコンポーネント（全ページ共通: LocalBusiness, Service, WebSite）
 export default function StructuredData() {
-  const serviceFAQData = generateFAQData(serviceFAQs);
-
   return (
     <>
       <Script
@@ -353,14 +351,22 @@ export default function StructuredData() {
           __html: JSON.stringify(websiteData),
         }}
       />
-      <Script
-        id="structured-data-service-faq"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(serviceFAQData),
-        }}
-      />
     </>
+  );
+}
+
+// サービスFAQ構造化データコンポーネント（トップページ専用）
+export function ServiceFAQStructuredData() {
+  const serviceFAQData = generateFAQData(serviceFAQs);
+
+  return (
+    <Script
+      id="structured-data-service-faq"
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(serviceFAQData),
+      }}
+    />
   );
 }
 
