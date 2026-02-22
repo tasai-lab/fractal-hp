@@ -51,6 +51,53 @@ src/
     └── recruit-data.ts    # 採用データ
 ```
 
+## コンポーネント参照ガイドライン
+
+### 新規UI実装前の必須チェック（スキップ厳禁）
+
+新しいUIパターンを実装する前に、以下を必ず実行すること:
+
+1. **docs/COMPONENTS.md を読む** - 既存25コンポーネントの仕様を確認
+2. **docs/COMPONENT-OPTIMIZATION.md を確認** - 重複パターン（FAQアコーディオン、CTA、FadeIn等）がないか確認
+3. **既存コンポーネントで対応できる場合は必ず再利用** - 独自実装しない
+
+### 重複回避の強制ルール
+
+以下のUIパターンは既存コンポーネントを使うこと（新規実装禁止）:
+- FAQ/アコーディオン → 既存FAQパターンを参照
+- 電話番号リンク → docs/COMPONENT-OPTIMIZATION.md のパターンを参照
+- グラフ・チャート → `src/components/charts/` のコンポーネントを再利用
+- カウントアップ数値 → `CountUp` コンポーネントを使用
+- セクション背景装飾 → `BackgroundTriangles` を使用
+- スクロールアニメーション → `useScrollAnimation` フックを使用
+
+### 再利用必須コンポーネント
+
+- `BackgroundTriangles` - セクション背景装飾（全10パターン）
+- `CountUp` - 数値カウントアップ（prefix/suffix対応）
+- `StructuredData` 系 - SEO構造化データ
+- `src/components/charts/` 系 - グラフ・チャート（3種類）
+- `useScrollAnimation` フック - スクロール連動アニメーション
+
+### セクション実装パターン（既存パターンに従うこと）
+
+```tsx
+<section className="relative overflow-hidden">
+  <BackgroundTriangles pattern="[section-name]" />
+  <div className="section-wrapper">
+    <div className="section-inner">
+      {/* コンテンツ */}
+    </div>
+  </div>
+</section>
+```
+
+### Storybook での視覚確認
+
+```bash
+npm run storybook  # ポート6006で起動
+```
+
 ## Data Management
 
 データは `src/lib/*.ts` で一元管理。コンポーネント内にハードコードしない。
@@ -79,3 +126,4 @@ src/
 
 @docs/DEPLOYMENT.md - デプロイ詳細
 @docs/COMPONENTS.md - コンポーネント仕様
+@docs/COMPONENT-OPTIMIZATION.md - 重複パターンと最適化候補
