@@ -1,22 +1,32 @@
-# SEO改善ブランチ コンテキストドキュメント
+# COMPONENTS.md品質改善 コンテキストドキュメント
 
 ## 概要
 
-ブランチ: `workflow/wf-20260222-001`
-目的: SEO最適化・料金ページ新設・エリア別LP強化・コンテンツ品質向上
+ブランチ: `workflow/wf-20260222-004`
+目的: wf-20260222-002（Storybook導入）のフォローアップ - COMPONENTS.mdの品質改善・表記統一
 
 ---
 
 ## 現在の状態
 
-**Slice 2 完了（エリア別LP強化）**
+**Phase 8 検証完了 - Phase 9 運用設計へ**
 
-- Slice 1: titleタグ・メタデータ最適化 完了
-- Slice 2: エリア別LPのtitle最適化・千葉市美浜区エリアページ追加 完了
-  - 全5エリアのtitleに専門分野を追加（精神科・看取り・24時間対応）
-  - 千葉市美浜区（slug: chiba-mihama）のエリアデータを追加
-  - sitemap.tsはregionalDataを動的マップするため自動反映
-  - areas/[slug]/page.tsxの「その他の対応地域」も自動反映
+- Phase 1〜7: wf-20260222-002でStorybook導入・全22 Stories作成完了（PR#7でマージ済み）
+- Phase 8: QAレビュー実施 → NEEDS_CHANGES指摘（UpdatesPopupの表記揺れ）を検出
+- Phase 8 修正: COMPONENTS.md一覧テーブルにStoriesカラムを追加し表記を統一
+- Phase 9: 運用設計（次フェーズ）
+
+### 完了した作業
+
+| フェーズ | 内容 | 状態 |
+|---------|------|------|
+| Storybook基盤導入 | @storybook/nextjs + preview.tsx設定 | 完了（wf-20260222-002） |
+| 高優先度Stories作成 | Header, Hero, About, Philosophy, Features, Office | 完了（wf-20260222-002） |
+| 中低優先度Stories作成 | Flow, Staff, Recruit, Contact, Company, FAQ, Footer, BackgroundTriangles, FloatingRecruitBanner, ScrollToTop, CountUp, JobDetails, ModelIncomeSection, 各チャート | 完了（wf-20260222-002） |
+| ドキュメント整備 | COMPONENTS.md更新 | 完了（wf-20260222-002） |
+| Phase 7 NEEDS_CHANGES修正 | Philosophy.stories.tsx追加 | 完了（wf-20260222-002） |
+| アップデート情報更新 | updates-data.ts + tsconfig.json修正 | 完了（95f0a75） |
+| **Phase 8 QA修正** | **UpdatesPopupのStories表記統一（一覧テーブルに「—（無効化中）」）** | **完了（b4ef1fc）** |
 
 ---
 
@@ -24,50 +34,84 @@
 
 | コミット | 内容 | 日時 |
 |---------|------|------|
-| `d4947c4` | feat(pricing): 料金ページ新設 (/pricing/) | 2026-02-19 17:40 |
-| `6af2c0e` | feat(seo): タイトル最適化・サイトマップ追加・内部リンク強化 | 2026-02-19 17:50 |
-| `3cbbbfb` | fix(pricing): 料金データ修正・レイアウト改善 | 2026-02-19 18:08 |
-| `cc4118c` | docs(context): コンテキストドキュメント更新 | 2026-02-19 18:15 |
-| `cdcaa44` | feat(nav): デスクトップヘッダーナビに料金ページリンクを追加 | 2026-02-19 18:20 |
-| `418cd36` | feat(seo): titleタグ・メタデータ最適化（Slice 1） | 2026-02-22 |
-| `749c7c6` | feat(seo): エリア別LPのtitle最適化・千葉市美浜区エリアページ追加（Slice 2） | 2026-02-22 |
+| `de9731a` | feat(storybook): Slice 1 - Storybook基盤導入 (wf-20260222-002) | 2026-02-22 21:16 |
+| `19de572` | feat(storybook): Slice 2A - 高優先度Stories作成 (wf-20260222-002) | 2026-02-22 21:19 |
+| `1d33ded` | feat(storybook): Slice 2B - 中低優先度Stories作成 (wf-20260222-002) | 2026-02-22 21:19 |
+| `6315ed4` | docs: Slice 3 - ドキュメント整備完了 (wf-20260222-002) | 2026-02-22 21:23 |
+| `9e4e6e8` | feat(storybook): Philosophy.stories.tsx追加 - Codex指摘対応 (wf-20260222-002) | 2026-02-22 21:27 |
+| `ecd7718` | fix(storybook): Phase 7 NEEDS_CHANGES指摘修正 (wf-20260222-002) | 2026-02-22 21:37 |
+| `9984653` | Merge pull request #7 from tasai-lab/workflow/wf-20260222-002 | 2026-02-22 21:43 |
+| `a08f61c` | feat(updates): アップデート情報にStorybook整備を追加 + tsconfig修正 | 2026-02-22 21:59 |
+| `95f0a75` | feat: アップデート情報更新 + tsconfig.json修正 | 2026-02-22 21:59 |
+| `b4ef1fc` | docs: UpdatesPopupのStories表記を一覧テーブルに統一 (wf-20260222-004) | 2026-02-22 22:44 |
 
 ---
 
 ## 重要な決定事項
 
-### 地域区分
-- **船橋市は4級地**（1単位 = 10.84円）
-- 訪問看護・人件費割合70%の区分が適用される
-- 当初6級地と誤認していたが、ユーザー指摘により修正
+### UpdatesPopupの表記揺れ修正（Phase 8 QA指摘対応）
 
-### 介護保険サービス名称
-- 正式なサービスコード名称を使用: **訪問看護Ⅰ1〜Ⅰ5**
-- 看護師等によるサービス: Ⅰ1（20分未満）〜Ⅰ4（1時間以上1時間30分未満）
-- 理学療法士等によるサービス: **Ⅰ5** が一般的（1回20分）
-- **訪問看護Ⅰ5・2超**（1日3回目以降: 265単位）も必要として追記
+**問題**: COMPONENTS.mdの一覧テーブルでUpdatesPopupのStories欄が「なし（現在無効化中）」と記述されていたが、同テーブル内の他のUI非対象コンポーネント（GoogleAnalytics: 「—（UIなし）」、StructuredData: 「—（UIなし）」）との表記が不統一だった。
 
-### 料金表示
-- **1割/2割/3割の3列表示**を採用
-- 単位数も表示し、透明性を確保
+**修正内容**:
+- 修正前: `なし（現在無効化中）`
+- 修正後: `—（無効化中）`
 
-### ページレイアウト
-- ページヘッダー（Hero）とフッター（CTA）の横幅を `max-w-6xl` に統一
-- コンテンツ本体と横幅を揃え、バランスを改善
-- 見出し・本文・ボタンのサイズを全体的に縮小（デカすぎという指摘に対応）
+**対象ファイル**: `docs/COMPONENTS.md`（一覧テーブルのStoriesカラム）
 
-### エリア別LP titleの最適化方針（Slice 2）
-- `「〇〇の訪問看護｜フラクタル訪問看護 船橋（24時間365日対応）」`
-  → `「〇〇の訪問看護なら｜フラクタル訪問看護【精神科・看取り・24時間対応】」`
-- 「なら」を追加してクエリ意図（比較・選択）に合わせる
-- 専門分野（精神科・看取り）を角括弧で目立たせる
+### COMPONENTS.md一覧テーブルへのStoriesカラム追加
 
-### 千葉市美浜区エリアデータの設計方針
-- カラーテーマ: 海をイメージした青系（`#0077B6` / `#48CAE4`）
-- パターン: `wave`（波のデザイン）
-- 人口データ: 千葉市統計から概算（約15万人・高齢化率約30%）
-- 中核病院: 千葉市立海浜病院
-- sitemap.tsへの個別追加は不要（regionalDataから自動マップ）
+**背景**: wf-20260222-002のStorybook導入により、各コンポーネントのStoriesファイルパスをCOMPONENTS.mdで管理する必要が生じた。
+
+**追加カラム仕様**:
+| 対象コンポーネント | Storiesカラムの値 |
+|-----------------|----------------|
+| UIあり（有効） | `src/components/XXX.stories.tsx` |
+| UIなし | `—（UIなし）` |
+| UIあり（現在無効化中） | `—（無効化中）` |
+
+**UpdatesPopupが無効化中の理由**: 機能自体は実装済みだが、現在サイト側で無効化されている状態のためStoriesを作成していない。
+
+### tsconfig.jsonのexclude設定
+
+wf-20260222-002/003のフォローアップとして、`*.stories.tsx` を本番ビルドから除外するためtsconfig.jsonにexclude追加済み。
+
+---
+
+## Storybook構成
+
+- **バージョン**: 10.2.10
+- **フレームワーク**: `@storybook/nextjs`
+- **起動ポート**: 6006（デフォルト）
+- **Stories総数**: 22ファイル
+- **対象外**: GoogleAnalytics（UIなし）、StructuredData（UIなし）、UpdatesPopup（無効化中）
+
+### Storiesファイル一覧
+
+| コンポーネント | Storiesファイルパス |
+|--------------|----------------|
+| Header | `src/components/Header.stories.tsx` |
+| Hero | `src/components/Hero.stories.tsx` |
+| About | `src/components/About.stories.tsx` |
+| Philosophy | `src/components/Philosophy.stories.tsx` |
+| Features | `src/components/Features.stories.tsx` |
+| Office | `src/components/Office.stories.tsx` |
+| Flow | `src/components/Flow.stories.tsx` |
+| Staff | `src/components/Staff.stories.tsx` |
+| Recruit | `src/components/Recruit.stories.tsx` |
+| Contact | `src/components/Contact.stories.tsx` |
+| Company | `src/components/Company.stories.tsx` |
+| FAQ | `src/components/FAQ.stories.tsx` |
+| Footer | `src/components/Footer.stories.tsx` |
+| BackgroundTriangles | `src/components/BackgroundTriangles.stories.tsx` |
+| FloatingRecruitBanner | `src/components/FloatingRecruitBanner.stories.tsx` |
+| ScrollToTop | `src/components/ScrollToTop.stories.tsx` |
+| CountUp | `src/components/CountUp.stories.tsx` |
+| JobDetails | `src/components/recruit/JobDetails.stories.tsx` |
+| ModelIncomeSection | `src/components/recruit/ModelIncomeSection.stories.tsx` |
+| PopulationChart | `src/components/charts/PopulationChart.stories.tsx` |
+| AgeDistributionChart | `src/components/charts/AgeDistributionChart.stories.tsx` |
+| ElderlyRateTrendChart | `src/components/charts/ElderlyRateTrendChart.stories.tsx` |
 
 ---
 
@@ -75,46 +119,7 @@
 
 | ミス | 原因 | 修正内容 | 教訓 |
 |-----|------|---------|------|
-| 地域区分を6級地と誤認 | 調査不足・推測での実装 | ユーザー指摘で4級地に修正 | 料金・単位数などの数値は必ず公式資料を確認すること |
-
----
-
-## ユーザーとの対話要約
-
-| 指示・フィードバック | 対応 |
-|------------------|------|
-| 「正しい訪問看護の算定料金とサービス名称を使用」 | 正式サービスコード名称（訪看Ⅰ1〜Ⅰ5）を採用 |
-| 「1〜3割それぞれの金額を算出」 | 1割/2割/3割の3列表示に変更 |
-| 「船橋市は4級地」 | 6級地から4級地（1単位=10.84円）に修正 |
-| 「訪看Ⅰ2のほうが一般的、Ⅰ5・超についても記述が必要」 | Ⅰ5・2超（1日3回目以降）を追加 |
-| 「ページヘッダーとフッターの横幅をコンテンツと揃え、サイズがデカすぎ」 | Hero/CTA/FAQをmax-w-6xlに統一、全体サイズ縮小 |
-| Slice 2: エリア別LPのtitle最適化・千葉市美浜区追加 | 5エリアのtitle変更・美浜区データ追加（Slice 2完了） |
-
----
-
-## 現在の料金データ（pricing-data.ts）
-
-### 介護保険（令和6年6月改定、4級地・1単位=10.84円）
-
-| サービス名称 | 時間 | 単位数 | 1割 | 2割 | 3割 |
-|------------|------|--------|-----|-----|-----|
-| 訪問看護Ⅰ1（看護師等） | 20分未満 | 314単位 | 約340円 | 約681円 | 約1,021円 |
-| 訪問看護Ⅰ2（看護師等） | 30分未満 | 471単位 | 約511円 | 約1,021円 | 約1,532円 |
-| 訪問看護Ⅰ3（看護師等） | 30分以上1時間未満 | 823単位 | 約892円 | 約1,784円 | 約2,676円 |
-| 訪問看護Ⅰ4（看護師等） | 1時間以上1時間30分未満 | 1,128単位 | 約1,223円 | 約2,446円 | 約3,668円 |
-| 訪問看護Ⅰ5（理学療法士等） | 1回20分 | 294単位 | 約319円 | 約637円 | 約956円 |
-| 訪問看護Ⅰ5・2超（理学療法士等） | 1日3回目以降 | 265単位 | 約287円 | 約575円 | 約862円 |
-
-### 医療保険（令和6年6月改定）
-
-| サービス名称 | 区分 | 基本料金 | 1割 | 2割 | 3割 |
-|------------|------|---------|-----|-----|-----|
-| 訪問看護基本療養費（Ⅰ）イ | 週3日目まで | 5,550円 | 555円 | 1,110円 | 1,665円 |
-| 訪問看護基本療養費（Ⅰ）イ | 週4日目以降 | 6,550円 | 655円 | 1,310円 | 1,965円 |
-| 精神科訪問看護基本療養費（Ⅰ）30分以上 | 週3日目まで | 5,550円 | 555円 | 1,110円 | 1,665円 |
-| 精神科訪問看護基本療養費（Ⅰ）30分未満 | 週3日目まで | 4,250円 | 425円 | 850円 | 1,275円 |
-| 訪問看護管理療養費 | 月の初日 | 7,670円 | 767円 | 1,534円 | 2,301円 |
-| 訪問看護管理療養費 | 月の2日目以降 | 3,000円 | 300円 | 600円 | 900円 |
+| UpdatesPopupのStories表記が他コンポーネントと不統一 | ダッシュ記法の統一ルールを明確化していなかった | Phase 8 QAで検出し「—（無効化中）」に統一 | UIなし・無効化中コンポーネントの表記ルールを事前に決めておくこと |
 
 ---
 
@@ -122,11 +127,8 @@
 
 | ファイル | 役割 |
 |---------|------|
-| `src/lib/pricing-data.ts` | 料金テーブルデータ・FAQ |
-| `src/app/pricing/page.tsx` | 料金ページ本体 |
-| `src/app/pricing/layout.tsx` | SEO metadata・構造化データ |
-| `src/app/sitemap.ts` | サイトマップ（/pricing, /areas追加済み・regionalData自動マップ） |
-| `src/components/Header.tsx` | ナビに「ご利用料金」リンク追加済み |
-| `src/components/Footer.tsx` | フッターに「ご利用料金」リンク追加済み |
-| `src/lib/regional-data.ts` | エリア別LPデータ（6エリア: 船橋・八千代・習志野・花見川・稲毛・美浜） |
-| `src/app/areas/[slug]/page.tsx` | エリア別LPページ本体 |
+| `docs/COMPONENTS.md` | コンポーネント仕様書（Storiesカラム追加・表記統一済み） |
+| `.storybook/main.ts` | Storybook設定（@storybook/nextjs framework） |
+| `.storybook/preview.tsx` | globals.css import + nextjs.appDirectory: true |
+| `tsconfig.json` | *.stories.tsx をexcludeに追加（本番ビルドから除外） |
+| `src/lib/updates-data.ts` | アップデート情報（2026-02-22のエントリにStorybook整備追記済み） |
