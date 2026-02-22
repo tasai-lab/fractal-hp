@@ -16,6 +16,7 @@ export const updates: Update[] = [
     items: [
       { type: "new", title: "千葉市美浜区の訪問看護ページを追加", link: "/areas/chiba-mihama" },
       { type: "improve", title: "各ページのSEO・メタデータを改善" },
+      { type: "improve", title: "Storybookによるコンポーネントカタログを整備" },
     ],
   },
   {
