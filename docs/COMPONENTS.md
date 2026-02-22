@@ -6,33 +6,33 @@
 
 ## コンポーネント一覧
 
-| コンポーネント | ファイル | 種別 | 説明 |
-|--------------|---------|------|------|
-| Header | Header.tsx | レイアウト | グローバルヘッダー |
-| Hero | Hero.tsx | セクション | メインビジュアル |
-| About | About.tsx | セクション | フラクタルとは |
-| Philosophy | Philosophy.tsx | セクション | 私たちのカタチ |
-| Features | Features.tsx | セクション | 特徴一覧 |
-| Office | Office.tsx | セクション | 事業所情報 |
-| Flow | Flow.tsx | セクション | ご利用の流れ |
-| Staff | Staff.tsx | セクション | スタッフ紹介 |
-| Recruit | Recruit.tsx | セクション | リクルート |
-| Contact | Contact.tsx | セクション | お問い合わせ |
-| Company | Company.tsx | セクション | 会社情報 |
-| FAQ | FAQ.tsx | セクション | よくある質問 |
-| Footer | Footer.tsx | レイアウト | グローバルフッター |
-| BackgroundTriangles | BackgroundTriangles.tsx | 装飾 | 背景三角形 |
-| FloatingRecruitBanner | FloatingRecruitBanner.tsx | ユーティリティ | フローティング採用バナー |
-| ScrollToTop | ScrollToTop.tsx | ユーティリティ | ページトップへ戻るボタン |
-| UpdatesPopup | UpdatesPopup.tsx | ユーティリティ | 更新通知ポップアップ |
-| GoogleAnalytics | GoogleAnalytics.tsx | ユーティリティ | GA4トラッキング |
-| CountUp | CountUp.tsx | ユーティリティ | 数値カウントアップ |
-| StructuredData | StructuredData.tsx | SEO | 構造化データ |
-| JobDetails | recruit/JobDetails.tsx | 採用 | 職種詳細モーダル |
-| ModelIncomeSection | recruit/ModelIncomeSection.tsx | 採用 | モデル年収セクション |
-| PopulationChart | charts/PopulationChart.tsx | チャート | 人口推移折れ線グラフ |
-| AgeDistributionChart | charts/AgeDistributionChart.tsx | チャート | 年齢分布円グラフ |
-| ElderlyRateTrendChart | charts/ElderlyRateTrendChart.tsx | チャート | 高齢化率推移エリアチャート |
+| コンポーネント | ファイル | Stories | 種別 | 説明 |
+|--------------|---------|---------|------|------|
+| Header | Header.tsx | `src/components/Header.stories.tsx` | レイアウト | グローバルヘッダー |
+| Hero | Hero.tsx | `src/components/Hero.stories.tsx` | セクション | メインビジュアル |
+| About | About.tsx | `src/components/About.stories.tsx` | セクション | フラクタルとは |
+| Philosophy | Philosophy.tsx | `src/components/Philosophy.stories.tsx` | セクション | 私たちのカタチ |
+| Features | Features.tsx | `src/components/Features.stories.tsx` | セクション | 特徴一覧 |
+| Office | Office.tsx | `src/components/Office.stories.tsx` | セクション | 事業所情報 |
+| Flow | Flow.tsx | `src/components/Flow.stories.tsx` | セクション | ご利用の流れ |
+| Staff | Staff.tsx | `src/components/Staff.stories.tsx` | セクション | スタッフ紹介 |
+| Recruit | Recruit.tsx | `src/components/Recruit.stories.tsx` | セクション | リクルート |
+| Contact | Contact.tsx | `src/components/Contact.stories.tsx` | セクション | お問い合わせ |
+| Company | Company.tsx | `src/components/Company.stories.tsx` | セクション | 会社情報 |
+| FAQ | FAQ.tsx | `src/components/FAQ.stories.tsx` | セクション | よくある質問 |
+| Footer | Footer.tsx | `src/components/Footer.stories.tsx` | レイアウト | グローバルフッター |
+| BackgroundTriangles | BackgroundTriangles.tsx | `src/components/BackgroundTriangles.stories.tsx` | 装飾 | 背景三角形 |
+| FloatingRecruitBanner | FloatingRecruitBanner.tsx | `src/components/FloatingRecruitBanner.stories.tsx` | ユーティリティ | フローティング採用バナー |
+| ScrollToTop | ScrollToTop.tsx | `src/components/ScrollToTop.stories.tsx` | ユーティリティ | ページトップへ戻るボタン |
+| UpdatesPopup | UpdatesPopup.tsx | —（無効化中） | ユーティリティ | 更新通知ポップアップ |
+| GoogleAnalytics | GoogleAnalytics.tsx | —（UIなし） | ユーティリティ | GA4トラッキング |
+| CountUp | CountUp.tsx | `src/components/CountUp.stories.tsx` | ユーティリティ | 数値カウントアップ |
+| StructuredData | StructuredData.tsx | —（UIなし） | SEO | 構造化データ |
+| JobDetails | recruit/JobDetails.tsx | `src/components/recruit/JobDetails.stories.tsx` | 採用 | 職種詳細モーダル |
+| ModelIncomeSection | recruit/ModelIncomeSection.tsx | `src/components/recruit/ModelIncomeSection.stories.tsx` | 採用 | モデル年収セクション |
+| PopulationChart | charts/PopulationChart.tsx | `src/components/charts/PopulationChart.stories.tsx` | チャート | 人口推移折れ線グラフ |
+| AgeDistributionChart | charts/AgeDistributionChart.tsx | `src/components/charts/AgeDistributionChart.stories.tsx` | チャート | 年齢分布円グラフ |
+| ElderlyRateTrendChart | charts/ElderlyRateTrendChart.tsx | `src/components/charts/ElderlyRateTrendChart.stories.tsx` | チャート | 高齢化率推移エリアチャート |
 
 ---
 
@@ -51,6 +51,8 @@
 グローバルヘッダー。ロゴ、ナビゲーション、SNSリンクを含む。
 
 **ファイル**: `src/components/Header.tsx`
+
+**Stories**: `src/components/Header.stories.tsx`
 
 **種別**: クライアントコンポーネント (`"use client"`)
 
@@ -88,6 +90,8 @@
 
 **ファイル**: `src/components/Footer.tsx`
 
+**Stories**: `src/components/Footer.stories.tsx`
+
 **機能**:
 - 事業所情報表示
 - ナビゲーションリンク
@@ -107,6 +111,8 @@
 
 **ファイル**: `src/components/Hero.tsx`
 
+**Stories**: `src/components/Hero.stories.tsx`
+
 **機能**:
 - 背景画像表示
 - 縦書きキャッチコピー
@@ -122,6 +128,8 @@
 
 **ファイル**: `src/components/About.tsx`
 
+**Stories**: `src/components/About.stories.tsx`
+
 **データソース**: `src/lib/data.ts` → `aboutData`
 
 ---
@@ -131,6 +139,8 @@
 「私たちのカタチ」セクション。4つの理念要素をカードで表示。
 
 **ファイル**: `src/components/Philosophy.tsx`
+
+**Stories**: `src/components/Philosophy.stories.tsx`
 
 **機能**:
 - 3Dフリップカード
@@ -147,6 +157,8 @@
 
 **ファイル**: `src/components/Features.tsx`
 
+**Stories**: `src/components/Features.stories.tsx`
+
 **データソース**: `src/lib/data.ts` → `features`
 
 ---
@@ -156,6 +168,8 @@
 事業所情報セクション。住所、連絡先、Google Mapsを表示。
 
 **ファイル**: `src/components/Office.tsx`
+
+**Stories**: `src/components/Office.stories.tsx`
 
 **機能**:
 - 事業所基本情報
@@ -171,6 +185,8 @@
 「ご利用開始までの流れ」セクション。4ステップのフローを表示。
 
 **ファイル**: `src/components/Flow.tsx`
+
+**Stories**: `src/components/Flow.stories.tsx`
 
 **機能**:
 - ステップ番号（白抜き黒文字）
@@ -188,6 +204,8 @@
 スタッフ紹介セクション。スタッフ情報をカードで表示。
 
 **ファイル**: `src/components/Staff.tsx`
+
+**Stories**: `src/components/Staff.stories.tsx`
 
 **種別**: クライアントコンポーネント (`"use client"`)
 
@@ -209,6 +227,8 @@
 
 **ファイル**: `src/components/Recruit.tsx`
 
+**Stories**: `src/components/Recruit.stories.tsx`
+
 **機能**:
 - Q&Aセクション
 - スタッフ集合写真
@@ -224,6 +244,8 @@
 お問い合わせセクション。フォームを表示。
 
 **ファイル**: `src/components/Contact.tsx`
+
+**Stories**: `src/components/Contact.stories.tsx`
 
 **種別**: クライアントコンポーネント (`"use client"`)
 
@@ -266,6 +288,8 @@
 
 **ファイル**: `src/components/Company.tsx`
 
+**Stories**: `src/components/Company.stories.tsx`
+
 **データソース**: `src/lib/data.ts` → `companyInfo`
 
 ---
@@ -275,6 +299,8 @@
 「よくある質問」セクション。アコーディオン形式でFAQを表示。
 
 **ファイル**: `src/components/FAQ.tsx`
+
+**Stories**: `src/components/FAQ.stories.tsx`
 
 **種別**: クライアントコンポーネント (`"use client"`)
 
@@ -294,6 +320,8 @@
 セクション背景の装飾三角形。
 
 **ファイル**: `src/components/BackgroundTriangles.tsx`
+
+**Stories**: `src/components/BackgroundTriangles.stories.tsx`
 
 **Props**:
 
@@ -333,6 +361,8 @@
 
 **ファイル**: `src/components/FloatingRecruitBanner.tsx`
 
+**Stories**: `src/components/FloatingRecruitBanner.stories.tsx`
+
 **種別**: クライアントコンポーネント (`"use client"`)
 
 **機能**:
@@ -356,6 +386,8 @@
 
 **ファイル**: `src/components/ScrollToTop.tsx`
 
+**Stories**: `src/components/ScrollToTop.stories.tsx`
+
 **種別**: クライアントコンポーネント (`"use client"`)
 
 **機能**:
@@ -375,6 +407,8 @@
 
 **ファイル**: `src/components/UpdatesPopup.tsx`
 
+**Stories**: —（無効化中）
+
 **種別**: クライアントコンポーネント (`"use client"`)
 
 **機能**:
@@ -390,7 +424,7 @@
 
 **データソース**: `src/lib/updates-data.ts` → `updates`, `typeConfig`, `getLatestUpdateDate`
 
-**使用箇所**: `src/app/layout.tsx`
+**使用箇所**: `src/app/page.tsx`（無効化中）
 
 ---
 
@@ -399,6 +433,8 @@
 Google Analytics 4のトラッキングコード。
 
 **ファイル**: `src/components/GoogleAnalytics.tsx`
+
+**Stories**: —（UIなし）
 
 **種別**: クライアントコンポーネント (`"use client"`)
 
@@ -413,6 +449,8 @@ Google Analytics 4のトラッキングコード。
 数値のカウントアップアニメーション。
 
 **ファイル**: `src/components/CountUp.tsx`
+
+**Stories**: `src/components/CountUp.stories.tsx`
 
 **種別**: クライアントコンポーネント (`"use client"`)
 
@@ -437,6 +475,8 @@ Google Analytics 4のトラッキングコード。
 SEO用の構造化データ（JSON-LD）。
 
 **ファイル**: `src/components/StructuredData.tsx`
+
+**Stories**: —（UIなし）
 
 **エクスポート**:
 - `default` - メイン構造化データ（LocalBusiness, WebSite, FAQ）
@@ -464,6 +504,8 @@ SEO用の構造化データ（JSON-LD）。
 
 **ファイル**: `src/components/recruit/JobDetails.tsx`
 
+**Stories**: `src/components/recruit/JobDetails.stories.tsx`
+
 **使用箇所**: `src/app/recruit/page.tsx`
 
 ---
@@ -473,6 +515,8 @@ SEO用の構造化データ（JSON-LD）。
 モデル年収セクション。職種別のモデル年収をアコーディオン形式で表示。
 
 **ファイル**: `src/components/recruit/ModelIncomeSection.tsx`
+
+**Stories**: `src/components/recruit/ModelIncomeSection.stories.tsx`
 
 **種別**: クライアントコンポーネント (`"use client"`)
 
@@ -511,6 +555,8 @@ SEO用の構造化データ（JSON-LD）。
 人口推移折れ線グラフ。総人口と高齢者人口の推移を表示。
 
 **ファイル**: `src/components/charts/PopulationChart.tsx`
+
+**Stories**: `src/components/charts/PopulationChart.stories.tsx`
 
 **種別**: クライアントコンポーネント (`"use client"`)
 
@@ -556,6 +602,8 @@ type PopulationData = {
 
 **ファイル**: `src/components/charts/AgeDistributionChart.tsx`
 
+**Stories**: `src/components/charts/AgeDistributionChart.stories.tsx`
+
 **種別**: クライアントコンポーネント (`"use client"`)
 
 **機能**:
@@ -595,6 +643,8 @@ type AgeDistributionData = {
 高齢化率推移エリアチャート。高齢化率の時系列変化と全国平均の基準線を表示。
 
 **ファイル**: `src/components/charts/ElderlyRateTrendChart.tsx`
+
+**Stories**: `src/components/charts/ElderlyRateTrendChart.stories.tsx`
 
 **種別**: クライアントコンポーネント (`"use client"`)
 

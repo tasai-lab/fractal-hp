@@ -306,6 +306,17 @@ firebase login --reauth
 - `next.config.js` の `images.unoptimized: true` を確認
 - 画像パスが正しいか確認
 
+### Storybookファイルのビルドエラー
+
+`@storybook/react` の型が見つからずビルドが失敗する場合、`tsconfig.json` の `exclude` に Stories ファイルが含まれていない可能性があります。
+
+```json
+// tsconfig.json
+"exclude": ["node_modules", "functions", "__tests__", "**/*.stories.ts", "**/*.stories.tsx"]
+```
+
+`*.stories.tsx` は Storybook 専用ファイルで本番ビルドには不要です。必ず exclude に追加してください。
+
 ---
 
 ## 9. チェックリスト
