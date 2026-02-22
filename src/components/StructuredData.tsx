@@ -122,6 +122,14 @@ const localBusinessData = {
     name: "株式会社フラクタル",
     url: "https://fractal-hokan.com/company",
   },
+  hasCredential: {
+    "@type": "EducationalOccupationalCredential",
+    credentialCategory: "指定訪問看護事業所",
+    recognizedBy: {
+      "@type": "GovernmentOrganization",
+      name: "千葉県",
+    },
+  },
 };
 
 // サービス構造化データ（SEO強化用）

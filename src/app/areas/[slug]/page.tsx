@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -7,65 +6,11 @@ import Contact from "@/components/Contact";
 import PopulationChart from "@/components/charts/PopulationChart";
 import AgeDistributionChart from "@/components/charts/AgeDistributionChart";
 import ElderlyRateTrendChart from "@/components/charts/ElderlyRateTrendChart";
-import {
-  BreadcrumbStructuredData,
-  AreaFAQStructuredData,
-  AreaJobPostingStructuredData,
-} from "@/components/StructuredData";
+import { AreaJobPostingStructuredData } from "@/components/StructuredData";
 import {
   getRegionalDataBySlug,
-  getAllRegionalSlugs,
   regionalData,
 } from "@/lib/regional-data";
-
-export function generateStaticParams() {
-  return getAllRegionalSlugs().map((slug) => ({
-    slug,
-  }));
-}
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }> | { slug: string };
-}): Promise<Metadata> {
-  const resolvedParams = await Promise.resolve(params);
-  const area = getRegionalDataBySlug(resolvedParams.slug);
-
-  if (!area) {
-    return {
-      title: "ページが見つかりません",
-    };
-  }
-
-  const canonicalUrl = `https://fractal-hokan.com/areas/${area.slug}`;
-
-  return {
-    title: area.title,
-    description: area.description,
-    alternates: {
-      canonical: canonicalUrl,
-    },
-    openGraph: {
-      title: area.title,
-      description: area.description,
-      type: "website",
-      url: canonicalUrl,
-      siteName: "フラクタル訪問看護 船橋",
-      locale: "ja_JP",
-    },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        "max-snippet": -1,
-        "max-image-preview": "large",
-      },
-    },
-  };
-}
 
 export default async function RegionalAreaPage({
   params,
@@ -97,14 +42,6 @@ export default async function RegionalAreaPage({
 
   return (
     <>
-      <BreadcrumbStructuredData
-        items={[
-          { name: "ホーム", url: "https://fractal-hokan.com" },
-          { name: "対応エリア", url: "https://fractal-hokan.com/areas" },
-          { name: `${area.name}の地域情報`, url: `https://fractal-hokan.com/areas/${area.slug}` },
-        ]}
-      />
-      <AreaFAQStructuredData faqs={area.faqs} areaSlug={area.slug} />
       <AreaJobPostingStructuredData areaName={area.name} areaSlug={area.slug} />
 
       <Header />
