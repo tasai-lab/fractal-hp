@@ -9,8 +9,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "代表者インタビュー｜株式会社フラクタル",
     description: "株式会社フラクタル代表のインタビュー。船橋市で訪問看護ステーションを運営。",
+    type: "website",
     url: "https://fractal-hokan.com/company/ceo",
     images: [{ url: "/images/ogp/ogp-image.png", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "代表者インタビュー｜株式会社フラクタル",
+    description: "株式会社フラクタル代表のインタビュー。船橋市・八千代市・習志野市で訪問看護ステーションを運営。",
   },
 };
 

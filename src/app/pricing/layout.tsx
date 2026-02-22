@@ -22,6 +22,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "ご利用料金｜訪問看護の費用と保険適用について",
     description: "フラクタル訪問看護 船橋のご利用料金のご案内。介護保険・医療保険適用で自己負担1〜3割。訪問看護・訪問リハビリ・精神科訪問看護の料金をわかりやすく解説。",
+    type: "website",
     url: "https://fractal-hokan.com/pricing",
     images: [{ url: "/images/ogp/ogp-image.png", width: 1200, height: 630 }],
   },
