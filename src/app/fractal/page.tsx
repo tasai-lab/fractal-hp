@@ -202,9 +202,6 @@ const natureExamples = [
 
 // 入れ子構造の視覚化（正三角形版）
 function NestedStructure() {
-  // 正三角形の高さ = 底辺 × √3/2 ≈ 0.866
-  const triangleHeight = 86.6;
-
   // 正三角形のポイント（上向き）
   const getTrianglePoints = (cx: number, cy: number, size: number) => {
     const h = size * 0.866;

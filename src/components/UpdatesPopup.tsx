@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, startTransition } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { updates, typeConfig, getLatestUpdateDate } from "@/lib/updates-data";
@@ -17,8 +17,10 @@ export default function UpdatesPopup() {
 
     // 最新の更新日が保存されている日付より新しい場合にポップアップ表示
     if (latestDate && latestDate !== lastSeenDate) {
-      setLatestUpdate(updates[0]);
-      setIsOpen(true);
+      startTransition(() => {
+        setLatestUpdate(updates[0]);
+        setIsOpen(true);
+      });
     }
   }, []);
 

@@ -28,7 +28,9 @@ type Props = {
 
 export default function PopulationChart({
   data,
-  areaName,
+  // areaName is part of the public API but not currently rendered in the chart
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  areaName: _areaName,
   primaryColor = "#0D5643",
   secondaryColor = "#fb923c"
 }: Props) {

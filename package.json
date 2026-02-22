@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "optimize:images": "node scripts/optimize-images.mjs"
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "lucide-react": "^0.560.0",
@@ -19,6 +21,8 @@
     "recharts": "^3.7.0"
   },
   "devDependencies": {
+    "@storybook/nextjs": "^10.2.10",
+    "@storybook/react": "^10.2.10",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/nodemailer": "^7.0.4",
@@ -27,6 +31,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.0.10",
     "sharp": "^0.33.5",
+    "storybook": "^10.2.10",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

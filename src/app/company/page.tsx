@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, startTransition } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -110,7 +110,7 @@ function FadeIn({
       "(prefers-reduced-motion: reduce)"
     ).matches;
     if (prefersReducedMotion) {
-      setIsVisible(true);
+      startTransition(() => setIsVisible(true));
       return;
     }
 
