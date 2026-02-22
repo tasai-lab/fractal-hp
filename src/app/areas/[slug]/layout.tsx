@@ -77,6 +77,7 @@ export async function generateMetadata({
     openGraph: {
       title: area.title,
       description: area.description,
+      type: "website",
       url: `https://fractal-hokan.com/areas/${area.slug}`,
       images: [
         {

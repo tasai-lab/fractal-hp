@@ -36,6 +36,19 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/for-medical-institutions",
   },
+  openGraph: {
+    title: "医療機関の皆様へ｜退院支援・在宅医療連携",
+    description: "船橋市・八千代市・習志野市の医療機関様へ。フラクタル訪問看護は退院支援から在宅療養まで連携。訪問看護指示書の受付、24時間対応、定期報告体制完備。",
+    type: "website",
+    url: "https://fractal-hokan.com/for-medical-institutions",
+    images: [{ url: "/images/ogp/ogp-image.png", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "医療機関の皆様へ｜退院支援・在宅医療連携",
+    description: "船橋市・八千代市・習志野市の医療機関様へ。退院支援から在宅療養まで連携。24時間対応。",
+    images: ["/images/ogp/ogp-image.png"],
+  },
 };
 
 export default function ForMedicalInstitutionsLayout({

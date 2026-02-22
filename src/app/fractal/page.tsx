@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import Script from "next/script";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { BreadcrumbStructuredData } from "@/components/StructuredData";
@@ -35,7 +36,8 @@ function FractalStructuredData() {
   };
 
   return (
-    <script
+    <Script
+      id="fractal-article-structured-data"
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(articleData) }}
     />

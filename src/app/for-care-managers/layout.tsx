@@ -36,6 +36,19 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/for-care-managers",
   },
+  openGraph: {
+    title: "ケアマネージャー様へ｜訪問看護のご依頼・連携",
+    description: "船橋市・八千代市・習志野市のケアマネージャー様へ。フラクタル訪問看護は最短即日対応、365日訪問可能。訪問看護指示書の取得サポート、定期報告体制も充実。",
+    type: "website",
+    url: "https://fractal-hokan.com/for-care-managers",
+    images: [{ url: "/images/ogp/ogp-image.png", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ケアマネージャー様へ｜訪問看護のご依頼・連携",
+    description: "船橋市・八千代市・習志野市のケアマネージャー様へ。最短即日対応、365日訪問可能。",
+    images: ["/images/ogp/ogp-image.png"],
+  },
 };
 
 export default function ForCareManagersLayout({

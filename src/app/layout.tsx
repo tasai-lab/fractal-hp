@@ -26,7 +26,7 @@ const notoSansJP = Noto_Sans_JP({
 export const metadata: Metadata = {
   // 基本情報 - タイトル28-32文字に最適化
   title: {
-    default: "フラクタル訪問看護 船橋｜船橋市の訪問看護",
+    default: "船橋市の訪問看護なら｜フラクタル訪問看護【精神科・看取り・24時間対応】",
     template: "%s｜フラクタル訪問看護 船橋",
   },
   description:
@@ -107,7 +107,7 @@ export const metadata: Metadata = {
     locale: "ja_JP",
     url: "https://fractal-hokan.com",
     siteName: "フラクタル訪問看護 船橋",
-    title: "フラクタル訪問看護 船橋｜船橋市の訪問看護",
+    title: "船橋市の訪問看護なら｜フラクタル訪問看護【精神科・看取り・24時間対応】",
     description:
       "船橋市・八千代市・習志野市で訪問看護をお探しならフラクタル訪問看護へ。24時間365日対応。看護師求人募集中、入社祝い金最大30万円。",
     images: [
@@ -123,7 +123,7 @@ export const metadata: Metadata = {
   // Twitter Card
   twitter: {
     card: "summary_large_image",
-    title: "フラクタル訪問看護 船橋｜船橋市の訪問看護",
+    title: "船橋市の訪問看護なら｜フラクタル訪問看護【精神科・看取り・24時間対応】",
     description:
       "船橋市・八千代市・習志野市で訪問看護をお探しならフラクタル訪問看護へ。24時間365日対応。",
     images: ["/images/ogp/ogp-image.png"],

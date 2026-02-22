@@ -13,10 +13,12 @@ import Footer from "@/components/Footer";
 import FloatingRecruitBanner from "@/components/FloatingRecruitBanner";
 // import UpdatesPopup from "@/components/UpdatesPopup"; // 一時的に無効化
 import ScrollToTop from "@/components/ScrollToTop";
+import { ServiceFAQStructuredData } from "@/components/StructuredData";
 
 export default function Home() {
   return (
     <>
+      <ServiceFAQStructuredData />
       <Header />
       <main className="pt-14 lg:pt-20">
         <Hero />
