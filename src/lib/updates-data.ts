@@ -12,6 +12,13 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-02-22",
+    items: [
+      { type: "new", title: "千葉市美浜区の訪問看護ページを追加", link: "/areas/chiba-mihama" },
+      { type: "improve", title: "各ページのSEO・メタデータを改善" },
+    ],
+  },
+  {
     date: "2026-02-19",
     items: [
       { type: "new", title: "ご利用料金ページを新設", link: "/pricing" },
