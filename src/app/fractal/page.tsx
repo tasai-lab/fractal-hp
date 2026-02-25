@@ -316,15 +316,15 @@ function NestedStructure() {
   );
 }
 
-// 自己相似性を表現するフラクタルツリー
-function SelfSimilarTree() {
-  const [growthStage, setGrowthStage] = useState(0);
+// 同じパターンがスケール違いで繰り返される自己相似性の表現
+function ScaleRepetition() {
+  const [activeScale, setActiveScale] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
-  const treeRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   // viewport進入を検知してアニメーション開始
   useEffect(() => {
-    const el = treeRef.current;
+    const el = containerRef.current;
     if (!el) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -338,142 +338,141 @@ function SelfSimilarTree() {
     return () => observer.disconnect();
   }, [hasStarted]);
 
-  // hasStarted後に段階的に枝を展開
+  // 自動でスケールを切り替え
   useEffect(() => {
     if (!hasStarted) return;
-    const timers = [200, 600, 1000, 1400, 1800].map((delay, i) =>
-      setTimeout(() => setGrowthStage(i + 1), delay)
-    );
-    return () => timers.forEach(clearTimeout);
+    const timer = setTimeout(() => setActiveScale(1), 600);
+    const interval = setInterval(() => {
+      setActiveScale((prev) => (prev + 1) % 3);
+    }, 4000);
+    return () => { clearTimeout(timer); clearInterval(interval); };
   }, [hasStarted]);
 
-  const branches = [
-    { angle: 120, color: "var(--color-logo-dark-green)", textColor: "var(--color-logo-dark-green)", label: "会社", desc: "環境を整え" },
-    { angle: 90, color: "var(--color-logo-light-green)", textColor: "var(--color-logo-light-green)", label: "スタッフ", desc: "想いを届け" },
-    { angle: 60, color: "var(--color-logo-yellow)", textColor: "var(--color-ink)", label: "利用者様", desc: "笑顔が広がる" },
+  const scales = [
+    {
+      label: "社会",
+      desc: "歴史は同じパターンを繰り返す",
+      color: "var(--color-logo-dark-green)",
+      size: "large",
+    },
+    {
+      label: "組織",
+      desc: "会社がスタッフを大切にし、スタッフが利用者様を大切にする",
+      color: "var(--color-logo-light-green)",
+      size: "medium",
+    },
+    {
+      label: "個人",
+      desc: "一人ひとりの想いやりが、次の誰かへ届く",
+      color: "var(--color-logo-yellow)",
+      size: "small",
+    },
   ];
 
-  const trunkX = 250;
-  const trunkY = 380;
-  const trunkEndY = 260;
-
-  // 再帰的に枝を描画する関数（メモ化）
-  const branchElements = React.useMemo(() => {
-    const drawBranch = (
-      x: number, y: number,
-      angle: number, length: number,
-      depth: number, maxDepth: number,
-      color: string, stageRequired: number
-    ): React.ReactNode[] => {
-      if (depth > maxDepth || growthStage < stageRequired) return [];
-
-      const endX = x + Math.cos((angle * Math.PI) / 180) * length;
-      const endY = y - Math.sin((angle * Math.PI) / 180) * length;
-      const opacity = Math.max(0.3, 1 - depth * 0.2);
-      const strokeWidth = Math.max(1, 4 - depth * 0.8);
-
-      const elements: React.ReactNode[] = [
-        <line
-          key={`${x}-${y}-${depth}-${angle}`}
-          x1={x} y1={y} x2={endX} y2={endY}
-          stroke={color}
-          strokeWidth={strokeWidth}
-          strokeLinecap="round"
-          opacity={opacity}
-          className="transition-all duration-700"
-        />,
-      ];
-
-      if (depth < maxDepth) {
-        const nextLength = length * 0.6;
-        const spread = 25;
-        elements.push(
-          ...drawBranch(endX, endY, angle + spread, nextLength, depth + 1, maxDepth, color, stageRequired + 1),
-          ...drawBranch(endX, endY, angle - spread, nextLength, depth + 1, maxDepth, color, stageRequired + 1),
-        );
-      }
-
-      return elements;
-    };
-
-    return branches.map((branch, i) => (
-      <g key={i}>
-        {drawBranch(trunkX, trunkEndY, branch.angle, 90, 0, 3, branch.color, 2)}
-      </g>
-    ));
-  }, [growthStage]);
-
   return (
-    <div ref={treeRef} className="relative w-full max-w-lg mx-auto">
-      <svg viewBox="0 0 500 420" className="w-full h-auto" aria-hidden="true">
-        {/* 幹 */}
-        <line
-          x1={trunkX} y1={trunkY} x2={trunkX} y2={trunkEndY}
-          stroke="var(--color-logo-dark-green)"
-          strokeWidth="5"
-          strokeLinecap="round"
-          className="transition-all duration-700"
-          opacity={growthStage >= 1 ? 1 : 0}
-        />
+    <div ref={containerRef} className="max-w-2xl mx-auto">
+      {/* 3つのスケールを入れ子の三角形で表現 */}
+      <div className="relative flex justify-center mb-10">
+        <svg viewBox="0 0 400 320" className="w-full max-w-md h-auto" aria-hidden="true">
+          {/* 最大の三角形: 社会 */}
+          <polygon
+            points="200,20 370,280 30,280"
+            fill="none"
+            stroke="var(--color-logo-dark-green)"
+            strokeWidth={activeScale === 0 ? "3" : "1.5"}
+            opacity={activeScale === 0 ? 1 : 0.25}
+            className="transition-all duration-700"
+          />
+          <text
+            x="200" y="290"
+            textAnchor="middle"
+            fill="var(--color-logo-dark-green)"
+            fontSize="12"
+            fontWeight={activeScale === 0 ? "bold" : "normal"}
+            opacity={activeScale === 0 ? 1 : 0.4}
+            className="transition-all duration-500"
+          >
+            社会
+          </text>
 
-        {/* 幹のラベル */}
-        <text
-          x={trunkX} y={trunkY + 18}
-          textAnchor="middle"
-          fill="var(--color-logo-dark-green)"
-          fontSize="13"
-          fontWeight="bold"
-          opacity={growthStage >= 1 ? 1 : 0}
-          className="transition-opacity duration-500"
-        >
-          理念
-        </text>
+          {/* 中間の三角形: 組織 */}
+          <polygon
+            points="200,80 310,240 90,240"
+            fill="none"
+            stroke="var(--color-logo-light-green)"
+            strokeWidth={activeScale === 1 ? "3" : "1.5"}
+            opacity={activeScale === 1 ? 1 : 0.25}
+            className="transition-all duration-700"
+          />
+          <text
+            x="200" y="255"
+            textAnchor="middle"
+            fill="var(--color-logo-light-green)"
+            fontSize="12"
+            fontWeight={activeScale === 1 ? "bold" : "normal"}
+            opacity={activeScale === 1 ? 1 : 0.4}
+            className="transition-all duration-500"
+          >
+            組織
+          </text>
 
-        {/* 3本の主枝と再帰的な小枝 */}
-        {branchElements}
+          {/* 最小の三角形: 個人 */}
+          <polygon
+            points="200,130 250,210 150,210"
+            fill={activeScale === 2 ? "var(--color-logo-yellow)" : "none"}
+            fillOpacity={activeScale === 2 ? 0.2 : 0}
+            stroke="var(--color-logo-yellow)"
+            strokeWidth={activeScale === 2 ? "3" : "1.5"}
+            opacity={activeScale === 2 ? 1 : 0.25}
+            className="transition-all duration-700"
+          />
+          <text
+            x="200" y="222"
+            textAnchor="middle"
+            fill="var(--color-ink)"
+            fontSize="11"
+            fontWeight={activeScale === 2 ? "bold" : "normal"}
+            opacity={activeScale === 2 ? 1 : 0.4}
+            className="transition-all duration-500"
+          >
+            個人
+          </text>
 
-        {/* 主枝の先端にラベル */}
-        {branches.map((branch, i) => {
-          const endX = trunkX + Math.cos((branch.angle * Math.PI) / 180) * 90;
-          const endY = trunkEndY - Math.sin((branch.angle * Math.PI) / 180) * 90;
-          const labelY = endY - 16;
+          {/* 同じ形を示す破線矢印 */}
+          <path
+            d="M 365 160 Q 390 160 385 185"
+            fill="none"
+            stroke="var(--color-ink-soft)"
+            strokeWidth="1"
+            strokeDasharray="3 2"
+            opacity="0.4"
+          />
+          <text x="395" y="178" fill="var(--color-ink-soft)" fontSize="8" opacity="0.6">
+            同じ形
+          </text>
+        </svg>
+      </div>
 
-          return (
-            <g key={`label-${i}`} opacity={growthStage >= 3 ? 1 : 0} className="transition-opacity duration-500">
-              <circle cx={endX} cy={endY} r={28} fill={branch.color} opacity={0.15} />
-              <text
-                x={endX} y={labelY}
-                textAnchor="middle"
-                fill={branch.textColor}
-                fontSize="14"
-                fontWeight="bold"
-              >
-                {branch.label}
-              </text>
-              <text
-                x={endX} y={labelY + 18}
-                textAnchor="middle"
-                fill="var(--color-ink-soft)"
-                fontSize="10"
-              >
-                {branch.desc}
-              </text>
-            </g>
-          );
-        })}
-
-        {/* 自己相似性の注釈 */}
-        <text
-          x={250} y={50}
-          textAnchor="middle"
-          fill="var(--color-ink-soft)"
-          fontSize="11"
-          opacity={growthStage >= 5 ? 0.7 : 0}
-          className="transition-opacity duration-700"
-        >
-          どの枝も、同じかたちで広がっていく
-        </text>
-      </svg>
+      {/* アクティブなスケールの説明 */}
+      <div className="relative h-24 flex items-center justify-center">
+        {scales.map((scale, i) => (
+          <div
+            key={i}
+            className="absolute inset-0 flex flex-col items-center justify-center transition-all duration-500"
+            style={{ opacity: activeScale === i ? 1 : 0 }}
+          >
+            <span
+              className="text-lg font-bold mb-1"
+              style={{ color: scale.color === "var(--color-logo-yellow)" ? "var(--color-ink)" : scale.color }}
+            >
+              {scale.label}のスケールで見ても
+            </span>
+            <span style={{ color: 'var(--color-ink-soft)' }} className="text-sm">
+              {scale.desc}
+            </span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -850,7 +849,7 @@ export default function FractalPage() {
               </div>
             </div>
 
-            {/* 自己相似性 — すべてのスケールに同じ想い */}
+            {/* 自己相似性 — どのスケールでも同じパターン */}
             <div
               className="rounded-[2rem] md:rounded-[3rem] p-8 md:p-16"
               style={{
@@ -861,28 +860,26 @@ export default function FractalPage() {
                 className="text-2xl md:text-3xl font-bold text-center mb-4 heading-gothic"
                 style={{ color: 'var(--color-ink)' }}
               >
-                <span>同じ想いが、</span>
+                <span>ミクロでもマクロでも、</span>
                 <br />
-                <span className="inline-flex items-center gap-2">
-                  <span>すみずみまで宿る</span>
-                </span>
+                <span>同じパターンが現れる</span>
               </h3>
               <p
                 className="text-center mb-12"
                 style={{ color: 'var(--color-ink-soft)' }}
               >
-                ひとつの理念から枝分かれした想いが、どのスケールでも同じかたちで現れる。それが自己相似性です。
+                社会も、組織も、一人の人間も。どのスケールで切り取っても、同じ構造が繰り返される。それがフラクタルです。
               </p>
 
-              <SelfSimilarTree />
+              <ScaleRepetition />
 
               <p
                 className="text-center mt-12 text-lg leading-relaxed max-w-2xl mx-auto"
                 style={{ color: 'var(--color-ink-soft)' }}
               >
-                会社が大切にする想いは、チームの行動に。チームの行動は、一人ひとりのケアに。
+                会社がスタッフを大切にする。スタッフが利用者様を大切にする。利用者様がその周りの人を大切にする。
                 <br />
-                どこを切り取っても同じ想いが宿る、それがフラクタルの自己相似性。
+                「大切にする」という同じパターンが、どのスケールでも繰り返されていく。
                 <br />
                 <strong style={{ color: 'var(--color-logo-dark-green)' }}>
                   それが、私たち株式会社フラクタルの目指す、訪問看護のあり方です。
