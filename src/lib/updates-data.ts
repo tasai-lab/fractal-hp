@@ -12,6 +12,12 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-02-25",
+    items: [
+      { type: "improve", title: "「フラクタルの意味」ページの説明文・図解を改善", link: "/fractal" },
+    ],
+  },
+  {
     date: "2026-02-22",
     items: [
       { type: "new", title: "千葉市美浜区の訪問看護ページを追加", link: "/areas/chiba-mihama" },
