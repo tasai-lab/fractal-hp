@@ -156,7 +156,7 @@ function ScaleRepetition() {
     {
       label: "社会",
       desc: "安定した社会が、すべての土台になる",
-      color: "var(--color-logo-dark-green)",
+      color: "var(--color-logo-light-green)",
     },
     {
       label: "会社",
@@ -166,17 +166,17 @@ function ScaleRepetition() {
     {
       label: "チーム",
       desc: "会社の安定が、チームの安定につながる",
-      color: "var(--color-logo-light-green)",
+      color: "#c4a800",
     },
     {
       label: "個人",
       desc: "チームの安定が、個人のパフォーマンスを引き出す",
-      color: "var(--color-logo-light-green)",
+      color: "#f97316",
     },
     {
       label: "顧客",
       desc: "個人の安定したパフォーマンスが、顧客の体験の質を高める",
-      color: "var(--color-logo-yellow)",
+      color: "#e11d48",
     },
   ];
 
@@ -208,7 +208,7 @@ function ScaleRepetition() {
 
   return (
     <div ref={containerRef} className="max-w-2xl mx-auto">
-      <div className="relative flex justify-center mb-10" style={{ background: '#fff' }}>
+      <div className="relative flex justify-center mb-10">
         <svg viewBox="0 0 410 380" className="w-full max-w-lg h-auto" aria-hidden="true">
 
           {/* 背景: 社会三角形と同じ座標系のシェルピンスキーパターン */}
@@ -223,20 +223,20 @@ function ScaleRepetition() {
             />
           ))}
 
-          {/* 1. 社会（最大）— 1番目に表示 */}
+          {/* 1. 社会（最大）— 薄い緑 */}
           <polygon
             points="200,11 390,340 10,340"
-            fill="var(--color-logo-dark-green)"
-            fillOpacity={revealedCount >= 1 ? 0.1 : 0}
-            stroke="var(--color-logo-dark-green)"
-            strokeWidth="2"
+            fill="var(--color-logo-light-green)"
+            fillOpacity={revealedCount >= 1 ? 0.25 : 0}
+            stroke="var(--color-logo-light-green)"
+            strokeWidth="2.5"
             strokeOpacity={revealedCount >= 1 ? 1 : 0}
             className="transition-all duration-1200"
           />
           <text
             x="390" y="365"
             textAnchor="middle"
-            fill="var(--color-logo-dark-green)"
+            fill="var(--color-logo-light-green)"
             fontSize="13"
             fontWeight="bold"
             opacity={revealedCount >= 1 ? 1 : 0}
@@ -245,14 +245,14 @@ function ScaleRepetition() {
             社会
           </text>
 
-          {/* 2. 会社 — 右角(200)=社会の底辺中心 */}
+          {/* 2. 会社 — 濃い緑 */}
           <polygon
             points="105,176 200,340 10,340"
             fill="var(--color-logo-dark-green)"
-            fillOpacity={revealedCount >= 2 ? 0.15 : 0}
+            fillOpacity={revealedCount >= 2 ? 0.3 : 0}
             stroke="var(--color-logo-dark-green)"
-            strokeWidth="2"
-            strokeOpacity={revealedCount >= 2 ? 0.7 : 0}
+            strokeWidth="2.5"
+            strokeOpacity={revealedCount >= 2 ? 1 : 0}
             className="transition-all duration-1200"
           />
           <text
@@ -267,20 +267,20 @@ function ScaleRepetition() {
             会社
           </text>
 
-          {/* 3. チーム — 右角(105)=会社の底辺中心 */}
+          {/* 3. チーム — 黄色 */}
           <polygon
             points="58,258 105,340 10,340"
-            fill="var(--color-logo-light-green)"
-            fillOpacity={revealedCount >= 3 ? 0.2 : 0}
-            stroke="var(--color-logo-light-green)"
-            strokeWidth="2"
+            fill="var(--color-logo-yellow)"
+            fillOpacity={revealedCount >= 3 ? 0.4 : 0}
+            stroke="var(--color-logo-yellow)"
+            strokeWidth="2.5"
             strokeOpacity={revealedCount >= 3 ? 1 : 0}
             className="transition-all duration-1200"
           />
           <text
             x="105" y="365"
             textAnchor="middle"
-            fill="var(--color-logo-light-green)"
+            fill="#c4a800"
             fontSize="12"
             fontWeight="bold"
             opacity={revealedCount >= 3 ? 1 : 0}
@@ -289,20 +289,20 @@ function ScaleRepetition() {
             チーム
           </text>
 
-          {/* 4. 個人 — 右角(58)=チームの底辺中心 */}
+          {/* 4. 個人 — オレンジ */}
           <polygon
             points="34,299 58,340 10,340"
-            fill="var(--color-logo-light-green)"
-            fillOpacity={revealedCount >= 4 ? 0.25 : 0}
-            stroke="var(--color-logo-light-green)"
-            strokeWidth="2"
-            strokeOpacity={revealedCount >= 4 ? 0.7 : 0}
+            fill="#f97316"
+            fillOpacity={revealedCount >= 4 ? 0.35 : 0}
+            stroke="#f97316"
+            strokeWidth="2.5"
+            strokeOpacity={revealedCount >= 4 ? 1 : 0}
             className="transition-all duration-1200"
           />
           <text
             x="58" y="365"
             textAnchor="middle"
-            fill="var(--color-logo-light-green)"
+            fill="#f97316"
             fontSize="11"
             fontWeight="bold"
             opacity={revealedCount >= 4 ? 1 : 0}
@@ -311,20 +311,20 @@ function ScaleRepetition() {
             個人
           </text>
 
-          {/* 5. 顧客（最小）— 右角(34)=個人の底辺中心 */}
+          {/* 5. 顧客（最小）— コーラル */}
           <polygon
             points="22,319 34,340 10,340"
-            fill="var(--color-logo-yellow)"
-            fillOpacity={revealedCount >= 5 ? 0.35 : 0}
-            stroke="var(--color-logo-yellow)"
-            strokeWidth="2"
+            fill="#e11d48"
+            fillOpacity={revealedCount >= 5 ? 0.4 : 0}
+            stroke="#e11d48"
+            strokeWidth="2.5"
             strokeOpacity={revealedCount >= 5 ? 1 : 0}
             className="transition-all duration-1200"
           />
           <text
             x="34" y="365"
             textAnchor="middle"
-            fill="var(--color-ink)"
+            fill="#e11d48"
             fontSize="10"
             fontWeight="bold"
             opacity={revealedCount >= 5 ? 1 : 0}
@@ -345,7 +345,7 @@ function ScaleRepetition() {
           >
             <span
               className="text-lg font-bold mb-1"
-              style={{ color: scale.color === "var(--color-logo-yellow)" ? "var(--color-ink)" : scale.color }}
+              style={{ color: scale.color }}
             >
               {scale.label}
             </span>
