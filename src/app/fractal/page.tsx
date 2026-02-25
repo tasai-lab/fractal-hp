@@ -483,23 +483,15 @@ export default function FractalPage() {
               </div>
 
               {/* 右: イラスト */}
-              <div className="relative">
-                <div className="aspect-square rounded-3xl overflow-hidden">
-                  <Image
-                    src={fractalObject.imageSrc}
-                    alt={fractalObject.alt}
-                    width={800}
-                    height={800}
-                    className="w-full h-full object-cover"
-                    priority
-                  />
-                </div>
-                <div
-                  className="absolute -bottom-4 -right-4 w-24 h-24 rounded-2xl flex items-center justify-center"
-                  style={{ background: 'var(--color-logo-yellow)' }}
-                >
-                  <span className="text-3xl">∞</span>
-                </div>
+              <div className="aspect-square rounded-3xl overflow-hidden">
+                <Image
+                  src={fractalObject.imageSrc}
+                  alt={fractalObject.alt}
+                  width={800}
+                  height={800}
+                  className="w-full h-full object-cover"
+                  priority
+                />
               </div>
             </div>
 
@@ -547,7 +539,7 @@ export default function FractalPage() {
         </section>
 
         {/* Part 2: 私たちのフラクタル */}
-        <section className="py-24 md:py-32 relative overflow-hidden">
+        <section className="py-24 md:py-32 relative overflow-hidden" style={{ background: 'var(--color-paper)' }}>
           <div className="max-w-6xl mx-auto px-4 relative z-10">
             <div className="text-center mb-16">
               <span
