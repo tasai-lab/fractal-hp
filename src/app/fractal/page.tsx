@@ -567,7 +567,7 @@ export default function FractalPage() {
         </section>
 
         {/* Part 2: 私たちのフラクタル */}
-        <section className="py-24 md:py-32 relative overflow-hidden" style={{ background: 'var(--color-paper)' }}>
+        <section className="py-24 md:py-32 relative overflow-hidden">
           <div className="max-w-6xl mx-auto px-4 relative z-10">
             <div className="text-center mb-16">
               <span
