@@ -350,10 +350,10 @@ function ScaleRepetition() {
 
   const scales = [
     {
-      label: "社会",
-      desc: "歴史は同じパターンを繰り返す",
-      color: "var(--color-logo-dark-green)",
-      size: "large",
+      label: "個人",
+      desc: "一人ひとりの想いやりが、次の誰かへ届く",
+      color: "var(--color-logo-yellow)",
+      size: "small",
     },
     {
       label: "組織",
@@ -362,10 +362,10 @@ function ScaleRepetition() {
       size: "medium",
     },
     {
-      label: "個人",
-      desc: "一人ひとりの想いやりが、次の誰かへ届く",
-      color: "var(--color-logo-yellow)",
-      size: "small",
+      label: "社会",
+      desc: "歴史は同じパターンを繰り返す",
+      color: "var(--color-logo-dark-green)",
+      size: "large",
     },
   ];
 
@@ -379,8 +379,8 @@ function ScaleRepetition() {
             points="200,20 370,280 30,280"
             fill="none"
             stroke="var(--color-logo-dark-green)"
-            strokeWidth={activeScale === 0 ? "3" : "1.5"}
-            opacity={activeScale === 0 ? 1 : 0.25}
+            strokeWidth={activeScale === 2 ? "3" : "1.5"}
+            opacity={activeScale === 2 ? 1 : 0.25}
             className="transition-all duration-700"
           />
           <text
@@ -388,8 +388,8 @@ function ScaleRepetition() {
             textAnchor="middle"
             fill="var(--color-logo-dark-green)"
             fontSize="12"
-            fontWeight={activeScale === 0 ? "bold" : "normal"}
-            opacity={activeScale === 0 ? 1 : 0.4}
+            fontWeight={activeScale === 2 ? "bold" : "normal"}
+            opacity={activeScale === 2 ? 1 : 0.4}
             className="transition-all duration-500"
           >
             社会
@@ -419,11 +419,11 @@ function ScaleRepetition() {
           {/* 最小の三角形: 個人 */}
           <polygon
             points="200,130 250,210 150,210"
-            fill={activeScale === 2 ? "var(--color-logo-yellow)" : "none"}
-            fillOpacity={activeScale === 2 ? 0.2 : 0}
+            fill={activeScale === 0 ? "var(--color-logo-yellow)" : "none"}
+            fillOpacity={activeScale === 0 ? 0.2 : 0}
             stroke="var(--color-logo-yellow)"
-            strokeWidth={activeScale === 2 ? "3" : "1.5"}
-            opacity={activeScale === 2 ? 1 : 0.25}
+            strokeWidth={activeScale === 0 ? "3" : "1.5"}
+            opacity={activeScale === 0 ? 1 : 0.25}
             className="transition-all duration-700"
           />
           <text
@@ -431,8 +431,8 @@ function ScaleRepetition() {
             textAnchor="middle"
             fill="var(--color-ink)"
             fontSize="11"
-            fontWeight={activeScale === 2 ? "bold" : "normal"}
-            opacity={activeScale === 2 ? 1 : 0.4}
+            fontWeight={activeScale === 0 ? "bold" : "normal"}
+            opacity={activeScale === 0 ? 1 : 0.4}
             className="transition-all duration-500"
           >
             個人
