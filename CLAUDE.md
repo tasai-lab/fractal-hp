@@ -44,6 +44,7 @@ src/
 │   ├── page.tsx           # トップページ
 │   ├── about-fractal/     # フラクタルを知る
 │   ├── recruit/           # 採用情報
+│   ├── documents/         # 各種書類・情報公開（BCP、契約書等）
 │   └── flyers/            # チラシ
 ├── components/            # 共通コンポーネント
 └── lib/

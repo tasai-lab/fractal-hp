@@ -52,6 +52,7 @@ export const footerLinks = [
   { href: "/for-medical-institutions", label: "医療機関様へ" },
   { href: "/recruit", label: "採用情報" },
   { href: "/#contact", label: "お問い合わせ" },
+  { href: "/documents", label: "各種書類" },
   { href: "/updates", label: "更新情報" },
 ];
 
@@ -87,6 +88,7 @@ export const otherMenuCategories = {
     items: [
       { href: "/fractal", label: "フラクタルの意味" },
       { href: "/company", label: "株式会社フラクタル" },
+      { href: "/documents", label: "各種書類" },
       { href: "/updates", label: "更新情報" },
     ],
   },

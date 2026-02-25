@@ -102,6 +102,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // === その他 ===
     {
+      url: `${baseUrl}/documents`,
+      lastModified,
+      changeFrequency: monthly,
+      priority: 0.6,
+    },
+    {
       url: `${baseUrl}/updates`,
       lastModified,
       changeFrequency: weekly,
