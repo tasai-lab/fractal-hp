@@ -217,9 +217,9 @@ function ScaleRepetition() {
               key={`bg-${i}`}
               points={points}
               fill="none"
-              stroke="var(--color-logo-light-green)"
-              strokeWidth={0.5}
-              opacity={0.2}
+              stroke="var(--color-logo-dark-green)"
+              strokeWidth={0.8}
+              opacity={0.5}
             />
           ))}
 
