@@ -7,6 +7,7 @@ import Script from "next/script";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { BreadcrumbStructuredData } from "@/components/StructuredData";
+import { natureExamples as natureExamplesData, fractalObject } from "@/lib/fractal-data";
 
 // フラクタル構造化データ
 function FractalStructuredData() {
@@ -110,95 +111,6 @@ function SierpinskiTriangle({
   );
 }
 
-// 自然界のフラクタル例
-const natureExamples = [
-  {
-    title: "雪の結晶",
-    description: "どこまで近づいて見ても、美しい六角形のパターンが繰り返されています",
-    icon: (
-      <svg viewBox="0 0 100 100" className="w-full h-full">
-        <g stroke="currentColor" fill="none" strokeWidth="1.5">
-          {[0, 60, 120, 180, 240, 300].map((angle, i) => (
-            <g key={i} transform={`rotate(${angle} 50 50)`}>
-              <line x1="50" y1="50" x2="50" y2="15" />
-              <line x1="50" y1="25" x2="40" y2="35" />
-              <line x1="50" y1="25" x2="60" y2="35" />
-              <line x1="50" y1="35" x2="43" y2="42" />
-              <line x1="50" y1="35" x2="57" y2="42" />
-            </g>
-          ))}
-        </g>
-      </svg>
-    ),
-  },
-  {
-    title: "木の枝",
-    description: "幹から太い枝へ、そして細い小枝へと、同じパターンで分かれていきます",
-    icon: (
-      <svg viewBox="0 0 100 100" className="w-full h-full">
-        <g stroke="currentColor" fill="none" strokeWidth="2" strokeLinecap="round">
-          <line x1="50" y1="95" x2="50" y2="60" />
-          <line x1="50" y1="60" x2="30" y2="40" />
-          <line x1="50" y1="60" x2="70" y2="40" />
-          <line x1="30" y1="40" x2="20" y2="25" strokeWidth="1.5" />
-          <line x1="30" y1="40" x2="40" y2="25" strokeWidth="1.5" />
-          <line x1="70" y1="40" x2="60" y2="25" strokeWidth="1.5" />
-          <line x1="70" y1="40" x2="80" y2="25" strokeWidth="1.5" />
-          <line x1="20" y1="25" x2="15" y2="15" strokeWidth="1" />
-          <line x1="20" y1="25" x2="25" y2="15" strokeWidth="1" />
-          <line x1="40" y1="25" x2="35" y2="15" strokeWidth="1" />
-          <line x1="40" y1="25" x2="45" y2="15" strokeWidth="1" />
-          <line x1="60" y1="25" x2="55" y2="15" strokeWidth="1" />
-          <line x1="60" y1="25" x2="65" y2="15" strokeWidth="1" />
-          <line x1="80" y1="25" x2="75" y2="15" strokeWidth="1" />
-          <line x1="80" y1="25" x2="85" y2="15" strokeWidth="1" />
-        </g>
-      </svg>
-    ),
-  },
-  {
-    title: "シダの葉",
-    description: "一枚の葉の形が、小さな葉脈の形と相似しています",
-    icon: (
-      <svg viewBox="0 0 100 100" className="w-full h-full">
-        <g stroke="currentColor" fill="none" strokeWidth="1.5" strokeLinecap="round">
-          <path d="M50 95 Q50 50 50 10" strokeWidth="2" />
-          {[15, 25, 35, 45, 55, 65, 75].map((y, i) => (
-            <g key={i}>
-              <path d={`M50 ${95 - y} Q${35 - i * 2} ${85 - y} ${30 - i * 2} ${80 - y}`} />
-              <path d={`M50 ${95 - y} Q${65 + i * 2} ${85 - y} ${70 + i * 2} ${80 - y}`} />
-            </g>
-          ))}
-        </g>
-      </svg>
-    ),
-  },
-  {
-    title: "血管",
-    description: "太い血管から細い毛細血管まで、同じ分岐パターンが続きます",
-    icon: (
-      <svg viewBox="0 0 100 100" className="w-full h-full">
-        <g stroke="currentColor" fill="none" strokeLinecap="round">
-          <path d="M50 90 L50 60" strokeWidth="3" />
-          <path d="M50 60 L35 45" strokeWidth="2.5" />
-          <path d="M50 60 L65 45" strokeWidth="2.5" />
-          <path d="M35 45 L25 35" strokeWidth="2" />
-          <path d="M35 45 L40 32" strokeWidth="2" />
-          <path d="M65 45 L60 32" strokeWidth="2" />
-          <path d="M65 45 L75 35" strokeWidth="2" />
-          <path d="M25 35 L18 25" strokeWidth="1.5" />
-          <path d="M25 35 L30 22" strokeWidth="1.5" />
-          <path d="M40 32 L35 20" strokeWidth="1.5" />
-          <path d="M40 32 L48 18" strokeWidth="1.5" />
-          <path d="M60 32 L52 18" strokeWidth="1.5" />
-          <path d="M60 32 L65 20" strokeWidth="1.5" />
-          <path d="M75 35 L70 22" strokeWidth="1.5" />
-          <path d="M75 35 L82 25" strokeWidth="1.5" />
-        </g>
-      </svg>
-    ),
-  },
-];
 
 // 同じパターンがスケール違いで繰り返される自己相似性の表現
 function ScaleRepetition() {
@@ -244,7 +156,7 @@ function ScaleRepetition() {
     {
       label: "社会",
       desc: "安定した社会が、すべての土台になる",
-      color: "var(--color-logo-dark-green)",
+      color: "var(--color-logo-light-green)",
     },
     {
       label: "会社",
@@ -254,17 +166,17 @@ function ScaleRepetition() {
     {
       label: "チーム",
       desc: "会社の安定が、チームの安定につながる",
-      color: "var(--color-logo-light-green)",
+      color: "#c4a800",
     },
     {
       label: "個人",
       desc: "チームの安定が、個人のパフォーマンスを引き出す",
-      color: "var(--color-logo-light-green)",
+      color: "#f97316",
     },
     {
       label: "顧客",
       desc: "個人の安定したパフォーマンスが、顧客の体験の質を高める",
-      color: "var(--color-logo-yellow)",
+      color: "#e11d48",
     },
   ];
 
@@ -278,25 +190,53 @@ function ScaleRepetition() {
     顧客: base=24   (10→34),  h=21,  top=(22, 319)
   */
 
+  // 背景用シェルピンスキー三角形を社会三角形と同じ座標系で生成
+  const bgTriangles: string[] = [];
+  function generateBg(x: number, y: number, size: number, level: number) {
+    if (level === 0) {
+      const h = size * Math.sqrt(3) / 2;
+      bgTriangles.push(`${x},${y + h} ${x + size / 2},${y} ${x + size},${y + h}`);
+      return;
+    }
+    const s = size / 2;
+    const h = s * Math.sqrt(3) / 2;
+    generateBg(x, y + h, s, level - 1);
+    generateBg(x + s / 2, y, s, level - 1);
+    generateBg(x + s, y + h, s, level - 1);
+  }
+  generateBg(10, 11, 380, 5);
+
   return (
     <div ref={containerRef} className="max-w-2xl mx-auto">
       <div className="relative flex justify-center mb-10">
         <svg viewBox="0 0 410 380" className="w-full max-w-lg h-auto" aria-hidden="true">
 
-          {/* 1. 社会（最大）— 1番目に表示 */}
+          {/* 背景: 社会三角形と同じ座標系のシェルピンスキーパターン */}
+          {bgTriangles.map((points, i) => (
+            <polygon
+              key={`bg-${i}`}
+              points={points}
+              fill="none"
+              stroke="var(--color-logo-dark-green)"
+              strokeWidth={0.8}
+              opacity={0.5}
+            />
+          ))}
+
+          {/* 1. 社会（最大）— 薄い緑 */}
           <polygon
             points="200,11 390,340 10,340"
-            fill="var(--color-logo-dark-green)"
-            fillOpacity={revealedCount >= 1 ? 0.1 : 0}
-            stroke="var(--color-logo-dark-green)"
-            strokeWidth="2"
+            fill="var(--color-logo-light-green)"
+            fillOpacity={revealedCount >= 1 ? 0.25 : 0}
+            stroke="var(--color-logo-light-green)"
+            strokeWidth="2.5"
             strokeOpacity={revealedCount >= 1 ? 1 : 0}
             className="transition-all duration-1200"
           />
           <text
             x="390" y="365"
             textAnchor="middle"
-            fill="var(--color-logo-dark-green)"
+            fill="var(--color-logo-light-green)"
             fontSize="13"
             fontWeight="bold"
             opacity={revealedCount >= 1 ? 1 : 0}
@@ -305,14 +245,14 @@ function ScaleRepetition() {
             社会
           </text>
 
-          {/* 2. 会社 — 右角(200)=社会の底辺中心 */}
+          {/* 2. 会社 — 濃い緑 */}
           <polygon
             points="105,176 200,340 10,340"
             fill="var(--color-logo-dark-green)"
-            fillOpacity={revealedCount >= 2 ? 0.15 : 0}
+            fillOpacity={revealedCount >= 2 ? 0.3 : 0}
             stroke="var(--color-logo-dark-green)"
-            strokeWidth="2"
-            strokeOpacity={revealedCount >= 2 ? 0.7 : 0}
+            strokeWidth="2.5"
+            strokeOpacity={revealedCount >= 2 ? 1 : 0}
             className="transition-all duration-1200"
           />
           <text
@@ -327,20 +267,20 @@ function ScaleRepetition() {
             会社
           </text>
 
-          {/* 3. チーム — 右角(105)=会社の底辺中心 */}
+          {/* 3. チーム — 黄色 */}
           <polygon
             points="58,258 105,340 10,340"
-            fill="var(--color-logo-light-green)"
-            fillOpacity={revealedCount >= 3 ? 0.2 : 0}
-            stroke="var(--color-logo-light-green)"
-            strokeWidth="2"
+            fill="var(--color-logo-yellow)"
+            fillOpacity={revealedCount >= 3 ? 0.4 : 0}
+            stroke="var(--color-logo-yellow)"
+            strokeWidth="2.5"
             strokeOpacity={revealedCount >= 3 ? 1 : 0}
             className="transition-all duration-1200"
           />
           <text
             x="105" y="365"
             textAnchor="middle"
-            fill="var(--color-logo-light-green)"
+            fill="#c4a800"
             fontSize="12"
             fontWeight="bold"
             opacity={revealedCount >= 3 ? 1 : 0}
@@ -349,20 +289,20 @@ function ScaleRepetition() {
             チーム
           </text>
 
-          {/* 4. 個人 — 右角(58)=チームの底辺中心 */}
+          {/* 4. 個人 — オレンジ */}
           <polygon
             points="34,299 58,340 10,340"
-            fill="var(--color-logo-light-green)"
-            fillOpacity={revealedCount >= 4 ? 0.25 : 0}
-            stroke="var(--color-logo-light-green)"
-            strokeWidth="2"
-            strokeOpacity={revealedCount >= 4 ? 0.7 : 0}
+            fill="#f97316"
+            fillOpacity={revealedCount >= 4 ? 0.35 : 0}
+            stroke="#f97316"
+            strokeWidth="2.5"
+            strokeOpacity={revealedCount >= 4 ? 1 : 0}
             className="transition-all duration-1200"
           />
           <text
             x="58" y="365"
             textAnchor="middle"
-            fill="var(--color-logo-light-green)"
+            fill="#f97316"
             fontSize="11"
             fontWeight="bold"
             opacity={revealedCount >= 4 ? 1 : 0}
@@ -371,20 +311,20 @@ function ScaleRepetition() {
             個人
           </text>
 
-          {/* 5. 顧客（最小）— 右角(34)=個人の底辺中心 */}
+          {/* 5. 顧客（最小）— コーラル */}
           <polygon
             points="22,319 34,340 10,340"
-            fill="var(--color-logo-yellow)"
-            fillOpacity={revealedCount >= 5 ? 0.35 : 0}
-            stroke="var(--color-logo-yellow)"
-            strokeWidth="2"
+            fill="#e11d48"
+            fillOpacity={revealedCount >= 5 ? 0.4 : 0}
+            stroke="#e11d48"
+            strokeWidth="2.5"
             strokeOpacity={revealedCount >= 5 ? 1 : 0}
             className="transition-all duration-1200"
           />
           <text
             x="34" y="365"
             textAnchor="middle"
-            fill="var(--color-ink)"
+            fill="#e11d48"
             fontSize="10"
             fontWeight="bold"
             opacity={revealedCount >= 5 ? 1 : 0}
@@ -405,7 +345,7 @@ function ScaleRepetition() {
           >
             <span
               className="text-lg font-bold mb-1"
-              style={{ color: scale.color === "var(--color-logo-yellow)" ? "var(--color-ink)" : scale.color }}
+              style={{ color: scale.color }}
             >
               {scale.label}
             </span>
@@ -571,24 +511,15 @@ export default function FractalPage() {
               </div>
 
               {/* 右: イラスト */}
-              <div className="relative">
-                <div
-                  className="aspect-square rounded-3xl p-8 flex items-center justify-center"
-                  style={{ background: 'linear-gradient(135deg, var(--color-paper) 0%, #e8f5f0 100%)' }}
-                >
-                  <SierpinskiTriangle
-                    depth={5}
-                    size={300}
-                    className="text-[var(--color-logo-dark-green)] w-full"
-                    animate={false}
-                  />
-                </div>
-                <div
-                  className="absolute -bottom-4 -right-4 w-24 h-24 rounded-2xl flex items-center justify-center"
-                  style={{ background: 'var(--color-logo-yellow)' }}
-                >
-                  <span className="text-3xl">∞</span>
-                </div>
+              <div className="aspect-square rounded-3xl overflow-hidden">
+                <Image
+                  src={fractalObject.imageSrc}
+                  alt={fractalObject.alt}
+                  width={800}
+                  height={800}
+                  className="w-full h-full object-cover"
+                  priority
+                />
               </div>
             </div>
 
@@ -609,30 +540,23 @@ export default function FractalPage() {
               </h3>
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-                {natureExamples.map((item, index) => (
-                  <div
-                    key={index}
-                    className="group"
-                  >
+                {natureExamplesData.map((item, index) => (
+                  <div key={index} className="group">
                     <div
-                      className="aspect-square rounded-2xl md:rounded-3xl p-6 md:p-8 mb-4 transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl"
-                      style={{
-                        background: 'linear-gradient(135deg, var(--color-paper) 0%, #e8f5f0 100%)',
-                        color: 'var(--color-logo-dark-green)',
-                      }}
+                      className="aspect-square rounded-2xl md:rounded-3xl mb-4 transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl overflow-hidden"
                     >
-                      {item.icon}
+                      <Image
+                        src={item.imageSrc}
+                        alt={item.title}
+                        width={512}
+                        height={512}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
-                    <h4
-                      className="font-bold text-lg mb-2"
-                      style={{ color: 'var(--color-ink)' }}
-                    >
+                    <h4 className="font-bold text-lg mb-2" style={{ color: 'var(--color-ink)' }}>
                       {item.title}
                     </h4>
-                    <p
-                      className="text-sm leading-relaxed"
-                      style={{ color: 'var(--color-ink-soft)' }}
-                    >
+                    <p className="text-sm leading-relaxed" style={{ color: 'var(--color-ink-soft)' }}>
                       {item.description}
                     </p>
                   </div>
@@ -695,7 +619,7 @@ export default function FractalPage() {
                   </p>
                 </div>
 
-                {/* カード2: 温かいケア */}
+                {/* カード2: ミクロでもマクロでも */}
                 <div
                   className="relative bg-white rounded-2xl p-6 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                 >
@@ -712,30 +636,21 @@ export default function FractalPage() {
                     className="text-xl font-bold mb-3 pl-6"
                     style={{ color: 'var(--color-ink)' }}
                   >
-                    どこを切り取っても、温かいケアを
+                    安定は、連鎖する
                   </h3>
                   <p style={{ color: 'var(--color-ink-soft)' }} className="leading-relaxed mb-4">
-                    フラクタルの自己相似性を、私たちはサービス品質に活かしています。
+                    一つの階層が安定すると、それが隣り合う階層の安定を支えます。この連鎖がフラクタルの考え方の核心です。
                   </p>
                   <ul className="space-y-2">
                     {[
-                      { level: "スタッフ一人ひとり", desc: "心のこもったケアを" },
-                      { level: "チームとして", desc: "変わらない安心感を" },
-                      { level: "組織全体で", desc: "一貫した品質と思いを" },
+                      { from: "社会の安定", to: "会社の経営基盤" },
+                      { from: "会社の安定", to: "チームの働きやすさ" },
+                      { from: "チームの安定", to: "一人ひとりの力" },
                     ].map((item, i) => (
-                      <li key={i} className="flex items-center gap-3">
-                        <div
-                          className="w-0 h-0"
-                          style={{
-                            borderStyle: 'solid',
-                            borderWidth: '4px 0 4px 6px',
-                            borderColor: 'transparent transparent transparent var(--color-logo-light-green)'
-                          }}
-                        />
-                        <span>
-                          <strong style={{ color: 'var(--color-ink)' }}>{item.level}</strong>
-                          <span style={{ color: 'var(--color-ink-soft)' }}>が、{item.desc}</span>
-                        </span>
+                      <li key={i} className="flex items-center gap-2 text-sm">
+                        <span style={{ color: 'var(--color-logo-dark-green)' }} className="font-bold whitespace-nowrap">{item.from}</span>
+                        <span style={{ color: 'var(--color-ink-soft)' }}>→</span>
+                        <span style={{ color: 'var(--color-ink-soft)' }}>{item.to}</span>
                       </li>
                     ))}
                   </ul>
@@ -771,7 +686,7 @@ export default function FractalPage() {
             <div
               className="rounded-[2rem] md:rounded-[3rem] p-8 md:p-16"
               style={{
-                background: 'linear-gradient(135deg, rgba(127, 197, 160, 0.1) 0%, rgba(244, 233, 81, 0.1) 100%)',
+                background: '#e8f5f0',
               }}
             >
               <h3
