@@ -208,7 +208,7 @@ function ScaleRepetition() {
 
   return (
     <div ref={containerRef} className="max-w-2xl mx-auto">
-      <div className="relative flex justify-center mb-10">
+      <div className="relative flex justify-center mb-10" style={{ background: 'var(--color-paper)' }}
         <svg viewBox="0 0 410 380" className="w-full max-w-lg h-auto" aria-hidden="true">
 
           {/* 背景: 社会三角形と同じ座標系のシェルピンスキーパターン */}
