@@ -619,7 +619,7 @@ export default function FractalPage() {
                   </p>
                 </div>
 
-                {/* カード2: 温かいケア */}
+                {/* カード2: ミクロでもマクロでも */}
                 <div
                   className="relative bg-white rounded-2xl p-6 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                 >
@@ -636,33 +636,15 @@ export default function FractalPage() {
                     className="text-xl font-bold mb-3 pl-6"
                     style={{ color: 'var(--color-ink)' }}
                   >
-                    どこを切り取っても、温かいケアを
+                    ミクロでもマクロでも、同じパターン
                   </h3>
                   <p style={{ color: 'var(--color-ink-soft)' }} className="leading-relaxed mb-4">
-                    フラクタルの自己相似性を、私たちはサービス品質に活かしています。
+                    社会、会社、チーム、個人、顧客。どのスケールで切り取っても、同じ「安定」の構造が繰り返されます。
                   </p>
-                  <ul className="space-y-2">
-                    {[
-                      { level: "スタッフ一人ひとり", desc: "心のこもったケアを" },
-                      { level: "チームとして", desc: "変わらない安心感を" },
-                      { level: "組織全体で", desc: "一貫した品質と思いを" },
-                    ].map((item, i) => (
-                      <li key={i} className="flex items-center gap-3">
-                        <div
-                          className="w-0 h-0"
-                          style={{
-                            borderStyle: 'solid',
-                            borderWidth: '4px 0 4px 6px',
-                            borderColor: 'transparent transparent transparent var(--color-logo-light-green)'
-                          }}
-                        />
-                        <span>
-                          <strong style={{ color: 'var(--color-ink)' }}>{item.level}</strong>
-                          <span style={{ color: 'var(--color-ink-soft)' }}>が、{item.desc}</span>
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
+                  <p style={{ color: 'var(--color-ink-soft)' }} className="leading-relaxed text-sm">
+                    社会が安定すれば会社も安定し、会社の安定がチームを支え、チームの安定が個人の力を引き出し、個人の安定したパフォーマンスが顧客の体験の質を高める。
+                    <strong style={{ color: 'var(--color-logo-dark-green)' }}>この連鎖こそが、私たちの目指す訪問看護のあり方です。</strong>
+                  </p>
                 </div>
 
                 {/* カード3: 仕組み */}
