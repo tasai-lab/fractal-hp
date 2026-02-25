@@ -373,10 +373,10 @@ function ScaleRepetition() {
     <div ref={containerRef} className="max-w-2xl mx-auto">
       {/* 3つのスケールを入れ子の三角形で表現 */}
       <div className="relative flex justify-center mb-10">
-        <svg viewBox="0 0 400 360" className="w-full max-w-md h-auto" aria-hidden="true">
+        <svg viewBox="0 0 400 330" className="w-full max-w-md h-auto" aria-hidden="true">
           {/* 最大の三角形: 社会 */}
           <polygon
-            points="200,20 370,270 30,270"
+            points="200,10 380,290 20,290"
             fill="none"
             stroke="var(--color-logo-dark-green)"
             strokeWidth={activeScale === 2 ? "3" : "1.5"}
@@ -384,7 +384,7 @@ function ScaleRepetition() {
             className="transition-all duration-700"
           />
           <text
-            x="200" y="340"
+            x="200" y="310"
             textAnchor="middle"
             fill="var(--color-logo-dark-green)"
             fontSize="12"
@@ -395,9 +395,9 @@ function ScaleRepetition() {
             社会
           </text>
 
-          {/* 中間の三角形: 組織 */}
+          {/* 中間の三角形: 組織 — 右辺沿いにラベル配置 */}
           <polygon
-            points="200,75 310,230 90,230"
+            points="200,80 320,250 80,250"
             fill="none"
             stroke="var(--color-logo-light-green)"
             strokeWidth={activeScale === 1 ? "3" : "1.5"}
@@ -405,8 +405,8 @@ function ScaleRepetition() {
             className="transition-all duration-700"
           />
           <text
-            x="200" y="295"
-            textAnchor="middle"
+            x="330" y="175"
+            textAnchor="start"
             fill="var(--color-logo-light-green)"
             fontSize="12"
             fontWeight={activeScale === 1 ? "bold" : "normal"}
@@ -416,9 +416,9 @@ function ScaleRepetition() {
             組織
           </text>
 
-          {/* 最小の三角形: 個人 */}
+          {/* 最小の三角形: 個人 — 左辺沿いにラベル配置 */}
           <polygon
-            points="200,120 250,200 150,200"
+            points="200,140 260,210 140,210"
             fill={activeScale === 0 ? "var(--color-logo-yellow)" : "none"}
             fillOpacity={activeScale === 0 ? 0.2 : 0}
             stroke="var(--color-logo-yellow)"
@@ -427,8 +427,8 @@ function ScaleRepetition() {
             className="transition-all duration-700"
           />
           <text
-            x="200" y="250"
-            textAnchor="middle"
+            x="125" y="180"
+            textAnchor="end"
             fill="var(--color-ink)"
             fontSize="11"
             fontWeight={activeScale === 0 ? "bold" : "normal"}
@@ -440,14 +440,14 @@ function ScaleRepetition() {
 
           {/* 同じ形を示す破線矢印 */}
           <path
-            d="M 365 150 Q 390 150 385 175"
+            d="M 375 150 Q 395 150 392 175"
             fill="none"
             stroke="var(--color-ink-soft)"
             strokeWidth="1"
             strokeDasharray="3 2"
             opacity="0.4"
           />
-          <text x="395" y="168" fill="var(--color-ink-soft)" fontSize="8" opacity="0.6">
+          <text x="385" y="140" fill="var(--color-ink-soft)" fontSize="8" opacity="0.6">
             同じ形
           </text>
         </svg>
