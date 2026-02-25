@@ -200,129 +200,12 @@ const natureExamples = [
   },
 ];
 
-// 入れ子構造の視覚化（正三角形版）
-function NestedStructure() {
-  // 正三角形のポイント（上向き）
-  const getTrianglePoints = (cx: number, cy: number, size: number) => {
-    const h = size * 0.866;
-    const top = { x: cx, y: cy - h * 0.6 };
-    const bottomLeft = { x: cx - size / 2, y: cy + h * 0.4 };
-    const bottomRight = { x: cx + size / 2, y: cy + h * 0.4 };
-    return `${top.x},${top.y} ${bottomLeft.x},${bottomLeft.y} ${bottomRight.x},${bottomRight.y}`;
-  };
-
-  const layers = [
-    { label: "組織全体", size: 90, color: "var(--color-logo-dark-green)", opacity: 0.2, textY: 12 },
-    { label: "チーム", size: 60, color: "var(--color-logo-light-green)", opacity: 0.4, textY: 35 },
-    { label: "個人", size: 30, color: "var(--color-logo-dark-green)", opacity: 1, textY: 58, filled: true },
-  ];
-
-  return (
-    <div className="relative w-full max-w-md mx-auto">
-      <svg viewBox="0 0 100 90" className="w-full h-auto">
-        {/* 三角形レイヤー */}
-        {layers.map((layer, i) => (
-          <g key={i}>
-            <polygon
-              points={getTrianglePoints(50, 52, layer.size)}
-              fill={layer.filled ? layer.color : "none"}
-              stroke={layer.color}
-              strokeWidth={layer.filled ? 0 : 2}
-              opacity={layer.opacity}
-            />
-          </g>
-        ))}
-
-        {/* ラベル */}
-        <text
-          x="50" y="12"
-          textAnchor="middle"
-          fill="var(--color-logo-dark-green)"
-          fontSize="5"
-          fontWeight="600"
-        >
-          組織全体
-        </text>
-        <text
-          x="50" y="35"
-          textAnchor="middle"
-          fill="var(--color-logo-light-green)"
-          fontSize="5"
-          fontWeight="600"
-        >
-          チーム
-        </text>
-        <text
-          x="50" y="58"
-          textAnchor="middle"
-          fill="white"
-          fontSize="4.5"
-          fontWeight="700"
-        >
-          個人
-        </text>
-
-        {/* 矢印で相似性を示す */}
-        <defs>
-          <marker id="arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-            <polygon points="0 0, 6 3, 0 6" fill="var(--color-logo-light-green)" />
-          </marker>
-        </defs>
-
-        {/* 外側から内側への矢印 */}
-        <path
-          d="M 18 70 Q 10 55 18 40"
-          fill="none"
-          stroke="var(--color-logo-light-green)"
-          strokeWidth="1"
-          strokeDasharray="2 1"
-          markerEnd="url(#arrow)"
-          opacity="0.6"
-        />
-        <text x="6" y="56" fill="var(--color-ink-soft)" fontSize="3" textAnchor="middle">
-          相似
-        </text>
-
-        <path
-          d="M 82 70 Q 90 55 82 40"
-          fill="none"
-          stroke="var(--color-logo-light-green)"
-          strokeWidth="1"
-          strokeDasharray="2 1"
-          markerEnd="url(#arrow)"
-          opacity="0.6"
-        />
-        <text x="94" y="56" fill="var(--color-ink-soft)" fontSize="3" textAnchor="middle">
-          相似
-        </text>
-      </svg>
-
-      {/* 凡例 */}
-      <div className="flex justify-center gap-6 mt-4 text-sm">
-        <div className="flex items-center gap-2">
-          <div className="w-4 h-4 border-2 border-[var(--color-logo-dark-green)] opacity-30" style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }} />
-          <span style={{ color: 'var(--color-ink-soft)' }}>組織</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-4 h-4 border-2 border-[var(--color-logo-light-green)] opacity-60" style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }} />
-          <span style={{ color: 'var(--color-ink-soft)' }}>チーム</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-4 h-4 bg-[var(--color-logo-dark-green)]" style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }} />
-          <span style={{ color: 'var(--color-ink-soft)' }}>個人</span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 // 同じパターンがスケール違いで繰り返される自己相似性の表現
 function ScaleRepetition() {
-  const [activeScale, setActiveScale] = useState(0);
+  const [revealedCount, setRevealedCount] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // viewport進入を検知してアニメーション開始
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
@@ -338,134 +221,193 @@ function ScaleRepetition() {
     return () => observer.disconnect();
   }, [hasStarted]);
 
-  // 自動でスケールを切り替え
+  // 社会→会社→チーム→個人→顧客の順にゆっくり表示、繰り返し
   useEffect(() => {
     if (!hasStarted) return;
-    const timer = setTimeout(() => setActiveScale(1), 600);
-    const interval = setInterval(() => {
-      setActiveScale((prev) => (prev + 1) % 3);
-    }, 4000);
-    return () => { clearTimeout(timer); clearInterval(interval); };
+    const cycleMs = 16000;
+    const run = () => {
+      setRevealedCount(0);
+      const t1 = setTimeout(() => setRevealedCount(1), 800);
+      const t2 = setTimeout(() => setRevealedCount(2), 3000);
+      const t3 = setTimeout(() => setRevealedCount(3), 5200);
+      const t4 = setTimeout(() => setRevealedCount(4), 7400);
+      const t5 = setTimeout(() => setRevealedCount(5), 9600);
+      return [t1, t2, t3, t4, t5];
+    };
+    let timers = run();
+    const interval = setInterval(() => { timers = run(); }, cycleMs);
+    return () => { timers.forEach(clearTimeout); clearInterval(interval); };
   }, [hasStarted]);
 
+  // 社会から顧客へ、安定が伝播するストーリー
   const scales = [
     {
-      label: "個人",
-      desc: "一人ひとりの想いやりが、次の誰かへ届く",
-      color: "var(--color-logo-yellow)",
-      size: "small",
-    },
-    {
-      label: "組織",
-      desc: "会社がスタッフを大切にし、スタッフが利用者様を大切にする",
-      color: "var(--color-logo-light-green)",
-      size: "medium",
-    },
-    {
       label: "社会",
-      desc: "歴史は同じパターンを繰り返す",
+      desc: "安定した社会が、すべての土台になる",
       color: "var(--color-logo-dark-green)",
-      size: "large",
+    },
+    {
+      label: "会社",
+      desc: "社会の安定が、会社の安定した経営につながる",
+      color: "var(--color-logo-dark-green)",
+    },
+    {
+      label: "チーム",
+      desc: "会社の安定が、チームの安定につながる",
+      color: "var(--color-logo-light-green)",
+    },
+    {
+      label: "個人",
+      desc: "チームの安定が、個人のパフォーマンスを引き出す",
+      color: "var(--color-logo-light-green)",
+    },
+    {
+      label: "顧客",
+      desc: "個人の安定したパフォーマンスが、顧客の体験の質を高める",
+      color: "var(--color-logo-yellow)",
     },
   ];
 
+  /*
+    5つの正三角形。左下角(10,340)を共有。
+    内側三角形の右角 = 外側三角形の底辺中心（各baseが半分になる）
+    社会: base=380 (10→390), h=329, top=(200, 11), center=200
+    会社: base=190 (10→200), h=164, top=(105, 176), center=105
+    チーム: base=95  (10→105), h=82,  top=(58, 258), center=57.5
+    個人: base=48   (10→58),  h=41,  top=(34, 299), center=34
+    顧客: base=24   (10→34),  h=21,  top=(22, 319)
+  */
+
   return (
     <div ref={containerRef} className="max-w-2xl mx-auto">
-      {/* 3つのスケールを入れ子の三角形で表現 */}
       <div className="relative flex justify-center mb-10">
-        <svg viewBox="0 0 400 330" className="w-full max-w-md h-auto" aria-hidden="true">
-          {/* 最大の三角形: 社会 */}
+        <svg viewBox="0 0 410 380" className="w-full max-w-lg h-auto" aria-hidden="true">
+
+          {/* 1. 社会（最大）— 1番目に表示 */}
           <polygon
-            points="200,10 380,290 20,290"
-            fill="none"
+            points="200,11 390,340 10,340"
+            fill="var(--color-logo-dark-green)"
+            fillOpacity={revealedCount >= 1 ? 0.1 : 0}
             stroke="var(--color-logo-dark-green)"
-            strokeWidth={activeScale === 2 ? "3" : "1.5"}
-            opacity={activeScale === 2 ? 1 : 0.25}
-            className="transition-all duration-700"
+            strokeWidth="2"
+            strokeOpacity={revealedCount >= 1 ? 1 : 0}
+            className="transition-all duration-1200"
           />
           <text
-            x="200" y="310"
+            x="390" y="365"
             textAnchor="middle"
             fill="var(--color-logo-dark-green)"
-            fontSize="12"
-            fontWeight={activeScale === 2 ? "bold" : "normal"}
-            opacity={activeScale === 2 ? 1 : 0.4}
-            className="transition-all duration-500"
+            fontSize="13"
+            fontWeight="bold"
+            opacity={revealedCount >= 1 ? 1 : 0}
+            className="transition-all duration-1200"
           >
             社会
           </text>
 
-          {/* 中間の三角形: 組織 — 右辺沿いにラベル配置 */}
+          {/* 2. 会社 — 右角(200)=社会の底辺中心 */}
           <polygon
-            points="200,80 320,250 80,250"
-            fill="none"
-            stroke="var(--color-logo-light-green)"
-            strokeWidth={activeScale === 1 ? "3" : "1.5"}
-            opacity={activeScale === 1 ? 1 : 0.25}
-            className="transition-all duration-700"
+            points="105,176 200,340 10,340"
+            fill="var(--color-logo-dark-green)"
+            fillOpacity={revealedCount >= 2 ? 0.15 : 0}
+            stroke="var(--color-logo-dark-green)"
+            strokeWidth="2"
+            strokeOpacity={revealedCount >= 2 ? 0.7 : 0}
+            className="transition-all duration-1200"
           />
           <text
-            x="330" y="175"
-            textAnchor="start"
-            fill="var(--color-logo-light-green)"
-            fontSize="12"
-            fontWeight={activeScale === 1 ? "bold" : "normal"}
-            opacity={activeScale === 1 ? 1 : 0.4}
-            className="transition-all duration-500"
+            x="200" y="365"
+            textAnchor="middle"
+            fill="var(--color-logo-dark-green)"
+            fontSize="13"
+            fontWeight="bold"
+            opacity={revealedCount >= 2 ? 1 : 0}
+            className="transition-all duration-1200"
           >
-            組織
+            会社
           </text>
 
-          {/* 最小の三角形: 個人 — 左辺沿いにラベル配置 */}
+          {/* 3. チーム — 右角(105)=会社の底辺中心 */}
           <polygon
-            points="200,140 260,210 140,210"
-            fill={activeScale === 0 ? "var(--color-logo-yellow)" : "none"}
-            fillOpacity={activeScale === 0 ? 0.2 : 0}
-            stroke="var(--color-logo-yellow)"
-            strokeWidth={activeScale === 0 ? "3" : "1.5"}
-            opacity={activeScale === 0 ? 1 : 0.25}
-            className="transition-all duration-700"
+            points="58,258 105,340 10,340"
+            fill="var(--color-logo-light-green)"
+            fillOpacity={revealedCount >= 3 ? 0.2 : 0}
+            stroke="var(--color-logo-light-green)"
+            strokeWidth="2"
+            strokeOpacity={revealedCount >= 3 ? 1 : 0}
+            className="transition-all duration-1200"
           />
           <text
-            x="125" y="180"
-            textAnchor="end"
-            fill="var(--color-ink)"
+            x="105" y="365"
+            textAnchor="middle"
+            fill="var(--color-logo-light-green)"
+            fontSize="12"
+            fontWeight="bold"
+            opacity={revealedCount >= 3 ? 1 : 0}
+            className="transition-all duration-1200"
+          >
+            チーム
+          </text>
+
+          {/* 4. 個人 — 右角(58)=チームの底辺中心 */}
+          <polygon
+            points="34,299 58,340 10,340"
+            fill="var(--color-logo-light-green)"
+            fillOpacity={revealedCount >= 4 ? 0.25 : 0}
+            stroke="var(--color-logo-light-green)"
+            strokeWidth="2"
+            strokeOpacity={revealedCount >= 4 ? 0.7 : 0}
+            className="transition-all duration-1200"
+          />
+          <text
+            x="58" y="365"
+            textAnchor="middle"
+            fill="var(--color-logo-light-green)"
             fontSize="11"
-            fontWeight={activeScale === 0 ? "bold" : "normal"}
-            opacity={activeScale === 0 ? 1 : 0.4}
-            className="transition-all duration-500"
+            fontWeight="bold"
+            opacity={revealedCount >= 4 ? 1 : 0}
+            className="transition-all duration-1200"
           >
             個人
           </text>
 
-          {/* 同じ形を示す破線矢印 */}
-          <path
-            d="M 375 150 Q 395 150 392 175"
-            fill="none"
-            stroke="var(--color-ink-soft)"
-            strokeWidth="1"
-            strokeDasharray="3 2"
-            opacity="0.4"
+          {/* 5. 顧客（最小）— 右角(34)=個人の底辺中心 */}
+          <polygon
+            points="22,319 34,340 10,340"
+            fill="var(--color-logo-yellow)"
+            fillOpacity={revealedCount >= 5 ? 0.35 : 0}
+            stroke="var(--color-logo-yellow)"
+            strokeWidth="2"
+            strokeOpacity={revealedCount >= 5 ? 1 : 0}
+            className="transition-all duration-1200"
           />
-          <text x="385" y="140" fill="var(--color-ink-soft)" fontSize="8" opacity="0.6">
-            同じ形
+          <text
+            x="34" y="365"
+            textAnchor="middle"
+            fill="var(--color-ink)"
+            fontSize="10"
+            fontWeight="bold"
+            opacity={revealedCount >= 5 ? 1 : 0}
+            className="transition-all duration-1200"
+          >
+            顧客
           </text>
         </svg>
       </div>
 
-      {/* アクティブなスケールの説明 */}
+      {/* 表示中のスケールの説明 */}
       <div className="relative h-24 flex items-center justify-center">
         {scales.map((scale, i) => (
           <div
             key={i}
-            className="absolute inset-0 flex flex-col items-center justify-center transition-all duration-500"
-            style={{ opacity: activeScale === i ? 1 : 0 }}
+            className="absolute inset-0 flex flex-col items-center justify-center transition-all duration-1000"
+            style={{ opacity: revealedCount === i + 1 || (revealedCount >= 5 && i === 4) ? 1 : 0 }}
           >
             <span
               className="text-lg font-bold mb-1"
               style={{ color: scale.color === "var(--color-logo-yellow)" ? "var(--color-ink)" : scale.color }}
             >
-              {scale.label}のスケールで見ても
+              {scale.label}
             </span>
             <span style={{ color: 'var(--color-ink-soft)' }} className="text-sm">
               {scale.desc}
@@ -514,24 +456,14 @@ export default function FractalPage() {
         }
       `}</style>
 
-      {/* 固定背景のフラクタルパターン - 画面上部中央に大きく配置 */}
+      {/* 固定背景のフラクタルパターン - ヘッダー下から画面内に収まるよう配置 */}
       <div
-        className="fixed pointer-events-none z-0"
-        style={{
-          top: '0',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          width: '150vw',
-          height: '100vh',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
+        className="fixed inset-0 pt-16 pointer-events-none z-0 overflow-hidden flex items-center justify-center"
       >
         <SierpinskiTriangle
           depth={6}
           size={800}
-          className="text-[var(--color-logo-light-green)] w-full max-w-none"
+          className="text-[var(--color-logo-light-green)] max-w-[90vw] max-h-[80vh] w-auto h-auto"
         />
       </div>
 
@@ -736,21 +668,8 @@ export default function FractalPage() {
               </h2>
             </div>
 
-            {/* 2カラムレイアウト */}
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 mb-20">
-              {/* 左: 入れ子構造の視覚化 */}
-              <div className="order-2 lg:order-1">
-                <NestedStructure />
-                <p
-                  className="text-center mt-8 text-lg font-medium"
-                  style={{ color: 'var(--color-ink)' }}
-                >
-                  どこを切り取っても、同じ品質
-                </p>
-              </div>
-
-              {/* 右: 説明 */}
-              <div className="order-1 lg:order-2 space-y-6">
+            {/* 説明カード */}
+            <div className="grid md:grid-cols-3 gap-6 mb-20">
                 {/* カード1: ユニークなかたち */}
                 <div
                   className="relative bg-white rounded-2xl p-6 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
@@ -846,7 +765,6 @@ export default function FractalPage() {
                     誰が訪問しても同じ品質のサービスを提供できる体制を整えています。
                   </p>
                 </div>
-              </div>
             </div>
 
             {/* 自己相似性 — どのスケールでも同じパターン */}
@@ -868,7 +786,7 @@ export default function FractalPage() {
                 className="text-center mb-12"
                 style={{ color: 'var(--color-ink-soft)' }}
               >
-                社会も、組織も、一人の人間も。どのスケールで切り取っても、同じ構造が繰り返される。それがフラクタルです。
+                社会、会社、チーム、個人、顧客。どのスケールで切り取っても、同じ「安定」の構造が繰り返される。それがフラクタルです。
               </p>
 
               <ScaleRepetition />
@@ -877,12 +795,10 @@ export default function FractalPage() {
                 className="text-center mt-12 text-lg leading-relaxed max-w-2xl mx-auto"
                 style={{ color: 'var(--color-ink-soft)' }}
               >
-                会社がスタッフを大切にする。スタッフが利用者様を大切にする。利用者様がその周りの人を大切にする。
-                <br />
-                「大切にする」という同じパターンが、どのスケールでも繰り返されていく。
+                社会が安定すれば、会社も安定する。会社の安定がチームを支え、チームの安定が個人の力を引き出し、個人の安定したパフォーマンスが顧客の体験の質を高める。
                 <br />
                 <strong style={{ color: 'var(--color-logo-dark-green)' }}>
-                  それが、私たち株式会社フラクタルの目指す、訪問看護のあり方です。
+                  この連鎖こそが、私たち株式会社フラクタルの目指す、訪問看護のあり方です。
                 </strong>
               </p>
             </div>
