@@ -867,3 +867,22 @@ interface ModelIncome {
   }>;
 }
 ```
+
+### フラクタルページデータ
+
+**ファイル**: `src/lib/fractal-data.ts`
+
+```typescript
+interface NatureExample {
+  title: string;       // 自然界のフラクタル例の名称
+  description: string; // 説明テキスト
+  imageSrc: string;    // 画像パス（/images/fractal/*.webp）
+}
+
+interface FractalObject {
+  imageSrc: string;    // フラクタル構造画像パス
+  alt: string;         // 画像のalt属性
+}
+```
+
+**使用箇所**: `src/app/fractal/page.tsx`

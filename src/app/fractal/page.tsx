@@ -7,6 +7,7 @@ import Script from "next/script";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { BreadcrumbStructuredData } from "@/components/StructuredData";
+import { natureExamples as natureExamplesData, fractalObject } from "@/lib/fractal-data";
 
 // フラクタル構造化データ
 function FractalStructuredData() {
@@ -110,95 +111,6 @@ function SierpinskiTriangle({
   );
 }
 
-// 自然界のフラクタル例
-const natureExamples = [
-  {
-    title: "雪の結晶",
-    description: "どこまで近づいて見ても、美しい六角形のパターンが繰り返されています",
-    icon: (
-      <svg viewBox="0 0 100 100" className="w-full h-full">
-        <g stroke="currentColor" fill="none" strokeWidth="1.5">
-          {[0, 60, 120, 180, 240, 300].map((angle, i) => (
-            <g key={i} transform={`rotate(${angle} 50 50)`}>
-              <line x1="50" y1="50" x2="50" y2="15" />
-              <line x1="50" y1="25" x2="40" y2="35" />
-              <line x1="50" y1="25" x2="60" y2="35" />
-              <line x1="50" y1="35" x2="43" y2="42" />
-              <line x1="50" y1="35" x2="57" y2="42" />
-            </g>
-          ))}
-        </g>
-      </svg>
-    ),
-  },
-  {
-    title: "木の枝",
-    description: "幹から太い枝へ、そして細い小枝へと、同じパターンで分かれていきます",
-    icon: (
-      <svg viewBox="0 0 100 100" className="w-full h-full">
-        <g stroke="currentColor" fill="none" strokeWidth="2" strokeLinecap="round">
-          <line x1="50" y1="95" x2="50" y2="60" />
-          <line x1="50" y1="60" x2="30" y2="40" />
-          <line x1="50" y1="60" x2="70" y2="40" />
-          <line x1="30" y1="40" x2="20" y2="25" strokeWidth="1.5" />
-          <line x1="30" y1="40" x2="40" y2="25" strokeWidth="1.5" />
-          <line x1="70" y1="40" x2="60" y2="25" strokeWidth="1.5" />
-          <line x1="70" y1="40" x2="80" y2="25" strokeWidth="1.5" />
-          <line x1="20" y1="25" x2="15" y2="15" strokeWidth="1" />
-          <line x1="20" y1="25" x2="25" y2="15" strokeWidth="1" />
-          <line x1="40" y1="25" x2="35" y2="15" strokeWidth="1" />
-          <line x1="40" y1="25" x2="45" y2="15" strokeWidth="1" />
-          <line x1="60" y1="25" x2="55" y2="15" strokeWidth="1" />
-          <line x1="60" y1="25" x2="65" y2="15" strokeWidth="1" />
-          <line x1="80" y1="25" x2="75" y2="15" strokeWidth="1" />
-          <line x1="80" y1="25" x2="85" y2="15" strokeWidth="1" />
-        </g>
-      </svg>
-    ),
-  },
-  {
-    title: "シダの葉",
-    description: "一枚の葉の形が、小さな葉脈の形と相似しています",
-    icon: (
-      <svg viewBox="0 0 100 100" className="w-full h-full">
-        <g stroke="currentColor" fill="none" strokeWidth="1.5" strokeLinecap="round">
-          <path d="M50 95 Q50 50 50 10" strokeWidth="2" />
-          {[15, 25, 35, 45, 55, 65, 75].map((y, i) => (
-            <g key={i}>
-              <path d={`M50 ${95 - y} Q${35 - i * 2} ${85 - y} ${30 - i * 2} ${80 - y}`} />
-              <path d={`M50 ${95 - y} Q${65 + i * 2} ${85 - y} ${70 + i * 2} ${80 - y}`} />
-            </g>
-          ))}
-        </g>
-      </svg>
-    ),
-  },
-  {
-    title: "血管",
-    description: "太い血管から細い毛細血管まで、同じ分岐パターンが続きます",
-    icon: (
-      <svg viewBox="0 0 100 100" className="w-full h-full">
-        <g stroke="currentColor" fill="none" strokeLinecap="round">
-          <path d="M50 90 L50 60" strokeWidth="3" />
-          <path d="M50 60 L35 45" strokeWidth="2.5" />
-          <path d="M50 60 L65 45" strokeWidth="2.5" />
-          <path d="M35 45 L25 35" strokeWidth="2" />
-          <path d="M35 45 L40 32" strokeWidth="2" />
-          <path d="M65 45 L60 32" strokeWidth="2" />
-          <path d="M65 45 L75 35" strokeWidth="2" />
-          <path d="M25 35 L18 25" strokeWidth="1.5" />
-          <path d="M25 35 L30 22" strokeWidth="1.5" />
-          <path d="M40 32 L35 20" strokeWidth="1.5" />
-          <path d="M40 32 L48 18" strokeWidth="1.5" />
-          <path d="M60 32 L52 18" strokeWidth="1.5" />
-          <path d="M60 32 L65 20" strokeWidth="1.5" />
-          <path d="M75 35 L70 22" strokeWidth="1.5" />
-          <path d="M75 35 L82 25" strokeWidth="1.5" />
-        </g>
-      </svg>
-    ),
-  },
-];
 
 // 同じパターンがスケール違いで繰り返される自己相似性の表現
 function ScaleRepetition() {
@@ -572,15 +484,14 @@ export default function FractalPage() {
 
               {/* 右: イラスト */}
               <div className="relative">
-                <div
-                  className="aspect-square rounded-3xl p-8 flex items-center justify-center"
-                  style={{ background: 'linear-gradient(135deg, var(--color-paper) 0%, #e8f5f0 100%)' }}
-                >
-                  <SierpinskiTriangle
-                    depth={5}
-                    size={300}
-                    className="text-[var(--color-logo-dark-green)] w-full"
-                    animate={false}
+                <div className="aspect-square rounded-3xl overflow-hidden">
+                  <Image
+                    src={fractalObject.imageSrc}
+                    alt={fractalObject.alt}
+                    width={800}
+                    height={800}
+                    className="w-full h-full object-cover"
+                    priority
                   />
                 </div>
                 <div
@@ -609,30 +520,23 @@ export default function FractalPage() {
               </h3>
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-                {natureExamples.map((item, index) => (
-                  <div
-                    key={index}
-                    className="group"
-                  >
+                {natureExamplesData.map((item, index) => (
+                  <div key={index} className="group">
                     <div
-                      className="aspect-square rounded-2xl md:rounded-3xl p-6 md:p-8 mb-4 transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl"
-                      style={{
-                        background: 'linear-gradient(135deg, var(--color-paper) 0%, #e8f5f0 100%)',
-                        color: 'var(--color-logo-dark-green)',
-                      }}
+                      className="aspect-square rounded-2xl md:rounded-3xl mb-4 transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl overflow-hidden"
                     >
-                      {item.icon}
+                      <Image
+                        src={item.imageSrc}
+                        alt={item.title}
+                        width={512}
+                        height={512}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
-                    <h4
-                      className="font-bold text-lg mb-2"
-                      style={{ color: 'var(--color-ink)' }}
-                    >
+                    <h4 className="font-bold text-lg mb-2" style={{ color: 'var(--color-ink)' }}>
                       {item.title}
                     </h4>
-                    <p
-                      className="text-sm leading-relaxed"
-                      style={{ color: 'var(--color-ink-soft)' }}
-                    >
+                    <p className="text-sm leading-relaxed" style={{ color: 'var(--color-ink-soft)' }}>
                       {item.description}
                     </p>
                   </div>
