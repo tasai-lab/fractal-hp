@@ -695,7 +695,7 @@ export default function FractalPage() {
             <div
               className="rounded-[2rem] md:rounded-[3rem] p-8 md:p-16"
               style={{
-                background: 'linear-gradient(135deg, rgba(127, 197, 160, 0.1) 0%, rgba(244, 233, 81, 0.1) 100%)',
+                background: 'linear-gradient(135deg, rgba(127, 197, 160, 1) 0%, rgba(244, 233, 81, 1) 100%)',
               }}
             >
               <h3
