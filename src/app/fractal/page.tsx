@@ -190,10 +190,38 @@ function ScaleRepetition() {
     顧客: base=24   (10→34),  h=21,  top=(22, 319)
   */
 
+  // 背景用シェルピンスキー三角形を社会三角形と同じ座標系で生成
+  const bgTriangles: string[] = [];
+  function generateBg(x: number, y: number, size: number, level: number) {
+    if (level === 0) {
+      const h = size * Math.sqrt(3) / 2;
+      bgTriangles.push(`${x},${y + h} ${x + size / 2},${y} ${x + size},${y + h}`);
+      return;
+    }
+    const s = size / 2;
+    const h = s * Math.sqrt(3) / 2;
+    generateBg(x, y + h, s, level - 1);
+    generateBg(x + s / 2, y, s, level - 1);
+    generateBg(x + s, y + h, s, level - 1);
+  }
+  generateBg(10, 11, 380, 5);
+
   return (
     <div ref={containerRef} className="max-w-2xl mx-auto">
       <div className="relative flex justify-center mb-10">
         <svg viewBox="0 0 410 380" className="w-full max-w-lg h-auto" aria-hidden="true">
+
+          {/* 背景: 社会三角形と同じ座標系のシェルピンスキーパターン */}
+          {bgTriangles.map((points, i) => (
+            <polygon
+              key={`bg-${i}`}
+              points={points}
+              fill="none"
+              stroke="var(--color-logo-light-green)"
+              strokeWidth={0.5}
+              opacity={0.2}
+            />
+          ))}
 
           {/* 1. 社会（最大）— 1番目に表示 */}
           <polygon
