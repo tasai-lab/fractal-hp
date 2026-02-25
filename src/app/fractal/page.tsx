@@ -636,15 +636,24 @@ export default function FractalPage() {
                     className="text-xl font-bold mb-3 pl-6"
                     style={{ color: 'var(--color-ink)' }}
                   >
-                    ミクロでもマクロでも、同じパターン
+                    安定は、連鎖する
                   </h3>
                   <p style={{ color: 'var(--color-ink-soft)' }} className="leading-relaxed mb-4">
-                    社会、会社、チーム、個人、顧客。どのスケールで切り取っても、同じ「安定」の構造が繰り返されます。
+                    一つの階層が安定すると、それが隣り合う階層の安定を支えます。この連鎖がフラクタルの考え方の核心です。
                   </p>
-                  <p style={{ color: 'var(--color-ink-soft)' }} className="leading-relaxed text-sm">
-                    社会が安定すれば会社も安定し、会社の安定がチームを支え、チームの安定が個人の力を引き出し、個人の安定したパフォーマンスが顧客の体験の質を高める。
-                    <strong style={{ color: 'var(--color-logo-dark-green)' }}>この連鎖こそが、私たちの目指す訪問看護のあり方です。</strong>
-                  </p>
+                  <ul className="space-y-2">
+                    {[
+                      { from: "社会の安定", to: "会社の経営基盤" },
+                      { from: "会社の安定", to: "チームの働きやすさ" },
+                      { from: "チームの安定", to: "一人ひとりの力" },
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-center gap-2 text-sm">
+                        <span style={{ color: 'var(--color-logo-dark-green)' }} className="font-bold whitespace-nowrap">{item.from}</span>
+                        <span style={{ color: 'var(--color-ink-soft)' }}>→</span>
+                        <span style={{ color: 'var(--color-ink-soft)' }}>{item.to}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
                 {/* カード3: 仕組み */}
