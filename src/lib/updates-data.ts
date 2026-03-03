@@ -12,6 +12,13 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-03-04",
+    items: [
+      { type: "improve", title: "トップページに実績データセクション（月間訪問件数・利用者数等）を追加", link: "/" },
+      { type: "improve", title: "ケアマネージャー様向けページに受け入れ可能な身体の状況テーブルを追加", link: "/for-care-managers" },
+    ],
+  },
+  {
     date: "2026-02-25",
     items: [
       { type: "improve", title: "「フラクタルの意味」ページの説明文・図解を改善", link: "/fractal" },

@@ -13,6 +13,8 @@
 | About | About.tsx | `src/components/About.stories.tsx` | セクション | フラクタルとは |
 | Philosophy | Philosophy.tsx | `src/components/Philosophy.stories.tsx` | セクション | 私たちのカタチ |
 | Features | Features.tsx | `src/components/Features.stories.tsx` | セクション | 特徴一覧 |
+| PerformanceSection | PerformanceSection.tsx | —（Stories未作成） | セクション | 実績データ（カウントアップ + エリア内訳） |
+| ConditionsTable | ConditionsTable.tsx | —（Stories未作成） | セクション | 受け入れ可能な身体の状況テーブル |
 | Office | Office.tsx | `src/components/Office.stories.tsx` | セクション | 事業所情報 |
 | Flow | Flow.tsx | `src/components/Flow.stories.tsx` | セクション | ご利用の流れ |
 | Staff | Staff.tsx | `src/components/Staff.stories.tsx` | セクション | スタッフ紹介 |
