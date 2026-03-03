@@ -28,6 +28,8 @@
 | GoogleAnalytics | GoogleAnalytics.tsx | —（UIなし） | ユーティリティ | GA4トラッキング |
 | CountUp | CountUp.tsx | `src/components/CountUp.stories.tsx` | ユーティリティ | 数値カウントアップ |
 | StructuredData | StructuredData.tsx | —（UIなし） | SEO | 構造化データ |
+| AreaHero | AreaHero.tsx | —（未作成） | エリア | 地域ページヒーロー |
+| AreaFAQ | AreaFAQ.tsx | —（未作成） | エリア | 地域ページFAQ |
 | JobDetails | recruit/JobDetails.tsx | `src/components/recruit/JobDetails.stories.tsx` | 採用 | 職種詳細モーダル |
 | ModelIncomeSection | recruit/ModelIncomeSection.tsx | `src/components/recruit/ModelIncomeSection.stories.tsx` | 採用 | モデル年収セクション |
 | PopulationChart | charts/PopulationChart.tsx | `src/components/charts/PopulationChart.stories.tsx` | チャート | 人口推移折れ線グラフ |
@@ -682,6 +684,60 @@ type ElderlyRateTrendData = {
 **注意**: 同一ページで複数インスタンスを使用する場合、`gradientId` を一意な値に変更すること（SVG ID重複によるグラデーション表示崩れを防ぐため）。
 
 **使用箇所**: `src/app/areas/[slug]/page.tsx`, `src/app/recruit/areas/[slug]/AreaClient.tsx`
+
+---
+
+## エリアコンポーネント
+
+### AreaHero
+
+地域ページ用ヒーローセクション。Hero.tsx を踏襲した写真背景+縦書きキャッチコピー。
+
+**ファイル**: `src/components/AreaHero.tsx`
+
+**Stories**: —（未作成）
+
+**機能**:
+- 写真背景（hero-bg.webp）+ 白オーバーレイ + エリアカラー薄オーバーレイ
+- 縦書き「フラクタル訪問看護 船橋」（animate-emerge-from-back）
+- SEO用H1（area.h1を上部に小さく配置）
+- 下部グラデーション（from-white）
+
+**Props**:
+
+| Prop | 型 | 説明 |
+|------|---|------|
+| area | RegionalData | 地域データオブジェクト |
+
+**使用箇所**: `src/app/areas/[slug]/page.tsx`
+
+---
+
+### AreaFAQ
+
+地域ページ用FAQセクション。FAQ.tsx を踏襲したReactアコーディオン。
+
+**ファイル**: `src/components/AreaFAQ.tsx`
+
+**Stories**: —（未作成）
+
+**種別**: クライアントコンポーネント (`"use client"`)
+
+**機能**:
+- BackgroundTriangles pattern="faq" 内蔵
+- section-wrapper/section-inner パターン準拠
+- useStateアコーディオン（openIndex管理）
+- Q/Aバッジ（themeColorで動的色制御）
+- aria-expanded 対応
+
+**Props**:
+
+| Prop | 型 | 説明 |
+|------|---|------|
+| faqs | Array<{question: string, answer: string}> | FAQデータ |
+| themeColor | string | エリアのテーマカラー（area.theme.primary） |
+
+**使用箇所**: `src/app/areas/[slug]/page.tsx`
 
 ---
 

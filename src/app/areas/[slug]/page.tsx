@@ -4,12 +4,15 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AreaContact from "@/components/AreaContact";
+import AreaHero from "@/components/AreaHero";
+import AreaFAQ from "@/components/AreaFAQ";
+import BackgroundTriangles from "@/components/BackgroundTriangles";
 import { AreaJobPostingStructuredData } from "@/components/StructuredData";
 import {
   getRegionalDataBySlug,
   regionalData,
 } from "@/lib/regional-data";
-import { acceptableConditions, staffMembers } from "@/lib/data";
+import { acceptableConditions, staffMembers, officeInfo } from "@/lib/data";
 
 export default async function RegionalAreaPage({
   params,
@@ -25,99 +28,24 @@ export default async function RegionalAreaPage({
 
   const otherAreas = regionalData.filter((a) => a.slug !== area.slug);
 
-  const themeStyle = {
-    "--theme-primary": area.theme.primary,
-    "--theme-secondary": area.theme.secondary,
-    "--theme-accent": area.theme.accent,
-  } as React.CSSProperties;
-
-  const patternClass = `pattern-${area.theme.pattern || "default"}`;
-
   return (
     <>
       <AreaJobPostingStructuredData areaName={area.name} areaSlug={area.slug} />
 
       <Header />
-      <main className="pt-14 lg:pt-20" style={themeStyle}>
-        {/* ===== ヒーローセクション ===== */}
-        <section className={`relative min-h-[60vh] md:min-h-[70vh] flex items-center overflow-hidden ${patternClass}`}>
-          <div
-            className="absolute inset-0"
-            style={{
-              background: `linear-gradient(135deg, ${area.theme.primary}12 0%, ${area.theme.accent}08 50%, white 100%)`
-            }}
-          />
-
-          <div
-            className="absolute top-0 right-0 w-[50%] h-[70%] opacity-[0.04] rounded-bl-[100%]"
-            style={{ backgroundColor: area.theme.primary }}
-          />
-
-          <div className="container mx-auto px-4 relative z-10 py-16 md:py-20">
-            <div className="max-w-4xl mx-auto text-center">
-              <div className="mb-4 animate-fade-in" style={{ animationDelay: "0.2s" }}>
-                <span
-                  className="inline-block px-5 py-2 rounded-full text-sm font-bold text-white"
-                  style={{ backgroundColor: area.theme.primary }}
-                >
-                  フラクタル訪問看護 船橋
-                </span>
-              </div>
-
-              <h1
-                className="text-3xl md:text-4xl lg:text-5xl font-black mb-4 leading-tight heading-gothic animate-fade-in-up"
-                style={{ color: area.theme.secondary, animationDelay: "0.3s" }}
-              >
-                {area.h1}
-              </h1>
-
-              <p
-                className="text-sm text-gray-500 mb-6 animate-fade-in"
-                style={{ animationDelay: "0.4s" }}
-              >
-                {area.theme.tagline} | 精神科・看取り・24時間対応
-              </p>
-
-              <p
-                className="text-base md:text-lg text-gray-600 leading-relaxed mb-10 max-w-2xl mx-auto animate-fade-in"
-                style={{ animationDelay: "0.5s" }}
-              >
-                {area.intro}
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: "0.7s" }}>
-                <a
-                  href="tel:047-770-1228"
-                  className="inline-flex items-center justify-center gap-3 text-white px-8 py-4 rounded-full text-lg font-bold transition-all hover:scale-105 shadow-lg hover:shadow-xl"
-                  style={{ backgroundColor: area.theme.primary }}
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                  047-770-1228
-                </a>
-                <a
-                  href="#contact"
-                  className="inline-flex items-center justify-center gap-2 bg-white px-8 py-4 rounded-full text-lg font-bold transition-all hover:scale-105 shadow-md hover:shadow-lg border-2"
-                  style={{ color: area.theme.primary, borderColor: area.theme.primary }}
-                >
-                  無料相談はこちら
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div className="absolute bottom-0 left-0 right-0">
-            <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
-              <path d="M0 40L80 36C160 32 320 24 480 28C640 32 800 48 960 52C1120 56 1280 48 1360 44L1440 40V81H0V40Z" fill="white"/>
-            </svg>
-          </div>
-        </section>
+      <main className="pt-14 lg:pt-20">
+        {/* ===== ヒーロー ===== */}
+        <AreaHero area={area} />
 
         {/* ===== 統計ハイライト ===== */}
-        <section className="py-10 md:py-14 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
+        <section id="area-stats" className="section-wrapper bg-white relative overflow-hidden">
+          <BackgroundTriangles pattern="office" />
+          <div className="section-inner relative z-10">
+            <div className="section-title-area">
+              <h2 className="section-title">地域の統計データ</h2>
+              <div className="section-title-line" />
+            </div>
+            <div className="section-content">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {[
                   { label: "総人口", value: area.population.total },
@@ -145,20 +73,14 @@ export default async function RegionalAreaPage({
         </section>
 
         {/* ===== フラクタルの実績 ===== */}
-        <section className="py-14 md:py-20 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
-              <div className="text-center mb-10">
-                <span className="text-xs font-bold tracking-widest uppercase text-gray-400 block mb-2">
-                  Track Record
-                </span>
-                <h2
-                  className="text-xl md:text-3xl font-bold heading-gothic"
-                  style={{ color: area.theme.secondary }}
-                >
-                  フラクタル訪問看護の実績
-                </h2>
-              </div>
+        <section id="area-records" className="section-wrapper bg-white relative overflow-hidden">
+          <BackgroundTriangles pattern="features" />
+          <div className="section-inner relative z-10">
+            <div className="section-title-area">
+              <h2 className="section-title">フラクタル訪問看護の実績</h2>
+              <div className="section-title-line" />
+            </div>
+            <div className="section-content">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                 {[
                   ...(area.areaStats
@@ -195,22 +117,14 @@ export default async function RegionalAreaPage({
         </section>
 
         {/* ===== 訪問看護サービス ===== */}
-        <section className="py-14 md:py-20 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
-              <div className="text-center mb-10">
-                <span className="text-xs font-bold tracking-widest uppercase text-gray-400 block mb-2">
-                  Services
-                </span>
-                <h2
-                  className="text-xl md:text-3xl font-bold heading-gothic"
-                  style={{ color: area.theme.secondary }}
-                >
-                  <span className="block">{area.name}で提供する</span>
-                  <span className="block">フラクタルの訪問看護サービス</span>
-                </h2>
-              </div>
-
+        <section id="area-services" className="section-wrapper bg-white relative overflow-hidden">
+          <BackgroundTriangles pattern="about" />
+          <div className="section-inner relative z-10">
+            <div className="section-title-area">
+              <h2 className="section-title">{area.name}のフラクタル訪問看護サービス</h2>
+              <div className="section-title-line" />
+            </div>
+            <div className="section-content">
               <div className="grid md:grid-cols-2 gap-5">
                 {[
                   {
@@ -261,7 +175,7 @@ export default async function RegionalAreaPage({
                     <div className="flex items-start justify-between gap-2">
                       <h3
                         className="text-lg font-bold mb-2"
-                        style={{ color: service.disabled ? "#9ca3af" : area.theme.secondary }}
+                        style={{ color: service.disabled ? "#9ca3af" : area.theme.primary }}
                       >
                         {service.title}
                       </h3>
@@ -295,23 +209,14 @@ export default async function RegionalAreaPage({
         </section>
 
         {/* ===== 受入可能な身体の状態 ===== */}
-        <section
-          className={`py-14 md:py-20 relative ${patternClass}`}
-          style={{ backgroundColor: `${area.theme.primary}04` }}
-        >
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-5xl mx-auto">
-              <div className="text-center mb-10">
-                <span className="text-xs font-bold tracking-widest uppercase text-gray-400 block mb-2">
-                  Conditions
-                </span>
-                <h2
-                  className="text-xl md:text-3xl font-bold heading-gothic"
-                  style={{ color: area.theme.secondary }}
-                >
-                  受入可能な身体の状態・疾患
-                </h2>
-              </div>
+        <section id="area-conditions" className="section-wrapper bg-white relative overflow-hidden">
+          <BackgroundTriangles pattern="serviceArea" />
+          <div className="section-inner relative z-10">
+            <div className="section-title-area">
+              <h2 className="section-title">受入可能な身体の状態・疾患</h2>
+              <div className="section-title-line" />
+            </div>
+            <div className="section-content">
               <div className="bg-white rounded-2xl p-5 md:p-8 shadow-sm overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
@@ -320,13 +225,14 @@ export default async function RegionalAreaPage({
                       style={{ borderColor: area.theme.primary }}
                     >
                       <th
+                        scope="col"
                         className="text-left py-3 px-2 font-bold"
-                        style={{ color: area.theme.secondary }}
+                        style={{ color: area.theme.primary }}
                       >
                         疾患・状態
                       </th>
-                      <th className="text-center py-3 px-2 w-24">対応</th>
-                      <th className="text-left py-3 px-2">備考</th>
+                      <th scope="col" className="text-center py-3 px-2 w-24">対応</th>
+                      <th scope="col" className="text-left py-3 px-2">備考</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -367,7 +273,7 @@ export default async function RegionalAreaPage({
           </div>
         </section>
 
-        {/* ===== 中間CTA ===== */}
+        {/* ===== 中間CTA（帯デザインのためsection-wrapperパターン適用外） ===== */}
         <section
           className="py-10 md:py-14"
           style={{ backgroundColor: area.theme.primary }}
@@ -379,7 +285,7 @@ export default async function RegionalAreaPage({
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
-                  href="tel:047-770-1228"
+                  href={`tel:${officeInfo.phone}`}
                   className="inline-flex items-center justify-center gap-3 bg-white px-8 py-4 rounded-full text-lg font-bold transition-all hover:scale-105 shadow-lg"
                   style={{ color: area.theme.primary }}
                 >
@@ -396,7 +302,7 @@ export default async function RegionalAreaPage({
                       d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                     />
                   </svg>
-                  047-770-1228
+                  {officeInfo.phone}
                 </a>
                 <a
                   href="#contact"
@@ -413,30 +319,14 @@ export default async function RegionalAreaPage({
         </section>
 
         {/* ===== 訪問可能エリア ===== */}
-        <section
-          className="py-14 md:py-20"
-          style={{ backgroundColor: `${area.theme.accent}10` }}
-        >
-          <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
-              <div className="flex items-center gap-3 mb-8">
-                <div
-                  className="w-1 h-10 rounded-full"
-                  style={{ backgroundColor: area.theme.primary }}
-                />
-                <div>
-                  <span className="text-xs font-bold tracking-widest uppercase text-gray-400">
-                    Service Area
-                  </span>
-                  <h2
-                    className="text-xl md:text-2xl font-bold heading-gothic"
-                    style={{ color: area.theme.secondary }}
-                  >
-                    {area.name}の訪問可能エリア
-                  </h2>
-                </div>
-              </div>
-
+        <section id="area-visitable" className="section-wrapper bg-white relative overflow-hidden">
+          <BackgroundTriangles pattern="office" />
+          <div className="section-inner relative z-10">
+            <div className="section-title-area">
+              <h2 className="section-title">{area.name}の訪問可能エリア</h2>
+              <div className="section-title-line" />
+            </div>
+            <div className="section-content">
               <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm">
                 <div className="flex flex-wrap gap-2 justify-center mb-6">
                   {area.visitableAreas.map((areaName, index) => (
@@ -445,7 +335,7 @@ export default async function RegionalAreaPage({
                       className="px-4 py-2 rounded-full text-sm font-medium"
                       style={{
                         backgroundColor: `${area.theme.primary}08`,
-                        color: area.theme.secondary,
+                        color: area.theme.primary,
                       }}
                     >
                       {areaName}
@@ -461,20 +351,14 @@ export default async function RegionalAreaPage({
         </section>
 
         {/* ===== 担当スタッフ ===== */}
-        <section className="py-14 md:py-20 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
-              <div className="text-center mb-10">
-                <span className="text-xs font-bold tracking-widest uppercase text-gray-400 block mb-2">
-                  Staff
-                </span>
-                <h2
-                  className="text-xl md:text-3xl font-bold heading-gothic"
-                  style={{ color: area.theme.secondary }}
-                >
-                  {area.name}を担当するスタッフ
-                </h2>
-              </div>
+        <section id="area-staff" className="section-wrapper bg-white relative overflow-hidden">
+          <BackgroundTriangles pattern="staff" />
+          <div className="section-inner relative z-10">
+            <div className="section-title-area">
+              <h2 className="section-title">{area.name}を担当するスタッフ</h2>
+              <div className="section-title-line" />
+            </div>
+            <div className="section-content">
               <div className="grid md:grid-cols-2 gap-5">
                 {staffMembers.slice(0, 4).map((staff, index) => (
                   <div
@@ -498,7 +382,7 @@ export default async function RegionalAreaPage({
                     <div>
                       <p
                         className="font-bold text-sm"
-                        style={{ color: area.theme.secondary }}
+                        style={{ color: area.theme.primary }}
                       >
                         {staff.role} {staff.name}
                       </p>
@@ -536,27 +420,14 @@ export default async function RegionalAreaPage({
         </section>
 
         {/* ===== 医療・介護体制 ===== */}
-        <section className="py-14 md:py-20 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
-              <div className="flex items-center gap-3 mb-8">
-                <div
-                  className="w-1 h-10 rounded-full"
-                  style={{ backgroundColor: area.theme.primary }}
-                />
-                <div>
-                  <span className="text-xs font-bold tracking-widest uppercase text-gray-400">
-                    Healthcare
-                  </span>
-                  <h2
-                    className="text-xl md:text-2xl font-bold heading-gothic"
-                    style={{ color: area.theme.secondary }}
-                  >
-                    医療・介護体制
-                  </h2>
-                </div>
-              </div>
-
+        <section id="area-healthcare" className="section-wrapper bg-white relative overflow-hidden">
+          <BackgroundTriangles pattern="features" />
+          <div className="section-inner relative z-10">
+            <div className="section-title-area">
+              <h2 className="section-title">医療・介護体制</h2>
+              <div className="section-title-line" />
+            </div>
+            <div className="section-content">
               <div
                 className="rounded-2xl p-6 md:p-8"
                 style={{ backgroundColor: `${area.theme.primary}06` }}
@@ -586,74 +457,17 @@ export default async function RegionalAreaPage({
         </section>
 
         {/* ===== FAQ ===== */}
-        <section
-          className={`py-14 md:py-20 relative ${patternClass}`}
-          style={{ backgroundColor: `${area.theme.primary}04` }}
-        >
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-3xl mx-auto">
-              <div className="text-center mb-10">
-                <span className="text-xs font-bold tracking-widest uppercase text-gray-400 block mb-2">
-                  FAQ
-                </span>
-                <h2
-                  className="text-xl md:text-3xl font-bold heading-gothic"
-                  style={{ color: area.theme.secondary }}
-                >
-                  よくある質問
-                </h2>
-              </div>
-
-              <div className="space-y-3">
-                {area.faqs.map((faq, index) => (
-                  <details
-                    key={index}
-                    className="group bg-white rounded-xl shadow-sm overflow-hidden"
-                  >
-                    <summary className="p-5 cursor-pointer list-none flex items-center justify-between">
-                      <span className="font-bold pr-4 text-sm" style={{ color: area.theme.secondary }}>
-                        {faq.question}
-                      </span>
-                      <span
-                        className="transition-transform group-open:rotate-180 flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center"
-                        style={{ backgroundColor: `${area.theme.primary}10`, color: area.theme.primary }}
-                      >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </span>
-                    </summary>
-                    <div className="px-5 pb-5">
-                      <div
-                        className="pt-3 border-t text-gray-600 text-sm leading-relaxed"
-                        style={{ borderColor: `${area.theme.primary}15` }}
-                      >
-                        {faq.answer}
-                      </div>
-                    </div>
-                  </details>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
+        <AreaFAQ faqs={area.faqs} themeColor={area.theme.primary} />
 
         {/* ===== 他の地域へのリンク ===== */}
-        <section className="py-14 md:py-20 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
-              <div className="text-center mb-10">
-                <span className="text-xs font-bold tracking-widest uppercase text-gray-400 block mb-2">
-                  Other Areas
-                </span>
-                <h2
-                  className="text-xl md:text-3xl font-bold heading-gothic"
-                  style={{ color: area.theme.secondary }}
-                >
-                  その他の対応地域
-                </h2>
-              </div>
-
+        <section id="other-areas" className="section-wrapper bg-white relative overflow-hidden">
+          <BackgroundTriangles pattern="company" />
+          <div className="section-inner relative z-10">
+            <div className="section-title-area">
+              <h2 className="section-title">その他の対応地域</h2>
+              <div className="section-title-line" />
+            </div>
+            <div className="section-content">
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
                 {otherAreas.map((otherArea) => (
                   <Link
@@ -665,7 +479,7 @@ export default async function RegionalAreaPage({
                       className="absolute top-0 left-0 w-full h-0.5"
                       style={{ backgroundColor: otherArea.theme.primary }}
                     />
-                    <p className="font-bold text-sm" style={{ color: otherArea.theme.secondary }}>
+                    <p className="font-bold text-sm" style={{ color: otherArea.theme.primary }}>
                       {otherArea.name}
                     </p>
                     <p className="text-xs text-gray-400">{otherArea.theme.tagline}</p>
@@ -677,38 +491,28 @@ export default async function RegionalAreaPage({
         </section>
 
         {/* ===== お問い合わせ ===== */}
-        <section
-          id="contact"
-          className={`py-14 md:py-20 relative ${patternClass}`}
-          style={{ backgroundColor: `${area.theme.primary}06` }}
-        >
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-3xl mx-auto">
-              <div className="text-center mb-10">
-                <span className="text-xs font-bold tracking-widest uppercase text-gray-400 block mb-2">
-                  Contact
-                </span>
-                <h2
-                  className="text-xl md:text-3xl font-bold heading-gothic mb-3"
-                  style={{ color: area.theme.secondary }}
-                >
-                  まずはお気軽にご相談ください
-                </h2>
-                <p className="text-gray-600 text-sm">
-                  {area.name}で訪問看護をお探しの方は、お気軽にご相談ください。
-                </p>
-              </div>
+        <section id="contact" className="section-wrapper bg-white relative overflow-hidden">
+          <BackgroundTriangles pattern="contact" />
+          <div className="section-inner relative z-10">
+            <div className="section-title-area">
+              <h2 className="section-title">まずはお気軽にご相談ください</h2>
+              <div className="section-title-line" />
+            </div>
+            <div className="section-content">
+              <p className="text-gray-600 text-sm text-center mb-8">
+                {area.name}で訪問看護をお探しの方は、お気軽にご相談ください。
+              </p>
 
               <div className="text-center mb-8">
                 <a
-                  href="tel:047-770-1228"
+                  href={`tel:${officeInfo.phone}`}
                   className="inline-flex items-center gap-3 text-white px-8 py-4 rounded-full text-lg font-bold transition-all hover:scale-105 shadow-lg hover:shadow-xl"
                   style={{ backgroundColor: area.theme.primary }}
                 >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  047-770-1228
+                  {officeInfo.phone}
                 </a>
                 <p className="text-xs text-gray-500 mt-2">24時間受付</p>
               </div>
