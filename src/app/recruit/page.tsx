@@ -207,9 +207,9 @@ export default function RecruitPage() {
         <section className="order-1 grid lg:grid-cols-[1.1fr,0.9fr] gap-10 items-center">
           <FadeIn className="space-y-4">
             <p className="text-xs tracking-[0.3em] text-ink-soft">RECRUIT</p>
-            <h2 className="heading-mincho text-3xl md:text-5xl text-[var(--color-olive)]">
+            <h1 className="heading-mincho text-3xl md:text-5xl text-[var(--color-olive)]">
               フラクタルだから、できる。
-            </h2>
+            </h1>
             <p className="text-ink-soft text-base md:text-lg leading-relaxed">
               船橋市、八千代市、習志野市、千葉市花見川区で看護師・理学療法士・作業療法士・言語聴覚士を募集しています。
               入社祝い金最大30万円、年休139日以上（PT・OT・STは120日以上）。未経験・ブランクのある方も歓迎です。
