@@ -33,6 +33,8 @@
 | PopulationChart | charts/PopulationChart.tsx | `src/components/charts/PopulationChart.stories.tsx` | チャート | 人口推移折れ線グラフ |
 | AgeDistributionChart | charts/AgeDistributionChart.tsx | `src/components/charts/AgeDistributionChart.stories.tsx` | チャート | 年齢分布円グラフ |
 | ElderlyRateTrendChart | charts/ElderlyRateTrendChart.tsx | `src/components/charts/ElderlyRateTrendChart.stories.tsx` | チャート | 高齢化率推移エリアチャート |
+| AreaHero | areas/[slug]/AreaHero.tsx | — | 地域 | 地域ページヒーロー（写真背景+縦書き） |
+| AreaFAQ | areas/[slug]/AreaFAQ.tsx | — | 地域 | 地域ページFAQアコーディオン |
 
 ---
 
@@ -493,6 +495,57 @@ SEO用の構造化データ（JSON-LD）。
 - `src/app/recruit/layout.tsx` - 求人構造化データ
 - `src/app/about-fractal/layout.tsx` - 会社紹介構造化データ
 - `src/app/flyers/layout.tsx` - チラシ構造化データ
+
+---
+
+## 地域ページコンポーネント
+
+### AreaHero
+
+地域ページのヒーローセクション。トップページHeroと同じ写真背景+縦書きキャッチコピーパターン。
+
+**ファイル**: `src/app/areas/[slug]/AreaHero.tsx`
+
+**種別**: サーバーコンポーネント
+
+**機能**:
+- `hero-bg.webp` 写真背景（全地域共通）
+- 白半透明 + 地域色薄いカラーオーバーレイ
+- 縦書きキャッチコピー（`animate-emerge-from-back`）
+- SEO用 `<h1>` を画面上部に配置
+
+**Props**:
+
+| Prop | 型 | 説明 |
+|------|---|------|
+| area | RegionalData | 地域データ（theme, h1, tagline等） |
+
+**使用箇所**: `src/app/areas/[slug]/page.tsx`
+
+---
+
+### AreaFAQ
+
+地域ページのFAQアコーディオンセクション。既存FAQ.tsxと同一パターンの `useState` + `max-h` トランジション。
+
+**ファイル**: `src/app/areas/[slug]/AreaFAQ.tsx`
+
+**種別**: クライアントコンポーネント (`"use client"`)
+
+**機能**:
+- アコーディオン形式のQ&A（1件のみ開く設計）
+- Q/Aラベルを色付き丸バッジで表示
+- `aria-expanded` / `aria-controls` 対応
+- `section-wrapper` + `BackgroundTriangles pattern="faq"` 内蔵
+
+**Props**:
+
+| Prop | 型 | 説明 |
+|------|---|------|
+| faqs | Array<{ question: string; answer: string }> | FAQ配列 |
+| themeColor | string | テーマカラー（hex） |
+
+**使用箇所**: `src/app/areas/[slug]/page.tsx`
 
 ---
 

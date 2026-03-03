@@ -5,6 +5,7 @@ import {
   BreadcrumbStructuredData,
   AreaFAQStructuredData,
 } from "@/components/StructuredData";
+import { officeInfo } from "@/lib/data";
 import Script from "next/script";
 
 // 地域別LocalBusinessスキーマを生成
@@ -15,7 +16,7 @@ function generateAreaLocalBusinessData(areaName: string) {
     name: `フラクタル訪問看護 ${areaName}対応`,
     description: `${areaName}で訪問看護サービスを提供。24時間365日対応、終末期ケア・精神科訪問看護・リハビリに対応。`,
     url: "https://fractal-hokan.com",
-    telephone: "047-770-1228",
+    telephone: officeInfo.phone,
     areaServed: {
       "@type": areaName.includes("区") ? "AdministrativeArea" : "City",
       name: areaName,

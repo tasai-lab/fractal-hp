@@ -12,6 +12,12 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-03-03",
+    items: [
+      { type: "improve", title: "地域ページのデザインをトップページの印象に統一" },
+    ],
+  },
+  {
     date: "2026-02-25",
     items: [
       { type: "improve", title: "「フラクタルの意味」ページの説明文・図解を改善", link: "/fractal" },
