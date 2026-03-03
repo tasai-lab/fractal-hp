@@ -489,9 +489,11 @@ export default function FractalPage() {
             </div>
 
             <h1 className="mb-8">
+              <span className="sr-only">フラクタルを知る - 訪問看護の理念と特徴</span>
               <Image
                 src="/images/fractal-title.png"
-                alt="フラクタル"
+                alt=""
+                aria-hidden="true"
                 width={400}
                 height={120}
                 className="w-auto h-16 md:h-24 lg:h-32 mx-auto"
@@ -546,7 +548,7 @@ export default function FractalPage() {
                 >
                   <Image
                     src="/images/fractal-title.png"
-                    alt="フラクタル"
+                    alt="フラクタル訪問看護のロゴ文字"
                     width={200}
                     height={60}
                     className="h-8 md:h-10 lg:h-14 w-auto"
@@ -601,7 +603,7 @@ export default function FractalPage() {
                 <span>自然界の</span>
                 <Image
                   src="/images/fractal-title.png"
-                  alt="フラクタル"
+                  alt="フラクタル（フラクタル訪問看護のロゴ文字）"
                   width={150}
                   height={45}
                   className="h-6 md:h-8 w-auto"
@@ -659,7 +661,7 @@ export default function FractalPage() {
                 <span>私たちの</span>
                 <Image
                   src="/images/fractal-title.png"
-                  alt="フラクタル"
+                  alt="フラクタル訪問看護のロゴ文字"
                   width={200}
                   height={60}
                   className="h-8 md:h-10 lg:h-14 w-auto"

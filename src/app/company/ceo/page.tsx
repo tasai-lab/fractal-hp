@@ -626,11 +626,16 @@ export default function CEOPage() {
                 REPRESENTATIVE
               </p>
               <h1
+                className="heading-mincho text-xl md:text-2xl text-[var(--color-olive)] leading-tight"
+              >
+                代表者インタビュー｜{ceoProfile.name}
+              </h1>
+              <p
                 className="heading-mincho text-3xl md:text-4xl lg:text-5xl text-[var(--color-olive)] leading-tight"
                 style={{ fontSize: "var(--font-size-fluid-3xl)" }}
               >
                 {ceoProfile.catchphrase}
-              </h1>
+              </p>
             </FadeIn>
             <FadeIn
               className="relative aspect-[3/2] rounded-3xl overflow-hidden shadow-lg mt-8"
