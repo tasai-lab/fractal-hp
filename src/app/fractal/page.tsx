@@ -431,12 +431,13 @@ export default function FractalPage() {
             <h1 className="mb-8">
               <Image
                 src="/images/fractal-title.png"
-                alt="フラクタル"
+                alt="フラクタルとは"
                 width={400}
                 height={120}
                 className="w-auto h-16 md:h-24 lg:h-32 mx-auto"
                 priority
               />
+              <span className="sr-only">フラクタルとは｜自然のしくみに学ぶ訪問看護の理念</span>
             </h1>
 
             <p
