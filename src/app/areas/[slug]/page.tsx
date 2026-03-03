@@ -9,7 +9,7 @@ import {
   getRegionalDataBySlug,
   regionalData,
 } from "@/lib/regional-data";
-import { stationStats, acceptableConditions, staffMembers } from "@/lib/data";
+import { acceptableConditions, staffMembers } from "@/lib/data";
 
 export default async function RegionalAreaPage({
   params,
@@ -113,10 +113,17 @@ export default async function RegionalAreaPage({
             <div className="max-w-4xl mx-auto">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {[
-                  { label: "総人口", value: area.population.total },
-                  { label: "高齢者人口", value: area.population.elderly },
+                  ...(area.areaStats
+                    ? [
+                        { label: `${area.name}の利用者`, value: `${area.areaStats.patients}名` },
+                        { label: "月間訪問件数", value: `${area.areaStats.monthlyVisits}件` },
+                      ]
+                    : [
+                        { label: "総人口", value: area.population.total },
+                        { label: "高齢者人口", value: area.population.elderly },
+                      ]),
                   { label: "高齢化率", value: area.population.elderlyRate },
-                  { label: "スタッフ", value: "8名体制" },
+                  { label: "緊急対応", value: "365日" },
                 ].map((stat, index) => (
                   <div
                     key={index}
@@ -153,7 +160,19 @@ export default async function RegionalAreaPage({
                 </h2>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-                {stationStats.map((stat, index) => (
+                {[
+                  ...(area.areaStats
+                    ? [
+                        { label: `${area.name}の利用者`, value: `${area.areaStats.patients}名` },
+                        { label: "月間訪問件数", value: `${area.areaStats.monthlyVisits}件` },
+                      ]
+                    : [
+                        { label: "全利用者数", value: "84名" },
+                        { label: "月間訪問件数", value: "270件+" },
+                      ]),
+                  { label: "看護師", value: "3名" },
+                  { label: "緊急対応", value: "365日" },
+                ].map((stat, index) => (
                   <div
                     key={index}
                     className="text-center p-4 md:p-6 bg-white rounded-2xl shadow-sm border"

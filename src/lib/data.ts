@@ -291,11 +291,11 @@ export const philosophyItems = [
   },
 ];
 
-// ステーション実績データ
+// ステーション実績データ（全事業所統合）
 export const stationStats = [
-  { label: "看護師・療法士", value: "8名" },
-  { label: "月間訪問件数", value: "300件+" },
-  { label: "精神科対応率", value: "約40%" },
+  { label: "看護師", value: "3名" },
+  { label: "利用者数", value: "84名" },
+  { label: "月間訪問件数", value: "270件+" },
   { label: "緊急対応", value: "365日" },
 ];
 
