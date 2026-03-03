@@ -209,6 +209,7 @@ export default function RecruitPage() {
             <p className="text-xs tracking-[0.3em] text-ink-soft">RECRUIT</p>
             <h1 className="heading-mincho text-3xl md:text-5xl text-[var(--color-olive)]">
               フラクタルだから、できる。
+              <span className="sr-only">｜船橋市の訪問看護師・PT・OT・ST求人</span>
             </h1>
             <p className="text-ink-soft text-base md:text-lg leading-relaxed">
               船橋市、八千代市、習志野市、千葉市花見川区で看護師・理学療法士・作業療法士・言語聴覚士を募集しています。
