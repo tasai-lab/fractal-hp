@@ -290,3 +290,32 @@ export const philosophyItems = [
       "完璧な正解など存在しないかもしれません。しかし、私たちは常に「その人にとっての最適」を模索し続けます。変化する状況やニーズに合わせて、常に最善を尽くし、進化し続けること。それが私たちの姿勢です。",
   },
 ];
+
+// ステーション実績データ
+export const stationStats = [
+  { label: "看護師・療法士", value: "8名" },
+  { label: "月間訪問件数", value: "300件+" },
+  { label: "精神科対応率", value: "約40%" },
+  { label: "緊急対応", value: "365日" },
+];
+
+// 受入可能な状態テーブル
+export type AcceptableCondition = {
+  name: string;
+  status: "available" | "limited" | "unavailable";
+  note: string;
+};
+
+export const acceptableConditions: AcceptableCondition[] = [
+  { name: "脳血管疾患（脳梗塞・脳出血）", status: "available", note: "リハビリ含む" },
+  { name: "がん（終末期・緩和ケア）", status: "available", note: "看取り対応可" },
+  { name: "精神疾患（うつ・統合失調症等）", status: "available", note: "精神科訪問看護" },
+  { name: "認知症", status: "available", note: "BPSD対応含む" },
+  { name: "難病（ALS・パーキンソン等）", status: "available", note: "医療処置対応" },
+  { name: "人工呼吸器・在宅酸素", status: "available", note: "機器管理指導" },
+  { name: "褥瘡（床ずれ）", status: "available", note: "処置・予防" },
+  { name: "ストーマ（人工肛門・膀胱）", status: "available", note: "管理指導" },
+  { name: "糖尿病（インスリン管理）", status: "available", note: "自己注射指導" },
+  { name: "小児・重症心身障害児", status: "limited", note: "要相談" },
+  { name: "訪問リハビリテーション", status: "limited", note: "現在休止中" },
+];

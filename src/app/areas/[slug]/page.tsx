@@ -1,16 +1,15 @@
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
-import PopulationChart from "@/components/charts/PopulationChart";
-import AgeDistributionChart from "@/components/charts/AgeDistributionChart";
-import ElderlyRateTrendChart from "@/components/charts/ElderlyRateTrendChart";
 import { AreaJobPostingStructuredData } from "@/components/StructuredData";
 import {
   getRegionalDataBySlug,
   regionalData,
 } from "@/lib/regional-data";
+import { stationStats, acceptableConditions, staffMembers } from "@/lib/data";
 
 export default async function RegionalAreaPage({
   params,
@@ -25,12 +24,6 @@ export default async function RegionalAreaPage({
   }
 
   const otherAreas = regionalData.filter((a) => a.slug !== area.slug);
-
-  const agricultureProducts = area.specialties.filter(
-    (s) => s.category === "agriculture"
-  );
-  const foodProducts = area.specialties.filter((s) => s.category === "food");
-  const craftProducts = area.specialties.filter((s) => s.category === "craft");
 
   const themeStyle = {
     "--theme-primary": area.theme.primary,
@@ -123,7 +116,7 @@ export default async function RegionalAreaPage({
                   { label: "総人口", value: area.population.total },
                   { label: "高齢者人口", value: area.population.elderly },
                   { label: "高齢化率", value: area.population.elderlyRate },
-                  { label: "対応体制", value: "24時間365日" },
+                  { label: "スタッフ", value: "8名体制" },
                 ].map((stat, index) => (
                   <div
                     key={index}
@@ -144,61 +137,40 @@ export default async function RegionalAreaPage({
           </div>
         </section>
 
-        {/* ===== 人口・統計セクション ===== */}
-        <section className={`py-14 md:py-20 relative ${patternClass}`} style={{ backgroundColor: `${area.theme.primary}04` }}>
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-6xl mx-auto">
-              <div className="flex items-center gap-3 mb-8">
-                <div
-                  className="w-1 h-10 rounded-full"
-                  style={{ backgroundColor: area.theme.primary }}
-                />
-                <div>
-                  <span className="text-xs font-bold tracking-widest uppercase text-gray-400">
-                    Statistics
-                  </span>
-                  <h2
-                    className="text-xl md:text-2xl font-bold heading-gothic"
-                    style={{ color: area.theme.secondary }}
+        {/* ===== フラクタルの実績 ===== */}
+        <section className="py-14 md:py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto">
+              <div className="text-center mb-10">
+                <span className="text-xs font-bold tracking-widest uppercase text-gray-400 block mb-2">
+                  Track Record
+                </span>
+                <h2
+                  className="text-xl md:text-3xl font-bold heading-gothic"
+                  style={{ color: area.theme.secondary }}
+                >
+                  フラクタル訪問看護の実績
+                </h2>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                {stationStats.map((stat, index) => (
+                  <div
+                    key={index}
+                    className="text-center p-4 md:p-6 bg-white rounded-2xl shadow-sm border"
+                    style={{ borderColor: `${area.theme.primary}15` }}
                   >
-                    {area.name}の人口・統計データ
-                  </h2>
-                </div>
-              </div>
-
-              <div className="grid lg:grid-cols-2 gap-6">
-                <div className="bg-white rounded-2xl p-5 md:p-6 shadow-sm">
-                  <h3 className="text-sm font-bold mb-3 text-gray-700">人口推移予測</h3>
-                  <PopulationChart
-                    data={area.populationProjection}
-                    areaName={area.name}
-                    primaryColor={area.theme.primary}
-                    secondaryColor={area.theme.accent}
-                  />
-                </div>
-                <div className="grid gap-6">
-                  <div className="bg-white rounded-2xl p-5 md:p-6 shadow-sm">
-                    <h3 className="text-sm font-bold mb-3 text-gray-700">年齢構成</h3>
-                    <AgeDistributionChart
-                      data={area.ageDistribution}
-                      primaryColor={area.theme.primary}
-                      secondaryColor={area.theme.accent}
-                      accentColor={`${area.theme.primary}40`}
-                    />
+                    <p
+                      className="text-3xl md:text-4xl font-black"
+                      style={{ color: area.theme.primary }}
+                    >
+                      {stat.value}
+                    </p>
+                    <p className="text-xs md:text-sm text-gray-500 mt-1">
+                      {stat.label}
+                    </p>
                   </div>
-                  <div className="bg-white rounded-2xl p-5 md:p-6 shadow-sm">
-                    <h3 className="text-sm font-bold mb-3 text-gray-700">高齢化率の推移</h3>
-                    <ElderlyRateTrendChart
-                      data={area.populationProjection}
-                      primaryColor={area.theme.primary}
-                    />
-                  </div>
-                </div>
+                ))}
               </div>
-
-              <p className="text-xs text-gray-400 text-right mt-4">
-                出典: {area.population.source} ({area.population.year})
-              </p>
             </div>
           </div>
         </section>
@@ -289,7 +261,7 @@ export default async function RegionalAreaPage({
 
               <div className="text-center mt-8">
                 <Link
-                  href="/#about"
+                  href="/pricing"
                   className="inline-flex items-center gap-2 text-white px-7 py-3 rounded-full font-bold transition-all hover:scale-105 hover:shadow-md text-sm"
                   style={{ backgroundColor: area.theme.primary }}
                 >
@@ -299,6 +271,124 @@ export default async function RegionalAreaPage({
                   </svg>
                 </Link>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ===== 受入可能な身体の状態 ===== */}
+        <section
+          className={`py-14 md:py-20 relative ${patternClass}`}
+          style={{ backgroundColor: `${area.theme.primary}04` }}
+        >
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-5xl mx-auto">
+              <div className="text-center mb-10">
+                <span className="text-xs font-bold tracking-widest uppercase text-gray-400 block mb-2">
+                  Conditions
+                </span>
+                <h2
+                  className="text-xl md:text-3xl font-bold heading-gothic"
+                  style={{ color: area.theme.secondary }}
+                >
+                  受入可能な身体の状態・疾患
+                </h2>
+              </div>
+              <div className="bg-white rounded-2xl p-5 md:p-8 shadow-sm overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr
+                      className="border-b-2"
+                      style={{ borderColor: area.theme.primary }}
+                    >
+                      <th
+                        className="text-left py-3 px-2 font-bold"
+                        style={{ color: area.theme.secondary }}
+                      >
+                        疾患・状態
+                      </th>
+                      <th className="text-center py-3 px-2 w-24">対応</th>
+                      <th className="text-left py-3 px-2">備考</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {acceptableConditions.map((condition, index) => (
+                      <tr key={index} className="border-b border-gray-100">
+                        <td className="py-3 px-2 font-medium text-gray-700">
+                          {condition.name}
+                        </td>
+                        <td className="py-3 px-2 text-center">
+                          <span
+                            className={
+                              condition.status === "available"
+                                ? "text-green-600 font-bold"
+                                : condition.status === "limited"
+                                  ? "text-yellow-600 font-bold"
+                                  : "text-gray-400"
+                            }
+                          >
+                            {condition.status === "available"
+                              ? "◎"
+                              : condition.status === "limited"
+                                ? "△"
+                                : "×"}
+                          </span>
+                        </td>
+                        <td className="py-3 px-2 text-gray-500 text-xs">
+                          {condition.note}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <p className="text-xs text-gray-400 mt-4">
+                  ◎ 積極的に受入 / △ 要相談 / × 現在非対応
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ===== 中間CTA ===== */}
+        <section
+          className="py-10 md:py-14"
+          style={{ backgroundColor: area.theme.primary }}
+        >
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto text-center text-white">
+              <p className="text-lg md:text-xl font-bold mb-6">
+                {area.name}での訪問看護、まずは無料でご相談ください
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a
+                  href="tel:047-770-1228"
+                  className="inline-flex items-center justify-center gap-3 bg-white px-8 py-4 rounded-full text-lg font-bold transition-all hover:scale-105 shadow-lg"
+                  style={{ color: area.theme.primary }}
+                >
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                    />
+                  </svg>
+                  047-770-1228
+                </a>
+                <a
+                  href="#contact"
+                  className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white px-8 py-4 rounded-full text-lg font-bold transition-all hover:bg-white/10"
+                >
+                  お問い合わせフォーム
+                </a>
+              </div>
+              <p className="text-white/70 text-xs mt-3">
+                24時間受付・初回相談無料
+              </p>
             </div>
           </div>
         </section>
@@ -351,175 +441,80 @@ export default async function RegionalAreaPage({
           </div>
         </section>
 
-        {/* ===== 地域の特徴 & 交通 ===== */}
+        {/* ===== 担当スタッフ ===== */}
         <section className="py-14 md:py-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
-              <div className="grid lg:grid-cols-2 gap-8">
-                {area.characteristics.length > 0 && (
-                  <div>
-                    <h2
-                      className="text-lg md:text-xl font-bold heading-gothic mb-5"
-                      style={{ color: area.theme.secondary }}
-                    >
-                      地域の特徴
-                    </h2>
-                    <div
-                      className="rounded-2xl p-5 md:p-6"
-                      style={{ backgroundColor: `${area.theme.primary}06` }}
-                    >
-                      <ul className="space-y-3">
-                        {area.characteristics.map((char, index) => (
-                          <li key={index} className="flex items-start gap-3">
-                            <span
-                              className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-white text-xs font-bold mt-0.5"
-                              style={{ backgroundColor: area.theme.primary }}
-                            >
-                              {index + 1}
-                            </span>
-                            <span className="text-gray-700 text-sm">{char}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                )}
-
-                <div>
-                  <h2
-                    className="text-lg md:text-xl font-bold heading-gothic mb-5"
-                    style={{ color: area.theme.secondary }}
+              <div className="text-center mb-10">
+                <span className="text-xs font-bold tracking-widest uppercase text-gray-400 block mb-2">
+                  Staff
+                </span>
+                <h2
+                  className="text-xl md:text-3xl font-bold heading-gothic"
+                  style={{ color: area.theme.secondary }}
+                >
+                  {area.name}を担当するスタッフ
+                </h2>
+              </div>
+              <div className="grid md:grid-cols-2 gap-5">
+                {staffMembers.slice(0, 4).map((staff, index) => (
+                  <div
+                    key={index}
+                    className="flex items-start gap-4 p-5 rounded-2xl"
+                    style={{
+                      backgroundColor: `${area.theme.primary}04`,
+                    }}
                   >
-                    交通・道路状況
-                  </h2>
-                  <div className="space-y-3">
-                    <div className="bg-gray-50 rounded-xl p-4">
-                      <h3 className="font-bold text-sm mb-2" style={{ color: area.theme.secondary }}>
-                        主要道路
-                      </h3>
-                      <ul className="space-y-1">
-                        {area.traffic.mainRoads.map((road, index) => (
-                          <li key={index} className="flex items-center gap-2 text-gray-600 text-sm">
-                            <span
-                              className="w-1 h-1 rounded-full"
-                              style={{ backgroundColor: area.theme.primary }}
-                            />
-                            {road}
-                          </li>
-                        ))}
-                      </ul>
+                    <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 bg-gray-200 relative">
+                      {staff.image && (
+                        <Image
+                          src={staff.image}
+                          alt={staff.name}
+                          fill
+                          sizes="64px"
+                          className="object-cover"
+                        />
+                      )}
                     </div>
-                    <div className="bg-gray-50 rounded-xl p-4">
-                      <h3 className="font-bold text-sm mb-2" style={{ color: area.theme.secondary }}>
-                        混雑情報
-                      </h3>
-                      <p className="text-gray-600 text-sm leading-relaxed">
-                        {area.traffic.congestion}
+                    <div>
+                      <p
+                        className="font-bold text-sm"
+                        style={{ color: area.theme.secondary }}
+                      >
+                        {staff.role} {staff.name}
                       </p>
-                    </div>
-                    <div
-                      className="rounded-xl p-4"
-                      style={{ backgroundColor: `${area.theme.accent}15` }}
-                    >
-                      <h3 className="font-bold text-sm mb-2" style={{ color: area.theme.secondary }}>
-                        アクセス情報
-                      </h3>
-                      <p className="text-gray-600 text-sm leading-relaxed">
-                        {area.traffic.accessInfo}
+                      <p className="text-gray-600 text-xs mt-1 line-clamp-3">
+                        {staff.introduction}
                       </p>
                     </div>
                   </div>
-                </div>
+                ))}
+              </div>
+              <div className="text-center mt-8">
+                <Link
+                  href="/#staff"
+                  className="inline-flex items-center gap-2 text-sm font-bold transition-colors"
+                  style={{ color: area.theme.primary }}
+                >
+                  スタッフ一覧を見る
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </Link>
               </div>
             </div>
           </div>
         </section>
-
-        {/* ===== 特産物・名産品 ===== */}
-        {area.specialties.length > 0 && (
-          <section className={`py-14 md:py-20 relative ${patternClass}`} style={{ backgroundColor: `${area.theme.primary}04` }}>
-            <div className="container mx-auto px-4 relative z-10">
-              <div className="max-w-5xl mx-auto">
-                <div className="text-center mb-10">
-                  <span className="text-xs font-bold tracking-widest uppercase text-gray-400 block mb-2">
-                    Local Products
-                  </span>
-                  <h2
-                    className="text-xl md:text-3xl font-bold heading-gothic"
-                    style={{ color: area.theme.secondary }}
-                  >
-                    {area.name}の特産物・名産品
-                  </h2>
-                </div>
-
-                <div className="space-y-6">
-                  {agricultureProducts.length > 0 && (
-                    <div>
-                      <h3 className="text-sm font-bold mb-3" style={{ color: area.theme.secondary }}>
-                        農産物
-                      </h3>
-                      <div className="grid md:grid-cols-2 gap-3">
-                        {agricultureProducts.map((product, index) => (
-                          <div
-                            key={index}
-                            className="bg-white p-4 rounded-xl shadow-sm"
-                          >
-                            <h4 className="font-bold text-sm mb-1" style={{ color: area.theme.secondary }}>
-                              {product.name}
-                            </h4>
-                            <p className="text-gray-500 text-xs">{product.description}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {foodProducts.length > 0 && (
-                    <div>
-                      <h3 className="text-sm font-bold mb-3" style={{ color: area.theme.secondary }}>
-                        食品・加工品
-                      </h3>
-                      <div className="grid md:grid-cols-2 gap-3">
-                        {foodProducts.map((product, index) => (
-                          <div
-                            key={index}
-                            className="bg-white p-4 rounded-xl shadow-sm"
-                          >
-                            <h4 className="font-bold text-sm mb-1" style={{ color: area.theme.secondary }}>
-                              {product.name}
-                            </h4>
-                            <p className="text-gray-500 text-xs">{product.description}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {craftProducts.length > 0 && (
-                    <div>
-                      <h3 className="text-sm font-bold mb-3" style={{ color: area.theme.secondary }}>
-                        工芸品
-                      </h3>
-                      <div className="grid md:grid-cols-2 gap-3">
-                        {craftProducts.map((product, index) => (
-                          <div
-                            key={index}
-                            className="bg-white p-4 rounded-xl shadow-sm"
-                          >
-                            <h4 className="font-bold text-sm mb-1" style={{ color: area.theme.secondary }}>
-                              {product.name}
-                            </h4>
-                            <p className="text-gray-500 text-xs">{product.description}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
 
         {/* ===== 医療・介護体制 ===== */}
         <section className="py-14 md:py-20 bg-white">
@@ -678,7 +673,7 @@ export default async function RegionalAreaPage({
                   className="text-xl md:text-3xl font-bold heading-gothic mb-3"
                   style={{ color: area.theme.secondary }}
                 >
-                  {area.name}での訪問看護のご相談
+                  まずはお気軽にご相談ください
                 </h2>
                 <p className="text-gray-600 text-sm">
                   {area.name}で訪問看護をお探しの方は、お気軽にご相談ください。
