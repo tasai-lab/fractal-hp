@@ -113,17 +113,10 @@ export default async function RegionalAreaPage({
             <div className="max-w-4xl mx-auto">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {[
-                  ...(area.areaStats
-                    ? [
-                        { label: `${area.name}の利用者`, value: `${area.areaStats.patients}名` },
-                        { label: "月間訪問件数", value: `${area.areaStats.monthlyVisits}件` },
-                      ]
-                    : [
-                        { label: "総人口", value: area.population.total },
-                        { label: "高齢者人口", value: area.population.elderly },
-                      ]),
+                  { label: "総人口", value: area.population.total },
+                  { label: "高齢者人口", value: area.population.elderly },
                   { label: "高齢化率", value: area.population.elderlyRate },
-                  { label: "緊急対応", value: "365日" },
+                  { label: "年少人口率", value: area.population.youngRate },
                 ].map((stat, index) => (
                   <div
                     key={index}
@@ -164,7 +157,7 @@ export default async function RegionalAreaPage({
                   ...(area.areaStats
                     ? [
                         { label: `${area.name}の利用者`, value: `${area.areaStats.patients}名` },
-                        { label: "月間訪問件数", value: `${area.areaStats.monthlyVisits}件` },
+                        { label: `${area.name}への月間訪問`, value: `${area.areaStats.monthlyVisits}件` },
                       ]
                     : [
                         { label: "全利用者数", value: "84名" },
