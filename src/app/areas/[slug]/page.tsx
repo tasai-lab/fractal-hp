@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Contact from "@/components/Contact";
+import AreaContact from "@/components/AreaContact";
 import { AreaJobPostingStructuredData } from "@/components/StructuredData";
 import {
   getRegionalDataBySlug,
@@ -695,7 +695,7 @@ export default async function RegionalAreaPage({
               </div>
 
               <div className="bg-white rounded-2xl p-5 md:p-8 shadow-sm">
-                <Contact />
+                <AreaContact areaName={area.name} themeColor={area.theme.primary} />
               </div>
             </div>
           </div>
