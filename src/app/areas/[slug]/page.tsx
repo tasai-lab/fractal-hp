@@ -55,21 +55,28 @@ export default async function RegionalAreaPage({
 
           <div className="container mx-auto px-4 relative z-10 py-16 md:py-20">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="mb-6 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+              <div className="mb-4 animate-fade-in" style={{ animationDelay: "0.2s" }}>
                 <span
                   className="inline-block px-5 py-2 rounded-full text-sm font-bold text-white"
                   style={{ backgroundColor: area.theme.primary }}
                 >
-                  {area.theme.tagline}
+                  フラクタル訪問看護 船橋
                 </span>
               </div>
 
               <h1
-                className="text-3xl md:text-4xl lg:text-5xl font-black mb-6 leading-tight heading-gothic animate-fade-in-up"
+                className="text-3xl md:text-4xl lg:text-5xl font-black mb-4 leading-tight heading-gothic animate-fade-in-up"
                 style={{ color: area.theme.secondary, animationDelay: "0.3s" }}
               >
                 {area.h1}
               </h1>
+
+              <p
+                className="text-sm text-gray-500 mb-6 animate-fade-in"
+                style={{ animationDelay: "0.4s" }}
+              >
+                {area.theme.tagline} | 精神科・看取り・24時間対応
+              </p>
 
               <p
                 className="text-base md:text-lg text-gray-600 leading-relaxed mb-10 max-w-2xl mx-auto animate-fade-in"
