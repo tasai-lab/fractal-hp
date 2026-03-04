@@ -13,6 +13,8 @@
 | About | About.tsx | `src/components/About.stories.tsx` | セクション | フラクタルとは |
 | Philosophy | Philosophy.tsx | `src/components/Philosophy.stories.tsx` | セクション | 私たちのカタチ |
 | Features | Features.tsx | `src/components/Features.stories.tsx` | セクション | 特徴一覧 |
+| PerformanceSection | PerformanceSection.tsx | —（Stories未作成） | セクション | 実績データ（カウントアップ + エリア内訳） |
+| ConditionsTable | ConditionsTable.tsx | —（Stories未作成） | セクション | 受け入れ可能な身体の状況テーブル |
 | Office | Office.tsx | `src/components/Office.stories.tsx` | セクション | 事業所情報 |
 | Flow | Flow.tsx | `src/components/Flow.stories.tsx` | セクション | ご利用の流れ |
 | Staff | Staff.tsx | `src/components/Staff.stories.tsx` | セクション | スタッフ紹介 |
@@ -28,6 +30,8 @@
 | GoogleAnalytics | GoogleAnalytics.tsx | —（UIなし） | ユーティリティ | GA4トラッキング |
 | CountUp | CountUp.tsx | `src/components/CountUp.stories.tsx` | ユーティリティ | 数値カウントアップ |
 | StructuredData | StructuredData.tsx | —（UIなし） | SEO | 構造化データ |
+| AreaHero | AreaHero.tsx | —（未作成） | エリア | 地域ページヒーロー |
+| AreaFAQ | AreaFAQ.tsx | —（未作成） | エリア | 地域ページFAQ |
 | JobDetails | recruit/JobDetails.tsx | `src/components/recruit/JobDetails.stories.tsx` | 採用 | 職種詳細モーダル |
 | ModelIncomeSection | recruit/ModelIncomeSection.tsx | `src/components/recruit/ModelIncomeSection.stories.tsx` | 採用 | モデル年収セクション |
 | PopulationChart | charts/PopulationChart.tsx | `src/components/charts/PopulationChart.stories.tsx` | チャート | 人口推移折れ線グラフ |
@@ -160,6 +164,42 @@
 **Stories**: `src/components/Features.stories.tsx`
 
 **データソース**: `src/lib/data.ts` → `features`
+
+---
+
+### ConditionsTable
+
+受け入れ可能な身体の状況テーブルセクション。対応内容を○△×で一覧表示。
+
+**ファイル**: `src/components/ConditionsTable.tsx`
+
+**Stories**: —（Stories未作成）
+
+**機能**:
+- カテゴリ別テーブル（HTMLテーブル）
+- 各行に対応状況（○/△/×）と詳細を表示（詳細列はデスクトップのみ表示）
+- 凡例（○対応可能 / △要相談 / ×非対応）
+- 埋め込みモード（`embedded=true`）ではセクションラッパー・タイトル・BackgroundTrianglesを省略しテーブルのみ返す
+- 非埋め込みモードでは `BackgroundTriangles pattern="office"` を使用
+
+**Props**:
+
+| Prop | 型 | デフォルト | 説明 |
+|------|---|----------|------|
+| embedded | boolean | false | true の場合、セクションラッパーなしでテーブルのみ返す |
+
+**使用例**:
+```tsx
+// セクションとして単独使用（BackgroundTriangles付き）
+<ConditionsTable />
+
+// 他ページ内に埋め込む場合
+<ConditionsTable embedded />
+```
+
+**データソース**: `src/lib/conditions-data.ts` → `conditionCategories`, `statusConfig`
+
+**使用箇所**: `src/app/services/[slug]/page.tsx`（embedded）
 
 ---
 
@@ -685,6 +725,60 @@ type ElderlyRateTrendData = {
 
 ---
 
+## エリアコンポーネント
+
+### AreaHero
+
+地域ページ用ヒーローセクション。Hero.tsx を踏襲した写真背景+縦書きキャッチコピー。
+
+**ファイル**: `src/components/AreaHero.tsx`
+
+**Stories**: —（未作成）
+
+**機能**:
+- 写真背景（hero-bg.webp）+ 白オーバーレイ + エリアカラー薄オーバーレイ
+- 縦書き「フラクタル訪問看護 船橋」（animate-emerge-from-back）
+- SEO用H1（area.h1を上部に小さく配置）
+- 下部グラデーション（from-white）
+
+**Props**:
+
+| Prop | 型 | 説明 |
+|------|---|------|
+| area | RegionalData | 地域データオブジェクト |
+
+**使用箇所**: `src/app/areas/[slug]/page.tsx`
+
+---
+
+### AreaFAQ
+
+地域ページ用FAQセクション。FAQ.tsx を踏襲したReactアコーディオン。
+
+**ファイル**: `src/components/AreaFAQ.tsx`
+
+**Stories**: —（未作成）
+
+**種別**: クライアントコンポーネント (`"use client"`)
+
+**機能**:
+- BackgroundTriangles pattern="faq" 内蔵
+- section-wrapper/section-inner パターン準拠
+- useStateアコーディオン（openIndex管理）
+- Q/Aバッジ（themeColorで動的色制御）
+- aria-expanded 対応
+
+**Props**:
+
+| Prop | 型 | 説明 |
+|------|---|------|
+| faqs | Array<{question: string, answer: string}> | FAQデータ |
+| themeColor | string | エリアのテーマカラー（area.theme.primary） |
+
+**使用箇所**: `src/app/areas/[slug]/page.tsx`
+
+---
+
 ## カスタムフック
 
 ### useScrollAnimation
@@ -867,3 +961,22 @@ interface ModelIncome {
   }>;
 }
 ```
+
+### フラクタルページデータ
+
+**ファイル**: `src/lib/fractal-data.ts`
+
+```typescript
+interface NatureExample {
+  title: string;       // 自然界のフラクタル例の名称
+  description: string; // 説明テキスト
+  imageSrc: string;    // 画像パス（/images/fractal/*.webp）
+}
+
+interface FractalObject {
+  imageSrc: string;    // フラクタル構造画像パス
+  alt: string;         // 画像のalt属性
+}
+```
+
+**使用箇所**: `src/app/fractal/page.tsx`

@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Features from "@/components/Features";
+import PerformanceSection from "@/components/PerformanceSection";
 import Office from "@/components/Office";
 import Flow from "@/components/Flow";
 import Staff from "@/components/Staff";
@@ -24,6 +25,7 @@ export default function Home() {
         <Hero />
         <About />
         <Features />
+        <PerformanceSection />
         <Office />
         <Flow />
         <Staff />

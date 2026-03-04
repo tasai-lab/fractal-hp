@@ -97,7 +97,7 @@ const decorationPatterns = {
   // フラクタルとはセクション - 左に大きな青いおにぎり
   about: {
     largeShapes: [
-      { color: colors.blue, opacity: 0.8, rotation: -15, top: "5%", left: "-15%", scale: 1.5 },
+      { color: colors.blue, opacity: 0.8, rotation: -15, top: "5%", left: "-8%", scale: 1.5 },
     ],
     smallTriangles: [
       { size: 80, color: colors.pink, opacity: 0.5, rotation: 25, top: "10%", right: "5%" },
@@ -108,7 +108,7 @@ const decorationPatterns = {
   // 特徴セクション - 左に大きな青いおにぎり
   features: {
     largeShapes: [
-      { color: colors.blue, opacity: 0.7, rotation: -20, top: "0%", left: "-18%", scale: 1.8 },
+      { color: colors.blue, opacity: 0.7, rotation: -20, top: "0%", left: "-10%", scale: 1.8 },
     ],
     smallTriangles: [
       { size: 70, color: colors.pink, opacity: 0.4, rotation: 30, top: "5%", right: "3%" },
@@ -119,7 +119,7 @@ const decorationPatterns = {
   // 事業所情報
   office: {
     largeShapes: [
-      { color: colors.lightBlue, opacity: 0.6, rotation: 15, top: "10%", right: "-20%", scale: 1.3 },
+      { color: colors.lightBlue, opacity: 0.6, rotation: 15, top: "10%", right: "-10%", scale: 1.3 },
     ],
     smallTriangles: [
       { size: 80, color: colors.pink, opacity: 0.4, rotation: -25, top: "15%", left: "3%" },
@@ -129,7 +129,7 @@ const decorationPatterns = {
   // 訪問エリア
   serviceArea: {
     largeShapes: [
-      { color: colors.lightPink, opacity: 0.5, rotation: -10, top: "5%", left: "-15%", scale: 1.2 },
+      { color: colors.lightPink, opacity: 0.5, rotation: -10, top: "5%", left: "-8%", scale: 1.2 },
     ],
     smallTriangles: [
       { size: 70, color: colors.mint, opacity: 0.5, rotation: 20, top: "20%", right: "5%" },
@@ -139,7 +139,7 @@ const decorationPatterns = {
   // ご利用開始までの流れ
   flow: {
     largeShapes: [
-      { color: colors.lightMint, opacity: 0.6, rotation: 20, top: "0%", right: "-18%", scale: 1.4 },
+      { color: colors.lightMint, opacity: 0.6, rotation: 20, top: "0%", right: "-10%", scale: 1.4 },
     ],
     smallTriangles: [
       { size: 80, color: colors.pink, opacity: 0.4, rotation: -20, top: "10%", left: "5%" },
@@ -150,7 +150,7 @@ const decorationPatterns = {
   // スタッフ紹介
   staff: {
     largeShapes: [
-      { color: colors.lightYellow, opacity: 0.6, rotation: -25, top: "10%", left: "-15%", scale: 1.3 },
+      { color: colors.lightYellow, opacity: 0.6, rotation: -25, top: "10%", left: "-8%", scale: 1.3 },
     ],
     smallTriangles: [
       { size: 90, color: colors.mint, opacity: 0.4, rotation: 15, top: "5%", right: "5%" },
@@ -160,7 +160,7 @@ const decorationPatterns = {
   // リクルート
   recruit: {
     largeShapes: [
-      { color: colors.mint, opacity: 0.5, rotation: 15, top: "5%", right: "-15%", scale: 1.5 },
+      { color: colors.mint, opacity: 0.5, rotation: 15, top: "5%", right: "-8%", scale: 1.5 },
     ],
     smallTriangles: [
       { size: 80, color: colors.pink, opacity: 0.4, rotation: -30, top: "20%", left: "5%" },
@@ -170,7 +170,7 @@ const decorationPatterns = {
   // お問い合わせ
   contact: {
     largeShapes: [
-      { color: colors.lightPink, opacity: 0.6, rotation: -20, top: "0%", left: "-18%", scale: 1.4 },
+      { color: colors.lightPink, opacity: 0.6, rotation: -20, top: "0%", left: "-10%", scale: 1.4 },
     ],
     smallTriangles: [
       { size: 70, color: colors.mint, opacity: 0.4, rotation: 35, top: "10%", right: "5%" },
@@ -180,7 +180,7 @@ const decorationPatterns = {
   // 会社情報
   company: {
     largeShapes: [
-      { color: colors.lightBlue, opacity: 0.5, rotation: 10, top: "10%", right: "-20%", scale: 1.2 },
+      { color: colors.lightBlue, opacity: 0.5, rotation: 10, top: "10%", right: "-10%", scale: 1.2 },
     ],
     smallTriangles: [
       { size: 80, color: colors.pink, opacity: 0.4, rotation: -15, top: "15%", left: "3%" },
@@ -190,7 +190,7 @@ const decorationPatterns = {
   // よくあるご質問
   faq: {
     largeShapes: [
-      { color: colors.lightYellow, opacity: 0.6, rotation: -15, top: "5%", left: "-18%", scale: 1.4 },
+      { color: colors.lightYellow, opacity: 0.6, rotation: -15, top: "5%", left: "-10%", scale: 1.4 },
     ],
     smallTriangles: [
       { size: 80, color: colors.mint, opacity: 0.4, rotation: 20, top: "10%", right: "5%" },
