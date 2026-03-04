@@ -69,8 +69,8 @@ const services = [
 ];
 
 const relatedLinks = [
-  { label: "ケアマネジャー様へ", href: "/for-care-managers/" },
-  { label: "医療機関様へ", href: "/for-medical-institutions/" },
+  { label: "ケアマネジャー様へ", href: "/services/for-care-managers/" },
+  { label: "医療機関様へ", href: "/services/for-medical-institutions/" },
   { label: "ご利用料金", href: "/pricing/" },
 ];
 

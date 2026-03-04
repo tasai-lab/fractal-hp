@@ -1,4 +1,5 @@
 import { officeInfo, footerLinks } from "@/lib/data";
+import { getActiveStations } from "@/lib/stations-data";
 import { regionalData } from "@/lib/regional-data";
 import Image from "next/image";
 import Link from "next/link";
@@ -59,19 +60,30 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* 対応エリア（SEO内部リンク） */}
+          {/* 事業所・対応エリア */}
           <div>
-            <h3 className="font-bold mb-3 md:mb-4 text-lg md:text-xl">訪問エリア</h3>
+            <h3 className="font-bold mb-3 md:mb-4 text-lg md:text-xl">事業所・訪問エリア</h3>
             <nav className="flex flex-col gap-2 text-sm md:text-base">
-              {regionalData.map((area) => (
+              {getActiveStations().map((station) => (
                 <Link
-                  key={area.slug}
-                  href={`/areas/${area.slug}`}
-                  className="opacity-90 hover:opacity-100 hover:underline transition-opacity"
+                  key={station.slug}
+                  href={`/stations/${station.slug}`}
+                  className="opacity-90 hover:opacity-100 hover:underline transition-opacity font-medium"
                 >
-                  {area.name}
+                  {station.name}
                 </Link>
               ))}
+              <div className="border-t border-gray-600 pt-2 mt-1">
+                {regionalData.map((area) => (
+                  <Link
+                    key={area.slug}
+                    href={`/stations/funabashi/areas/${area.slug}`}
+                    className="block opacity-90 hover:opacity-100 hover:underline transition-opacity py-0.5"
+                  >
+                    {area.name}
+                  </Link>
+                ))}
+              </div>
             </nav>
           </div>
 
@@ -80,13 +92,13 @@ export default function Footer() {
             <h3 className="font-bold mb-3 md:mb-4 text-lg md:text-xl">サイトマップ</h3>
             <nav className="grid grid-cols-2 gap-2 text-sm md:text-base">
               {footerLinks.map((link) => (
-                <a
+                <Link
                   key={link.href}
                   href={link.href}
                   className="opacity-90 hover:opacity-100 hover:underline transition-opacity"
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
             </nav>
           </div>

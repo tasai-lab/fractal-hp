@@ -72,7 +72,7 @@ export async function generateMetadata({
     },
     description: area.description,
     alternates: {
-      canonical: `/areas/${area.slug}`,
+      canonical: `/stations/funabashi/areas/${area.slug}`,
     },
     openGraph: {
       title: area.title,

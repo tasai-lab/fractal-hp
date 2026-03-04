@@ -188,7 +188,7 @@ export default function Office() {
                       {/* 詳細リンク */}
                       {areaData && (
                         <Link
-                          href={`/areas/${areaData.slug}`}
+                          href={`/stations/funabashi/areas/${areaData.slug}`}
                           className="group flex items-center justify-between p-3 rounded-lg transition-colors mt-auto"
                           style={{ backgroundColor: `${areaData.theme.primary}15` }}
                         >
@@ -255,7 +255,7 @@ export default function Office() {
                       </p>
 
                       <Link
-                        href={`/areas/${areaData.slug}`}
+                        href={`/stations/funabashi/areas/${areaData.slug}`}
                         className="group flex items-center justify-between p-3 rounded-lg transition-colors mt-auto"
                         style={{ backgroundColor: `${areaData.theme.primary}15` }}
                       >
