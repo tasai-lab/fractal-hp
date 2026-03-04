@@ -1,6 +1,4 @@
 import { features } from "@/lib/data";
-import BackgroundTriangles from "./BackgroundTriangles";
-
 // アイコンコンポーネント
 function FeatureIcon({ icon }: { icon: string }) {
   const iconSize = "w-10 h-10 md:w-12 md:h-12";
@@ -250,7 +248,6 @@ function FeatureIcon({ icon }: { icon: string }) {
 export default function Features() {
   return (
     <section id="features" className="section-wrapper bg-white relative">
-      <BackgroundTriangles pattern="features" />
       <div className="section-inner relative z-10">
         {/* セクションタイトル（縦書き） */}
         <div className="section-title-area">

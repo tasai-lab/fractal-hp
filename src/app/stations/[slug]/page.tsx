@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import PageHero from "@/components/PageHero";
-import BackgroundTriangles from "@/components/BackgroundTriangles";
+
 import Contact from "@/components/Contact";
 import PerformanceSection from "@/components/PerformanceSection";
 import { getStation, getAllStationSlugs } from "@/lib/stations-data";
@@ -35,7 +35,7 @@ export default async function StationPage({
 
       {/* ===== 事業所情報セクション ===== */}
       <section id="office" className="relative">
-        <BackgroundTriangles pattern="office" />
+
         <div className="max-w-5xl mx-auto px-4 py-10 md:py-14 relative z-10 space-y-8">
             {/* 事業所情報カード */}
             <div className="section-card section-card-blue">
@@ -165,7 +165,7 @@ export default async function StationPage({
 
       {/* ===== スタッフ紹介セクション ===== */}
       <section id="staff" className="section-wrapper bg-white relative">
-        <BackgroundTriangles pattern="staff" />
+
         <div className="section-inner relative z-10">
           <div className="section-title-area">
             <h2 className="section-title">スタッフ紹介</h2>
@@ -234,7 +234,7 @@ export default async function StationPage({
 
       {/* ===== お問い合わせセクション ===== */}
       <section id="contact" className="section-wrapper bg-white relative">
-        <BackgroundTriangles pattern="contact" />
+
         <div className="section-inner relative z-10">
           <div className="section-title-area">
             <h2 className="section-title">お問い合わせ</h2>

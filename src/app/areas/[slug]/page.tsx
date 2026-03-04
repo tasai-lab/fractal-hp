@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import AreaContact from "@/components/AreaContact";
 import AreaHero from "@/components/AreaHero";
 import AreaFAQ from "@/components/AreaFAQ";
-import BackgroundTriangles from "@/components/BackgroundTriangles";
+
 import { AreaJobPostingStructuredData } from "@/components/StructuredData";
 import {
   getRegionalDataBySlug,
@@ -39,7 +39,7 @@ export default async function RegionalAreaPage({
 
         {/* ===== 統計+実績（統合） ===== */}
         <section id="area-data" className="section-wrapper relative" style={{ backgroundColor: `${area.theme.primary}05` }}>
-          <BackgroundTriangles pattern="office" />
+
           <div className="section-inner relative z-10">
             <div className="section-title-area">
               <h2 className="section-title">{area.name}の実績</h2>
@@ -113,7 +113,7 @@ export default async function RegionalAreaPage({
 
         {/* ===== 訪問看護サービス ===== */}
         <section id="area-services" className="section-wrapper relative">
-          <BackgroundTriangles pattern="about" />
+
           <div className="section-inner relative z-10">
             <div className="section-title-area">
               <h2 className="section-title">{area.name}のフラクタル訪問看護サービス</h2>
@@ -202,7 +202,7 @@ export default async function RegionalAreaPage({
 
         {/* ===== 受入可能な身体の状態 ===== */}
         <section id="area-conditions" className="section-wrapper relative">
-          <BackgroundTriangles pattern="flow" />
+
           <div className="section-inner relative z-10">
             <div className="section-title-area">
               <h2 className="section-title">受入可能な身体の状態・疾患</h2>
@@ -259,7 +259,7 @@ export default async function RegionalAreaPage({
 
         {/* ===== 訪問可能エリア ===== */}
         <section id="area-visitable" className="section-wrapper relative">
-          <BackgroundTriangles pattern="serviceArea" />
+
           <div className="section-inner relative z-10">
             <div className="section-title-area">
               <h2 className="section-title">{area.name}の訪問可能エリア</h2>
@@ -339,7 +339,7 @@ export default async function RegionalAreaPage({
 
         {/* ===== 担当スタッフ ===== */}
         <section id="area-staff" className="section-wrapper relative">
-          <BackgroundTriangles pattern="staff" />
+
           <div className="section-inner relative z-10">
             <div className="section-title-area">
               <h2 className="section-title">{area.name}を担当するスタッフ</h2>
@@ -410,7 +410,7 @@ export default async function RegionalAreaPage({
 
         {/* ===== 医療・介護体制 ===== */}
         <section id="area-healthcare" className="section-wrapper relative">
-          <BackgroundTriangles pattern="features" />
+
           <div className="section-inner relative z-10">
             <div className="section-title-area">
               <h2 className="section-title">医療・介護体制</h2>
@@ -444,7 +444,7 @@ export default async function RegionalAreaPage({
 
         {/* ===== 他の地域へのリンク ===== */}
         <section id="other-areas" className="section-wrapper relative">
-          <BackgroundTriangles pattern="company" />
+
           <div className="section-inner relative z-10">
             <div className="section-title-area">
               <h2 className="section-title">その他の対応地域</h2>
@@ -473,7 +473,7 @@ export default async function RegionalAreaPage({
 
         {/* ===== お問い合わせ ===== */}
         <section id="contact" className="section-wrapper relative">
-          <BackgroundTriangles pattern="contact" />
+
           <div className="section-inner relative z-10">
             <div className="section-title-area">
               <h2 className="section-title">まずはお気軽にご相談ください</h2>

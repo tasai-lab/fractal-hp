@@ -6,7 +6,7 @@ import { use, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
-import BackgroundTriangles from "@/components/BackgroundTriangles";
+
 import { getServiceBySlug, servicesData } from "@/lib/services-data";
 import { officeInfo } from "@/lib/data";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
@@ -123,7 +123,7 @@ export default function ServicePage({
       <main className="pt-14 lg:pt-20 bg-white">
         {/* ===== ヒーローセクション ===== */}
         <section className="section-wrapper bg-white relative">
-          <BackgroundTriangles pattern="about" />
+
           <div className="section-inner relative z-10">
             <div className="section-title-area">
               <h1 className="section-title heading-gothic">{service.h1}</h1>
@@ -186,9 +186,7 @@ export default function ServicePage({
             key={sectionIndex}
             className="section-wrapper bg-white relative"
           >
-            <BackgroundTriangles
-              pattern={bgPatterns[sectionIndex % bgPatterns.length]}
-            />
+
             <div className="section-inner relative z-10">
               <div className="section-title-area">
                 <h2 className="section-title heading-gothic">
@@ -228,7 +226,7 @@ export default function ServicePage({
 
         {/* ===== よくある質問 ===== */}
         <section className="section-wrapper bg-white relative">
-          <BackgroundTriangles pattern="faq" />
+
           <div className="section-inner relative z-10">
             <div className="section-title-area">
               <h2 className="section-title heading-gothic">よくある質問</h2>
@@ -245,7 +243,7 @@ export default function ServicePage({
         {/* ===== 関連サービス ===== */}
         {relatedServices.length > 0 && (
           <section className="section-wrapper bg-white relative">
-            <BackgroundTriangles pattern="staff" />
+
             <div className="section-inner relative z-10">
               <div className="section-title-area">
                 <h2 className="section-title heading-gothic">関連サービス</h2>
@@ -284,7 +282,7 @@ export default function ServicePage({
           id="contact"
           className="section-wrapper bg-white relative"
         >
-          <BackgroundTriangles pattern="contact" />
+
           <div className="section-inner relative z-10">
             <div className="section-title-area">
               <h2 className="section-title heading-gothic">お問い合わせ</h2>

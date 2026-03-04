@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import BackgroundTriangles from "@/components/BackgroundTriangles";
+
 import Contact from "@/components/Contact";
 import Link from "next/link";
 import { officeInfo } from "@/lib/data";
@@ -12,7 +12,6 @@ export default function ServicesForMedicalInstitutionsPage() {
       <main className="pt-14 lg:pt-20 bg-white">
         {/* ヒーローセクション */}
         <section className="section-wrapper bg-white relative">
-          <BackgroundTriangles pattern="about" />
           <div className="section-inner relative z-10">
             <div className="section-title-area">
               <h1 className="section-title heading-gothic">医療機関の皆様へ</h1>
@@ -37,7 +36,7 @@ export default function ServicesForMedicalInstitutionsPage() {
 
         {/* 訪問開始までの流れ */}
         <section className="section-wrapper bg-white relative">
-          <BackgroundTriangles pattern="flow" />
+
           <div className="section-inner relative z-10">
             <div className="section-title-area">
               <h2 className="section-title heading-gothic">訪問開始までの流れ</h2>
@@ -111,7 +110,7 @@ export default function ServicesForMedicalInstitutionsPage() {
 
         {/* 訪問看護指示書について */}
         <section className="section-wrapper bg-white relative">
-          <BackgroundTriangles pattern="office" />
+
           <div className="section-inner relative z-10">
             <div className="section-title-area">
               <h2 className="section-title heading-gothic">訪問看護指示書について</h2>
@@ -173,7 +172,7 @@ export default function ServicesForMedicalInstitutionsPage() {
 
         {/* 報告体制 */}
         <section className="section-wrapper bg-white relative">
-          <BackgroundTriangles pattern="features" />
+
           <div className="section-inner relative z-10">
             <div className="section-title-area">
               <h2 className="section-title heading-gothic">報告体制</h2>
@@ -219,7 +218,7 @@ export default function ServicesForMedicalInstitutionsPage() {
 
         {/* 急変時対応フロー */}
         <section className="section-wrapper bg-white relative">
-          <BackgroundTriangles pattern="contact" />
+
           <div className="section-inner relative z-10">
             <div className="section-title-area">
               <h2 className="section-title heading-gothic">急変時対応フロー</h2>
@@ -274,7 +273,7 @@ export default function ServicesForMedicalInstitutionsPage() {
 
         {/* 対応可能なケース */}
         <section className="section-wrapper bg-white relative">
-          <BackgroundTriangles pattern="staff" />
+
           <div className="section-inner relative z-10">
             <div className="section-title-area">
               <h2 className="section-title heading-gothic">対応可能なケース</h2>
@@ -347,7 +346,7 @@ export default function ServicesForMedicalInstitutionsPage() {
 
         {/* お問い合わせCTA */}
         <section id="contact" className="section-wrapper bg-white relative">
-          <BackgroundTriangles pattern="recruit" />
+
           <div className="section-inner relative z-10">
             <div className="section-title-area">
               <h2 className="section-title heading-gothic">お問い合わせ</h2>

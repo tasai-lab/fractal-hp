@@ -1,12 +1,9 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { flowSteps } from "@/lib/data";
-import BackgroundTriangles from "./BackgroundTriangles";
-
 export default function Flow() {
   return (
     <section id="flow" className="section-wrapper bg-white relative">
-      <BackgroundTriangles pattern="flow" />
       <div className="section-inner relative z-10">
         <div className="section-title-area">
           <h2 className="section-title">ご利用開始までの流れ</h2>

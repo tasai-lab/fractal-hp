@@ -7,7 +7,7 @@ export default function AreaHero({ area }: Props) {
   return (
     <section
       id="area-hero"
-      className="relative min-h-[60vh] sm:min-h-[70vh] md:min-h-[80vh] flex items-end justify-center overflow-hidden"
+      className="relative z-[2] min-h-[60vh] sm:min-h-[70vh] md:min-h-[80vh] flex items-end justify-center overflow-hidden"
     >
       {/* 背景画像 */}
       <Image

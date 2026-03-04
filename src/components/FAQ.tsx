@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 import { serviceFAQs } from "@/lib/faq-data";
-import BackgroundTriangles from "./BackgroundTriangles";
-
 function ChevronIcon({ isOpen }: { isOpen: boolean }) {
   return (
     <svg
@@ -32,7 +30,6 @@ export default function FAQ() {
 
   return (
     <section id="faq" className="section-wrapper bg-white relative">
-      <BackgroundTriangles pattern="faq" />
       <div className="section-inner relative z-10">
         <div className="section-title-area">
           <h2 className="section-title">よくあるご質問</h2>

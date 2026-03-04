@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import BackgroundTriangles from "@/components/BackgroundTriangles";
+
 import { officeInfo } from "@/lib/data";
 import Contact from "@/components/Contact";
 import ConditionsTable from "@/components/ConditionsTable";
@@ -135,7 +135,6 @@ export default function ServicesForCareManagersPage() {
       <main className="pt-14 lg:pt-20 bg-white">
         {/* Hero Section */}
         <section className="section-wrapper bg-white relative">
-          <BackgroundTriangles pattern="about" />
           <div className="section-inner relative z-10">
             <div className="section-title-area">
               <h1 className="section-title heading-gothic">ケアマネージャー様へ</h1>
@@ -177,7 +176,7 @@ export default function ServicesForCareManagersPage() {
 
         {/* 紹介方法・手続きの流れ */}
         <section className="section-wrapper bg-white relative">
-          <BackgroundTriangles pattern="flow" />
+
           <div className="section-inner relative z-10">
             <div className="section-title-area">
               <h2 className="section-title heading-gothic">紹介方法・手続きの流れ</h2>
@@ -247,7 +246,6 @@ export default function ServicesForCareManagersPage() {
 
         {/* 報告体制 */}
         <section className="section-wrapper bg-white relative">
-          <BackgroundTriangles pattern="about" />
           <div className="section-inner relative z-10">
             <div className="section-title-area">
               <h2 className="section-title heading-gothic">報告体制</h2>
@@ -283,7 +281,7 @@ export default function ServicesForCareManagersPage() {
 
         {/* 対応可能なケース */}
         <section className="section-wrapper bg-white relative">
-          <BackgroundTriangles pattern="features" />
+
           <div className="section-inner relative z-10">
             <div className="section-title-area">
               <h2 className="section-title heading-gothic">対応可能なケース</h2>
@@ -321,7 +319,7 @@ export default function ServicesForCareManagersPage() {
 
         {/* 受け入れ可能な身体の状況 */}
         <section className="section-wrapper bg-gradient-to-br from-gray-50 to-white relative">
-          <BackgroundTriangles pattern="office" />
+
           <div className="max-w-4xl mx-auto px-4 relative z-10">
             <div className="text-center mb-8 md:mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 heading-gothic text-[var(--color-ink)]">
@@ -339,7 +337,7 @@ export default function ServicesForCareManagersPage() {
 
         {/* FAQ */}
         <section className="section-wrapper bg-white relative">
-          <BackgroundTriangles pattern="faq" />
+
           <div className="section-inner relative z-10">
             <div className="section-title-area">
               <h2 className="section-title heading-gothic">よくあるご質問</h2>
@@ -403,7 +401,7 @@ export default function ServicesForCareManagersPage() {
 
         {/* お問い合わせCTA */}
         <section id="contact" className="section-wrapper bg-white relative">
-          <BackgroundTriangles pattern="contact" />
+
           <div className="section-inner relative z-10">
             <div className="section-title-area">
               <h2 className="section-title heading-gothic">お問い合わせ</h2>

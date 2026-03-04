@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import PageHero from "@/components/PageHero";
-import BackgroundTriangles from "@/components/BackgroundTriangles";
+
 import { BreadcrumbStructuredData } from "@/components/StructuredData";
 import { regionalData } from "@/lib/regional-data";
 import { serviceAreas } from "@/lib/data";
@@ -85,7 +85,7 @@ export default async function StationAreasPage({
 
       {/* エリアマップ */}
       <section className="relative">
-        <BackgroundTriangles pattern="office" />
+
         <div className="max-w-5xl mx-auto px-4 py-10 md:py-14 relative z-10 space-y-8">
           {/* エリアマップ */}
           <div>

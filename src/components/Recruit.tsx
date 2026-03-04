@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import BackgroundTriangles from "./BackgroundTriangles";
 import { signOnBonus } from "@/lib/recruit-data";
 
 export default function Recruit() {
@@ -9,7 +8,6 @@ export default function Recruit() {
       id="recruit"
       className="section-wrapper bg-white relative"
     >
-      <BackgroundTriangles pattern="recruit" />
       <div className="section-inner relative z-10">
         <div className="section-title-area">
           <h2 className="section-title">フラクタルで働く？</h2>

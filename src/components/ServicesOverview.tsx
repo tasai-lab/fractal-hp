@@ -1,6 +1,4 @@
 import Link from "next/link";
-import BackgroundTriangles from "./BackgroundTriangles";
-
 const services = [
   {
     title: "精神科訪問看護",
@@ -80,7 +78,6 @@ export default function ServicesOverview() {
       id="services"
       className="section-wrapper bg-white relative"
     >
-      <BackgroundTriangles pattern="features" />
       <div className="section-inner relative z-10">
         <div className="section-title-area">
           <h2 className="section-title heading-gothic">サービス案内</h2>
