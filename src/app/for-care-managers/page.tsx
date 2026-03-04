@@ -5,6 +5,7 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BackgroundTriangles from "@/components/BackgroundTriangles";
+import ConditionsTable from "@/components/ConditionsTable";
 
 // 紹介手続きの流れ
 const referralSteps = [
@@ -310,6 +311,24 @@ export default function ForCareManagersPage() {
                   </p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 受け入れ可能な身体の状況 */}
+        <section className="section-wrapper bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+          <BackgroundTriangles pattern="office" />
+          <div className="max-w-4xl mx-auto px-4 relative z-10">
+            <div className="text-center mb-8 md:mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 heading-gothic text-[var(--color-ink)]">
+                受け入れ可能な身体の状況
+              </h2>
+              <p className="text-lg text-[var(--color-ink-soft)]">
+                下記以外のケースもお気軽にご相談ください
+              </p>
+            </div>
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 md:p-6">
+              <ConditionsTable embedded />
             </div>
           </div>
         </section>
