@@ -83,7 +83,7 @@ src/
 ### セクション実装パターン（既存パターンに従うこと）
 
 ```tsx
-<section className="relative overflow-hidden">
+<section className="relative">
   <BackgroundTriangles pattern="[section-name]" />
   <div className="section-wrapper">
     <div className="section-inner">
@@ -92,6 +92,8 @@ src/
   </div>
 </section>
 ```
+
+**IMPORTANT**: BackgroundTrianglesを含むセクションに `overflow-hidden` を付けないこと。水平スクロール防止は `body { overflow-x: hidden }` で対応済み。
 
 ### Storybook での視覚確認
 

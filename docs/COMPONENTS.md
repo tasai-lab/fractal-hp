@@ -383,7 +383,7 @@
 
 **使用例**:
 ```tsx
-<section className="relative overflow-hidden">
+<section className="relative">
   <BackgroundTriangles pattern="about" />
   <div className="relative z-10">
     {/* コンテンツ */}
@@ -884,7 +884,7 @@ function MySection() {
 新規セクションを実装する際は、以下のパターンに従うこと:
 
 ```tsx
-<section id="section-id" className="section-wrapper bg-white relative overflow-hidden">
+<section id="section-id" className="section-wrapper bg-white relative">
   <BackgroundTriangles pattern="[section-name]" />
   <div className="section-inner relative z-10">
     <div className="section-title-area">
