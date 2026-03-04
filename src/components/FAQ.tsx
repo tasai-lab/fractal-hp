@@ -31,7 +31,7 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="section-wrapper bg-white relative overflow-hidden">
+    <section id="faq" className="section-wrapper bg-white relative overflow-x-hidden">
       <BackgroundTriangles pattern="faq" />
       <div className="section-inner relative z-10">
         <div className="section-title-area">

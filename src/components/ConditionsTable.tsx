@@ -99,7 +99,7 @@ export default function ConditionsTable({ embedded = false }: ConditionsTablePro
   }
 
   return (
-    <section className="section-wrapper bg-white relative overflow-hidden">
+    <section className="section-wrapper bg-white relative overflow-x-hidden">
       <BackgroundTriangles pattern="office" />
       <div className="relative z-10 section-container">
         <div className="text-center mb-8 md:mb-12">

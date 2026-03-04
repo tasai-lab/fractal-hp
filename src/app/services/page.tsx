@@ -36,7 +36,7 @@ export default function ServicesPage() {
       <Header />
       <main className="pt-14 lg:pt-20">
         {/* ヒーローセクション */}
-        <section className="section-wrapper bg-white relative overflow-hidden">
+        <section className="section-wrapper bg-white relative overflow-x-hidden">
           <BackgroundTriangles pattern="about" />
           <div className="section-inner relative z-10">
             <div className="section-title-area">
@@ -83,7 +83,7 @@ export default function ServicesPage() {
         </section>
 
         {/* サービス一覧 */}
-        <section className="section-wrapper relative overflow-hidden" style={{ backgroundColor: "#F8FAF9" }}>
+        <section className="section-wrapper relative overflow-x-hidden" style={{ backgroundColor: "#F8FAF9" }}>
           <BackgroundTriangles pattern="features" />
           <div className="section-inner relative z-10">
             <div className="section-title-area">
@@ -178,7 +178,7 @@ export default function ServicesPage() {
         {/* お問い合わせセクション */}
         <section
           id="contact"
-          className="section-wrapper bg-white relative overflow-hidden"
+          className="section-wrapper bg-white relative overflow-x-hidden"
         >
           <BackgroundTriangles pattern="contact" />
           <div className="section-inner relative z-10">

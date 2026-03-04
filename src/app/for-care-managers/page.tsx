@@ -134,7 +134,7 @@ export default function ForCareManagersPage() {
       <Header />
       <main className="pt-14 lg:pt-20 bg-white">
         {/* Hero Section */}
-        <section className="section-wrapper bg-white relative overflow-hidden">
+        <section className="section-wrapper bg-white relative overflow-x-hidden">
           <BackgroundTriangles pattern="about" />
           <div className="section-inner relative z-10">
             <div className="section-title-area">
@@ -174,7 +174,7 @@ export default function ForCareManagersPage() {
         </section>
 
         {/* 紹介方法・手続きの流れ */}
-        <section className="section-wrapper bg-white relative overflow-hidden">
+        <section className="section-wrapper bg-white relative overflow-x-hidden">
           <BackgroundTriangles pattern="flow" />
           <div className="section-inner relative z-10">
             <div className="section-title-area">
@@ -244,7 +244,7 @@ export default function ForCareManagersPage() {
         </section>
 
         {/* 報告体制 */}
-        <section className="section-wrapper bg-white relative overflow-hidden">
+        <section className="section-wrapper bg-white relative overflow-x-hidden">
           <BackgroundTriangles pattern="about" />
           <div className="section-inner relative z-10">
             <div className="section-title-area">
@@ -280,7 +280,7 @@ export default function ForCareManagersPage() {
         </section>
 
         {/* 対応可能なケース */}
-        <section className="section-wrapper bg-white relative overflow-hidden">
+        <section className="section-wrapper bg-white relative overflow-x-hidden">
           <BackgroundTriangles pattern="features" />
           <div className="section-inner relative z-10">
             <div className="section-title-area">
@@ -318,7 +318,7 @@ export default function ForCareManagersPage() {
         </section>
 
         {/* 受け入れ可能な身体の状況 */}
-        <section className="section-wrapper bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+        <section className="section-wrapper bg-gradient-to-br from-gray-50 to-white relative overflow-x-hidden">
           <BackgroundTriangles pattern="office" />
           <div className="max-w-4xl mx-auto px-4 relative z-10">
             <div className="text-center mb-8 md:mb-12">
@@ -336,7 +336,7 @@ export default function ForCareManagersPage() {
         </section>
 
         {/* FAQ */}
-        <section className="section-wrapper bg-white relative overflow-hidden">
+        <section className="section-wrapper bg-white relative overflow-x-hidden">
           <BackgroundTriangles pattern="faq" />
           <div className="section-inner relative z-10">
             <div className="section-title-area">
@@ -400,7 +400,7 @@ export default function ForCareManagersPage() {
         </section>
 
         {/* お問い合わせCTA */}
-        <section id="contact" className="section-wrapper bg-white relative overflow-hidden">
+        <section id="contact" className="section-wrapper bg-white relative overflow-x-hidden">
           <BackgroundTriangles pattern="contact" />
           <div className="section-inner relative z-10">
             <div className="section-title-area">

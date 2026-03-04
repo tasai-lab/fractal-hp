@@ -42,7 +42,7 @@ export default function AreasPage() {
       <Header />
       <main className="pt-14 lg:pt-20">
         {/* 訪問可能エリアセクション */}
-        <section className="section-wrapper bg-white relative overflow-hidden">
+        <section className="section-wrapper bg-white relative overflow-x-hidden">
           <BackgroundTriangles pattern="office" />
           <div className="section-inner relative z-10">
             <div className="section-title-area">
@@ -234,7 +234,7 @@ export default function AreasPage() {
         <Features />
 
         {/* お問い合わせセクション */}
-        <section id="contact" className="section-wrapper bg-white relative overflow-hidden">
+        <section id="contact" className="section-wrapper bg-white relative overflow-x-hidden">
           <BackgroundTriangles pattern="about" />
           <div className="section-inner relative z-10">
             <div className="section-title-area">

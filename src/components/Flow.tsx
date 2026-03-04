@@ -5,7 +5,7 @@ import BackgroundTriangles from "./BackgroundTriangles";
 
 export default function Flow() {
   return (
-    <section id="flow" className="section-wrapper bg-white relative overflow-hidden">
+    <section id="flow" className="section-wrapper bg-white relative overflow-x-hidden">
       <BackgroundTriangles pattern="flow" />
       <div className="section-inner relative z-10">
         <div className="section-title-area">

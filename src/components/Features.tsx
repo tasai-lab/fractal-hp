@@ -249,7 +249,7 @@ function FeatureIcon({ icon }: { icon: string }) {
 
 export default function Features() {
   return (
-    <section id="features" className="section-wrapper bg-white relative overflow-hidden">
+    <section id="features" className="section-wrapper bg-white relative overflow-x-hidden">
       <BackgroundTriangles pattern="features" />
       <div className="section-inner relative z-10">
         {/* セクションタイトル（縦書き） */}

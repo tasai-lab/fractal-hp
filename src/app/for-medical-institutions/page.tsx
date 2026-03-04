@@ -11,7 +11,7 @@ export default function ForMedicalInstitutionsPage() {
       <Header />
       <main className="pt-14 lg:pt-20 bg-white">
         {/* ヒーローセクション */}
-        <section className="section-wrapper bg-white relative overflow-hidden">
+        <section className="section-wrapper bg-white relative overflow-x-hidden">
           <BackgroundTriangles pattern="about" />
           <div className="section-inner relative z-10">
             <div className="section-title-area">
@@ -34,7 +34,7 @@ export default function ForMedicalInstitutionsPage() {
         </section>
 
         {/* 訪問開始までの流れ */}
-        <section className="section-wrapper bg-white relative overflow-hidden">
+        <section className="section-wrapper bg-white relative overflow-x-hidden">
           <BackgroundTriangles pattern="flow" />
           <div className="section-inner relative z-10">
             <div className="section-title-area">
@@ -108,7 +108,7 @@ export default function ForMedicalInstitutionsPage() {
         </section>
 
         {/* 訪問看護指示書について */}
-        <section className="section-wrapper bg-white relative overflow-hidden">
+        <section className="section-wrapper bg-white relative overflow-x-hidden">
           <BackgroundTriangles pattern="office" />
           <div className="section-inner relative z-10">
             <div className="section-title-area">
@@ -170,7 +170,7 @@ export default function ForMedicalInstitutionsPage() {
         </section>
 
         {/* 報告体制 */}
-        <section className="section-wrapper bg-white relative overflow-hidden">
+        <section className="section-wrapper bg-white relative overflow-x-hidden">
           <BackgroundTriangles pattern="features" />
           <div className="section-inner relative z-10">
             <div className="section-title-area">
@@ -216,7 +216,7 @@ export default function ForMedicalInstitutionsPage() {
         </section>
 
         {/* 急変時対応フロー */}
-        <section className="section-wrapper bg-white relative overflow-hidden">
+        <section className="section-wrapper bg-white relative overflow-x-hidden">
           <BackgroundTriangles pattern="contact" />
           <div className="section-inner relative z-10">
             <div className="section-title-area">
@@ -271,7 +271,7 @@ export default function ForMedicalInstitutionsPage() {
         </section>
 
         {/* 対応可能なケース */}
-        <section className="section-wrapper bg-white relative overflow-hidden">
+        <section className="section-wrapper bg-white relative overflow-x-hidden">
           <BackgroundTriangles pattern="staff" />
           <div className="section-inner relative z-10">
             <div className="section-title-area">
@@ -344,7 +344,7 @@ export default function ForMedicalInstitutionsPage() {
         </section>
 
         {/* お問い合わせCTA */}
-        <section id="contact" className="section-wrapper bg-white relative overflow-hidden">
+        <section id="contact" className="section-wrapper bg-white relative overflow-x-hidden">
           <BackgroundTriangles pattern="recruit" />
           <div className="section-inner relative z-10">
             <div className="section-title-area">
