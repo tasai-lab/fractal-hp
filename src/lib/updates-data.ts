@@ -20,6 +20,7 @@ export const updates: Update[] = [
       { type: "improve", title: "トップページに実績データセクション（月間訪問件数・利用者数等）を追加", link: "/" },
       { type: "improve", title: "ケアマネージャー様向けページに受け入れ可能な身体の状況テーブルを追加", link: "/for-care-managers" },
       { type: "improve", title: "サービス別ページのデザインをトップページに統一", link: "/services/psychiatric-nursing" },
+      { type: "improve", title: "地域ページのデザインをトップページに統一", link: "/areas/funabashi" },
     ],
   },
   {
