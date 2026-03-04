@@ -18,36 +18,56 @@ export const companyInfo = {
     "https://www.google.com/maps?q=%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%E3%83%95%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%AB+%E8%88%B9%E6%A9%8B&output=embed",
 };
 
-// フッター用サイトマップリンク
-export const footerLinks = [
-  { href: "/fractal", label: "フラクタルの意味" },
-  { href: "/company", label: "株式会社フラクタル" },
-  { href: "/#features", label: "サービスの特徴" },
-  { href: "/pricing", label: "ご利用料金" },
-  { href: "/services/psychiatric-nursing", label: "精神科訪問看護" },
-  { href: "/services/end-of-life-care", label: "看取り・終末期ケア" },
-  { href: "/services/24h-support", label: "24時間対応体制" },
-  { href: "/services/for-care-managers", label: "ケアマネ様へ" },
-  { href: "/services/for-medical-institutions", label: "医療機関様へ" },
-  { href: "/stations", label: "事業所一覧" },
-  { href: "/stations/funabashi", label: "フラクタル訪問看護 船橋" },
-  { href: "/recruit", label: "採用情報" },
-  { href: "/#contact", label: "お問い合わせ" },
-  { href: "/updates", label: "更新情報" },
-];
-
-// サイトマップメニューのカテゴリ分け（4カテゴリ・10項目）
-export const otherMenuCategories = {
+// フッター用サイトマップ（カテゴリ別）
+export const footerSitemap = {
   service: {
     title: "サービス案内",
     items: [
-      { href: "/#contact", label: "お問い合わせ" },
       { href: "/pricing", label: "ご利用料金" },
       { href: "/services/psychiatric-nursing", label: "精神科訪問看護" },
       { href: "/services/end-of-life-care", label: "看取り・終末期ケア" },
       { href: "/services/24h-support", label: "24時間対応体制" },
       { href: "/services/for-care-managers", label: "ケアマネ様へ" },
       { href: "/services/for-medical-institutions", label: "医療機関様へ" },
+    ],
+  },
+  company: {
+    title: "会社情報",
+    items: [
+      { href: "/fractal", label: "フラクタルの意味" },
+      { href: "/company", label: "株式会社フラクタル" },
+      { href: "/updates", label: "更新情報" },
+    ],
+  },
+  recruit: {
+    title: "採用・お問い合わせ",
+    items: [
+      { href: "/recruit", label: "採用情報" },
+      { href: "/#contact", label: "お問い合わせ" },
+    ],
+  },
+};
+
+// ヘッダーメニューのカテゴリ分け（5カテゴリ）
+export const otherMenuCategories = {
+  service: {
+    title: "サービス案内",
+    items: [
+      { href: "/pricing", label: "ご利用料金" },
+      { href: "/services/psychiatric-nursing", label: "精神科訪問看護" },
+      { href: "/services/end-of-life-care", label: "看取り・終末期ケア" },
+      { href: "/services/24h-support", label: "24時間対応体制" },
+      { href: "/services/for-care-managers", label: "ケアマネ様へ" },
+      { href: "/services/for-medical-institutions", label: "医療機関様へ" },
+    ],
+  },
+  station: {
+    title: "事業所",
+    items: [
+      { href: "/stations", label: "事業所一覧" },
+      { href: "/stations/funabashi", label: "フラクタル訪問看護 船橋" },
+      { href: "/stations/funabashi/areas", label: "対応エリア" },
+      { href: "/stations/funabashi/documents", label: "各種書類" },
     ],
   },
   recruit: {
@@ -62,8 +82,8 @@ export const otherMenuCategories = {
     items: [
       { href: "/fractal", label: "フラクタルの意味" },
       { href: "/company", label: "株式会社フラクタル" },
-      { href: "/stations/funabashi/documents", label: "各種書類" },
       { href: "/updates", label: "更新情報" },
+      { href: "/#contact", label: "お問い合わせ" },
     ],
   },
   external: {

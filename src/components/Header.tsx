@@ -11,6 +11,40 @@ const iconMap: { [key: string]: LucideIcon } = {
   FileText,
 };
 
+function MenuSection({
+  title,
+  items,
+  closeMenu,
+  colorClass,
+}: {
+  title: string;
+  items: { href: string; label: string }[];
+  closeMenu: () => void;
+  colorClass: string;
+}) {
+  return (
+    <section>
+      <h3 className="text-xs font-bold text-gray-500 mb-2 px-1">{title}</h3>
+      <div className="grid grid-cols-1 gap-2">
+        {items.map((item) => {
+          const isAnchor = item.href.startsWith("#") || item.href.startsWith("/#");
+          const Component = isAnchor ? "a" : Link;
+          return (
+            <Component
+              key={item.href}
+              href={item.href}
+              onClick={closeMenu}
+              className={`flex items-center justify-start p-3 rounded-lg transition-colors text-left ${colorClass}`}
+            >
+              <span className="text-sm font-medium text-[var(--color-primary)]">{item.label}</span>
+            </Component>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
 interface HeaderProps {
   variant?: "default" | "paper" | "editorial";
 }
@@ -98,74 +132,39 @@ export default function Header({ variant = "default" }: HeaderProps) {
           }`}
           onClick={(e) => e.stopPropagation()}
         >
-            <div className="max-w-2xl mx-auto">
-              <div className="grid grid-cols-2 gap-4 lg:gap-6">
+            <div className="max-w-3xl mx-auto">
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
                 {/* サービス案内 */}
-                <section>
-                  <h3 className="text-xs font-bold text-gray-500 mb-2 px-1">{otherMenuCategories.service.title}</h3>
-                  <div className="grid grid-cols-1 gap-2">
-                    {otherMenuCategories.service.items.map((item) => {
-                      const isAnchor = item.href.startsWith("#");
-                      const Component = isAnchor ? "a" : Link;
-                      return (
-                        <Component
-                          key={item.href}
-                          href={item.href}
-                          onClick={closeMenu}
-                          className={`flex items-center justify-start p-3 rounded-lg transition-colors text-left ${
-                            isPastelVariant
-                              ? "bg-[#e8f0eb] hover:bg-[#dce8e0]"
-                              : "bg-blue-50 hover:bg-blue-100"
-                          }`}
-                        >
-                          <span className="text-sm font-medium text-[var(--color-primary)]">{item.label}</span>
-                        </Component>
-                      );
-                    })}
-                  </div>
-                </section>
+                <MenuSection
+                  title={otherMenuCategories.service.title}
+                  items={otherMenuCategories.service.items}
+                  closeMenu={closeMenu}
+                  colorClass={isPastelVariant ? "bg-[#e8f0eb] hover:bg-[#dce8e0]" : "bg-blue-50 hover:bg-blue-100"}
+                />
+
+                {/* 事業所 */}
+                <MenuSection
+                  title={otherMenuCategories.station.title}
+                  items={otherMenuCategories.station.items}
+                  closeMenu={closeMenu}
+                  colorClass={isPastelVariant ? "bg-[#e0eef5] hover:bg-[#d4e6ef]" : "bg-sky-50 hover:bg-sky-100"}
+                />
 
                 {/* 採用情報 */}
-                <section>
-                  <h3 className="text-xs font-bold text-gray-500 mb-2 px-1">{otherMenuCategories.recruit.title}</h3>
-                  <div className="grid grid-cols-1 gap-2">
-                    {otherMenuCategories.recruit.items.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        onClick={closeMenu}
-                        className={`flex items-center justify-start p-3 rounded-lg transition-colors text-left ${
-                          isPastelVariant
-                            ? "bg-[#f5ebe0] hover:bg-[#efe3d5]"
-                            : "bg-amber-50 hover:bg-amber-100"
-                        }`}
-                      >
-                        <span className="text-sm font-medium text-[var(--color-primary)]">{item.label}</span>
-                      </Link>
-                    ))}
-                  </div>
-                </section>
+                <MenuSection
+                  title={otherMenuCategories.recruit.title}
+                  items={otherMenuCategories.recruit.items}
+                  closeMenu={closeMenu}
+                  colorClass={isPastelVariant ? "bg-[#f5ebe0] hover:bg-[#efe3d5]" : "bg-amber-50 hover:bg-amber-100"}
+                />
 
                 {/* 会社情報 */}
-                <section>
-                  <h3 className="text-xs font-bold text-gray-500 mb-2 px-1">{otherMenuCategories.company.title}</h3>
-                  <div className="grid grid-cols-1 gap-2">
-                    {otherMenuCategories.company.items.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        onClick={closeMenu}
-                        className={`flex items-center justify-start p-3 rounded-lg transition-colors text-left ${
-                          isPastelVariant
-                            ? "bg-[#e8ebe8] hover:bg-[#dce0dc]"
-                            : "bg-emerald-50 hover:bg-emerald-100"
-                        }`}
-                      >
-                        <span className="text-sm font-medium text-[var(--color-primary)]">{item.label}</span>
-                      </Link>
-                    ))}
-                  </div>
-                </section>
+                <MenuSection
+                  title={otherMenuCategories.company.title}
+                  items={otherMenuCategories.company.items}
+                  closeMenu={closeMenu}
+                  colorClass={isPastelVariant ? "bg-[#e8ebe8] hover:bg-[#dce0dc]" : "bg-emerald-50 hover:bg-emerald-100"}
+                />
 
                 {/* 公式メディア */}
                 <section>
