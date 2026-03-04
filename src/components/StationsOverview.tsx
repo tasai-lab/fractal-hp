@@ -9,7 +9,7 @@ export default function StationsOverview() {
   return (
     <section
       id="stations"
-      className="section-wrapper bg-white relative overflow-hidden"
+      className="section-wrapper bg-white relative overflow-x-hidden"
     >
       <BackgroundTriangles pattern="office" />
       <div className="section-inner relative z-10">
