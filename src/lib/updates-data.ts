@@ -14,6 +14,12 @@ export const updates: Update[] = [
   {
     date: "2026-03-04",
     items: [
+      { type: "new", title: "精神科訪問看護の専用ページを追加", link: "/services/psychiatric-nursing" },
+      { type: "new", title: "看取り・終末期ケアの専用ページを追加", link: "/services/end-of-life-care" },
+      { type: "new", title: "24時間対応体制の専用ページを追加", link: "/services/24h-support" },
+      { type: "improve", title: "トップページに実績データセクション（月間訪問件数・利用者数等）を追加", link: "/" },
+      { type: "improve", title: "ケアマネージャー様向けページに受け入れ可能な身体の状況テーブルを追加", link: "/for-care-managers" },
+      { type: "improve", title: "サービス別ページのデザインをトップページに統一", link: "/services/psychiatric-nursing" },
       { type: "improve", title: "地域ページのデザインをトップページに統一", link: "/areas/funabashi" },
     ],
   },

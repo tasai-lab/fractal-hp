@@ -13,6 +13,8 @@
 | About | About.tsx | `src/components/About.stories.tsx` | セクション | フラクタルとは |
 | Philosophy | Philosophy.tsx | `src/components/Philosophy.stories.tsx` | セクション | 私たちのカタチ |
 | Features | Features.tsx | `src/components/Features.stories.tsx` | セクション | 特徴一覧 |
+| PerformanceSection | PerformanceSection.tsx | —（Stories未作成） | セクション | 実績データ（カウントアップ + エリア内訳） |
+| ConditionsTable | ConditionsTable.tsx | —（Stories未作成） | セクション | 受け入れ可能な身体の状況テーブル |
 | Office | Office.tsx | `src/components/Office.stories.tsx` | セクション | 事業所情報 |
 | Flow | Flow.tsx | `src/components/Flow.stories.tsx` | セクション | ご利用の流れ |
 | Staff | Staff.tsx | `src/components/Staff.stories.tsx` | セクション | スタッフ紹介 |
@@ -162,6 +164,42 @@
 **Stories**: `src/components/Features.stories.tsx`
 
 **データソース**: `src/lib/data.ts` → `features`
+
+---
+
+### ConditionsTable
+
+受け入れ可能な身体の状況テーブルセクション。対応内容を○△×で一覧表示。
+
+**ファイル**: `src/components/ConditionsTable.tsx`
+
+**Stories**: —（Stories未作成）
+
+**機能**:
+- カテゴリ別テーブル（HTMLテーブル）
+- 各行に対応状況（○/△/×）と詳細を表示（詳細列はデスクトップのみ表示）
+- 凡例（○対応可能 / △要相談 / ×非対応）
+- 埋め込みモード（`embedded=true`）ではセクションラッパー・タイトル・BackgroundTrianglesを省略しテーブルのみ返す
+- 非埋め込みモードでは `BackgroundTriangles pattern="office"` を使用
+
+**Props**:
+
+| Prop | 型 | デフォルト | 説明 |
+|------|---|----------|------|
+| embedded | boolean | false | true の場合、セクションラッパーなしでテーブルのみ返す |
+
+**使用例**:
+```tsx
+// セクションとして単独使用（BackgroundTriangles付き）
+<ConditionsTable />
+
+// 他ページ内に埋め込む場合
+<ConditionsTable embedded />
+```
+
+**データソース**: `src/lib/conditions-data.ts` → `conditionCategories`, `statusConfig`
+
+**使用箇所**: `src/app/services/[slug]/page.tsx`（embedded）
 
 ---
 
