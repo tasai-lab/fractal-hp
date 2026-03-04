@@ -3,7 +3,7 @@ import BackgroundTriangles from "./BackgroundTriangles";
 
 export default function Company() {
   return (
-    <section id="company" className="section-wrapper bg-white relative overflow-x-hidden">
+    <section id="company" className="section-wrapper bg-white relative">
       <BackgroundTriangles pattern="company" />
       <div className="section-inner relative z-10">
         <div className="section-title-area">

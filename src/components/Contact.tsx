@@ -228,7 +228,7 @@ export default function Contact({ initialContactType, embedded = false, hideTitl
   return (
     <section
       id="contact"
-      className="section-wrapper bg-white relative overflow-x-hidden"
+      className="section-wrapper bg-white relative"
     >
       <BackgroundTriangles pattern="contact" />
       <div className="section-inner relative z-10">

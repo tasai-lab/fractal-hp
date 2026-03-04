@@ -78,7 +78,7 @@ export default function ServicesOverview() {
   return (
     <section
       id="services"
-      className="section-wrapper bg-white relative overflow-x-hidden"
+      className="section-wrapper bg-white relative"
     >
       <BackgroundTriangles pattern="features" />
       <div className="section-inner relative z-10">

@@ -45,7 +45,7 @@ export default function Staff() {
   };
 
   return (
-    <section id="staff" className="section-wrapper bg-white relative overflow-x-hidden">
+    <section id="staff" className="section-wrapper bg-white relative">
       <BackgroundTriangles pattern="staff" />
       <div className="section-inner relative z-10">
         <div className="section-title-area">

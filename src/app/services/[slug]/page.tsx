@@ -122,7 +122,7 @@ export default function ServicePage({
       <Header />
       <main className="pt-14 lg:pt-20 bg-white">
         {/* ===== ヒーローセクション ===== */}
-        <section className="section-wrapper bg-white relative overflow-x-hidden">
+        <section className="section-wrapper bg-white relative">
           <BackgroundTriangles pattern="about" />
           <div className="section-inner relative z-10">
             <div className="section-title-area">
@@ -184,7 +184,7 @@ export default function ServicePage({
         {service.sections.map((section, sectionIndex) => (
           <section
             key={sectionIndex}
-            className="section-wrapper bg-white relative overflow-x-hidden"
+            className="section-wrapper bg-white relative"
           >
             <BackgroundTriangles
               pattern={bgPatterns[sectionIndex % bgPatterns.length]}
@@ -227,7 +227,7 @@ export default function ServicePage({
         ))}
 
         {/* ===== よくある質問 ===== */}
-        <section className="section-wrapper bg-white relative overflow-x-hidden">
+        <section className="section-wrapper bg-white relative">
           <BackgroundTriangles pattern="faq" />
           <div className="section-inner relative z-10">
             <div className="section-title-area">
@@ -244,7 +244,7 @@ export default function ServicePage({
 
         {/* ===== 関連サービス ===== */}
         {relatedServices.length > 0 && (
-          <section className="section-wrapper bg-white relative overflow-x-hidden">
+          <section className="section-wrapper bg-white relative">
             <BackgroundTriangles pattern="staff" />
             <div className="section-inner relative z-10">
               <div className="section-title-area">
@@ -282,7 +282,7 @@ export default function ServicePage({
         {/* ===== お問い合わせ ===== */}
         <section
           id="contact"
-          className="section-wrapper bg-white relative overflow-x-hidden"
+          className="section-wrapper bg-white relative"
         >
           <BackgroundTriangles pattern="contact" />
           <div className="section-inner relative z-10">

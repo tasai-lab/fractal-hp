@@ -34,7 +34,7 @@ export default async function StationPage({
       />
 
       {/* ===== 事業所情報セクション ===== */}
-      <section id="office" className="relative overflow-x-hidden">
+      <section id="office" className="relative">
         <BackgroundTriangles pattern="office" />
         <div className="max-w-5xl mx-auto px-4 py-10 md:py-14 relative z-10 space-y-8">
             {/* 事業所情報カード */}
@@ -164,7 +164,7 @@ export default async function StationPage({
       <PerformanceSection />
 
       {/* ===== スタッフ紹介セクション ===== */}
-      <section id="staff" className="section-wrapper bg-white relative overflow-x-hidden">
+      <section id="staff" className="section-wrapper bg-white relative">
         <BackgroundTriangles pattern="staff" />
         <div className="section-inner relative z-10">
           <div className="section-title-area">
@@ -233,7 +233,7 @@ export default async function StationPage({
       </section>
 
       {/* ===== お問い合わせセクション ===== */}
-      <section id="contact" className="section-wrapper bg-white relative overflow-x-hidden">
+      <section id="contact" className="section-wrapper bg-white relative">
         <BackgroundTriangles pattern="contact" />
         <div className="section-inner relative z-10">
           <div className="section-title-area">

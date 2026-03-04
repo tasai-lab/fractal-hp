@@ -7,7 +7,7 @@ import BackgroundTriangles from "./BackgroundTriangles";
 
 export default function Office() {
   return (
-    <section id="office" className="section-wrapper bg-white relative overflow-x-hidden">
+    <section id="office" className="section-wrapper bg-white relative">
       <BackgroundTriangles pattern="office" />
       <div className="section-inner relative z-10">
         <div className="section-title-area">

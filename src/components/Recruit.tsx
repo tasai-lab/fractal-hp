@@ -7,7 +7,7 @@ export default function Recruit() {
   return (
     <section
       id="recruit"
-      className="section-wrapper bg-white relative overflow-x-hidden"
+      className="section-wrapper bg-white relative"
     >
       <BackgroundTriangles pattern="recruit" />
       <div className="section-inner relative z-10">
