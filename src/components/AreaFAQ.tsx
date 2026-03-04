@@ -37,7 +37,7 @@ export default function AreaFAQ({ faqs, themeColor }: Props) {
   };
 
   return (
-    <section id="area-faq" className="section-wrapper bg-white relative overflow-hidden">
+    <section id="area-faq" className="section-wrapper relative !overflow-visible">
       <BackgroundTriangles pattern="faq" />
       <div className="section-inner relative z-10">
         <div className="section-title-area">

@@ -434,11 +434,11 @@ export const regionalData: RegionalData[] = [
     },
 
     theme: {
-      primary: "#006400",
-      secondary: "#004D00",
-      accent: "#228B22",
-      gradient: "from-green-600/20 via-emerald-500/15 to-lime-400/10",
-      lightBg: "bg-green-50",
+      primary: "#C2185B",
+      secondary: "#9C1450",
+      accent: "#E91E7B",
+      gradient: "from-rose-600/20 via-pink-500/15 to-rose-400/10",
+      lightBg: "bg-rose-50",
       icon: "",
       tagline: "音楽とハーモニーの街",
       pattern: "triangle",
