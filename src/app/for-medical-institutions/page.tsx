@@ -1,7 +1,9 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BackgroundTriangles from "@/components/BackgroundTriangles";
+import Contact from "@/components/Contact";
 import Link from "next/link";
+import { officeInfo } from "@/lib/data";
 
 export default function ForMedicalInstitutionsPage() {
   return (
@@ -18,6 +20,11 @@ export default function ForMedicalInstitutionsPage() {
             </div>
             <div className="section-content">
               <div className="section-card section-card-mint">
+                <nav className="flex items-center gap-2 text-xs text-[var(--color-muted)] mb-4">
+                  <Link href="/" className="hover:underline">ホーム</Link>
+                  <span>/</span>
+                  <span className="text-[var(--color-logo-dark-green)]">医療機関の皆様へ</span>
+                </nav>
                 <p className="text-[var(--color-ink-soft)] text-base md:text-lg leading-relaxed">
                   退院支援から在宅療養まで、シームレスな連携を
                 </p>
@@ -141,15 +148,13 @@ export default function ForMedicalInstitutionsPage() {
                     <div className="space-y-4">
                       <div className="bg-white rounded-lg p-4">
                         <div className="font-bold mb-2 text-[var(--color-ink)]">FAX</div>
-                        <div className="text-xl font-bold text-[var(--color-logo-dark-green)]">047-413-0502</div>
+                        <div className="text-xl font-bold text-[var(--color-logo-dark-green)]">{officeInfo.fax}</div>
                       </div>
                       <div className="bg-white rounded-lg p-4">
                         <div className="font-bold mb-2 text-[var(--color-ink)]">郵送</div>
                         <div className="text-sm text-[var(--color-ink-soft)]">
-                          〒274-0072<br />
-                          千葉県船橋市三山6-22-2<br />
-                          パレドール小川201<br />
-                          フラクタル訪問看護 船橋
+                          {officeInfo.address.full}<br />
+                          {officeInfo.name}
                         </div>
                       </div>
                       <div className="bg-[var(--color-logo-yellow)]/30 rounded-lg p-4 text-sm text-[var(--color-ink-soft)]">
@@ -220,7 +225,7 @@ export default function ForMedicalInstitutionsPage() {
             </div>
             <div className="section-content">
               <div className="section-card section-card-pink">
-                <div className="grid md:grid-cols-3 gap-6 text-center">
+                <div className="space-y-6 md:space-y-0 md:grid md:grid-cols-3 md:gap-6 text-center">
                   {[
                     {
                       step: "1",
@@ -251,9 +256,9 @@ export default function ForMedicalInstitutionsPage() {
                         </p>
                       </div>
                       {index < 2 && (
-                        <div className="hidden md:block absolute top-1/2 -translate-y-1/2" style={{ left: `${(index + 1) * 33.33}%` }}>
-                          <svg width="40" height="24" viewBox="0 0 40 24" className="text-[var(--color-logo-light-green)]">
-                            <path d="M0 12 L35 12 M35 12 L28 6 M35 12 L28 18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" />
+                        <div className="flex justify-center py-2 md:hidden">
+                          <svg width="40" height="40" viewBox="0 0 40 40" className="text-[var(--color-logo-light-green)]">
+                            <path d="M20 5 L20 30 M20 30 L10 22 M20 30 L30 22" stroke="currentColor" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
                           </svg>
                         </div>
                       )}
@@ -354,27 +359,30 @@ export default function ForMedicalInstitutionsPage() {
                 <div className="flex flex-col sm:flex-row gap-6 items-start mb-6">
                   <div className="bg-white rounded-2xl px-6 py-4 shadow-sm">
                     <div className="text-sm font-bold mb-2 text-[var(--color-logo-dark-green)]">お電話でのご相談</div>
-                    <a href="tel:047-770-1228" className="text-2xl md:text-3xl font-bold text-[var(--color-logo-dark-green)] hover:opacity-80 transition-opacity">047-770-1228</a>
+                    <a href={`tel:${officeInfo.phone}`} className="text-2xl md:text-3xl font-bold text-[var(--color-logo-dark-green)] hover:opacity-80 transition-opacity">{officeInfo.phone}</a>
                     <div className="text-sm mt-2 text-[var(--color-ink-soft)]">受付時間: 9:00〜19:00（年中無休）</div>
                   </div>
-                  <Link href="/#contact" className="inline-flex items-center justify-center gap-2 border-2 border-[var(--color-logo-dark-green)] text-[var(--color-logo-dark-green)] px-6 py-3 rounded-full font-bold text-sm hover:bg-[var(--color-logo-yellow)] transition-colors">
+                  <Link href="#contact" className="inline-flex items-center justify-center gap-2 border-2 border-[var(--color-logo-dark-green)] text-[var(--color-logo-dark-green)] px-6 py-3 rounded-full font-bold text-sm hover:bg-[var(--color-logo-yellow)] transition-colors">
                     お問い合わせフォーム
                   </Link>
                 </div>
                 <div className="grid sm:grid-cols-3 gap-4">
                   <div className="bg-white rounded-lg p-4 shadow-sm">
                     <div className="text-[var(--color-ink-soft)] text-xs mb-1">FAX</div>
-                    <div className="text-[var(--color-ink)] text-sm font-medium">047-413-0502</div>
+                    <div className="text-[var(--color-ink)] text-sm font-medium">{officeInfo.fax}</div>
                   </div>
                   <div className="bg-white rounded-lg p-4 shadow-sm">
                     <div className="text-[var(--color-ink-soft)] text-xs mb-1">Email</div>
-                    <div className="text-[var(--color-ink)] text-sm font-medium break-all">hokan-f@fractal-group.co.jp</div>
+                    <div className="text-[var(--color-ink)] text-sm font-medium break-all">{officeInfo.email}</div>
                   </div>
                   <div className="bg-white rounded-lg p-4 shadow-sm">
                     <div className="text-[var(--color-ink-soft)] text-xs mb-1">住所</div>
-                    <div className="text-[var(--color-ink)] text-sm font-medium">〒274-0072 千葉県船橋市三山6丁目22-2 パレドール小川201</div>
+                    <div className="text-[var(--color-ink)] text-sm font-medium">{officeInfo.address.full}</div>
                   </div>
                 </div>
+              </div>
+              <div className="mt-8">
+                <Contact embedded hideTitle initialContactType="訪問看護のご利用について" />
               </div>
             </div>
           </div>

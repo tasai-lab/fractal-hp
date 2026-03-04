@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BackgroundTriangles from "@/components/BackgroundTriangles";
 import { officeInfo } from "@/lib/data";
+import Contact from "@/components/Contact";
 
 // 紹介手続きの流れ
 const referralSteps = [
@@ -141,6 +142,11 @@ export default function ForCareManagersPage() {
             </div>
             <div className="section-content">
               <div className="section-card section-card-mint">
+                <nav className="flex items-center gap-2 text-xs text-[var(--color-muted)] mb-4">
+                  <Link href="/" className="hover:underline">ホーム</Link>
+                  <span>/</span>
+                  <span className="text-[var(--color-logo-dark-green)]">ケアマネージャー様へ</span>
+                </nav>
                 <p className="text-[var(--color-ink-soft)] text-base md:text-lg leading-relaxed mb-6">
                   迅速・丁寧な連携でケアプランをサポートします
                 </p>
@@ -167,7 +173,7 @@ export default function ForCareManagersPage() {
         </section>
 
         {/* 紹介方法・手続きの流れ */}
-        <section className="section-wrapper relative overflow-hidden">
+        <section className="section-wrapper bg-white relative overflow-hidden">
           <BackgroundTriangles pattern="flow" />
           <div className="section-inner relative z-10">
             <div className="section-title-area">
@@ -324,11 +330,11 @@ export default function ForCareManagersPage() {
                   {faqs.map((faq, index) => (
                     <div
                       key={index}
-                      className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden"
+                      className="bg-white rounded-2xl shadow-sm border border-[var(--color-muted)]/20 overflow-hidden"
                     >
                       <button
                         onClick={() => toggleFAQ(index)}
-                        className="w-full text-left p-4 md:p-6 flex items-start gap-3 hover:bg-gray-50 transition-colors"
+                        className="w-full text-left p-4 md:p-6 flex items-start gap-3 hover:bg-[var(--color-paper)] transition-colors"
                       >
                         <span className="flex-shrink-0 w-8 h-8 md:w-10 md:h-10 rounded-full bg-[var(--color-logo-dark-green)] text-white flex items-center justify-center font-bold text-sm md:text-base">
                           Q
@@ -397,17 +403,12 @@ export default function ForCareManagersPage() {
                     </svg>
                     {officeInfo.phone}
                   </a>
-                  <Link
-                    href="/"
-                    className="inline-flex items-center justify-center gap-2 border-2 border-[var(--color-logo-dark-green)] text-[var(--color-logo-dark-green)] px-6 py-3 rounded-full font-bold text-sm hover:bg-[var(--color-logo-yellow)] transition-colors"
-                  >
-                    トップページへ
-                  </Link>
                 </div>
-                <div className="text-[var(--color-ink-soft)] text-sm">
+                <div className="text-[var(--color-ink-soft)] text-sm mb-8">
                   <p>受付時間: 9:00〜19:00（365日対応）</p>
                   <p className="mt-2">メール: {officeInfo.email}</p>
                 </div>
+                <Contact embedded hideTitle initialContactType="ケアマネージャーからのお問い合わせ" />
               </div>
             </div>
           </div>

@@ -23,7 +23,7 @@ function FAQAccordion({
       {faqs.map((faq, index) => (
         <div
           key={index}
-          className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden"
+          className="bg-white rounded-2xl shadow-sm border border-[var(--color-muted)]/20 overflow-hidden"
         >
           <button
             onClick={() => setOpenIndex(openIndex === index ? null : index)}
