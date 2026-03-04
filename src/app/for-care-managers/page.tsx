@@ -5,6 +5,7 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BackgroundTriangles from "@/components/BackgroundTriangles";
+import { officeInfo } from "@/lib/data";
 
 // 紹介手続きの流れ
 const referralSteps = [
@@ -131,55 +132,46 @@ export default function ForCareManagersPage() {
       <Header />
       <main className="pt-14 lg:pt-20 bg-white">
         {/* Hero Section */}
-        <div className="px-4 md:px-8 py-6 md:py-10">
-          <section className="relative min-h-[45vh] md:min-h-[55vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#a8d5ba] to-[#d4edda] rounded-3xl md:rounded-[3rem] shadow-lg">
-          {/* 背景装飾 */}
-          <div className="absolute inset-0 opacity-10">
-            <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-              <polygon points="0,0 100,0 100,100" fill="white" />
-              <polygon points="0,100 50,0 100,100" fill="white" opacity="0.5" />
-            </svg>
-          </div>
-
-          <div className="relative z-10 max-w-6xl mx-auto px-4 py-16 md:py-24 text-center text-[var(--color-logo-dark-green)]">
-            <span
-              className="inline-block px-4 py-2 rounded-full text-sm font-medium tracking-wider mb-6 bg-white/60 text-[var(--color-logo-dark-green)]"
-            >
-              FOR CARE MANAGERS
-            </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 heading-gothic">
-              ケアマネージャー様へ
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 text-[var(--color-ink-soft)]">
-              迅速・丁寧な連携でケアプランをサポートします
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="tel:047-770-1228"
-                className="inline-flex items-center justify-center px-8 py-4 bg-white text-[var(--color-logo-dark-green)] rounded-full font-bold text-lg hover:bg-[var(--color-logo-yellow)] transition-colors shadow-lg"
-              >
-                <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-                047-770-1228
-              </a>
-              <a
-                href="#contact"
-                className="inline-flex items-center justify-center px-8 py-4 border-2 border-[var(--color-logo-dark-green)] text-[var(--color-logo-dark-green)] rounded-full font-bold text-lg hover:bg-[var(--color-logo-dark-green)]/10 transition-all"
-              >
-                お問い合わせフォーム
-              </a>
+        <section className="section-wrapper bg-white relative overflow-hidden">
+          <BackgroundTriangles pattern="about" />
+          <div className="section-inner relative z-10">
+            <div className="section-title-area">
+              <h1 className="section-title heading-gothic">ケアマネージャー様へ</h1>
+              <div className="section-title-line" />
+            </div>
+            <div className="section-content">
+              <div className="section-card section-card-mint">
+                <p className="text-[var(--color-ink-soft)] text-base md:text-lg leading-relaxed mb-6">
+                  迅速・丁寧な連携でケアプランをサポートします
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <a
+                    href={`tel:${officeInfo.phone}`}
+                    className="inline-flex items-center justify-center gap-2 bg-[var(--color-logo-dark-green)] text-white px-6 py-3 rounded-full font-bold text-sm hover:opacity-90 transition-opacity"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                    {officeInfo.phone}
+                  </a>
+                  <a
+                    href="#contact"
+                    className="inline-flex items-center justify-center gap-2 border-2 border-[var(--color-logo-dark-green)] text-[var(--color-logo-dark-green)] px-6 py-3 rounded-full font-bold text-sm hover:bg-[var(--color-logo-yellow)] transition-colors"
+                  >
+                    お問い合わせフォーム
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </section>
-        </div>
 
         {/* 紹介方法・手続きの流れ */}
         <section className="section-wrapper relative overflow-hidden">
           <BackgroundTriangles pattern="flow" />
           <div className="section-inner relative z-10">
             <div className="section-title-area">
-              <h2 className="section-title">紹介方法・手続きの流れ</h2>
+              <h2 className="section-title heading-gothic">紹介方法・手続きの流れ</h2>
               <div className="section-title-line" />
             </div>
 
@@ -233,7 +225,7 @@ export default function ForCareManagersPage() {
                     ご不明な点がございましたら、お気軽にお問い合わせください。
                   </p>
                   <a
-                    href="tel:047-770-1228"
+                    href={`tel:${officeInfo.phone}`}
                     className="btn-primary inline-block text-base md:text-lg px-6 md:px-8 py-3 md:py-4"
                   >
                     お電話でのご相談はこちら
@@ -245,164 +237,181 @@ export default function ForCareManagersPage() {
         </section>
 
         {/* 報告体制 */}
-        <section className="section-wrapper bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+        <section className="section-wrapper bg-white relative overflow-hidden">
           <BackgroundTriangles pattern="about" />
-          <div className="max-w-6xl mx-auto px-4 relative z-10">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 heading-gothic text-[var(--color-ink)]">
-                報告体制
-              </h2>
-              <p className="text-lg text-[var(--color-ink-soft)]">
-                ケアマネージャー様との密な連携を大切にしています
-              </p>
+          <div className="section-inner relative z-10">
+            <div className="section-title-area">
+              <h2 className="section-title heading-gothic">報告体制</h2>
+              <div className="section-title-line" />
             </div>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              {reportingSystems.map((system, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-2xl p-6 shadow-sm hover-lift border-t-4 border-[var(--color-logo-light-green)]"
-                >
-                  <h3 className="text-xl font-bold mb-3 text-[var(--color-logo-dark-green)]">
-                    {system.title}
-                  </h3>
-                  <p className="text-base font-medium mb-3 text-[var(--color-ink)]">
-                    {system.description}
-                  </p>
-                  <p className="text-sm leading-relaxed text-[var(--color-ink-soft)]">
-                    {system.detail}
-                  </p>
+            <div className="section-content">
+              <div className="section-card section-card-blue">
+                <p className="text-[var(--color-ink-soft)] text-base mb-6">
+                  ケアマネージャー様との密な連携を大切にしています
+                </p>
+                <div className="grid md:grid-cols-3 gap-6">
+                  {reportingSystems.map((system, index) => (
+                    <div
+                      key={index}
+                      className="bg-white rounded-2xl p-4 md:p-6 shadow-sm hover-lift border-t-4 border-[var(--color-logo-light-green)]"
+                    >
+                      <h3 className="text-xl font-bold mb-3 text-[var(--color-logo-dark-green)]">
+                        {system.title}
+                      </h3>
+                      <p className="text-base font-medium mb-3 text-[var(--color-ink)]">
+                        {system.description}
+                      </p>
+                      <p className="text-sm leading-relaxed text-[var(--color-ink-soft)]">
+                        {system.detail}
+                      </p>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
           </div>
         </section>
 
         {/* 対応可能なケース */}
-        <section className="section-wrapper relative overflow-hidden">
+        <section className="section-wrapper bg-white relative overflow-hidden">
           <BackgroundTriangles pattern="features" />
-          <div className="max-w-6xl mx-auto px-4 relative z-10">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 heading-gothic text-[var(--color-ink)]">
-                対応可能なケース
-              </h2>
-              <p className="text-lg text-[var(--color-ink-soft)]">
-                幅広いニーズにお応えいたします
-              </p>
+          <div className="section-inner relative z-10">
+            <div className="section-title-area">
+              <h2 className="section-title heading-gothic">対応可能なケース</h2>
+              <div className="section-title-line" />
             </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {availableCases.map((caseItem, index) => (
-                <div
-                  key={index}
-                  className={`bg-white rounded-2xl p-6 shadow-sm ${caseItem.disabled ? 'opacity-50' : 'hover-lift'}`}
-                >
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className={`flex-shrink-0 ${caseItem.disabled ? 'text-gray-400' : 'text-[var(--color-logo-light-green)]'}`}>
-                      {caseItem.icon}
+            <div className="section-content">
+              <div className="section-card">
+                <p className="text-[var(--color-ink-soft)] text-base mb-6">
+                  幅広いニーズにお応えいたします
+                </p>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                  {availableCases.map((caseItem, index) => (
+                    <div
+                      key={index}
+                      className={`bg-white rounded-2xl p-4 md:p-6 shadow-sm ${caseItem.disabled ? "opacity-50" : "hover-lift"}`}
+                    >
+                      <div className="flex items-start gap-4 mb-4">
+                        <div className={`flex-shrink-0 ${caseItem.disabled ? "text-[var(--color-muted)]" : "text-[var(--color-logo-light-green)]"}`}>
+                          {caseItem.icon}
+                        </div>
+                        <h3 className={`text-lg font-bold ${caseItem.disabled ? "text-[var(--color-muted)]" : "text-[var(--color-ink)]"}`}>
+                          {caseItem.title}
+                        </h3>
+                      </div>
+                      <p className={`text-sm leading-relaxed ${caseItem.disabled ? "text-[var(--color-muted)]" : "text-[var(--color-ink-soft)]"}`}>
+                        {caseItem.description}
+                      </p>
                     </div>
-                    <h3 className={`text-lg font-bold ${caseItem.disabled ? 'text-gray-400' : 'text-[var(--color-ink)]'}`}>
-                      {caseItem.title}
-                    </h3>
-                  </div>
-                  <p className={`text-sm leading-relaxed ${caseItem.disabled ? 'text-gray-400' : 'text-[var(--color-ink-soft)]'}`}>
-                    {caseItem.description}
-                  </p>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
           </div>
         </section>
 
         {/* FAQ */}
-        <section className="section-wrapper bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+        <section className="section-wrapper bg-white relative overflow-hidden">
           <BackgroundTriangles pattern="faq" />
-          <div className="max-w-4xl mx-auto px-4 relative z-10">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 heading-gothic text-[var(--color-ink)]">
-                よくあるご質問
-              </h2>
+          <div className="section-inner relative z-10">
+            <div className="section-title-area">
+              <h2 className="section-title heading-gothic">よくあるご質問</h2>
+              <div className="section-title-line" />
             </div>
-
-            <div className="space-y-4">
-              {faqs.map((faq, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-xl shadow-sm overflow-hidden"
-                >
-                  <button
-                    onClick={() => toggleFAQ(index)}
-                    className="w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors"
-                  >
-                    <span className="font-bold text-lg text-[var(--color-ink)] pr-4">
-                      Q. {faq.question}
-                    </span>
-                    <svg
-                      className={`w-6 h-6 flex-shrink-0 text-[var(--color-logo-dark-green)] transition-transform ${
-                        openFAQIndex === index ? "rotate-180" : ""
-                      }`}
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
+            <div className="section-content">
+              <div className="section-card section-card-blue">
+                <div className="space-y-4">
+                  {faqs.map((faq, index) => (
+                    <div
+                      key={index}
+                      className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  </button>
-                  {openFAQIndex === index && (
-                    <div className="px-6 pb-6">
-                      <p className="text-[var(--color-ink-soft)] leading-relaxed border-l-4 border-[var(--color-logo-yellow)] pl-4">
-                        A. {faq.answer}
-                      </p>
+                      <button
+                        onClick={() => toggleFAQ(index)}
+                        className="w-full text-left p-4 md:p-6 flex items-start gap-3 hover:bg-gray-50 transition-colors"
+                      >
+                        <span className="flex-shrink-0 w-8 h-8 md:w-10 md:h-10 rounded-full bg-[var(--color-logo-dark-green)] text-white flex items-center justify-center font-bold text-sm md:text-base">
+                          Q
+                        </span>
+                        <span className="flex-1 font-bold text-base md:text-lg text-[var(--color-ink)] pt-1">
+                          {faq.question}
+                        </span>
+                        <svg
+                          className={`w-5 h-5 flex-shrink-0 text-[var(--color-logo-dark-green)] transition-transform mt-1 ${
+                            openFAQIndex === index ? "rotate-180" : ""
+                          }`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
+                      </button>
+                      <div
+                        className={`overflow-hidden transition-all duration-300 ${
+                          openFAQIndex === index ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+                        }`}
+                      >
+                        <div className="px-4 md:px-6 pb-4 md:pb-6 flex items-start gap-3">
+                          <span className="flex-shrink-0 w-8 h-8 md:w-10 md:h-10 rounded-full bg-[var(--color-accent-pink)] text-[var(--color-logo-dark-green)] flex items-center justify-center font-bold text-sm md:text-base">
+                            A
+                          </span>
+                          <p className="text-[var(--color-ink-soft)] leading-relaxed pt-1">
+                            {faq.answer}
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                  )}
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
           </div>
         </section>
 
         {/* お問い合わせCTA */}
-        <div className="px-4 md:px-8 py-6 md:py-10">
-          <section
-            id="contact"
-            className="relative overflow-hidden rounded-3xl md:rounded-[3rem] bg-gradient-to-br from-[#a8d5ba] to-[#d4edda] shadow-lg py-12 md:py-16"
-          >
-            <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--color-logo-dark-green)] mb-6 heading-gothic">
-                まずはお気軽にご相談ください
-              </h2>
-              <p className="text-[var(--color-ink-soft)] text-lg mb-12 max-w-xl mx-auto">
-                訪問看護のご依頼、サービス内容のご相談など、お気軽にお問い合わせください。
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-                <a
-                  href="tel:047-770-1228"
-                  className="inline-flex items-center justify-center px-10 py-5 bg-white text-[var(--color-logo-dark-green)] rounded-full font-bold text-lg hover:bg-[var(--color-logo-yellow)] transition-colors shadow-lg"
-                >
-                  <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                  047-770-1228
-                </a>
-                <Link
-                  href="/"
-                  className="inline-flex items-center justify-center px-10 py-5 border-2 border-[var(--color-logo-dark-green)] text-[var(--color-logo-dark-green)] rounded-full font-bold text-lg hover:bg-[var(--color-logo-dark-green)]/10 transition-all"
-                >
-                  トップページへ
-                </Link>
-              </div>
-              <div className="text-[var(--color-ink-soft)] text-sm">
-                <p>受付時間: 9:00〜19:00（365日対応）</p>
-                <p className="mt-2">メール: hokan-f@fractal-group.co.jp</p>
+        <section id="contact" className="section-wrapper bg-white relative overflow-hidden">
+          <BackgroundTriangles pattern="contact" />
+          <div className="section-inner relative z-10">
+            <div className="section-title-area">
+              <h2 className="section-title heading-gothic">お問い合わせ</h2>
+              <div className="section-title-line" />
+            </div>
+            <div className="section-content">
+              <div className="section-card section-card-mint">
+                <p className="text-[var(--color-ink-soft)] text-base md:text-lg mb-6">
+                  訪問看護のご依頼、サービス内容のご相談など、お気軽にお問い合わせください。
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 mb-6">
+                  <a
+                    href={`tel:${officeInfo.phone}`}
+                    className="inline-flex items-center justify-center gap-2 bg-[var(--color-logo-dark-green)] text-white px-6 py-3 rounded-full font-bold text-sm hover:opacity-90 transition-opacity"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                    {officeInfo.phone}
+                  </a>
+                  <Link
+                    href="/"
+                    className="inline-flex items-center justify-center gap-2 border-2 border-[var(--color-logo-dark-green)] text-[var(--color-logo-dark-green)] px-6 py-3 rounded-full font-bold text-sm hover:bg-[var(--color-logo-yellow)] transition-colors"
+                  >
+                    トップページへ
+                  </Link>
+                </div>
+                <div className="text-[var(--color-ink-soft)] text-sm">
+                  <p>受付時間: 9:00〜19:00（365日対応）</p>
+                  <p className="mt-2">メール: {officeInfo.email}</p>
+                </div>
               </div>
             </div>
-          </section>
-        </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </>
