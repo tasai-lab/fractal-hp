@@ -1,22 +1,9 @@
-// 事業所情報
-export const officeInfo = {
-  name: "フラクタル訪問看護 船橋",
-  businessNumber: "1262891190",
-  address: {
-    postalCode: "274-0072",
-    prefecture: "千葉県",
-    city: "船橋市",
-    street: "三山6丁目22-2",
-    building: "パレドール小川201",
-    full: "〒274-0072 千葉県船橋市三山6丁目22-2 パレドール小川201",
-  },
-  phone: "047-770-1228",
-  fax: "047-413-0502",
-  email: "hokan-f@fractal-group.co.jp",
-  hours: "9:00 〜 19:00（土日祝・年末年始も毎日営業）",
-  googleMapsUrl:
-    "https://www.google.com/maps?q=%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%E3%83%95%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%AB+%E3%83%95%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%AB%E8%A8%AA%E5%95%8F%E7%9C%8B%E8%AD%B7+%E8%88%B9%E6%A9%8B&output=embed",
-};
+// 事業所情報（stations-data.ts からの re-export）
+import { stationsData } from "./stations-data";
+export type { StaffMember, StationOfficeInfo, StationData } from "./stations-data";
+export { getStation, getActiveStations, getAllStationSlugs, stationsData } from "./stations-data";
+
+export const officeInfo = stationsData[0].officeInfo;
 
 // 会社情報
 export const companyInfo = {
@@ -30,16 +17,6 @@ export const companyInfo = {
   googleMapsUrl:
     "https://www.google.com/maps?q=%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%E3%83%95%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%AB+%E8%88%B9%E6%A9%8B&output=embed",
 };
-
-// ナビゲーションリンク（デスクトップヘッダー用）
-export const navLinks = [
-  { href: "/fractal", label: "フラクタルの意味" },
-  { href: "/areas/funabashi", label: "対応エリア" },
-  { href: "/pricing", label: "ご利用料金" },
-  { href: "/for-care-managers", label: "ケアマネ様へ" },
-  { href: "/recruit", label: "採用情報" },
-  { href: "/#contact", label: "お問い合わせ" },
-];
 
 // フッター用サイトマップリンク
 export const footerLinks = [
@@ -58,14 +35,6 @@ export const footerLinks = [
   { href: "/documents", label: "各種書類" },
   { href: "/flyers", label: "チラシ" },
   { href: "/updates", label: "更新情報" },
-];
-
-// モバイルメニュー項目（下部固定メニュー用）
-export const mobileMenuItems = [
-  { href: "/", label: "ホーム", icon: "Home" },
-  { href: "/fractal", label: "フラクタルの意味", icon: "Triangle" },
-  { href: "/recruit", label: "採用", icon: "Users" },
-  { href: "/#contact", label: "問合せ", icon: "Phone" },
 ];
 
 // サイトマップメニューのカテゴリ分け（4カテゴリ・10項目）
@@ -218,49 +187,8 @@ export const flowSteps = [
   },
 ];
 
-// スタッフ情報
-export const staffMembers = [
-  {
-    name: "古谷 一真",
-    nameReading: "ふるや かずま",
-    role: "所長",
-    birthplace: "我孫子市",
-    hobbies: "筋トレ・散歩、読書",
-    introduction:
-      "千葉市の訪問看護ステーションで管理者・訪問業務は6年目となります。美味しいもの探しも趣味で、最近はタコス作りにハマっています！ハローワールド！ハロータコチューズデイ！",
-    image: "/images/staff/furuya.webp",
-  },
-  {
-    name: "髙山 里美",
-    nameReading: "たかやま さとみ",
-    role: "看護師",
-    birthplace: "南房総市",
-    hobbies: "LIVE遠征",
-    introduction:
-      "前職は手術室に勤務していたこともあり刺激的なことが大好き！好きな手術はTKA(人工膝関節置換術)です。",
-    image: "/images/staff/takayama.webp",
-  },
-  {
-    name: "浅井 拓哉",
-    nameReading: "あさい たくや",
-    role: "看護師",
-    birthplace: "館山市",
-    hobbies: "美味しいご飯を作る、食べる。",
-    introduction:
-      "新しいものが好きで、常に何かを考えています。雨と不便が嫌いで、何事も工夫してブラッシュアップしていく人生なんだと思います。永遠と終わりなき道を彷徨ってますね、ええ。",
-    image: "/images/staff/asai.webp",
-  },
-  {
-    name: "祝迫 萌々",
-    nameReading: "いわいざこ もも",
-    role: "総務",
-    birthplace: "市原市",
-    hobbies: "映画・アニメ鑑賞、猫を眺める",
-    introduction:
-      "フラクタルのなんでも屋です。直近まで人事労務のアドバイザーとして勤務しておりました。労務関係のご相談があればお気軽に聞いてください。",
-    image: "/images/staff/iwaizako.webp",
-  },
-];
+// スタッフ情報（stations-data.ts からの re-export）
+export const staffMembers = stationsData[0].staffMembers;
 
 // お問い合わせ種別
 export const contactTypes = [
@@ -297,14 +225,6 @@ export const philosophyItems = [
     description:
       "完璧な正解など存在しないかもしれません。しかし、私たちは常に「その人にとっての最適」を模索し続けます。変化する状況やニーズに合わせて、常に最善を尽くし、進化し続けること。それが私たちの姿勢です。",
   },
-];
-
-// ステーション実績データ（全事業所統合）
-export const stationStats = [
-  { label: "看護師", value: "3名" },
-  { label: "利用者数", value: "84名" },
-  { label: "月間訪問件数", value: "270件+" },
-  { label: "緊急対応", value: "365日" },
 ];
 
 // 受入可能な状態テーブル

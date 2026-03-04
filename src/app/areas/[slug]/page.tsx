@@ -85,8 +85,8 @@ export default async function RegionalAreaPage({
                             { label: `${area.name}への月間訪問`, value: `${area.areaStats.monthlyVisits}件` },
                           ]
                         : [
-                            { label: "全利用者数", value: "84名" },
-                            { label: "月間訪問件数", value: "270件+" },
+                            { label: "全利用者数", value: "66名" },
+                            { label: "月間訪問件数", value: "240件+" },
                           ]),
                       { label: "看護師", value: "3名" },
                       { label: "緊急対応", value: "365日" },

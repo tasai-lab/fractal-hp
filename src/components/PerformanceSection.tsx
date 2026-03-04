@@ -55,7 +55,7 @@ export default function PerformanceSection() {
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 {[
-                  { area: "船橋市", count: 26 },
+                  { area: "船橋市", count: 27 },
                   { area: "習志野市", count: 22 },
                   { area: "八千代市", count: 15 },
                   { area: "千葉市", count: 1 },

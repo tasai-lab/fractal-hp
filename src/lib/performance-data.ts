@@ -33,8 +33,8 @@ export const performanceMetrics: PerformanceMetrics = {
   },
   monthlyVisits: 240,
   activePatients: 66,
-  totalVisits: 1527,
-  totalPatients: 71,
+  totalVisits: 1531,
+  totalPatients: 72,
   patientsByInsurance: {
     care: 35,
     medical: 21,
@@ -42,12 +42,12 @@ export const performanceMetrics: PerformanceMetrics = {
     other: 3,
   },
   patientsByArea: {
-    funabashi: 26,
+    funabashi: 27,
     narashino: 22,
     yachiyo: 15,
     chiba: 1,
   },
-  lastUpdated: "2026-02-28",
+  lastUpdated: "2026-03-04",
 };
 
 // トップページに表示するカウントアップ指標
