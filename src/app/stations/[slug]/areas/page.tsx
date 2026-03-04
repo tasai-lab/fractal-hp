@@ -84,7 +84,7 @@ export default async function StationAreasPage({
       />
 
       {/* エリアマップ */}
-      <section className="relative overflow-hidden">
+      <section className="relative">
         <BackgroundTriangles pattern="office" />
         <div className="max-w-5xl mx-auto px-4 py-10 md:py-14 relative z-10 space-y-8">
           {/* エリアマップ */}

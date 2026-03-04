@@ -100,6 +100,7 @@ body {
   color: var(--color-foreground);
   font-family: var(--font-mplus1), "M PLUS 1", sans-serif;
   line-height: 1.8;
+  overflow-x: hidden;
 }
 
 .body-editorial {
@@ -155,7 +156,6 @@ body {
 .section-wrapper {
   position: relative;
   padding: 2rem 0;
-  overflow-x: hidden;
 }
 
 @media (min-width: 640px) {

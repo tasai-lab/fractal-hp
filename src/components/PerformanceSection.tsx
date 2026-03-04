@@ -8,7 +8,7 @@ export default function PerformanceSection() {
   return (
     <section
       id="performance"
-      className="section-wrapper bg-white relative overflow-x-hidden"
+      className="section-wrapper bg-white relative"
     >
       <BackgroundTriangles pattern="serviceArea" />
       <div className="section-inner relative z-10">

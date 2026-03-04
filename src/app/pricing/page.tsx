@@ -73,7 +73,7 @@ export default function PricingPage() {
         </section>
 
         {/* 訪問看護の費用について */}
-        <section className="relative overflow-hidden py-8 md:py-12">
+        <section className="relative py-8 md:py-12">
           <BackgroundTriangles pattern="about" />
           <div className="max-w-6xl mx-auto px-4 relative z-10">
             <div className="text-center mb-8">
@@ -104,7 +104,7 @@ export default function PricingPage() {
         </section>
 
         {/* 介護保険の料金表 */}
-        <section className="bg-gradient-to-br from-gray-50 to-white relative overflow-hidden py-8 md:py-12">
+        <section className="bg-gradient-to-br from-gray-50 to-white relative py-8 md:py-12">
           <BackgroundTriangles pattern="features" />
           <div className="max-w-6xl mx-auto px-4 relative z-10">
             <div className="text-center mb-8">
@@ -186,7 +186,7 @@ export default function PricingPage() {
         </section>
 
         {/* 医療保険の料金表 */}
-        <section className="relative overflow-hidden py-8 md:py-12">
+        <section className="relative py-8 md:py-12">
           <BackgroundTriangles pattern="office" />
           <div className="max-w-6xl mx-auto px-4 relative z-10">
             <div className="text-center mb-8">
@@ -268,7 +268,7 @@ export default function PricingPage() {
         </section>
 
         {/* 各種加算の説明 */}
-        <section className="bg-gradient-to-br from-gray-50 to-white relative overflow-hidden py-8 md:py-12">
+        <section className="bg-gradient-to-br from-gray-50 to-white relative py-8 md:py-12">
           <BackgroundTriangles pattern="flow" />
           <div className="max-w-6xl mx-auto px-4 relative z-10">
             <div className="text-center mb-8">
@@ -299,7 +299,7 @@ export default function PricingPage() {
         </section>
 
         {/* FAQ */}
-        <section className="relative overflow-hidden py-8 md:py-12">
+        <section className="relative py-8 md:py-12">
           <BackgroundTriangles pattern="faq" />
           <div className="max-w-6xl mx-auto px-4 relative z-10">
             <div className="text-center mb-8">

@@ -4,7 +4,7 @@ import BackgroundTriangles from "./BackgroundTriangles";
 
 export default function About() {
   return (
-    <section id="about" className="section-wrapper bg-white relative overflow-x-hidden">
+    <section id="about" className="section-wrapper bg-white relative">
       {/* 背景装飾 */}
       <BackgroundTriangles pattern="about" />
 

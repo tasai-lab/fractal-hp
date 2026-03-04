@@ -45,7 +45,7 @@ export default function StationsPage() {
           description="各ステーションの事業所情報・担当スタッフ・訪問エリアをご確認いただけます"
         />
 
-        <section className="relative overflow-hidden">
+        <section className="relative">
           <BackgroundTriangles pattern="office" />
           <div className="max-w-4xl mx-auto px-4 py-10 md:py-14 relative z-10">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">

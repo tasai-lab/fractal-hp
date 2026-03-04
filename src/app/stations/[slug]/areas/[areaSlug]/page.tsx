@@ -59,7 +59,7 @@ export default async function StationAreaPage({
         {/* ===== 統計+実績（統合） ===== */}
         <section
           id="area-data"
-          className="section-wrapper relative !overflow-visible"
+          className="section-wrapper relative"
           style={{ backgroundColor: `${area.theme.primary}05` }}
         >
           <BackgroundTriangles pattern="office" />
@@ -146,7 +146,7 @@ export default async function StationAreaPage({
         </section>
 
         {/* ===== 訪問看護サービス ===== */}
-        <section id="area-services" className="section-wrapper relative !overflow-visible">
+        <section id="area-services" className="section-wrapper relative">
           <BackgroundTriangles pattern="about" />
           <div className="section-inner relative z-10">
             <div className="section-title-area">
@@ -256,7 +256,7 @@ export default async function StationAreaPage({
         </section>
 
         {/* ===== 受入可能な身体の状態 ===== */}
-        <section id="area-conditions" className="section-wrapper relative !overflow-visible">
+        <section id="area-conditions" className="section-wrapper relative">
           <BackgroundTriangles pattern="flow" />
           <div className="section-inner relative z-10">
             <div className="section-title-area">
@@ -324,7 +324,7 @@ export default async function StationAreaPage({
         </section>
 
         {/* ===== 訪問可能エリア ===== */}
-        <section id="area-visitable" className="section-wrapper relative !overflow-visible">
+        <section id="area-visitable" className="section-wrapper relative">
           <BackgroundTriangles pattern="serviceArea" />
           <div className="section-inner relative z-10">
             <div className="section-title-area">
@@ -406,7 +406,7 @@ export default async function StationAreaPage({
         </section>
 
         {/* ===== 担当スタッフ ===== */}
-        <section id="area-staff" className="section-wrapper relative !overflow-visible">
+        <section id="area-staff" className="section-wrapper relative">
           <BackgroundTriangles pattern="staff" />
           <div className="section-inner relative z-10">
             <div className="section-title-area">
@@ -478,7 +478,7 @@ export default async function StationAreaPage({
         <AreaFAQ faqs={area.faqs} themeColor={area.theme.primary} />
 
         {/* ===== 医療・介護体制 ===== */}
-        <section id="area-healthcare" className="section-wrapper relative !overflow-visible">
+        <section id="area-healthcare" className="section-wrapper relative">
           <BackgroundTriangles pattern="features" />
           <div className="section-inner relative z-10">
             <div className="section-title-area">
@@ -514,7 +514,7 @@ export default async function StationAreaPage({
         </section>
 
         {/* ===== 他の地域へのリンク ===== */}
-        <section id="other-areas" className="section-wrapper relative !overflow-visible">
+        <section id="other-areas" className="section-wrapper relative">
           <BackgroundTriangles pattern="company" />
           <div className="section-inner relative z-10">
             <div className="section-title-area">
@@ -548,7 +548,7 @@ export default async function StationAreaPage({
         </section>
 
         {/* ===== お問い合わせ ===== */}
-        <section id="contact" className="section-wrapper relative !overflow-visible">
+        <section id="contact" className="section-wrapper relative">
           <BackgroundTriangles pattern="contact" />
           <div className="section-inner relative z-10">
             <div className="section-title-area">

@@ -6,7 +6,7 @@ export default function RecruitCTA() {
   return (
     <section
       id="recruit"
-      className="section-wrapper bg-white relative overflow-hidden"
+      className="section-wrapper bg-white relative"
     >
       <BackgroundTriangles pattern="recruit" />
       <div className="section-inner relative z-10">
