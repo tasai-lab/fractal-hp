@@ -2,83 +2,64 @@
 
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { use } from "react";
+import { use, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
+import BackgroundTriangles from "@/components/BackgroundTriangles";
 import { getServiceBySlug, servicesData } from "@/lib/services-data";
 import { officeInfo } from "@/lib/data";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
-// サービスごとのカラー設定
-const serviceColors: Record<string, { primary: string; secondary: string; light: string }> = {
-  "psychiatric-nursing": {
-    primary: "var(--color-logo-dark-green)",
-    secondary: "#0A3D2D",
-    light: "var(--color-logo-light-green)",
-  },
-  "end-of-life-care": {
-    primary: "#7C3AED",
-    secondary: "#5B21B6",
-    light: "#EDE9FE",
-  },
-  "24h-support": {
-    primary: "#0369A1",
-    secondary: "#075985",
-    light: "#E0F2FE",
-  },
-};
-
 // FAQアコーディオン（クライアントコンポーネント）
-function FAQAccordion({
-  faqs,
-  primaryColor,
-}: {
-  faqs: { question: string; answer: string }[];
-  primaryColor: string;
-}) {
+function FAQAccordion({ faqs }: { faqs: { question: string; answer: string }[] }) {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const toggleItem = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
   return (
-    <div className="space-y-3">
+    <div className="space-y-4">
       {faqs.map((faq, index) => (
-        <details
-          key={index}
-          className="group bg-white rounded-xl shadow-sm overflow-hidden"
-        >
-          <summary className="p-5 cursor-pointer list-none flex items-center justify-between">
-            <span
-              className="font-bold pr-4 text-sm"
-              style={{ color: primaryColor }}
-            >
-              {faq.question}
+        <div key={index} className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+          <button
+            onClick={() => toggleItem(index)}
+            className="w-full flex items-center justify-between p-4 md:p-6 text-left hover:bg-gray-50 transition-colors duration-200"
+            aria-expanded={openIndex === index}
+          >
+            <span className="flex items-start gap-3 md:gap-4">
+              <span className="flex-shrink-0 w-8 h-8 md:w-10 md:h-10 rounded-full bg-[var(--color-logo-dark-green)] text-white flex items-center justify-center text-sm md:text-base font-bold">
+                Q
+              </span>
+              <span className="text-base md:text-lg font-bold text-[var(--color-ink)] pt-1">
+                {faq.question}
+              </span>
             </span>
-            <span
-              className="transition-transform group-open:rotate-180 flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center"
-              style={{ backgroundColor: `${primaryColor}18`, color: primaryColor }}
-            >
+            <span className="flex-shrink-0 ml-4 text-[var(--color-logo-dark-green)]">
               <svg
-                className="w-4 h-4"
+                className={`w-6 h-6 transition-transform duration-300 ${openIndex === index ? "rotate-180" : ""}`}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 9l-7 7-7-7"
-                />
+                <path d="M19 9l-7 7-7-7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </span>
-          </summary>
-          <div className="px-5 pb-5">
-            <div
-              className="pt-3 border-t text-gray-600 text-sm leading-relaxed"
-              style={{ borderColor: `${primaryColor}18` }}
-            >
-              {faq.answer}
+          </button>
+          <div
+            className={`transition-all duration-300 ease-in-out ${openIndex === index ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"} overflow-hidden`}
+          >
+            <div className="px-4 md:px-6 pb-4 md:pb-6">
+              <div className="flex items-start gap-3 md:gap-4 pt-2 border-t border-gray-100">
+                <span className="flex-shrink-0 w-8 h-8 md:w-10 md:h-10 rounded-full bg-[var(--color-logo-light-green)]/20 text-[var(--color-logo-dark-green)] flex items-center justify-center text-sm md:text-base font-bold mt-2">
+                  A
+                </span>
+                <p className="text-sm md:text-base text-[var(--color-ink)] leading-relaxed pt-3">
+                  {faq.answer}
+                </p>
+              </div>
             </div>
           </div>
-        </details>
+        </div>
       ))}
     </div>
   );
@@ -121,12 +102,6 @@ export default function ServicePage({
     notFound();
   }
 
-  const colors = serviceColors[service.slug] ?? {
-    primary: "var(--color-logo-dark-green)",
-    secondary: "#0A3D2D",
-    light: "var(--color-logo-light-green)",
-  };
-
   const relatedServices = service.relatedServices
     .map((slug) => servicesData.find((s) => s.slug === slug))
     .filter(Boolean);
@@ -136,54 +111,42 @@ export default function ServicePage({
       <Header />
       <main className="pt-14 lg:pt-20">
         {/* ===== ヒーローセクション ===== */}
-        <section className="relative min-h-[55vh] md:min-h-[65vh] flex items-center overflow-hidden">
-          <div
-            className="absolute inset-0"
-            style={{
-              background: `linear-gradient(135deg, ${colors.primary}10 0%, ${colors.light}20 50%, white 100%)`,
-            }}
-          />
-          <div
-            className="absolute top-0 right-0 w-[45%] h-[65%] opacity-[0.05] rounded-bl-[100%]"
-            style={{ backgroundColor: colors.primary }}
-          />
+        <section className="relative min-h-[55vh] md:min-h-[65vh] flex items-center overflow-hidden bg-gradient-to-br from-[var(--color-logo-light-green)]/10 via-white to-white">
+          <div className="absolute top-0 right-0 w-[45%] h-[65%] opacity-[0.05] rounded-bl-[100%] bg-[var(--color-logo-dark-green)]" />
 
           <div className="container mx-auto px-4 relative z-10 py-16 md:py-20">
             <div className="max-w-4xl mx-auto text-center">
               {/* パンくずリスト */}
-              <nav className="flex items-center justify-center gap-2 text-xs text-gray-400 mb-6 animate-fade-in">
-                <Link href="/" className="hover:text-gray-600 transition-colors">
+              <nav className="flex items-center justify-center gap-2 text-xs text-[var(--color-muted)] mb-6 animate-fade-in">
+                <Link href="/" className="hover:text-[var(--color-ink-soft)] transition-colors">
                   ホーム
                 </Link>
                 <span>/</span>
                 <Link
                   href="/services"
-                  className="hover:text-gray-600 transition-colors"
+                  className="hover:text-[var(--color-ink-soft)] transition-colors"
                 >
                   サービス案内
                 </Link>
                 <span>/</span>
-                <span style={{ color: colors.primary }}>{service.heroTitle}</span>
+                <span className="text-[var(--color-logo-dark-green)]">{service.heroTitle}</span>
               </nav>
 
               <div className="mb-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
-                <span
-                  className="inline-block px-5 py-2 rounded-full text-sm font-bold text-white"
-                  style={{ backgroundColor: colors.primary }}
-                >
+                <span className="inline-block px-5 py-2 rounded-full text-sm font-bold text-white bg-[var(--color-logo-dark-green)]">
                   {service.heroTagline}
                 </span>
               </div>
 
               <h1
-                className="text-3xl md:text-4xl lg:text-5xl font-black mb-6 leading-tight heading-gothic animate-fade-in-up"
-                style={{ color: colors.secondary, animationDelay: "0.2s" }}
+                className="text-3xl md:text-4xl lg:text-5xl font-black mb-6 leading-tight heading-gothic animate-fade-in-up text-[var(--color-ink)]"
+                style={{ animationDelay: "0.2s" }}
               >
                 {service.h1}
               </h1>
 
               <p
-                className="text-base md:text-lg text-gray-600 leading-relaxed mb-10 max-w-2xl mx-auto animate-fade-in"
+                className="text-base md:text-lg text-[var(--color-ink-soft)] leading-relaxed mb-10 max-w-2xl mx-auto animate-fade-in"
                 style={{ animationDelay: "0.4s" }}
               >
                 {service.heroDescription}
@@ -195,8 +158,7 @@ export default function ServicePage({
               >
                 <a
                   href={`tel:${officeInfo.phone}`}
-                  className="inline-flex items-center justify-center gap-3 text-white px-8 py-4 rounded-full text-lg font-bold transition-all hover:scale-105 shadow-lg hover:shadow-xl"
-                  style={{ backgroundColor: colors.primary }}
+                  className="inline-flex items-center justify-center gap-3 text-white px-8 py-4 rounded-full text-lg font-bold transition-all hover:scale-105 shadow-lg hover:shadow-xl bg-[var(--color-logo-dark-green)]"
                 >
                   <svg
                     className="w-5 h-5"
@@ -215,28 +177,12 @@ export default function ServicePage({
                 </a>
                 <a
                   href="#contact"
-                  className="inline-flex items-center justify-center gap-2 bg-white px-8 py-4 rounded-full text-lg font-bold transition-all hover:scale-105 shadow-md hover:shadow-lg border-2"
-                  style={{ color: colors.primary, borderColor: colors.primary }}
+                  className="inline-flex items-center justify-center gap-2 bg-white px-8 py-4 rounded-full text-lg font-bold transition-all hover:scale-105 shadow-md hover:shadow-lg border-2 text-[var(--color-logo-dark-green)] border-[var(--color-logo-dark-green)]"
                 >
                   無料相談はこちら
                 </a>
               </div>
             </div>
-          </div>
-
-          {/* ウェーブ装飾 */}
-          <div className="absolute bottom-0 left-0 right-0">
-            <svg
-              viewBox="0 0 1440 60"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-full"
-            >
-              <path
-                d="M0 30L80 27C160 24 320 18 480 21C640 24 800 36 960 39C1120 42 1280 36 1360 33L1440 30V61H0V30Z"
-                fill="white"
-              />
-            </svg>
           </div>
         </section>
 
@@ -244,171 +190,108 @@ export default function ServicePage({
         {service.sections.map((section, sectionIndex) => (
           <section
             key={sectionIndex}
-            className={`py-12 md:py-16 ${sectionIndex % 2 === 0 ? "bg-white" : ""}`}
-            style={
-              sectionIndex % 2 !== 0
-                ? { backgroundColor: `${colors.primary}05` }
-                : undefined
-            }
+            className={`section-wrapper ${sectionIndex % 2 === 0 ? "bg-white" : "bg-[var(--color-foreground)]/[0.02]"} relative overflow-hidden`}
           >
-            <div className="container mx-auto px-4">
-              <div className="max-w-4xl mx-auto">
-                <AnimatedSection>
-                  <div className="flex items-center gap-3 mb-6">
-                    <div
-                      className="w-1 h-10 rounded-full flex-shrink-0"
-                      style={{ backgroundColor: colors.primary }}
-                    />
-                    <div>
-                      <span className="text-xs font-bold tracking-widest uppercase text-gray-400 block mb-0.5">
-                        0{sectionIndex + 1}
-                      </span>
-                      <h2
-                        className="text-xl md:text-2xl font-bold heading-gothic"
-                        style={{ color: colors.secondary }}
-                      >
-                        {section.heading}
-                      </h2>
-                    </div>
-                  </div>
+            <BackgroundTriangles pattern={sectionIndex % 2 === 0 ? "features" : "about"} />
+            <div className="relative z-10 section-container">
+              <AnimatedSection>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-1 h-10 rounded-full flex-shrink-0 bg-[var(--color-logo-dark-green)]" />
+                  <h2 className="text-xl md:text-2xl font-bold heading-gothic text-[var(--color-ink)]">
+                    {section.heading}
+                  </h2>
+                </div>
 
-                  <div
-                    className="rounded-2xl p-6 md:p-8"
-                    style={{ backgroundColor: `${colors.primary}06` }}
-                  >
-                    <p className="text-gray-700 leading-relaxed mb-5">
-                      {section.body}
-                    </p>
+                <div className="rounded-2xl p-6 md:p-8 bg-[var(--color-logo-light-green)]/5">
+                  <p className="text-[var(--color-ink)] leading-relaxed mb-5">
+                    {section.body}
+                  </p>
 
-                    {section.items && section.items.length > 0 && (
-                      <ul className="grid sm:grid-cols-2 gap-3">
-                        {section.items.map((item, itemIndex) => (
-                          <li
-                            key={itemIndex}
-                            className="flex items-start gap-3 bg-white rounded-xl p-3"
-                          >
-                            <span
-                              className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-white text-xs font-bold mt-0.5"
-                              style={{ backgroundColor: colors.primary }}
-                            >
-                              {itemIndex + 1}
-                            </span>
-                            <span className="text-gray-700 text-sm leading-relaxed">
-                              {item}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                </AnimatedSection>
-              </div>
+                  {section.items && section.items.length > 0 && (
+                    <ul className="grid sm:grid-cols-2 gap-3">
+                      {section.items.map((item, itemIndex) => (
+                        <li
+                          key={itemIndex}
+                          className="flex items-start gap-3 bg-white rounded-xl p-3"
+                        >
+                          <span className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-white text-xs font-bold mt-0.5 bg-[var(--color-logo-dark-green)]">
+                            {itemIndex + 1}
+                          </span>
+                          <span className="text-[var(--color-ink)] text-sm leading-relaxed">
+                            {item}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </AnimatedSection>
             </div>
           </section>
         ))}
 
         {/* ===== よくある質問 ===== */}
-        <section
-          className="py-14 md:py-20"
-          style={{ backgroundColor: `${colors.primary}05` }}
-        >
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto">
-              <AnimatedSection>
-                <div className="text-center mb-10">
-                  <span className="text-xs font-bold tracking-widest uppercase text-gray-400 block mb-2">
-                    FAQ
-                  </span>
-                  <h2
-                    className="text-xl md:text-3xl font-bold heading-gothic"
-                    style={{ color: colors.secondary }}
-                  >
-                    よくある質問
-                  </h2>
-                </div>
-                <FAQAccordion
-                  faqs={service.faqs}
-                  primaryColor={colors.primary}
-                />
-              </AnimatedSection>
-            </div>
+        <section className="section-wrapper bg-white relative overflow-hidden">
+          <BackgroundTriangles pattern="faq" />
+          <div className="relative z-10 section-container">
+            <AnimatedSection>
+              <div className="text-center mb-10">
+                <h2 className="text-xl md:text-3xl font-bold heading-gothic text-[var(--color-ink)]">
+                  よくある質問
+                </h2>
+              </div>
+              <FAQAccordion faqs={service.faqs} />
+            </AnimatedSection>
           </div>
         </section>
 
         {/* ===== 関連サービス ===== */}
         {relatedServices.length > 0 && (
-          <section className="py-14 md:py-20 bg-white">
-            <div className="container mx-auto px-4">
-              <div className="max-w-4xl mx-auto">
-                <AnimatedSection>
-                  <div className="text-center mb-10">
-                    <span className="text-xs font-bold tracking-widest uppercase text-gray-400 block mb-2">
-                      Related Services
-                    </span>
-                    <h2
-                      className="text-xl md:text-3xl font-bold heading-gothic"
-                      style={{ color: colors.secondary }}
-                    >
-                      関連するサービス
-                    </h2>
-                  </div>
+          <section className="section-wrapper bg-white relative overflow-hidden">
+            <BackgroundTriangles pattern="serviceArea" />
+            <div className="relative z-10 section-container">
+              <AnimatedSection>
+                <div className="text-center mb-10">
+                  <h2 className="text-xl md:text-3xl font-bold heading-gothic text-[var(--color-ink)]">
+                    関連するサービス
+                  </h2>
+                </div>
 
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    {relatedServices.map((related) => {
-                      if (!related) return null;
-                      const relatedColors = serviceColors[related.slug] ?? {
-                        primary: "var(--color-logo-dark-green)",
-                        secondary: "#0A3D2D",
-                        light: "var(--color-logo-light-green)",
-                      };
-                      return (
-                        <Link
-                          key={related.slug}
-                          href={`/services/${related.slug}`}
-                          className="group relative bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5 overflow-hidden border"
-                          style={{ borderColor: `${relatedColors.primary}20` }}
-                        >
-                          <div
-                            className="absolute top-0 left-0 w-full h-0.5"
-                            style={{ backgroundColor: relatedColors.primary }}
-                          />
-                          <p
-                            className="font-bold text-base mb-1"
-                            style={{ color: relatedColors.primary }}
-                          >
-                            {related.heroTitle}
-                          </p>
-                          <p className="text-xs text-gray-500">
-                            {related.heroTagline}
-                          </p>
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </AnimatedSection>
-              </div>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {relatedServices.map((related) => {
+                    if (!related) return null;
+                    return (
+                      <Link
+                        key={related.slug}
+                        href={`/services/${related.slug}`}
+                        className="group relative bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5 overflow-hidden border border-[var(--color-logo-dark-green)]/20"
+                      >
+                        <div className="absolute top-0 left-0 w-full h-0.5 bg-[var(--color-logo-dark-green)]" />
+                        <p className="font-bold text-base mb-1 text-[var(--color-logo-dark-green)]">
+                          {related.heroTitle}
+                        </p>
+                        <p className="text-xs text-[var(--color-muted)]">
+                          {related.heroTagline}
+                        </p>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </AnimatedSection>
             </div>
           </section>
         )}
 
         {/* ===== お問い合わせCTA ===== */}
-        <section
-          className="py-14 md:py-20 relative overflow-hidden"
-          style={{ backgroundColor: `${colors.primary}08` }}
-        >
-          <div className="container mx-auto px-4 relative z-10">
+        <section id="contact" className="section-wrapper bg-[var(--color-logo-light-green)]/5 relative overflow-hidden">
+          <BackgroundTriangles pattern="contact" />
+          <div className="relative z-10 section-container">
             <div className="max-w-3xl mx-auto">
               <div className="text-center mb-10">
-                <span className="text-xs font-bold tracking-widest uppercase text-gray-400 block mb-2">
-                  Contact
-                </span>
-                <h2
-                  className="text-xl md:text-3xl font-bold heading-gothic mb-3"
-                  style={{ color: colors.secondary }}
-                >
+                <h2 className="text-xl md:text-3xl font-bold heading-gothic mb-3 text-[var(--color-ink)]">
                   {service.heroTitle}についてのご相談
                 </h2>
-                <p className="text-gray-600 text-sm">
+                <p className="text-[var(--color-ink-soft)] text-sm">
                   ご不明な点やご相談は、お気軽にお問い合わせください。初回相談は無料です。
                 </p>
               </div>
@@ -416,8 +299,7 @@ export default function ServicePage({
               <div className="text-center mb-8">
                 <a
                   href={`tel:${officeInfo.phone}`}
-                  className="inline-flex items-center gap-3 text-white px-8 py-4 rounded-full text-lg font-bold transition-all hover:scale-105 shadow-lg hover:shadow-xl"
-                  style={{ backgroundColor: colors.primary }}
+                  className="inline-flex items-center gap-3 text-white px-8 py-4 rounded-full text-lg font-bold transition-all hover:scale-105 shadow-lg hover:shadow-xl bg-[var(--color-logo-dark-green)]"
                 >
                   <svg
                     className="w-6 h-6"
@@ -434,13 +316,10 @@ export default function ServicePage({
                   </svg>
                   {officeInfo.phone}
                 </a>
-                <p className="text-xs text-gray-500 mt-2">24時間受付</p>
+                <p className="text-xs text-[var(--color-muted)] mt-2">24時間受付</p>
               </div>
 
-              <div
-                id="contact"
-                className="bg-white rounded-2xl p-5 md:p-8 shadow-sm"
-              >
+              <div className="bg-white rounded-2xl p-5 md:p-8 shadow-sm">
                 <Contact embedded hideTitle initialContactType={service.heroTitle} />
               </div>
             </div>
