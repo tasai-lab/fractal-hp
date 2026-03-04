@@ -1,8 +1,6 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import AreaContact from "@/components/AreaContact";
 import AreaHero from "@/components/AreaHero";
 import AreaFAQ from "@/components/AreaFAQ";
@@ -12,33 +10,58 @@ import {
   getRegionalDataBySlug,
   regionalData,
 } from "@/lib/regional-data";
-import { acceptableConditions, staffMembers, officeInfo } from "@/lib/data";
+import { acceptableConditions } from "@/lib/data";
+import { getStation, getAllStationSlugs } from "@/lib/stations-data";
 
-export default async function RegionalAreaPage({
+export function generateStaticParams() {
+  const stationSlugs = getAllStationSlugs();
+  const params: { slug: string; areaSlug: string }[] = [];
+
+  for (const slug of stationSlugs) {
+    const station = getStation(slug);
+    if (!station) continue;
+
+    for (const areaSlug of station.serviceAreaSlugs) {
+      const area = getRegionalDataBySlug(areaSlug);
+      if (area) {
+        params.push({ slug, areaSlug });
+      }
+    }
+  }
+
+  return params;
+}
+
+export default async function StationAreaPage({
   params,
 }: {
-  params: Promise<{ slug: string }> | { slug: string };
+  params: Promise<{ slug: string; areaSlug: string }> | { slug: string; areaSlug: string };
 }) {
   const resolvedParams = await Promise.resolve(params);
-  const area = getRegionalDataBySlug(resolvedParams.slug);
+  const area = getRegionalDataBySlug(resolvedParams.areaSlug);
+  const station = getStation(resolvedParams.slug);
 
-  if (!area) {
+  if (!area || !station) {
     notFound();
   }
 
   const otherAreas = regionalData.filter((a) => a.slug !== area.slug);
+  const { officeInfo, staffMembers } = station;
 
   return (
     <>
       <AreaJobPostingStructuredData areaName={area.name} areaSlug={area.slug} />
 
-      <Header />
-      <main className="pt-14 lg:pt-20 overflow-x-hidden">
+      <div className="overflow-x-hidden">
         {/* ===== ヒーロー ===== */}
         <AreaHero area={area} />
 
         {/* ===== 統計+実績（統合） ===== */}
-        <section id="area-data" className="section-wrapper relative !overflow-visible" style={{ backgroundColor: `${area.theme.primary}05` }}>
+        <section
+          id="area-data"
+          className="section-wrapper relative !overflow-visible"
+          style={{ backgroundColor: `${area.theme.primary}05` }}
+        >
           <BackgroundTriangles pattern="office" />
           <div className="section-inner relative z-10">
             <div className="section-title-area">
@@ -49,7 +72,9 @@ export default async function RegionalAreaPage({
               <div className="section-card section-card-blue">
                 {/* 上段: 地域統計 */}
                 <div className="mb-6">
-                  <p className="text-xs font-bold tracking-widest text-gray-400 uppercase mb-3">Area Statistics</p>
+                  <p className="text-xs font-bold tracking-widest text-gray-400 uppercase mb-3">
+                    Area Statistics
+                  </p>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                     {[
                       { label: "総人口", value: area.population.total },
@@ -73,16 +98,27 @@ export default async function RegionalAreaPage({
                   </div>
                 </div>
                 {/* 区切り線 */}
-                <div className="border-t-2 my-6" style={{ borderColor: `${area.theme.primary}20` }} />
+                <div
+                  className="border-t-2 my-6"
+                  style={{ borderColor: `${area.theme.primary}20` }}
+                />
                 {/* 下段: 実績 */}
                 <div>
-                  <p className="text-xs font-bold tracking-widest text-gray-400 uppercase mb-3">Track Record</p>
+                  <p className="text-xs font-bold tracking-widest text-gray-400 uppercase mb-3">
+                    Track Record
+                  </p>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                     {[
                       ...(area.areaStats
                         ? [
-                            { label: `${area.name}の利用者`, value: `${area.areaStats.patients}名` },
-                            { label: `${area.name}への月間訪問`, value: `${area.areaStats.monthlyVisits}件` },
+                            {
+                              label: `${area.name}の利用者`,
+                              value: `${area.areaStats.patients}名`,
+                            },
+                            {
+                              label: `${area.name}への月間訪問`,
+                              value: `${area.areaStats.monthlyVisits}件`,
+                            },
                           ]
                         : [
                             { label: "全利用者数", value: "66名" },
@@ -99,9 +135,7 @@ export default async function RegionalAreaPage({
                         <p className="text-2xl md:text-3xl font-black text-white">
                           {stat.value}
                         </p>
-                        <p className="text-xs text-white/70 mt-1">
-                          {stat.label}
-                        </p>
+                        <p className="text-xs text-white/70 mt-1">{stat.label}</p>
                       </div>
                     ))}
                   </div>
@@ -116,7 +150,9 @@ export default async function RegionalAreaPage({
           <BackgroundTriangles pattern="about" />
           <div className="section-inner relative z-10">
             <div className="section-title-area">
-              <h2 className="section-title">{area.name}のフラクタル訪問看護サービス</h2>
+              <h2 className="section-title">
+                {area.name}のフラクタル訪問看護サービス
+              </h2>
               <div className="section-title-line" />
             </div>
             <div className="section-content">
@@ -166,7 +202,11 @@ export default async function RegionalAreaPage({
                       <div className="flex items-start justify-between gap-2">
                         <h3
                           className="text-lg md:text-xl font-bold mb-2"
-                          style={{ color: service.disabled ? "#9ca3af" : area.theme.primary }}
+                          style={{
+                            color: service.disabled
+                              ? "#9ca3af"
+                              : area.theme.primary,
+                          }}
                         >
                           {service.title}
                         </h3>
@@ -176,7 +216,11 @@ export default async function RegionalAreaPage({
                           </span>
                         )}
                       </div>
-                      <p className={`text-sm md:text-base leading-relaxed ${service.disabled ? "text-gray-400" : "text-gray-600"}`}>
+                      <p
+                        className={`text-sm md:text-base leading-relaxed ${
+                          service.disabled ? "text-gray-400" : "text-gray-600"
+                        }`}
+                      >
                         {service.desc}
                       </p>
                     </div>
@@ -190,8 +234,19 @@ export default async function RegionalAreaPage({
                     style={{ backgroundColor: area.theme.primary }}
                   >
                     サービス詳細を見る
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
                     </svg>
                   </Link>
                 </div>
@@ -225,8 +280,10 @@ export default async function RegionalAreaPage({
                       <span
                         role="img"
                         aria-label={
-                          condition.status === "available" ? "対応可"
-                            : condition.status === "limited" ? "要相談"
+                          condition.status === "available"
+                            ? "対応可"
+                            : condition.status === "limited"
+                              ? "要相談"
                               : "非対応"
                         }
                         className={`mt-0.5 w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0 ${
@@ -237,13 +294,22 @@ export default async function RegionalAreaPage({
                               : "bg-gray-300"
                         }`}
                         style={{
-                          backgroundColor: condition.status === "available" ? area.theme.primary : undefined,
+                          backgroundColor:
+                            condition.status === "available"
+                              ? area.theme.primary
+                              : undefined,
                         }}
                       >
-                        {condition.status === "available" ? "✓" : condition.status === "limited" ? "△" : "×"}
+                        {condition.status === "available"
+                          ? "✓"
+                          : condition.status === "limited"
+                            ? "△"
+                            : "×"}
                       </span>
                       <div>
-                        <p className="text-sm md:text-base font-bold text-gray-800">{condition.name}</p>
+                        <p className="text-sm md:text-base font-bold text-gray-800">
+                          {condition.name}
+                        </p>
                         <p className="text-xs text-gray-500 mt-0.5">{condition.note}</p>
                       </div>
                     </div>
@@ -268,7 +334,10 @@ export default async function RegionalAreaPage({
             <div className="section-content">
               <div className="section-card section-card-mint">
                 <p className="text-center text-sm text-gray-600 mb-6">
-                  <span className="text-2xl font-black mr-1" style={{ color: area.theme.primary }}>
+                  <span
+                    className="text-2xl font-black mr-1"
+                    style={{ color: area.theme.primary }}
+                  >
                     {area.visitableAreas.length}
                   </span>
                   地区で訪問対応しています
@@ -292,7 +361,7 @@ export default async function RegionalAreaPage({
           </div>
         </section>
 
-        {/* ===== 中間CTA（帯デザインのためsection-wrapperパターン適用外） ===== */}
+        {/* ===== 中間CTA ===== */}
         <section
           className="py-10 md:py-14"
           style={{ backgroundColor: area.theme.primary }}
@@ -313,6 +382,7 @@ export default async function RegionalAreaPage({
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
+                    aria-hidden="true"
                   >
                     <path
                       strokeLinecap="round"
@@ -330,9 +400,7 @@ export default async function RegionalAreaPage({
                   お問い合わせフォーム
                 </a>
               </div>
-              <p className="text-white/70 text-xs mt-3">
-                24時間受付・初回相談無料
-              </p>
+              <p className="text-white/70 text-xs mt-3">24時間受付・初回相談無料</p>
             </div>
           </div>
         </section>
@@ -380,7 +448,7 @@ export default async function RegionalAreaPage({
                 </div>
                 <div className="text-center mt-8">
                   <Link
-                    href="/#staff"
+                    href={`/stations/${resolvedParams.slug}#staff`}
                     className="inline-flex items-center gap-2 text-sm font-bold transition-colors"
                     style={{ color: area.theme.primary }}
                   >
@@ -390,6 +458,7 @@ export default async function RegionalAreaPage({
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
+                      aria-hidden="true"
                     >
                       <path
                         strokeLinecap="round"
@@ -433,7 +502,9 @@ export default async function RegionalAreaPage({
                       >
                         ✓
                       </span>
-                      <span className="text-gray-700 text-sm md:text-base">{feature}</span>
+                      <span className="text-gray-700 text-sm md:text-base">
+                        {feature}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -456,13 +527,18 @@ export default async function RegionalAreaPage({
                   {otherAreas.map((otherArea) => (
                     <Link
                       key={otherArea.slug}
-                      href={`/areas/${otherArea.slug}`}
+                      href={`/stations/${resolvedParams.slug}/areas/${otherArea.slug}`}
                       className="group bg-white rounded-2xl p-4 shadow-sm hover-lift border border-transparent transition-all"
                     >
-                      <p className="font-bold text-sm" style={{ color: otherArea.theme.primary }}>
+                      <p
+                        className="font-bold text-sm"
+                        style={{ color: otherArea.theme.primary }}
+                      >
                         {otherArea.name}
                       </p>
-                      <p className="text-xs text-gray-400">{otherArea.theme.tagline}</p>
+                      <p className="text-xs text-gray-400">
+                        {otherArea.theme.tagline}
+                      </p>
                     </Link>
                   ))}
                 </div>
@@ -491,8 +567,19 @@ export default async function RegionalAreaPage({
                     className="inline-flex items-center gap-3 text-white px-8 py-4 rounded-full text-lg font-bold transition-all hover:scale-105 shadow-lg hover:shadow-xl"
                     style={{ backgroundColor: area.theme.primary }}
                   >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                      />
                     </svg>
                     {officeInfo.phone}
                   </a>
@@ -506,8 +593,7 @@ export default async function RegionalAreaPage({
             </div>
           </div>
         </section>
-      </main>
-      <Footer />
+      </div>
     </>
   );
 }

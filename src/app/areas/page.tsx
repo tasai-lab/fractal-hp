@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   description:
     "フラクタル訪問看護 船橋の対応エリア一覧。船橋市・八千代市・習志野市・千葉市花見川区・稲毛区で24時間365日の訪問看護サービスを提供しています。各地域の詳細情報もご覧いただけます。",
   alternates: {
-    canonical: "https://fractal-hokan.com/areas",
+    canonical: "https://fractal-hokan.com/stations/funabashi/areas",
   },
   openGraph: {
     title: "訪問看護 対応エリア一覧｜フラクタル訪問看護 船橋",

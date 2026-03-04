@@ -34,13 +34,13 @@ export const metadata: Metadata = {
     "訪問看護 連携",
   ],
   alternates: {
-    canonical: "/services/for-care-managers",
+    canonical: "https://fractal-hokan.com/services/for-care-managers",
   },
   openGraph: {
     title: "ケアマネージャー様へ｜訪問看護のご依頼・連携",
     description: "船橋市・八千代市・習志野市のケアマネージャー様へ。フラクタル訪問看護は最短即日対応、365日訪問可能。訪問看護指示書の取得サポート、定期報告体制も充実。",
     type: "website",
-    url: "https://fractal-hokan.com/for-care-managers",
+    url: "https://fractal-hokan.com/services/for-care-managers",
     images: [{ url: "/images/ogp/ogp-image.png", width: 1200, height: 630 }],
   },
   twitter: {
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ForCareManagersLayout({
+export default function ServicesForCareManagersLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -63,7 +63,8 @@ export default function ForCareManagersLayout({
       <BreadcrumbStructuredData
         items={[
           { name: "ホーム", url: "https://fractal-hokan.com" },
-          { name: "ケアマネージャー様へ", url: "https://fractal-hokan.com/for-care-managers" },
+          { name: "サービス案内", url: "https://fractal-hokan.com/services" },
+          { name: "ケアマネージャー様へ", url: "https://fractal-hokan.com/services/for-care-managers" },
         ]}
       />
       <Script

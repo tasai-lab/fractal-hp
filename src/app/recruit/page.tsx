@@ -546,7 +546,7 @@ export default function RecruitPage() {
                       )}
                       {item.areaData && item.pastel && (
                         <Link
-                          href={`/areas/${item.areaData.slug}`}
+                          href={`/stations/funabashi/areas/${item.areaData.slug}`}
                           className="group flex items-center justify-between p-3 rounded-lg transition-colors"
                           style={{ backgroundColor: `${item.pastel.primary}30` }}
                         >

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     "フラクタル訪問看護 船橋",
   ],
   alternates: {
-    canonical: "/documents",
+    canonical: "/stations/funabashi/documents",
   },
   openGraph: {
     title: "各種書類・情報公開 | フラクタル訪問看護 船橋",

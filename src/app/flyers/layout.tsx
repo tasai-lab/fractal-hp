@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     "船橋 訪問看護 パンフレット",
   ],
   alternates: {
-    canonical: "/flyers",
+    canonical: "/stations/funabashi/flyers",
   },
   openGraph: {
     title: "チラシ・広報誌バックナンバー | フラクタル訪問看護 船橋",

@@ -34,13 +34,13 @@ export const metadata: Metadata = {
     "医療機関 訪問看護",
   ],
   alternates: {
-    canonical: "/services/for-medical-institutions",
+    canonical: "https://fractal-hokan.com/services/for-medical-institutions",
   },
   openGraph: {
     title: "医療機関の皆様へ｜退院支援・在宅医療連携",
     description: "船橋市・八千代市・習志野市の医療機関様へ。フラクタル訪問看護は退院支援から在宅療養まで連携。訪問看護指示書の受付、24時間対応、定期報告体制完備。",
     type: "website",
-    url: "https://fractal-hokan.com/for-medical-institutions",
+    url: "https://fractal-hokan.com/services/for-medical-institutions",
     images: [{ url: "/images/ogp/ogp-image.png", width: 1200, height: 630 }],
   },
   twitter: {
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ForMedicalInstitutionsLayout({
+export default function ServicesForMedicalInstitutionsLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -63,7 +63,8 @@ export default function ForMedicalInstitutionsLayout({
       <BreadcrumbStructuredData
         items={[
           { name: "ホーム", url: "https://fractal-hokan.com" },
-          { name: "医療機関の皆様へ", url: "https://fractal-hokan.com/for-medical-institutions" },
+          { name: "サービス案内", url: "https://fractal-hokan.com/services" },
+          { name: "医療機関の皆様へ", url: "https://fractal-hokan.com/services/for-medical-institutions" },
         ]}
       />
       <Script

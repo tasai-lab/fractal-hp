@@ -35,7 +35,7 @@ export default function Flow() {
                         <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3">
                           {step.title}
                         </h3>
-                        <p className="text-foreground leading-relaxed text-base md:text-lg">
+                        <p className="text-foreground leading-relaxed text-sm md:text-base">
                           {step.description}
                         </p>
                       </div>
@@ -82,7 +82,7 @@ export default function Flow() {
             {/* 医療機関・ケアマネ向けリンク */}
             <div className="mt-8 md:mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Link
-                href="/for-care-managers"
+                href="/services/for-care-managers"
                 className="group flex items-center justify-between p-4 md:p-5 bg-white rounded-2xl shadow-sm hover:shadow-md transition-all border border-gray-100"
               >
                 <div>
@@ -92,7 +92,7 @@ export default function Flow() {
                 <ArrowRight className="w-5 h-5 text-[var(--color-primary)] group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
-                href="/for-medical-institutions"
+                href="/services/for-medical-institutions"
                 className="group flex items-center justify-between p-4 md:p-5 bg-white rounded-2xl shadow-sm hover:shadow-md transition-all border border-gray-100"
               >
                 <div>

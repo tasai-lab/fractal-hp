@@ -26,6 +26,66 @@
         "source": "/recruit/therapist/",
         "destination": "/recruit/#positions",
         "type": 301
+      },
+      {
+        "source": "/for-care-managers",
+        "destination": "/services/for-care-managers",
+        "type": 301
+      },
+      {
+        "source": "/for-care-managers/",
+        "destination": "/services/for-care-managers",
+        "type": 301
+      },
+      {
+        "source": "/for-medical-institutions",
+        "destination": "/services/for-medical-institutions",
+        "type": 301
+      },
+      {
+        "source": "/for-medical-institutions/",
+        "destination": "/services/for-medical-institutions",
+        "type": 301
+      },
+      {
+        "source": "/areas",
+        "destination": "/stations/funabashi/areas",
+        "type": 301
+      },
+      {
+        "source": "/areas/",
+        "destination": "/stations/funabashi/areas",
+        "type": 301
+      },
+      {
+        "source": "/areas/:slug",
+        "destination": "/stations/funabashi/areas/:slug",
+        "type": 301
+      },
+      {
+        "source": "/areas/:slug/",
+        "destination": "/stations/funabashi/areas/:slug",
+        "type": 301
+      },
+      {
+        "source": "/documents",
+        "destination": "/stations/funabashi/documents",
+        "type": 301
+      },
+      {
+        "source": "/documents/",
+        "destination": "/stations/funabashi/documents",
+        "type": 301
+      },
+      {
+        "source": "/flyers",
+        "destination": "/stations/funabashi/flyers",
+        "type": 301
+      },
+      {
+        "source": "/flyers/",
+        "destination": "/stations/funabashi/flyers",
+        "type": 301
       }
     ],
     "rewrites": [

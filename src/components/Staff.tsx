@@ -58,7 +58,7 @@ export default function Staff() {
           <div className="section-card section-card-blue">
             {/* サブタイトル */}
             <div className="mb-8 md:mb-12">
-              <p className="text-xl md:text-2xl font-bold text-center text-primary">
+              <p className="text-lg md:text-xl font-bold text-center text-primary">
                 フラクタルの仲間たち
               </p>
             </div>
@@ -90,7 +90,7 @@ export default function Staff() {
                   {/* スタッフ情報 */}
                   <div className="text-center mb-2 md:mb-4">
                     <div className="text-xs md:text-base text-muted mb-0.5 md:mb-2">{staff.role}</div>
-                    <h3 className="text-lg md:text-2xl font-bold mb-0.5 md:mb-1">{staff.name}</h3>
+                    <h3 className="text-lg md:text-xl font-bold mb-0.5 md:mb-1">{staff.name}</h3>
                     <p className="text-xs md:text-base text-muted mb-2 md:mb-4">{staff.nameReading}</p>
                   </div>
 
