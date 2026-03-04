@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import PageHero from "@/components/PageHero";
 import BackgroundTriangles from "@/components/BackgroundTriangles";
 import { BreadcrumbStructuredData } from "@/components/StructuredData";
 import { regionalData } from "@/lib/regional-data";
@@ -76,22 +77,18 @@ export default async function StationAreasPage({
         ]}
       />
 
-      {/* 訪問可能エリアセクション */}
-      <section className="section-wrapper bg-white relative overflow-hidden">
-        <BackgroundTriangles pattern="office" />
-        <div className="section-inner relative z-10">
-          <div className="section-title-area">
-            <h1 className="section-title">訪問看護 対応エリア</h1>
-            <div className="section-title-line" />
-          </div>
+      <PageHero
+        label="SERVICE AREAS"
+        title="対応エリア一覧"
+        description="船橋市・八千代市・習志野市・千葉市を中心に24時間365日の訪問看護サービスを提供しています"
+      />
 
-          <div className="section-content">
-            <div className="section-card section-card-mint space-y-8">
-              {/* エリアマップ */}
-              <div>
-                <p className="text-center text-[var(--color-ink-soft)] mb-6">
-                  船橋市・八千代市・習志野市・千葉市を中心に24時間365日の訪問看護サービスを提供しています
-                </p>
+      {/* エリアマップ */}
+      <section className="relative overflow-hidden">
+        <BackgroundTriangles pattern="office" />
+        <div className="max-w-5xl mx-auto px-4 py-10 md:py-14 relative z-10 space-y-8">
+          {/* エリアマップ */}
+          <div>
                 <div className="relative w-full aspect-square md:aspect-[4/3] lg:aspect-[3/2]">
                   <Image
                     src="/images/service-area/area-map-new.png"
@@ -258,8 +255,6 @@ export default async function StationAreasPage({
                       </div>
                     </div>
                   ))}
-              </div>
-            </div>
           </div>
         </div>
       </section>

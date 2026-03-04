@@ -88,76 +88,78 @@ export default function ServicesOverview() {
         </div>
 
         <div className="section-content">
-          {/* サービスカード群 */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-            {services.map((service) => (
-              <Link
-                key={service.href}
-                href={service.href}
-                className="group flex flex-col rounded-2xl border border-[var(--color-logo-light-green)] bg-white p-6 shadow-sm hover:shadow-md transition-shadow hover:border-[var(--color-logo-dark-green)]"
-              >
-                <div
-                  className="mb-4 text-[var(--color-logo-dark-green)]"
-                  aria-hidden="true"
-                >
-                  {service.icon}
-                </div>
-                <h3 className="text-lg font-bold heading-gothic text-[var(--color-ink)] mb-2 group-hover:text-[var(--color-logo-dark-green)] transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-sm text-[var(--color-ink-soft)] leading-relaxed flex-1">
-                  {service.description}
-                </p>
-                <span className="mt-4 inline-flex items-center text-sm font-bold text-[var(--color-logo-dark-green)]">
-                  詳しく見る
-                  <svg
-                    className="ml-1 w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </span>
-              </Link>
-            ))}
-          </div>
-
-          {/* 関係機関リンク */}
           <div className="section-card section-card-mint">
-            <p className="text-sm font-bold text-[var(--color-ink-soft)] mb-4">
-              関係機関の方へ
-            </p>
-            <div className="flex flex-wrap gap-3">
-              {relatedLinks.map((link) => (
+            {/* サービスカード群 */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-8">
+              {services.map((service) => (
                 <Link
-                  key={link.href}
-                  href={link.href}
-                  className="inline-flex items-center px-5 py-2 rounded-full border border-[var(--color-logo-dark-green)] text-[var(--color-logo-dark-green)] text-sm font-bold hover:bg-[var(--color-logo-dark-green)] hover:text-white transition-colors"
+                  key={service.href}
+                  href={service.href}
+                  className="group flex flex-col rounded-2xl bg-white p-5 md:p-6 shadow-sm hover:shadow-md transition-shadow"
                 >
-                  {link.label}
-                  <svg
-                    className="ml-1 w-3 h-3"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+                  <div
+                    className="mb-4 text-[var(--color-logo-dark-green)]"
                     aria-hidden="true"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
+                    {service.icon}
+                  </div>
+                  <h3 className="text-lg md:text-xl font-bold heading-gothic text-[var(--color-ink)] mb-2 group-hover:text-[var(--color-logo-dark-green)] transition-colors">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm md:text-base text-[var(--color-ink-soft)] leading-relaxed flex-1">
+                    {service.description}
+                  </p>
+                  <span className="mt-4 inline-flex items-center text-sm font-bold text-[var(--color-logo-dark-green)]">
+                    詳しく見る
+                    <svg
+                      className="ml-1 w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </span>
                 </Link>
               ))}
+            </div>
+
+            {/* 関係機関リンク */}
+            <div className="pt-6 border-t border-[var(--color-accent-mint)]">
+              <p className="text-sm font-bold text-[var(--color-ink-soft)] mb-4">
+                関係機関の方へ
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {relatedLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="inline-flex items-center px-5 py-2 rounded-full bg-white text-[var(--color-logo-dark-green)] text-sm font-bold hover:bg-[var(--color-logo-dark-green)] hover:text-white transition-colors shadow-sm"
+                  >
+                    {link.label}
+                    <svg
+                      className="ml-1 w-3 h-3"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         </div>

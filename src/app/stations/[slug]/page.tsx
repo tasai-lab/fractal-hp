@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import PageHero from "@/components/PageHero";
 import BackgroundTriangles from "@/components/BackgroundTriangles";
 import Contact from "@/components/Contact";
 import PerformanceSection from "@/components/PerformanceSection";
@@ -26,16 +27,16 @@ export default async function StationPage({
 
   return (
     <div className="overflow-x-hidden">
-      {/* ===== 事業所情報セクション ===== */}
-      <section id="office" className="section-wrapper bg-white relative overflow-hidden">
-        <BackgroundTriangles pattern="office" />
-        <div className="section-inner relative z-10">
-          <div className="section-title-area">
-            <h2 className="section-title">{station.shortName}ステーション</h2>
-            <div className="section-title-line" />
-          </div>
+      <PageHero
+        label="STATION"
+        title={station.name}
+        description={`${officeInfo.address.city}を中心に24時間365日の訪問看護サービスを提供しています`}
+      />
 
-          <div className="section-content space-y-8">
+      {/* ===== 事業所情報セクション ===== */}
+      <section id="office" className="relative overflow-hidden">
+        <BackgroundTriangles pattern="office" />
+        <div className="max-w-5xl mx-auto px-4 py-10 md:py-14 relative z-10 space-y-8">
             {/* 事業所情報カード */}
             <div className="section-card section-card-blue">
               <h3 className="text-xl md:text-2xl font-bold text-left text-primary mb-6 md:mb-8">
@@ -156,7 +157,6 @@ export default async function StationPage({
                 </svg>
               </Link>
             </div>
-          </div>
         </div>
       </section>
 

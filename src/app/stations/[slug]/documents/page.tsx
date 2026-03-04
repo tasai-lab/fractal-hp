@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import PageHero from "@/components/PageHero";
 import BackgroundTriangles from "@/components/BackgroundTriangles";
 import { BreadcrumbStructuredData } from "@/components/StructuredData";
 import {
@@ -190,39 +191,11 @@ export default async function StationDocumentsPage({
         ]}
       />
 
-      {/* Hero Section */}
-      <div className="px-4 md:px-8 py-6 md:py-10">
-        <section className="relative min-h-[30vh] md:min-h-[35vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[var(--color-logo-light-green)] to-[#d4edda] rounded-3xl md:rounded-[3rem] shadow-lg">
-          {/* 背景装飾 */}
-          <div className="absolute inset-0 opacity-10">
-            <svg
-              className="w-full h-full"
-              viewBox="0 0 100 100"
-              preserveAspectRatio="none"
-              aria-hidden="true"
-            >
-              <polygon points="0,0 100,0 100,100" fill="white" />
-              <polygon
-                points="0,100 50,0 100,100"
-                fill="white"
-                opacity="0.5"
-              />
-            </svg>
-          </div>
-
-          <div className="relative z-10 max-w-6xl mx-auto px-4 py-16 md:py-20 text-center text-[var(--color-logo-dark-green)]">
-            <span className="inline-block px-4 py-2 rounded-full text-sm font-medium tracking-wider mb-6 bg-white/60 text-[var(--color-logo-dark-green)]">
-              DOCUMENTS
-            </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 heading-gothic">
-              各種書類・情報公開
-            </h1>
-            <p className="text-lg md:text-xl text-[var(--color-ink-soft)]">
-              事業継続計画（BCP）、契約書、重要事項説明書等の各種書類を掲載しています
-            </p>
-          </div>
-        </section>
-      </div>
+      <PageHero
+        label="DOCUMENTS"
+        title="各種書類・情報公開"
+        description="事業継続計画（BCP）、契約書、重要事項説明書等の各種書類を掲載しています"
+      />
 
       {/* 書類一覧 */}
       <div className="relative overflow-hidden">

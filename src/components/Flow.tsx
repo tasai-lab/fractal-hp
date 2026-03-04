@@ -35,7 +35,7 @@ export default function Flow() {
                         <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3">
                           {step.title}
                         </h3>
-                        <p className="text-foreground leading-relaxed text-base md:text-lg">
+                        <p className="text-foreground leading-relaxed text-sm md:text-base">
                           {step.description}
                         </p>
                       </div>

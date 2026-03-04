@@ -18,18 +18,18 @@ export default function PerformanceSection() {
         </div>
 
         <div className="section-content">
-          <div className="w-full">
+          <div className="section-card section-card-pink">
             {/* リード文 */}
-            <p className="text-[var(--color-ink-soft)] text-base md:text-lg leading-relaxed mb-8 md:mb-12">
+            <p className="text-[var(--color-ink-soft)] text-base md:text-lg leading-relaxed mb-8">
               地域に密着した訪問看護ステーションとして、着実に実績を積み重ねています。
             </p>
 
             {/* カウントアップカード */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-8 md:mb-12">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-8">
               {countUpMetrics.map((metric) => (
                 <div
                   key={metric.label}
-                  className="bg-white rounded-2xl p-5 md:p-6 shadow-sm border border-gray-100 hover-lift text-center"
+                  className="bg-white rounded-2xl p-5 md:p-6 shadow-sm hover-lift text-center"
                 >
                   <div className="text-3xl md:text-4xl font-bold text-[var(--color-logo-dark-green)] mb-1 heading-gothic">
                     <CountUp
@@ -49,7 +49,7 @@ export default function PerformanceSection() {
             </div>
 
             {/* エリア内訳 */}
-            <div className="bg-[var(--color-logo-light-green)]/10 rounded-2xl p-5 md:p-8">
+            <div className="pt-6 border-t border-[var(--color-accent-pink)]">
               <h3 className="text-base md:text-lg font-bold text-[var(--color-ink)] mb-4 heading-gothic">
                 エリア別ご利用者数
               </h3>
