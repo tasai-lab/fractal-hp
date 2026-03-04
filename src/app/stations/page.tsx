@@ -3,7 +3,7 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
-import BackgroundTriangles from "@/components/BackgroundTriangles";
+
 import { BreadcrumbStructuredData } from "@/components/StructuredData";
 import { getActiveStations } from "@/lib/stations-data";
 
@@ -46,7 +46,7 @@ export default function StationsPage() {
         />
 
         <section className="relative">
-          <BackgroundTriangles pattern="office" />
+
           <div className="max-w-4xl mx-auto px-4 py-10 md:py-14 relative z-10">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
               {stations.map((station) => (

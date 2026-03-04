@@ -9,7 +9,7 @@ export default function Footer() {
 
   return (
     <footer
-      className="py-8 md:py-12 text-white"
+      className="relative z-[2] py-8 md:py-12 text-white"
       style={{ background: "#1a1a1a" }}
     >
       <div className="section-container">

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import BackgroundTriangles from "@/components/BackgroundTriangles";
+
 import Contact from "@/components/Contact";
 import { servicesData } from "@/lib/services-data";
 import { officeInfo } from "@/lib/data";
@@ -37,7 +37,7 @@ export default function ServicesPage() {
       <main className="pt-14 lg:pt-20">
         {/* ヒーローセクション */}
         <section className="section-wrapper bg-white relative">
-          <BackgroundTriangles pattern="about" />
+
           <div className="section-inner relative z-10">
             <div className="section-title-area">
               <h1 className="section-title heading-gothic">サービス案内</h1>
@@ -84,7 +84,7 @@ export default function ServicesPage() {
 
         {/* サービス一覧 */}
         <section className="section-wrapper relative" style={{ backgroundColor: "#F8FAF9" }}>
-          <BackgroundTriangles pattern="features" />
+
           <div className="section-inner relative z-10">
             <div className="section-title-area">
               <h2 className="section-title heading-gothic">専門サービス</h2>
@@ -180,7 +180,7 @@ export default function ServicesPage() {
           id="contact"
           className="section-wrapper bg-white relative"
         >
-          <BackgroundTriangles pattern="contact" />
+
           <div className="section-inner relative z-10">
             <div className="section-title-area">
               <h2 className="section-title heading-gothic">お問い合わせ</h2>

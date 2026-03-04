@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import BackgroundTriangles from "@/components/BackgroundTriangles";
+
 import { pricingFAQs, nursingCareInsurance, medicalInsurance } from "@/lib/pricing-data";
 
 // 各種加算の説明データ
@@ -74,7 +74,7 @@ export default function PricingPage() {
 
         {/* 訪問看護の費用について */}
         <section className="relative py-8 md:py-12">
-          <BackgroundTriangles pattern="about" />
+
           <div className="max-w-6xl mx-auto px-4 relative z-10">
             <div className="text-center mb-8">
               <h2 className="text-xl md:text-2xl font-bold mb-2 heading-gothic text-[var(--color-ink)]">
@@ -105,7 +105,7 @@ export default function PricingPage() {
 
         {/* 介護保険の料金表 */}
         <section className="bg-gradient-to-br from-gray-50 to-white relative py-8 md:py-12">
-          <BackgroundTriangles pattern="features" />
+
           <div className="max-w-6xl mx-auto px-4 relative z-10">
             <div className="text-center mb-8">
               <h2 className="text-xl md:text-2xl font-bold mb-2 heading-gothic text-[var(--color-ink)]">
@@ -187,7 +187,7 @@ export default function PricingPage() {
 
         {/* 医療保険の料金表 */}
         <section className="relative py-8 md:py-12">
-          <BackgroundTriangles pattern="office" />
+
           <div className="max-w-6xl mx-auto px-4 relative z-10">
             <div className="text-center mb-8">
               <h2 className="text-xl md:text-2xl font-bold mb-2 heading-gothic text-[var(--color-ink)]">
@@ -269,7 +269,7 @@ export default function PricingPage() {
 
         {/* 各種加算の説明 */}
         <section className="bg-gradient-to-br from-gray-50 to-white relative py-8 md:py-12">
-          <BackgroundTriangles pattern="flow" />
+
           <div className="max-w-6xl mx-auto px-4 relative z-10">
             <div className="text-center mb-8">
               <h2 className="text-xl md:text-2xl font-bold mb-2 heading-gothic text-[var(--color-ink)]">
@@ -300,7 +300,7 @@ export default function PricingPage() {
 
         {/* FAQ */}
         <section className="relative py-8 md:py-12">
-          <BackgroundTriangles pattern="faq" />
+
           <div className="max-w-6xl mx-auto px-4 relative z-10">
             <div className="text-center mb-8">
               <h2 className="text-xl md:text-2xl font-bold mb-2 heading-gothic text-[var(--color-ink)]">

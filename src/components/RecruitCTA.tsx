@@ -1,5 +1,4 @@
 import Link from "next/link";
-import BackgroundTriangles from "./BackgroundTriangles";
 import { signOnBonus } from "@/lib/recruit-data";
 
 export default function RecruitCTA() {
@@ -8,7 +7,6 @@ export default function RecruitCTA() {
       id="recruit"
       className="section-wrapper bg-white relative"
     >
-      <BackgroundTriangles pattern="recruit" />
       <div className="section-inner relative z-10">
         <div className="section-title-area">
           <h2 className="section-title heading-gothic">採用情報</h2>

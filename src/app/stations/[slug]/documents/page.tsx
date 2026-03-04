@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import PageHero from "@/components/PageHero";
-import BackgroundTriangles from "@/components/BackgroundTriangles";
+
 import { BreadcrumbStructuredData } from "@/components/StructuredData";
 import {
   documents,
@@ -199,7 +199,7 @@ export default async function StationDocumentsPage({
 
       {/* 書類一覧 */}
       <div className="relative overflow-hidden">
-        <BackgroundTriangles pattern="company" />
+
         <div className="max-w-4xl mx-auto px-4 py-10 md:py-14 relative z-10">
           {documentCategories.map((category) => {
             const categoryDocs = documents.filter(

@@ -2,8 +2,6 @@
 
 import { contactTypes } from "@/lib/data";
 import { FormEvent, useState } from "react";
-import BackgroundTriangles from "./BackgroundTriangles";
-
 export default function Contact({ initialContactType, embedded = false, hideTitle = false }: { initialContactType?: string, embedded?: boolean, hideTitle?: boolean }) {
   const [formData, setFormData] = useState({
     name: "",
@@ -230,7 +228,6 @@ export default function Contact({ initialContactType, embedded = false, hideTitl
       id="contact"
       className="section-wrapper bg-white relative"
     >
-      <BackgroundTriangles pattern="contact" />
       <div className="section-inner relative z-10">
         <div className="section-title-area">
           <h2 className="section-title">お問い合わせ</h2>

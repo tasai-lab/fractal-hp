@@ -1,7 +1,5 @@
 import React from "react";
 import { conditionCategories, statusConfig } from "@/lib/conditions-data";
-import BackgroundTriangles from "@/components/BackgroundTriangles";
-
 interface ConditionsTableProps {
   /** true の場合、セクションラッパーなしでコンテンツのみ返す */
   embedded?: boolean;
@@ -100,7 +98,6 @@ export default function ConditionsTable({ embedded = false }: ConditionsTablePro
 
   return (
     <section className="section-wrapper bg-white relative">
-      <BackgroundTriangles pattern="office" />
       <div className="relative z-10 section-container">
         <div className="text-center mb-8 md:mb-12">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 heading-gothic text-[var(--color-ink)]">

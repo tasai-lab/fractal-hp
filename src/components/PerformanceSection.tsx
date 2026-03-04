@@ -1,6 +1,5 @@
 "use client";
 
-import BackgroundTriangles from "@/components/BackgroundTriangles";
 import { CountUp } from "@/components/CountUp";
 import { countUpMetrics } from "@/lib/performance-data";
 
@@ -10,7 +9,6 @@ export default function PerformanceSection() {
       id="performance"
       className="section-wrapper bg-white relative"
     >
-      <BackgroundTriangles pattern="serviceArea" />
       <div className="section-inner relative z-10">
         <div className="section-title-area">
           <h2 className="section-title heading-gothic">実績</h2>

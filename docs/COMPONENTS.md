@@ -23,7 +23,8 @@
 | Company | Company.tsx | `src/components/Company.stories.tsx` | セクション | 会社情報 |
 | FAQ | FAQ.tsx | `src/components/FAQ.stories.tsx` | セクション | よくある質問 |
 | Footer | Footer.tsx | `src/components/Footer.stories.tsx` | レイアウト | グローバルフッター |
-| BackgroundTriangles | BackgroundTriangles.tsx | `src/components/BackgroundTriangles.stories.tsx` | 装飾 | 背景三角形 |
+| PageBackground | PageBackground.tsx | —（Stories未作成） | 装飾 | ページ全体ランダム背景装飾 |
+| BackgroundTriangles | BackgroundTriangles.tsx | `src/components/BackgroundTriangles.stories.tsx` | 装飾 | 背景三角形（廃止・PageBackgroundに移行） |
 | FloatingRecruitBanner | FloatingRecruitBanner.tsx | `src/components/FloatingRecruitBanner.stories.tsx` | ユーティリティ | フローティング採用バナー |
 | ScrollToTop | ScrollToTop.tsx | `src/components/ScrollToTop.stories.tsx` | ユーティリティ | ページトップへ戻るボタン |
 | UpdatesPopup | UpdatesPopup.tsx | —（無効化中） | ユーティリティ | 更新通知ポップアップ |
@@ -355,41 +356,48 @@
 
 ## 装飾コンポーネント
 
-### BackgroundTriangles
+### PageBackground
 
-セクション背景の装飾三角形。
+ページ全体にランダム配置の背景装飾シェイプを表示するコンポーネント。BackgroundTrianglesの後継。
 
-**ファイル**: `src/components/BackgroundTriangles.tsx`
+**ファイル**: `src/components/PageBackground.tsx`
+
+**Stories**: —（Stories未作成）
+
+**種別**: クライアントコンポーネント (`"use client"`)
+
+**機能**:
+- ページ全体（`position: absolute; inset: 0`）に有機的なシェイプをランダム配置
+- 大型シェイプ（480-800px）と小型シェイプ（60-140px）の2種類
+- 5色のパステルカラーパレット（ブランドカラーとは別の装飾専用色）
+- 衝突検出による重なり防止
+- セグメント分割による均等分布
+- 読み込みごとに配置が変化（クライアントサイド生成）
+- `aria-hidden="true"` でアクセシビリティ対応
+
+**Props**: なし
+
+**z-indexレイヤー構造**:
+| 要素 | z-index |
+|------|---------|
+| PageBackgroundコンテナ | 1 |
+| Hero / Footer / PageHero / AreaHero | 2 |
+| セクションコンテンツ（section-inner） | 10 |
+| ScrollToTop | 30 |
+| FloatingRecruitBanner | 40 |
+| Header | 50 |
+
+**使用箇所**: `src/app/layout.tsx`（ページ全体で1箇所のみ）
+
+---
+
+### BackgroundTriangles（廃止）
+
+セクション背景の装飾三角形。**PageBackgroundに移行済み。新規使用禁止。**
+
+**ファイル**: `src/components/BackgroundTriangles.tsx`（参照用に保持）
 
 **Stories**: `src/components/BackgroundTriangles.stories.tsx`
-
-**Props**:
-
-| Prop | 型 | 説明 |
-|------|---|------|
-| pattern | string | 装飾パターン名 |
-
-**パターン一覧**:
-- `about` - フラクタルとは
-- `features` - 特徴
-- `office` - 事業所情報
-- `serviceArea` - 訪問エリア
-- `flow` - ご利用の流れ
-- `staff` - スタッフ紹介
-- `recruit` - リクルート
-- `contact` - お問い合わせ
-- `company` - 会社情報
-- `faq` - よくある質問
-
-**使用例**:
-```tsx
-<section className="relative">
-  <BackgroundTriangles pattern="about" />
-  <div className="relative z-10">
-    {/* コンテンツ */}
-  </div>
-</section>
-```
 
 ---
 

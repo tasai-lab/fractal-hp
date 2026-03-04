@@ -1,13 +1,9 @@
 import { philosophyItems } from "@/lib/data";
 import Image from "next/image";
-import BackgroundTriangles from "./BackgroundTriangles";
 
 export default function About() {
   return (
     <section id="about" className="section-wrapper bg-white relative">
-      {/* 背景装飾 */}
-      <BackgroundTriangles pattern="about" />
-
       <div className="section-inner relative z-10">
         {/* セクションタイトル（縦書き） */}
         <div className="section-title-area">

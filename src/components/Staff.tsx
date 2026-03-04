@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { staffMembers } from "@/lib/data";
-import BackgroundTriangles from "./BackgroundTriangles";
 import Image from "next/image";
 
 const bgColors = [
@@ -46,7 +45,6 @@ export default function Staff() {
 
   return (
     <section id="staff" className="section-wrapper bg-white relative">
-      <BackgroundTriangles pattern="staff" />
       <div className="section-inner relative z-10">
         <div className="section-title-area">
           <h2 className="section-title">スタッフ紹介</h2>

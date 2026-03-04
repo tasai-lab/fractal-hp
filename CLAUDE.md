@@ -69,12 +69,12 @@ src/
 - 電話番号リンク → docs/COMPONENT-OPTIMIZATION.md のパターンを参照
 - グラフ・チャート → `src/components/charts/` のコンポーネントを再利用
 - カウントアップ数値 → `CountUp` コンポーネントを使用
-- セクション背景装飾 → `BackgroundTriangles` を使用
+- セクション背景装飾 → `PageBackground`（layout.tsxで全ページ共通配置済み。個別追加不要）
 - スクロールアニメーション → `useScrollAnimation` フックを使用
 
 ### 再利用必須コンポーネント
 
-- `BackgroundTriangles` - セクション背景装飾（全10パターン）
+- `PageBackground` - ページ全体ランダム背景装飾（layout.tsxで配置済み。BackgroundTrianglesの後継）
 - `CountUp` - 数値カウントアップ（prefix/suffix対応）
 - `StructuredData` 系 - SEO構造化データ
 - `src/components/charts/` 系 - グラフ・チャート（3種類）
@@ -84,7 +84,6 @@ src/
 
 ```tsx
 <section className="relative">
-  <BackgroundTriangles pattern="[section-name]" />
   <div className="section-wrapper">
     <div className="section-inner">
       {/* コンテンツ */}
@@ -93,7 +92,7 @@ src/
 </section>
 ```
 
-**IMPORTANT**: BackgroundTrianglesを含むセクションに `overflow-hidden` を付けないこと。水平スクロール防止は `body { overflow-x: hidden }` で対応済み。
+**NOTE**: 背景装飾は `PageBackground` が `layout.tsx` でページ全体に配置済み。個別セクションへの背景装飾追加は不要。水平スクロール防止は `body { overflow-x: hidden }` で対応済み。
 
 ### Storybook での視覚確認
 

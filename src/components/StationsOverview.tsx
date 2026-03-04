@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { getActiveStations } from "@/lib/stations-data";
 import { regionalData } from "@/lib/regional-data";
-import BackgroundTriangles from "./BackgroundTriangles";
-
 export default function StationsOverview() {
   const stations = getActiveStations();
 
@@ -11,7 +9,6 @@ export default function StationsOverview() {
       id="stations"
       className="section-wrapper bg-white relative"
     >
-      <BackgroundTriangles pattern="office" />
       <div className="section-inner relative z-10">
         <div className="section-title-area">
           <h2 className="section-title heading-gothic">事業所紹介</h2>

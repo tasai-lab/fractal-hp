@@ -1,8 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import BackgroundTriangles from "@/components/BackgroundTriangles";
-
 type FAQ = { question: string; answer: string };
 
 type Props = {
@@ -38,7 +36,6 @@ export default function AreaFAQ({ faqs, themeColor }: Props) {
 
   return (
     <section id="area-faq" className="section-wrapper relative">
-      <BackgroundTriangles pattern="faq" />
       <div className="section-inner relative z-10">
         <div className="section-title-area">
           <h2 className="section-title">よくあるご質問</h2>

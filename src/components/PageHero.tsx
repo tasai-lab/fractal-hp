@@ -1,5 +1,3 @@
-import BackgroundTriangles from "@/components/BackgroundTriangles";
-
 interface PageHeroProps {
   label: string;
   title: string;
@@ -16,8 +14,7 @@ export default function PageHero({
   const TitleTag = isH1 ? "h1" : "h2";
 
   return (
-    <section className="relative bg-white">
-      <BackgroundTriangles pattern="about" />
+    <section className="relative z-[2] bg-white">
       <div className="relative z-10 max-w-5xl mx-auto px-4 py-12 md:py-20 text-center">
         <span className="inline-block text-xs md:text-sm font-bold tracking-[0.2em] text-[var(--color-logo-light-green)] mb-4">
           {label}

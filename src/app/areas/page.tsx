@@ -6,7 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import Features from "@/components/Features";
-import BackgroundTriangles from "@/components/BackgroundTriangles";
+
 import { BreadcrumbStructuredData } from "@/components/StructuredData";
 import { regionalData } from "@/lib/regional-data";
 import { serviceAreas } from "@/lib/data";
@@ -43,7 +43,7 @@ export default function AreasPage() {
       <main className="pt-14 lg:pt-20">
         {/* 訪問可能エリアセクション */}
         <section className="section-wrapper bg-white relative">
-          <BackgroundTriangles pattern="office" />
+
           <div className="section-inner relative z-10">
             <div className="section-title-area">
               <h1 className="section-title">訪問看護 対応エリア</h1>
@@ -235,7 +235,7 @@ export default function AreasPage() {
 
         {/* お問い合わせセクション */}
         <section id="contact" className="section-wrapper bg-white relative">
-          <BackgroundTriangles pattern="about" />
+
           <div className="section-inner relative z-10">
             <div className="section-title-area">
               <h2 className="section-title">お問い合わせ</h2>
