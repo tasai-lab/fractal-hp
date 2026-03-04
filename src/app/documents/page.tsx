@@ -156,7 +156,7 @@ export default function DocumentsPage() {
       </div>
 
       {/* 書類一覧 */}
-      <div className="relative overflow-hidden">
+      <div className="relative">
         <BackgroundTriangles pattern="company" />
         <div className="max-w-4xl mx-auto px-4 py-10 md:py-14 relative z-10">
           {documentCategories.map((category) => {
