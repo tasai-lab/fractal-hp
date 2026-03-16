@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
 import PageHero from "@/components/PageHero";
 
 import { BreadcrumbStructuredData } from "@/components/StructuredData";
@@ -154,37 +152,75 @@ export default async function StationAreasPage({
                           上記以外の地域も承ります
                         </p>
 
-                        {/* 詳細リンク */}
+                        {/* 統計グリッド */}
                         {areaData && (
-                          <Link
-                            href={`/stations/${slug}/areas/${areaData.slug}`}
-                            className="group flex items-center justify-between p-3 rounded-lg transition-colors mt-auto"
-                            style={{ backgroundColor: `${areaData.theme.primary}15` }}
-                          >
-                            <div className="flex items-center gap-3">
-                              <div>
-                                <span
-                                  className="font-bold text-sm"
+                          <div className="border-t border-gray-100 pt-3">
+                            <div className="grid grid-cols-4 gap-2 mb-2">
+                              <div className="text-center">
+                                <p
+                                  className="text-xs font-bold leading-tight"
+                                  style={{ color: areaData.theme.primary }}
+                                >
+                                  {areaData.population.total}
+                                </p>
+                                <p className="text-[10px] text-[var(--color-ink-soft)] mt-0.5">総人口</p>
+                              </div>
+                              <div className="text-center">
+                                <p
+                                  className="text-xs font-bold leading-tight"
                                   style={{ color: areaData.theme.primary }}
                                 >
                                   {areaData.population.elderlyRate}
-                                </span>
-                                <span className="text-xs text-[var(--color-ink-soft)] ml-1">高齢化率</span>
+                                </p>
+                                <p className="text-[10px] text-[var(--color-ink-soft)] mt-0.5">高齢化率</p>
                               </div>
-                              <div className="h-4 w-px bg-gray-300" />
-                              <div>
-                                <span className="text-xs text-[var(--color-ink-soft)]">人口</span>
-                                <span className="text-sm font-medium ml-1">{areaData.population.total}</span>
+                              <div className="text-center">
+                                <p
+                                  className="text-xs font-bold leading-tight"
+                                  style={{ color: areaData.theme.primary }}
+                                >
+                                  {areaData.population.elderly}
+                                </p>
+                                <p className="text-[10px] text-[var(--color-ink-soft)] mt-0.5">高齢者人口</p>
+                              </div>
+                              <div className="text-center">
+                                <p
+                                  className="text-xs font-bold leading-tight"
+                                  style={{ color: areaData.theme.primary }}
+                                >
+                                  {areaData.population.youngRate}
+                                </p>
+                                <p className="text-[10px] text-[var(--color-ink-soft)] mt-0.5">年少人口率</p>
                               </div>
                             </div>
-                            <div
-                              className="flex items-center gap-1 text-sm font-bold group-hover:gap-2 transition-all"
-                              style={{ color: areaData.theme.primary }}
-                            >
-                              <span>詳しく</span>
-                              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                            </div>
-                          </Link>
+
+                            {/* 実績グリッド */}
+                            {areaData.areaStats && (
+                              <div
+                                className="grid grid-cols-2 gap-2 mt-2 rounded-lg p-2"
+                                style={{ backgroundColor: `${areaData.theme.primary}10` }}
+                              >
+                                <div className="text-center">
+                                  <p
+                                    className="text-sm font-bold"
+                                    style={{ color: areaData.theme.primary }}
+                                  >
+                                    {areaData.areaStats.patients}名
+                                  </p>
+                                  <p className="text-[10px] text-[var(--color-ink-soft)]">利用者数</p>
+                                </div>
+                                <div className="text-center">
+                                  <p
+                                    className="text-sm font-bold"
+                                    style={{ color: areaData.theme.primary }}
+                                  >
+                                    {areaData.areaStats.monthlyVisits}件
+                                  </p>
+                                  <p className="text-[10px] text-[var(--color-ink-soft)]">月間訪問数</p>
+                                </div>
+                              </div>
+                            )}
+                          </div>
                         )}
                       </div>
                     </div>
@@ -223,35 +259,74 @@ export default async function StationAreasPage({
                           訪問可能エリアについてはお問い合わせください
                         </p>
 
-                        <Link
-                          href={`/stations/${slug}/areas/${areaData.slug}`}
-                          className="group flex items-center justify-between p-3 rounded-lg transition-colors mt-auto"
-                          style={{ backgroundColor: `${areaData.theme.primary}15` }}
-                        >
-                          <div className="flex items-center gap-3">
-                            <div>
-                              <span
-                                className="font-bold text-sm"
+                        {/* 統計グリッド */}
+                        <div className="border-t border-gray-100 pt-3">
+                          <div className="grid grid-cols-4 gap-2 mb-2">
+                            <div className="text-center">
+                              <p
+                                className="text-xs font-bold leading-tight"
+                                style={{ color: areaData.theme.primary }}
+                              >
+                                {areaData.population.total}
+                              </p>
+                              <p className="text-[10px] text-[var(--color-ink-soft)] mt-0.5">総人口</p>
+                            </div>
+                            <div className="text-center">
+                              <p
+                                className="text-xs font-bold leading-tight"
                                 style={{ color: areaData.theme.primary }}
                               >
                                 {areaData.population.elderlyRate}
-                              </span>
-                              <span className="text-xs text-[var(--color-ink-soft)] ml-1">高齢化率</span>
+                              </p>
+                              <p className="text-[10px] text-[var(--color-ink-soft)] mt-0.5">高齢化率</p>
                             </div>
-                            <div className="h-4 w-px bg-gray-300" />
-                            <div>
-                              <span className="text-xs text-[var(--color-ink-soft)]">人口</span>
-                              <span className="text-sm font-medium ml-1">{areaData.population.total}</span>
+                            <div className="text-center">
+                              <p
+                                className="text-xs font-bold leading-tight"
+                                style={{ color: areaData.theme.primary }}
+                              >
+                                {areaData.population.elderly}
+                              </p>
+                              <p className="text-[10px] text-[var(--color-ink-soft)] mt-0.5">高齢者人口</p>
+                            </div>
+                            <div className="text-center">
+                              <p
+                                className="text-xs font-bold leading-tight"
+                                style={{ color: areaData.theme.primary }}
+                              >
+                                {areaData.population.youngRate}
+                              </p>
+                              <p className="text-[10px] text-[var(--color-ink-soft)] mt-0.5">年少人口率</p>
                             </div>
                           </div>
-                          <div
-                            className="flex items-center gap-1 text-sm font-bold group-hover:gap-2 transition-all"
-                            style={{ color: areaData.theme.primary }}
-                          >
-                            <span>詳しく</span>
-                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                          </div>
-                        </Link>
+
+                          {/* 実績グリッド */}
+                          {areaData.areaStats && (
+                            <div
+                              className="grid grid-cols-2 gap-2 mt-2 rounded-lg p-2"
+                              style={{ backgroundColor: `${areaData.theme.primary}10` }}
+                            >
+                              <div className="text-center">
+                                <p
+                                  className="text-sm font-bold"
+                                  style={{ color: areaData.theme.primary }}
+                                >
+                                  {areaData.areaStats.patients}名
+                                </p>
+                                <p className="text-[10px] text-[var(--color-ink-soft)]">利用者数</p>
+                              </div>
+                              <div className="text-center">
+                                <p
+                                  className="text-sm font-bold"
+                                  style={{ color: areaData.theme.primary }}
+                                >
+                                  {areaData.areaStats.monthlyVisits}件
+                                </p>
+                                <p className="text-[10px] text-[var(--color-ink-soft)]">月間訪問数</p>
+                              </div>
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </div>
                   ))}

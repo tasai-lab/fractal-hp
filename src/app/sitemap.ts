@@ -1,6 +1,5 @@
 import { MetadataRoute } from "next";
 import { recruitAreas } from "@/lib/recruit-areas";
-import { regionalData } from "@/lib/regional-data";
 import { servicesData } from "@/lib/services-data";
 import { getActiveStations } from "@/lib/stations-data";
 
@@ -69,18 +68,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.5,
       },
     ]),
-
-    // === 事業所別地域ページ（地域SEO最重要）===
-    ...stations.flatMap((station) =>
-      regionalData
-        .filter((area) => station.serviceAreaSlugs.includes(area.slug))
-        .map((area) => ({
-          url: `${baseUrl}/stations/${station.slug}/areas/${area.slug}`,
-          lastModified: lastModifiedDates.areas,
-          changeFrequency: weekly,
-          priority: 0.9,
-        }))
-    ),
 
     // === サービス別ページ（精神科・看取り・24時間対応）===
     {
