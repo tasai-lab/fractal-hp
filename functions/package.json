@@ -2,7 +2,7 @@
   "name": "contact-function",
   "description": "Cloud Functions for contact form",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -p tsconfig.json",
     "gcp-build": "npm run build",
     "start": "functions-framework --target=contact",
     "test": "jest"
