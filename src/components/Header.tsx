@@ -125,7 +125,7 @@ export default function Header({ variant = "default" }: HeaderProps) {
                         className="p-2.5 bg-white hover:bg-[var(--color-logo-light-green)]/10 transition-colors text-center">
                         <span className="text-xs font-medium text-[var(--color-ink-soft)]">各種書類</span>
                       </Link>
-                      <Link href="/recruit" onClick={closeMenu}
+                      <Link href="/stations/funabashi/recruit" onClick={closeMenu}
                         className="p-2.5 bg-white hover:bg-[var(--color-logo-light-green)]/10 transition-colors text-center">
                         <span className="text-xs font-medium text-[var(--color-ink-soft)]">採用情報</span>
                       </Link>

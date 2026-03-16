@@ -96,6 +96,26 @@
         "source": "/stations/:slug/areas/:areaSlug/",
         "destination": "/stations/:slug/areas",
         "type": 301
+      },
+      {
+        "source": "/recruit/areas/:slug",
+        "destination": "/stations/funabashi/areas",
+        "type": 301
+      },
+      {
+        "source": "/recruit/areas/:slug/",
+        "destination": "/stations/funabashi/areas",
+        "type": 301
+      },
+      {
+        "source": "/recruit/areas",
+        "destination": "/stations/funabashi/areas",
+        "type": 301
+      },
+      {
+        "source": "/recruit/areas/",
+        "destination": "/stations/funabashi/areas",
+        "type": 301
       }
     ],
     "rewrites": [
