@@ -23,8 +23,8 @@ export default function Footer() {
             className="w-[40px] h-[40px] md:w-[60px] md:h-[60px] brightness-0 invert"
           />
           <Image
-            src="/images/logos/hokan-title.png"
-            alt="フラクタル訪問看護 船橋"
+            src="/images/logos/hokan-title-corporate.png"
+            alt="フラクタル訪問看護"
             width={200}
             height={50}
             className="h-8 md:h-12 w-auto brightness-0 invert"

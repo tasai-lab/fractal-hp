@@ -618,7 +618,7 @@ export default function CEOPage() {
           </div>
         </header>
 
-        <main className="max-w-5xl mx-auto px-4 md:px-6 pt-10 md:pt-16 pb-20 md:pb-24 flex flex-col gap-16 md:gap-24">
+        <main className="relative z-10 max-w-5xl mx-auto px-4 md:px-6 pt-10 md:pt-16 pb-20 md:pb-24 flex flex-col gap-16 md:gap-24">
           {/* 1. ヒーローセクション */}
           <section>
             <FadeIn className="space-y-6 text-center max-w-3xl mx-auto">

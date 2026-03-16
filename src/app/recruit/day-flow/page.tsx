@@ -73,7 +73,7 @@ export default function RecruitDayFlowPage() {
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-4 md:px-6 pt-10 md:pt-16 pb-24 md:pb-20 flex flex-col gap-16 md:gap-20">
+      <main className="relative z-10 max-w-6xl mx-auto px-4 md:px-6 pt-10 md:pt-16 pb-24 md:pb-20 flex flex-col gap-16 md:gap-20">
         <section className="grid lg:grid-cols-[1.1fr,0.9fr] gap-10 items-center">
           <FadeIn className="space-y-4">
             <p className="text-xs tracking-[0.3em] text-ink-soft">DAY FLOW</p>
