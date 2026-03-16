@@ -1,5 +1,5 @@
 import type { Request, Response } from "@google-cloud/functions-framework";
-import * as nodemailer from "nodemailer";
+import { getGmailClient, sendViaGmailApi } from "./gmail-utils";
 
 interface ContactFormData {
   name: string;
@@ -115,18 +115,8 @@ export const contact = async (req: Request, res: Response): Promise<void> => {
       message: sanitizeInput(body.message.trim()),
     };
 
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST || "smtp.gmail.com",
-      port: parseInt(process.env.SMTP_PORT || "587"),
-      secure: process.env.SMTP_SECURE === "true",
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASSWORD,
-      },
-    });
-
     const adminMailOptions = {
-      from: process.env.SMTP_FROM,
+      from: process.env.GMAIL_FROM,
       to: process.env.CONTACT_EMAIL,
       subject: `【お問い合わせ】${sanitizedData.contactType} - ${sanitizedData.name}様`,
       html: `
@@ -162,7 +152,7 @@ ${sanitizedData.message}
     };
 
     const customerMailOptions = {
-      from: process.env.SMTP_FROM,
+      from: process.env.GMAIL_FROM,
       to: sanitizedData.email,
       subject: "【フラクタル訪問看護】お問い合わせありがとうございます",
       html: `
@@ -212,9 +202,10 @@ TEL: 047-770-1228
       `.trim(),
     };
 
+    const gmailClient = getGmailClient();
     await Promise.all([
-      transporter.sendMail(adminMailOptions),
-      transporter.sendMail(customerMailOptions),
+      sendViaGmailApi(gmailClient, adminMailOptions),
+      sendViaGmailApi(gmailClient, customerMailOptions),
     ]);
 
     res.status(200).json({ message: "お問い合わせを送信しました" });
