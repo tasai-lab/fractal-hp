@@ -1,5 +1,5 @@
 import type { Request, Response } from "@google-cloud/functions-framework";
-import * as nodemailer from "nodemailer";
+import { Resend } from "resend";
 
 interface ContactFormData {
   name: string;
@@ -9,12 +9,11 @@ interface ContactFormData {
   privacyAgreed: boolean;
 }
 
-// レート制限用のシンプルなインメモリストア
 const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
 const RATE_LIMIT_MAX = 5;
 const RATE_LIMIT_WINDOW = 60 * 60 * 1000;
 
-function checkRateLimit(ip: string): boolean {
+export function checkRateLimit(ip: string): boolean {
   const now = Date.now();
   const record = rateLimitStore.get(ip);
 
@@ -31,7 +30,11 @@ function checkRateLimit(ip: string): boolean {
   return true;
 }
 
-function sanitizeInput(input: string): string {
+export function clearRateLimitStore(): void {
+  rateLimitStore.clear();
+}
+
+export function sanitizeInput(input: string): string {
   return input
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
@@ -39,7 +42,7 @@ function sanitizeInput(input: string): string {
     .replace(/'/g, "&#39;");
 }
 
-function validateFormData(data: ContactFormData): string | null {
+export function validateFormData(data: ContactFormData): string | null {
   if (!data.name || typeof data.name !== "string" || data.name.trim().length === 0) {
     return "氏名は必須です";
   }
@@ -81,7 +84,6 @@ function setCorsHeaders(res: Response): void {
 export const contact = async (req: Request, res: Response): Promise<void> => {
   setCorsHeaders(res);
 
-  // Handle preflight
   if (req.method === "OPTIONS") {
     res.status(204).send("");
     return;
@@ -115,79 +117,63 @@ export const contact = async (req: Request, res: Response): Promise<void> => {
       message: sanitizeInput(body.message.trim()),
     };
 
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST || "smtp.gmail.com",
-      port: parseInt(process.env.SMTP_PORT || "587"),
-      secure: process.env.SMTP_SECURE === "true",
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASSWORD,
-      },
-    });
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    const mailFrom = process.env.MAIL_FROM || "フラクタル訪問看護 <noreply@fractal-group.co.jp>";
+    const contactEmail = process.env.CONTACT_EMAIL || "info@fractal-group.co.jp";
 
-    const adminMailOptions = {
-      from: process.env.SMTP_FROM,
-      to: process.env.CONTACT_EMAIL,
-      subject: `【お問い合わせ】${sanitizedData.contactType} - ${sanitizedData.name}様`,
-      html: `
-        <h2>ウェブサイトからのお問い合わせ</h2>
-        <table style="border-collapse: collapse; width: 100%; max-width: 600px;">
-          <tr>
-            <th style="border: 1px solid #ddd; padding: 12px; text-align: left; background-color: #f5f5f5; width: 30%;">氏名</th>
-            <td style="border: 1px solid #ddd; padding: 12px;">${sanitizedData.name}</td>
-          </tr>
-          <tr>
-            <th style="border: 1px solid #ddd; padding: 12px; text-align: left; background-color: #f5f5f5;">メールアドレス</th>
-            <td style="border: 1px solid #ddd; padding: 12px;"><a href="mailto:${sanitizedData.email}">${sanitizedData.email}</a></td>
-          </tr>
-          <tr>
-            <th style="border: 1px solid #ddd; padding: 12px; text-align: left; background-color: #f5f5f5;">お問い合わせ内容</th>
-            <td style="border: 1px solid #ddd; padding: 12px;">${sanitizedData.contactType}</td>
-          </tr>
-          <tr>
-            <th style="border: 1px solid #ddd; padding: 12px; text-align: left; background-color: #f5f5f5;">メッセージ</th>
-            <td style="border: 1px solid #ddd; padding: 12px; white-space: pre-wrap;">${sanitizedData.message}</td>
-          </tr>
-        </table>
-      `,
-      text: `
-ウェブサイトからのお問い合わせ
+    const adminHtml = `
+      <h2>ウェブサイトからのお問い合わせ</h2>
+      <table style="border-collapse: collapse; width: 100%; max-width: 600px;">
+        <tr>
+          <th style="border: 1px solid #ddd; padding: 12px; text-align: left; background-color: #f5f5f5; width: 30%;">氏名</th>
+          <td style="border: 1px solid #ddd; padding: 12px;">${sanitizedData.name}</td>
+        </tr>
+        <tr>
+          <th style="border: 1px solid #ddd; padding: 12px; text-align: left; background-color: #f5f5f5;">メールアドレス</th>
+          <td style="border: 1px solid #ddd; padding: 12px;"><a href="mailto:${sanitizedData.email}">${sanitizedData.email}</a></td>
+        </tr>
+        <tr>
+          <th style="border: 1px solid #ddd; padding: 12px; text-align: left; background-color: #f5f5f5;">お問い合わせ内容</th>
+          <td style="border: 1px solid #ddd; padding: 12px;">${sanitizedData.contactType}</td>
+        </tr>
+        <tr>
+          <th style="border: 1px solid #ddd; padding: 12px; text-align: left; background-color: #f5f5f5;">メッセージ</th>
+          <td style="border: 1px solid #ddd; padding: 12px; white-space: pre-wrap;">${sanitizedData.message}</td>
+        </tr>
+      </table>
+    `;
+
+    const adminText = `ウェブサイトからのお問い合わせ
 
 氏名: ${sanitizedData.name}
 メールアドレス: ${sanitizedData.email}
 お問い合わせ内容: ${sanitizedData.contactType}
 メッセージ:
-${sanitizedData.message}
-      `.trim(),
-    };
+${sanitizedData.message}`;
 
-    const customerMailOptions = {
-      from: process.env.SMTP_FROM,
-      to: sanitizedData.email,
-      subject: "【フラクタル訪問看護】お問い合わせありがとうございます",
-      html: `
-        <p>${sanitizedData.name} 様</p>
-        <p>この度はお問い合わせいただき、誠にありがとうございます。</p>
-        <p>以下の内容でお問い合わせを承りました。<br>
-        担当者より折り返しご連絡させていただきますので、今しばらくお待ちください。</p>
-        <hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0;">
-        <h3>お問い合わせ内容</h3>
-        <p><strong>お問い合わせ種別:</strong> ${sanitizedData.contactType}</p>
-        <p><strong>メッセージ:</strong></p>
-        <p style="white-space: pre-wrap; background-color: #f9f9f9; padding: 15px; border-radius: 5px;">${sanitizedData.message}</p>
-        <hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0;">
-        <p style="font-size: 12px; color: #666;">
-          ※このメールは自動送信されています。<br>
-          ※このメールに心当たりがない場合は、お手数ですが削除してください。
-        </p>
-        <p style="margin-top: 20px;">
-          フラクタル訪問看護 船橋<br>
-          〒274-0072 千葉県船橋市三山6丁目22-2 パレドール小川201<br>
-          TEL: 047-770-1228
-        </p>
-      `,
-      text: `
-${sanitizedData.name} 様
+    const customerHtml = `
+      <p>${sanitizedData.name} 様</p>
+      <p>この度はお問い合わせいただき、誠にありがとうございます。</p>
+      <p>以下の内容でお問い合わせを承りました。<br>
+      担当者より折り返しご連絡させていただきますので、今しばらくお待ちください。</p>
+      <hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0;">
+      <h3>お問い合わせ内容</h3>
+      <p><strong>お問い合わせ種別:</strong> ${sanitizedData.contactType}</p>
+      <p><strong>メッセージ:</strong></p>
+      <p style="white-space: pre-wrap; background-color: #f9f9f9; padding: 15px; border-radius: 5px;">${sanitizedData.message}</p>
+      <hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0;">
+      <p style="font-size: 12px; color: #666;">
+        ※このメールは自動送信されています。<br>
+        ※このメールに心当たりがない場合は、お手数ですが削除してください。
+      </p>
+      <p style="margin-top: 20px;">
+        フラクタル訪問看護 船橋<br>
+        〒274-0072 千葉県船橋市三山6丁目22-2 パレドール小川201<br>
+        TEL: 047-770-1228
+      </p>
+    `;
+
+    const customerText = `${sanitizedData.name} 様
 
 この度はお問い合わせいただき、誠にありがとうございます。
 
@@ -208,14 +194,30 @@ ${sanitizedData.message}
 
 フラクタル訪問看護 船橋
 〒274-0072 千葉県船橋市三山6丁目22-2 パレドール小川201
-TEL: 047-770-1228
-      `.trim(),
-    };
+TEL: 047-770-1228`;
 
-    await Promise.all([
-      transporter.sendMail(adminMailOptions),
-      transporter.sendMail(customerMailOptions),
+    const [adminResult, customerResult] = await Promise.all([
+      resend.emails.send({
+        from: mailFrom,
+        to: [contactEmail],
+        subject: `【お問い合わせ】${sanitizedData.contactType} - ${sanitizedData.name}様`,
+        html: adminHtml,
+        text: adminText,
+      }),
+      resend.emails.send({
+        from: mailFrom,
+        to: [sanitizedData.email],
+        subject: "【フラクタル訪問看護】お問い合わせありがとうございます",
+        html: customerHtml,
+        text: customerText,
+      }),
     ]);
+
+    if (adminResult.error || customerResult.error) {
+      console.error("Resend API error:", adminResult.error, customerResult.error);
+      res.status(500).json({ error: "送信に失敗しました。しばらく経ってからお試しください。" });
+      return;
+    }
 
     res.status(200).json({ message: "お問い合わせを送信しました" });
   } catch (error) {

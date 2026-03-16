@@ -25,15 +25,11 @@ steps:
           --entry-point=contact \
           --trigger-http \
           --allow-unauthenticated \
-          --set-env-vars="SMTP_HOST=$$SMTP_HOST,SMTP_PORT=$$SMTP_PORT,SMTP_SECURE=$$SMTP_SECURE,SMTP_USER=$$SMTP_USER,SMTP_PASSWORD=$$SMTP_PASSWORD,SMTP_FROM=$$SMTP_FROM,CONTACT_EMAIL=$$CONTACT_EMAIL"
+          --set-env-vars="RESEND_API_KEY=$$RESEND_API_KEY,CONTACT_EMAIL=$$CONTACT_EMAIL,MAIL_FROM=$$MAIL_FROM"
     secretEnv:
-      - 'SMTP_HOST'
-      - 'SMTP_PORT'
-      - 'SMTP_SECURE'
-      - 'SMTP_USER'
-      - 'SMTP_PASSWORD'
-      - 'SMTP_FROM'
+      - 'RESEND_API_KEY'
       - 'CONTACT_EMAIL'
+      - 'MAIL_FROM'
 
   # Build Next.js static export
   - name: 'node:20'
@@ -53,20 +49,12 @@ steps:
 
 availableSecrets:
   secretManager:
-    - versionName: projects/fractal-hokan-funabashi/secrets/SMTP_HOST/versions/latest
-      env: 'SMTP_HOST'
-    - versionName: projects/fractal-hokan-funabashi/secrets/SMTP_PORT/versions/latest
-      env: 'SMTP_PORT'
-    - versionName: projects/fractal-hokan-funabashi/secrets/SMTP_SECURE/versions/latest
-      env: 'SMTP_SECURE'
-    - versionName: projects/fractal-hokan-funabashi/secrets/SMTP_USER/versions/latest
-      env: 'SMTP_USER'
-    - versionName: projects/fractal-hokan-funabashi/secrets/SMTP_PASSWORD/versions/latest
-      env: 'SMTP_PASSWORD'
-    - versionName: projects/fractal-hokan-funabashi/secrets/SMTP_FROM/versions/latest
-      env: 'SMTP_FROM'
+    - versionName: projects/fractal-hokan-funabashi/secrets/RESEND_API_KEY/versions/latest
+      env: 'RESEND_API_KEY'
     - versionName: projects/fractal-hokan-funabashi/secrets/CONTACT_EMAIL/versions/latest
       env: 'CONTACT_EMAIL'
+    - versionName: projects/fractal-hokan-funabashi/secrets/MAIL_FROM/versions/latest
+      env: 'MAIL_FROM'
 
 options:
   logging: CLOUD_LOGGING_ONLY

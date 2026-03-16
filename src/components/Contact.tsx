@@ -86,6 +86,7 @@ export default function Contact({ initialContactType, embedded = false, hideTitl
     } catch (error) {
       console.error("Error submitting form:", error);
       alert("送信に失敗しました。もう一度お試しください。");
+    } finally {
       setIsSubmitting(false);
     }
   };
