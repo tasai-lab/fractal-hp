@@ -1,5 +1,4 @@
 import { MetadataRoute } from "next";
-import { recruitAreas } from "@/lib/recruit-areas";
 import { servicesData } from "@/lib/services-data";
 import { getActiveStations } from "@/lib/stations-data";
 
@@ -46,6 +45,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       {
         url: `${baseUrl}/stations/${station.slug}`,
         lastModified: lastModifiedDates.stations,
+        changeFrequency: weekly,
+        priority: 0.9,
+      },
+      {
+        url: `${baseUrl}/stations/${station.slug}/recruit`,
+        lastModified: lastModifiedDates.recruit,
         changeFrequency: weekly,
         priority: 0.9,
       },
@@ -118,12 +123,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: monthly,
       priority: 0.8,
     },
-    ...recruitAreas.map((area) => ({
-      url: `${baseUrl}/recruit/areas/${area.slug}`,
-      lastModified: lastModifiedDates.recruit,
-      changeFrequency: weekly,
-      priority: 0.85,
-    })),
 
     // === 会社・サービス紹介ページ ===
     {
