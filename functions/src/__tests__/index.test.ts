@@ -2,11 +2,12 @@ import { validateFormData, sanitizeInput, checkRateLimit, clearRateLimitStore, c
 import type { Request, Response } from "@google-cloud/functions-framework";
 
 const mockSend = jest.fn();
-jest.mock("resend", () => ({
-  Resend: jest.fn().mockImplementation(() => ({
-    emails: { send: mockSend },
-  })),
-}));
+jest.mock("@sendgrid/mail", () => {
+  return {
+    setApiKey: jest.fn(),
+    send: (...args: unknown[]) => mockSend(...args),
+  };
+});
 
 describe("validateFormData", () => {
   const validData = {
@@ -107,13 +108,13 @@ describe("contact handler", () => {
   beforeEach(() => {
     clearRateLimitStore();
     mockSend.mockReset();
-    process.env.RESEND_API_KEY = "re_test_key";
+    process.env.SENDGRID_API_KEY = "SG.test_key";
     process.env.CONTACT_EMAIL = "admin@test.com";
-    process.env.MAIL_FROM = "Test <noreply@test.com>";
+    process.env.MAIL_FROM = "noreply@test.com";
   });
 
   it("正常送信時に200を返す", async () => {
-    mockSend.mockResolvedValue({ data: { id: "msg_123" }, error: null });
+    mockSend.mockResolvedValue([{ statusCode: 202 }]);
     const req = createMockReq();
     const res = createMockRes();
     await contact(req, res);
@@ -121,8 +122,8 @@ describe("contact handler", () => {
     expect(mockSend).toHaveBeenCalledTimes(2);
   });
 
-  it("Resend APIエラー時に500を返す", async () => {
-    mockSend.mockResolvedValue({ data: null, error: { message: "API key invalid", statusCode: 403 } });
+  it("SendGrid APIエラー時に500を返す", async () => {
+    mockSend.mockRejectedValue(new Error("Unauthorized"));
     const req = createMockReq();
     const res = createMockRes();
     await contact(req, res);

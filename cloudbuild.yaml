@@ -25,9 +25,9 @@ steps:
           --entry-point=contact \
           --trigger-http \
           --allow-unauthenticated \
-          --set-env-vars="RESEND_API_KEY=$$RESEND_API_KEY,CONTACT_EMAIL=$$CONTACT_EMAIL,MAIL_FROM=$$MAIL_FROM"
+          --set-env-vars="SENDGRID_API_KEY=$$SENDGRID_API_KEY,CONTACT_EMAIL=$$CONTACT_EMAIL,MAIL_FROM=$$MAIL_FROM"
     secretEnv:
-      - 'RESEND_API_KEY'
+      - 'SENDGRID_API_KEY'
       - 'CONTACT_EMAIL'
       - 'MAIL_FROM'
 
@@ -49,8 +49,8 @@ steps:
 
 availableSecrets:
   secretManager:
-    - versionName: projects/fractal-hokan-funabashi/secrets/RESEND_API_KEY/versions/latest
-      env: 'RESEND_API_KEY'
+    - versionName: projects/fractal-hokan-funabashi/secrets/SENDGRID_API_KEY/versions/latest
+      env: 'SENDGRID_API_KEY'
     - versionName: projects/fractal-hokan-funabashi/secrets/CONTACT_EMAIL/versions/latest
       env: 'CONTACT_EMAIL'
     - versionName: projects/fractal-hokan-funabashi/secrets/MAIL_FROM/versions/latest

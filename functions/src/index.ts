@@ -1,5 +1,5 @@
 import type { Request, Response } from "@google-cloud/functions-framework";
-import { Resend } from "resend";
+import * as sgMail from "@sendgrid/mail";
 
 interface ContactFormData {
   name: string;
@@ -117,8 +117,8 @@ export const contact = async (req: Request, res: Response): Promise<void> => {
       message: sanitizeInput(body.message.trim()),
     };
 
-    const resend = new Resend(process.env.RESEND_API_KEY);
-    const mailFrom = process.env.MAIL_FROM || "フラクタル訪問看護 <noreply@fractal-group.co.jp>";
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY || "");
+    const mailFrom = process.env.MAIL_FROM || "noreply@fractal-group.co.jp";
     const contactEmail = process.env.CONTACT_EMAIL || "info@fractal-group.co.jp";
 
     const adminHtml = `
@@ -196,28 +196,22 @@ ${sanitizedData.message}
 〒274-0072 千葉県船橋市三山6丁目22-2 パレドール小川201
 TEL: 047-770-1228`;
 
-    const [adminResult, customerResult] = await Promise.all([
-      resend.emails.send({
+    await Promise.all([
+      sgMail.send({
+        to: contactEmail,
         from: mailFrom,
-        to: [contactEmail],
         subject: `【お問い合わせ】${sanitizedData.contactType} - ${sanitizedData.name}様`,
         html: adminHtml,
         text: adminText,
       }),
-      resend.emails.send({
+      sgMail.send({
+        to: sanitizedData.email,
         from: mailFrom,
-        to: [sanitizedData.email],
         subject: "【フラクタル訪問看護】お問い合わせありがとうございます",
         html: customerHtml,
         text: customerText,
       }),
     ]);
-
-    if (adminResult.error || customerResult.error) {
-      console.error("Resend API error:", adminResult.error, customerResult.error);
-      res.status(500).json({ error: "送信に失敗しました。しばらく経ってからお試しください。" });
-      return;
-    }
 
     res.status(200).json({ message: "お問い合わせを送信しました" });
   } catch (error) {
