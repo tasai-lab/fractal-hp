@@ -17,15 +17,11 @@ export default function RecruitCTA() {
           <div className="section-card">
             {/* キャッチコピー */}
             <div className="text-center mb-8 md:mb-10">
-              <p className="text-sm font-bold text-[var(--color-muted)] mb-3 tracking-widest uppercase">
-                Join Us
-              </p>
-              <h3 className="text-2xl md:text-3xl font-bold heading-gothic text-[var(--color-primary)] mb-4 leading-snug">
-                一緒に働きませんか？
+              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold heading-gothic text-[var(--color-primary)] mb-4 leading-snug">
+                「働きやすさ」が、「良い看護」をつくる。
               </h3>
-              <p className="text-[var(--color-foreground)] leading-relaxed max-w-md mx-auto">
-                看護師・作業療法士・理学療法士・言語聴覚士を募集しています。
-                訪問看護の経験は問いません。
+              <p className="text-[var(--color-ink-soft)] leading-relaxed max-w-xl mx-auto">
+                私たちは、業務の効率化とスタッフの働きやすさを何よりも大切にしています。
               </p>
             </div>
 
@@ -99,6 +95,11 @@ export default function RecruitCTA() {
                 <p className="text-sm md:text-base text-[var(--color-primary)]/80 mt-3 md:mt-4 text-center mb-3">
                   全ての職種に適用されます
                 </p>
+                <div className="bg-white/90 rounded-lg p-3 md:p-4 border-l-4 border-red-500">
+                  <p className="text-sm md:text-base text-[var(--color-primary)]/90 font-medium">
+                    ※ 入社祝い金は、本HPからの応募に限り適用されます。他の求人媒体から応募された場合、または本HPでの応募前に他の求人媒体から応募されている場合は対象外となりますのでご注意ください。
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -108,7 +109,7 @@ export default function RecruitCTA() {
                 href="/recruit"
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[var(--color-primary)] text-white font-bold text-base md:text-lg hover:opacity-90 transition-opacity shadow-lg"
               >
-                採用情報を見る
+                求人募集を見る
                 <svg
                   className="w-5 h-5"
                   fill="none"

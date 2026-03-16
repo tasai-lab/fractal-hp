@@ -41,14 +41,19 @@ npm run lint     # ESLint
 ```
 src/
 ├── app/
-│   ├── page.tsx           # トップページ
+│   ├── page.tsx           # トップページ（全社ブランド）
+│   ├── stations/[slug]/   # 事業所ページ（船橋等）
 │   ├── about-fractal/     # フラクタルを知る
 │   ├── recruit/           # 採用情報
 │   ├── documents/         # 各種書類・情報公開（BCP、契約書等）
 │   └── flyers/            # チラシ
-├── components/            # 共通コンポーネント
+├── components/
+│   ├── station/           # 事業所ページ専用コンポーネント
+│   └── ...                # 共通コンポーネント
 └── lib/
     ├── data.ts            # 共通データ
+    ├── stations-data.ts   # 事業所データ
+    ├── station-content.ts # 事業所固有コンテンツ
     └── recruit-data.ts    # 採用データ
 ```
 

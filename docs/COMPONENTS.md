@@ -31,6 +31,13 @@
 | GoogleAnalytics | GoogleAnalytics.tsx | —（UIなし） | ユーティリティ | GA4トラッキング |
 | CountUp | CountUp.tsx | `src/components/CountUp.stories.tsx` | ユーティリティ | 数値カウントアップ |
 | StructuredData | StructuredData.tsx | —（UIなし） | SEO | 構造化データ |
+| RecruitCTA | RecruitCTA.tsx | —（Stories未作成） | セクション | トップページ用採用CTA |
+| StationOfficeInfo | station/StationOfficeInfo.tsx | —（Stories未作成） | 事業所 | 事業所情報+地図 |
+| StationStaff | station/StationStaff.tsx | —（Stories未作成） | 事業所 | 事業所スタッフ紹介（モーダル付き） |
+| StationFlow | station/StationFlow.tsx | —（Stories未作成） | 事業所 | 事業所ご利用の流れ |
+| StationFAQ | station/StationFAQ.tsx | —（Stories未作成） | 事業所 | 事業所FAQ（アコーディオン） |
+| StationFeatures | station/StationFeatures.tsx | —（Stories未作成） | 事業所 | 事業所の特徴 |
+| StationRecruit | station/StationRecruit.tsx | —（Stories未作成） | 事業所 | 事業所簡易求人 |
 | AreaHero | AreaHero.tsx | —（未作成） | エリア | 地域ページヒーロー |
 | AreaFAQ | AreaFAQ.tsx | —（未作成） | エリア | 地域ページFAQ |
 | JobDetails | recruit/JobDetails.tsx | `src/components/recruit/JobDetails.stories.tsx` | 採用 | 職種詳細モーダル |

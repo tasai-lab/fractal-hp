@@ -1,6 +1,6 @@
 import { features } from "@/lib/data";
 // アイコンコンポーネント
-function FeatureIcon({ icon }: { icon: string }) {
+export function FeatureIcon({ icon }: { icon: string }) {
   const iconSize = "w-10 h-10 md:w-12 md:h-12";
   const strokeWidth = "2";
   const iconColor = "var(--color-primary)";

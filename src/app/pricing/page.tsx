@@ -37,7 +37,7 @@ export default function PricingPage() {
   return (
     <>
       <Header />
-      <main className="pt-14 lg:pt-20 bg-white">
+      <main className="relative z-10 pt-14 lg:pt-20 bg-white">
         {/* Hero Section */}
         <section className="max-w-6xl mx-auto px-4 py-8 md:py-12">
           <div className="relative flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#a8d5ba] to-[#d4edda] rounded-2xl md:rounded-3xl shadow-sm">
