@@ -86,6 +86,16 @@
         "source": "/flyers/",
         "destination": "/stations/funabashi/flyers",
         "type": 301
+      },
+      {
+        "source": "/stations/:slug/areas/:areaSlug",
+        "destination": "/stations/:slug/areas",
+        "type": 301
+      },
+      {
+        "source": "/stations/:slug/areas/:areaSlug/",
+        "destination": "/stations/:slug/areas",
+        "type": 301
       }
     ],
     "rewrites": [
