@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getActiveStations } from "@/lib/stations-data";
-import { regionalData } from "@/lib/regional-data";
+import { serviceAreas } from "@/lib/data";
 export default function StationsOverview() {
   const stations = getActiveStations();
 
@@ -19,9 +19,6 @@ export default function StationsOverview() {
           <div className="space-y-8">
             {stations.map((station) => {
               const { officeInfo } = station;
-              const areaNames = station.serviceAreaSlugs
-                .map((slug) => regionalData.find((r) => r.slug === slug)?.name)
-                .filter(Boolean);
 
               return (
                 <div key={station.slug}>
@@ -107,24 +104,31 @@ export default function StationsOverview() {
                           </div>
 
                           {/* 訪問エリア */}
-                          {areaNames.length > 0 && (
-                            <div>
-                              <div className="flex items-center gap-2 mb-1">
-                                <div className="w-1 h-5 bg-primary rounded-full" />
-                                <span className="font-bold text-sm md:text-base">訪問エリア</span>
-                              </div>
-                              <div className="pl-3 flex flex-wrap gap-1.5">
-                                {areaNames.map((name) => (
-                                  <span
-                                    key={name}
-                                    className="inline-block px-2.5 py-0.5 text-xs md:text-sm font-medium rounded-full bg-white/80 text-[var(--color-logo-dark-green)]"
-                                  >
-                                    {name}
-                                  </span>
-                                ))}
-                              </div>
+                          <div>
+                            <div className="flex items-center gap-2 mb-2">
+                              <div className="w-1 h-5 bg-primary rounded-full" />
+                              <span className="font-bold text-sm md:text-base">訪問エリア</span>
                             </div>
-                          )}
+                            <div className="pl-3 grid grid-cols-1 md:grid-cols-2 gap-3">
+                              {serviceAreas.priority.cities.map((city) => (
+                                <div key={city.name} className="bg-white rounded-xl p-3 shadow-sm">
+                                  <h4 className="text-sm font-bold text-[var(--color-logo-dark-green)] heading-gothic mb-2">
+                                    {city.name}
+                                  </h4>
+                                  <div className="flex flex-wrap gap-1">
+                                    {city.areas.map((area) => (
+                                      <span
+                                        key={area}
+                                        className="inline-block px-2 py-0.5 text-xs rounded-full bg-[var(--color-logo-light-green)]/15 text-[var(--color-logo-dark-green)]"
+                                      >
+                                        {area}
+                                      </span>
+                                    ))}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
                         </div>
                       </div>
 

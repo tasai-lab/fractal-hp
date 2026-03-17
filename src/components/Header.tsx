@@ -98,161 +98,121 @@ export default function Header({ variant = "default" }: HeaderProps) {
           }`}
           onClick={(e) => e.stopPropagation()}
         >
-            <nav className="max-w-4xl mx-auto space-y-6">
+            <nav className="max-w-4xl mx-auto space-y-5">
               {/* 大項目: 事業所 */}
               <div>
-                <h3 className="text-sm font-bold text-[var(--color-logo-dark-green)] mb-3 border-b-2 border-[var(--color-logo-dark-green)] pb-1">
+                <h3 className="text-sm font-bold text-[var(--color-logo-dark-green)] border-b border-[var(--color-logo-dark-green)]/30 pb-1 mb-2">
                   事業所
                 </h3>
-                <div className="space-y-2">
-                  {/* 事業所一覧 */}
-                  <Link href="/stations" onClick={closeMenu}
-                    className="block p-3 rounded-lg bg-[var(--color-logo-light-green)]/10 hover:bg-[var(--color-logo-light-green)]/25 transition-colors">
-                    <span className="text-sm font-medium text-[var(--color-primary)]">事業所一覧</span>
-                  </Link>
-                  {/* 船橋（中項目）+ サブページ（小項目） */}
-                  <div className="rounded-lg border border-[var(--color-logo-light-green)]/30 overflow-hidden">
-                    <Link href="/stations/funabashi" onClick={closeMenu}
-                      className="block p-3 bg-[var(--color-logo-light-green)]/15 hover:bg-[var(--color-logo-light-green)]/25 transition-colors">
-                      <span className="text-sm font-bold text-[var(--color-primary)]">フラクタル訪問看護 船橋</span>
-                    </Link>
-                    <div className="grid grid-cols-3 divide-x divide-gray-200 border-t border-gray-200">
-                      <Link href="/stations/funabashi/areas" onClick={closeMenu}
-                        className="p-2.5 bg-white hover:bg-[var(--color-logo-light-green)]/10 transition-colors text-center">
-                        <span className="text-xs font-medium text-[var(--color-ink-soft)]">対応エリア</span>
-                      </Link>
-                      <Link href="/stations/funabashi/documents" onClick={closeMenu}
-                        className="p-2.5 bg-white hover:bg-[var(--color-logo-light-green)]/10 transition-colors text-center">
-                        <span className="text-xs font-medium text-[var(--color-ink-soft)]">各種書類</span>
-                      </Link>
-                      <Link href="/stations/funabashi/recruit" onClick={closeMenu}
-                        className="p-2.5 bg-white hover:bg-[var(--color-logo-light-green)]/10 transition-colors text-center">
-                        <span className="text-xs font-medium text-[var(--color-ink-soft)]">採用情報</span>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
+                <Link href="/stations" onClick={closeMenu}
+                  className="block pl-4 py-1.5 text-sm text-[var(--color-ink)] hover:text-[var(--color-logo-dark-green)] transition-colors">
+                  事業所一覧
+                </Link>
+                <Link href="/stations/funabashi" onClick={closeMenu}
+                  className="block pl-4 py-1.5 text-sm font-medium text-[var(--color-ink)] hover:text-[var(--color-logo-dark-green)] transition-colors">
+                  フラクタル訪問看護 船橋
+                </Link>
+                <Link href="/stations/funabashi/areas" onClick={closeMenu}
+                  className="block pl-8 py-1 text-sm text-[var(--color-ink)] hover:text-[var(--color-logo-dark-green)] transition-colors">
+                  対応エリア
+                </Link>
+                <Link href="/stations/funabashi/documents" onClick={closeMenu}
+                  className="block pl-8 py-1 text-sm text-[var(--color-ink)] hover:text-[var(--color-logo-dark-green)] transition-colors">
+                  各種書類
+                </Link>
+                <Link href="/stations/funabashi/recruit" onClick={closeMenu}
+                  className="block pl-8 py-1 text-sm text-[var(--color-ink)] hover:text-[var(--color-logo-dark-green)] transition-colors">
+                  採用情報
+                </Link>
               </div>
 
               {/* 大項目: サービス案内 */}
               <div>
-                <h3 className="text-sm font-bold text-[var(--color-logo-dark-green)] mb-3 border-b-2 border-[var(--color-logo-dark-green)] pb-1">
+                <h3 className="text-sm font-bold text-[var(--color-logo-dark-green)] border-b border-[var(--color-logo-dark-green)]/30 pb-1 mb-2">
                   サービス案内
                 </h3>
-                <div className="space-y-2">
-                  <Link href="/pricing" onClick={closeMenu}
-                    className="block p-3 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors">
-                    <span className="text-sm font-medium text-[var(--color-primary)]">ご利用料金</span>
-                  </Link>
-                  {/* サービス内容（中項目） */}
-                  <div className="rounded-lg border border-blue-100 overflow-hidden">
-                    <div className="p-2.5 bg-blue-50">
-                      <span className="text-xs font-bold text-[var(--color-ink-soft)] pl-1">サービス内容</span>
-                    </div>
-                    <div className="grid grid-cols-3 divide-x divide-gray-200 border-t border-gray-200">
-                      {[
-                        { href: "/services/psychiatric-nursing", label: "精神科訪問看護" },
-                        { href: "/services/end-of-life-care", label: "看取り・終末期ケア" },
-                        { href: "/services/24h-support", label: "24時間対応体制" },
-                      ].map((item) => (
-                        <Link key={item.href} href={item.href} onClick={closeMenu}
-                          className="p-2.5 bg-white hover:bg-blue-50 transition-colors text-center">
-                          <span className="text-xs font-medium text-[var(--color-ink-soft)]">{item.label}</span>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                  {/* 関係機関向け（中項目） */}
-                  <div className="rounded-lg border border-blue-100 overflow-hidden">
-                    <div className="p-2.5 bg-blue-50">
-                      <span className="text-xs font-bold text-[var(--color-ink-soft)] pl-1">関係機関の方へ</span>
-                    </div>
-                    <div className="grid grid-cols-2 divide-x divide-gray-200 border-t border-gray-200">
-                      <Link href="/services/for-care-managers" onClick={closeMenu}
-                        className="p-2.5 bg-white hover:bg-blue-50 transition-colors text-center">
-                        <span className="text-xs font-medium text-[var(--color-ink-soft)]">ケアマネ様へ</span>
-                      </Link>
-                      <Link href="/services/for-medical-institutions" onClick={closeMenu}
-                        className="p-2.5 bg-white hover:bg-blue-50 transition-colors text-center">
-                        <span className="text-xs font-medium text-[var(--color-ink-soft)]">医療機関様へ</span>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
+                <Link href="/pricing" onClick={closeMenu}
+                  className="block pl-4 py-1.5 text-sm text-[var(--color-ink)] hover:text-[var(--color-logo-dark-green)] transition-colors">
+                  ご利用料金
+                </Link>
+                <Link href="/services/psychiatric-nursing" onClick={closeMenu}
+                  className="block pl-4 py-1.5 text-sm text-[var(--color-ink)] hover:text-[var(--color-logo-dark-green)] transition-colors">
+                  精神科訪問看護
+                </Link>
+                <Link href="/services/end-of-life-care" onClick={closeMenu}
+                  className="block pl-4 py-1.5 text-sm text-[var(--color-ink)] hover:text-[var(--color-logo-dark-green)] transition-colors">
+                  看取り・終末期ケア
+                </Link>
+                <Link href="/services/24h-support" onClick={closeMenu}
+                  className="block pl-4 py-1.5 text-sm text-[var(--color-ink)] hover:text-[var(--color-logo-dark-green)] transition-colors">
+                  24時間対応体制
+                </Link>
+                <Link href="/services/for-care-managers" onClick={closeMenu}
+                  className="block pl-4 py-1.5 text-sm text-[var(--color-ink)] hover:text-[var(--color-logo-dark-green)] transition-colors">
+                  ケアマネ様へ
+                </Link>
+                <Link href="/services/for-medical-institutions" onClick={closeMenu}
+                  className="block pl-4 py-1.5 text-sm text-[var(--color-ink)] hover:text-[var(--color-logo-dark-green)] transition-colors">
+                  医療機関様へ
+                </Link>
               </div>
 
               {/* 大項目: 採用・お問い合わせ */}
               <div>
-                <h3 className="text-sm font-bold text-[var(--color-logo-dark-green)] mb-3 border-b-2 border-[var(--color-logo-dark-green)] pb-1">
+                <h3 className="text-sm font-bold text-[var(--color-logo-dark-green)] border-b border-[var(--color-logo-dark-green)]/30 pb-1 mb-2">
                   採用・お問い合わせ
                 </h3>
-                <div className="grid grid-cols-2 gap-2">
-                  <Link href="/recruit" onClick={closeMenu}
-                    className="p-3 rounded-lg bg-amber-50 hover:bg-amber-100 transition-colors">
-                    <span className="text-sm font-medium text-[var(--color-primary)]">採用情報一覧</span>
-                  </Link>
-                  <Link href="/#contact" onClick={closeMenu}
-                    className="p-3 rounded-lg bg-amber-50 hover:bg-amber-100 transition-colors">
-                    <span className="text-sm font-medium text-[var(--color-primary)]">お問い合わせ</span>
-                  </Link>
-                </div>
+                <Link href="/recruit" onClick={closeMenu}
+                  className="block pl-4 py-1.5 text-sm text-[var(--color-ink)] hover:text-[var(--color-logo-dark-green)] transition-colors">
+                  採用情報一覧
+                </Link>
+                <Link href="/#contact" onClick={closeMenu}
+                  className="block pl-4 py-1.5 text-sm text-[var(--color-ink)] hover:text-[var(--color-logo-dark-green)] transition-colors">
+                  お問い合わせ
+                </Link>
               </div>
 
               {/* 大項目: 会社情報 */}
               <div>
-                <h3 className="text-sm font-bold text-[var(--color-logo-dark-green)] mb-3 border-b-2 border-[var(--color-logo-dark-green)] pb-1">
+                <h3 className="text-sm font-bold text-[var(--color-logo-dark-green)] border-b border-[var(--color-logo-dark-green)]/30 pb-1 mb-2">
                   会社情報
                 </h3>
-                <div className="space-y-2">
-                  {/* 株式会社フラクタル（中項目）+ サブページ */}
-                  <div className="rounded-lg border border-emerald-100 overflow-hidden">
-                    <Link href="/company" onClick={closeMenu}
-                      className="block p-3 bg-emerald-50 hover:bg-emerald-100 transition-colors">
-                      <span className="text-sm font-bold text-[var(--color-primary)]">株式会社フラクタル</span>
-                    </Link>
-                    <div className="grid grid-cols-2 divide-x divide-gray-200 border-t border-gray-200">
-                      <Link href="/fractal" onClick={closeMenu}
-                        className="p-2.5 bg-white hover:bg-emerald-50 transition-colors text-center">
-                        <span className="text-xs font-medium text-[var(--color-ink-soft)]">フラクタルの意味</span>
-                      </Link>
-                      <Link href="/company/ceo" onClick={closeMenu}
-                        className="p-2.5 bg-white hover:bg-emerald-50 transition-colors text-center">
-                        <span className="text-xs font-medium text-[var(--color-ink-soft)]">代表の取扱説明書</span>
-                      </Link>
-                    </div>
-                  </div>
-                  {/* 公式メディア（中項目） */}
-                  <div className="rounded-lg border border-emerald-100 overflow-hidden">
-                    <div className="p-2.5 bg-emerald-50">
-                      <span className="text-xs font-bold text-[var(--color-ink-soft)] pl-1">公式メディア</span>
-                    </div>
-                    <div className="grid grid-cols-2 divide-x divide-gray-200 border-t border-gray-200">
-                      {otherMenuCategories.external.items.map((item) => {
-                        const Icon = item.icon ? iconMap[item.icon] : null;
-                        return (
-                          <a key={item.href} href={item.href} target="_blank" rel="noopener noreferrer" onClick={closeMenu}
-                            className="flex items-center justify-center p-2.5 bg-white hover:bg-emerald-50 transition-colors">
-                            {Icon && <Icon className="w-4 h-4 mr-2 text-[var(--color-primary)]" />}
-                            <span className="text-xs font-medium text-[var(--color-ink-soft)]">{item.label}</span>
-                          </a>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
+                <Link href="/company" onClick={closeMenu}
+                  className="block pl-4 py-1.5 text-sm text-[var(--color-ink)] hover:text-[var(--color-logo-dark-green)] transition-colors">
+                  株式会社フラクタル
+                </Link>
+                <Link href="/fractal" onClick={closeMenu}
+                  className="block pl-4 py-1.5 text-sm text-[var(--color-ink)] hover:text-[var(--color-logo-dark-green)] transition-colors">
+                  フラクタルの意味
+                </Link>
+                <Link href="/company/ceo" onClick={closeMenu}
+                  className="block pl-4 py-1.5 text-sm text-[var(--color-ink)] hover:text-[var(--color-logo-dark-green)] transition-colors">
+                  代表の取扱説明書
+                </Link>
+                <p className="pl-4 py-1.5 text-sm font-medium text-[var(--color-ink)]">
+                  公式メディア
+                </p>
+                {otherMenuCategories.external.items.map((item) => {
+                  const Icon = item.icon ? iconMap[item.icon] : null;
+                  return (
+                    <a key={item.href} href={item.href} target="_blank" rel="noopener noreferrer" onClick={closeMenu}
+                      className="flex items-center pl-8 py-1 text-sm text-[var(--color-ink)] hover:text-[var(--color-logo-dark-green)] transition-colors">
+                      {Icon && <Icon className="w-4 h-4 mr-1.5 shrink-0" />}
+                      {item.label}
+                    </a>
+                  );
+                })}
               </div>
 
               {/* 大項目: サイト情報 */}
               <div>
-                <h3 className="text-sm font-bold text-[var(--color-logo-dark-green)] mb-3 border-b-2 border-[var(--color-logo-dark-green)] pb-1">
+                <h3 className="text-sm font-bold text-[var(--color-logo-dark-green)] border-b border-[var(--color-logo-dark-green)]/30 pb-1 mb-2">
                   サイト情報
                 </h3>
-                <div className="grid grid-cols-2 gap-2">
-                  <Link href="/updates" onClick={closeMenu}
-                    className="p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
-                    <span className="text-sm font-medium text-[var(--color-primary)]">アップデート情報</span>
-                  </Link>
-                </div>
+                <Link href="/updates" onClick={closeMenu}
+                  className="block pl-4 py-1.5 text-sm text-[var(--color-ink)] hover:text-[var(--color-logo-dark-green)] transition-colors">
+                  アップデート情報
+                </Link>
               </div>
             </nav>
           </div>
