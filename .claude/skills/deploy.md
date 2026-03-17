@@ -1,6 +1,7 @@
 ---
 name: deploy
 description: 手動ビルド・デプロイスキル。コミット解析によるアップデート情報自動追加、ドキュメント確認、ビルド、Firebase Hostingデプロイを一括実行する。
+user_invocable: true
 ---
 
 # デプロイスキル
