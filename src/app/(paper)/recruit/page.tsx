@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useState } from "react";
+import FadeIn from "@/components/FadeIn";
 import Link from "next/link";
 import Image from "next/image";
 import { CountUp } from "@/components/CountUp";
 import { JobDetails } from "@/components/recruit/JobDetails";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import {
   signOnBonus,
   jobPositions,
@@ -48,27 +48,6 @@ function ChevronDown({ className = "" }: { className?: string }) {
     <svg className={`w-5 h-5 ${className}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
     </svg>
-  );
-}
-
-function FadeIn({
-  children,
-  className = "",
-}: {
-  children: ReactNode;
-  className?: string;
-}) {
-  const { ref, isVisible } = useScrollAnimation(0.15);
-
-  return (
-    <div
-      ref={ref as React.RefObject<HTMLDivElement>}
-      className={`transition-all duration-700 ease-out ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-      } ${className}`}
-    >
-      {children}
-    </div>
   );
 }
 
@@ -151,9 +130,9 @@ export default function RecruitPage() {
   };
 
   return (
-    <div className="min-h-screen body-editorial">
-      <header className="bg-[#f5f0e8]/90 backdrop-blur-md border-b border-[var(--color-sand)] sticky top-14 lg:top-20 z-30">
-        <div className="max-w-6xl mx-auto px-4 py-3 md:py-4 flex items-center justify-between">
+    <div className="min-h-screen">
+      <header className="bg-[var(--color-paper)] border-b border-[var(--color-sand)] sticky top-14 lg:top-20 z-30">
+        <div className="max-w-5xl mx-auto px-4 py-3 md:py-4 flex items-center justify-between">
           <Link
             href="/"
             className="text-primary font-bold text-sm md:text-lg hover:opacity-80 transition-opacity"
@@ -164,7 +143,7 @@ export default function RecruitPage() {
         </div>
       </header>
 
-      <main className="relative z-10 max-w-6xl mx-auto px-4 md:px-6 pt-10 md:pt-16 pb-32 md:pb-24 flex flex-col gap-16 md:gap-24">
+      <main className="relative z-10 max-w-5xl mx-auto px-4 md:px-6 pt-10 md:pt-16 pb-32 md:pb-24 flex flex-col gap-16 md:gap-24">
         <section className="order-1 grid lg:grid-cols-[1.1fr,0.9fr] gap-10 items-center">
           <h1 className="sr-only">船橋市の訪問看護師・PT・OT・ST求人｜フラクタル訪問看護</h1>
           <FadeIn className="space-y-4">

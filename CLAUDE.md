@@ -41,14 +41,21 @@ npm run lint     # ESLint
 ```
 src/
 ├── app/
-│   ├── page.tsx           # トップページ（全社ブランド）
-│   ├── stations/[slug]/   # 事業所ページ（船橋等）
-│   ├── about-fractal/     # フラクタルを知る
-│   ├── recruit/           # 採用情報
-│   ├── documents/         # 各種書類・情報公開（BCP、契約書等）
-│   └── flyers/            # チラシ
+│   ├── layout.tsx             # RootLayout（フォント/GA/構造化データ）
+│   ├── (main)/                # PageBackground表示グループ
+│   │   ├── layout.tsx         # PageBackground配置
+│   │   ├── page.tsx           # トップページ（全社ブランド）
+│   │   ├── stations/[slug]/   # 事業所ページ（船橋等）
+│   │   └── ...                # その他ページ
+│   ├── (paper)/               # body-paperテーマグループ
+│   │   ├── layout.tsx         # body-paper wrapper
+│   │   ├── recruit/           # 採用情報
+│   │   ├── company/           # 会社・代表
+│   │   └── stations/[slug]/recruit/  # 事業所求人ページ
+│   └── api/                   # APIルート
 ├── components/
 │   ├── station/           # 事業所ページ専用コンポーネント
+│   ├── FadeIn.tsx         # スクロールアニメーション共通コンポーネント
 │   └── ...                # 共通コンポーネント
 └── lib/
     ├── data.ts            # 共通データ
@@ -74,8 +81,8 @@ src/
 - 電話番号リンク → docs/COMPONENT-OPTIMIZATION.md のパターンを参照
 - グラフ・チャート → `src/components/charts/` のコンポーネントを再利用
 - カウントアップ数値 → `CountUp` コンポーネントを使用
-- セクション背景装飾 → `PageBackground`（layout.tsxで全ページ共通配置済み。個別追加不要）
-- スクロールアニメーション → `useScrollAnimation` フックを使用
+- セクション背景装飾 → `PageBackground`（`(main)/layout.tsx`で配置済み。`(paper)`グループでは非表示）
+- スクロールアニメーション → `FadeIn` コンポーネントを使用（`useScrollAnimation` フックの共通ラッパー）
 
 ### 再利用必須コンポーネント
 

@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useRef, useEffect, useState, type ReactNode } from "react";
+import React, { useState, type ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import FadeIn from "@/components/FadeIn";
 
 // 代表者プロフィールデータ
 const ceoProfile = {
@@ -242,49 +243,6 @@ const ceoProfile = {
 
 一人で何でも完璧にできることはすごいですし、誰もが理想とする姿かもしれません。でも、個性を大切に、自分が得意なことを率先して行う。それがチームのためになる。それが私の理想です。`,
 };
-
-// FadeInコンポーネント
-function FadeIn({
-  children,
-  className = "",
-  delay = 0,
-}: {
-  children: ReactNode;
-  className?: string;
-  delay?: number;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => setIsVisible(true), delay);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.15 }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => observer.disconnect();
-  }, [delay]);
-
-  return (
-    <div
-      ref={ref}
-      className={`transition-all duration-700 ease-out ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-      } ${className}`}
-    >
-      {children}
-    </div>
-  );
-}
 
 // Q&Aブロックコンポーネント
 function QABlock({
@@ -602,9 +560,9 @@ function ThinkingCycle({
 export default function CEOPage() {
   return (
     <>
-      <div className="min-h-screen body-editorial">
+      <div className="min-h-screen">
         {/* ヘッダー */}
-        <header className="bg-[var(--color-paper)] backdrop-blur-sm border-b border-[var(--color-sand)] sticky top-14 lg:top-20 z-30">
+        <header className="bg-[var(--color-paper)] border-b border-[var(--color-sand)] sticky top-14 lg:top-20 z-30">
           <div className="max-w-5xl mx-auto px-4 py-3 md:py-4 flex items-center justify-between">
             <Link
               href="/company"

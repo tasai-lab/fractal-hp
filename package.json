@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit",
     "optimize:images": "node scripts/optimize-images.mjs",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test": "jest --config jest.config.js"
   },
   "dependencies": {
     "lucide-react": "^0.560.0",
@@ -21,19 +22,26 @@
     "recharts": "^3.7.0"
   },
   "devDependencies": {
+    "@jest/globals": "^30.3.0",
     "@storybook/addon-docs": "^10.2.10",
     "@storybook/nextjs": "^10.2.10",
     "@storybook/react": "^10.2.10",
     "@tailwindcss/postcss": "^4",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/jest": "^30.0.0",
     "@types/node": "^20",
     "@types/nodemailer": "^7.0.4",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.0.10",
+    "jest": "^30.3.0",
+    "jest-environment-jsdom": "^30.3.0",
     "sharp": "^0.33.5",
     "storybook": "^10.2.10",
     "tailwindcss": "^4",
+    "ts-jest": "^29.4.6",
     "typescript": "^5"
   }
 }
