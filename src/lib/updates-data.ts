@@ -16,6 +16,10 @@ export const updates: Update[] = [
     items: [
       { type: "new", title: "事業所別採用情報ページを追加", link: "/stations/funabashi/recruit" },
       { type: "improve", title: "採用・会社・代表ページのデザインを統一", link: "/recruit" },
+      { type: "improve", title: "会社ページに事業実績・事業所一覧セクションを追加", link: "/company" },
+      { type: "improve", title: "ステーション一覧ページのデザインを改善", link: "/stations" },
+      { type: "improve", title: "フッターの構成を再設計" },
+      { type: "improve", title: "ヘッダーメニューのナビゲーションを改善" },
     ],
   },
   {
