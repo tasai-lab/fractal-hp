@@ -4,9 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { CountUp } from "@/components/CountUp";
 import { JobDetails } from "@/components/recruit/JobDetails";
-import StationStaff from "@/components/station/StationStaff";
-import StationFAQ from "@/components/station/StationFAQ";
-import Contact from "@/components/Contact";
+import RecruitTeam from "@/components/recruit/RecruitTeam";
+import RecruitFAQ from "@/components/recruit/RecruitFAQ";
+import RecruitContact from "@/components/recruit/RecruitContact";
 import FadeIn from "@/components/FadeIn";
 import { getStation, getAllStationSlugs } from "@/lib/stations-data";
 import { signOnBonus, jobPositions } from "@/lib/recruit-data";
@@ -204,30 +204,22 @@ export default async function StationRecruitPage({
 
         {/* スタッフ紹介 */}
         <FadeIn>
-          <StationStaff
-            staffMembers={station.staffMembers}
-            stationName={station.name}
-          />
+          <section className="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
+            <RecruitTeam
+              staffMembers={station.staffMembers}
+              showTeamPhoto={false}
+            />
+          </section>
         </FadeIn>
 
         {/* よくある質問 */}
         <FadeIn>
-          <StationFAQ faqs={recruitFAQs} />
-        </FadeIn>
-
-        {/* 応募フォーム */}
-        <FadeIn>
-          <section id="contact">
-            <h2 className="heading-mincho text-2xl md:text-3xl text-[var(--color-olive)] mb-8">
-              応募・お問い合わせ
-            </h2>
-            <div className="bg-white/80 rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
-              <Contact embedded hideTitle initialContactType="求人・採用について" />
-            </div>
-          </section>
+          <RecruitFAQ faqs={recruitFAQs} />
         </FadeIn>
 
       </div>
+
+      <RecruitContact />
     </>
   );
 }

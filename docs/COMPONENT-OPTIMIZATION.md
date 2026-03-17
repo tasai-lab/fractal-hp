@@ -19,7 +19,7 @@
 
 | パターン | 重複箇所 | 削減見込み | 共通化優先度 |
 |---------|---------|-----------|------------|
-| FAQアコーディオン（max-h-0/max-h-96切り替え） | src/components/FAQ.tsx, src/app/recruit/page.tsx, src/app/company/ceo/page.tsx, src/components/recruit/ModelIncomeSection.tsx | 約150行 | 高 |
+| FAQアコーディオン（max-h-0/max-h-96切り替え） | src/components/FAQ.tsx, src/components/recruit/RecruitFAQ.tsx, src/app/company/ceo/page.tsx, src/components/recruit/ModelIncomeSection.tsx | 約150行 | 高 |
 | お問い合わせCTA（電話+フォームボタン組み合わせ） | src/app/for-care-managers/page.tsx, src/app/for-medical-institutions/page.tsx, src/app/pricing/page.tsx, src/app/areas/[slug]/page.tsx | 約120行 | 高 |
 | スクロールアニメーション（独自IntersectionObserver実装） | src/app/company/page.tsx, src/app/company/ceo/page.tsx | 約40行（useScrollAnimationで代替可能） | 中 |
 | 電話番号リンク+電話SVGアイコン | src/app/for-care-managers/page.tsx（3箇所）, src/app/for-medical-institutions/page.tsx, src/app/pricing/page.tsx, src/app/areas/[slug]/page.tsx（2箇所） | 約50行 | 中 |

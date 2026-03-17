@@ -1,11 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import FadeIn from "@/components/FadeIn";
 import Link from "next/link";
 import Image from "next/image";
 import { CountUp } from "@/components/CountUp";
 import { JobDetails } from "@/components/recruit/JobDetails";
+import RecruitTeam from "@/components/recruit/RecruitTeam";
+import RecruitFAQ from "@/components/recruit/RecruitFAQ";
+import RecruitContact from "@/components/recruit/RecruitContact";
 import {
   signOnBonus,
   jobPositions,
@@ -20,114 +23,18 @@ import CityAreaCard from "@/components/station/CityAreaCard";
 
 const featureIconMap: LucideIcon[] = [Sparkles, Clock, Heart];
 
-const roleOverrides: Record<string, string> = {
-  "古谷 一真": "管理者",
-  "浅井 拓哉": "看護師",
-  "髙山 里美": "看護師",
-  "祝迫 萌々": "営業兼事務職",
-};
-
-const teamOrder = ["古谷 一真", "浅井 拓哉", "髙山 里美", "祝迫 萌々"];
-
-const teamProfiles = teamOrder
-  .map((name) => staffMembers.find((staff) => staff.name === name))
-  .filter((staff): staff is NonNullable<typeof staffMembers>[number] => Boolean(staff))
-  .map((staff) => ({
-    ...staff,
-    role: roleOverrides[staff.name] ?? staff.role,
-  }));
-
 const jobTabs = [
   { id: "nurse", label: "看護師", shortLabel: "看護師" },
   { id: "therapist", label: "理学療法士・作業療法士・言語聴覚士", shortLabel: "PT・OT・ST" },
 ];
-
-
-function ChevronDown({ className = "" }: { className?: string }) {
-  return (
-    <svg className={`w-5 h-5 ${className}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-    </svg>
-  );
-}
-
 export default function RecruitPage() {
   const [selectedJobId, setSelectedJobId] = useState<string>("nurse");
   const currentJob = jobPositions.find((job) => job.id === selectedJobId) || jobPositions[0];
-  const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
-  const [selectedTeam, setSelectedTeam] = useState<(typeof teamProfiles)[number] | null>(null);
   const [isContactOpen, setIsContactOpen] = useState(false);
-  const [contactForm, setContactForm] = useState({
-    name: "",
-    email: "",
-    message: "",
-    privacyAgreed: false,
-  });
-  const [contactErrors, setContactErrors] = useState({
-    name: "",
-    email: "",
-    message: "",
-    privacyAgreed: "",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isTeamModalOpen, setIsTeamModalOpen] = useState(false);
   const isNurse = selectedJobId === "nurse";
   const holidayLabel = isNurse ? "139日以上" : "120日以上";
   const holidayNote = isNurse ? "看護師" : "PT・OT・ST";
-
-  const toggleFAQ = (index: number) => {
-    setOpenFAQIndex(openFAQIndex === index ? null : index);
-  };
-
-  useEffect(() => {
-    if (selectedTeam || isContactOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [selectedTeam, isContactOpen]);
-
-  const openContact = () => {
-    setSelectedTeam(null);
-    setIsContactOpen(true);
-  };
-
-  const validateContactForm = () => {
-    const newErrors = { name: "", email: "", message: "", privacyAgreed: "" };
-    if (!contactForm.name.trim()) newErrors.name = "氏名を入力してください";
-    if (!contactForm.email.trim()) {
-      newErrors.email = "メールアドレスを入力してください";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactForm.email)) {
-      newErrors.email = "有効なメールアドレスを入力してください";
-    }
-    if (!contactForm.message.trim()) newErrors.message = "メッセージを入力してください";
-    if (!contactForm.privacyAgreed) newErrors.privacyAgreed = "プライバシーポリシーに同意してください";
-    setContactErrors(newErrors);
-    return !Object.values(newErrors).some((e) => e);
-  };
-
-  const handleContactSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!validateContactForm() || isSubmitting) return;
-    setIsSubmitting(true);
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...contactForm, contactType: "求人・採用について" }),
-      });
-      if (!response.ok) throw new Error("送信に失敗しました");
-      alert("お問い合わせを送信しました。");
-      setContactForm({ name: "", email: "", message: "", privacyAgreed: false });
-      setIsContactOpen(false);
-    } catch {
-      alert("送信に失敗しました。もう一度お試しください。");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   return (
     <div className="min-h-screen">
@@ -159,7 +66,7 @@ export default function RecruitPage() {
             <div className="flex flex-wrap gap-3 pt-2">
               <button
                 type="button"
-                onClick={openContact}
+                onClick={() => setIsContactOpen(true)}
                 className="px-5 py-2.5 md:px-6 md:py-3 rounded-full bg-[var(--color-olive)] text-white text-sm md:text-base font-semibold hover:opacity-90 transition"
               >
                 応募する
@@ -362,52 +269,9 @@ export default function RecruitPage() {
           </FadeIn>
         </section>
 
-        <section className="order-7 bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
-          <FadeIn>
-            <p className="text-xs tracking-[0.3em] text-ink-soft">TEAM</p>
-            <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
-              一緒に働く仲間
-            </h3>
-            <p className="text-ink-soft mt-2">
-              互いに支え合いながら、成長を喜べるチームです。
-            </p>
-          </FadeIn>
-          <FadeIn className="relative aspect-[3/2] rounded-3xl overflow-hidden shadow-lg bg-white mt-6">
-            <Image
-              src="/images/recruit/labels/team-title.webp"
-              alt="一緒に働く仲間"
-              fill
-              sizes="(max-width: 1024px) 100vw, 80vw"
-              className="object-contain bg-white"
-            />
-          </FadeIn>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
-            {teamProfiles.map((member) => (
-              <FadeIn key={member.name} className="transition-transform duration-300">
-                <button
-                  type="button"
-                  onClick={() => setSelectedTeam(member)}
-                  className="w-full bg-[var(--color-paper)] rounded-2xl p-3 md:p-5 text-center border border-white transition-all duration-300 hover:shadow-md active:scale-[0.98]"
-                >
-                  <div className="relative w-20 h-20 md:w-32 md:h-32 lg:w-36 lg:h-36 mx-auto rounded-2xl overflow-hidden mb-2 md:mb-3">
-                    <Image
-                      src={member.image}
-                      alt={`${member.name}の写真`}
-                      fill
-                      sizes="(max-width: 640px) 80px, (max-width: 1024px) 128px, 144px"
-                      className="object-cover"
-                    />
-                  </div>
-                  <p className="heading-mincho text-base md:text-lg text-[var(--color-olive)]">
-                    {member.name}
-                  </p>
-                  <p className="text-[11px] md:text-sm text-ink-soft">{member.role}</p>
-                  <p className="text-[10px] text-ink-soft/70 mt-1">タップで自己紹介</p>
-                </button>
-              </FadeIn>
-            ))}
-          </div>
-        </section>
+        <FadeIn className="order-7 bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
+          <RecruitTeam staffMembers={staffMembers} onModalChange={setIsTeamModalOpen} />
+        </FadeIn>
 
         <section className="order-9 bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
           <FadeIn>
@@ -551,226 +415,15 @@ export default function RecruitPage() {
           </FadeIn>
         </section>
 
-        <section id="faq" className="order-11 bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-white/80">
-          <FadeIn>
-            <p className="text-xs tracking-[0.3em] text-ink-soft">FAQ</p>
-            <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
-              よくある質問
-            </h3>
-            <div className="space-y-3 mt-6">
-              {recruitFAQs.map((faq, index) => (
-                <div
-                  key={faq.question}
-                  className="border border-[var(--color-sand)] rounded-2xl overflow-hidden"
-                >
-                  <button
-                    onClick={() => toggleFAQ(index)}
-                    className="w-full px-4 md:px-6 py-4 text-left bg-white/70 hover:bg-white transition-colors flex items-center justify-between gap-3"
-                  >
-                    <span className="font-medium text-[var(--color-olive)]">
-                      {faq.question}
-                    </span>
-                    <span
-                      className={`text-[var(--color-olive)] transition-transform duration-300 flex-shrink-0 ${
-                        openFAQIndex === index ? "rotate-180" : ""
-                      }`}
-                    >
-                      <ChevronDown />
-                    </span>
-                  </button>
-                  <div
-                    className={`overflow-hidden transition-all duration-300 ${
-                      openFAQIndex === index ? "max-h-96" : "max-h-0"
-                    }`}
-                  >
-                    <div className="px-4 md:px-6 py-4 bg-white">
-                      <p className="text-ink-soft text-sm md:text-base leading-relaxed">
-                        {faq.answer}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </FadeIn>
-        </section>
+        <RecruitFAQ faqs={recruitFAQs} className="order-11" />
 
       </main>
 
-      <div className="fixed bottom-6 right-4 lg:right-8 z-40">
-        <button
-          type="button"
-          onClick={openContact}
-          className="px-6 py-3 rounded-full bg-[var(--color-olive)] text-white font-semibold shadow-lg hover:opacity-90 transition"
-        >
-          応募する
-        </button>
-      </div>
-
-      {isContactOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40"
-          onClick={() => setIsContactOpen(false)}
-        >
-          <div
-            className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-[var(--color-paper)] rounded-3xl shadow-xl border border-white"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <div className="relative px-6 py-8 md:px-8 md:py-10">
-              <button
-                type="button"
-                onClick={() => setIsContactOpen(false)}
-                className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white shadow-sm flex items-center justify-center"
-                aria-label="閉じる"
-              >
-                <span className="text-lg text-ink-soft">×</span>
-              </button>
-              <div className="space-y-6">
-                <div>
-                  <p className="text-xs tracking-[0.3em] text-ink-soft">CONTACT</p>
-                  <h3 className="heading-mincho text-2xl md:text-4xl text-[var(--color-olive)] mt-3">
-                    応募・お問い合わせ
-                  </h3>
-                </div>
-                <div className="relative aspect-[16/9] rounded-2xl overflow-hidden bg-white">
-                  <Image
-                    src="/images/recruit/labels/contact-photo.webp"
-                    alt="募集お問い合わせ"
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 40vw"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="text-ink-soft">
-                  <p className="leading-relaxed">{applicationMessage.main}</p>
-                  <p className="text-sm mt-2">{applicationMessage.visit}</p>
-                </div>
-                <form onSubmit={handleContactSubmit} className="space-y-4">
-                  <div>
-                    <label htmlFor="contact-name" className="block text-sm font-medium text-[var(--color-olive)] mb-1">
-                      氏名 <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      id="contact-name"
-                      value={contactForm.name}
-                      onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
-                      className="w-full px-4 py-3 bg-white border border-[var(--color-sand)] rounded-2xl focus:outline-none focus:ring-2 focus:ring-[var(--color-olive)]/30"
-                      placeholder="山田 太郎"
-                    />
-                    {contactErrors.name && <p className="text-red-500 text-sm mt-1">{contactErrors.name}</p>}
-                  </div>
-                  <div>
-                    <label htmlFor="contact-email" className="block text-sm font-medium text-[var(--color-olive)] mb-1">
-                      メールアドレス <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="email"
-                      id="contact-email"
-                      value={contactForm.email}
-                      onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
-                      className="w-full px-4 py-3 bg-white border border-[var(--color-sand)] rounded-2xl focus:outline-none focus:ring-2 focus:ring-[var(--color-olive)]/30"
-                      placeholder="example@example.com"
-                    />
-                    {contactErrors.email && <p className="text-red-500 text-sm mt-1">{contactErrors.email}</p>}
-                  </div>
-                  <div>
-                    <label htmlFor="contact-message" className="block text-sm font-medium text-[var(--color-olive)] mb-1">
-                      メッセージ <span className="text-red-500">*</span>
-                    </label>
-                    <textarea
-                      id="contact-message"
-                      value={contactForm.message}
-                      onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
-                      rows={4}
-                      className="w-full px-4 py-3 bg-white border border-[var(--color-sand)] rounded-2xl focus:outline-none focus:ring-2 focus:ring-[var(--color-olive)]/30 resize-none"
-                      placeholder="ご質問やご希望をお聞かせください"
-                    />
-                    {contactErrors.message && <p className="text-red-500 text-sm mt-1">{contactErrors.message}</p>}
-                  </div>
-                  <div>
-                    <label className="flex items-start gap-3 cursor-pointer">
-                      <input
-                        type="checkbox"
-                        checked={contactForm.privacyAgreed}
-                        onChange={(e) => setContactForm({ ...contactForm, privacyAgreed: e.target.checked })}
-                        className="mt-1 w-5 h-5 rounded border-[var(--color-sand)] text-[var(--color-olive)] focus:ring-[var(--color-olive)]/30"
-                      />
-                      <span className="text-sm text-ink-soft">
-                        プライバシーポリシーに同意します <span className="text-red-500">*</span>
-                      </span>
-                    </label>
-                    {contactErrors.privacyAgreed && <p className="text-red-500 text-sm mt-1">{contactErrors.privacyAgreed}</p>}
-                  </div>
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full py-3 rounded-full bg-[var(--color-olive)] text-white font-semibold hover:opacity-90 transition disabled:opacity-50"
-                  >
-                    {isSubmitting ? "送信中..." : "送信する"}
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {selectedTeam && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40"
-          onClick={() => setSelectedTeam(null)}
-        >
-          <div
-            className="w-full max-w-md bg-[var(--color-paper)] rounded-3xl shadow-xl border border-white"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <div className="relative rounded-t-3xl bg-white/80 px-6 py-8 text-center">
-              <button
-                type="button"
-                onClick={() => setSelectedTeam(null)}
-                className="absolute top-3 right-3 w-9 h-9 rounded-full bg-white shadow-sm flex items-center justify-center"
-                aria-label="閉じる"
-              >
-                <span className="text-lg text-ink-soft">×</span>
-              </button>
-              <div className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-2xl overflow-hidden mx-auto mb-4">
-                <Image
-                  src={selectedTeam.image}
-                  alt={`${selectedTeam.name}の写真`}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <p className="text-xs tracking-[0.2em] text-ink-soft">STAFF</p>
-              <h3 className="heading-mincho text-2xl text-[var(--color-olive)] mt-2">
-                {selectedTeam.name}
-              </h3>
-              <p className="text-sm text-ink-soft mt-1">{selectedTeam.nameReading}</p>
-              <p className="text-sm text-[var(--color-olive)] mt-2">{selectedTeam.role}</p>
-            </div>
-
-            <div className="px-6 pb-6">
-              <div className="grid gap-3 mt-4">
-                <div className="bg-white rounded-2xl border border-white p-3 text-sm text-ink-soft">
-                  <span className="font-semibold text-[var(--color-olive)]">出身地：</span>
-                  {selectedTeam.birthplace}
-                </div>
-                <div className="bg-white rounded-2xl border border-white p-3 text-sm text-ink-soft">
-                  <span className="font-semibold text-[var(--color-olive)]">趣味：</span>
-                  {selectedTeam.hobbies}
-                </div>
-              </div>
-              <div className="mt-4 bg-white rounded-2xl border border-white p-4">
-                <p className="text-sm font-semibold text-[var(--color-olive)] mb-2">自己紹介</p>
-                <p className="text-sm text-ink-soft leading-relaxed">
-                  {selectedTeam.introduction}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      <RecruitContact
+        isOpen={isContactOpen}
+        onOpenChange={setIsContactOpen}
+        hideButton={isTeamModalOpen}
+      />
     </div>
   );
 }
