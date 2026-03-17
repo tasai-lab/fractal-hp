@@ -43,6 +43,9 @@
 | AreaFAQ | AreaFAQ.tsx | —（未作成） | エリア | 地域ページFAQ |
 | JobDetails | recruit/JobDetails.tsx | `src/components/recruit/JobDetails.stories.tsx` | 採用 | 職種詳細モーダル |
 | ModelIncomeSection | recruit/ModelIncomeSection.tsx | `src/components/recruit/ModelIncomeSection.stories.tsx` | 採用 | モデル年収セクション |
+| RecruitTeam | recruit/RecruitTeam.tsx | —（Stories未作成） | 採用 | スタッフ紹介（olive配色・モーダル付き） |
+| RecruitFAQ | recruit/RecruitFAQ.tsx | —（Stories未作成） | 採用 | 採用FAQ（oliveシェブロン・Q&Aバッジなし） |
+| RecruitContact | recruit/RecruitContact.tsx | —（Stories未作成） | 採用 | 応募フローティングボタン+モーダル |
 | PopulationChart | charts/PopulationChart.tsx | `src/components/charts/PopulationChart.stories.tsx` | チャート | 人口推移折れ線グラフ |
 | AgeDistributionChart | charts/AgeDistributionChart.tsx | `src/components/charts/AgeDistributionChart.stories.tsx` | チャート | 年齢分布円グラフ |
 | ElderlyRateTrendChart | charts/ElderlyRateTrendChart.tsx | `src/components/charts/ElderlyRateTrendChart.stories.tsx` | チャート | 高齢化率推移エリアチャート |
