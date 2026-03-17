@@ -163,7 +163,7 @@ export default function Header({ variant = "default" }: HeaderProps) {
                   採用・お問い合わせ
                 </h3>
                 <Link href="/recruit" onClick={closeMenu}
-                  className="block pl-4 py-1.5 text-sm text-[var(--color-ink)] hover:text-[var(--color-logo-dark-green)] transition-colors">
+                  className="block pl-4 py-1.5 text-sm font-medium text-[var(--color-logo-dark-green)] bg-[var(--color-logo-light-green)]/10 rounded-md hover:bg-[var(--color-logo-light-green)]/20 transition-colors">
                   採用情報一覧
                 </Link>
                 <Link href="/#contact" onClick={closeMenu}
@@ -178,7 +178,7 @@ export default function Header({ variant = "default" }: HeaderProps) {
                   会社情報
                 </h3>
                 <Link href="/company" onClick={closeMenu}
-                  className="block pl-4 py-1.5 text-sm text-[var(--color-ink)] hover:text-[var(--color-logo-dark-green)] transition-colors">
+                  className="block pl-4 py-1.5 text-sm font-medium text-[var(--color-logo-dark-green)] bg-[var(--color-logo-light-green)]/10 rounded-md hover:bg-[var(--color-logo-light-green)]/20 transition-colors">
                   株式会社フラクタル
                 </Link>
                 <Link href="/fractal" onClick={closeMenu}
@@ -186,7 +186,7 @@ export default function Header({ variant = "default" }: HeaderProps) {
                   フラクタルの意味
                 </Link>
                 <Link href="/company/ceo" onClick={closeMenu}
-                  className="block pl-4 py-1.5 text-sm text-[var(--color-ink)] hover:text-[var(--color-logo-dark-green)] transition-colors">
+                  className="block pl-4 py-1.5 text-sm font-medium text-[var(--color-logo-dark-green)] bg-[var(--color-logo-light-green)]/10 rounded-md hover:bg-[var(--color-logo-light-green)]/20 transition-colors">
                   代表の取扱説明書
                 </Link>
                 <p className="pl-4 py-1.5 text-sm font-medium text-[var(--color-ink)]">
