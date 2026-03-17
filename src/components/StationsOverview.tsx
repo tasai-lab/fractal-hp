@@ -4,7 +4,12 @@ import { getActiveStations } from "@/lib/stations-data";
 import { serviceAreas } from "@/lib/data";
 import { regionalData } from "@/lib/regional-data";
 import CityAreaCard from "@/components/station/CityAreaCard";
-export default function StationsOverview() {
+
+type Props = {
+  showSectionTitle?: boolean;
+};
+
+export default function StationsOverview({ showSectionTitle = true }: Props) {
   const stations = getActiveStations();
 
   return (
@@ -12,13 +17,15 @@ export default function StationsOverview() {
       id="stations"
       className="section-wrapper bg-white relative"
     >
-      <div className="section-inner relative z-10">
-        <div className="section-title-area">
-          <h2 className="section-title heading-gothic">事業所紹介</h2>
-          <div className="section-title-line" />
-        </div>
+      <div className={showSectionTitle ? "section-inner relative z-10" : "section-container relative z-10"}>
+        {showSectionTitle && (
+          <div className="section-title-area">
+            <h2 className="section-title heading-gothic">事業所紹介</h2>
+            <div className="section-title-line" />
+          </div>
+        )}
 
-        <div className="section-content">
+        <div className={showSectionTitle ? "section-content" : "w-full"}>
           <div className="space-y-8">
             {stations.map((station) => {
               const { officeInfo } = station;

@@ -185,7 +185,7 @@ export default async function StationRecruitPage({
             <h2 className="heading-mincho text-2xl md:text-3xl text-[var(--color-olive)] mb-8">
               募集職種
             </h2>
-            <div className="bg-white/80 rounded-3xl p-6 md:p-10 shadow-sm border border-white/80 space-y-8">
+            <div className="space-y-8">
               <div>
                 <h3 className="heading-mincho text-xl text-[var(--color-olive)] mb-4">
                   看護師

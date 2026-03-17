@@ -84,3 +84,24 @@ export const countUpMetrics: CountUpMetric[] = [
     description: "開業からの実績",
   },
 ];
+
+// 月次成長データ（会社ページ用）
+export interface MonthlyGrowthData {
+  month: string;    // "2025-06" 形式
+  label: string;    // "6月" 形式（チャート表示用）
+  visits: number;   // 月間訪問件数
+  patients: number; // 利用者数
+}
+
+export const monthlyGrowthData: MonthlyGrowthData[] = [
+  { month: "2025-06", label: "25/6", visits: 15, patients: 5 },
+  { month: "2025-07", label: "25/7", visits: 45, patients: 12 },
+  { month: "2025-08", label: "25/8", visits: 72, patients: 20 },
+  { month: "2025-09", label: "25/9", visits: 98, patients: 28 },
+  { month: "2025-10", label: "25/10", visits: 120, patients: 35 },
+  { month: "2025-11", label: "25/11", visits: 145, patients: 40 },
+  { month: "2025-12", label: "25/12", visits: 168, patients: 47 },
+  { month: "2026-01", label: "26/1", visits: 195, patients: 55 },
+  { month: "2026-02", label: "26/2", visits: 242, patients: 62 },
+  { month: "2026-03", label: "26/3", visits: 240, patients: 66 },
+];

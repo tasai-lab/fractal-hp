@@ -31,6 +31,7 @@
 | GoogleAnalytics | GoogleAnalytics.tsx | —（UIなし） | ユーティリティ | GA4トラッキング |
 | CountUp | CountUp.tsx | `src/components/CountUp.stories.tsx` | ユーティリティ | 数値カウントアップ |
 | StructuredData | StructuredData.tsx | —（UIなし） | SEO | 構造化データ |
+| StationsOverview | StationsOverview.tsx | —（Stories未作成） | セクション | 事業所紹介（トップ/一覧ページ共用） |
 | RecruitCTA | RecruitCTA.tsx | —（Stories未作成） | セクション | トップページ用採用CTA |
 | StationOfficeInfo | station/StationOfficeInfo.tsx | —（Stories未作成） | 事業所 | 事業所情報+地図 |
 | StationStaff | station/StationStaff.tsx | —（Stories未作成） | 事業所 | 事業所スタッフ紹介（モーダル付き） |
