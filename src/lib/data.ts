@@ -31,19 +31,25 @@ export const footerSitemap = {
       { href: "/services/for-medical-institutions", label: "医療機関様へ" },
     ],
   },
-  company: {
-    title: "会社情報",
-    items: [
-      { href: "/fractal", label: "フラクタルの意味" },
-      { href: "/company", label: "株式会社フラクタル" },
-      { href: "/updates", label: "更新情報" },
-    ],
-  },
   recruit: {
     title: "採用・お問い合わせ",
     items: [
       { href: "/recruit", label: "採用情報" },
       { href: "/#contact", label: "お問い合わせ" },
+    ],
+  },
+  company: {
+    title: "会社情報",
+    items: [
+      { href: "/company", label: "株式会社フラクタル" },
+      { href: "/fractal", label: "フラクタルの意味" },
+      { href: "/company/ceo", label: "代表の取扱説明書" },
+    ],
+  },
+  site: {
+    title: "サイト情報",
+    items: [
+      { href: "/updates", label: "更新情報" },
     ],
   },
 };
