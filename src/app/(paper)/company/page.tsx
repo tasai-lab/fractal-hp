@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useRef, useEffect, useState, startTransition } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import FadeIn from "@/components/FadeIn";
 
 // 企業データ
 const companyData = {
@@ -92,57 +93,6 @@ const companyData = {
   },
 };
 
-// フェードインコンポーネント
-function FadeIn({
-  children,
-  className = "",
-  delay = 0,
-}: {
-  children: React.ReactNode;
-  className?: string;
-  delay?: number;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    if (prefersReducedMotion) {
-      startTransition(() => setIsVisible(true));
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => setIsVisible(true), delay);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => observer.disconnect();
-  }, [delay]);
-
-  return (
-    <div
-      ref={ref}
-      className={`transition-all duration-700 ease-out ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-      } ${className}`}
-    >
-      {children}
-    </div>
-  );
-}
-
 // セクションコンポーネント
 function Section({
   children,
@@ -155,7 +105,7 @@ function Section({
 }) {
   return (
     <section id={id} className={`py-16 md:py-24 ${className}`}>
-      <div className="max-w-3xl mx-auto px-5 md:px-8">{children}</div>
+      <div className="max-w-5xl mx-auto px-5 md:px-8">{children}</div>
     </section>
   );
 }
@@ -172,7 +122,7 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 // 区切り線
 function Divider() {
   return (
-    <div className="max-w-3xl mx-auto px-5 md:px-8">
+    <div className="max-w-5xl mx-auto px-5 md:px-8">
       <hr className="border-t border-[var(--color-sand)]" />
     </div>
   );
@@ -180,10 +130,10 @@ function Divider() {
 
 export default function CompanyPage() {
   return (
-    <div className="min-h-screen body-paper">
+    <div className="min-h-screen">
       {/* ヘッダー */}
       <header className="bg-[var(--color-paper)] border-b border-[var(--color-sand)] sticky top-14 lg:top-20 z-30">
-        <div className="max-w-3xl mx-auto px-5 md:px-8 py-3 md:py-4 flex items-center justify-between">
+        <div className="max-w-5xl mx-auto px-5 md:px-8 py-3 md:py-4 flex items-center justify-between">
           <Link
             href="/"
             className="text-[var(--color-olive)] font-bold text-sm md:text-base hover:opacity-80 transition-opacity"

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -12,33 +12,12 @@ import {
   Stethoscope,
 } from "lucide-react";
 import Contact from "@/components/Contact";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import FadeIn from "@/components/FadeIn";
 import {
   dayFlowHero,
   dayFlowSteps,
   johnnyProfile,
 } from "@/lib/recruit-dayflow";
-
-const FadeIn = ({
-  children,
-  className = "",
-}: {
-  children: ReactNode;
-  className?: string;
-}) => {
-  const { ref, isVisible } = useScrollAnimation(0.15);
-
-  return (
-    <div
-      ref={ref as React.RefObject<HTMLDivElement>}
-      className={`transition-opacity duration-700 ease-out ${
-        isVisible ? "opacity-100" : "opacity-0"
-      } ${className}`}
-    >
-      {children}
-    </div>
-  );
-};
 
 const flowIcons = [Bot, Stethoscope, Coffee, Mic, MessagesSquare, LogOut];
 
@@ -58,9 +37,9 @@ export default function RecruitDayFlowPage() {
   }, [isContactOpen]);
 
   return (
-    <div className="min-h-screen body-editorial">
-      <header className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-40">
-        <div className="max-w-6xl mx-auto px-4 py-3 md:py-4 flex items-center justify-between">
+    <div className="min-h-screen">
+      <header className="bg-[var(--color-paper)] border-b border-[var(--color-sand)] sticky top-14 lg:top-20 z-30">
+        <div className="max-w-5xl mx-auto px-4 py-3 md:py-4 flex items-center justify-between">
           <Link
             href="/recruit"
             className="text-primary font-bold text-sm md:text-lg hover:opacity-80 transition-opacity"

@@ -3,7 +3,6 @@ import { M_PLUS_1, Zen_Old_Mincho, Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 import GoogleAnalytics, { GoogleTagManagerNoscript } from "@/components/GoogleAnalytics";
 import StructuredData from "@/components/StructuredData";
-import PageBackground from "@/components/PageBackground";
 
 const mplus1 = M_PLUS_1({
   variable: "--font-mplus1",
@@ -212,7 +211,6 @@ export default function RootLayout({
       </head>
       <body className={`${mplus1.variable} ${zenOldMincho.variable} ${notoSansJP.variable} antialiased`}>
         <div className="relative">
-          <PageBackground />
           <GoogleTagManagerNoscript />
           {children}
         </div>

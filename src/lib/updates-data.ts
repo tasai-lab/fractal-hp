@@ -12,6 +12,13 @@ export interface Update {
 
 export const updates: Update[] = [
   {
+    date: "2026-03-17",
+    items: [
+      { type: "new", title: "事業所別採用情報ページを追加", link: "/stations/funabashi/recruit" },
+      { type: "improve", title: "採用・会社・代表ページのデザインを統一", link: "/recruit" },
+    ],
+  },
+  {
     date: "2026-03-04",
     items: [
       { type: "new", title: "精神科訪問看護の専用ページを追加", link: "/services/psychiatric-nursing" },

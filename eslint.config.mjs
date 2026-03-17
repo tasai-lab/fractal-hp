@@ -14,6 +14,8 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // Storybook build output (minified, not source code):
     "storybook-static/**",
+    // Jest setup (CommonJS):
+    "jest.setup.js",
   ]),
 ]);
 

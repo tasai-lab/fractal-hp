@@ -37,7 +37,7 @@
 | StationFlow | station/StationFlow.tsx | —（Stories未作成） | 事業所 | 事業所ご利用の流れ |
 | StationFAQ | station/StationFAQ.tsx | —（Stories未作成） | 事業所 | 事業所FAQ（アコーディオン） |
 | StationFeatures | station/StationFeatures.tsx | —（Stories未作成） | 事業所 | 事業所の特徴 |
-| StationRecruit | station/StationRecruit.tsx | —（Stories未作成） | 事業所 | 事業所簡易求人 |
+| FadeIn | FadeIn.tsx | —（Stories未作成） | ユーティリティ | スクロールアニメーション共通ラッパー |
 | AreaHero | AreaHero.tsx | —（未作成） | エリア | 地域ページヒーロー |
 | AreaFAQ | AreaFAQ.tsx | —（未作成） | エリア | 地域ページFAQ |
 | JobDetails | recruit/JobDetails.tsx | `src/components/recruit/JobDetails.stories.tsx` | 採用 | 職種詳細モーダル |
