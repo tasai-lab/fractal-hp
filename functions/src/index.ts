@@ -116,14 +116,14 @@ export const contact = async (req: Request, res: Response): Promise<void> => {
     };
 
     const domain = (process.env.GMAIL_FROM || "").split("@")[1] || "fractal-group.co.jp";
-    const bcc = sanitizedData.contactType.includes("採用")
+    const cc = sanitizedData.contactType.includes("採用")
       ? `recruit@${domain}`
       : `hokan-f@${domain}`;
 
     const adminMailOptions = {
       from: process.env.GMAIL_FROM,
       to: process.env.CONTACT_EMAIL,
-      bcc,
+      cc,
       subject: `【お問い合わせ】${sanitizedData.contactType} - ${sanitizedData.name}様`,
       html: `
         <h2>ウェブサイトからのお問い合わせ</h2>
