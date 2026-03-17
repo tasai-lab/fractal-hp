@@ -1,8 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { officeInfo, serviceAreas } from "@/lib/data";
 import { regionalData } from "@/lib/regional-data";
+import CityAreaCard from "@/components/station/CityAreaCard";
 export default function Office() {
   return (
     <section id="office" className="section-wrapper bg-white relative">
@@ -134,88 +133,15 @@ export default function Office() {
 
             {/* 訪問可能エリアカード */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
-              {serviceAreas.priority.cities.map((city, index) => {
+              {serviceAreas.priority.cities.map((city) => {
                 const areaData = regionalData.find((r) => r.name === city.name);
-
                 return (
-                  <div
-                    key={index}
-                    className="bg-white rounded-2xl overflow-hidden shadow-sm flex flex-col"
-                  >
-                    {/* カラーバー */}
-                    {areaData && (
-                      <div
-                        className="h-2"
-                        style={{ backgroundColor: areaData.theme.primary }}
-                      />
-                    )}
-
-                    <div className="p-4 md:p-5 flex flex-col flex-1">
-                      {/* 市名とタグライン */}
-                      <div className="flex items-center justify-between mb-3 pb-2 border-b border-gray-200">
-                        <h4
-                          className="font-bold text-lg"
-                          style={{ color: areaData?.theme.secondary || "var(--color-primary)" }}
-                        >
-                          {city.name}
-                        </h4>
-                        {areaData && (
-                          <span
-                            className="inline-block px-2 py-0.5 rounded-full text-xs font-bold text-white"
-                            style={{ backgroundColor: areaData.theme.primary }}
-                          >
-                            {areaData.theme.tagline}
-                          </span>
-                        )}
-                      </div>
-
-                      {/* 訪問可能地域リスト */}
-                      <ul className={`text-sm md:text-base mb-4 ${city.areas.length > 6 ? "grid grid-cols-2 gap-x-3 gap-y-1" : "space-y-1"}`}>
-                        {city.areas.map((area, areaIndex) => (
-                          <li key={areaIndex} className="flex items-start gap-2">
-                            <span className="text-[var(--color-logo-light-green)] mt-0.5">●</span>
-                            <span>{area}</span>
-                          </li>
-                        ))}
-                      </ul>
-                      <p className="text-gray-500 text-xs mb-4">
-                        上記以外の地域も承ります
-                      </p>
-
-                      {/* 詳細リンク */}
-                      {areaData && (
-                        <Link
-                          href={`/stations/funabashi/areas/${areaData.slug}`}
-                          className="group flex items-center justify-between p-3 rounded-lg transition-colors mt-auto"
-                          style={{ backgroundColor: `${areaData.theme.primary}15` }}
-                        >
-                          <div className="flex items-center gap-3">
-                            <div>
-                              <span
-                                className="font-bold text-sm"
-                                style={{ color: areaData.theme.primary }}
-                              >
-                                {areaData.population.elderlyRate}
-                              </span>
-                              <span className="text-xs text-gray-500 ml-1">高齢化率</span>
-                            </div>
-                            <div className="h-4 w-px bg-gray-300" />
-                            <div>
-                              <span className="text-xs text-gray-500">人口</span>
-                              <span className="text-sm font-medium ml-1">{areaData.population.total}</span>
-                            </div>
-                          </div>
-                          <div
-                            className="flex items-center gap-1 text-sm font-bold group-hover:gap-2 transition-all"
-                            style={{ color: areaData.theme.primary }}
-                          >
-                            <span>詳しく</span>
-                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                          </div>
-                        </Link>
-                      )}
-                    </div>
-                  </div>
+                  <CityAreaCard
+                    key={city.name}
+                    city={city}
+                    areaData={areaData}
+                    detailHref={areaData ? `/stations/funabashi/areas/${areaData.slug}` : undefined}
+                  />
                 );
               })}
 
@@ -223,65 +149,12 @@ export default function Office() {
               {regionalData
                 .filter((r) => !serviceAreas.priority.cities.some((c) => c.name === r.name))
                 .map((areaData) => (
-                  <div
+                  <CityAreaCard
                     key={areaData.slug}
-                    className="bg-white rounded-2xl overflow-hidden shadow-sm flex flex-col"
-                  >
-                    <div
-                      className="h-2"
-                      style={{ backgroundColor: areaData.theme.primary }}
-                    />
-                    <div className="p-4 md:p-5 flex flex-col flex-1">
-                      <div className="flex items-center justify-between mb-3 pb-2 border-b border-gray-200">
-                        <h4
-                          className="font-bold text-lg"
-                          style={{ color: areaData.theme.secondary }}
-                        >
-                          {areaData.name}
-                        </h4>
-                        <span
-                          className="inline-block px-2 py-0.5 rounded-full text-xs font-bold text-white"
-                          style={{ backgroundColor: areaData.theme.primary }}
-                        >
-                          {areaData.theme.tagline}
-                        </span>
-                      </div>
-
-                      <p className="text-sm text-gray-600 mb-4">
-                        訪問可能エリアについてはお問い合わせください
-                      </p>
-
-                      <Link
-                        href={`/stations/funabashi/areas/${areaData.slug}`}
-                        className="group flex items-center justify-between p-3 rounded-lg transition-colors mt-auto"
-                        style={{ backgroundColor: `${areaData.theme.primary}15` }}
-                      >
-                        <div className="flex items-center gap-3">
-                          <div>
-                            <span
-                              className="font-bold text-sm"
-                              style={{ color: areaData.theme.primary }}
-                            >
-                              {areaData.population.elderlyRate}
-                            </span>
-                            <span className="text-xs text-gray-500 ml-1">高齢化率</span>
-                          </div>
-                          <div className="h-4 w-px bg-gray-300" />
-                          <div>
-                            <span className="text-xs text-gray-500">人口</span>
-                            <span className="text-sm font-medium ml-1">{areaData.population.total}</span>
-                          </div>
-                        </div>
-                        <div
-                          className="flex items-center gap-1 text-sm font-bold group-hover:gap-2 transition-all"
-                          style={{ color: areaData.theme.primary }}
-                        >
-                          <span>詳しく</span>
-                          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                        </div>
-                      </Link>
-                    </div>
-                  </div>
+                    city={{ name: areaData.name, areas: [] }}
+                    areaData={areaData}
+                    detailHref={`/stations/funabashi/areas/${areaData.slug}`}
+                  />
                 ))}
             </div>
           </div>
