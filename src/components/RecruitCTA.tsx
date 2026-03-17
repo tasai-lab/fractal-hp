@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { signOnBonus } from "@/lib/recruit-data";
 
-export default function RecruitCTA() {
+export default function RecruitCTA({ recruitHref = "/recruit" }: { recruitHref?: string }) {
   return (
     <section
       id="recruit"
@@ -106,7 +106,7 @@ export default function RecruitCTA() {
             {/* 採用情報ボタン */}
             <div className="text-center">
               <Link
-                href="/recruit"
+                href={recruitHref}
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[var(--color-primary)] text-white font-bold text-base md:text-lg hover:opacity-90 transition-opacity shadow-lg"
               >
                 求人募集を見る
