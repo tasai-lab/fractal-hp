@@ -4,6 +4,18 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
+import { CountUp } from "@/components/CountUp";
+import { countUpMetrics, monthlyGrowthData } from "@/lib/performance-data";
+import { getActiveStations } from "@/lib/stations-data";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 
 // 企業データ
 const companyData = {
@@ -313,6 +325,86 @@ export default function CompanyPage() {
 
         <Divider />
 
+        {/* 実績 */}
+        <Section id="performance">
+          <FadeIn>
+            <SectionTitle>事業実績</SectionTitle>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+              {countUpMetrics.map((metric) => (
+                <div
+                  key={metric.label}
+                  className="bg-white/60 border border-[var(--color-sand)] rounded-lg p-4 text-center"
+                >
+                  <p className="heading-mincho text-2xl md:text-3xl text-[var(--color-olive)]">
+                    <CountUp end={metric.value} suffix={metric.suffix} />
+                  </p>
+                  <p className="text-sm font-medium text-[var(--color-ink)] mt-1">
+                    {metric.label}
+                  </p>
+                  <p className="text-xs text-[var(--color-ink-soft)] mt-0.5">
+                    {metric.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* 成長グラフ */}
+            <div className="bg-white/60 border border-[var(--color-sand)] rounded-lg p-5 md:p-8">
+              <h3 className="text-lg font-medium text-[var(--color-ink)] mb-6">
+                訪問件数の推移
+              </h3>
+              <div className="h-[250px] md:h-[300px]">
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart data={monthlyGrowthData}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="var(--color-sand)" />
+                    <XAxis
+                      dataKey="label"
+                      tick={{ fontSize: 12, fill: "var(--color-ink-soft)" }}
+                    />
+                    <YAxis
+                      tick={{ fontSize: 12, fill: "var(--color-ink-soft)" }}
+                      width={40}
+                    />
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: "var(--color-paper)",
+                        border: "1px solid var(--color-sand)",
+                        borderRadius: "8px",
+                        fontSize: "14px",
+                      }}
+                      formatter={(value, name) => [
+                        `${value}${name === "visits" ? "件" : "名"}`,
+                        name === "visits" ? "訪問件数" : "利用者数",
+                      ]}
+                    />
+                    <Line
+                      type="monotone"
+                      dataKey="visits"
+                      stroke="var(--color-olive)"
+                      strokeWidth={2}
+                      dot={{ r: 4, fill: "var(--color-olive)" }}
+                      name="visits"
+                    />
+                    <Line
+                      type="monotone"
+                      dataKey="patients"
+                      stroke="var(--color-terracotta)"
+                      strokeWidth={2}
+                      dot={{ r: 4, fill: "var(--color-terracotta)" }}
+                      name="patients"
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
+              <p className="text-xs text-[var(--color-ink-soft)] mt-4 text-right">
+                2025年6月開業
+              </p>
+            </div>
+          </FadeIn>
+        </Section>
+
+        <Divider />
+
         {/* 会社概要 */}
         <Section id="info">
           <FadeIn>
@@ -367,6 +459,45 @@ export default function CompanyPage() {
                   </tr>
                 </tbody>
               </table>
+            </div>
+          </FadeIn>
+        </Section>
+
+        <Divider />
+
+        {/* 事業所一覧 */}
+        <Section id="stations">
+          <FadeIn>
+            <SectionTitle>事業所一覧</SectionTitle>
+            <div className="space-y-6">
+              {getActiveStations().map((station) => (
+                <Link
+                  key={station.slug}
+                  href={`/stations/${station.slug}`}
+                  className="block bg-white/60 border border-[var(--color-sand)] rounded-lg p-5 md:p-6 hover:bg-white hover:border-[var(--color-olive)]/30 transition-all group"
+                >
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="text-lg font-medium text-[var(--color-ink)] group-hover:text-[var(--color-olive)] transition-colors">
+                        {station.name}
+                      </h3>
+                      <p className="text-sm text-[var(--color-ink-soft)] mt-1">
+                        {station.officeInfo.address.full}
+                      </p>
+                      <div className="flex gap-4 mt-2 text-sm text-[var(--color-ink-soft)]">
+                        <span>TEL: {station.officeInfo.phone}</span>
+                        <span>{station.officeInfo.hours}</span>
+                      </div>
+                      <p className="text-xs text-[var(--color-olive)] mt-2">
+                        {new Date(station.openDate).toLocaleDateString("ja-JP", { year: "numeric", month: "long" })}開業
+                      </p>
+                    </div>
+                    <span className="text-[var(--color-olive)] group-hover:translate-x-1 transition-transform">
+                      →
+                    </span>
+                  </div>
+                </Link>
+              ))}
             </div>
           </FadeIn>
         </Section>
