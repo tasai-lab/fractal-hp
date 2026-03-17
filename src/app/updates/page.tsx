@@ -23,7 +23,7 @@ export default function UpdatesPage() {
   return (
     <>
       <Header />
-      <main className="pt-14 lg:pt-20 bg-white min-h-screen">
+      <main className="relative z-10 pt-14 lg:pt-20 bg-white min-h-screen">
         {/* ヘッダー */}
         <div className="bg-gradient-to-br from-gray-50 to-white py-12 md:py-16">
           <div className="max-w-4xl mx-auto px-4 text-center">

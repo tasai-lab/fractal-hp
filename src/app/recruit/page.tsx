@@ -14,8 +14,7 @@ import {
 } from "@/lib/recruit-data";
 import { recruitFAQs } from "@/lib/faq-data";
 import { staffMembers, serviceAreas } from "@/lib/data";
-import { regionalData } from "@/lib/regional-data";
-import { ArrowRight, Sparkles, Clock, Heart, LucideIcon } from "lucide-react";
+import { Sparkles, Clock, Heart, LucideIcon } from "lucide-react";
 
 const featureIconMap: LucideIcon[] = [Sparkles, Clock, Heart];
 
@@ -41,44 +40,6 @@ const jobTabs = [
   { id: "therapist", label: "理学療法士・作業療法士・言語聴覚士", shortLabel: "PT・OT・ST" },
 ];
 
-
-const pastelColors: Record<string, { primary: string; secondary: string }> = {
-  "船橋市": { primary: "#a8d5ba", secondary: "#5a8a6e" },
-  "八千代市": { primary: "#f5c6a5", secondary: "#b87333" },
-  "習志野市": { primary: "#a5c8e4", secondary: "#4a7c9b" },
-  "千葉市花見川区": { primary: "#e4b8c9", secondary: "#9e5a7a" },
-  "千葉市稲毛区": { primary: "#c9c8e4", secondary: "#6a6a9e" },
-};
-
-interface AreaAccordionItem {
-  key: string;
-  name: string;
-  areas: string[] | null;
-  areaData: (typeof regionalData)[number] | undefined;
-  pastel: { primary: string; secondary: string } | undefined;
-}
-
-const areaItems: AreaAccordionItem[] = (() => {
-  const cityItems = serviceAreas.priority.cities.map((city) => ({
-    key: city.name,
-    name: city.name,
-    areas: city.areas,
-    areaData: regionalData.find((r) => r.name === city.name),
-    pastel: pastelColors[city.name],
-  }));
-
-  const extraItems = regionalData
-    .filter((r) => !serviceAreas.priority.cities.some((c) => c.name === r.name))
-    .map((r) => ({
-      key: r.slug,
-      name: r.name,
-      areas: null,
-      areaData: r,
-      pastel: pastelColors[r.name],
-    }));
-
-  return [...cityItems, ...extraItems];
-})();
 
 function ChevronDown({ className = "" }: { className?: string }) {
   return (
@@ -128,8 +89,6 @@ export default function RecruitPage() {
     privacyAgreed: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [openAreaIndex, setOpenAreaIndex] = useState<number | null>(null);
-
   const isNurse = selectedJobId === "nurse";
   const holidayLabel = isNurse ? "139日以上" : "120日以上";
   const holidayNote = isNurse ? "看護師" : "PT・OT・ST";
@@ -493,90 +452,27 @@ export default function RecruitPage() {
             </div>
           </FadeIn>
 
-          {/* 訪問可能エリアアコーディオン */}
-          <FadeIn className="space-y-3 mt-6">
-            {areaItems.map((item, index) => {
-              const isOpen = openAreaIndex === index;
-              const accentColor = item.pastel?.secondary ?? "var(--color-olive)";
-              return (
-                <div key={item.key} className="bg-white/60 rounded-2xl overflow-hidden">
-                  {item.pastel && (
-                    <div className="h-1" style={{ backgroundColor: item.pastel.primary }} />
-                  )}
-                  <button
-                    type="button"
-                    onClick={() => setOpenAreaIndex(isOpen ? null : index)}
-                    className="w-full p-4 flex items-center justify-between text-left"
-                  >
-                    <div className="flex items-center gap-3">
-                      <h4 className="font-bold text-lg" style={{ color: accentColor }}>
-                        {item.name}
-                      </h4>
-                      {item.areaData && item.pastel && (
-                        <span
-                          className="inline-block px-2 py-0.5 rounded-full text-xs font-bold"
-                          style={{ backgroundColor: item.pastel.primary, color: item.pastel.secondary }}
-                        >
-                          {item.areaData.theme.tagline}
-                        </span>
-                      )}
-                    </div>
-                    <span
-                      className={`transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
-                      style={{ color: accentColor }}
-                    >
-                      <ChevronDown />
-                    </span>
-                  </button>
-                  <div className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-96" : "max-h-0"}`}>
-                    <div className="px-4 pb-4 border-t border-[var(--color-sand)]">
-                      {item.areas ? (
-                        <ul className={`text-sm py-3 ${item.areas.length > 6 ? "grid grid-cols-2 gap-x-3 gap-y-1" : "space-y-1"}`}>
-                          {item.areas.map((area, areaIndex) => (
-                            <li key={areaIndex} className="flex items-start gap-2">
-                              <span style={{ color: item.pastel?.primary ?? "var(--color-olive)" }} className="mt-0.5">●</span>
-                              <span className="text-ink-soft">{area}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      ) : (
-                        <p className="text-sm text-ink-soft py-3">
-                          訪問可能エリアについてはお問い合わせください
-                        </p>
-                      )}
-                      {item.areaData && item.pastel && (
-                        <Link
-                          href={`/stations/funabashi/areas/${item.areaData.slug}`}
-                          className="group flex items-center justify-between p-3 rounded-lg transition-colors"
-                          style={{ backgroundColor: `${item.pastel.primary}30` }}
-                        >
-                          <div className="flex items-center gap-3">
-                            <div>
-                              <span className="font-bold text-sm" style={{ color: item.pastel.secondary }}>
-                                {item.areaData.population.elderlyRate}
-                              </span>
-                              <span className="text-xs text-ink-soft ml-1">高齢化率</span>
-                            </div>
-                            <div className="h-4 w-px bg-[var(--color-sand)]" />
-                            <div>
-                              <span className="text-xs text-ink-soft">人口</span>
-                              <span className="text-sm font-medium ml-1">{item.areaData.population.total}</span>
-                            </div>
-                          </div>
-                          <div
-                            className="flex items-center gap-1 text-sm font-bold group-hover:gap-2 transition-all"
-                            style={{ color: item.pastel.secondary }}
-                          >
-                            <span>詳しく</span>
-                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                          </div>
-                        </Link>
-                      )}
-                    </div>
+          {/* 訪問可能エリア */}
+          <FadeIn className="mt-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+              {serviceAreas.priority.cities.map((city) => (
+                <div key={city.name} className="bg-white rounded-2xl p-4 md:p-5 shadow-sm">
+                  <h4 className="text-lg font-bold text-[var(--color-logo-dark-green)] heading-gothic mb-3">
+                    {city.name}
+                  </h4>
+                  <div className="flex flex-wrap gap-1.5">
+                    {city.areas.map((area) => (
+                      <span
+                        key={area}
+                        className="inline-block px-2.5 py-1 text-xs md:text-sm rounded-full bg-[var(--color-logo-light-green)]/15 text-[var(--color-logo-dark-green)]"
+                      >
+                        {area}
+                      </span>
+                    ))}
                   </div>
                 </div>
-              );
-            })}
+              ))}
+            </div>
           </FadeIn>
         </section>
 

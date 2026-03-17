@@ -120,7 +120,7 @@ function DocumentCard({ doc }: { doc: Document }) {
 
 export default function DocumentsPage() {
   return (
-    <main className="pt-14 lg:pt-20 bg-white">
+    <main className="relative z-10 pt-14 lg:pt-20 bg-white">
       {/* Hero Section */}
       <div className="px-4 md:px-8 py-6 md:py-10">
         <section className="relative min-h-[30vh] md:min-h-[35vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#a8d5ba] to-[#d4edda] rounded-3xl md:rounded-[3rem] shadow-lg">

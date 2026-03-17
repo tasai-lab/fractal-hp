@@ -196,7 +196,7 @@ export default function CompanyPage() {
         </div>
       </header>
 
-      <main>
+      <main className="relative z-10">
         {/* ヒーローセクション */}
         <Section className="pt-20 md:pt-32 pb-12 md:pb-20">
           <FadeIn className="text-center">
