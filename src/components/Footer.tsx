@@ -1,6 +1,5 @@
 import { companyInfo, footerSitemap, otherMenuCategories } from "@/lib/data";
 import { getActiveStations } from "@/lib/stations-data";
-import { regionalData } from "@/lib/regional-data";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -70,17 +69,6 @@ export default function Footer() {
                     {station.name}
                   </Link>
                   <div className="pl-3 mt-1 space-y-0.5 text-xs opacity-75">
-                    {regionalData
-                      .filter((area) => station.serviceAreaSlugs.includes(area.slug))
-                      .map((area) => (
-                        <Link
-                          key={area.slug}
-                          href={`/stations/${station.slug}/areas/${area.slug}`}
-                          className="block hover:opacity-100 hover:underline transition-opacity"
-                        >
-                          {area.name}
-                        </Link>
-                      ))}
                     <Link
                       href={`/stations/${station.slug}/areas`}
                       className="block hover:opacity-100 hover:underline transition-opacity"
