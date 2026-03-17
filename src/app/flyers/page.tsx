@@ -68,7 +68,7 @@ export default function FlyersPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--color-accent-blue-light)]">
+    <div className="min-h-screen bg-[var(--color-accent-blue-light)] relative z-10">
       {/* ヘッダー */}
       <header className="bg-white shadow-sm sticky top-0 z-40">
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
