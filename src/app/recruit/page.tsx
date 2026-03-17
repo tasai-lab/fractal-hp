@@ -14,9 +14,7 @@ import {
 } from "@/lib/recruit-data";
 import { recruitFAQs } from "@/lib/faq-data";
 import { staffMembers, serviceAreas } from "@/lib/data";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { regionalData } from "@/lib/regional-data";
-import { ArrowRight, Sparkles, Clock, Heart, LucideIcon } from "lucide-react";
+import { Sparkles, Clock, Heart, LucideIcon } from "lucide-react";
 
 const featureIconMap: LucideIcon[] = [Sparkles, Clock, Heart];
 
