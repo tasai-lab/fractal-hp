@@ -109,7 +109,7 @@ export default function Header({ variant = "default" }: HeaderProps) {
                   事業所一覧
                 </Link>
                 <Link href="/stations/funabashi" onClick={closeMenu}
-                  className="block pl-4 py-1.5 text-sm font-medium text-[var(--color-ink)] hover:text-[var(--color-logo-dark-green)] transition-colors">
+                  className="block pl-4 py-1.5 text-sm font-medium text-[var(--color-logo-dark-green)] bg-[var(--color-logo-light-green)]/10 rounded-md hover:bg-[var(--color-logo-light-green)]/20 transition-colors">
                   フラクタル訪問看護 船橋
                 </Link>
                 <Link href="/stations/funabashi/areas" onClick={closeMenu}
