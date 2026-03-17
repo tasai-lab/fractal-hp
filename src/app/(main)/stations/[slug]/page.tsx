@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import RecruitCTA from "@/components/RecruitCTA";
 import StationOfficeInfo from "@/components/station/StationOfficeInfo";
 import StationStaff from "@/components/station/StationStaff";
 import StationFeatures from "@/components/station/StationFeatures";
@@ -138,35 +139,7 @@ export default async function StationPage({
       <StationFlow flowSteps={content.flowSteps} />
       <StationStaff staffMembers={station.staffMembers} stationName={station.name} />
       <StationFAQ faqs={content.faq} />
-      {/* 採用情報CTA */}
-      <section id="recruit" className="section-wrapper bg-white relative">
-        <div className="section-inner relative z-10">
-          <div className="section-title-area">
-            <h2 className="section-title heading-gothic">スタッフ募集</h2>
-            <div className="section-title-line" />
-          </div>
-          <div className="section-content">
-            <div className="section-card section-card-blue text-center">
-              <p className="text-[var(--color-ink-soft)] leading-relaxed mb-6">
-                「働きやすさ」が「良い看護」をつくる。
-                あなたの力をフラクタルで発揮してください。
-              </p>
-              <p className="heading-gothic text-2xl md:text-3xl text-[var(--color-ink)] mb-4">
-                入社祝い金 最大{((content.recruitSummary.signOnBonusTotal) / 10000).toLocaleString()}万円
-              </p>
-              <Link
-                href={`/stations/${station.slug}/recruit`}
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-primary text-white font-bold text-base md:text-lg hover:opacity-90 transition-opacity shadow-lg"
-              >
-                詳しい採用情報を見る
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <RecruitCTA recruitHref={`/stations/${station.slug}/recruit`} />
       <section id="contact" className="section-wrapper bg-white relative">
         <div className="section-inner relative z-10">
           <div className="section-title-area">
