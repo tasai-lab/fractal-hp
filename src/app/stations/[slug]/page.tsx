@@ -13,6 +13,8 @@ import Contact from "@/components/Contact";
 import { getStation, getAllStationSlugs } from "@/lib/stations-data";
 import { getStationContent } from "@/lib/station-content";
 import { serviceAreas } from "@/lib/data";
+import { regionalData } from "@/lib/regional-data";
+import CityAreaCard from "@/components/station/CityAreaCard";
 
 export function generateStaticParams() {
   return getAllStationSlugs().map((slug) => ({ slug }));
@@ -86,22 +88,14 @@ export default async function StationPage({
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                 {serviceAreas.priority.cities.map((city) => {
+                  const areaData = regionalData.find((r) => r.name === city.name);
                   return (
-                    <div key={city.name} className="bg-white rounded-2xl p-4 md:p-5 shadow-sm">
-                      <h3 className="text-lg font-bold text-[var(--color-logo-dark-green)] heading-gothic mb-3">
-                        {city.name}
-                      </h3>
-                      <div className="flex flex-wrap gap-1.5">
-                        {city.areas.map((area) => (
-                          <span
-                            key={area}
-                            className="inline-block px-2.5 py-1 text-xs md:text-sm rounded-full bg-[var(--color-logo-light-green)]/15 text-[var(--color-logo-dark-green)]"
-                          >
-                            {area}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
+                    <CityAreaCard
+                      key={city.name}
+                      city={city}
+                      areaData={areaData}
+                      showColorBar={false}
+                    />
                   );
                 })}
               </div>

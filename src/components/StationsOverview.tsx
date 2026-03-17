@@ -1,6 +1,9 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getActiveStations } from "@/lib/stations-data";
 import { serviceAreas } from "@/lib/data";
+import { regionalData } from "@/lib/regional-data";
+import CityAreaCard from "@/components/station/CityAreaCard";
 export default function StationsOverview() {
   const stations = getActiveStations();
 
@@ -23,8 +26,15 @@ export default function StationsOverview() {
               return (
                 <div key={station.slug}>
                   <div className="section-card section-card-blue">
-                    <h3 className="text-lg md:text-xl font-bold text-left text-primary mb-4 md:mb-6">
-                      {officeInfo.name}
+                    {/* 事業所名ロゴ画像 */}
+                    <h3 className="mb-4 md:mb-6">
+                      <Image
+                        src={`/images/logos/hokan-title-${station.slug}.png`}
+                        alt={officeInfo.name}
+                        width={400}
+                        height={60}
+                        className="h-10 md:h-14 w-auto"
+                      />
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                       {/* 左側：テキスト情報 */}
@@ -102,33 +112,6 @@ export default function StationsOverview() {
                               </div>
                             </div>
                           </div>
-
-                          {/* 訪問エリア */}
-                          <div>
-                            <div className="flex items-center gap-2 mb-2">
-                              <div className="w-1 h-5 bg-primary rounded-full" />
-                              <span className="font-bold text-sm md:text-base">訪問エリア</span>
-                            </div>
-                            <div className="pl-3 grid grid-cols-1 md:grid-cols-2 gap-3">
-                              {serviceAreas.priority.cities.map((city) => (
-                                <div key={city.name} className="bg-white rounded-xl p-3 shadow-sm">
-                                  <h4 className="text-sm font-bold text-[var(--color-logo-dark-green)] heading-gothic mb-2">
-                                    {city.name}
-                                  </h4>
-                                  <div className="flex flex-wrap gap-1">
-                                    {city.areas.map((area) => (
-                                      <span
-                                        key={area}
-                                        className="inline-block px-2 py-0.5 text-xs rounded-full bg-[var(--color-logo-light-green)]/15 text-[var(--color-logo-dark-green)]"
-                                      >
-                                        {area}
-                                      </span>
-                                    ))}
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
                         </div>
                       </div>
 
@@ -147,6 +130,27 @@ export default function StationsOverview() {
                           />
                         </div>
                       )}
+                    </div>
+
+                    {/* 訪問エリア（フル幅） */}
+                    <div className="mt-6 pt-6 border-t border-[var(--color-accent-blue-light)]">
+                      <div className="flex items-center gap-2 mb-4">
+                        <div className="w-1 h-5 bg-primary rounded-full" />
+                        <span className="font-bold text-sm md:text-base">訪問エリア</span>
+                      </div>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {serviceAreas.priority.cities.map((city) => {
+                          const areaData = regionalData.find((r) => r.name === city.name);
+                          return (
+                            <CityAreaCard
+                              key={city.name}
+                              city={city}
+                              areaData={areaData}
+                              showColorBar={false}
+                            />
+                          );
+                        })}
+                      </div>
                     </div>
 
                     {/* 詳しく見るリンク */}
