@@ -20,6 +20,7 @@ export const updates: Update[] = [
       { type: "improve", title: "ステーション一覧ページのデザインを改善", link: "/stations" },
       { type: "improve", title: "フッターの構成を再設計" },
       { type: "improve", title: "ヘッダーメニューのナビゲーションを改善" },
+      { type: "improve", title: "事業所ページの採用セクションを統一デザインに改善" },
     ],
   },
   {
