@@ -52,7 +52,7 @@ export default function RecruitPage() {
 
       <main className="relative z-10 max-w-5xl mx-auto px-4 md:px-6 pt-10 md:pt-16 pb-32 md:pb-24 flex flex-col gap-16 md:gap-24">
         <section className="order-1 grid lg:grid-cols-[1.1fr,0.9fr] gap-10 items-center">
-          <h1 className="sr-only">船橋市の訪問看護師・PT・OT・ST求人｜フラクタル訪問看護</h1>
+          <p className="sr-only">船橋市の訪問看護師・PT・OT・ST求人｜フラクタル訪問看護</p>
           <FadeIn className="space-y-4">
             <p className="text-xs tracking-[0.3em] text-ink-soft">RECRUIT</p>
             <h1 className="heading-mincho text-3xl md:text-5xl text-[var(--color-olive)]">
@@ -90,7 +90,7 @@ export default function RecruitPage() {
           <FadeIn className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg">
             <Image
               src="/images/recruit/photos/hero.webp"
-              alt="フラクタル訪問看護の現場"
+              alt="フラクタル訪問看護 船橋の訪問看護師が利用者宅でケアを行う様子"
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 45vw"
@@ -148,7 +148,7 @@ export default function RecruitPage() {
               <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg">
                 <Image
                   src="/images/recruit/photos/bonus.webp"
-                  alt="現場の様子"
+                  alt="船橋市・八千代市エリアで活躍するフラクタル訪問看護スタッフの訪問現場"
                   fill
                   sizes="(max-width: 1024px) 100vw, 40vw"
                   className="object-cover"
@@ -193,7 +193,7 @@ export default function RecruitPage() {
             <FadeIn className="relative aspect-[16/9] rounded-3xl overflow-hidden shadow-lg bg-white">
               <Image
                 src="/images/recruit/photos/work.webp"
-                alt="働く環境の様子"
+                alt="フラクタル訪問看護 船橋の訪問看護師・理学療法士が働く職場環境"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
@@ -289,7 +289,7 @@ export default function RecruitPage() {
             <div className="relative w-full aspect-square md:aspect-[4/3] lg:aspect-[3/2]">
               <Image
                 src="/images/service-area/area-map-new.png"
-                alt="訪問エリアマップ"
+                alt="フラクタル訪問看護 船橋 訪問エリアマップ - 船橋市・八千代市・習志野市"
                 fill
                 sizes="100vw"
                 className="object-contain"

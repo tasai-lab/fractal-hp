@@ -9,12 +9,17 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import FloatingRecruitBanner from "@/components/FloatingRecruitBanner";
 import ScrollToTop from "@/components/ScrollToTop";
-import { ServiceFAQStructuredData } from "@/components/StructuredData";
+import { ServiceFAQStructuredData, BreadcrumbStructuredData } from "@/components/StructuredData";
 
 export default function Home() {
   return (
     <>
       <ServiceFAQStructuredData />
+      <BreadcrumbStructuredData
+        items={[
+          { name: "ホーム", url: "https://fractal-hokan.com/" },
+        ]}
+      />
       <Header />
       <main className="pt-14 lg:pt-20">
         <Hero />

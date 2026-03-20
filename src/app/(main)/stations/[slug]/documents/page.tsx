@@ -34,13 +34,13 @@ export async function generateMetadata({
     title: `各種書類・情報公開｜${station.name}`,
     description: `${station.name}の事業継続計画（BCP）、契約書、重要事項説明書等の各種書類を掲載しています。`,
     alternates: {
-      canonical: `https://fractal-hokan.com/stations/${station.slug}/documents`,
+      canonical: `/stations/${station.slug}/documents`,
     },
     openGraph: {
       title: `各種書類・情報公開｜${station.name}`,
       description: "事業継続計画（BCP）、契約書、重要事項説明書等の各種書類を掲載しています。",
       type: "website",
-      url: `https://fractal-hokan.com/stations/${station.slug}/documents`,
+      url: `/stations/${station.slug}/documents`,
       siteName: "フラクタル訪問看護",
       locale: "ja_JP",
     },

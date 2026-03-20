@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { BreadcrumbStructuredData } from "@/components/StructuredData";
 
 export const metadata: Metadata = {
   title: "代表者インタビュー｜株式会社フラクタル",
@@ -21,5 +22,16 @@ export const metadata: Metadata = {
 };
 
 export default function CEOLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return (
+    <>
+      <BreadcrumbStructuredData
+        items={[
+          { name: "ホーム", url: "https://fractal-hokan.com/" },
+          { name: "会社情報", url: "https://fractal-hokan.com/company/" },
+          { name: "代表の取扱説明書", url: "https://fractal-hokan.com/company/ceo/" },
+        ]}
+      />
+      {children}
+    </>
+  );
 }

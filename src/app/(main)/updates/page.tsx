@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import Link from "next/link";
 import Image from "next/image";
 import { updates, typeConfig } from "@/lib/updates-data";
+import { BreadcrumbStructuredData } from "@/components/StructuredData";
 
 export const metadata: Metadata = {
   title: "アップデート情報｜フラクタル訪問看護 船橋",
@@ -22,6 +23,12 @@ export const metadata: Metadata = {
 export default function UpdatesPage() {
   return (
     <>
+      <BreadcrumbStructuredData
+        items={[
+          { name: "ホーム", url: "https://fractal-hokan.com/" },
+          { name: "更新情報", url: "https://fractal-hokan.com/updates/" },
+        ]}
+      />
       <Header />
       <main className="relative z-10 pt-14 lg:pt-20 bg-white min-h-screen">
         {/* ヘッダー */}

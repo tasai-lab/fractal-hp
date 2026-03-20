@@ -205,7 +205,7 @@ export default function RecruitDayFlowPage() {
                 <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg bg-white">
                   <Image
                     src="/images/recruit/labels/contact-photo.webp"
-                    alt="募集お問い合わせ"
+                    alt="フラクタル訪問看護 船橋 採用・求人応募のお問い合わせ"
                     fill
                     sizes="(max-width: 1024px) 100vw, 40vw"
                     className="object-cover"

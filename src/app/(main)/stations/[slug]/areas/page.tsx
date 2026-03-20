@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import PageHero from "@/components/PageHero";
 
-import { BreadcrumbStructuredData } from "@/components/StructuredData";
+import { BreadcrumbStructuredData, AreaJobPostingStructuredData, AreaFAQStructuredData } from "@/components/StructuredData";
 import { regionalData } from "@/lib/regional-data";
 import { serviceAreas } from "@/lib/data";
 import { getStation, getAllStationSlugs } from "@/lib/stations-data";
@@ -28,13 +28,13 @@ export async function generateMetadata({
     title: `対応エリア一覧｜${station.name}`,
     description: `${station.name}の対応エリア一覧。${station.officeInfo.address.city}を中心に24時間365日の訪問看護サービスを提供しています。各地域の詳細情報もご覧いただけます。`,
     alternates: {
-      canonical: `https://fractal-hokan.com/stations/${station.slug}/areas`,
+      canonical: `/stations/${station.slug}/areas`,
     },
     openGraph: {
       title: `対応エリア一覧｜${station.name}`,
       description: `${station.name}の対応エリア一覧。各地域の詳細情報をご確認ください。`,
       type: "website",
-      url: `https://fractal-hokan.com/stations/${station.slug}/areas`,
+      url: `/stations/${station.slug}/areas`,
       siteName: "フラクタル訪問看護",
       locale: "ja_JP",
     },
@@ -59,8 +59,19 @@ export default async function StationAreasPage({
 
   const { slug } = station;
 
+  // 代表エリア（事業所と同じ市区町村）のFAQを構造化データに使用
+  const primaryAreaData = regionalData.find((r) => r.name === station.officeInfo.address.city);
+  const areaFaqs = primaryAreaData?.faqs ?? [];
+
   return (
     <>
+      <AreaJobPostingStructuredData
+        areaName={station.officeInfo.address.city}
+        areaSlug={slug}
+      />
+      {areaFaqs.length > 0 && (
+        <AreaFAQStructuredData faqs={areaFaqs} areaSlug={`${slug}-areas`} />
+      )}
       <BreadcrumbStructuredData
         items={[
           { name: "ホーム", url: "https://fractal-hokan.com" },

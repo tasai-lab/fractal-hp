@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     "訪問看護 連携",
   ],
   alternates: {
-    canonical: "https://fractal-hokan.com/services/for-care-managers",
+    canonical: "/services/for-care-managers",
   },
   openGraph: {
     title: "ケアマネージャー様へ｜訪問看護のご依頼・連携",

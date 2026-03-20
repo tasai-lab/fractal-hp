@@ -42,6 +42,7 @@ export default async function StationPage({
             STATION
           </span>
           <h1 className="flex justify-center mb-4">
+            <span className="sr-only">{station.name} - {station.officeInfo.address.city}の訪問看護ステーション</span>
             <Image
               src={`/images/logos/hokan-title-${station.slug}.png`}
               alt={station.name}
@@ -52,7 +53,7 @@ export default async function StationPage({
             />
           </h1>
           <p className="text-sm md:text-base text-[var(--color-ink-soft)] max-w-2xl mx-auto leading-relaxed">
-            {station.officeInfo.address.city}を中心に24時間365日の訪問看護サービスを提供しています
+            {content?.serviceAreaText ?? station.officeInfo.address.city}を中心に、精神科訪問看護・終末期ケア（看取り）・訪問リハビリテーションを含む幅広いサービスを24時間365日提供しています
           </p>
           <div className="mt-8 flex justify-center">
             <div className="w-12 h-0.5 bg-[var(--color-logo-light-green)]" />

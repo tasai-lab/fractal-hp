@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { RecruitStructuredData } from "@/components/StructuredData";
+import { RecruitStructuredData, JobPostingStructuredData } from "@/components/StructuredData";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "【船橋市】訪問看護師・PT・OT・ST求人｜フラクタル訪問看護",
   description:
-    "船橋市・八千代市・習志野市で訪問看護師・PT・OT・STを募集中。年間休日139日以上、入社祝い金最大30万円。直行直帰OK、AI活用で記録業務を効率化。未経験・ブランク歓迎。047-770-1228",
+    "船橋市・八千代市・習志野市で訪問看護師・PT・OT・STを募集中。精神科訪問看護・終末期ケア・訪問リハビリに対応。年間休日139日以上、入社祝い金最大30万円。直行直帰OK、AI活用で記録業務を効率化。未経験・ブランク歓迎。047-770-1228",
   alternates: {
     canonical: "/recruit",
   },
@@ -40,6 +40,8 @@ export default function RecruitLayout({
   return (
     <>
       <RecruitStructuredData />
+      <JobPostingStructuredData jobId="nurse" />
+      <JobPostingStructuredData jobId="therapist" />
       <Header variant="paper" />
       {children}
       <Footer />
