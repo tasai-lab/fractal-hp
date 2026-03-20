@@ -281,6 +281,7 @@ export default function RecruitPage() {
             </h3>
             <p className="text-ink-soft mt-2">
               船橋市・八千代市・習志野市・千葉市花見川区を中心に訪問しています。
+              対応サービスは<Link href="/services/psychiatric-nursing" className="underline underline-offset-2 hover:opacity-80 transition-opacity">精神科訪問看護</Link>・<Link href="/services/end-of-life-care" className="underline underline-offset-2 hover:opacity-80 transition-opacity">終末期ケア</Link>・<Link href="/services/24h-support" className="underline underline-offset-2 hover:opacity-80 transition-opacity">24時間対応</Link>など多岐にわたります。
             </p>
           </FadeIn>
 

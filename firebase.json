@@ -8,6 +8,16 @@
     ],
     "redirects": [
       {
+        "source": "/about-fractal",
+        "destination": "/fractal",
+        "type": 301
+      },
+      {
+        "source": "/about-fractal/",
+        "destination": "/fractal",
+        "type": 301
+      },
+      {
         "source": "/recruit/nurse",
         "destination": "/recruit/#positions",
         "type": 301
@@ -59,12 +69,12 @@
       },
       {
         "source": "/areas/:slug",
-        "destination": "/stations/funabashi/areas/:slug",
+        "destination": "/stations/funabashi/areas",
         "type": 301
       },
       {
         "source": "/areas/:slug/",
-        "destination": "/stations/funabashi/areas/:slug",
+        "destination": "/stations/funabashi/areas",
         "type": 301
       },
       {

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "チラシ・広報誌バックナンバー | フラクタル訪問看護 船橋",
     description: "フラクタル訪問看護 船橋の広報誌バックナンバー。",
-    url: "https://fractal-hokan.com/flyers",
+    url: "https://fractal-hokan.com/stations/funabashi/flyers",
   },
 };
 

@@ -4,8 +4,10 @@ import Script from "next/script";
 import { pricingFAQs } from "@/lib/pricing-data";
 
 export const metadata: Metadata = {
-  title: "ご利用料金｜訪問看護の費用と保険適用について",
-  description: "フラクタル訪問看護 船橋のご利用料金のご案内。介護保険・医療保険適用で自己負担1〜3割。訪問看護（看護師）・訪問リハビリ（PT・OT・ST）の料金表、精神科訪問看護の費用をわかりやすく解説。047-770-1228",
+  title: {
+    absolute: "訪問看護の料金【自己負担1〜3割】介護保険・医療保険適用｜船橋市｜フラクタル訪問看護",
+  },
+  description: "船橋市の訪問看護料金をわかりやすく解説。介護保険・医療保険が適用され自己負担は1〜3割。看護師訪問・PT・OT・ST訪問リハビリ・精神科訪問看護の料金表を掲載。まずはお気軽にお問い合わせください。047-770-1228",
   keywords: [
     "訪問看護 料金",
     "訪問看護 費用",
@@ -20,16 +22,16 @@ export const metadata: Metadata = {
     canonical: "/pricing",
   },
   openGraph: {
-    title: "ご利用料金｜訪問看護の費用と保険適用について",
-    description: "フラクタル訪問看護 船橋のご利用料金のご案内。介護保険・医療保険適用で自己負担1〜3割。訪問看護・訪問リハビリ・精神科訪問看護の料金をわかりやすく解説。",
+    title: "訪問看護の料金【自己負担1〜3割】介護保険・医療保険適用｜船橋市｜フラクタル訪問看護",
+    description: "船橋市の訪問看護料金をわかりやすく解説。介護保険・医療保険が適用され自己負担は1〜3割。看護師訪問・PT・OT・ST訪問リハビリ・精神科訪問看護の料金表を掲載。",
     type: "website",
     url: "https://fractal-hokan.com/pricing",
     images: [{ url: "/images/ogp/ogp-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "ご利用料金｜訪問看護の費用と保険適用について",
-    description: "フラクタル訪問看護 船橋のご利用料金。介護保険・医療保険適用で自己負担1〜3割。",
+    title: "訪問看護の料金【自己負担1〜3割】介護保険・医療保険適用｜船橋市｜フラクタル訪問看護",
+    description: "船橋市の訪問看護料金。介護保険・医療保険が適用され自己負担は1〜3割。",
     images: ["/images/ogp/ogp-image.png"],
   },
 };

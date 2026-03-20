@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     title: "各種書類・情報公開 | フラクタル訪問看護 船橋",
     description:
       "フラクタル訪問看護 船橋の事業継続計画（BCP）、契約書、重要事項説明書等の各種書類を掲載しています。",
-    url: "https://fractal-hokan.com/documents",
+    url: "https://fractal-hokan.com/stations/funabashi/documents",
   },
 };
 
@@ -37,7 +37,7 @@ export default function DocumentsLayout({
           { name: "ホーム", url: "https://fractal-hokan.com" },
           {
             name: "各種書類・情報公開",
-            url: "https://fractal-hokan.com/documents",
+            url: "https://fractal-hokan.com/stations/funabashi/documents",
           },
         ]}
       />
