@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { getStation, getAllStationSlugs } from "@/lib/stations-data";
+import { getStationContent } from "@/lib/station-content";
 import { BreadcrumbStructuredData } from "@/components/StructuredData";
 
 export async function generateMetadata({
@@ -12,6 +13,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const resolvedParams = await Promise.resolve(params);
   const station = getStation(resolvedParams.slug);
+  const content = getStationContent(resolvedParams.slug);
 
   if (!station) {
     return {
@@ -20,15 +22,18 @@ export async function generateMetadata({
     };
   }
 
+  const seoTitle = content?.seoTitle ?? `${station.name}｜フラクタル訪問看護`;
+  const seoDescription = content?.seoDescription ?? `${station.name}の事業所情報・スタッフ紹介・訪問エリアをご確認いただけます。${station.officeInfo.address.prefecture}${station.officeInfo.address.city}の訪問看護ステーション。`;
+
   return {
-    title: `${station.name}｜フラクタル訪問看護`,
-    description: `${station.name}の事業所情報・スタッフ紹介・訪問エリアをご確認いただけます。${station.officeInfo.address.prefecture}${station.officeInfo.address.city}の訪問看護ステーション。`,
+    title: seoTitle,
+    description: seoDescription,
     alternates: {
       canonical: `https://fractal-hokan.com/stations/${station.slug}`,
     },
     openGraph: {
-      title: `${station.name}｜フラクタル訪問看護`,
-      description: `${station.name}の事業所情報・スタッフ紹介・訪問エリアをご確認いただけます。`,
+      title: seoTitle,
+      description: seoDescription,
       type: "website",
       url: `https://fractal-hokan.com/stations/${station.slug}`,
       siteName: "フラクタル訪問看護",

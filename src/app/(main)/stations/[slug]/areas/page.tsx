@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import PageHero from "@/components/PageHero";
 
-import { BreadcrumbStructuredData } from "@/components/StructuredData";
+import { BreadcrumbStructuredData, AreaJobPostingStructuredData, AreaFAQStructuredData } from "@/components/StructuredData";
 import { regionalData } from "@/lib/regional-data";
 import { serviceAreas } from "@/lib/data";
 import { getStation, getAllStationSlugs } from "@/lib/stations-data";
@@ -59,8 +59,19 @@ export default async function StationAreasPage({
 
   const { slug } = station;
 
+  // 代表エリア（事業所と同じ市区町村）のFAQを構造化データに使用
+  const primaryAreaData = regionalData.find((r) => r.name === station.officeInfo.address.city);
+  const areaFaqs = primaryAreaData?.faqs ?? [];
+
   return (
     <>
+      <AreaJobPostingStructuredData
+        areaName={station.officeInfo.address.city}
+        areaSlug={slug}
+      />
+      {areaFaqs.length > 0 && (
+        <AreaFAQStructuredData faqs={areaFaqs} areaSlug={`${slug}-areas`} />
+      )}
       <BreadcrumbStructuredData
         items={[
           { name: "ホーム", url: "https://fractal-hokan.com" },
