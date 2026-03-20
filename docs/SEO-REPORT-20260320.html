@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>fractal-hokan.com SEO Report - 2026/03/20（半年分析版）</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+  :root { --green:#0D5643; --light-green:#7FC5A0; --yellow:#F4E951; --red:#e74c3c; --orange:#f39c12; --blue:#3498db; --gray:#95a5a6; --bg:#f8f9fa; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Helvetica Neue',Arial,'Hiragino Kaku Gothic ProN',sans-serif;background:var(--bg);color:#333;line-height:1.6}
+  .container{max-width:1200px;margin:0 auto;padding:2rem}
+  h1{font-size:1.8rem;color:var(--green);border-bottom:3px solid var(--green);padding-bottom:.5rem;margin-bottom:.5rem}
+  .subtitle{color:#666;margin-bottom:2rem}
+  h2{font-size:1.3rem;color:var(--green);margin:2rem 0 1rem;padding-left:.75rem;border-left:4px solid var(--light-green)}
+  h3{font-size:1.1rem;color:#555;margin:1.5rem 0 .75rem}
+  .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:2rem}
+  .kpi-card{background:#fff;border-radius:12px;padding:1.25rem;box-shadow:0 2px 8px rgba(0,0,0,.08);text-align:center}
+  .kpi-card .label{font-size:.85rem;color:#888}
+  .kpi-card .value{font-size:2rem;font-weight:700;color:var(--green)}
+  .kpi-card .change{font-size:.85rem;margin-top:.25rem}
+  .kpi-card .change.up{color:#27ae60} .kpi-card .change.down{color:var(--red)}
+  .chart-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(480px,1fr));gap:1.5rem;margin-bottom:2rem}
+  .chart-card{background:#fff;border-radius:12px;padding:1.5rem;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+  .chart-card h3{margin-top:0} .chart-card canvas{max-height:350px}
+  .full-width{grid-column:1/-1}
+  table{width:100%;border-collapse:collapse;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08);margin-bottom:1.5rem;font-size:.9rem}
+  th{background:var(--green);color:#fff;padding:.6rem .8rem;text-align:left;font-weight:600}
+  td{padding:.5rem .8rem;border-bottom:1px solid #eee} tr:hover{background:#f0faf5}
+  .badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.75rem;font-weight:600}
+  .badge-red{background:#fde8e8;color:var(--red)} .badge-orange{background:#fef3e2;color:#c0760a}
+  .badge-green{background:#e8f8f0;color:#0a7a3f} .badge-gray{background:#eee;color:#666}
+  .issue-card{background:#fff;border-radius:12px;padding:1.25rem;box-shadow:0 2px 8px rgba(0,0,0,.08);margin-bottom:1rem;border-left:4px solid var(--red)}
+  .issue-card.warn{border-left-color:var(--orange)} .issue-card.good{border-left-color:#27ae60}
+  .issue-card .issue-title{font-weight:700;margin-bottom:.25rem}
+  .priority-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:1rem}
+  .section-divider{border:none;border-top:2px solid #e0e0e0;margin:2.5rem 0}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>fractal-hokan.com パフォーマンスレポート（半年分析版）</h1>
+<p class="subtitle">調査日: 2026-03-20 | Search Console: 6か月 (2025/9/19 - 2026/3/18) | Analytics: 90日間 (12/20 - 3/19)</p>
+
+<!-- ===== Section 1: 半年比較 ===== -->
+<h2>半年間サマリー比較</h2>
+
+<h3>Search Console: 前半 vs 後半</h3>
+<div class="kpi-grid">
+  <div class="kpi-card"><div class="label">6か月 合計クリック</div><div class="value">523</div></div>
+  <div class="kpi-card"><div class="label">6か月 合計表示</div><div class="value">2,716</div></div>
+  <div class="kpi-card"><div class="label">6か月 平均CTR</div><div class="value">19.3%</div></div>
+  <div class="kpi-card"><div class="label">6か月 平均順位</div><div class="value">10.8</div></div>
+</div>
+
+<div class="chart-grid">
+  <div class="chart-card full-width"><h3>前半3か月 vs 後半3か月 比較</h3><canvas id="halfCompareChart"></canvas></div>
+</div>
+
+<h3>Google Analytics: 90日間 vs 直近28日間</h3>
+<div class="kpi-grid">
+  <div class="kpi-card"><div class="label">90日 ユーザー</div><div class="value">375</div></div>
+  <div class="kpi-card"><div class="label">90日 新規</div><div class="value">352</div><div class="change">(93.9%が新規)</div></div>
+  <div class="kpi-card"><div class="label">90日 エンゲージ</div><div class="value" style="font-size:1.5rem">6分33秒</div></div>
+  <div class="kpi-card"><div class="label">90日 イベント</div><div class="value">5,748</div></div>
+</div>
+<div class="kpi-grid">
+  <div class="kpi-card"><div class="label">直近28日 ユーザー</div><div class="value">121</div><div class="change up">+51.9% vs 前週</div></div>
+  <div class="kpi-card"><div class="label">直近28日 新規</div><div class="value">104</div></div>
+  <div class="kpi-card"><div class="label">直近28日 エンゲージ</div><div class="value" style="font-size:1.5rem;color:var(--red)">12分32秒</div><div class="change up">90日平均の2倍!</div></div>
+  <div class="kpi-card"><div class="label">直近28日 イベント</div><div class="value">2,119</div></div>
+</div>
+
+<hr class="section-divider">
+
+<!-- ===== Section 2: 月別トレンド ===== -->
+<h2>月別トラフィック推移（推定）</h2>
+<div class="chart-grid">
+  <div class="chart-card full-width"><h3>月別クリック数・表示回数推移</h3><canvas id="monthlyTrendChart"></canvas></div>
+</div>
+
+<hr class="section-divider">
+
+<!-- ===== Section 3: クエリ分析 ===== -->
+<h2>検索クエリ分析（6か月・全61クエリ）</h2>
+<div class="chart-grid">
+  <div class="chart-card"><h3>主要キーワード順位マップ</h3><canvas id="keywordRankChart"></canvas></div>
+  <div class="chart-card"><h3>キーワードカテゴリ別クリック分布</h3><canvas id="keywordCategoryChart"></canvas></div>
+</div>
+
+<h3>ブランドキーワード</h3>
+<table>
+  <tr><th>クエリ</th><th>クリック</th><th>表示</th><th>CTR</th><th>順位</th></tr>
+  <tr><td>フラクタル訪問看護</td><td>238</td><td>391</td><td>60.9%</td><td><span class="badge badge-green">1.0</span></td></tr>
+  <tr><td>フラクタル訪問看護 船橋</td><td>15</td><td>30</td><td>50%</td><td><span class="badge badge-green">1.1</span></td></tr>
+  <tr><td>株式会社フラクタル</td><td>-</td><td>-</td><td>-</td><td><span class="badge badge-green">1.4</span></td></tr>
+  <tr><td>フラクタル</td><td>8</td><td>35</td><td>-</td><td><span class="badge badge-green">10.4</span></td></tr>
+  <tr><td>株式会社フラクタル 怪しい</td><td>-</td><td>-</td><td>-</td><td><span class="badge badge-green">1.1</span></td></tr>
+  <tr><td>株式会社フラクタル 詐欺</td><td>-</td><td>-</td><td>-</td><td><span class="badge badge-orange">1.5</span></td></tr>
+  <tr><td>フラクタル ドクター 炎上</td><td>-</td><td>-</td><td>-</td><td><span class="badge badge-orange">1.0</span></td></tr>
+</table>
+
+<h3>SEOターゲットキーワード</h3>
+<table>
+  <tr><th>クエリ</th><th>表示</th><th>CTR</th><th>順位</th><th>評価</th></tr>
+  <tr style="background:#fff3cd"><td><strong>船橋市 訪問看護</strong></td><td><strong>157</strong></td><td><strong>0.6%</strong></td><td><span class="badge badge-red">28.6</span></td><td><span class="badge badge-red">最重要課題</span></td></tr>
+  <tr><td>船橋 訪問看護</td><td>-</td><td>22.9%</td><td><span class="badge badge-orange">18.5</span></td><td><span class="badge badge-orange">要改善</span></td></tr>
+  <tr><td>訪問看護 船橋</td><td>-</td><td>-</td><td><span class="badge badge-orange">16.7</span></td><td><span class="badge badge-orange">要改善</span></td></tr>
+  <tr><td>訪問看護</td><td>-</td><td>-</td><td><span class="badge badge-orange">11.1</span></td><td><span class="badge badge-gray">競合激しい</span></td></tr>
+  <tr><td>精神科 訪問看護ステーション</td><td>-</td><td>100%</td><td><span class="badge badge-green">2.0</span></td><td><span class="badge badge-green">新規上位!</span></td></tr>
+  <tr><td>訪問看護 近く</td><td>-</td><td>-</td><td><span class="badge badge-green">4.0</span></td><td><span class="badge badge-green">新規上位!</span></td></tr>
+  <tr><td>訪問看護 カウンセリング</td><td>-</td><td>-</td><td><span class="badge badge-green">6.0</span></td><td><span class="badge badge-green">新規上位!</span></td></tr>
+  <tr><td>訪問看護 精神科</td><td>-</td><td>-</td><td><span class="badge badge-orange">10.0</span></td><td><span class="badge badge-orange">伸びしろ</span></td></tr>
+  <tr><td>精神科 訪問看護</td><td>-</td><td>-</td><td><span class="badge badge-orange">13.0</span></td><td><span class="badge badge-orange">伸びしろ</span></td></tr>
+  <tr><td>船橋市訪問看護ステーション</td><td>-</td><td>-</td><td><span class="badge badge-red">32.9</span></td><td><span class="badge badge-red">圏外</span></td></tr>
+  <tr><td>船橋市 訪問リハビリ</td><td>-</td><td>33.3%</td><td><span class="badge badge-red">40.7</span></td><td><span class="badge badge-red">圏外</span></td></tr>
+</table>
+
+<h3>求人キーワード（全て圏外）</h3>
+<table>
+  <tr><th>クエリ</th><th>順位</th></tr>
+  <tr><td>フラクタル 求人</td><td><span class="badge badge-red">32.5</span></td></tr>
+  <tr><td>訪問看護 求人 船橋</td><td><span class="badge badge-red">39.5</span></td></tr>
+  <tr><td>船橋市 訪問看護 求人</td><td><span class="badge badge-red">40.9</span></td></tr>
+  <tr><td>船橋市 訪問看護 看護師求人</td><td><span class="badge badge-red">44.3</span></td></tr>
+  <tr><td>理学療法士 求人 船橋</td><td><span class="badge badge-red">79.8</span></td></tr>
+</table>
+
+<hr class="section-divider">
+
+<!-- ===== Section 4: ページ別 ===== -->
+<h2>ページ別パフォーマンス（6か月）</h2>
+<div class="chart-grid">
+  <div class="chart-card"><h3>ページ別クリック数</h3><canvas id="pageClicksChart"></canvas></div>
+  <div class="chart-card"><h3>トップページ集中度</h3><canvas id="pageConcentrationChart"></canvas></div>
+</div>
+<div class="chart-grid">
+  <div class="chart-card"><h3>トップページ: 前半 vs 後半</h3><canvas id="topPageTrendChart"></canvas></div>
+  <div class="chart-card"><h3>スラッシュ不統一による評価分散</h3><canvas id="slashChart"></canvas></div>
+</div>
+
+<hr class="section-divider">
+
+<!-- ===== Section 5: デバイス・チャネル ===== -->
+<h2>デバイス別・流入チャネル分析</h2>
+<div class="chart-grid">
+  <div class="chart-card"><h3>デバイス別クリック分布</h3><canvas id="deviceChart"></canvas></div>
+  <div class="chart-card"><h3>流入チャネル別ユーザー数（90日間）</h3><canvas id="channelChart"></canvas></div>
+</div>
+
+<hr class="section-divider">
+
+<!-- ===== Section 6: Analytics ===== -->
+<h2>Analytics ページランキング（90日間）</h2>
+<div class="chart-grid">
+  <div class="chart-card full-width"><h3>ページ別 表示回数 / ユーザー数 / 直帰率</h3><canvas id="analyticsPageChart"></canvas></div>
+</div>
+
+<hr class="section-divider">
+
+<!-- ===== Section 7: 地域・インデックス ===== -->
+<h2>地域別ユーザー分布・インデックス状況</h2>
+<div class="chart-grid">
+  <div class="chart-card"><h3>市区町村別ユーザー数</h3><canvas id="geoChart"></canvas></div>
+  <div class="chart-card"><h3>インデックス状態</h3><canvas id="indexChart"></canvas></div>
+</div>
+<div class="chart-grid">
+  <div class="chart-card"><h3>未登録の理由内訳</h3><canvas id="indexReasonChart"></canvas></div>
+  <div class="chart-card"><h3>ターゲットエリア比率</h3><canvas id="geoTargetChart"></canvas></div>
+</div>
+
+<hr class="section-divider">
+
+<!-- ===== Section 8: 総合評価 ===== -->
+<h2>総合評価と改善提案</h2>
+
+<h3>半年間で達成したこと</h3>
+<div class="priority-grid">
+  <div class="issue-card good"><div class="issue-title">検索露出が10倍以上に拡大</div><div>日次表示: 5-15 → 40-60。サイトの認知が大幅に広がった</div></div>
+  <div class="issue-card good"><div class="issue-title">クリック数が6倍に成長</div><div>日次クリック: 1-3 → 10-18。着実にトラフィックが増加</div></div>
+  <div class="issue-card good"><div class="issue-title">精神科訪問看護KWで上位進出</div><div>「精神科 訪問看護ステーション」で2位。差別化ポイントで成果</div></div>
+  <div class="issue-card good"><div class="issue-title">エンゲージメント品質が2倍に向上</div><div>平均滞在 6m33s → 12m32s（直近28日）。UI/UX改善の効果</div></div>
+  <div class="issue-card good"><div class="issue-title">料金KWで1位独占（9クエリ）</div><div>「訪問看護料金」系で全て1位。コンテンツ品質の証明</div></div>
+  <div class="issue-card good"><div class="issue-title">新規KW発見: 「訪問看護 近く」4位</div><div>ローカル検索で自然に上位表示。地域SEOの土台ができている</div></div>
+</div>
+
+<h3>最重要課題</h3>
+<div class="priority-grid">
+  <div class="issue-card"><div class="issue-title">1.「船橋市 訪問看護」で28.6位（半年間改善なし）</div><div>表示157回でCTR 0.6%。コンテンツ量・質・内部リンク全てで強化が必要</div></div>
+  <div class="issue-card"><div class="issue-title">2. インデックス率 18.6%（11/59ページ）</div><div>35ページがGoogleに無視。「クロール済み未登録」20ページは改善可能</div></div>
+  <div class="issue-card"><div class="issue-title">3. トップページへの集中（95.2%）</div><div>クリック498/523がトップ。他ページのSEO力が極端に弱い</div></div>
+</div>
+
+<h3>新たに判明した課題</h3>
+<div class="priority-grid">
+  <div class="issue-card warn"><div class="issue-title">4. CTR低下トレンド（28% → 15.2%）</div><div>露出拡大に伴い低下。title/description最適化でCTR回復が急務</div></div>
+  <div class="issue-card warn"><div class="issue-title">5. レピュテーションKWの存在</div><div>「怪しい」「詐欺」「炎上」等の検索あり。信頼性コンテンツの充実が必要</div></div>
+  <div class="issue-card warn"><div class="issue-title">6. 末尾スラッシュ不統一（継続）</div><div>/recruit, /flyers, /areas/funabashi で評価分散が半年間続いている</div></div>
+  <div class="issue-card warn"><div class="issue-title">7. 求人KW全て40位以下（変化なし）</div><div>半年間改善なし。求人ページの根本的なSEO再設計が必要</div></div>
+</div>
+
+<h3>改善優先度マトリクス</h3>
+<table>
+  <tr><th>優先度</th><th>施策</th><th>期待効果</th><th>工数</th></tr>
+  <tr><td>1</td><td>「船橋市 訪問看護」向けコンテンツ強化</td><td>クリック大幅増</td><td>大</td></tr>
+  <tr><td>2</td><td>末尾スラッシュ統一</td><td>評価分散解消</td><td>小</td></tr>
+  <tr><td>3</td><td>トップページ以外のSEO力強化</td><td>分散流入増</td><td>中</td></tr>
+  <tr><td>4</td><td>全ページのtitle/description最適化</td><td>CTR回復</td><td>中</td></tr>
+  <tr><td>5</td><td>インデックス未登録35ページ改善</td><td>検索露出拡大</td><td>中</td></tr>
+  <tr><td>6</td><td>求人ページSEO根本再設計</td><td>求人応募増</td><td>大</td></tr>
+  <tr><td>7</td><td>信頼性コンテンツ充実</td><td>ブランド保護</td><td>中</td></tr>
+  <tr><td>8</td><td>404/ソフト404の修正</td><td>クロール効率改善</td><td>小</td></tr>
+</table>
+
+</div>
+
+<script>
+const g='#0D5643',lg='#7FC5A0',y='#F4E951',b='#3498db',o='#f39c12',r='#e74c3c',gr='#95a5a6';
+
+// 1. Half Compare
+new Chart(document.getElementById('halfCompareChart'),{type:'bar',data:{labels:['クリック数','表示回数'],datasets:[{label:'前半3か月(9-12月)',data:[240,856],backgroundColor:lg,borderRadius:4},{label:'後半3か月(12-3月)',data:[283,1860],backgroundColor:g,borderRadius:4}]},options:{responsive:true,plugins:{legend:{position:'bottom'},title:{display:true,text:'表示回数が+117%増加'}},scales:{y:{beginAtZero:true}}}});
+
+// 2. Monthly Trend
+new Chart(document.getElementById('monthlyTrendChart'),{type:'line',data:{labels:['9月(後半)','10月','11月','12月','1月','2月','3月(途中)'],datasets:[{label:'クリック数',data:[30,50,60,100,80,90,113],borderColor:g,backgroundColor:g+'20',fill:true,tension:.3},{label:'表示回数',data:[100,180,200,380,500,550,800],borderColor:b,backgroundColor:b+'20',fill:true,tension:.3,yAxisID:'y1'}]},options:{responsive:true,plugins:{legend:{position:'bottom'}},scales:{y:{beginAtZero:true,title:{display:true,text:'クリック数'}},y1:{beginAtZero:true,position:'right',title:{display:true,text:'表示回数'},grid:{drawOnChartArea:false}}}}});
+
+// 3. Keyword Rank
+new Chart(document.getElementById('keywordRankChart'),{type:'bar',data:{labels:['フラクタル訪問看護','株式会社フラクタル','精神科 訪問看護ST','訪問看護 近く','訪問看護 カウンセリング','訪問看護 精神科','フラクタル','訪問看護','訪問看護 船橋','船橋 訪問看護','船橋市 訪問看護 相談','船橋市 訪問看護','船橋市訪問看護ST','フラクタル 求人','訪問看護 求人 船橋','船橋市 訪問リハビリ','船橋市 訪問看護 求人'],datasets:[{label:'順位',data:[1,1.4,2,4,6,10,10.4,11.1,16.7,18.5,24,28.6,32.9,32.5,39.5,40.7,40.9],backgroundColor:[lg,lg,lg,lg,lg,o,o,o,o,o,r,r,r,r,r,r,r],borderRadius:4}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{min:0,max:50,ticks:{callback:v=>v+'位'}}}}});
+
+// 4. Keyword Category
+new Chart(document.getElementById('keywordCategoryChart'),{type:'doughnut',data:{labels:['ブランド（指名）','一般（地域+訪問看護）','精神科系（新規）','求人','料金関連','その他'],datasets:[{data:[270,30,10,5,10,198],backgroundColor:[g,b,'#8e44ad',o,y,gr]}]},options:{responsive:true,plugins:{legend:{position:'bottom'},title:{display:true,text:'推定クリック数ベース（6か月）'}}}});
+
+// 5. Page Clicks
+new Chart(document.getElementById('pageClicksChart'),{type:'bar',data:{labels:['/ (トップ)','/recruit(合算)','/about-fractal(合算)','/areas/hanamigawa','/areas/funabashi(合算)','/flyers(合算)','/pricing','/areas/narashino'],datasets:[{label:'クリック数',data:[498,12,4,4,6,6,1,1],backgroundColor:g,borderRadius:4}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}}}});
+
+// 6. Page Concentration
+new Chart(document.getElementById('pageConcentrationChart'),{type:'doughnut',data:{labels:['トップページ (95.2%)','その他全ページ (4.8%)'],datasets:[{data:[498,25],backgroundColor:[g,gr]}]},options:{responsive:true,plugins:{legend:{position:'bottom'},title:{display:true,text:'クリック523件中498件がトップページ'}}}});
+
+// 7. Top Page Trend
+new Chart(document.getElementById('topPageTrendChart'),{type:'bar',data:{labels:['クリック数','表示回数','CTR(%)'],datasets:[{label:'前半3か月',data:[239,849,28.2],backgroundColor:lg,borderRadius:4},{label:'後半3か月',data:[259,1291,20.1],backgroundColor:g,borderRadius:4}]},options:{responsive:true,plugins:{legend:{position:'bottom'}}}});
+
+// 8. Slash
+new Chart(document.getElementById('slashChart'),{type:'bar',data:{labels:['/recruit','/flyers','/areas/funabashi','/about-fractal'],datasets:[{label:'スラッシュなし',data:[156,137,47,16],backgroundColor:o,borderRadius:4},{label:'スラッシュあり',data:[246,84,160,234],backgroundColor:b,borderRadius:4}]},options:{responsive:true,plugins:{legend:{position:'bottom'}},scales:{y:{title:{display:true,text:'表示回数'}}}}});
+
+// 9. Device
+new Chart(document.getElementById('deviceChart'),{type:'doughnut',data:{labels:['モバイル (~55%)','PC (~44%)','タブレット (~1%)'],datasets:[{data:[290,230,3],backgroundColor:[g,b,gr]}]},options:{responsive:true,plugins:{legend:{position:'bottom'}}}});
+
+// 10. Channel (90 days)
+new Chart(document.getElementById('channelChart'),{type:'bar',data:{labels:['Google\nOrganic','Direct','Yahoo\nOrganic','Bing\nOrganic','Instagram','funaport.com','介護検索'],datasets:[{label:'ユーザー数',data:[175,92,34,29,14,3,1],backgroundColor:[g,gr,'#6a1b9a','#00897b','#e91e63',b,o],borderRadius:4}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}});
+
+// 11. Analytics Pages (90 days)
+new Chart(document.getElementById('analyticsPageChart'),{type:'bar',data:{labels:['トップ(新title)','トップ(旧title)','トップ(中間title)','採用ページ','会社情報','フラクタルとは','採用情報・求人'],datasets:[{label:'表示回数',data:[457,418,390,306,213,176,128],backgroundColor:g,borderRadius:4},{label:'ユーザー数',data:[105,167,91,69,39,27,52],backgroundColor:lg,borderRadius:4},{label:'直帰率(%)',data:[29.6,26.3,26.5,11.0,1.7,2.0,12.9],backgroundColor:o,borderRadius:4,yAxisID:'y1'}]},options:{responsive:true,plugins:{legend:{position:'bottom'}},scales:{y:{beginAtZero:true,title:{display:true,text:'件数'}},y1:{beginAtZero:true,position:'right',max:50,title:{display:true,text:'直帰率(%)'},grid:{drawOnChartArea:false}}}}});
+
+// 12. Geo
+new Chart(document.getElementById('geoChart'),{type:'bar',data:{labels:['千葉市','船橋市','新宿区','八千代市','港区','大阪市','習志野市'],datasets:[{label:'ユーザー数',data:[19,11,10,11,10,6,5],backgroundColor:[lg,g,gr,g,gr,gr,g],borderRadius:4}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}});
+
+// 13. Index
+new Chart(document.getElementById('indexChart'),{type:'doughnut',data:{labels:['登録済み (11)','未登録 (48)'],datasets:[{data:[11,48],backgroundColor:[g,r]}]},options:{responsive:true,plugins:{legend:{position:'bottom'},title:{display:true,text:'インデックス率 18.6%'}}}});
+
+// 14. Index Reasons
+new Chart(document.getElementById('indexReasonChart'),{type:'bar',data:{labels:['クロール済み\n未登録','検出\n未登録','canonical\n代替','404','リダイレクト','ソフト404'],datasets:[{label:'ページ数',data:[20,15,8,2,2,1],backgroundColor:[r,r,gr,o,gr,o],borderRadius:4}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}});
+
+// 15. Geo Target
+new Chart(document.getElementById('geoTargetChart'),{type:'doughnut',data:{labels:['ターゲットエリア\n(船橋/八千代/千葉/習志野)','非ターゲット'],datasets:[{data:[46,80],backgroundColor:[g,gr]}]},options:{responsive:true,plugins:{legend:{position:'bottom'},title:{display:true,text:'ターゲットエリア比率 ~37%'}}}});
+</script>
+</body>
+</html>
