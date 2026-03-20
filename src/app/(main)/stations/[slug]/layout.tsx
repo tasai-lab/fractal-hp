@@ -21,16 +21,16 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${station.name}｜フラクタル訪問看護`,
-    description: `${station.name}の事業所情報・スタッフ紹介・訪問エリアをご確認いただけます。${station.officeInfo.address.prefecture}${station.officeInfo.address.city}の訪問看護ステーション。`,
+    title: `${station.officeInfo.address.city}の訪問看護なら｜${station.name}【24時間対応・精神科・看取り】`,
+    description: `${station.officeInfo.address.prefecture}${station.officeInfo.address.city}の訪問看護ステーション${station.name}。24時間365日対応、精神科訪問看護・終末期ケア・訪問リハビリに対応。事業所情報・スタッフ紹介・訪問エリア・ご利用の流れをご確認いただけます。`,
     alternates: {
-      canonical: `https://fractal-hokan.com/stations/${station.slug}`,
+      canonical: `/stations/${station.slug}`,
     },
     openGraph: {
-      title: `${station.name}｜フラクタル訪問看護`,
+      title: `${station.officeInfo.address.city}の訪問看護なら｜${station.name}【24時間対応・精神科・看取り】`,
       description: `${station.name}の事業所情報・スタッフ紹介・訪問エリアをご確認いただけます。`,
       type: "website",
-      url: `https://fractal-hokan.com/stations/${station.slug}`,
+      url: `/stations/${station.slug}`,
       siteName: "フラクタル訪問看護",
       locale: "ja_JP",
     },

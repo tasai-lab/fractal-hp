@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { BreadcrumbStructuredData } from "@/components/StructuredData";
 
 export const metadata: Metadata = {
   title: "訪問看護師の1日の流れ｜フラクタル訪問看護 船橋 採用情報",
@@ -21,5 +22,16 @@ export const metadata: Metadata = {
 };
 
 export default function DayFlowLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return (
+    <>
+      <BreadcrumbStructuredData
+        items={[
+          { name: "ホーム", url: "https://fractal-hokan.com/" },
+          { name: "採用情報", url: "https://fractal-hokan.com/recruit/" },
+          { name: "1日の流れ", url: "https://fractal-hokan.com/recruit/day-flow/" },
+        ]}
+      />
+      {children}
+    </>
+  );
 }

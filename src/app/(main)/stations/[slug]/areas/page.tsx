@@ -28,13 +28,13 @@ export async function generateMetadata({
     title: `対応エリア一覧｜${station.name}`,
     description: `${station.name}の対応エリア一覧。${station.officeInfo.address.city}を中心に24時間365日の訪問看護サービスを提供しています。各地域の詳細情報もご覧いただけます。`,
     alternates: {
-      canonical: `https://fractal-hokan.com/stations/${station.slug}/areas`,
+      canonical: `/stations/${station.slug}/areas`,
     },
     openGraph: {
       title: `対応エリア一覧｜${station.name}`,
       description: `${station.name}の対応エリア一覧。各地域の詳細情報をご確認ください。`,
       type: "website",
-      url: `https://fractal-hokan.com/stations/${station.slug}/areas`,
+      url: `/stations/${station.slug}/areas`,
       siteName: "フラクタル訪問看護",
       locale: "ja_JP",
     },
