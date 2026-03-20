@@ -96,6 +96,7 @@ export default function PricingPage() {
                   40歳未満の方や、がん末期・難病などの厚生労働大臣が定める疾病の方は<strong className="text-[var(--color-logo-dark-green)]">医療保険</strong>が適用されます。
                 </p>
                 <p className="text-[var(--color-ink-soft)] leading-relaxed text-sm">
+                  当ステーションでは、<Link href="/services/psychiatric-nursing" className="text-[var(--color-logo-dark-green)] underline underline-offset-2 hover:opacity-80 transition-opacity">精神科訪問看護</Link>・<Link href="/services/end-of-life-care" className="text-[var(--color-logo-dark-green)] underline underline-offset-2 hover:opacity-80 transition-opacity">終末期ケア（看取り）</Link>・<Link href="/services/24h-support" className="text-[var(--color-logo-dark-green)] underline underline-offset-2 hover:opacity-80 transition-opacity">24時間対応体制</Link>など幅広いサービスの料金にご対応しています。
                   詳しい料金については、お気軽にお問い合わせください。お一人おひとりの状況に合わせて、わかりやすくご説明いたします。
                 </p>
               </div>

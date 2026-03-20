@@ -23,7 +23,7 @@ const careManagerFAQs = [
 ];
 
 export const metadata: Metadata = {
-  title: "ケアマネージャー様へ｜訪問看護のご依頼・連携",
+  title: "船橋市のケアマネージャー様へ｜訪問看護のご依頼・連携",
   description: "船橋市・八千代市・習志野市のケアマネージャー様へ。フラクタル訪問看護は最短即日対応、365日訪問可能。訪問看護指示書の取得サポート、定期報告体制も充実。047-770-1228",
   keywords: [
     "ケアマネジャー 訪問看護 船橋",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     canonical: "/services/for-care-managers",
   },
   openGraph: {
-    title: "ケアマネージャー様へ｜訪問看護のご依頼・連携",
+    title: "船橋市のケアマネージャー様へ｜訪問看護のご依頼・連携",
     description: "船橋市・八千代市・習志野市のケアマネージャー様へ。フラクタル訪問看護は最短即日対応、365日訪問可能。訪問看護指示書の取得サポート、定期報告体制も充実。",
     type: "website",
     url: "https://fractal-hokan.com/services/for-care-managers",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "ケアマネージャー様へ｜訪問看護のご依頼・連携",
+    title: "船橋市のケアマネージャー様へ｜訪問看護のご依頼・連携",
     description: "船橋市・八千代市・習志野市のケアマネージャー様へ。最短即日対応、365日訪問可能。",
     images: ["/images/ogp/ogp-image.png"],
   },

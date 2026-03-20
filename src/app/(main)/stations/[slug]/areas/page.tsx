@@ -25,14 +25,16 @@ export async function generateMetadata({
   }
 
   return {
-    title: `対応エリア一覧｜${station.name}`,
-    description: `${station.name}の対応エリア一覧。${station.officeInfo.address.city}を中心に24時間365日の訪問看護サービスを提供しています。各地域の詳細情報もご覧いただけます。`,
+    title: {
+      absolute: `${station.officeInfo.address.city}の訪問看護対応エリア一覧｜船橋・八千代・習志野に対応｜フラクタル訪問看護 船橋`,
+    },
+    description: `${station.name}の訪問看護対応エリア一覧。${station.officeInfo.address.city}・八千代市・習志野市・千葉市花見川区を中心に、精神科訪問看護・終末期ケア・訪問リハビリを24時間365日提供しています。各地域の詳細情報をご確認ください。`,
     alternates: {
       canonical: `/stations/${station.slug}/areas`,
     },
     openGraph: {
-      title: `対応エリア一覧｜${station.name}`,
-      description: `${station.name}の対応エリア一覧。各地域の詳細情報をご確認ください。`,
+      title: `${station.officeInfo.address.city}の訪問看護対応エリア一覧｜船橋・八千代・習志野に対応｜フラクタル訪問看護 船橋`,
+      description: `${station.name}の訪問看護対応エリア一覧。各地域の詳細情報をご確認ください。`,
       type: "website",
       url: `/stations/${station.slug}/areas`,
       siteName: "フラクタル訪問看護",
