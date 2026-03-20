@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { getStation, getAllStationSlugs } from "@/lib/stations-data";
+import { getStationContent } from "@/lib/station-content";
 import { BreadcrumbStructuredData } from "@/components/StructuredData";
 
 export async function generateMetadata({
@@ -12,6 +13,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const resolvedParams = await Promise.resolve(params);
   const station = getStation(resolvedParams.slug);
+  const content = getStationContent(resolvedParams.slug);
 
   if (!station) {
     return {
@@ -20,15 +22,18 @@ export async function generateMetadata({
     };
   }
 
+  const seoTitle = content?.seoTitle ?? `${station.name}｜フラクタル訪問看護`;
+  const seoDescription = content?.seoDescription ?? `${station.name}の事業所情報・スタッフ紹介・訪問エリアをご確認いただけます。${station.officeInfo.address.prefecture}${station.officeInfo.address.city}の訪問看護ステーション。`;
+
   return {
-    title: `${station.officeInfo.address.city}の訪問看護なら｜${station.name}【24時間対応・精神科・看取り】`,
-    description: `${station.officeInfo.address.prefecture}${station.officeInfo.address.city}の訪問看護ステーション${station.name}。24時間365日対応、精神科訪問看護・終末期ケア・訪問リハビリに対応。事業所情報・スタッフ紹介・訪問エリア・ご利用の流れをご確認いただけます。`,
+    title: seoTitle,
+    description: seoDescription,
     alternates: {
       canonical: `/stations/${station.slug}`,
     },
     openGraph: {
-      title: `${station.officeInfo.address.city}の訪問看護なら｜${station.name}【24時間対応・精神科・看取り】`,
-      description: `${station.name}の事業所情報・スタッフ紹介・訪問エリアをご確認いただけます。`,
+      title: seoTitle,
+      description: seoDescription,
       type: "website",
       url: `/stations/${station.slug}`,
       siteName: "フラクタル訪問看護",
