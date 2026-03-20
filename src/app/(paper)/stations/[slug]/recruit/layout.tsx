@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { getStation, getAllStationSlugs } from "@/lib/stations-data";
-import { BreadcrumbStructuredData } from "@/components/StructuredData";
+import { BreadcrumbStructuredData, JobPostingStructuredData } from "@/components/StructuredData";
 
 export function generateStaticParams() {
   return getAllStationSlugs().map((slug) => ({ slug }));
@@ -37,6 +37,8 @@ export default async function StationRecruitLayout({
           },
         ]}
       />
+      <JobPostingStructuredData jobId="nurse" />
+      <JobPostingStructuredData jobId="therapist" />
       <Header variant="paper" />
       {children}
       <Footer />

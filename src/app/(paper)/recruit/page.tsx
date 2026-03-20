@@ -52,7 +52,7 @@ export default function RecruitPage() {
 
       <main className="relative z-10 max-w-5xl mx-auto px-4 md:px-6 pt-10 md:pt-16 pb-32 md:pb-24 flex flex-col gap-16 md:gap-24">
         <section className="order-1 grid lg:grid-cols-[1.1fr,0.9fr] gap-10 items-center">
-          <h1 className="sr-only">船橋市の訪問看護師・PT・OT・ST求人｜フラクタル訪問看護</h1>
+          <p className="sr-only">船橋市の訪問看護師・PT・OT・ST求人｜フラクタル訪問看護</p>
           <FadeIn className="space-y-4">
             <p className="text-xs tracking-[0.3em] text-ink-soft">RECRUIT</p>
             <h1 className="heading-mincho text-3xl md:text-5xl text-[var(--color-olive)]">

@@ -10,15 +10,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const monthly = "monthly" as const;
 
   const lastModifiedDates = {
-    top: new Date("2026-03-04"),
-    stations: new Date("2026-03-04"),
-    areas: new Date("2026-03-04"),
-    b2b: new Date("2026-03-04"),
-    pricing: new Date("2026-02-25"),
-    recruit: new Date("2026-03-04"),
-    services: new Date("2026-03-04"),
-    company: new Date("2026-02-25"),
-    updates: new Date("2026-03-04"),
+    top: new Date("2026-03-20"),
+    stations: new Date("2026-03-20"),
+    areas: new Date("2026-03-20"),
+    b2b: new Date("2026-03-20"),
+    pricing: new Date("2026-03-20"),
+    recruit: new Date("2026-03-20"),
+    services: new Date("2026-03-20"),
+    company: new Date("2026-03-20"),
+    updates: new Date("2026-03-20"),
   };
 
   const stations = getActiveStations();

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { RecruitStructuredData } from "@/components/StructuredData";
+import { RecruitStructuredData, JobPostingStructuredData } from "@/components/StructuredData";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -40,6 +40,8 @@ export default function RecruitLayout({
   return (
     <>
       <RecruitStructuredData />
+      <JobPostingStructuredData jobId="nurse" />
+      <JobPostingStructuredData jobId="therapist" />
       <Header variant="paper" />
       {children}
       <Footer />

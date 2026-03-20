@@ -42,6 +42,7 @@ export default async function StationPage({
             STATION
           </span>
           <h1 className="flex justify-center mb-4">
+            <span className="sr-only">{station.name} - {station.officeInfo.address.city}の訪問看護ステーション</span>
             <Image
               src={`/images/logos/hokan-title-${station.slug}.png`}
               alt={station.name}
