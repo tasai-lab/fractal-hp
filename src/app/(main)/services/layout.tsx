@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "フラクタル訪問看護 船橋のサービス一覧。精神科訪問看護・看取り・終末期ケア・24時間対応体制について詳しくご紹介します。船橋市・八千代市・習志野市対応。047-770-1228",
   alternates: {
-    canonical: "https://fractal-hokan.com/services",
+    canonical: "/services",
   },
   openGraph: {
     title: "訪問看護サービス一覧｜フラクタル訪問看護 船橋",

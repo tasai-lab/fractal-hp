@@ -27,6 +27,7 @@ export type StationContent = {
   areaBreakdownLastUpdated: string;
   seoTitle?: string;
   seoDescription?: string;
+  serviceAreaText?: string;  // ページ本文用「○○市・△△市」テキスト
 };
 
 const stationContents: StationContent[] = [
@@ -44,6 +45,7 @@ const stationContents: StationContent[] = [
     ],
     areaBreakdownLastUpdated: "2026年2月末",
     seoTitle: "船橋市の訪問看護なら｜フラクタル訪問看護 船橋【精神科・看取り・24時間対応】",
+    serviceAreaText: "船橋市・八千代市・習志野市",
     seoDescription: "船橋市・八千代市・習志野市の訪問看護ステーション。精神科訪問看護・終末期ケア・訪問リハビリに24時間365日対応。",
   },
 ];

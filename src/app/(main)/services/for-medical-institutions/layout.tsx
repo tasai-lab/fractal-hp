@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     "医療機関 訪問看護",
   ],
   alternates: {
-    canonical: "https://fractal-hokan.com/services/for-medical-institutions",
+    canonical: "/services/for-medical-institutions",
   },
   openGraph: {
     title: "医療機関の皆様へ｜訪問看護との退院支援・在宅医療連携",
