@@ -9,6 +9,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const weekly = "weekly" as const;
   const monthly = "monthly" as const;
 
+  // trailingSlash: true に合わせて末尾スラッシュを付与
+  const u = (path: string) => `${baseUrl}${path}/`;
+
   const lastModifiedDates = {
     top: new Date("2026-03-20"),
     stations: new Date("2026-03-20"),
@@ -26,7 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     // === トップページ（最重要）===
     {
-      url: baseUrl,
+      url: `${baseUrl}/`,
       lastModified: lastModifiedDates.top,
       changeFrequency: weekly,
       priority: 1.0,
@@ -34,7 +37,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // === 事業所一覧 ===
     {
-      url: `${baseUrl}/stations`,
+      url: u("/stations"),
       lastModified: lastModifiedDates.stations,
       changeFrequency: weekly,
       priority: 0.9,
@@ -43,31 +46,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // === 事業所別ページ ===
     ...stations.flatMap((station) => [
       {
-        url: `${baseUrl}/stations/${station.slug}`,
+        url: u(`/stations/${station.slug}`),
         lastModified: lastModifiedDates.stations,
         changeFrequency: weekly,
         priority: 0.9,
       },
       {
-        url: `${baseUrl}/stations/${station.slug}/recruit`,
+        url: u(`/stations/${station.slug}/recruit`),
         lastModified: lastModifiedDates.recruit,
         changeFrequency: weekly,
         priority: 0.9,
       },
       {
-        url: `${baseUrl}/stations/${station.slug}/areas`,
+        url: u(`/stations/${station.slug}/areas`),
         lastModified: lastModifiedDates.areas,
         changeFrequency: weekly,
         priority: 0.85,
       },
       {
-        url: `${baseUrl}/stations/${station.slug}/documents`,
+        url: u(`/stations/${station.slug}/documents`),
         lastModified: lastModifiedDates.stations,
         changeFrequency: monthly,
         priority: 0.6,
       },
       {
-        url: `${baseUrl}/stations/${station.slug}/flyers`,
+        url: u(`/stations/${station.slug}/flyers`),
         lastModified: lastModifiedDates.stations,
         changeFrequency: monthly,
         priority: 0.5,
@@ -76,13 +79,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // === サービス別ページ（精神科・看取り・24時間対応）===
     {
-      url: `${baseUrl}/services`,
+      url: u("/services"),
       lastModified: lastModifiedDates.services,
       changeFrequency: monthly,
       priority: 0.85,
     },
     ...servicesData.map((service) => ({
-      url: `${baseUrl}/services/${service.slug}`,
+      url: u(`/services/${service.slug}`),
       lastModified: lastModifiedDates.services,
       changeFrequency: monthly,
       priority: 0.85,
@@ -90,13 +93,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // === B2B向けページ（ケアマネ・医療機関）===
     {
-      url: `${baseUrl}/services/for-care-managers`,
+      url: u("/services/for-care-managers"),
       lastModified: lastModifiedDates.b2b,
       changeFrequency: weekly,
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/services/for-medical-institutions`,
+      url: u("/services/for-medical-institutions"),
       lastModified: lastModifiedDates.b2b,
       changeFrequency: weekly,
       priority: 0.9,
@@ -104,7 +107,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // === 料金ページ ===
     {
-      url: `${baseUrl}/pricing`,
+      url: u("/pricing"),
       lastModified: lastModifiedDates.pricing,
       changeFrequency: weekly,
       priority: 0.85,
@@ -112,13 +115,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // === 採用ページ群（求人SEO重要）===
     {
-      url: `${baseUrl}/recruit`,
+      url: u("/recruit"),
       lastModified: lastModifiedDates.recruit,
       changeFrequency: weekly,
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/recruit/day-flow`,
+      url: u("/recruit/day-flow"),
       lastModified: lastModifiedDates.recruit,
       changeFrequency: monthly,
       priority: 0.8,
@@ -126,19 +129,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // === 会社・サービス紹介ページ ===
     {
-      url: `${baseUrl}/fractal`,
+      url: u("/fractal"),
       lastModified: lastModifiedDates.company,
       changeFrequency: monthly,
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/company`,
+      url: u("/company"),
       lastModified: lastModifiedDates.company,
       changeFrequency: monthly,
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/company/ceo`,
+      url: u("/company/ceo"),
       lastModified: lastModifiedDates.company,
       changeFrequency: monthly,
       priority: 0.6,
@@ -146,7 +149,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // === その他 ===
     {
-      url: `${baseUrl}/updates`,
+      url: u("/updates"),
       lastModified: lastModifiedDates.updates,
       changeFrequency: weekly,
       priority: 0.6,
