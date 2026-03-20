@@ -56,7 +56,7 @@ export default async function StationPage({
             {content?.serviceAreaText ?? station.officeInfo.address.city}を中心に、
             <Link href="/services/psychiatric-nursing" className="underline underline-offset-2 hover:text-[var(--color-logo-dark-green)] transition-colors">精神科訪問看護</Link>・
             <Link href="/services/end-of-life-care" className="underline underline-offset-2 hover:text-[var(--color-logo-dark-green)] transition-colors">終末期ケア（看取り）</Link>・
-            <Link href="/services/24h-support" className="underline underline-offset-2 hover:text-[var(--color-logo-dark-green)] transition-colors">訪問リハビリテーション</Link>を含む幅広いサービスを24時間365日提供しています
+            訪問リハビリテーションを含む幅広いサービスを<Link href="/services/24h-support" className="underline underline-offset-2 hover:text-[var(--color-logo-dark-green)] transition-colors">24時間365日</Link>提供しています
           </p>
           <div className="mt-8 flex justify-center">
             <div className="w-12 h-0.5 bg-[var(--color-logo-light-green)]" />
