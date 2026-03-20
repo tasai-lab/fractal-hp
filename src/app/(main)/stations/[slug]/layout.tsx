@@ -26,7 +26,9 @@ export async function generateMetadata({
   const seoDescription = content?.seoDescription ?? `${station.name}の事業所情報・スタッフ紹介・訪問エリアをご確認いただけます。${station.officeInfo.address.prefecture}${station.officeInfo.address.city}の訪問看護ステーション。`;
 
   return {
-    title: seoTitle,
+    title: {
+      absolute: seoTitle,
+    },
     description: seoDescription,
     alternates: {
       canonical: `/stations/${station.slug}`,

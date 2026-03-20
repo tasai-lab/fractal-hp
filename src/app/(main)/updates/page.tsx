@@ -7,13 +7,17 @@ import { updates, typeConfig } from "@/lib/updates-data";
 import { BreadcrumbStructuredData } from "@/components/StructuredData";
 
 export const metadata: Metadata = {
-  title: "アップデート情報｜フラクタル訪問看護 船橋",
+  title: {
+    absolute: "アップデート情報｜フラクタル訪問看護 船橋",
+  },
   description: "フラクタル訪問看護 船橋のホームページ更新履歴。新規ページ追加・機能改善・デザイン変更など、最新情報をお届けします。船橋市・八千代市・習志野市の訪問看護ステーション。",
   alternates: {
     canonical: "/updates",
   },
   openGraph: {
-    title: "アップデート情報｜フラクタル訪問看護 船橋",
+    title: {
+    absolute: "アップデート情報｜フラクタル訪問看護 船橋",
+  },
     description: "フラクタル訪問看護 船橋のホームページ更新履歴。新規ページ追加・機能改善・デザイン変更など、最新情報をお届けします。",
     url: "https://fractal-hokan.com/updates",
     images: [{ url: "/images/ogp/ogp-image.png", width: 1200, height: 630 }],

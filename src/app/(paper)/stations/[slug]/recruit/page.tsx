@@ -34,7 +34,9 @@ export async function generateMetadata({
   const cityName = station.officeInfo.address.city;
 
   return {
-    title: `【${cityName}】訪問看護師・PT・OT・ST求人｜${station.name}`,
+    title: {
+      absolute: `【${cityName}】訪問看護師・PT・OT・ST求人｜${station.name}`,
+    },
     description: `${station.name}では看護師・理学療法士・作業療法士・言語聴覚士を募集しています。精神科訪問看護・終末期ケア・訪問リハビリに対応。入社祝い金最大30万円、年間休日139日以上。未経験・ブランク歓迎。直行直帰OK・AI活用で記録業務を効率化。`,
     alternates: {
       canonical: `/stations/${station.slug}/recruit`,

@@ -6,14 +6,18 @@ import StationsOverview from "@/components/StationsOverview";
 import { BreadcrumbStructuredData } from "@/components/StructuredData";
 
 export const metadata: Metadata = {
-  title: "訪問看護ステーション一覧｜船橋・八千代・習志野｜フラクタル訪問看護",
+  title: {
+    absolute: "訪問看護ステーション一覧｜船橋・八千代・習志野｜フラクタル訪問看護 船橋",
+  },
   description:
     "フラクタル訪問看護のステーション一覧。船橋市・八千代市・習志野市・千葉市を中心に24時間365日の訪問看護サービスを提供しています。",
   alternates: {
     canonical: "/stations",
   },
   openGraph: {
-    title: "訪問看護ステーション一覧｜船橋・八千代・習志野｜フラクタル訪問看護",
+    title: {
+    absolute: "訪問看護ステーション一覧｜船橋・八千代・習志野｜フラクタル訪問看護 船橋",
+  },
     description:
       "フラクタル訪問看護のステーション一覧。船橋市・八千代市・習志野市・千葉市花見川区で訪問看護・訪問リハビリ・精神科訪問看護を提供。各ステーションの事業所情報・スタッフ・訪問エリアをご確認いただけます。",
     type: "website",
