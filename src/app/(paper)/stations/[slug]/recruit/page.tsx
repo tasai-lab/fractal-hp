@@ -35,15 +35,15 @@ export async function generateMetadata({
 
   return {
     title: `【${cityName}】訪問看護師・PT・OT・ST求人｜${station.name}`,
-    description: `${station.name}では看護師・理学療法士・作業療法士・言語聴覚士を募集しています。入社祝い金最大30万円、年間休日139日以上。未経験・ブランク歓迎。直行直帰OK・AI活用で記録業務を効率化。`,
+    description: `${station.name}では看護師・理学療法士・作業療法士・言語聴覚士を募集しています。精神科訪問看護・終末期ケア・訪問リハビリに対応。入社祝い金最大30万円、年間休日139日以上。未経験・ブランク歓迎。直行直帰OK・AI活用で記録業務を効率化。`,
     alternates: {
-      canonical: `https://fractal-hokan.com/stations/${station.slug}/recruit`,
+      canonical: `/stations/${station.slug}/recruit`,
     },
     openGraph: {
       title: `【${cityName}】訪問看護師・PT・OT・ST求人｜${station.name}`,
       description: `${station.name}では看護師・PT・OT・STを募集中。入社祝い金最大30万円、年間休日139日以上。未経験・ブランク歓迎。`,
       type: "website",
-      url: `https://fractal-hokan.com/stations/${station.slug}/recruit`,
+      url: `/stations/${station.slug}/recruit`,
       siteName: "フラクタル訪問看護",
       locale: "ja_JP",
     },

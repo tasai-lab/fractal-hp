@@ -10,14 +10,14 @@ export const metadata: Metadata = {
   description:
     "フラクタル訪問看護のステーション一覧。船橋市・八千代市・習志野市・千葉市を中心に24時間365日の訪問看護サービスを提供しています。",
   alternates: {
-    canonical: "https://fractal-hokan.com/stations",
+    canonical: "/stations",
   },
   openGraph: {
     title: "ステーション一覧｜フラクタル訪問看護",
     description:
       "フラクタル訪問看護のステーション一覧。各ステーションの事業所情報・スタッフ・訪問エリアをご確認いただけます。",
     type: "website",
-    url: "https://fractal-hokan.com/stations",
+    url: "/stations",
     siteName: "フラクタル訪問看護",
     locale: "ja_JP",
   },
